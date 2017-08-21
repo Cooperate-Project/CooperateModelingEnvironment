@@ -3,14 +3,14 @@ package de.cooperateproject.modeling.transformation.transformations.tests.transf
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
 
 public class GraphicalToTextualComponentTest extends DirectionalTransformationTestBase {
 
     private static final URI TRANSFORMATION_URI = createTransformationURI("Graphical_to_Textual_for_Component.qvto");
 
     static {
-        ComponentPackage.eINSTANCE.eClass();
+        CmpPackage.eINSTANCE.eClass();
     }
 
     public GraphicalToTextualComponentTest() {

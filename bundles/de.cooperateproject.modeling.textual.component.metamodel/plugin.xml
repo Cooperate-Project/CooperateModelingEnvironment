@@ -10,8 +10,16 @@
       <!-- @generated component -->
       <package
             uri="http://www.cooperateproject.de/modeling/textual/component/Component"
-            class="de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage"
-            genModel="model/component.genmodel"/>
+            class="de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage"
+            genModel="model/cmp.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated cmp -->
+      <package
+            uri="http://www.cooperateproject.de/modeling/textual/component/Component"
+            class="de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage"
+            genModel="model/cmp.genmodel"/>
    </extension>
 
 </plugin>

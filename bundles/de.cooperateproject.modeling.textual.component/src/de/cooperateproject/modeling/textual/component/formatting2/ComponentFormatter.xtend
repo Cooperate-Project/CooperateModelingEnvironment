@@ -4,20 +4,20 @@
 package de.cooperateproject.modeling.textual.component.formatting2
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram
-import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
-import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation
-import de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage
+import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram
+import de.cooperateproject.modeling.textual.cmp.cmp.Classifier
+import de.cooperateproject.modeling.textual.cmp.cmp.ClassifierRelation
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage
 import de.cooperateproject.modeling.textual.component.services.ComponentGrammarAccess
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component
-import de.cooperateproject.modeling.textual.component.metamodel.component.Attribute
-import de.cooperateproject.modeling.textual.component.metamodel.component.Method
-import de.cooperateproject.modeling.textual.component.metamodel.component.Parameter
-import de.cooperateproject.modeling.textual.component.metamodel.component.Interface
-import de.cooperateproject.modeling.textual.component.metamodel.component.Member
-import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation
-import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.cmp.cmp.Component
+import de.cooperateproject.modeling.textual.cmp.cmp.Attribute
+import de.cooperateproject.modeling.textual.cmp.cmp.Method
+import de.cooperateproject.modeling.textual.cmp.cmp.Parameter
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface
+import de.cooperateproject.modeling.textual.cmp.cmp.Member
+import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
@@ -26,7 +26,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 	@Inject extension ComponentGrammarAccess
 
 	def dispatch void format(ComponentDiagram componentDiagram, extension IFormattableDocument document) {
-		componentDiagram.regionFor.feature(ComponentPackage.Literals.COMPONENT_DIAGRAM__TITLE).append[newLines = 2]
+		componentDiagram.regionFor.feature(CmpPackage.Literals.COMPONENT_DIAGRAM__TITLE).append[newLines = 2]
 		componentDiagram.getRootpackage.format;
 		componentDiagram.regionFor.keyword(componentDiagramAccess.endCpdKeyword_4).prepend[newLines = 2 priority = 1]
 	}

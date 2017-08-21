@@ -4,14 +4,14 @@
 package de.cooperateproject.modeling.textual.component.tests
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram
+import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import static org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.common.util.URI
 import org.apache.commons.io.IOUtils
@@ -29,7 +29,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 	
 	override setup() {
 		super.setup()
-		rs.packageRegistry.put(ComponentPackage.eNS_URI, ComponentPackage.eINSTANCE)
+		rs.packageRegistry.put(CmpPackage.eNS_URI, CmpPackage.eINSTANCE)
 	}
 	
 	@Test

@@ -31,7 +31,7 @@ import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLRefer
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.ComponentRuntimeModule;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.services.ComponentTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.tests.ComponentInjectorProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -53,7 +53,7 @@ public class ComponentCustomizedRuntimeModule extends ComponentRuntimeModule {
 
         @Override
         public Collection<EPackage> coveredPackages() {
-            return Arrays.asList(ComponentPackage.eINSTANCE, TextualCommonsPackage.eINSTANCE);
+            return Arrays.asList(CmpPackage.eINSTANCE, TextualCommonsPackage.eINSTANCE);
         }
 
         @Override

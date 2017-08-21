@@ -4,24 +4,24 @@
 package de.cooperateproject.modeling.textual.component.serializer;
 
 import com.google.inject.Inject;
+import de.cooperateproject.modeling.textual.cmp.cmp.Abstraction;
+import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Component;
+import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram;
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
+import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
+import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
+import de.cooperateproject.modeling.textual.cmp.cmp.Manifestation;
+import de.cooperateproject.modeling.textual.cmp.cmp.Method;
+import de.cooperateproject.modeling.textual.cmp.cmp.Port;
+import de.cooperateproject.modeling.textual.cmp.cmp.Provide;
+import de.cooperateproject.modeling.textual.cmp.cmp.Require;
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Substitution;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Abstraction;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Attribute;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Connector;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Dependency;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Generalization;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Manifestation;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Method;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Provide;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Require;
-import de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.Substitution;
 import de.cooperateproject.modeling.textual.component.services.ComponentGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -46,54 +46,54 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 		ParserRule rule = context.getParserRule();
 		Action action = context.getAssignedAction();
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
-		if (epackage == ComponentPackage.eINSTANCE)
+		if (epackage == CmpPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case ComponentPackage.ABSTRACTION:
+			case CmpPackage.ABSTRACTION:
 				sequence_Abstraction(context, (Abstraction) semanticObject); 
 				return; 
-			case ComponentPackage.ATTRIBUTE:
+			case CmpPackage.ATTRIBUTE:
 				sequence_Attribute(context, (Attribute) semanticObject); 
 				return; 
-			case ComponentPackage.COMPONENT:
+			case CmpPackage.COMPONENT:
 				sequence_Component(context, (Component) semanticObject); 
 				return; 
-			case ComponentPackage.COMPONENT_DIAGRAM:
+			case CmpPackage.COMPONENT_DIAGRAM:
 				sequence_ComponentDiagram(context, (ComponentDiagram) semanticObject); 
 				return; 
-			case ComponentPackage.CONNECTOR:
+			case CmpPackage.CONNECTOR:
 				sequence_Connector(context, (Connector) semanticObject); 
 				return; 
-			case ComponentPackage.DEPENDENCY:
+			case CmpPackage.DEPENDENCY:
 				sequence_Dependency(context, (Dependency) semanticObject); 
 				return; 
-			case ComponentPackage.GENERALIZATION:
+			case CmpPackage.GENERALIZATION:
 				sequence_Generalization(context, (Generalization) semanticObject); 
 				return; 
-			case ComponentPackage.INTERFACE:
+			case CmpPackage.INTERFACE:
 				sequence_Interface(context, (Interface) semanticObject); 
 				return; 
-			case ComponentPackage.MANIFESTATION:
+			case CmpPackage.MANIFESTATION:
 				sequence_Manifestation(context, (Manifestation) semanticObject); 
 				return; 
-			case ComponentPackage.METHOD:
+			case CmpPackage.METHOD:
 				sequence_Method(context, (Method) semanticObject); 
 				return; 
-			case ComponentPackage.PARAMETER:
-				sequence_Parameter(context, (de.cooperateproject.modeling.textual.component.metamodel.component.Parameter) semanticObject); 
+			case CmpPackage.PARAMETER:
+				sequence_Parameter(context, (de.cooperateproject.modeling.textual.cmp.cmp.Parameter) semanticObject); 
 				return; 
-			case ComponentPackage.PORT:
+			case CmpPackage.PORT:
 				sequence_Port(context, (Port) semanticObject); 
 				return; 
-			case ComponentPackage.PROVIDE:
+			case CmpPackage.PROVIDE:
 				sequence_Provide(context, (Provide) semanticObject); 
 				return; 
-			case ComponentPackage.REQUIRE:
+			case CmpPackage.REQUIRE:
 				sequence_Require(context, (Require) semanticObject); 
 				return; 
-			case ComponentPackage.ROOT_PACKAGE:
+			case CmpPackage.ROOT_PACKAGE:
 				sequence_RootPackage(context, (RootPackage) semanticObject); 
 				return; 
-			case ComponentPackage.SUBSTITUTION:
+			case CmpPackage.SUBSTITUTION:
 				sequence_Substitution(context, (Substitution) semanticObject); 
 				return; 
 			}
@@ -117,14 +117,14 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Abstraction(ISerializationContext context, Abstraction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getAbstractionAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
-		feeder.accept(grammarAccess.getAbstractionAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getAbstractionAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getAbstractionAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -169,10 +169,10 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_ComponentDiagram(ISerializationContext context, ComponentDiagram semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.COMPONENT_DIAGRAM__TITLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.COMPONENT_DIAGRAM__TITLE));
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.COMPONENT_DIAGRAM__ROOTPACKAGE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.COMPONENT_DIAGRAM__ROOTPACKAGE));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.COMPONENT_DIAGRAM__TITLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.COMPONENT_DIAGRAM__TITLE));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.COMPONENT_DIAGRAM__ROOTPACKAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.COMPONENT_DIAGRAM__ROOTPACKAGE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getComponentDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
@@ -230,14 +230,14 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Dependency(ISerializationContext context, Dependency semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getDependencyAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
-		feeder.accept(grammarAccess.getDependencyAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getDependencyAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getDependencyAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -252,14 +252,14 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
-		feeder.accept(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -287,14 +287,14 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Manifestation(ISerializationContext context, Manifestation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getManifestationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
-		feeder.accept(grammarAccess.getManifestationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getManifestationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getManifestationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -326,7 +326,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
-	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.component.metamodel.component.Parameter semanticObject) {
+	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cmp.cmp.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
@@ -391,14 +391,14 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Substitution(ISerializationContext context, Substitution semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
-			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getSubstitutionAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
-		feeder.accept(grammarAccess.getSubstitutionAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getSubstitutionAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false));
+		feeder.accept(grammarAccess.getSubstitutionAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false));
 		feeder.finish();
 	}
 	

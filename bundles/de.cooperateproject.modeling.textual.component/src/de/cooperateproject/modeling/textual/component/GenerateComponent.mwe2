@@ -89,8 +89,8 @@ Workflow {
 			name = "${basename}.Component"
 			fileExtensions = "cmp"
 			
-			referencedResource = "platform:/resource/${basename}.metamodel/model/component.genmodel"
-			referencedResource = "platform:/resource/${basename}.metamodel/model/component.ecore"
+			referencedResource = "platform:/resource/${basename}.metamodel/model/cmp.genmodel"
+			referencedResource = "platform:/resource/${basename}.metamodel/model/cmp.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
 			

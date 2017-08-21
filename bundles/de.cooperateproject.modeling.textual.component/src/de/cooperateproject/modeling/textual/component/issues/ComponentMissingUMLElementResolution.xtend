@@ -1,9 +1,9 @@
 package de.cooperateproject.modeling.textual.component.issues
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component
-import de.cooperateproject.modeling.textual.component.metamodel.component.Interface
+import de.cooperateproject.modeling.textual.cmp.cmp.Classifier
+import de.cooperateproject.modeling.textual.cmp.cmp.Component
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import java.util.concurrent.Callable
@@ -13,7 +13,7 @@ import org.eclipse.uml2.uml.UMLFactory
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
 import java.util.function.BiConsumer
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
-import de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage
 import java.util.function.Consumer
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {

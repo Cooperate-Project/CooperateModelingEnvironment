@@ -7,9 +7,10 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: de.cooperateproject.modeling.textual.component.metamodel.component,
- de.cooperateproject.modeling.textual.component.metamodel.component.impl,
- de.cooperateproject.modeling.textual.component.metamodel.component.util
+Export-Package: 
+ de.cooperateproject.modeling.textual.cmp.cmp,
+ de.cooperateproject.modeling.textual.cmp.cmp.impl,
+ de.cooperateproject.modeling.textual.cmp.cmp.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="5.1.2";visibility:=reexport,

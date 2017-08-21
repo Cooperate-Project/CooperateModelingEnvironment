@@ -2,15 +2,15 @@ package de.cooperateproject.modeling.textual.component.issues
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component
-import de.cooperateproject.modeling.textual.component.metamodel.component.Method
-import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation
-import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation
-import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
-import de.cooperateproject.modeling.textual.component.metamodel.component.Connector
-import de.cooperateproject.modeling.textual.component.metamodel.component.Interface
-import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation
-import de.cooperateproject.modeling.textual.component.metamodel.component.Port
+import de.cooperateproject.modeling.textual.cmp.cmp.Component
+import de.cooperateproject.modeling.textual.cmp.cmp.Method
+import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation
+import de.cooperateproject.modeling.textual.cmp.cmp.ClassifierRelation
+import de.cooperateproject.modeling.textual.cmp.cmp.Classifier
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation
+import de.cooperateproject.modeling.textual.cmp.cmp.Port
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Element
