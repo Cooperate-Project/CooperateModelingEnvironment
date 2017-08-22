@@ -11,18 +11,24 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.util.UsecaseSwitch;
 import de.cooperateproject.modeling.textual.usecase.usecase.System;
 
+/**
+ * Switch to invoke labeling method for each usecase model class.
+ * 
+ * @author czogalik
+ *
+ */
 public class UsecaseClassTextSwitch extends UsecaseSwitch<String> {
-    
+
     @Override
     public String caseRootPackage(RootPackage object) {
         return "rootpackage";
     }
-    
+
     @Override
     public String caseActor(Actor object) {
         return "act";
     }
-    
+
     @Override
     public String caseSystem(System object) {
         return "sys";
@@ -32,27 +38,27 @@ public class UsecaseClassTextSwitch extends UsecaseSwitch<String> {
     public String caseUseCase(UseCase object) {
         return "uc";
     }
-    
+
     @Override
     public String caseExtensionPoint(ExtensionPoint object) {
         return "ep";
     }
-    
+
     @Override
     public String caseAssociation(Association object) {
         return "asc";
     }
-    
+
     @Override
     public String caseGeneralization(Generalization object) {
         return "isa";
     }
-    
+
     @Override
     public String caseInclude(Include object) {
         return "incl";
     }
-    
+
     @Override
     public String caseExtend(Extend object) {
         return "ext";

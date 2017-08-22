@@ -10,51 +10,50 @@ import org.eclipse.net4j.util.io.IOUtil;
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 
 /**
- * Creates and holds the previous and current CDOView of the selected
- * CDOCommitInfo.
+ * Creates and holds the previous and current CDOView of the selected CDOCommitInfo.
  * 
  * @author Jasmin
  *
  */
 public class CommitCDOViewManager {
 
-	private CDOSession session;
-	private CDOView previousView;
-	private CDOView currentView;
+    private CDOSession session;
+    private CDOView previousView;
+    private CDOView currentView;
 
-	public CommitCDOViewManager(CDOCommitInfo commit, IFile file) {
-		session = CDOConnectionManager.getInstance().acquireSession(file.getProject());
-		CDOBranch mainBranch = session.getBranchManager().getMainBranch();
+    public CommitCDOViewManager(CDOCommitInfo commit, IFile file) {
+        session = CDOConnectionManager.getInstance().acquireSession(file.getProject());
+        CDOBranch mainBranch = session.getBranchManager().getMainBranch();
 
-		currentView = session.openView(mainBranch, commit.getTimeStamp());
-		previousView = session.openView(mainBranch, commit.getPreviousTimeStamp());
-		CDOConnectionManager.getInstance().releaseSession(session);
-	}
+        currentView = session.openView(mainBranch, commit.getTimeStamp());
+        previousView = session.openView(mainBranch, commit.getPreviousTimeStamp());
+        CDOConnectionManager.getInstance().releaseSession(session);
+    }
 
-	/**
-	 * Gets the CDOView of the commit's previous state.
-	 * 
-	 * @return the previous CDOView
-	 */
-	public CDOView getPreviousView() {
-		return previousView;
-	}
+    /**
+     * Gets the CDOView of the commit's previous state.
+     * 
+     * @return the previous CDOView
+     */
+    public CDOView getPreviousView() {
+        return previousView;
+    }
 
-	/**
-	 * Gets the CDOView of the commit's current state.
-	 * 
-	 * @return the current CDOView
-	 */
-	public CDOView getCurrentView() {
-		return currentView;
-	}
+    /**
+     * Gets the CDOView of the commit's current state.
+     * 
+     * @return the current CDOView
+     */
+    public CDOView getCurrentView() {
+        return currentView;
+    }
 
-	/**
-	 * Closes all opened views on the commit.
-	 */
-	public void closeAllViews() {
-		IOUtil.closeSilent(previousView);
-		IOUtil.closeSilent(currentView);
-	}
+    /**
+     * Closes all opened views on the commit.
+     */
+    public void closeAllViews() {
+        IOUtil.closeSilent(previousView);
+        IOUtil.closeSilent(currentView);
+    }
 
 }

@@ -10,73 +10,90 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Builds an own containment hierarchy of the diagram, also containing deleted
- * elements from the Diff.
+ * Builds an own containment hierarchy of the diagram, also containing deleted elements from the
+ * Diff.
  * 
  * @author Jasmin, czogalik
  *
  */
 public class DiffTreeBuilder {
 
-	private final Resource resource;
-	/**
-	 * A list of all changes in the commit.
-	 */
-	private final List<SummaryItem> changes;
-	/**
-	 * Links all diffTreeItems to their corresponding EObject.
-	 */
-	private final HashMap<EObject, DiffTreeItem> tree;
+    private final Resource resource;
+    /**
+     * A list of all changes in the commit.
+     */
+    private final List<SummaryItem> summaryList;
+    /**
+     * Links all diffTreeItems to their corresponding EObject.
+     */
+    private final HashMap<EObject, DiffTreeItem> tree;
 
-	public DiffTreeBuilder(Resource pRes, List<SummaryItem> sumList) {
-		resource = pRes;
-		changes = sumList;
-		tree = new HashMap<>();
-	}
+    /**
+     * Build diagram hierarchy.
+     * @param resource document resource.
+     * @param summaryList list of all changes in the commit.
+     */
+    public DiffTreeBuilder(Resource resource, List<SummaryItem> summaryList) {
+        this.resource = resource;
+        this.summaryList = summaryList;
+        this.tree = new HashMap<>();
+    }
 
-	/**
-	 * Builds the whole tree of the diagram, also with objects that were deleted
-	 * in the commit, so it will be visible. Creates for all EObjects in the EMF
-	 * Containment Hierarchy an own DiffTreeItem with added information such as
-	 * the DiffKind.
-	 * 
-	 * @return the new resource/first element of the tree's hierarchy
-	 */
-	public DiffTreeItem buildTree() {
+    /**
+     * Builds the whole tree of the diagram, also with objects that were deleted in the commit, so
+     * it will be visible. Creates for all EObjects in the EMF Containment Hierarchy an own
+     * DiffTreeItem with added information such as the DiffKind.
+     * 
+     * @return the new resource/first element of the tree's hierarchy
+     */
+    public DiffTreeItem buildTree() {
 
-		TreeIterator<EObject> it = resource.getAllContents();
-		DiffTreeItem newResource = null;
+        TreeIterator<EObject> it = resource.getAllContents();
+        
 
-		// Create new DiffTreeItems for all EObjects in the EMF Containment
-		// Hierarchy of this diagram and set the new resource, plus
-		// build our own parent/child structure on the diffTreeItems
-		while (it.hasNext()) {
-			EObject next = it.next();
-			DiffTreeItem diffTreeItem = createDiffTreeItem(next);
+        
+        DiffTreeItem newResource = createDiffTreeItems(it);
+        PostProcessorManager.postProcessDiffTree(tree);
 
-			// get the root element of the resource
-			if (next == resource.getContents().get(0)) {
-				newResource = diffTreeItem;
-			}
+        addChanges();
+        return newResource;
+    }
 
-		}
-		PostProcessorManager.postProcessDiffTree(tree);
+    /**
+     * Create new DiffTreeItems for all EObjects in the EMF Containment
+     * Hierarchy of this diagram and returns new resource.
+     * @param treeIterator
+     * @param newResource
+     * @return
+     */
+    private DiffTreeItem createDiffTreeItems(TreeIterator<EObject> treeIterator) {
+        DiffTreeItem newResource = null;
+        while (treeIterator.hasNext()) {
+            EObject next = treeIterator.next();
+            DiffTreeItem diffTreeItem = createDiffTreeItem(next);
 
-		addChanges();
-		return newResource;
-	}
+            // get the root element of the resource
+            if (next == resource.getContents().get(0)) {
+                newResource = diffTreeItem;
+            }
 
-	/**
-	 * Create new DiffTreeItems for all EObjects in the EMF Containment Hierarchy.
-	 * @param obj the EObject to create DiffTreeItems.
-	 * @return the created diffTreeItem.
-	 */
+        }
+        return newResource;
+    }
+
+    /**
+     * Create new DiffTreeItems for all EObjects in the EMF Containment Hierarchy.
+     * 
+     * @param obj
+     *            the EObject to create DiffTreeItems.
+     * @return the created diffTreeItem.
+     */
     private DiffTreeItem createDiffTreeItem(EObject obj) {
         DiffTreeItem diffTreeItem;
         if (!tree.containsKey(obj)) {
-        	diffTreeItem = new DiffTreeItem(obj);
+            diffTreeItem = new DiffTreeItem(obj);
         } else {
-        	diffTreeItem = tree.get(obj);
+            diffTreeItem = tree.get(obj);
         }
 
         createDiffTreeItemChildren(obj, diffTreeItem);
@@ -87,29 +104,29 @@ public class DiffTreeBuilder {
 
     private void createDiffTreeItemChildren(EObject obj, DiffTreeItem diffTreeItem) {
         for (EObject child : obj.eContents()) {
-        	if (tree.containsKey(child)) {
-        		continue;
-        	}
-        	DiffTreeItem diffTreeItemChild = new DiffTreeItem(child);
-        	diffTreeItem.addChild(diffTreeItemChild);
-        	diffTreeItemChild.setParent(diffTreeItem);
-        	tree.put(child, diffTreeItemChild);
+            if (tree.containsKey(child)) {
+                continue;
+            }
+            DiffTreeItem diffTreeItemChild = new DiffTreeItem(child);
+            diffTreeItem.addChild(diffTreeItemChild);
+            diffTreeItemChild.setParent(diffTreeItem);
+            tree.put(child, diffTreeItemChild);
         }
     }
 
-	private void addChanges() {
-		if (tree.isEmpty()) {
-			return;
-		}
-		for (SummaryItem item : changes) {
-			addChanges(item);
-		}
-	}
+    private void addChanges() {
+        if (tree.isEmpty()) {
+            return;
+        }
+        for (SummaryItem item : summaryList) {
+            addChanges(item);
+        }
+    }
 
     private void addChanges(SummaryItem item) {
         DifferenceKind differenceKind = item.getDifferenceKind();
         if (differenceKind == DifferenceKind.DELETE) {
-        	addDeleteChange(item);
+            addDeleteChange(item);
         } else {
             addAddChangeMoveChange(item, differenceKind);
         }
@@ -131,48 +148,48 @@ public class DiffTreeBuilder {
     private void setParentDiffKind(SummaryItem item, DifferenceKind differenceKind) {
         DiffTreeItem temp = tree.get(item.getCommonParent());
         if (temp.getDiffKind() == null) {
-        	temp.setDiffKind(differenceKind);
+            temp.setDiffKind(differenceKind);
         }
     }
 
     /**
      * Add deleted items into diff tree.
-     * @param item containing all diff information.
+     * 
+     * @param item
+     *            containing all diff information.
      */
     private void addDeleteChange(SummaryItem item) {
         Object deletedItem = item.getRight();
         if (tree.containsKey(item.getCommonParent())) {
-        	DiffTreeItem affectedParent = tree.get(item.getCommonParent());
-        	DiffTreeItem newChild = new DiffTreeItem(deletedItem);
-        	affectedParent.addChild(newChild);
-        	newChild.setParent(affectedParent);
-        	addDeletedChildren(newChild);
-        	newChild.setDiffKind(DifferenceKind.DELETE);
+            DiffTreeItem affectedParent = tree.get(item.getCommonParent());
+            DiffTreeItem newChild = new DiffTreeItem(deletedItem);
+            affectedParent.addChild(newChild);
+            newChild.setParent(affectedParent);
+            addDeletedChildren(newChild);
+            newChild.setDiffKind(DifferenceKind.DELETE);
         }
     }
 
-	/**
-	 * Adds the deleted children of a parent, that has been deleted itself in
-	 * the commit.
-	 * 
-	 * @param parent
-	 *            the parent that has been deleted and whose children should be
-	 *            added
-	 */
-	private void addDeletedChildren(DiffTreeItem parent) {
-		if (parent.getObject() instanceof EObject) {
-			EObject eObj = (EObject) parent.getObject();
-			if (eObj.eContents().isEmpty()) {
-				return;
-			}
-			EList<EObject> childrenList = eObj.eContents();
-			for (EObject obj : childrenList) {
-				createDeleteDiffKindItem(parent, obj);
-			}
-		}
-	}
+    /**
+     * Adds the deleted children of a parent, that has been deleted itself in the commit.
+     * 
+     * @param parent
+     *            the parent that has been deleted and whose children should be added
+     */
+    private static void addDeletedChildren(DiffTreeItem parent) {
+        if (parent.getObject() instanceof EObject) {
+            EObject eObj = (EObject) parent.getObject();
+            if (eObj.eContents().isEmpty()) {
+                return;
+            }
+            EList<EObject> childrenList = eObj.eContents();
+            for (EObject obj : childrenList) {
+                createDeleteDiffKindItem(parent, obj);
+            }
+        }
+    }
 
-    private void createDeleteDiffKindItem(DiffTreeItem parent, EObject obj) {
+    private static void createDeleteDiffKindItem(DiffTreeItem parent, EObject obj) {
         DiffTreeItem diffItem = new DiffTreeItem(obj);
         diffItem.setDiffKind(DifferenceKind.DELETE);
         parent.addChild(diffItem);

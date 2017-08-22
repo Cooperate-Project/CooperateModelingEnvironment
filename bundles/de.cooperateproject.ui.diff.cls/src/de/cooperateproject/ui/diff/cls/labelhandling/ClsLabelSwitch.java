@@ -16,6 +16,12 @@ import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.cls.Class;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
 
+/**
+ * Switch to invoke description method for each cls model class.
+ * 
+ * @author Jasmin, czogalik
+ *
+ */
 public class ClsLabelSwitch extends ClsSwitch<String> {
 
     @Override
@@ -104,16 +110,17 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
         String right = object.getRight().getName();
         return left + " isA " + right;
     }
+
     @Override
     public String caseXtextAssociation(XtextAssociation object) {
         return "asc " + object.getName();
     }
-    
+
     @Override
     public String caseAssociationMemberEnd(AssociationMemberEnd object) {
         return object.getType().getName();
     }
-    
+
     @Override
     public String caseImplementation(Implementation object) {
         String left = object.getLeft().getName();
@@ -121,7 +128,7 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
         return left + " impl " + right;
     }
 
-    private String handleNonEObject(Object object) {
+    private static String handleNonEObject(Object object) {
         String ret = "";
         if (object instanceof Integer) {
             if ((Integer) object == -1) {

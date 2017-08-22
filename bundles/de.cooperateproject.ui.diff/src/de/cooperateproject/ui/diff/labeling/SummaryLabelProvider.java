@@ -20,70 +20,76 @@ import org.slf4j.LoggerFactory;
 import de.cooperateproject.ui.diff.content.SummaryItem;
 
 /**
- * Label provider for a table viewer which lists all changes in a commit.
- * Delegates the labeling to the meta-model-specific label handler.
+ * Label provider for a table viewer which lists all changes in a commit. Delegates the labeling to
+ * the meta-model-specific label handler.
  * 
  * @author Jasmin, czogalik
  *
  */
 public class SummaryLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-	private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
-	private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
-	private static final String CLASS_ATTRIBUTE_ID = "class";
-	private static final Logger logger = LoggerFactory.getLogger(SummaryLabelProvider.class);
+    private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
+    private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
+    private static final String CLASS_ATTRIBUTE_ID = "class";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SummaryLabelProvider.class);
 
-	@Override
-	public Image getColumnImage(Object element, int columnIndex) {
-		return null;
-	}
+    @Override
+    public Image getColumnImage(Object element, int columnIndex) {
+        return null;
+    }
 
-	@Override
-	public String getColumnText(Object element, int columnIndex) {
+    @Override
+    public String getColumnText(Object element, int columnIndex) {
 
-		if (!(element instanceof SummaryItem)) {
-			return null;
-		}
+        if (!(element instanceof SummaryItem)) {
+            return null;
+        }
 
-		SummaryItem item = (SummaryItem) element;
+        SummaryItem item = (SummaryItem) element;
 
-		List<LabelHandler> labelHandlers = findLabelHandlers(item);
-		if (labelHandlers.isEmpty()) {
-		    return null;
-		}
+        List<LabelHandler> labelHandlers = findLabelHandlers(item);
+        if (labelHandlers.isEmpty()) {
+            return null;
+        }
 
-		if (item.getDifferenceKind() == DifferenceKind.MOVE) {
-		    for (LabelHandler labelHandler : labelHandlers) {
-		        String columnTextForMoveModification = getColumnTextForMoveModification(columnIndex, item, labelHandler);
-		        if (columnTextForMoveModification != null) {
-		            return columnTextForMoveModification;
-		        }		        
-		    }
-		} else {
-		    for (LabelHandler labelHandler : labelHandlers) {
-		        String columnTextForModification = getColumnTextForModification(columnIndex, item, labelHandler);
-		        if (columnTextForModification != null) {
-		            return columnTextForModification;
-		        }		        
-		    }
-		}
-		return null;
-	}
-	
-	private EObject getEObjectOrNull(Object object) {
-	    if (object instanceof EObject) {
+        
+        return getColumnText(columnIndex, item, labelHandlers);
+    }
+
+    private static String getColumnText(int columnIndex, SummaryItem item, List<LabelHandler> labelHandlers) {
+        if (item.getDifferenceKind() == DifferenceKind.MOVE) {
+            for (LabelHandler labelHandler : labelHandlers) {
+                String columnTextForMoveModification = getColumnTextForMoveModification(columnIndex, item,
+                        labelHandler);
+                if (columnTextForMoveModification != null) {
+                    return columnTextForMoveModification;
+                }
+            }
+        } else {
+            for (LabelHandler labelHandler : labelHandlers) {
+                String columnTextForModification = getColumnTextForModification(columnIndex, item, labelHandler);
+                if (columnTextForModification != null) {
+                    return columnTextForModification;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static EObject getEObjectOrNull(Object object) {
+        if (object instanceof EObject) {
             return (EObject) object;
         }
-	    return null;
-	}
+        return null;
+    }
 
-    private String getColumnTextForModification(int columnIndex, SummaryItem item, LabelHandler labelHandler) {
+    private static String getColumnTextForModification(int columnIndex, SummaryItem item, LabelHandler labelHandler) {
         EObject left = getEObjectOrNull(item.getLeft());
         EObject right = getEObjectOrNull(item.getRight());
-        
+
         switch (columnIndex) {
-        case 0:            
-        	return getChangeKindColum(item, labelHandler, left, right);
+        case 0:
+            return getChangeKindColum(item, labelHandler, left, right);
         case 1:
             return labelHandler.getText(item.getCommonParent());
         case 2:
@@ -95,7 +101,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
         }
     }
 
-    private String getChangeKindColum(SummaryItem item, LabelHandler labelHandler, EObject left, EObject right) {
+    private static String getChangeKindColum(SummaryItem item, LabelHandler labelHandler, EObject left, EObject right) {
         String changeKindColumn = getChangeKindColumn(item, labelHandler, left);
         if (changeKindColumn == null) {
             return getChangeKindColumn(item, labelHandler, right);
@@ -103,8 +109,8 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
         return changeKindColumn;
     }
 
-    private String getChangeKindColumn(SummaryItem item, LabelHandler labelHandler, EObject value) {
-        String appendix = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " ";
+    private static String getChangeKindColumn(SummaryItem item, LabelHandler labelHandler, EObject value) {
+        String appendix = DifferenceKindHelper.convertToToken(item.getDifferenceKind()) + " ";
         if (value != null) {
             String classTextLeft = labelHandler.getClassText(value);
             if (classTextLeft == null) {
@@ -115,13 +121,14 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
         return null;
     }
 
-    private String getColumnTextForMoveModification(int columnIndex, SummaryItem item, LabelHandler labelHandler) {
+    private static String getColumnTextForMoveModification(int columnIndex, SummaryItem item,
+            LabelHandler labelHandler) {
         EObject left = getEObjectOrNull(item.getLeft());
         EObject right = getEObjectOrNull(item.getRight());
         switch (columnIndex) {
         case 0:
-            return DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-        			+ labelHandler.getClassText(left);
+            return DifferenceKindHelper.convertToToken(item.getDifferenceKind()) + " "
+                    + labelHandler.getClassText(left);
         case 1:
             return labelHandler.getText(left);
         case 2:
@@ -134,50 +141,52 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
     }
 
     /**
-     * Get all LabelHandlers associated with the SummaryItem. 
-     * @param item the SummaryItem to find LabelHandlers for.
+     * Get all LabelHandlers associated with the SummaryItem.
+     * 
+     * @param item
+     *            the SummaryItem to find LabelHandlers for.
      * @return all LabelHandlers associated with the SummaryItem.
      */
-	private List<LabelHandler> findLabelHandlers(SummaryItem item) {
-		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
-		IExtension[] extensions = ep.getExtensions();
+    private static List<LabelHandler> findLabelHandlers(SummaryItem item) {
+        IExtensionRegistry reg = Platform.getExtensionRegistry();
+        IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
+        IExtension[] extensions = ep.getExtensions();
 
-		String left = "";
-		String right = "";
-		String parent = "";
+        String left = "";
+        String right = "";
+        String parent = "";
 
-		if (item.getLeft() != null) {
-			left = item.getLeft().getClass().getPackage().getName();
-		}
-		if (item.getRight() != null) {
-			right = item.getRight().getClass().getPackage().getName();
-		}
-		if (item.getCommonParent() != null) {
-			parent = item.getCommonParent().getClass().getPackage().getName();
-		}
+        if (item.getLeft() != null) {
+            left = item.getLeft().getClass().getPackage().getName();
+        }
+        if (item.getRight() != null) {
+            right = item.getRight().getClass().getPackage().getName();
+        }
+        if (item.getCommonParent() != null) {
+            parent = item.getCommonParent().getClass().getPackage().getName();
+        }
 
-		return getListOfLabelHandlers(extensions, left, right, parent);
-	}
+        return getListOfLabelHandlers(extensions, left, right, parent);
+    }
 
-    private List<LabelHandler> getListOfLabelHandlers(IExtension[] extensions, String left,
-            String right, String parent) {
+    private static List<LabelHandler> getListOfLabelHandlers(IExtension[] extensions, String left, String right,
+            String parent) {
         List<LabelHandler> labelHandlers = new ArrayList<>();
         for (IExtension extension : extensions) {
-			IConfigurationElement[] configurationElements = extension.getConfigurationElements();
-			for (IConfigurationElement element : configurationElements) {
-				String attribute = element.getAttribute(METAMODEL_ATTRIBUTE_ID);
+            IConfigurationElement[] configurationElements = extension.getConfigurationElements();
+            for (IConfigurationElement element : configurationElements) {
+                String attribute = element.getAttribute(METAMODEL_ATTRIBUTE_ID);
                 if (!(attribute.contains(left) || attribute.contains(right) || attribute.contains(parent))) {
-					continue;
-				}
-				try {
-					labelHandlers.add((LabelHandler) element.createExecutableExtension(CLASS_ATTRIBUTE_ID));
-				} catch (CoreException e) {
-				    logger.error(e.getMessage());
-				}
+                    continue;
+                }
+                try {
+                    labelHandlers.add((LabelHandler) element.createExecutableExtension(CLASS_ATTRIBUTE_ID));
+                } catch (CoreException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
 
-			}
-		}
+            }
+        }
         return labelHandlers;
     }
 
