@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -19,11 +21,13 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testMinimal() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\normaldebug1"));
         testRegular("ComponentMinimal");
     }
 
     @Test
     public void testSingleComponent() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\normaldebug"));
         testRegular("ComponentDiagramSingleComponent");
     }
 

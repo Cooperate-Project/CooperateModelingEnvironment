@@ -17,14 +17,16 @@ main() {
 
 mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
-	log ("hier \n\n\n\n\n\n");
 	type := "PapyrusUMLComponentDiagram";
 	name := self.title;
 	measurementUnit := notation::MeasurementUnit::Pixel;
-	element := rootPackage.toEObject();
+
+	//<element href="ComponentDiagramSingleComponent.uml#_4IVy04OUEeed1vSrRFufdg"/>
+  	element := rootPackage.toEObject();
+ 
 	children +=self.rootpackage.classifiers.map classifiersToShape();
 	self.rootpackage.relations.map relationsToShape();
-
+	//log ("shapeshapeaaa\n\n\n\n");
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -41,6 +43,8 @@ mapping cmp::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle 
 
 mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
+	//    <owner href="ComponentDiagramSingleComponent.uml#_4IVy04OUEeed1vSrRFufdg"/>
+		log ("log123\n");
 	owner := self.rootpackage.referencedElement.toEObject();
 }
 
@@ -52,12 +56,19 @@ disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape;
 mapping cmp::Component::componentToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Component)}
 {
-log ("hier");
+	log ("shape\n\n\n\n");
 	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR;
 	element := self.referencedElement.toEObject();
 	children += self.map componentToNameLabel();
 	children += self.map componentFloatingNameLabel();
 	children += self.map componentToCompartment();
+	//element := self.referencedElement.toEObject();
+	//<element href="ComponentDiagramSingleComponent.uml#_4IVy1IOUEeed1vSrRFufdg"/>
+	element := self.referencedElement.oclAsType(ecore::EObject);
+	//element := self.referencedElement.oclAsType(ecore::EObject);
+	//	element := umlComponent.toEObject();
+	//element := self.element.oclAsType(uml::Package);
+	//element := self.referencedElement.oclAsType(uml::Component);
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
@@ -77,10 +88,12 @@ mapping textualCommons::Commentable::commentableToShape() : notation::Shape
 disjuncts cmp::Classifier::classifiersToShape;
 
 mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
-{
+{		log ("log12345\n");
 	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR;
+	styles += result.toEObject().map titleStyle();
 	children := self.component.map commentableToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
+	
 }
 
 

@@ -30,7 +30,7 @@ mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
 	relations := self.edges.map edgeToClassifierRelation();
 }
-/**
+
 mapping notation::Node::nodeToClassifier() : cmp::Classifier
 disjuncts
 	notation::Node::nodeToComponent,
@@ -38,7 +38,7 @@ disjuncts
 {
 	//referencedElement := self.element.toElement();
 	//comments := self.getCommentShape().map commentToComment();
-}**/
+}
 
 mapping notation::Node::nodeToComponent() : cmp::Component
 {
