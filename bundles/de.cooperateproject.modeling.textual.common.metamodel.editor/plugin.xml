@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated textualCommons -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.presentation.TextualCommonsModelWizardID"
+            name="%_UI_TextualCommonsModelWizard_label"
+            class="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.presentation.TextualCommonsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TextualCommonsModelFile.gif">
+         <description>%_UI_TextualCommonsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated textualCommons -->
+      <editor
+            id="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.presentation.TextualCommonsEditorID"
+            name="%_UI_TextualCommonsEditor_label"
+            icon="icons/full/obj16/TextualCommonsModelFile.gif"
+            extensions="textualcommons"
+            class="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.presentation.TextualCommonsEditor"
+            contributorClass="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.presentation.TextualCommonsActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -31,6 +31,7 @@ mapping trace::Trace::trace() : trace::Trace
 mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
+	result += self.map traceRecordComponent();
 }
 
 mapping trace::TraceRecord::nodeToComponent() :List(trace::TraceRecord)
@@ -48,4 +49,16 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	result += new TraceRecord("diagramToStringValueStyle", "ComponentDiagram", componentDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
 	result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
 	result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
+}
+
+mapping trace::TraceRecord::traceRecordComponent() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToComponent"}
+{	log("TADAM");
+	var component := self.getSelf().modelElement.oclAsType(notation::Node);
+	var component1 := self.getResult().modelElement;
+	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
+	//result += new TraceRecord("diagramToDiagram", "ComponentDiagram", componentDiagram, "Diagram", notationDiagram.toEObject());
+	//result += new TraceRecord("diagramToStringValueStyle", "ComponentDiagram", componentDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
+	//result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
+	//result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }

@@ -26,8 +26,9 @@ mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 	var relevantEdges := self.findRelevantEdges();
 	referencedElement := self.element.oclAsType(uml::Package);
 	//TODO
-	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR).map nodeToComponent();
-	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
+	//classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR).map nodeToComponent();
+	//classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
+	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToClassifier();
 	relations := self.edges.map edgeToClassifierRelation();
 }
 
