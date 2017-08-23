@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -29,7 +31,7 @@ public class GraphicalToTextualComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testSingleComponent() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\normaldebug6"));
+        setDebugSerializationDir(new File("D:\\Debug\\normaldebug6"));
         testRegular("ComponentDiagramSingleComponent");
     }
 
