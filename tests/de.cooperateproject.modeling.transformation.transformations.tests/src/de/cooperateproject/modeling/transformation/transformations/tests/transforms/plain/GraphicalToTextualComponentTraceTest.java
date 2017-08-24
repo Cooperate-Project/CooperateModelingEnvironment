@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -27,12 +25,14 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testMinimal() throws Exception {
+        // setDebugSerializationDir(new File("D:\\Debug\\tracedebug2"));
         testTraceTransformation("ComponentMinimal");
     }
-
-    @Test
-    public void testSingleComponent() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\tracedebug"));
-        testTraceTransformation("ComponentDiagramSingleComponent");
-    }
+    /**
+     * @Test
+     *       public void testSingleComponent() throws Exception {
+     *       setDebugSerializationDir(new File("D:\\Debug\\tracedebug"));
+     *       testTraceTransformation("ComponentDiagramSingleComponent");
+     *       }
+     **/
 }

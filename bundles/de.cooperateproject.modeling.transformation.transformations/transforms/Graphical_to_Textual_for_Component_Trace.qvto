@@ -53,7 +53,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 
 mapping trace::TraceRecord::traceRecordComponent() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToComponent"}
-{	log("TADAM");
+{
 	var component := self.getSelf().modelElement.oclAsType(notation::Node);
 	var component1 := self.getResult().modelElement;
 	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());

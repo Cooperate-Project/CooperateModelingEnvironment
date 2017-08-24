@@ -15,7 +15,6 @@ main() {
 	assert fatal (traces->size() = 1);
 	traces->initializeProperties();
 	traces->map trace();
-	log ("entry\n\n\n\n");
 }
 
 helper trace::Trace::initializeProperties() {
@@ -47,11 +46,10 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 
 mapping trace::TraceRecord::traceNodeToComponent() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "componentToShape"}
-{		log ("hier123\n\n\n\n");
+{
 	var node := self.getResult().modelElement;
 	//var actor := self.getSelf().modelElement.oclAsType(usecase::Actor);
 		//result += new TraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", generalization.eobject());
 	var component := self.getSelf().modelElement.oclAsType(cmp::Component);
-	result += new TraceRecord("nodeToComponent", "Node", node, "Compponent", component.eobject());
-			log ("hier123456\n\n\n\n");
+	result += new TraceRecord("nodeToComponent", "Node", node, "Component", component.eobject());
 }
