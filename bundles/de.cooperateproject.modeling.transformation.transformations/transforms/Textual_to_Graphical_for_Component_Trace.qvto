@@ -47,7 +47,6 @@ when {self.mappingOperation.name = "nodeToClassifier"}//classifier to node entsp
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
 when {self.mappingOperation.name = "classifiersToShape"}//classifier to node entsprechung textuelle seite
 { 
-	log("t1234212");
 	var node := self.getResult().modelElement;
 	var classifier := self.getSelf().modelElement;
 	result += new TraceRecord("nodeToClassifier", "Node", node, "Classifier", classifier.toEObject());

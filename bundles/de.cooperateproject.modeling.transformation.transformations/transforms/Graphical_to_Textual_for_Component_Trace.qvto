@@ -31,22 +31,86 @@ mapping trace::Trace::trace() : trace::Trace
 mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
-	result += self.map traceRecordClassifier();
+	//result += self.map traceRecordClassifier();
 	result += self.map traceRecordComponent();
+	result += self.map traceRecordClassifier();
+
 }
 
 mapping trace::TraceRecord::nodeToComponent() :List(trace::TraceRecord)
 {
 	//TODO
 }
-
+/**
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToClassifier"}
 { log("t1234212");
 	var component := self.getResult().modelElement;
 	var component1 := self.getSelf().modelElement;
 	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
+}**/
+
+
+mapping trace::TraceRecord::traceRecordToCopy() :List(trace::TraceRecord) //TODO delete
+when {self.mappingOperation.name = "nodeToClassifier"}
+{ 
+	var component := self.getResult().modelElement;
+	var component1 := self.getSelf().modelElement;
+	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
 }
+
+
+mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToClassifier"}
+{ 
+	var classifier := self.getResult().modelElement;
+	var shape := self.getSelf().modelElement;
+	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
+	result += self.map traceRecordClassifier_FloatingLabelDecorationNode();
+	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
+}
+
+/**
+mapping trace::TraceRecord::traceRecordComponent() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToClassifier"}
+{ 
+	var classifier := self.getResult().modelElement;
+	var shape := self.getSelf().modelElement;
+	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
+}**/
+
+mapping trace::TraceRecord::traceRecordClassifier_FloatingLabelDecorationNode() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
+	//result += self.map traceRecordShapeToComponent();
+	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
+}
+/**
+mapping trace::TraceRecord::traceRecordShapeToComponent() :List(trace::TraceRecord) //TODO delete
+when {self.getResult().modelElement.oclIsKindOf(cmp::Component)} //Aktuell
+{ 
+	var component1 := self.getResult().modelElement;
+	var component := self.getSelf().modelElement;
+	//result += new TraceRecord("classifiersToShape", "Classifier1", component1, "Shape", component.toEObject());
+}**/
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cmp::Component)}
+{
+	var classifier := self.getResult().modelElement;
+	var node := self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR);
+	var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR);
+	result += new TraceRecord("componentFloatingNameLabel", "Component", classifier, "DecorationNode", node.eobject());
+	result += new TraceRecord("componentToNameLabel", "Component", classifier, "DecorationNode", decoration.eobject());
+	result += node.map traceRecordExtended_locationConstraint();
+	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
+	var shape :=self.getSelf().modelElement.oclAsType(notation::Shape);
+	result += compartment.map traceRecordExtended_notationBounds();
+	result += new TraceRecord("componentToCompartment", "Component", classifier, "BasicCompartment", compartment.eobject());
+	result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+	result += new TraceRecord("componentToShape", "Component", classifier, "Shape", shape.eobject());
+}
+
 
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "diagramToDiagram"}
@@ -65,9 +129,59 @@ when {self.mappingOperation.name = "nodeToComponent"}
 {
 	var component := self.getSelf().modelElement.oclAsType(notation::Node);
 	var component1 := self.getResult().modelElement;
-	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
+	//result += new TraceRecord("nodeToComponent123", "Component", component1, "Diagram", component.toEObject());
 	//result += new TraceRecord("diagramToDiagram", "ComponentDiagram", componentDiagram, "Diagram", notationDiagram.toEObject());
 	//result += new TraceRecord("diagramToStringValueStyle", "ComponentDiagram", componentDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
 	//result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
 	//result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
+}
+
+
+
+
+
+
+
+query trace::TraceRecord::getSelfNode() : notation::Node {
+	assert error (self.getSelf().modelElement.oclIsKindOf(notation::Node)) with log('The contained model element is not a node.');
+	return self.getSelf().modelElement.oclAsType(notation::Node);
+}
+/**
+query getAllClassifiers() : OrderedSet(cmp::Classifier)
+{
+	return textualModel.rootObjects()[cmp::ComponentDiagram]->any(true).getAllTransitiveClassifiers();
+}**/
+
+query trace::TraceRecord::hasCommentLinkForAssociation() : Boolean
+{
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	return self.mappingOperation.name = "edgeToCommentLink" and edge.isCommentLinkForAssociation();
+}
+
+query notation::Edge::isCommentLinkForAssociation() : Boolean
+{
+	var referencedElements := self.source.element.oclAsSet()->union(self.target.element.oclAsSet());
+	return referencedElements->exists(oclIsKindOf(uml::Association)) and referencedElements->exists(oclIsKindOf(uml::Comment));
+}
+
+query notation::Node::getChild(type : String) : notation::Node
+{
+	return self.getChildInternal(type).oclAsType(notation::Node);
+}
+
+query notation::Edge::getChild(type : String) : notation::Node
+{
+	return self.getChildInternal(type).oclAsType(notation::Node);
+}
+
+query notation::View::getChild(type : String) : notation::View
+{
+	return self.getChildInternal(type);
+}
+
+query notation::View::getChildInternal(type : String) : notation::View
+{
+	var matches := self.children->select(v | v.type = type or v.type = type + "_CN" );
+	assert error (matches->size() = 1) with log('The child has to be identifiable unambigously by its type id ' + type, self);
+	return matches->any(true);
 }
