@@ -30,8 +30,27 @@ mapping trace::Trace::trace() : trace::Trace
 mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
+	result += self.map traceRecordClassifier();
 	result += self.map traceNodeToComponent();
 
+}
+/**
+mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToClassifier"}//classifier to node entsprechung textuelle seite
+{ 
+	log("t1234212");
+	var component := self.getResult().modelElement;
+	var component1 := self.getSelf().modelElement;
+	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
+}**/
+
+mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "classifiersToShape"}//classifier to node entsprechung textuelle seite
+{ 
+	log("t1234212");
+	var node := self.getResult().modelElement;
+	var classifier := self.getSelf().modelElement;
+	result += new TraceRecord("nodeToClassifier", "Node", node, "Classifier", classifier.toEObject());
 }
 
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)

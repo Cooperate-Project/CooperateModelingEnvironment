@@ -41,6 +41,7 @@ mapping cmp::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle 
 	
 }
 
+
 mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
 	//    <owner href="ComponentDiagramSingleComponent.uml#_4IVy04OUEeed1vSrRFufdg"/>
