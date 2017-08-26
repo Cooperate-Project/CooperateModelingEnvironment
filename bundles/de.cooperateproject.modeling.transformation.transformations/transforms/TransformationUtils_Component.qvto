@@ -10,8 +10,10 @@ property PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR : String = "Comment_Shape";
 property PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR : String = "Component_NameLabel";
 property PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR : String = "Component_FloatingNameLabel";
 property PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR : String = "Component_StructureCompartment";
-
-
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE = "Component_PackagedElementShape_CCN";
+property PAPYRUS_NOTATION_NODE_COMPONENT_NAME_INPACKAGE : String = "Component_NameLabel_CCN";
+property PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_INPACKAGE : String = "Component_FloatingNameLabel_CCN";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_INPACKAGE : String = "Component_StructureCompartment_CCN";
 property PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR = "Interface_ClassifierShape";
 property PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR : String = "Interface_ClassifierNameLabel";
 property PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR : String = "Interface_ClassifierFloatingNameLabel";

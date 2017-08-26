@@ -44,8 +44,20 @@ disjuncts
 mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement :=self.element.oclAsType(uml::Component);
+	var packagedElementsNode := self.children;
+	/**log(self.type);
+	log(self.element.toString());
+	log("outerComponent");
+	log(self.children->isEmpty().toString());**/
+	//log("test" + "test" + self.elements->size);
+	nestedInterface += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
+	//component += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToInnerComponent();
+	component += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
+	//component += self.children->map nodeToInnerComponent();
 	//TODO Port Comment Interface portRelation interfaceRelation component
 }
+
+
 
 mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
