@@ -21,12 +21,10 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	name := self.title;
 	measurementUnit := notation::MeasurementUnit::Pixel;
 
-	//<element href="ComponentDiagramSingleComponent.uml#_4IVy04OUEeed1vSrRFufdg"/>
   	element := rootPackage.toEObject();
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
 	self.rootpackage.relations.map relationsToShape();
-	//log ("shapeshapeaaa\n\n\n\n");
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -45,7 +43,7 @@ mapping cmp::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle 
 mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
 	//    <owner href="ComponentDiagramSingleComponent.uml#_4IVy04OUEeed1vSrRFufdg"/>
-		log ("log123\n");
+		//log ("log123\n");
 	owner := self.rootpackage.referencedElement.toEObject();
 }
 
@@ -58,11 +56,14 @@ mapping cmp::Component::componentToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Component)}
 {
 	log ("shape\n\n\n\n");
-	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR;
+	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR);
 	element := self.referencedElement.toEObject();
 	children += self.map componentToNameLabel();
 	children += self.map componentFloatingNameLabel();
+	//children += self.nestedInterface.map interfaceToShape();
 	children += self.map componentToCompartment();
+	log("owning component" + self.owningComponent.toString());
+
 	//element := self.referencedElement.toEObject();
 	//<element href="ComponentDiagramSingleComponent.uml#_4IVy1IOUEeed1vSrRFufdg"/>
 	element := self.referencedElement.oclAsType(ecore::EObject);
@@ -71,6 +72,8 @@ when {self.oclIsKindOf(cmp::Component)}
 	//element := self.element.oclAsType(uml::Package);
 	//element := self.referencedElement.oclAsType(uml::Component);
 	layoutConstraint := result.toEObject().map notationBounds();
+	//children +=self.rootpackage.classifiers.map classifiersToShape();
+
 }
 
 mapping cmp::Interface::interfaceToShape() : notation::Shape
@@ -95,16 +98,18 @@ mapping textualCommons::Commentable::commentableToShape() : notation::Shape
 disjuncts cmp::Classifier::classifiersToShape;
 
 mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
-{		log ("log12345\n");
-	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR;
+{	//	log ("log12345\n");
+	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
+	children += self.nestedInterface.map interfaceToShape();
 	styles += result.toEObject().map titleStyle();
-	children := self.component.map commentableToShape();
+	//children += self.component.map commentableToShape();
+	children += self.component.map componentToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
 }
 
 mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompartment
-{		log ("log12345\n");
+{		//log ("log12345\n");
 	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR;
 	styles += result.toEObject().map titleStyle();
 	styles += result.toEObject().map sortingStyle();
@@ -113,7 +118,7 @@ mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompa
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompartment
-{		log ("log12345\n");
+{		//log ("log12345\n");
 	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR;
 	styles += result.toEObject().map titleStyle();
 	styles += result.toEObject().map sortingStyle();
@@ -130,12 +135,12 @@ mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompa
 
 mapping cmp::Component::componentToNameLabel() : notation::DecorationNode
 {
-	type := PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR;
+	type := self.getNestedName(PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR);
 }
 
 mapping cmp::Component::componentFloatingNameLabel() : notation::DecorationNode
 {
-	type := PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR;
+	type := self.getNestedName(PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR);
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
@@ -167,4 +172,31 @@ mapping cmp::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : st
 	owner := rootElement.toEObject();
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component";
 }
+/**
+query textualCommons::Element::isNested() : Boolean
+{
+	var owningPackage := if self.getNearestPackage() = self then self.getNearestPackage().owningPackage else self.getNearestPackage() endif;
+	var owningPackage2 := owningPackage.owningPackage;
+		log("owning " + owningPackage.toString()+" self " + self.toString() + " nearest " + self.getNearestPackage().toString() + " nearestOwning " + self.getNearestPackage().owningPackage.toString());
+	log("owningP2 " + owningPackage2.toString());
+	var outi := owningPackage != null and owningPackage2 != null;
+	log("varout " + outi.toString());
+	return owningPackage != null and owningPackage2 != null;
+}**/
+query cmp::Component::isNestedCmp() : Boolean
+{	log("owning component2" + self.owningComponent.toString() + " self " + self.toString());
+	log((if self.owningComponent.toString() = self.toString() then true else false endif).toString());
+	return if self.owningComponent.toString() = self.toString() then true else false endif;
+}
+query cmp::Component::getNestedName(type : String) : String
+{
+	log("IsNested  " +type.toString() +  "  p" + type.getNestedName(self.isNestedCmp())+"\n");
+	//log("is nested? " + self.isNested().toString());
+	
+	return type.getNestedCmpName(self.isNestedCmp());
+}
 
+query String::getNestedCmpName(isNested : Boolean) : String
+{
+	return if isNested then self + "_CCN" else self endif;
+}
