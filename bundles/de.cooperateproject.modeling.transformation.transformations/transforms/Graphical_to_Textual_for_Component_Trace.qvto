@@ -32,7 +32,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
 	//result += self.map traceRecordClassifier();
-	result += self.map traceRecordComponent();
+	//result += self.map traceRecordComponent();
 	result += self.map traceRecordClassifier();
 
 }
@@ -123,7 +123,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
 	result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }
-
+/**
 mapping trace::TraceRecord::traceRecordComponent() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToComponent"}
 {
@@ -135,7 +135,7 @@ when {self.mappingOperation.name = "nodeToComponent"}
 	//result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
 	//result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }
-
+**/
 
 
 

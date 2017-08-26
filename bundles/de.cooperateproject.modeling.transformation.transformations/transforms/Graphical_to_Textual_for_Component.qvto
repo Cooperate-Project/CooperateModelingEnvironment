@@ -42,14 +42,14 @@ disjuncts
 }
 
 mapping notation::Node::nodeToComponent() : cmp::Component
-{
+	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement :=self.element.oclAsType(uml::Component);
 	//TODO Port Comment Interface portRelation interfaceRelation component
 }
 
 mapping notation::Node::nodeToInterface() : cmp::Interface
-{
-	
+	when {		self.element.oclIsKindOf(uml::Interface)	}{
+	referencedElement :=self.element.oclAsType(uml::Interface);
 }
 
 mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation

@@ -31,8 +31,12 @@ public class GraphicalToTextualComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testSingleComponent() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\normaldebug6"));
         testRegular("ComponentDiagramSingleComponent");
     }
 
+    @Test
+    public void testSingleInterface() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
+        testRegular("ComponentDiagramSingleInterface");
+    }
 }
