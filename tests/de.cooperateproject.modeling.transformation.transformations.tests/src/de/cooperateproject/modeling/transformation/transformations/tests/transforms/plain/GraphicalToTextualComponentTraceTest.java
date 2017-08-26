@@ -37,4 +37,9 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
         testTraceTransformation("ComponentDiagramSingleComponent");
     }
 
+    @Test
+    public void testSingleInterface() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
+        testTraceTransformation("ComponentDiagramSingleInterface");
+    }
 }

@@ -68,6 +68,7 @@ when {self.mappingOperation.name = "nodeToClassifier"}
 	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
 	result += self.map traceRecordClassifier_FloatingLabelDecorationNode();
 	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
+	result+= self.map traceRecordClassifier_interfaceToOperationsCompartment();
 }
 
 /**
@@ -82,6 +83,7 @@ when {self.mappingOperation.name = "nodeToClassifier"}
 mapping trace::TraceRecord::traceRecordClassifier_FloatingLabelDecorationNode() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
 	//result += self.map traceRecordShapeToComponent();
 	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
 }
@@ -93,6 +95,9 @@ when {self.getResult().modelElement.oclIsKindOf(cmp::Component)} //Aktuell
 	var component := self.getSelf().modelElement;
 	//result += new TraceRecord("classifiersToShape", "Classifier1", component1, "Shape", component.toEObject());
 }**/
+
+
+
 
 mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent() : List(trace::TraceRecord)
 when {self.getResult().modelElement.oclIsKindOf(cmp::Component)}
@@ -110,6 +115,32 @@ when {self.getResult().modelElement.oclIsKindOf(cmp::Component)}
 	result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
 	result += new TraceRecord("componentToShape", "Component", classifier, "Shape", shape.eobject());
 }
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cmp::Interface)} //aktuell
+{
+	var classifier := self.getResult().modelElement;
+	var node := self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR);
+	var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR);
+	result += new TraceRecord("interfaceFloatingNameLabel", "Interface", classifier, "DecorationNode", node.eobject());
+	result += new TraceRecord("interfaceToNameLabel", "Interface", classifier, "DecorationNode", decoration.eobject());
+	result += node.map traceRecordExtended_locationConstraint();
+	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR);
+	var shape :=self.getSelf().modelElement.oclAsType(notation::Shape);
+	result += new TraceRecord("interfaceToAttributeCompartment", "Interface", classifier, "BasicCompartment", compartment.eobject());
+	result += new TraceRecord("interfaceToShape", "Interface", classifier, "Shape", shape.eobject());
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordClassifier_interfaceToOperationsCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cmp::Interface)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR).eobject();
+	result += new TraceRecord("interfaceToOperationCompartment", "Interface", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+}
+
 
 
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
