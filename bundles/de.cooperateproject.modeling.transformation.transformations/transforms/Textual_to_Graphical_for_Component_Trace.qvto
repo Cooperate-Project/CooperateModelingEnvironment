@@ -32,6 +32,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordDiagram();
 	result += self.map traceRecordClassifier();
 	result += self.map traceNodeToComponent();
+	result += self.map traceNodeToInterface();
 
 }
 /**
@@ -66,8 +67,16 @@ mapping trace::TraceRecord::traceNodeToComponent() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "componentToShape"}
 {
 	var node := self.getResult().modelElement;
-	//var actor := self.getSelf().modelElement.oclAsType(usecase::Actor);
-		//result += new TraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", generalization.eobject());
 	var component := self.getSelf().modelElement.oclAsType(cmp::Component);
 	result += new TraceRecord("nodeToComponent", "Node", node, "Component", component.eobject());
+}
+
+
+
+mapping trace::TraceRecord::traceNodeToInterface() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "interfaceToShape"}
+{
+	var node := self.getResult().modelElement;
+	var interface := self.getSelf().modelElement.oclAsType(cmp::Interface);
+	result += new TraceRecord("nodeToInterface", "Node", node, "Interface", interface.eobject());
 }

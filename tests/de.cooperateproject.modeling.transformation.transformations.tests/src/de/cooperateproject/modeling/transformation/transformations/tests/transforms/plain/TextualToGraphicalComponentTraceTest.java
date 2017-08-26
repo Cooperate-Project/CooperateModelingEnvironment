@@ -32,7 +32,12 @@ public class TextualToGraphicalComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testSingleComponent() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\tracedebug3"));
         testTraceTransformation("ComponentDiagramSingleComponent");
+    }
+
+    @Test
+    public void testSingleInterface() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
+        testTraceTransformation("ComponentDiagramSingleInterface");
     }
 }
