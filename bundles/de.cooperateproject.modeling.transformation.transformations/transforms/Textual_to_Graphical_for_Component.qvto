@@ -76,7 +76,13 @@ when {self.oclIsKindOf(cmp::Component)}
 mapping cmp::Interface::interfaceToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Interface)}
 {
-	
+	type := PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR;
+	children += self.map interfaceToNameLabel();
+	children += self.map interfaceFloatingNameLabel();
+	children += self.map interfaceToAttributeCompartment();
+	children += self.map interfaceToOperationCompartment();
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 mapping cmp::ClassifierRelation::relationsToShape() : notation::Shape
@@ -97,8 +103,25 @@ mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 	
 }
 
-
-
+mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompartment
+{		log ("log12345\n");
+	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR;
+	styles += result.toEObject().map titleStyle();
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	//children := self.interface.map commentableToShape();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompartment
+{		log ("log12345\n");
+	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR;
+	styles += result.toEObject().map titleStyle();
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	//children := self.interface.map commentableToShape();
+	layoutConstraint := result.toEObject().map notationBounds();
+	
+}
 
 
 
@@ -115,6 +138,18 @@ mapping cmp::Component::componentFloatingNameLabel() : notation::DecorationNode
 	type := PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
+
+mapping cmp::Interface::interfaceToNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR;
+}
+
+mapping cmp::Interface::interfaceFloatingNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
 
 //Style
 mapping cmp::ComponentDiagram::stringValueStyle() : notation::StringValueStyle

@@ -16,6 +16,6 @@ property PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR = "Interface_ClassifierShape";
 property PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR : String = "Interface_ClassifierNameLabel";
 property PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR : String = "Interface_ClassifierFloatingNameLabel";
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR : String = "Interface_AttributeCompartment";
-property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_INPACKAGE : String = "Interface_AttributeCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_INPACKAGE : String = "Interface_AttributeCompartment_CN";
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR : String = "Interface_OperationCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_INPACKAGE : String = "Interface_OperationCompartment_CN";

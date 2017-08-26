@@ -36,4 +36,10 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
         testIncremental("ComponentMinimal");
     }
 
+    @Test
+    public void testSingleInterface() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        testRegular("ComponentDiagramSingleInterface");
+    }
+
 }
