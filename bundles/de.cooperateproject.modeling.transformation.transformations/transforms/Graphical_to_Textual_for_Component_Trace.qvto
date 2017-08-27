@@ -34,21 +34,14 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	//result += self.map traceRecordClassifier();
 	//result += self.map traceRecordComponent();
 	result += self.map traceRecordClassifier();
-
+	result += self.map nodeToComponent();
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
+	result+= self.map traceRecordClassifier_interfaceToOperationsCompartment();
 }
 
-mapping trace::TraceRecord::nodeToComponent() :List(trace::TraceRecord)
-{
-	//TODO
-}
-/**
-mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
-when {self.mappingOperation.name = "nodeToClassifier"}
-{ log("t1234212");
-	var component := self.getResult().modelElement;
-	var component1 := self.getSelf().modelElement;
-	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
-}**/
+
+
 
 
 mapping trace::TraceRecord::traceRecordToCopy() :List(trace::TraceRecord) //TODO delete
@@ -67,8 +60,8 @@ when {self.mappingOperation.name = "nodeToClassifier"}
 	var shape := self.getSelf().modelElement;
 	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
 	result += self.map traceRecordClassifier_FloatingLabelDecorationNode();
-	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
-	result+= self.map traceRecordClassifier_interfaceToOperationsCompartment();
+
+
 }
 
 /**
@@ -82,8 +75,8 @@ when {self.mappingOperation.name = "nodeToClassifier"}
 
 mapping trace::TraceRecord::traceRecordClassifier_FloatingLabelDecorationNode() : List(trace::TraceRecord)
 {
-	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
-	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
+	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
+	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
 	//result += self.map traceRecordShapeToComponent();
 	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
 }
@@ -96,28 +89,37 @@ when {self.getResult().modelElement.oclIsKindOf(cmp::Component)} //Aktuell
 	//result += new TraceRecord("classifiersToShape", "Classifier1", component1, "Shape", component.toEObject());
 }**/
 
-
-
-
+mapping trace::TraceRecord::nodeToComponent() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToComponent" and self.getResult().modelElement.oclIsKindOf(cmp::Component) }{
+		//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
+		
+}
 mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent() : List(trace::TraceRecord)
-when {self.getResult().modelElement.oclIsKindOf(cmp::Component)}
-{
-	var classifier := self.getResult().modelElement;
-	var node := self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR);
-	var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR);
-	result += new TraceRecord("componentFloatingNameLabel", "Component", classifier, "DecorationNode", node.eobject());
-	result += new TraceRecord("componentToNameLabel", "Component", classifier, "DecorationNode", decoration.eobject());
-	result += node.map traceRecordExtended_locationConstraint();
-	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
-	var shape :=self.getSelf().modelElement.oclAsType(notation::Shape);
-	result += compartment.map traceRecordExtended_notationBounds();
-	result += new TraceRecord("componentToCompartment", "Component", classifier, "BasicCompartment", compartment.eobject());
-	result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
-	result += new TraceRecord("componentToShape", "Component", classifier, "Shape", shape.eobject());
+when {self.mappingOperation.name = "nodeToComponent"}
+{		
+var classifier := self.getResult().modelElement;
+			var shape :=self.getSelf().modelElement.oclAsType(notation::Shape);
+			var node := self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR);
+			result += new TraceRecord("componentToShape", "Component", classifier, "Shape", shape.eobject());
+			var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR);
+			var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
+			result += new TraceRecord("componentFloatingNameLabel", "Component", classifier, "DecorationNode", node.eobject());
+			result += new TraceRecord("componentToNameLabel", "Component", classifier, "DecorationNode", decoration.eobject());
+			result += new TraceRecord("componentToCompartment", "Component", classifier, "BasicCompartment", compartment.eobject());
+			result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+			result += node.map traceRecordExtended_locationConstraint();
+			result += compartment.map traceRecordExtended_notationBounds();
+
+					//nested component
+	var compartmentNested := self.getSelfNode().getChild(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_INPACKAGE);	
+		result+= self.getSelfNode().map traceRecordExtended_notationBounds();
+
 }
 
+
+
 mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface() : List(trace::TraceRecord)
-when {self.getResult().modelElement.oclIsKindOf(cmp::Interface)} //aktuell
+when {self.mappingOperation.name = "nodeToInterface"} 
 {
 	var classifier := self.getResult().modelElement;
 	var node := self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR);
@@ -130,10 +132,11 @@ when {self.getResult().modelElement.oclIsKindOf(cmp::Interface)} //aktuell
 	result += new TraceRecord("interfaceToAttributeCompartment", "Interface", classifier, "BasicCompartment", compartment.eobject());
 	result += new TraceRecord("interfaceToShape", "Interface", classifier, "Shape", shape.eobject());
 	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
 }
 
 mapping trace::TraceRecord::traceRecordClassifier_interfaceToOperationsCompartment() : List(trace::TraceRecord)
-when {self.getResult().modelElement.oclIsKindOf(cmp::Interface)}
+when {self.mappingOperation.name = "nodeToInterface"}
 {
 	var classifier := self.getResult().modelElement;
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR).eobject();
@@ -167,9 +170,6 @@ when {self.mappingOperation.name = "nodeToComponent"}
 	//result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }
 **/
-
-
-
 
 
 
@@ -212,7 +212,28 @@ query notation::View::getChild(type : String) : notation::View
 
 query notation::View::getChildInternal(type : String) : notation::View
 {
-	var matches := self.children->select(v | v.type = type or v.type = type + "_CN" );
+	var matches := self.children->select(v | v.type = type or v.type = type + "_CCN" );
 	assert error (matches->size() = 1) with log('The child has to be identifiable unambigously by its type id ' + type, self);
+	return matches->any(true);
+}
+
+query notation::Node::getChildren(type : String) : notation::Node
+{
+	return self.getChildInternalren(type).oclAsType(notation::Node);
+}
+
+query notation::Edge::getChildren(type : String) : notation::Node
+{
+	return self.getChildInternalren(type).oclAsType(notation::Node);
+}
+
+query notation::View::getChildren(type : String) : notation::View
+{
+	return self.getChildInternalren(type);
+}
+
+query notation::View::getChildInternalren(type : String) : notation::View
+{
+	var matches := self.children->any(v | v.type = type or v.type = type + "_CCN" );
 	return matches->any(true);
 }

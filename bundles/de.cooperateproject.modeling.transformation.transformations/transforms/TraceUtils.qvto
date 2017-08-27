@@ -26,7 +26,7 @@ property TARGET_TRANSFORMATION : qvtoperational::expressions::OperationalTransfo
 */
 
 mapping notation::BasicCompartment::traceRecordExtended_basicCompartment() : List(trace::TraceRecord)
-{ log("Aufgerufen!!!\n\n\n");
+{
 	result += new TraceRecord("titleStyle", "EObject", self.eobject(), "TitleStyle", self.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
 	result += new TraceRecord("sortingStyle", "EObject", self.eobject(), "SortingStyle", self.styles->selectByKind(notation::SortingStyle)->any(true).eobject());
 	result += new TraceRecord("filteringStyle", "EObject", self.eobject(), "FilteringStyle", self.styles->selectByKind(notation::FilteringStyle)->any(true).eobject());
