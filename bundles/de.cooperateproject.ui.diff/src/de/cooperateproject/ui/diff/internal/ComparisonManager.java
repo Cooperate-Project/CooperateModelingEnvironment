@@ -132,7 +132,7 @@ public class ComparisonManager {
         try {
             return currentView.getResource(resourcePath);
         } catch (InvalidURIException e) {
-            LOGGER.error(e.getMessage(), e);
+            LOGGER.trace(e.getMessage(), e);
             return null;
         }
     }

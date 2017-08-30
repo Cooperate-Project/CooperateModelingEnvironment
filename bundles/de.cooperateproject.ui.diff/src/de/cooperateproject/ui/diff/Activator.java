@@ -23,7 +23,7 @@ public class Activator extends AbstractUIPlugin {
     @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
-        plugin = this;
+        setActivator(this);
     }
 
     /*
@@ -33,7 +33,7 @@ public class Activator extends AbstractUIPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        plugin = null;
+        setActivator(null);
         super.stop(context);
     }
 
@@ -55,5 +55,9 @@ public class Activator extends AbstractUIPlugin {
      */
     public static ImageDescriptor getImageDescriptor(String path) {
         return imageDescriptorFromPlugin(PLUGIN_ID, path);
+    }
+    
+    private static void setActivator(Activator context) {
+        plugin = context;
     }
 }
