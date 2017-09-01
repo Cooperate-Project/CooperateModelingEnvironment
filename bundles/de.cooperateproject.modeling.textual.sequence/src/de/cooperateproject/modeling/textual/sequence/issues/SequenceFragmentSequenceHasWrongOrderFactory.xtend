@@ -15,7 +15,7 @@ import static extension de.cooperateproject.modeling.textual.common.issues.Commo
 
 class SequenceFragmentSequenceHasWrongOrderFactory extends SequenceAutomatedIssueResolutionFactoryBase<FragmentSequence> {
 	
-	private static val ISSUE_CODE = "fragmentSequenceHasWrongOrder"
+	public static val ISSUE_CODE = "fragmentSequenceHasWrongOrder"
 	
 	new() {
 		super(ISSUE_CODE, new SequenceFragmentSequenceHasWrongOrderChecker(), FragmentSequence)

@@ -8,7 +8,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification
 
 class SequenceMessageHasInconsistentExecutionSpecificationFactory extends SequenceAutomatedIssueResolutionFactoryBase<Message> {
 	
-	private static val ISSUE_CODE = "fragmentSequenceHasInconsistentExecutionSpecification"
+	public static val ISSUE_CODE = "fragmentSequenceHasInconsistentExecutionSpecification"
 	
 	new() {
 		super(ISSUE_CODE, new SequenceMessageHasInconsistentExecutionSpecificationChecker(), Message)

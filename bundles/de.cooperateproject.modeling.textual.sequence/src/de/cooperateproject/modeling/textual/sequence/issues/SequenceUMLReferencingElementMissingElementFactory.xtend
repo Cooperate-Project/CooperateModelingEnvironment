@@ -7,7 +7,7 @@ import org.eclipse.uml2.uml.Element
 
 class SequenceUMLReferencingElementMissingElementFactory extends SequenceAutomatedIssueResolutionFactoryBase<UMLReferencingElement<Element>> {
 	
-	private static val ISSUE_CODE = "referencedUMLElementMissing"
+	public static val ISSUE_CODE = "referencedUMLElementMissing"
 	
 	new() {
 		super(ISSUE_CODE, new SequenceUMLReferencingElementMissingElementChecker(), UMLReferencingElement as Class<?> as Class<UMLReferencingElement<Element>>)

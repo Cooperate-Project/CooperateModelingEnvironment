@@ -8,6 +8,7 @@ import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider;
+import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.xtext.generator.AbstractXtextGeneratorFragment;
 import org.eclipse.xtext.xtext.generator.XtextGeneratorNaming;
 import org.eclipse.xtext.xtext.generator.model.FileAccessFactory;
@@ -19,11 +20,14 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.CooperateConflictingIssueFilteringResourceValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionFactoryRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.ConflictingIssueFilterRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IConflictingIssueFilterRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
@@ -77,6 +81,10 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(ICooperateAutomatedValidator.class), typeRef(CooperateAutomatedValidator.class))
                 .addTypeToType(typeRef(IAutomatedIssueResolutionFactoryRegistry.class),
                         typeRef(AutomatedIssueResolutionFactoryRegistry.class))
+                .addTypeToType(typeRef(IConflictingIssueFilterRegistry.class),
+                        typeRef(ConflictingIssueFilterRegistry.class))
+                .addTypeToType(typeRef(IResourceValidator.class),
+                        typeRef(CooperateConflictingIssueFilteringResourceValidator.class))
                 .contributeTo(getLanguage().getRuntimeGenModule());
         getProjectConfig().getRuntime().getManifest().getRequiredBundles()
                 .add("de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport");

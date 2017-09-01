@@ -16,11 +16,14 @@ import de.cooperateproject.modeling.textual.sequence.serializer.SequenceSemantic
 import de.cooperateproject.modeling.textual.sequence.serializer.SequenceSyntacticSequencer;
 import de.cooperateproject.modeling.textual.sequence.services.SequenceGrammarAccess;
 import de.cooperateproject.modeling.textual.sequence.validation.SequenceValidator;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.CooperateConflictingIssueFilteringResourceValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionFactoryRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.ConflictingIssueFilterRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IConflictingIssueFilterRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
@@ -68,6 +71,7 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
 import org.eclipse.xtext.service.DefaultRuntimeModule;
 import org.eclipse.xtext.service.SingletonBinding;
+import org.eclipse.xtext.validation.IResourceValidator;
 
 /**
  * Manual modifications go to {@link SequenceRuntimeModule}.
@@ -253,6 +257,16 @@ public abstract class AbstractSequenceRuntimeModule extends DefaultRuntimeModule
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IAutomatedIssueResolutionFactoryRegistry> bindIAutomatedIssueResolutionFactoryRegistry() {
 		return AutomatedIssueResolutionFactoryRegistry.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IConflictingIssueFilterRegistry> bindIConflictingIssueFilterRegistry() {
+		return ConflictingIssueFilterRegistry.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IResourceValidator> bindIResourceValidator() {
+		return CooperateConflictingIssueFilteringResourceValidator.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2

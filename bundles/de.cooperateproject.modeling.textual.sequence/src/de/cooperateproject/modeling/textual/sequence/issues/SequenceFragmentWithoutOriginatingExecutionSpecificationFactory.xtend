@@ -10,7 +10,7 @@ import static extension de.cooperateproject.modeling.textual.common.issues.Commo
 
 class SequenceFragmentWithoutOriginatingExecutionSpecificationFactory extends SequenceAutomatedIssueResolutionFactoryBase<Fragment> {
 	
-	private static val ISSUE_CODE = "fragmentWithoutOriginatingExecutionSpecification"
+	public static val ISSUE_CODE = "fragmentWithoutOriginatingExecutionSpecification"
 	
 	new() {
 		super(ISSUE_CODE, new SequenceFragmentWithoutOriginatingExecutionSpecificationChecker(), Fragment)

@@ -4,6 +4,7 @@
    <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories" name="Automated Issue Resolution Factories" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories.exsd"/>
    <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor" name="Derived State Processor" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor.exsd"/>
    <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus" name="Transient Status Provider" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.exsd"/>
+   <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.unresolvableissuefilters" name="Unresolvable Issue Filters" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.unresolvableissuefilters.exsd"/>   
    <extension
          point="org.eclipse.ui.contexts">
       <context

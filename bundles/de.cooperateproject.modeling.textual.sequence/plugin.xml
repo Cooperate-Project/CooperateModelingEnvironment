@@ -25,4 +25,10 @@
              class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.OccurenceSpecificationCalculator">
        </class>
     </extension>
+    <extension
+          point="de.cooperateproject.modeling.textual.xtext.runtime.unresolvableissuefilters">
+       <class
+             class="de.cooperateproject.modeling.textual.sequence.issues.SequenceIssuesOrderDependenceFilter">
+       </class>
+    </extension>
 </plugin>
