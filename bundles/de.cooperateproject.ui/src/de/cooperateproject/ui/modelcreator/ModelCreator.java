@@ -100,6 +100,10 @@ public class ModelCreator {
                 umlResource);
         CDOResource textualResource = createTextualModel(transaction, folder, papyrusResource, diagramName,
                 diagramType);
+
+        SupplementaryModelCreatorRegistry.getInstance().getSupplementaryModelCreators()
+                .forEach(c -> c.createSupplementaryModels(transaction, folder, diagramName, diagramType));
+
         try {
             transaction.commit();
         } catch (CDOException | CommitException e) {

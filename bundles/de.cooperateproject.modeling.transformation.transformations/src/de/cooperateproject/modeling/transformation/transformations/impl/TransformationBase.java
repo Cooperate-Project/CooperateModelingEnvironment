@@ -1,7 +1,10 @@
 package de.cooperateproject.modeling.transformation.transformations.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.SortedSet;
@@ -15,8 +18,6 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
-import com.google.common.collect.Lists;
-
 import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationCharacteristic;
 
@@ -24,25 +25,33 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 
     private static final URI UML_PRIMITIVE_TYPES = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
     protected static final String UML_MODEL_FILE_EXTENSION = "uml";
+    private static final int STATIC_MODELS_COUNT = 4;
+
     private final TransformationCharacteristic characteristics;
     private final URI sourceURI;
+    private final SortedSet<URI> supplementarySourceURIs;
     private final URI targetURI;
+    private final SortedSet<URI> supplementaryTargetURIs;
     private final TraceTransformation traceTransformation;
     private final SortedSet<PostProcessor> postProcessors = new TreeSet<>();
 
-    protected TransformationBase(TransformationCharacteristic characteristics, ResourceSet rs, URI source, URI target,
+    protected TransformationBase(TransformationCharacteristic characteristics, ResourceSet rs, URI sourceURI,
+            SortedSet<URI> supplementarySourceURIs, URI targetURI, SortedSet<URI> supplementaryTargetURIs,
             Collection<PostProcessor> postProcessors) {
         super(rs);
         this.characteristics = characteristics;
-        this.sourceURI = source;
-        this.targetURI = target;
-        this.traceTransformation = createTraceTransformation(characteristics, sourceURI, targetURI, rs);
+        this.sourceURI = sourceURI;
+        this.supplementarySourceURIs = Collections.unmodifiableSortedSet(new TreeSet<>(supplementarySourceURIs));
+        this.targetURI = targetURI;
+        this.supplementaryTargetURIs = Collections.unmodifiableSortedSet(new TreeSet<>(supplementaryTargetURIs));
+        this.traceTransformation = createTraceTransformation(characteristics, sourceURI, targetURI,
+                supplementaryTargetURIs, rs);
         this.postProcessors.addAll(postProcessors);
     }
 
     private TraceTransformation createTraceTransformation(TransformationCharacteristic sourceCharacteristics,
-            URI sourceModelURI, URI targetModelURI, ResourceSet rs) {
-        return new TraceTransformationBase(sourceCharacteristics, sourceModelURI, targetModelURI, rs);
+            URI sourceURI, URI targetURI, Collection<URI> supplementaryTargetURIs, ResourceSet rs) {
+        return new TraceTransformationBase(sourceCharacteristics, sourceURI, targetURI, supplementaryTargetURIs, rs);
     }
 
     @Override
@@ -53,7 +62,14 @@ public abstract class TransformationBase extends DomainIndependentTransformation
     public IStatus transform(URI traceBase) throws IOException {
         URI transformationURI = TransformationNameUtils.createTransformationURI(getCharacteristics());
         URI umlURI = createUMLURI(sourceURI, targetURI);
-        List<URI> transformationParameters = Lists.newArrayList(sourceURI, targetURI, umlURI, UML_PRIMITIVE_TYPES);
+        List<URI> transformationParameters = new ArrayList<>(
+                supplementarySourceURIs.size() + supplementaryTargetURIs.size() + STATIC_MODELS_COUNT);
+        transformationParameters.add(sourceURI);
+        transformationParameters.addAll(supplementarySourceURIs);
+        transformationParameters.add(targetURI);
+        transformationParameters.addAll(supplementaryTargetURIs);
+        transformationParameters.addAll(Arrays.asList(umlURI, UML_PRIMITIVE_TYPES));
+
         IStatus transformationStatus = transform(transformationURI, createTraceURI(traceBase, sourceURI, targetURI),
                 transformationParameters);
         if (transformationStatus.getSeverity() == IStatus.OK) {

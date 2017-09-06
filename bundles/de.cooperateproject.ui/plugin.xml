@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="de.cooperateproject.ui.editors.launcher.extensions.editorlauncher" name="EditorLauncher" schema="schema/de.cooperateproject.ui.editors.launcher.extensions.editorlauncher.exsd"/>
    <extension-point id="de.cooperateproject.ui.modelcreator.postprocessor" name="Model Creator Post Processor" schema="schema/de.cooperateproject.ui.modelcreator.postprocessor.exsd"/>
+   <extension-point id="de.cooperateproject.ui.modelcreator.supplementarymodelcreator" name="Supplementary Model Creator" schema="schema/de.cooperateproject.ui.modelcreator.supplementarymodelcreator.exsd"/>
    <extension
          id="CooperateProjectNature"
          point="org.eclipse.core.resources.natures">
