@@ -62,6 +62,8 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
 	referencedElement :=self.element.oclAsType(uml::Interface);
+	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
+	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
 
 mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
@@ -94,6 +96,21 @@ mapping notation::Edge::edgeToSubstitution() : cmp::Substitution
 mapping notation::Edge::edgeToDependency() : cmp::Dependency
 {
 	
+}
+
+mapping notation::Node::nodeToOperation() : cmp::Method {
+	var operation := self.element.oclAsType(uml::Operation);
+	referencedElement := operation;
+	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
+}
+
+mapping uml::Parameter::umlParameterToParameter() : cmp::Parameter {
+	referencedElement := self;
+}
+
+mapping notation::Node::nodeToProperty() : cmp::Attribute {
+	var prop := self.element.oclAsType(uml::Property);
+	referencedElement := prop;
 }
 
 mapping notation::View::commentToComment() : textualCommons::Comment

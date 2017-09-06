@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_P68WkJNSEeeMpe1US1HoTw" name="ComponentDiagramInterfaceMembers">
+  <packagedElement xmi:type="uml:Interface" xmi:id="_jwrGsJNZEeeMpe1US1HoTw" name="testIface">
+    <ownedAttribute xmi:id="_ZB3lMJNaEeeMpe1US1HoTw" name="testInt">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Model>
