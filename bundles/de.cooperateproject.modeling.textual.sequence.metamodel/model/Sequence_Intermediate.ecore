@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sequenceintermediate" nsURI="http://www.cooperateproject.de/modeling/textual/sequence/SequenceIntermediate"
+    nsPrefix="seqint">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    <details key="sequence" value="Sequence.ecore#/"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="SIDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifelines" upperBound="-1"
+        eType="#//SILifeline" containment="true" eOpposite="#//SILifeline/diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regions" upperBound="-1"
+        eType="#//SIRegion" containment="true" eOpposite="#//SIRegion/diagram"/>
+    <eGenericSuperTypes eClassifier="#//SIElementWithTextualReference">
+      <eTypeArguments eClassifier="ecore:EClass Sequence.ecore#//SequenceDiagram"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//SIExecutionContainer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SILifeline">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//SIDiagram"
+        eOpposite="#//SIDiagram/lifelines"/>
+    <eGenericSuperTypes eClassifier="#//SIElementWithTextualReference">
+      <eTypeArguments eClassifier="ecore:EClass Sequence.ecore#//Actor"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//SITimedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SIExecution" eSuperTypes="#//SITimedElement #//SIExecutionContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="containerMustReferenceTheSameLifelineAsContainedExecutions"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="containerMustReferenceTheSameLifelineAsContainedExecutions" value="self.executions->forAll(ex | ex.lifeline = self.lifeline)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
+        eType="#//SIMessage" containment="true" eOpposite="#//SIMessage/origin"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="syncReply" eType="#//SIMessage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callstack" upperBound="-1"
+        eType="#//SIExecution"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//SIExecutionContainer"
+        eOpposite="#//SIExecutionContainer/executions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifeline" lowerBound="1"
+        eType="#//SILifeline"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionCause" eType="#//SIMessage"
+        eOpposite="#//SIMessage/causesExecution"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SIRegion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//SIDiagram"
+        eOpposite="#//SIDiagram/regions"/>
+    <eGenericSuperTypes eClassifier="#//SIElementWithTextualReference">
+      <eTypeArguments eClassifier="ecore:EClass Sequence.ecore#//OrderedFragmentContainer"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//SITimedElement"/>
+    <eGenericSuperTypes eClassifier="#//SIExecutionContainer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SIMessage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" eType="#//SIExecution"
+        eOpposite="#//SIExecution/messages"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="causesExecution" eType="#//SIExecution"
+        eOpposite="#//SIExecution/executionCause"/>
+    <eGenericSuperTypes eClassifier="#//SITimedElement"/>
+    <eGenericSuperTypes eClassifier="#//SIElementWithTextualReference">
+      <eTypeArguments eClassifier="ecore:EClass Sequence.ecore#//Message"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SIElementWithTextualReference">
+    <eTypeParameters name="ElementType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
+      <eGenericType eTypeParameter="#//SIElementWithTextualReference/ElementType"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SITimedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1" eType="#//PointInTime"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finish" lowerBound="1"
+        eType="#//PointInTime"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StartDeterminesPointIntTime" eSuperTypes="#//PointInTime">
+    <eOperations name="getTimeInternal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.timedElement.start.time"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timedElement" lowerBound="1"
+        eType="#//SITimedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinishDeterminesPointInTime" eSuperTypes="#//PointInTime">
+    <eOperations name="getTimeInternal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.timedElement.finish.time"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timedElement" lowerBound="1"
+        eType="#//SITimedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinimumPointInTime" eSuperTypes="#//PointInTime">
+    <eOperations name="getTimeInternal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.elements->sortedBy(time)->first().time"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//PointInTime">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaximumPointInTime" eSuperTypes="#//PointInTime">
+    <eOperations name="getTimeInternal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.elements->sortedBy(time)->last().time"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//PointInTime">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PointInTime">
+    <eOperations name="getTimeInternal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.getTimeInternal()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentIndexPointInTime">
+    <eOperations name="getTimeInternal" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.fragmentIndex"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fragmentIndex" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eGenericSuperTypes eClassifier="#//PointInTime"/>
+    <eGenericSuperTypes eClassifier="#//SIElementWithTextualReference">
+      <eTypeArguments eClassifier="ecore:EClass Sequence.ecore#//Fragment"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SIExecutionContainer" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executions" upperBound="-1"
+        eType="#//SIExecution" containment="true" eOpposite="#//SIExecution/container"/>
+  </eClassifiers>
+</ecore:EPackage>

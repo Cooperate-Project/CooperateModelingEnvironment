@@ -15,4 +15,12 @@
             genModel="model/Sequence.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Sequence_Intermediate -->
+      <package
+            uri="http://www.cooperateproject.de/modeling/textual/sequence/SequenceIntermediate"
+            class="de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SequenceIntermediatePackage"
+            genModel="model/Sequence_Intermediate.genmodel"/>
+   </extension>
+
 </plugin>

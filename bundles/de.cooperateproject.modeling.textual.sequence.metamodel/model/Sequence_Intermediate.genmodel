@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.modeling.textual.sequence.metamodel/src-gen"
+    modelPluginID="de.cooperateproject.modeling.textual.sequence.metamodel" modelName="Sequence_Intermediate"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Sequence.genmodel#//sequence ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Sequence_Intermediate.ecore</foreignModel>
+  <genPackages prefix="SequenceIntermediate" basePackage="de.cooperateproject.modeling.textual.sequence"
+      disposableProviderFactory="true" ecorePackage="Sequence_Intermediate.ecore#/">
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SIDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//SIDiagram/lifelines"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SILifeline"/>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SIExecution"/>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SIRegion"/>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SIMessage"/>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SIElementWithTextualReference">
+      <genTypeParameters ecoreTypeParameter="Sequence_Intermediate.ecore#//SIElementWithTextualReference/ElementType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//SIElementWithTextualReference/referencedElement"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SITimedElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//SITimedElement/start"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//SITimedElement/finish"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//SITimedContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//SITimedContainer/containedElements"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//StartDeterminesPointIntTime">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//StartDeterminesPointIntTime/timedElement"/>
+      <genOperations ecoreOperation="Sequence_Intermediate.ecore#//StartDeterminesPointIntTime/getTimeInternal"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//FinishDeterminesPointInTime">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//FinishDeterminesPointInTime/timedElement"/>
+      <genOperations ecoreOperation="Sequence_Intermediate.ecore#//FinishDeterminesPointInTime/getTimeInternal"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//MinimumPointInTime">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//MinimumPointInTime/elements"/>
+      <genOperations ecoreOperation="Sequence_Intermediate.ecore#//MinimumPointInTime/getTimeInternal"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//MaximumPointInTime">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence_Intermediate.ecore#//MaximumPointInTime/elements"/>
+      <genOperations ecoreOperation="Sequence_Intermediate.ecore#//MaximumPointInTime/getTimeInternal"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//PointInTime">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Sequence_Intermediate.ecore#//PointInTime/time"/>
+      <genOperations ecoreOperation="Sequence_Intermediate.ecore#//PointInTime/getTimeInternal"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence_Intermediate.ecore#//FragmentIndexPointInTime">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence_Intermediate.ecore#//FragmentIndexPointInTime/fragmentIndex"/>
+      <genOperations ecoreOperation="Sequence_Intermediate.ecore#//FragmentIndexPointInTime/getTimeInternal"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

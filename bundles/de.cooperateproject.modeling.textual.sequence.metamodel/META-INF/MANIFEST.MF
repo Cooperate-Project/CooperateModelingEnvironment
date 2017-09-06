@@ -1,14 +1,25 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Textual Sequence Diagram Metamodel
+Bundle-Name: %pluginName
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.sequence.metamodel;singleton:=true
 Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.emf.ecore,
- org.eclipse.uml2.uml,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.uml2.uml;visibility:=reexport,
  de.cooperateproject.modeling.textual.common.metamodel;visibility:=reexport,
- org.eclipse.ocl.pivot
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.ocl.pivot;visibility:=reexport,
+ org.eclipse.ocl.examples.codegen;visibility:=reexport,
+ de.cooperateproject.modeling.textual.sequence.metamodel;visibility:=reexport
+Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.modeling.textual.sequence.sequence,
  de.cooperateproject.modeling.textual.sequence.sequence.impl,
- de.cooperateproject.modeling.textual.sequence.sequence.util
+ de.cooperateproject.modeling.textual.sequence.sequence.util,
+ de.cooperateproject.modeling.textual.sequence.sequenceintermediate,
+ de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl,
+ de.cooperateproject.modeling.textual.sequence.sequenceintermediate.util
 Import-Package: com.google.common.collect
