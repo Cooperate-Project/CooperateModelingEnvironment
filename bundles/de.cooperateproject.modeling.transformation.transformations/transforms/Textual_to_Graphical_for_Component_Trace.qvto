@@ -33,7 +33,8 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordClassifier();
 	result += self.map traceNodeToComponent();
 	result += self.map traceNodeToInterface();
-
+	result += self.map traceNodeToProperty();
+	result += self.map traceNodeToMethod();
 }
 /**
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
@@ -79,4 +80,29 @@ when {self.mappingOperation.name = "interfaceToShape"}
 	var node := self.getResult().modelElement;
 	var interface := self.getSelf().modelElement.oclAsType(cmp::Interface);
 	result += new TraceRecord("nodeToInterface", "Node", node, "Interface", interface.eobject());
+}
+
+mapping trace::TraceRecord::traceNodeToProperty() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "interfaceAttributeToShape"}
+{
+	var node := self.getResult().modelElement;
+	var attribute := self.getSelf().modelElement.oclAsType(cmp::Attribute);
+	result += new TraceRecord("nodeToProperty", "Node", node, "Attribute", attribute.eobject());
+}
+
+mapping trace::TraceRecord::traceNodeToMethod() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "interfaceMethodToShape"}
+{
+	var node := self.getResult().modelElement;
+	var method := self.getSelf().modelElement.oclAsType(cmp::Method);
+	result += new TraceRecord("nodeToOperation", "Node", node, "Method", method.eobject());
+	result += method.parameters->map traceRecordShapeOperation_Parameter()->flatten();
+}
+
+
+
+
+mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
+{
+	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
 }

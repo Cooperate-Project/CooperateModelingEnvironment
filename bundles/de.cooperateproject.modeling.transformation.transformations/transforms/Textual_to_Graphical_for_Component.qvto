@@ -90,7 +90,7 @@ when {self.oclIsKindOf(cmp::Interface)}
 }
 
 mapping cmp::Attribute::interfaceAttributeToShape() : notation::Shape
-{
+{ log("ausgabe into");
 		type := PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE;
 		element := self.referencedElement.toEObject();
 		layoutConstraint := result.toEObject().map locationConstraint();
