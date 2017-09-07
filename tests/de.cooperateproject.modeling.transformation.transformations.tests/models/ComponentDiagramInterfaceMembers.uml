@@ -4,5 +4,19 @@
     <ownedAttribute xmi:id="_ZB3lMJNaEeeMpe1US1HoTw" name="testInt">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_-TIioJNiEeeMpe1US1HoTw" name="testString">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_A6hboJNjEeeMpe1US1HoTw" name="testMethod">
+      <ownedParameter xmi:id="_FOZroJNjEeeMpe1US1HoTw" name="firstInput">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_H7oG4JNjEeeMpe1US1HoTw" name="secondInput">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_K1IDkJNjEeeMpe1US1HoTw" name="output" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
 </uml:Model>

@@ -21,3 +21,5 @@ property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR : String = "I
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_INPACKAGE : String = "Interface_AttributeCompartment_CN";
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR : String = "Interface_OperationCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_INPACKAGE : String = "Interface_OperationCompartment_CN";
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE : String = "Property_InterfaceAttributeLabel";
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION : String = "Operation_InterfaceOperationLabel";

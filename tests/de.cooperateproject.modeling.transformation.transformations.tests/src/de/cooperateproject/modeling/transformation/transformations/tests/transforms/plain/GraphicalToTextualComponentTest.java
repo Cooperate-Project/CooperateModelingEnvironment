@@ -45,6 +45,11 @@ public class GraphicalToTextualComponentTest extends DirectionalTransformationTe
     }
 
     @Test
+    public void testInterfaceAttribute() throws Exception {
+        testRegular("ComponentDiagramInterfaceAttribute");
+    }
+
+    @Test
     public void testInterfaceMembers() throws Exception {
         setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramInterfaceMembers");

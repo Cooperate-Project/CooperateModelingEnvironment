@@ -27,7 +27,7 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testSingleComponent() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\normaldebug"));
+
         testRegular("ComponentDiagramSingleComponent");
     }
 
@@ -38,12 +38,24 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testSingleInterface() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\normaldebug"));
         testRegular("ComponentDiagramSingleInterface");
     }
 
     @Test
     public void testInnerClassifiers() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramInnerClassifiers");
+    }
+
+    @Test
+    public void testInterfaceAttribute() throws Exception {
+        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        testRegular("ComponentDiagramInterfaceAttribute");
+    }
+
+    @Test
+    public void testInterfaceMembers() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        testRegular("ComponentDiagramInterfaceMembers");
     }
 }
