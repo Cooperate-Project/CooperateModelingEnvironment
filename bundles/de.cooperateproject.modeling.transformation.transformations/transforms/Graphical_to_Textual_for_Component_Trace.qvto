@@ -38,18 +38,8 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
 	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
 	result+= self.map traceRecordClassifier_interfaceToOperationsCompartment();
-}
-
-
-
-
-
-mapping trace::TraceRecord::traceRecordToCopy() :List(trace::TraceRecord) //TODO delete
-when {self.mappingOperation.name = "nodeToClassifier"}
-{ 
-	var component := self.getResult().modelElement;
-	var component1 := self.getSelf().modelElement;
-	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
+		result+= self.map traceRecordClassifier_interfaceAttributeToShape();
+		result+= self.map traceRecordClassifier_interfaceOperationToShape()
 }
 
 
@@ -142,6 +132,7 @@ when {self.mappingOperation.name = "nodeToInterface"}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR).eobject();
 	result += new TraceRecord("interfaceToOperationCompartment", "Interface", classifier, "BasicCompartment", compartment);
 	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+
 }
 
 
@@ -170,8 +161,24 @@ when {self.mappingOperation.name = "nodeToComponent"}
 	//result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }
 **/
-
-
+mapping trace::TraceRecord::traceRecordClassifier_interfaceAttributeToShape() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToProperty"}
+{
+	var classifier := self.getResult().modelElement;
+	var shape := self.getSelf().modelElement;
+	result += new TraceRecord("interfaceAttributeToShape", "Attribute", classifier, "Shape", shape);
+	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
+	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+}
+mapping trace::TraceRecord::traceRecordClassifier_interfaceOperationToShape() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToOperation"}
+{
+	var classifier := self.getResult().modelElement;
+	var shape := self.getSelf().modelElement;
+	result += new TraceRecord("interfaceMethodToShape", "Method", classifier, "Shape", shape);
+	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
+	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+}
 
 query trace::TraceRecord::getSelfNode() : notation::Node {
 	assert error (self.getSelf().modelElement.oclIsKindOf(notation::Node)) with log('The contained model element is not a node.');

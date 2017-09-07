@@ -100,8 +100,6 @@ when {self.mappingOperation.name = "interfaceMethodToShape"}
 }
 
 
-
-
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {
 	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
