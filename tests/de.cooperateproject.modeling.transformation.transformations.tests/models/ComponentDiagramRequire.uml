@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Xtl7EJN0EeeMpe1US1HoTw" name="ComponentDiagramRequire">
+  <packagedElement xmi:type="uml:Component" xmi:id="_oIF-oJN0EeeMpe1US1HoTw" name="Component1">
+    <packagedElement xmi:type="uml:Usage" xmi:id="_-ypiAJPXEeezs5CqDRUC0g" client="_oIF-oJN0EeeMpe1US1HoTw" supplier="_oZtTEJN0EeeMpe1US1HoTw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_oZtTEJN0EeeMpe1US1HoTw" name="Interface1"/>
+</uml:Model>

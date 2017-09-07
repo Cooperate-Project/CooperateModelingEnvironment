@@ -43,6 +43,11 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
     }
 
     @Test
+    public void testMultipleClassifiers() throws Exception {
+        testRegular("ComponentDiagramMultipleClassifiers");
+    }
+
+    @Test
     public void testInnerClassifiers() throws Exception {
         testRegular("ComponentDiagramInnerClassifiers");
     }

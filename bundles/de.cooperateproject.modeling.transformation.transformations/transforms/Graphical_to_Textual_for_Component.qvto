@@ -18,18 +18,20 @@ main() {
 mapping notation::Diagram::diagramToDiagram() : cmp::ComponentDiagram
 {
 	title := self.name;
-	rootpackage := self.map diagramToRootPackage();
+	rootpackage := self.map diagramToRootPackage();		
 }
 
 mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 {
-	var relevantEdges := self.findRelevantEdges();
+	//var relevantEdges := self.findRelevantEdges();
 	referencedElement := self.element.oclAsType(uml::Package);
 	//TODO
 	//classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR).map nodeToComponent();
 	//classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToClassifier();
-	relations := self.edges.map edgeToClassifierRelation();
+	//interfaceRelations := self.edges.map edgeToInterfaceRelation();
+	//relations := self.edges.map edgeToClassifierRelation(); //einbinden und fixen
+	
 }
 
 mapping notation::Node::nodeToClassifier() : cmp::Classifier
@@ -45,18 +47,12 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement :=self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
-	/**log(self.type);
-	log(self.element.toString());
-	log("outerComponent");
-	log(self.children->isEmpty().toString());**/
-	//log("test" + "test" + self.elements->size);
+	
+	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
 	nestedInterface += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
-	//component += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToInnerComponent();
 	component += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
-	//component += self.children->map nodeToInnerComponent();
-	//TODO Port Comment Interface portRelation interfaceRelation component
-}
 
+}
 
 
 mapping notation::Node::nodeToInterface() : cmp::Interface
@@ -76,6 +72,7 @@ disjuncts
 {
 	
 }
+
 
 mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
 {
@@ -124,6 +121,52 @@ query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
 	return self.findRelevantEdgesByContainment();
 }
 
+//try2
+
+
+mapping notation::Edge::edgeToInterfaceRelation() : cmp::InterfaceRelation
+disjuncts
+	notation::Edge::edgeToProvide,
+	notation::Edge::edgeToRequire
+{}
+
+mapping notation::Edge::edgeToProvide() : cmp::Provide
+	when {
+		self.element != null and
+		self.element.oclIsKindOf(uml::InterfaceRealization) 
+	}
+{
+
+	var realization := self.element.oclAsType(uml::InterfaceRealization);
+	assert error (realization.source->size() = 1 and realization.target->size() = 1) with log ('Interfac realizations: Log must of exactly one source and one target.', realization);
+	referencedElement := realization;
+}
+mapping notation::Edge::edgeToRequire() : cmp::Require
+	when {
+		self.element != null and
+		self.element.oclIsKindOf(uml::Usage)
+	}
+{
+	var usage := self.element.oclAsType(uml::Usage);
+	assert error (usage.source->size() = 1 and usage.target->size() = 1) with log ('Interface usages: Log must of exactly one source and one target.', usage);
+	referencedElement := usage;
+}
+
+query notation::Edge::isCommentLinkForAssociation() : Boolean {
+	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
+}
+query notation::Edge::isCommentLink() : Boolean {
+	return  (
+				self.source.element.oclIsKindOf(uml::Comment) and
+				self.target.element.oclIsKindOf(uml::Classifier)
+			)
+			or
+			(
+				self.source.element.oclIsKindOf(uml::Classifier) and
+				self.target.element.oclIsKindOf(uml::Comment)
+			)
+}
+
 query notation::Node::findRelevantEdges() : OrderedSet(notation::Edge)
 {
 	return self.findRelevantEdgesByContainment();
@@ -133,12 +176,11 @@ query notation::View::findRelevantEdgesByContainment() : OrderedSet(notation::Ed
 {
 	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for views that represent packages.');
 	var umlPackage = self.element.oclAsType(uml::Package);
-
 	return self.diagram.edges->select(findOwningPackage() = umlPackage);
 } 
 
 query notation::Edge::findOwningPackage() : uml::Package
-{
+{ 
 	return if self.oclIsKindOf(notation::Connector) then self.oclAsType(notation::Connector).findOwningPackage() else null endif;
 }
 

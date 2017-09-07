@@ -50,6 +50,11 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
     }
 
     @Test
+    public void testMultipleClassifiers() throws Exception {
+        testTraceTransformation("ComponentDiagramMultipleClassifiers");
+    }
+
+    @Test
     public void testInterfaceAttribute() throws Exception {
 
         testTraceTransformation("ComponentDiagramInterfaceAttribute");

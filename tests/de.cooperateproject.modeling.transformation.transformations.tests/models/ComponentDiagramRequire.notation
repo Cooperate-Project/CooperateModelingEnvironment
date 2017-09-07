@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_XtyIUJN0EeeMpe1US1HoTw" type="PapyrusUMLComponentDiagram" name="Component Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_oIHz0JN0EeeMpe1US1HoTw" type="Component_PackagedElementShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_oIHz0pN0EeeMpe1US1HoTw" type="Component_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_oIHz05N0EeeMpe1US1HoTw" type="Component_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_oIHz1JN0EeeMpe1US1HoTw" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_oIHz1ZN0EeeMpe1US1HoTw" type="Component_StructureCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_oIHz1pN0EeeMpe1US1HoTw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oIHz15N0EeeMpe1US1HoTw"/>
+    </children>
+    <element xmi:type="uml:Component" href="ComponentDiagramRequire.uml#_oIF-oJN0EeeMpe1US1HoTw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oIHz0ZN0EeeMpe1US1HoTw" x="380" y="420"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_oZt6IJN0EeeMpe1US1HoTw" type="Interface_ClassifierShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_oZt6IpN0EeeMpe1US1HoTw" type="Interface_ClassifierNameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_oZt6I5N0EeeMpe1US1HoTw" type="Interface_ClassifierFloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_oZt6JJN0EeeMpe1US1HoTw" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_oZt6JZN0EeeMpe1US1HoTw" type="Interface_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_oZt6JpN0EeeMpe1US1HoTw"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_oZt6J5N0EeeMpe1US1HoTw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_oZt6KJN0EeeMpe1US1HoTw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oZt6KZN0EeeMpe1US1HoTw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_oZt6KpN0EeeMpe1US1HoTw" type="Interface_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_oZt6K5N0EeeMpe1US1HoTw"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_oZt6LJN0EeeMpe1US1HoTw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_oZt6LZN0EeeMpe1US1HoTw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oZt6LpN0EeeMpe1US1HoTw"/>
+    </children>
+    <element xmi:type="uml:Interface" href="ComponentDiagramRequire.uml#_oZtTEJN0EeeMpe1US1HoTw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oZt6IZN0EeeMpe1US1HoTw" x="720" y="120"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_XtyIUZN0EeeMpe1US1HoTw" name="diagram_compatibility_version" stringValue="1.3.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_XtyIUpN0EeeMpe1US1HoTw"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_XtyIU5N0EeeMpe1US1HoTw" diagramKindId="org.eclipse.papyrus.uml.diagram.component.root.package">
+    <owner xmi:type="uml:Model" href="ComponentDiagramRequire.uml#_Xtl7EJN0EeeMpe1US1HoTw"/>
+  </styles>
+  <element xmi:type="uml:Model" href="ComponentDiagramRequire.uml#_Xtl7EJN0EeeMpe1US1HoTw"/>
+  <edges xmi:type="notation:Connector" xmi:id="_-zQmAJPXEeezs5CqDRUC0g" type="Usage_Edge" source="_oIHz0JN0EeeMpe1US1HoTw" target="_oZt6IJN0EeeMpe1US1HoTw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_-zVegJPXEeezs5CqDRUC0g" type="Usage_NameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-zVegZPXEeezs5CqDRUC0g" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_-zWFkJPXEeezs5CqDRUC0g" type="Usage_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-zWFkZPXEeezs5CqDRUC0g" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_-zQmAZPXEeezs5CqDRUC0g"/>
+    <element xmi:type="uml:Usage" href="ComponentDiagramRequire.uml#_-ypiAJPXEeezs5CqDRUC0g"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-zQmApPXEeezs5CqDRUC0g" points="[480, 420, -643984, -643984]$[740, 220, -643984, -643984]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-0OPUJPXEeezs5CqDRUC0g" id="(0.6666666666666666,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-0O2YJPXEeezs5CqDRUC0g" id="(0.2,1.0)"/>
+  </edges>
+</notation:Diagram>
