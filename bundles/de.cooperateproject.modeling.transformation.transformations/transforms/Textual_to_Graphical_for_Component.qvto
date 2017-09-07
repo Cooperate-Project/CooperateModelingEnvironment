@@ -17,6 +17,9 @@ main() {
 
 mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
+	var interfaceRelation = self.rootpackage.findAllInterfaceRelations();
+	log((interfaceRelation = null).toString() + "                testoutput" + interfaceRelation->size().toString() + interfaceRelation->selectByKind(cmp::Provide)->size().toString());
+	
 	type := "PapyrusUMLComponentDiagram";
 	name := self.title;
 	measurementUnit := notation::MeasurementUnit::Pixel;
@@ -28,6 +31,9 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
+	edges += interfaceRelation.map interfaceRelationtoEdge();
+	log("exit");
+	
 }
 
 mapping cmp::ComponentDiagram::diagramToStringValueStyle() : notation::StringValueStyle {
@@ -42,8 +48,6 @@ mapping cmp::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle 
 
 mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
-	//    <owner href="ComponentDiagramSingleComponent.uml#_4IVy04OUEeed1vSrRFufdg"/>
-		//log ("log123\n");
 	owner := self.rootpackage.referencedElement.toEObject();
 }
 
@@ -52,17 +56,20 @@ mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDi
 mapping cmp::Classifier::classifiersToShape() : notation::Shape
 disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape;
 
+mapping cmp::InterfaceRelation::interfaceRelationtoEdge() : notation::Connector
+disjuncts cmp::Provide::provideToEdge, cmp::Require::requireToEdge;
+
+
 mapping cmp::Component::componentToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Component)}
 {
-	log ("shape\n\n\n\n");
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR);
 	element := self.referencedElement.toEObject();
 	children += self.map componentToNameLabel();
 	children += self.map componentFloatingNameLabel();
 	//children += self.nestedInterface.map interfaceToShape();
 	children += self.map componentToCompartment();
-	log("owning component" + self.owningComponent.toString());
+	//log("owning component" + self.owningComponent.toString());
 
 	//element := self.referencedElement.toEObject();
 	//<element href="ComponentDiagramSingleComponent.uml#_4IVy1IOUEeed1vSrRFufdg"/>
@@ -75,6 +82,28 @@ when {self.oclIsKindOf(cmp::Component)}
 	//children +=self.rootpackage.classifiers.map classifiersToShape();
 
 }
+//TODO
+mapping cmp::Provide::provideToEdge() : notation::Connector
+when { self.oclIsKindOf(cmp::Provide) }
+{
+	type := PAPYRUS_NOTATION_EDGE_IMPLEMENTATION;	
+	source := late resolveoneIn(
+		cmp::Component::componentToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::InterfaceRealization).implementingClassifier.toEObject()
+	);
+		target := late resolveoneIn(
+		cmp::Interface::interfaceToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::InterfaceRealization).contract.toEObject()
+	);	
+	element := self.referencedElement.toEObject();
+	children += self.map stereotypeInterfaceDecorationProvide();
+	children += self.map stereotypeInterfaceDecorationNameLabel();
+	bendpoints := result.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+}
+mapping cmp::Require::requireToEdge() : notation::Connector
+when { self.oclIsKindOf(cmp::Require) and self.interface!=null }
+{}
 
 mapping cmp::Interface::interfaceToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Interface)}
@@ -171,11 +200,19 @@ mapping cmp::Interface::interfaceFloatingNameLabel() : notation::DecorationNode
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
+mapping cmp::Provide::stereotypeInterfaceDecorationProvide() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_INTERFACEASSOCIATION_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
 
 
 
-
-
+mapping cmp::Provide::stereotypeInterfaceDecorationNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_INTERFACEASSOCIATION_NAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
 
 
 
@@ -222,4 +259,11 @@ query cmp::Component::getNestedName(type : String) : String
 query String::getNestedCmpName(isNested : Boolean) : String
 {
 	return if isNested then self + "_CCN" else self endif;
+}
+
+// helpers
+query cmp::RootPackage::findAllInterfaceRelations() : Sequence(cmp::InterfaceRelation) {
+	//var interfaceRelation := self.classifiers.referencedElement->flatten();
+	var interfaceRelation = self.classifiers->select(oclIsKindOf(cmp::Component))->oclAsType(cmp::Component).interfaceRelation->flatten();
+	return interfaceRelation;
 }

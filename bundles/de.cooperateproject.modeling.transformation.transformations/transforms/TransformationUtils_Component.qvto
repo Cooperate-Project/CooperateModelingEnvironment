@@ -26,3 +26,5 @@ property PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION : String = "Operation_Interf
 property PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT : String = "PackageImport_Edge";
 
 property PAPYRUS_NOTATION_EDGE_IMPLEMENTATION : String = "InterfaceRealization_Edge";
+property PAPYRUS_NOTATION_NODE_INTERFACEASSOCIATION_STEREOTYPE : String = "InterfaceRealization_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACEASSOCIATION_NAME_REGULAR ="InterfaceRealization_NameLabel";
