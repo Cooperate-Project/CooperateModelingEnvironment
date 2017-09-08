@@ -40,7 +40,10 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.xtext,
  org.eclipse.ui.navigator,
  org.apache.activemq.activemq-client;bundle-version="5.14.3",
- de.cooperateproject.ui.preferences;bundle-version="0.2.2"
+ de.cooperateproject.ui.preferences;bundle-version="0.2.2",
+ org.eclipse.papyrus.infra.gmfdiag.style,
+ org.eclipse.osgi,
+ de.cooperateproject.modeling.transformation.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -90,7 +90,7 @@ public final class ExtensionPointHelper {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T> Optional<T> convert(IConfigurationElement configurationElement, String extensionAttributeName,
+    public static <T> Optional<T> convert(IConfigurationElement configurationElement, String extensionAttributeName,
             Class<T> extensionType) {
         try {
             final Object o = configurationElement.createExecutableExtension(extensionAttributeName);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension point="org.eclipse.m2m.qvt.oml.runtime.qvtTransformation">
+      <transformation
+            file="transforms/TransformationUtils.qvto"
+            id="TransformationUtils">
+      </transformation>
+      
+      <transformation
+            file="transforms/TraceUtils.qvto"
+            id="TraceUtils">
+      </transformation>
+   </extension>
+</plugin>

@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Transformation Tests Commons
+Bundle-SymbolicName: de.cooperateproject.modeling.transformation.tests.common
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.emf.common,
+ org.eclipse.m2m.qvt.oml,
+ de.cooperateproject.modeling.transformation.common,
+ org.junit,
+ de.cooperateproject.modeling.textual.common.metamodel,
+ org.apache.log4j,
+ org.eclipse.ocl.uml,
+ com.google.guava;bundle-version="21.0.0",
+ org.eclipse.emf.compare,
+ org.apache.commons.lang3;bundle-version="3.1.0",
+ org.apache.commons.io;bundle-version="2.2.0",
+ de.cooperateproject.qvtoutils.blackbox,
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="1.0.0",
+ org.eclipse.emf.compare.rcp
+Export-Package: de.cooperateproject.modeling.transformation.tests.commons,
+ de.cooperateproject.modeling.transformation.tests.commons.utils
+Import-Package: org.slf4j;version="1.7.2"
