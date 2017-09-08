@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.ui.labeling;
+package de.cooperateproject.ui.outline;
 
 import java.net.URI;
 import java.net.URL;

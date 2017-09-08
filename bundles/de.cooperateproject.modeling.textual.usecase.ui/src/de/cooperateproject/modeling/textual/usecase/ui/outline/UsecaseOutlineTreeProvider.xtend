@@ -3,13 +3,44 @@
  */
 package de.cooperateproject.modeling.textual.usecase.ui.outline
 
-import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
+import de.cooperateproject.modeling.textual.usecase.usecase.System
+import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
+import de.cooperateproject.ui.outline.CooperateOutlineTreeProvider
+import de.cooperateproject.ui.outline.UMLImage
 
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
-class UsecaseOutlineTreeProvider extends DefaultOutlineTreeProvider {
+class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
+dispatch def createChildren(IOutlineNode parentNode, UseCaseDiagram root) {
+        if (root.rootPackage === null) {
+            return
+        }
+        createNode(parentNode, root.rootPackage)
+    }
 
+    dispatch def createChildren(IOutlineNode parentNode, RootPackage pkg) {
+        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, UMLImage.PACKAGE.image,
+            getStyledString("Actors", pkg.actors.size), false)
+        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__SYSTEMS, UMLImage.PACKAGE.image,
+            getStyledString("Systems", pkg.systems.size), false)
+        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, UMLImage.PACKAGE.image,
+            getStyledString("Relationships", pkg.relationships.size), false)
+        
+    }
+    
+    dispatch def createChildren(IOutlineNode parentNode, System system) {
+        for (usecase : system.usecases) {
+            createEObjectNode(parentNode, usecase)
+        }
+    }
+    dispatch def createChildren(IOutlineNode parentNode, Generalization generalization) {
+       createEObjectNode(parentNode, generalization)
+    }
 }

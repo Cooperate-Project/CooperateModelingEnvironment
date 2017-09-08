@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.ui.outline;
+package de.cooperateproject.ui.outline;
 
 import java.util.ArrayList;
 import java.util.Arrays;
