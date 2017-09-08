@@ -38,7 +38,7 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testSingleInterface() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\normaldebug"));
+        // setDebugSerializationDir(new File("D:\\Debug\\normaldebug"));
         testRegular("ComponentDiagramSingleInterface");
     }
 
@@ -72,7 +72,19 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testMultipleProvide() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramMultipleProvide");
+    }
+
+    @Test
+    public void testRequireInterface() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        testRegular("ComponentDiagramRequire");
+    }
+
+    @Test
+    public void testMultipleRequire() throws Exception {
+        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        testRegular("ComponentDiagramMultipleRequire");
     }
 }

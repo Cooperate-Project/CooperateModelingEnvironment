@@ -101,9 +101,29 @@ when { self.oclIsKindOf(cmp::Provide) }
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
+
+
+
+
 mapping cmp::Require::requireToEdge() : notation::Connector
-when { self.oclIsKindOf(cmp::Require) and self.interface!=null }
-{}
+when { self.oclIsKindOf(cmp::Require) }
+{
+	type := PAPYRUS_NOTATION_EDGE_USAGE;	
+	source := late resolveoneIn(
+		cmp::Component::componentToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).source->asOrderedSet()->first().toEObject()
+	);
+	log("source    " + source.toString());
+		target := late resolveoneIn(
+		cmp::Interface::interfaceToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).target->asOrderedSet()->first().toEObject()
+	);	
+	element := self.referencedElement.toEObject();
+	children += self.map stereotypeInterfaceDecorationNameLabel();	children += self.map stereotypeInterfaceDecorationRequire();
+
+	bendpoints := result.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+}
 
 mapping cmp::Interface::interfaceToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Interface)}
@@ -202,18 +222,27 @@ mapping cmp::Interface::interfaceFloatingNameLabel() : notation::DecorationNode
 
 mapping cmp::Provide::stereotypeInterfaceDecorationProvide() : notation::DecorationNode
 {
-	type := PAPYRUS_NOTATION_NODE_INTERFACEASSOCIATION_STEREOTYPE;
+	type := PAPYRUS_NOTATION_NODE_INTERFACEREALIZATION_STEREOTYPE;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-
+mapping cmp::Require::stereotypeInterfaceDecorationRequire() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_INTERFACREQUIRE_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
 
 mapping cmp::Provide::stereotypeInterfaceDecorationNameLabel() : notation::DecorationNode
 {
-	type := PAPYRUS_NOTATION_NODE_INTERFACEASSOCIATION_NAME_REGULAR;
+	type := PAPYRUS_NOTATION_NODE_INTERFREALIZATION_NAME_REGULAR;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
+mapping cmp::Require::stereotypeInterfaceDecorationNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
 
 
 //Style

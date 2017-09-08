@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Component Diagram">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramMultipleRequire.uml#_MSVRQJQ7Eee9Dd_V_0eWlA"/>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramMultipleRequire.uml#_QzaPwJQ7Eee9Dd_V_0eWlA"/>
+      <interfaceRelation xsi:type="cmp:Require">
+        <referencedElement xsi:type="uml:Usage" href="ComponentDiagramMultipleRequire.uml#_XKgUsJQ7Eee9Dd_V_0eWlA"/>
+      </interfaceRelation>
+      <interfaceRelation xsi:type="cmp:Require">
+        <referencedElement xsi:type="uml:Usage" href="ComponentDiagramMultipleRequire.uml#_X0lMcJQ7Eee9Dd_V_0eWlA"/>
+      </interfaceRelation>
+    </classifiers>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramMultipleRequire.uml#_RDZzkJQ7Eee9Dd_V_0eWlA"/>
+      <interfaceRelation xsi:type="cmp:Require">
+        <referencedElement xsi:type="uml:Usage" href="ComponentDiagramMultipleRequire.uml#_YKcuwJQ7Eee9Dd_V_0eWlA"/>
+      </interfaceRelation>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramMultipleRequire.uml#_RSBeYJQ7Eee9Dd_V_0eWlA"/>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramMultipleRequire.uml#_RfG4IJQ7Eee9Dd_V_0eWlA"/>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>
