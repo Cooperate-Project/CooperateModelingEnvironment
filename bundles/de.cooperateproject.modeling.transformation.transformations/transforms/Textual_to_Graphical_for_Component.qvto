@@ -31,7 +31,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
-	edges += interfaceRelation.map interfaceRelationtoEdge();
+	edges += interfaceRelation.map interfaceRelationToEdge();
 	log("exit");
 	
 }
@@ -56,7 +56,7 @@ mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDi
 mapping cmp::Classifier::classifiersToShape() : notation::Shape
 disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape;
 
-mapping cmp::InterfaceRelation::interfaceRelationtoEdge() : notation::Connector
+mapping cmp::InterfaceRelation::interfaceRelationToEdge() : notation::Connector
 disjuncts cmp::Provide::provideToEdge, cmp::Require::requireToEdge;
 
 

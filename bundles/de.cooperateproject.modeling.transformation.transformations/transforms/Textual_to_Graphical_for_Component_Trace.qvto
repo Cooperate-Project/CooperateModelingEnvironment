@@ -35,6 +35,9 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceNodeToInterface();
 	result += self.map traceNodeToProperty();
 	result += self.map traceNodeToMethod();
+	result += self.map traceEdgeToInterfaceRelation();
+	result += self.map traceEdgeToProvide();
+	result += self.map traceEdgeToRequire();
 }
 /**
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
@@ -98,8 +101,27 @@ when {self.mappingOperation.name = "interfaceMethodToShape"}
 	result += new TraceRecord("nodeToOperation", "Node", node, "Method", method.eobject());
 	result += method.parameters->map traceRecordShapeOperation_Parameter()->flatten();
 }
-
-
+mapping trace::TraceRecord::traceEdgeToInterfaceRelation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "interfaceRelationToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var ifaceRelation := self.getSelf().modelElement.oclAsType(cmp::InterfaceRelation);
+	result += new TraceRecord("edgeToInterfaceRelation", "Edge", edge, "InterfaceRelation", ifaceRelation.eobject());
+}
+mapping trace::TraceRecord::traceEdgeToProvide() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "provideToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var provide := self.getSelf().modelElement.oclAsType(cmp::Provide);
+	result += new TraceRecord("edgeToProvide", "Edge", edge, "Provide", provide.eobject());
+}
+mapping trace::TraceRecord::traceEdgeToRequire() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "requireToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var require := self.getSelf().modelElement.oclAsType(cmp::Require);
+	result += new TraceRecord("edgeToRequire", "Edge", edge, "Require", require.eobject());
+}
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {
 	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
