@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 
+import de.cooperateproject.ui.util.NonNullValidator;
 import de.cooperateproject.ui.wizards.modelnew.AtomicModelNameProcessor.ModelName;
 
 public class ModelAndDiagramSelectionComposite extends Composite {
@@ -97,6 +98,7 @@ public class ModelAndDiagramSelectionComposite extends Composite {
         IObservableValue<?> textTextModelObserveValue = PojoProperties.value("text").observe(textModel);
         UpdateValueStrategy strategy_1 = new UpdateValueStrategy();
         strategy_1.setConverter(new ModelNodeConverter());
+        strategy_1.setBeforeSetValidator(new NonNullValidator());
         bindingContext.bindValue(observeSingleSelectionTreeViewer, textTextModelObserveValue, strategy_1,
                 new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER));
         //
