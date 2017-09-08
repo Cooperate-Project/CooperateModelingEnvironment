@@ -122,6 +122,7 @@ when {self.mappingOperation.name = "requireToEdge"}
 	var require := self.getSelf().modelElement.oclAsType(cmp::Require);
 	result += new TraceRecord("edgeToRequire", "Edge", edge, "Require", require.eobject());
 }
+
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {
 	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());

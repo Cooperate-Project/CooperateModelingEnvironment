@@ -27,8 +27,8 @@ property PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT : String = "PackageImport_Edge";
 
 property PAPYRUS_NOTATION_EDGE_IMPLEMENTATION : String = "InterfaceRealization_Edge";
 property PAPYRUS_NOTATION_EDGE_USAGE : String = "Usage_Edge";
-property PAPYRUS_NOTATION_NODE_INTERFACEREALIZATION_STEREOTYPE : String = "InterfaceRealization_StereotypeLabel";
-property PAPYRUS_NOTATION_NODE_INTERFREALIZATION_NAME_REGULAR ="InterfaceRealization_NameLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_STEREOTYPE : String = "InterfaceRealization_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_NAME_REGULAR ="InterfaceRealization_NameLabel";
 property PAPYRUS_NOTATION_EDGE_REQUIRE : String = "InterfaceRealization_Edge";
-property PAPYRUS_NOTATION_NODE_INTERFACREQUIRE_STEREOTYPE : String = "Usage_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE : String = "Usage_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR ="Usage_NameLabel";

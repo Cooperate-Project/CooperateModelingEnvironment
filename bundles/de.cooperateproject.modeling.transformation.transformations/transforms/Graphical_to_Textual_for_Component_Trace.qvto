@@ -38,8 +38,11 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
 	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
 	result+= self.map traceRecordClassifier_interfaceToOperationsCompartment();
-		result+= self.map traceRecordClassifier_interfaceAttributeToShape();
-		result+= self.map traceRecordClassifier_interfaceOperationToShape()
+	result+= self.map traceRecordClassifier_interfaceAttributeToShape();
+	result+= self.map traceRecordClassifier_interfaceOperationToShape();
+	result += self.map traceRecordExtended_InterfaceRelationToEdge();
+	result += self.map traceRecordExtendedProvideToEdge();
+	result += self.map traceRecordExtendedRequireToEdge();
 }
 
 
@@ -179,7 +182,53 @@ when {self.mappingOperation.name = "nodeToOperation"}
 	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
 	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
+mapping trace::TraceRecord::traceRecordExtendedProvideToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToProvide"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Provide);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("provideToEdge", "Provide", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeInterfaceDecorationProvide", "Provide", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_STEREOTYPE).eobject());
+	result += new TraceRecord("stereotypeInterfaceDecorationNameLabel", "Provide", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_NAME_REGULAR).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_STEREOTYPE).map traceRecordExtended_locationConstraint();
+	result += edge.getChild(PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
+}
+mapping trace::TraceRecord::traceRecordExtendedRequireToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToRequire"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Require);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("requireToEdge", "Require", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeInterfaceDecorationRequire", "Require", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE).eobject());
+	result += new TraceRecord("stereotypeInterfaceDecorationNameLabel", "Require", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE).map traceRecordExtended_locationConstraint();
+	result += edge.getChild(PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR).map traceRecordExtended_locationConstraint();
+}
 
+mapping trace::TraceRecord::traceRecordExtended_InterfaceRelationToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToInterfaceRelation"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::InterfaceRelation);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("interfaceRelationToEdge", "InterfaceRelation", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+}
+mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge_ConnectorBase() : List(trace::TraceRecord)
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Connector);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	result += edge.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(edge);
+}
+mapping ecore::EObject::traceRecordExtendedConnectorToEdge_ConnectorBase(edge : notation::Connector) : List(trace::TraceRecord)
+{
+	result += new TraceRecord("connectorToBendpoint", "Connector", edge.eobject(), "RelativeBendpoints", edge.bendpoints.eobject());
+	result += new TraceRecord("fontStyle", "EObject", edge.eobject() , "FontStyle", edge.styles->selectByKind(notation::FontStyle)->any(true).eobject());
+}
 query trace::TraceRecord::getSelfNode() : notation::Node {
 	assert error (self.getSelf().modelElement.oclIsKindOf(notation::Node)) with log('The contained model element is not a node.');
 	return self.getSelf().modelElement.oclAsType(notation::Node);
