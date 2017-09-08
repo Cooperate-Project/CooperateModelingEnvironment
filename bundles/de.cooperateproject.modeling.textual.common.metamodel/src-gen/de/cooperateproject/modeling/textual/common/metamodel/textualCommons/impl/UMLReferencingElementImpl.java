@@ -2,9 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -19,6 +22,7 @@ import org.eclipse.uml2.uml.Element;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl#getAppliedStereotypes <em>Applied Stereotypes</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,6 +87,16 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<StereotypeApplication> getAppliedStereotypes() {
+        return (EList<StereotypeApplication>)eDynamicGet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -92,6 +106,8 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES:
+                return getAppliedStereotypes();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -108,6 +124,10 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
                 setReferencedElement((UMLType)newValue);
                 return;
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                getAppliedStereotypes().addAll((Collection<? extends StereotypeApplication>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -123,6 +143,9 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
                 setReferencedElement((UMLType)null);
                 return;
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -137,6 +160,8 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
         switch (featureID) {
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES:
+                return !getAppliedStereotypes().isEmpty();
         }
         return super.eIsSet(featureID);
     }

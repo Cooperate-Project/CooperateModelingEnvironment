@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -14,6 +15,7 @@ import org.eclipse.uml2.uml.Element;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes <em>Applied Stereotypes</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getUMLReferencingElement()
@@ -46,5 +48,21 @@ public interface UMLReferencingElement<UMLType extends Element> extends de.coope
      * @generated
      */
 	void setReferencedElement(UMLType value);
+
+    /**
+     * Returns the value of the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Applied Stereotypes</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Applied Stereotypes</em>' reference list.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getUMLReferencingElement_AppliedStereotypes()
+     * @model transient="true"
+     * @generated
+     */
+    EList<StereotypeApplication> getAppliedStereotypes();
 
 } // UMLReferencingElement

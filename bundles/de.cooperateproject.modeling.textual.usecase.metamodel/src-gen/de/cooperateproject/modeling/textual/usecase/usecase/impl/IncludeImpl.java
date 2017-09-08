@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -11,6 +12,8 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Include;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -23,6 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getAppliedStereotypes <em>Applied Stereotypes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getAddition <em>Addition</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getIncludingCase <em>Including Case</em>}</li>
  * </ul>
@@ -91,6 +95,16 @@ public class IncludeImpl extends ElementImpl implements Include {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    public EList<StereotypeApplication> getAppliedStereotypes() {
+        return (EList<StereotypeApplication>)eDynamicGet(UsecasePackage.INCLUDE__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public UseCase getAddition() {
         return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__ADDITION, true, true);
     }
@@ -151,6 +165,8 @@ public class IncludeImpl extends ElementImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
+                return getAppliedStereotypes();
             case UsecasePackage.INCLUDE__ADDITION:
                 if (resolve) return getAddition();
                 return basicGetAddition();
@@ -166,11 +182,16 @@ public class IncludeImpl extends ElementImpl implements Include {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)newValue);
+                return;
+            case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                getAppliedStereotypes().addAll((Collection<? extends StereotypeApplication>)newValue);
                 return;
             case UsecasePackage.INCLUDE__ADDITION:
                 setAddition((UseCase)newValue);
@@ -193,6 +214,9 @@ public class IncludeImpl extends ElementImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)null);
                 return;
+            case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                return;
             case UsecasePackage.INCLUDE__ADDITION:
                 setAddition((UseCase)null);
                 return;
@@ -213,6 +237,8 @@ public class IncludeImpl extends ElementImpl implements Include {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
+                return !getAppliedStereotypes().isEmpty();
             case UsecasePackage.INCLUDE__ADDITION:
                 return basicGetAddition() != null;
             case UsecasePackage.INCLUDE__INCLUDING_CASE:
@@ -231,6 +257,7 @@ public class IncludeImpl extends ElementImpl implements Include {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case UsecasePackage.INCLUDE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }
@@ -247,6 +274,7 @@ public class IncludeImpl extends ElementImpl implements Include {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.INCLUDE__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES: return UsecasePackage.INCLUDE__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }

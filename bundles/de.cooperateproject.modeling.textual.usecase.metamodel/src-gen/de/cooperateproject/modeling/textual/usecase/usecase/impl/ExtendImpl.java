@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -12,6 +13,8 @@ import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -24,6 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getAppliedStereotypes <em>Applied Stereotypes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtendedCase <em>Extended Case</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtensionLocation <em>Extension Location</em>}</li>
@@ -96,6 +100,16 @@ public class ExtendImpl extends ElementImpl implements Extend {
      */
     public void setReferencedElement(org.eclipse.uml2.uml.Extend newReferencedElement) {
         eDynamicSet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<StereotypeApplication> getAppliedStereotypes() {
+        return (EList<StereotypeApplication>)eDynamicGet(UsecasePackage.EXTEND__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, true, true);
     }
 
     /**
@@ -208,6 +222,8 @@ public class ExtendImpl extends ElementImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.EXTEND__APPLIED_STEREOTYPES:
+                return getAppliedStereotypes();
             case UsecasePackage.EXTEND__EXTENSION:
                 if (resolve) return getExtension();
                 return basicGetExtension();
@@ -228,11 +244,16 @@ public class ExtendImpl extends ElementImpl implements Extend {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)newValue);
+                return;
+            case UsecasePackage.EXTEND__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                getAppliedStereotypes().addAll((Collection<? extends StereotypeApplication>)newValue);
                 return;
             case UsecasePackage.EXTEND__EXTENSION:
                 setExtension((UseCase)newValue);
@@ -261,6 +282,9 @@ public class ExtendImpl extends ElementImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)null);
                 return;
+            case UsecasePackage.EXTEND__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                return;
             case UsecasePackage.EXTEND__EXTENSION:
                 setExtension((UseCase)null);
                 return;
@@ -287,6 +311,8 @@ public class ExtendImpl extends ElementImpl implements Extend {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case UsecasePackage.EXTEND__APPLIED_STEREOTYPES:
+                return !getAppliedStereotypes().isEmpty();
             case UsecasePackage.EXTEND__EXTENSION:
                 return basicGetExtension() != null;
             case UsecasePackage.EXTEND__EXTENDED_CASE:
@@ -309,6 +335,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case UsecasePackage.EXTEND__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.EXTEND__APPLIED_STEREOTYPES: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }
@@ -325,6 +352,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.EXTEND__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES: return UsecasePackage.EXTEND__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }

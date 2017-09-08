@@ -217,13 +217,22 @@ public interface TextualCommonsPackage extends EPackage {
     int UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = ELEMENT_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES = ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>UML Referencing Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int UML_REFERENCING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+    int UML_REFERENCING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -300,13 +309,22 @@ public interface TextualCommonsPackage extends EPackage {
     int PACKAGE_BASE__REFERENCED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE_BASE__APPLIED_STEREOTYPES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PACKAGE_BASE__NAME = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
+    int PACKAGE_BASE__NAME = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -315,7 +333,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_BASE__OWNING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
+    int PACKAGE_BASE__OWNING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Packages</b></em>' containment reference list.
@@ -324,7 +342,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_BASE__PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
+    int PACKAGE_BASE__PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Package Imports</b></em>' containment reference list.
@@ -333,7 +351,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_BASE__PACKAGE_IMPORTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
+    int PACKAGE_BASE__PACKAGE_IMPORTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Package Base</em>' class.
@@ -342,7 +360,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_BASE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
+    int PACKAGE_BASE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -380,6 +398,15 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int COMMENTABLE__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMMENTABLE__APPLIED_STEREOTYPES = UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -435,6 +462,15 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int COMMENT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMMENT__APPLIED_STEREOTYPES = UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Commented Element</b></em>' container reference.
@@ -501,6 +537,15 @@ public interface TextualCommonsPackage extends EPackage {
     int CARDINALITY__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CARDINALITY__APPLIED_STEREOTYPES = UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -563,6 +608,15 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int PACKAGE_IMPORT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE_IMPORT__APPLIED_STEREOTYPES = UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Importing Package</b></em>' container reference.
@@ -648,6 +702,53 @@ public interface TextualCommonsPackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl <em>Stereotype Application</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getStereotypeApplication()
+     * @generated
+     */
+    int STEREOTYPE_APPLICATION = 11;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEREOTYPE_APPLICATION__REFERENCED_ELEMENT = 0;
+
+    /**
+     * The feature id for the '<em><b>Stereotype</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEREOTYPE_APPLICATION__STEREOTYPE = 1;
+
+    /**
+     * The number of structural features of the '<em>Stereotype Application</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEREOTYPE_APPLICATION_FEATURE_COUNT = 2;
+
+    /**
+     * The number of operations of the '<em>Stereotype Application</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEREOTYPE_APPLICATION_OPERATION_COUNT = 0;
+
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -729,6 +830,17 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      */
     EReference getUMLReferencingElement_ReferencedElement();
+
+    /**
+     * Returns the meta object for the reference list '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes <em>Applied Stereotypes</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Applied Stereotypes</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes()
+     * @see #getUMLReferencingElement()
+     * @generated
+     */
+    EReference getUMLReferencingElement_AppliedStereotypes();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase <em>Package Base</em>}'.
@@ -922,6 +1034,38 @@ public interface TextualCommonsPackage extends EPackage {
     EAttribute getVisibilityHavingElement_Visibility();
 
     /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication <em>Stereotype Application</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Stereotype Application</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication
+     * @generated
+     */
+    EClass getStereotypeApplication();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getReferencedElement <em>Referenced Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Referenced Element</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getReferencedElement()
+     * @see #getStereotypeApplication()
+     * @generated
+     */
+    EReference getStereotypeApplication_ReferencedElement();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Stereotype</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype()
+     * @see #getStereotypeApplication()
+     * @generated
+     */
+    EAttribute getStereotypeApplication_Stereotype();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1015,6 +1159,14 @@ public interface TextualCommonsPackage extends EPackage {
          * @generated
          */
         EReference UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = eINSTANCE.getUMLReferencingElement_ReferencedElement();
+
+        /**
+         * The meta object literal for the '<em><b>Applied Stereotypes</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES = eINSTANCE.getUMLReferencingElement_AppliedStereotypes();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl <em>Package Base</em>}' class.
@@ -1173,6 +1325,32 @@ public interface TextualCommonsPackage extends EPackage {
          * @generated
          */
         EAttribute VISIBILITY_HAVING_ELEMENT__VISIBILITY = eINSTANCE.getVisibilityHavingElement_Visibility();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl <em>Stereotype Application</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getStereotypeApplication()
+         * @generated
+         */
+        EClass STEREOTYPE_APPLICATION = eINSTANCE.getStereotypeApplication();
+
+        /**
+         * The meta object literal for the '<em><b>Referenced Element</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference STEREOTYPE_APPLICATION__REFERENCED_ELEMENT = eINSTANCE.getStereotypeApplication_ReferencedElement();
+
+        /**
+         * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute STEREOTYPE_APPLICATION__STEREOTYPE = eINSTANCE.getStereotypeApplication_Stereotype();
 
     }
 

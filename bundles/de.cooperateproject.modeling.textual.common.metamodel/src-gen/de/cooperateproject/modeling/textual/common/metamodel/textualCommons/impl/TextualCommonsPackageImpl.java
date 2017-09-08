@@ -11,6 +11,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsFactory;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -114,6 +116,13 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
     private EClass visibilityHavingElementEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass stereotypeApplicationEClass = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -160,6 +169,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         isInited = true;
 
         // Initialize simple dependencies
+        EcorePackage.eINSTANCE.eClass();
+        TypesPackage.eINSTANCE.eClass();
         UMLPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
@@ -252,6 +263,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      */
     public EReference getUMLReferencingElement_ReferencedElement() {
         return (EReference)umlReferencingElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUMLReferencingElement_AppliedStereotypes() {
+        return (EReference)umlReferencingElementEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -421,6 +441,33 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getStereotypeApplication() {
+        return stereotypeApplicationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getStereotypeApplication_ReferencedElement() {
+        return (EReference)stereotypeApplicationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getStereotypeApplication_Stereotype() {
+        return (EAttribute)stereotypeApplicationEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public TextualCommonsFactory getTextualCommonsFactory() {
         return (TextualCommonsFactory)getEFactoryInstance();
     }
@@ -455,6 +502,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         umlReferencingElementEClass = createEClass(UML_REFERENCING_ELEMENT);
         createEReference(umlReferencingElementEClass, UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+        createEReference(umlReferencingElementEClass, UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
 
         packageBaseEClass = createEClass(PACKAGE_BASE);
         createEReference(packageBaseEClass, PACKAGE_BASE__OWNING_PACKAGE);
@@ -480,6 +528,10 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         visibilityHavingElementEClass = createEClass(VISIBILITY_HAVING_ELEMENT);
         createEAttribute(visibilityHavingElementEClass, VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+
+        stereotypeApplicationEClass = createEClass(STEREOTYPE_APPLICATION);
+        createEReference(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__REFERENCED_ELEMENT);
+        createEAttribute(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__STEREOTYPE);
     }
 
     /**
@@ -572,6 +624,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
         initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUMLReferencingElement_AppliedStereotypes(), this.getStereotypeApplication(), null, "appliedStereotypes", null, 0, -1, UMLReferencingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(packageBaseEClass, PackageBase.class, "PackageBase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(packageBaseEClass_PackageType);
@@ -605,6 +658,10 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         initEClass(visibilityHavingElementEClass, VisibilityHavingElement.class, "VisibilityHavingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getVisibilityHavingElement_Visibility(), theUMLPackage.getVisibilityKind(), "visibility", null, 0, 1, VisibilityHavingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(stereotypeApplicationEClass, StereotypeApplication.class, "StereotypeApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getStereotypeApplication_ReferencedElement(), theEcorePackage.getEObject(), null, "referencedElement", null, 0, 1, StereotypeApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getStereotypeApplication_Stereotype(), theEcorePackage.getEString(), "stereotype", null, 0, 1, StereotypeApplication.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

@@ -154,6 +154,15 @@ public interface ClsPackage extends EPackage {
     int PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE__APPLIED_STEREOTYPES = TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -254,6 +263,15 @@ public interface ClsPackage extends EPackage {
     int CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -352,6 +370,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int CLASS__REFERENCED_ELEMENT = CLASSIFIER__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__APPLIED_STEREOTYPES = CLASSIFIER__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -463,6 +490,15 @@ public interface ClsPackage extends EPackage {
     int INTERFACE__REFERENCED_ELEMENT = CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE__APPLIED_STEREOTYPES = CLASSIFIER__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -563,6 +599,15 @@ public interface ClsPackage extends EPackage {
     int PROPERTY__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -634,6 +679,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int MEMBER__REFERENCED_ELEMENT = PROPERTY__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEMBER__APPLIED_STEREOTYPES = PROPERTY__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -727,6 +781,15 @@ public interface ClsPackage extends EPackage {
     int ATTRIBUTE__REFERENCED_ELEMENT = MEMBER__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATTRIBUTE__APPLIED_STEREOTYPES = MEMBER__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -816,6 +879,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int METHOD__REFERENCED_ELEMENT = MEMBER__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int METHOD__APPLIED_STEREOTYPES = MEMBER__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -925,6 +997,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PARAMETER__REFERENCED_ELEMENT = PROPERTY__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER__APPLIED_STEREOTYPES = PROPERTY__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1064,13 +1145,22 @@ public interface ClsPackage extends EPackage {
     int TYPED_CONNECTOR__REFERENCED_ELEMENT = CONNECTOR_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPED_CONNECTOR__APPLIED_STEREOTYPES = CONNECTOR_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Left</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR__LEFT = CONNECTOR_FEATURE_COUNT + 1;
+    int TYPED_CONNECTOR__LEFT = CONNECTOR_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1079,7 +1169,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR__RIGHT = CONNECTOR_FEATURE_COUNT + 2;
+    int TYPED_CONNECTOR__RIGHT = CONNECTOR_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Typed Connector</em>' class.
@@ -1088,7 +1178,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 3;
+    int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1135,6 +1225,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int GENERALIZATION__REFERENCED_ELEMENT = TYPED_CONNECTOR__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__APPLIED_STEREOTYPES = TYPED_CONNECTOR__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -1210,6 +1309,15 @@ public interface ClsPackage extends EPackage {
     int IMPLEMENTATION__REFERENCED_ELEMENT = TYPED_CONNECTOR__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLEMENTATION__APPLIED_STEREOTYPES = TYPED_CONNECTOR__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Left</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1272,6 +1380,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ASSOCIATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -1354,6 +1471,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION_MEMBER_END__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1454,6 +1580,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int XTEXT_ASSOCIATION__REFERENCED_ELEMENT = ASSOCIATION__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION__APPLIED_STEREOTYPES = ASSOCIATION__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.

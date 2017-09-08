@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -11,6 +12,8 @@ import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -23,6 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getAppliedStereotypes <em>Applied Stereotypes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
  * </ul>
@@ -92,6 +96,16 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      * @generated
      */
     @SuppressWarnings("unchecked")
+    public EList<StereotypeApplication> getAppliedStereotypes() {
+        return (EList<StereotypeApplication>)eDynamicGet(UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
     public BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> getSpecific() {
         return (BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)eDynamicGet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, true, true);
     }
@@ -153,6 +167,8 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES:
+                return getAppliedStereotypes();
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 if (resolve) return getSpecific();
                 return basicGetSpecific();
@@ -175,6 +191,10 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)newValue);
                 return;
+            case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                getAppliedStereotypes().addAll((Collection<? extends StereotypeApplication>)newValue);
+                return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)newValue);
                 return;
@@ -196,6 +216,9 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)null);
                 return;
+            case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)null);
                 return;
@@ -216,6 +239,8 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
         switch (featureID) {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES:
+                return !getAppliedStereotypes().isEmpty();
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 return basicGetSpecific() != null;
             case UsecasePackage.GENERALIZATION__GENERAL:
@@ -234,6 +259,7 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }
@@ -250,6 +276,7 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES: return UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }

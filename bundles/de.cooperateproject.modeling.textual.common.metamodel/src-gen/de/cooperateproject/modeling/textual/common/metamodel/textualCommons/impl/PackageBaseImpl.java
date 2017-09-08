@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import java.util.Collection;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getAppliedStereotypes <em>Applied Stereotypes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getPackages <em>Packages</em>}</li>
@@ -103,6 +105,16 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<StereotypeApplication> getAppliedStereotypes() {
+        return (EList<StereotypeApplication>)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, true, true);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -251,6 +263,8 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
             case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
+                return getAppliedStereotypes();
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
                 return getName();
             case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
@@ -274,6 +288,10 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
         switch (featureID) {
             case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Package)newValue);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                getAppliedStereotypes().addAll((Collection<? extends StereotypeApplication>)newValue);
                 return;
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
                 setName((String)newValue);
@@ -304,6 +322,9 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
             case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Package)null);
                 return;
+            case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
+                getAppliedStereotypes().clear();
+                return;
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
                 unsetName();
                 return;
@@ -330,6 +351,8 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
         switch (featureID) {
             case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
+                return !getAppliedStereotypes().isEmpty();
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
                 return isSetName();
             case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
@@ -352,6 +375,7 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }
@@ -374,6 +398,7 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES: return TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES;
                 default: return -1;
             }
         }

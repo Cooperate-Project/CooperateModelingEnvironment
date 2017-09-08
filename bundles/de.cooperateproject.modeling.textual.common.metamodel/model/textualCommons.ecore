@@ -36,6 +36,8 @@
       <eAnnotations source="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"/>
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appliedStereotypes" upperBound="-1"
+        eType="#//StereotypeApplication" transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageBase" abstract="true">
     <eTypeParameters name="PackageType">
@@ -109,6 +111,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VisibilityHavingElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//VisibilityKind"
+        transient="true" unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StereotypeApplication">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         transient="true" unsettable="true"/>
   </eClassifiers>
 </ecore:EPackage>

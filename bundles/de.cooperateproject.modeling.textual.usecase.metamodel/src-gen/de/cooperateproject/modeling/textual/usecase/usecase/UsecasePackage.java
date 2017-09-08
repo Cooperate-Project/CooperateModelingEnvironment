@@ -125,6 +125,15 @@ public interface UsecasePackage extends EPackage {
     int BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIORED_CLASSIFIER__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -178,6 +187,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int ROOT_PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -269,6 +287,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int ACTOR__REFERENCED_ELEMENT = BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR__APPLIED_STEREOTYPES = BEHAVIORED_CLASSIFIER__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -371,6 +398,15 @@ public interface UsecasePackage extends EPackage {
     int SYSTEM__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -451,6 +487,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int USE_CASE__REFERENCED_ELEMENT = BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USE_CASE__APPLIED_STEREOTYPES = BEHAVIORED_CLASSIFIER__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -560,6 +605,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int EXTENSION_POINT__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTENSION_POINT__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -672,6 +726,15 @@ public interface UsecasePackage extends EPackage {
     int ASSOCIATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION__APPLIED_STEREOTYPES = TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES;
+
+    /**
      * The feature id for the '<em><b>Actor</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -754,13 +817,22 @@ public interface UsecasePackage extends EPackage {
     int GENERALIZATION__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__APPLIED_STEREOTYPES = RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Specific</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION__SPECIFIC = RELATIONSHIP_FEATURE_COUNT + 1;
+    int GENERALIZATION__SPECIFIC = RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>General</b></em>' reference.
@@ -769,7 +841,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__GENERAL = RELATIONSHIP_FEATURE_COUNT + 2;
+    int GENERALIZATION__GENERAL = RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -778,7 +850,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
+    int GENERALIZATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -818,13 +890,22 @@ public interface UsecasePackage extends EPackage {
     int INCLUDE__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INCLUDE__APPLIED_STEREOTYPES = RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Addition</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INCLUDE__ADDITION = RELATIONSHIP_FEATURE_COUNT + 1;
+    int INCLUDE__ADDITION = RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Including Case</b></em>' reference.
@@ -833,7 +914,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE__INCLUDING_CASE = RELATIONSHIP_FEATURE_COUNT + 2;
+    int INCLUDE__INCLUDING_CASE = RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Include</em>' class.
@@ -842,7 +923,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
+    int INCLUDE_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -882,13 +963,22 @@ public interface UsecasePackage extends EPackage {
     int EXTEND__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTEND__APPLIED_STEREOTYPES = RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENSION = RELATIONSHIP_FEATURE_COUNT + 1;
+    int EXTEND__EXTENSION = RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Extended Case</b></em>' reference.
@@ -897,7 +987,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENDED_CASE = RELATIONSHIP_FEATURE_COUNT + 2;
+    int EXTEND__EXTENDED_CASE = RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Extension Location</b></em>' reference.
@@ -906,7 +996,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENSION_LOCATION = RELATIONSHIP_FEATURE_COUNT + 3;
+    int EXTEND__EXTENSION_LOCATION = RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -915,7 +1005,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__CONDITION = RELATIONSHIP_FEATURE_COUNT + 4;
+    int EXTEND__CONDITION = RELATIONSHIP_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Extend</em>' class.
@@ -924,7 +1014,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 5;
+    int EXTEND_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 6;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

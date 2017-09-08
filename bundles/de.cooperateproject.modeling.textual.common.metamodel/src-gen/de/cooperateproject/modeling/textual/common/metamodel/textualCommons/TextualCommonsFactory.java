@@ -49,6 +49,15 @@ public interface TextualCommonsFactory extends EFactory {
 	PackageImport createPackageImport();
 
 	/**
+     * Returns a new object of class '<em>Stereotype Application</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Stereotype Application</em>'.
+     * @generated
+     */
+    StereotypeApplication createStereotypeApplication();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
