@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.DirectedRelationship;
 
 /**
@@ -214,6 +215,8 @@ public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends
         switch (featureID) {
             case ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE:
                 return basicSetOwningPackage(null, msgs);
+            case ClsPackage.TYPED_CONNECTOR__APPLIED_STEREOTYPES:
+                return ((InternalEList<?>)getAppliedStereotypes()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }

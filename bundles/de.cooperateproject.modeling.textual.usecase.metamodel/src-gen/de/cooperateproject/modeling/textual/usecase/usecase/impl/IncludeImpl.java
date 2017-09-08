@@ -13,9 +13,12 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -152,6 +155,20 @@ public class IncludeImpl extends ElementImpl implements Include {
      */
     public void setIncludingCase(UseCase newIncludingCase) {
         eDynamicSet(UsecasePackage.INCLUDE__INCLUDING_CASE, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE, newIncludingCase);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
+                return ((InternalEList<?>)getAppliedStereotypes()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
     /**

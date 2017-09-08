@@ -37,7 +37,7 @@
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="appliedStereotypes" upperBound="-1"
-        eType="#//StereotypeApplication" transient="true"/>
+        eType="#//StereotypeApplication" transient="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageBase" abstract="true">
     <eTypeParameters name="PackageType">

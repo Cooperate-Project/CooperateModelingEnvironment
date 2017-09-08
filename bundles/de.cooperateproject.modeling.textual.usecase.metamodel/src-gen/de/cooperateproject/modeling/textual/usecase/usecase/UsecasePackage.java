@@ -125,7 +125,7 @@ public interface UsecasePackage extends EPackage {
     int BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -189,7 +189,7 @@ public interface UsecasePackage extends EPackage {
     int ROOT_PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -289,7 +289,7 @@ public interface UsecasePackage extends EPackage {
     int ACTOR__REFERENCED_ELEMENT = BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -398,7 +398,7 @@ public interface UsecasePackage extends EPackage {
     int SYSTEM__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -489,7 +489,7 @@ public interface UsecasePackage extends EPackage {
     int USE_CASE__REFERENCED_ELEMENT = BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -607,7 +607,7 @@ public interface UsecasePackage extends EPackage {
     int EXTENSION_POINT__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -726,7 +726,7 @@ public interface UsecasePackage extends EPackage {
     int ASSOCIATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -817,7 +817,7 @@ public interface UsecasePackage extends EPackage {
     int GENERALIZATION__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -890,7 +890,7 @@ public interface UsecasePackage extends EPackage {
     int INCLUDE__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -963,7 +963,7 @@ public interface UsecasePackage extends EPackage {
     int EXTEND__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

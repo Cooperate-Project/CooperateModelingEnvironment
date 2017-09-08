@@ -228,6 +228,8 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
+                return ((InternalEList<?>)getAppliedStereotypes()).basicRemove(otherEnd, msgs);
             case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
                 return basicSetOwningPackage(null, msgs);
             case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:

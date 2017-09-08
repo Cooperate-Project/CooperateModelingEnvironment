@@ -217,7 +217,7 @@ public interface TextualCommonsPackage extends EPackage {
     int UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -309,7 +309,7 @@ public interface TextualCommonsPackage extends EPackage {
     int PACKAGE_BASE__REFERENCED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -400,7 +400,7 @@ public interface TextualCommonsPackage extends EPackage {
     int COMMENTABLE__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -464,7 +464,7 @@ public interface TextualCommonsPackage extends EPackage {
     int COMMENT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -537,7 +537,7 @@ public interface TextualCommonsPackage extends EPackage {
     int CARDINALITY__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -610,7 +610,7 @@ public interface TextualCommonsPackage extends EPackage {
     int PACKAGE_IMPORT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * The feature id for the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -832,10 +832,10 @@ public interface TextualCommonsPackage extends EPackage {
     EReference getUMLReferencingElement_ReferencedElement();
 
     /**
-     * Returns the meta object for the reference list '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes <em>Applied Stereotypes</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes <em>Applied Stereotypes</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Applied Stereotypes</em>'.
+     * @return the meta object for the containment reference list '<em>Applied Stereotypes</em>'.
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes()
      * @see #getUMLReferencingElement()
      * @generated
@@ -1161,7 +1161,7 @@ public interface TextualCommonsPackage extends EPackage {
         EReference UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = eINSTANCE.getUMLReferencingElement_ReferencedElement();
 
         /**
-         * The meta object literal for the '<em><b>Applied Stereotypes</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Applied Stereotypes</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated

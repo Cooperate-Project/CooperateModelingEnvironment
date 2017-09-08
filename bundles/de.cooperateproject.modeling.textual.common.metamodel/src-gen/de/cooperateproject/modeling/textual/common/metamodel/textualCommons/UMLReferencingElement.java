@@ -50,7 +50,7 @@ public interface UMLReferencingElement<UMLType extends Element> extends de.coope
 	void setReferencedElement(UMLType value);
 
     /**
-     * Returns the value of the '<em><b>Applied Stereotypes</b></em>' reference list.
+     * Returns the value of the '<em><b>Applied Stereotypes</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication}.
      * <!-- begin-user-doc -->
      * <p>
@@ -58,9 +58,9 @@ public interface UMLReferencingElement<UMLType extends Element> extends de.coope
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Applied Stereotypes</em>' reference list.
+     * @return the value of the '<em>Applied Stereotypes</em>' containment reference list.
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getUMLReferencingElement_AppliedStereotypes()
-     * @model transient="true"
+     * @model containment="true" transient="true"
      * @generated
      */
     EList<StereotypeApplication> getAppliedStereotypes();
