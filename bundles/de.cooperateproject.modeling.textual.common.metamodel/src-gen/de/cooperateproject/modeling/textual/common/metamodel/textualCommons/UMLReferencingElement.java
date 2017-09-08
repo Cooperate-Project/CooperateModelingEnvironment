@@ -59,10 +59,33 @@ public interface UMLReferencingElement<UMLType extends Element> extends de.coope
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Applied Stereotypes</em>' containment reference list.
+     * @see #isSetAppliedStereotypes()
+     * @see #unsetAppliedStereotypes()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getUMLReferencingElement_AppliedStereotypes()
-     * @model containment="true" transient="true"
+     * @model containment="true" unsettable="true" transient="true"
      * @generated
      */
     EList<StereotypeApplication> getAppliedStereotypes();
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes <em>Applied Stereotypes</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetAppliedStereotypes()
+     * @see #getAppliedStereotypes()
+     * @generated
+     */
+    void unsetAppliedStereotypes();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getAppliedStereotypes <em>Applied Stereotypes</em>}' containment reference list is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Applied Stereotypes</em>' containment reference list is set.
+     * @see #unsetAppliedStereotypes()
+     * @see #getAppliedStereotypes()
+     * @generated
+     */
+    boolean isSetAppliedStereotypes();
 
 } // UMLReferencingElement

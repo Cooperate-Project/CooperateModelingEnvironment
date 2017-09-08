@@ -17,6 +17,8 @@ import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -95,6 +97,12 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case TextualCommonsPackage.PACKAGE_IMPORT:
 				sequence_PackageImport(context, (PackageImport) semanticObject); 
 				return; 
+			case TextualCommonsPackage.STEREOTYPE_APPLICATION:
+				sequence_StereotypeApplication(context, (StereotypeApplication) semanticObject); 
+				return; 
+			case TextualCommonsPackage.TAGGED_VALUE:
+				sequence_TaggedValue(context, (TaggedValue) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -152,7 +160,13 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? ((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? members+=Member*))?)
+	 *     (
+	 *         visibility=Visibility? 
+	 *         abstract?='abstract'? 
+	 *         ((name=STRING alias=ID) | name=ID) 
+	 *         appliedStereotypes+=StereotypeApplication* 
+	 *         (comments+=Comment | (comments+=Comment? members+=Member*))?
+	 *     )
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -305,6 +319,39 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Package semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     StereotypeApplication returns StereotypeApplication
+	 *
+	 * Constraint:
+	 *     (stereotype=ID (values+=TaggedValue values+=TaggedValue*)?)
+	 */
+	protected void sequence_StereotypeApplication(ISerializationContext context, StereotypeApplication semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TaggedValue returns TaggedValue
+	 *
+	 * Constraint:
+	 *     (name=STRING value=STRING)
+	 */
+	protected void sequence_TaggedValue(ISerializationContext context, TaggedValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.TAGGED_VALUE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.TAGGED_VALUE__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.TAGGED_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.TAGGED_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getTaggedValueAccess().getNameSTRINGTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTaggedValueAccess().getValueSTRINGTerminalRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	

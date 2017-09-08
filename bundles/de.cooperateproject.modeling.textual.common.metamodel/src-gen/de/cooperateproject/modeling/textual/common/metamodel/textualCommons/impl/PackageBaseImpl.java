@@ -116,6 +116,24 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAppliedStereotypes() {
+        eDynamicUnset(TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAppliedStereotypes() {
+        return eDynamicIsSet(TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -325,7 +343,7 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
                 setReferencedElement((org.eclipse.uml2.uml.Package)null);
                 return;
             case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
-                getAppliedStereotypes().clear();
+                unsetAppliedStereotypes();
                 return;
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
                 unsetName();
@@ -354,7 +372,7 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
             case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case TextualCommonsPackage.PACKAGE_BASE__APPLIED_STEREOTYPES:
-                return !getAppliedStereotypes().isEmpty();
+                return isSetAppliedStereotypes();
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
                 return isSetName();
             case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:

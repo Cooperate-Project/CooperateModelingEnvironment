@@ -108,6 +108,24 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAppliedStereotypes() {
+        eDynamicUnset(UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAppliedStereotypes() {
+        return eDynamicIsSet(UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> getSpecific() {
         return (BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)eDynamicGet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, true, true);
@@ -234,7 +252,7 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)null);
                 return;
             case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES:
-                getAppliedStereotypes().clear();
+                unsetAppliedStereotypes();
                 return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)null);
@@ -257,7 +275,7 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case UsecasePackage.GENERALIZATION__APPLIED_STEREOTYPES:
-                return !getAppliedStereotypes().isEmpty();
+                return isSetAppliedStereotypes();
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 return basicGetSpecific() != null;
             case UsecasePackage.GENERALIZATION__GENERAL:

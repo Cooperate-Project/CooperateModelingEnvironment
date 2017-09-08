@@ -37,7 +37,7 @@
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="appliedStereotypes" upperBound="-1"
-        eType="#//StereotypeApplication" transient="true" containment="true"/>
+        eType="#//StereotypeApplication" transient="true" unsettable="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageBase" abstract="true">
     <eTypeParameters name="PackageType">
@@ -117,5 +117,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         transient="true" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//TaggedValue" transient="true" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

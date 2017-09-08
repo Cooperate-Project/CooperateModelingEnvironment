@@ -138,6 +138,24 @@ public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAppliedStereotypes() {
+        eDynamicUnset(ClsPackage.TYPED_CONNECTOR__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAppliedStereotypes() {
+        return eDynamicIsSet(ClsPackage.TYPED_CONNECTOR__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public Classifier<? extends org.eclipse.uml2.uml.Classifier> getLeft() {
         return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.TYPED_CONNECTOR__LEFT, ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true, true);
@@ -304,7 +322,7 @@ public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends
                 setReferencedElement((T)null);
                 return;
             case ClsPackage.TYPED_CONNECTOR__APPLIED_STEREOTYPES:
-                getAppliedStereotypes().clear();
+                unsetAppliedStereotypes();
                 return;
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 setLeft((Classifier<? extends org.eclipse.uml2.uml.Classifier>)null);
@@ -329,7 +347,7 @@ public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends
             case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case ClsPackage.TYPED_CONNECTOR__APPLIED_STEREOTYPES:
-                return !getAppliedStereotypes().isEmpty();
+                return isSetAppliedStereotypes();
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 return basicGetLeft() != null;
             case ClsPackage.TYPED_CONNECTOR__RIGHT:

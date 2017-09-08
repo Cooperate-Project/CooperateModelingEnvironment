@@ -81,8 +81,8 @@ class ClsFormatter extends AbstractFormatter2 {
 		clz.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "]
 		clz.regionFor.feature(ClsPackage.Literals.CLASS__ABSTRACT).prepend[space = " "].append[space = " "]
 		interior(
-			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_4_1_0).append[newLine].prepend[space = " "],
-			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_4_1_3),
+			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_5_1_0).append[newLine].prepend[space = " "],
+			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_5_1_3),
 			[indent]
 		)
 		

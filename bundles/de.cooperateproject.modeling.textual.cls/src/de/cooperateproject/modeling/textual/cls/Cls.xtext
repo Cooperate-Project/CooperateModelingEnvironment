@@ -60,7 +60,7 @@ Classifier:
 
 Class:
 	visibility=Visibility? (abstract ?= 'abstract')? 'class'
-	((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? |
+	((name=STRING 'as' alias = ID)|name = ID) (appliedStereotypes+=StereotypeApplication)* ( (comments+=Comment)? |
 		(('{' (comments+=Comment)? (members += Member)* '}')))
 	
 ;
@@ -142,6 +142,15 @@ CommentBody returns ecore::EString:
 
 CardinalityBound returns ecore::EInt:
 	('*') | INT
+;
+
+StereotypeApplication returns commons::StereotypeApplication:
+	'<<' stereotype=ID '>>' ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
+;
+
+
+TaggedValue returns commons::TaggedValue :
+	name=STRING ':' value=STRING
 ;
 
 enum Visibility returns uml::VisibilityKind:

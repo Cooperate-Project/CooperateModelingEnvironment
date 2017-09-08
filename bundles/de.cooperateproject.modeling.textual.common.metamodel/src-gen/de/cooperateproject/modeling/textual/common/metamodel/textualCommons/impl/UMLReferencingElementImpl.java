@@ -103,6 +103,24 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAppliedStereotypes() {
+        eDynamicUnset(TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAppliedStereotypes() {
+        return eDynamicIsSet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -161,7 +179,7 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
                 setReferencedElement((UMLType)null);
                 return;
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES:
-                getAppliedStereotypes().clear();
+                unsetAppliedStereotypes();
                 return;
         }
         super.eUnset(featureID);
@@ -178,7 +196,7 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case TextualCommonsPackage.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES:
-                return !getAppliedStereotypes().isEmpty();
+                return isSetAppliedStereotypes();
         }
         return super.eIsSet(featureID);
     }

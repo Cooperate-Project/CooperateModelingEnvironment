@@ -60,6 +60,7 @@ public class TextualCommonsFactoryImpl extends EFactoryImpl implements TextualCo
             case TextualCommonsPackage.CARDINALITY: return (EObject)createCardinality();
             case TextualCommonsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
             case TextualCommonsPackage.STEREOTYPE_APPLICATION: return (EObject)createStereotypeApplication();
+            case TextualCommonsPackage.TAGGED_VALUE: return (EObject)createTaggedValue();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -103,6 +104,16 @@ public class TextualCommonsFactoryImpl extends EFactoryImpl implements TextualCo
     public StereotypeApplication createStereotypeApplication() {
         StereotypeApplicationImpl stereotypeApplication = new StereotypeApplicationImpl();
         return stereotypeApplication;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TaggedValue createTaggedValue() {
+        TaggedValueImpl taggedValue = new TaggedValueImpl();
+        return taggedValue;
     }
 
     /**

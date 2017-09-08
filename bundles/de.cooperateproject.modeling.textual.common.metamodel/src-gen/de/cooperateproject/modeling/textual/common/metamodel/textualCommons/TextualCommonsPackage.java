@@ -730,13 +730,22 @@ public interface TextualCommonsPackage extends EPackage {
     int STEREOTYPE_APPLICATION__STEREOTYPE = 1;
 
     /**
+     * The feature id for the '<em><b>Values</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEREOTYPE_APPLICATION__VALUES = 2;
+
+    /**
      * The number of structural features of the '<em>Stereotype Application</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEREOTYPE_APPLICATION_FEATURE_COUNT = 2;
+    int STEREOTYPE_APPLICATION_FEATURE_COUNT = 3;
 
     /**
      * The number of operations of the '<em>Stereotype Application</em>' class.
@@ -746,6 +755,53 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int STEREOTYPE_APPLICATION_OPERATION_COUNT = 0;
+
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TaggedValueImpl <em>Tagged Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TaggedValueImpl
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getTaggedValue()
+     * @generated
+     */
+    int TAGGED_VALUE = 12;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TAGGED_VALUE__NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TAGGED_VALUE__VALUE = 1;
+
+    /**
+     * The number of structural features of the '<em>Tagged Value</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TAGGED_VALUE_FEATURE_COUNT = 2;
+
+    /**
+     * The number of operations of the '<em>Tagged Value</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TAGGED_VALUE_OPERATION_COUNT = 0;
 
 
     /**
@@ -1066,6 +1122,49 @@ public interface TextualCommonsPackage extends EPackage {
     EAttribute getStereotypeApplication_Stereotype();
 
     /**
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getValues <em>Values</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Values</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getValues()
+     * @see #getStereotypeApplication()
+     * @generated
+     */
+    EReference getStereotypeApplication_Values();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue <em>Tagged Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Tagged Value</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue
+     * @generated
+     */
+    EClass getTaggedValue();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue#getName()
+     * @see #getTaggedValue()
+     * @generated
+     */
+    EAttribute getTaggedValue_Name();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue#getValue()
+     * @see #getTaggedValue()
+     * @generated
+     */
+    EAttribute getTaggedValue_Value();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1351,6 +1450,40 @@ public interface TextualCommonsPackage extends EPackage {
          * @generated
          */
         EAttribute STEREOTYPE_APPLICATION__STEREOTYPE = eINSTANCE.getStereotypeApplication_Stereotype();
+
+        /**
+         * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference STEREOTYPE_APPLICATION__VALUES = eINSTANCE.getStereotypeApplication_Values();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TaggedValueImpl <em>Tagged Value</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TaggedValueImpl
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getTaggedValue()
+         * @generated
+         */
+        EClass TAGGED_VALUE = eINSTANCE.getTaggedValue();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute TAGGED_VALUE__NAME = eINSTANCE.getTaggedValue_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute TAGGED_VALUE__VALUE = eINSTANCE.getTaggedValue_Value();
 
     }
 

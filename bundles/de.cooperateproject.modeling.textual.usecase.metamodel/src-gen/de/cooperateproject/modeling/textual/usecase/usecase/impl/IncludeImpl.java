@@ -108,6 +108,24 @@ public class IncludeImpl extends ElementImpl implements Include {
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAppliedStereotypes() {
+        eDynamicUnset(UsecasePackage.INCLUDE__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAppliedStereotypes() {
+        return eDynamicIsSet(UsecasePackage.INCLUDE__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public UseCase getAddition() {
         return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__ADDITION, true, true);
     }
@@ -232,7 +250,7 @@ public class IncludeImpl extends ElementImpl implements Include {
                 setReferencedElement((org.eclipse.uml2.uml.Include)null);
                 return;
             case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
-                getAppliedStereotypes().clear();
+                unsetAppliedStereotypes();
                 return;
             case UsecasePackage.INCLUDE__ADDITION:
                 setAddition((UseCase)null);
@@ -255,7 +273,7 @@ public class IncludeImpl extends ElementImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case UsecasePackage.INCLUDE__APPLIED_STEREOTYPES:
-                return !getAppliedStereotypes().isEmpty();
+                return isSetAppliedStereotypes();
             case UsecasePackage.INCLUDE__ADDITION:
                 return basicGetAddition() != null;
             case UsecasePackage.INCLUDE__INCLUDING_CASE:

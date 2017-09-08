@@ -120,6 +120,24 @@ public class ExtendImpl extends ElementImpl implements Extend {
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAppliedStereotypes() {
+        eDynamicUnset(UsecasePackage.EXTEND__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAppliedStereotypes() {
+        return eDynamicIsSet(UsecasePackage.EXTEND__APPLIED_STEREOTYPES, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__APPLIED_STEREOTYPES);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public UseCase getExtension() {
         return (UseCase)eDynamicGet(UsecasePackage.EXTEND__EXTENSION, UsecasePackage.Literals.EXTEND__EXTENSION, true, true);
     }
@@ -300,7 +318,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
                 setReferencedElement((org.eclipse.uml2.uml.Extend)null);
                 return;
             case UsecasePackage.EXTEND__APPLIED_STEREOTYPES:
-                getAppliedStereotypes().clear();
+                unsetAppliedStereotypes();
                 return;
             case UsecasePackage.EXTEND__EXTENSION:
                 setExtension((UseCase)null);
@@ -329,7 +347,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case UsecasePackage.EXTEND__APPLIED_STEREOTYPES:
-                return !getAppliedStereotypes().isEmpty();
+                return isSetAppliedStereotypes();
             case UsecasePackage.EXTEND__EXTENSION:
                 return basicGetExtension() != null;
             case UsecasePackage.EXTEND__EXTENDED_CASE:

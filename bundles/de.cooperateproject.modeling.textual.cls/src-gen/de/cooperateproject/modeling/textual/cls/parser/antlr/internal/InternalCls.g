@@ -609,11 +609,30 @@ ruleClass returns [EObject current=null]
 		)
 		(
 			(
+				{
+					newCompositeNode(grammarAccess.getClassAccess().getAppliedStereotypesStereotypeApplicationParserRuleCall_4_0());
+				}
+				lv_appliedStereotypes_7_0=ruleStereotypeApplication
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClassRule());
+					}
+					add(
+						$current,
+						"appliedStereotypes",
+						lv_appliedStereotypes_7_0,
+						"de.cooperateproject.modeling.textual.cls.Cls.StereotypeApplication");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		(
+			(
 				(
 					{
-						newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_4_0_0());
+						newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_5_0_0());
 					}
-					lv_comments_7_0=ruleComment
+					lv_comments_8_0=ruleComment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getClassRule());
@@ -621,7 +640,7 @@ ruleClass returns [EObject current=null]
 						add(
 							$current,
 							"comments",
-							lv_comments_7_0,
+							lv_comments_8_0,
 							"de.cooperateproject.modeling.textual.cls.Cls.Comment");
 						afterParserOrEnumRuleCall();
 					}
@@ -629,16 +648,16 @@ ruleClass returns [EObject current=null]
 			)?
 			    |
 			(
-				otherlv_8='{'
+				otherlv_9='{'
 				{
-					newLeafNode(otherlv_8, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_4_1_0());
+					newLeafNode(otherlv_9, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_5_1_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_4_1_1_0());
+							newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_5_1_1_0());
 						}
-						lv_comments_9_0=ruleComment
+						lv_comments_10_0=ruleComment
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getClassRule());
@@ -646,7 +665,7 @@ ruleClass returns [EObject current=null]
 							add(
 								$current,
 								"comments",
-								lv_comments_9_0,
+								lv_comments_10_0,
 								"de.cooperateproject.modeling.textual.cls.Cls.Comment");
 							afterParserOrEnumRuleCall();
 						}
@@ -655,9 +674,9 @@ ruleClass returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_4_1_2_0());
+							newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_5_1_2_0());
 						}
-						lv_members_10_0=ruleMember
+						lv_members_11_0=ruleMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getClassRule());
@@ -665,15 +684,15 @@ ruleClass returns [EObject current=null]
 							add(
 								$current,
 								"members",
-								lv_members_10_0,
+								lv_members_11_0,
 								"de.cooperateproject.modeling.textual.cls.Cls.Member");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)*
-				otherlv_11='}'
+				otherlv_12='}'
 				{
-					newLeafNode(otherlv_11, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_4_1_3());
+					newLeafNode(otherlv_12, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_5_1_3());
 				}
 			)
 		)
@@ -1851,6 +1870,164 @@ ruleCardinalityBound returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 		{
 			newLeafNode(this_INT_1, grammarAccess.getCardinalityBoundAccess().getINTTerminalRuleCall_1());
 		}
+	)
+;
+
+// Entry rule entryRuleStereotypeApplication
+entryRuleStereotypeApplication returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getStereotypeApplicationRule()); }
+	iv_ruleStereotypeApplication=ruleStereotypeApplication
+	{ $current=$iv_ruleStereotypeApplication.current; }
+	EOF;
+
+// Rule StereotypeApplication
+ruleStereotypeApplication returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='<<'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getStereotypeApplicationAccess().getLessThanSignLessThanSignKeyword_0());
+		}
+		(
+			(
+				lv_stereotype_1_0=RULE_ID
+				{
+					newLeafNode(lv_stereotype_1_0, grammarAccess.getStereotypeApplicationAccess().getStereotypeIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getStereotypeApplicationRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"stereotype",
+						lv_stereotype_1_0,
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
+				}
+			)
+		)
+		otherlv_2='>>'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getStereotypeApplicationAccess().getGreaterThanSignGreaterThanSignKeyword_2());
+		}
+		(
+			otherlv_3='{'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getStereotypeApplicationAccess().getLeftCurlyBracketKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getStereotypeApplicationAccess().getValuesTaggedValueParserRuleCall_3_1_0());
+					}
+					lv_values_4_0=ruleTaggedValue
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getStereotypeApplicationRule());
+						}
+						add(
+							$current,
+							"values",
+							lv_values_4_0,
+							"de.cooperateproject.modeling.textual.cls.Cls.TaggedValue");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_5=','
+				{
+					newLeafNode(otherlv_5, grammarAccess.getStereotypeApplicationAccess().getCommaKeyword_3_2_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getStereotypeApplicationAccess().getValuesTaggedValueParserRuleCall_3_2_1_0());
+						}
+						lv_values_6_0=ruleTaggedValue
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getStereotypeApplicationRule());
+							}
+							add(
+								$current,
+								"values",
+								lv_values_6_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.TaggedValue");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_7='}'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getStereotypeApplicationAccess().getRightCurlyBracketKeyword_3_3());
+			}
+		)?
+	)
+;
+
+// Entry rule entryRuleTaggedValue
+entryRuleTaggedValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTaggedValueRule()); }
+	iv_ruleTaggedValue=ruleTaggedValue
+	{ $current=$iv_ruleTaggedValue.current; }
+	EOF;
+
+// Rule TaggedValue
+ruleTaggedValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_STRING
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getTaggedValueAccess().getNameSTRINGTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTaggedValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_1=':'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getTaggedValueAccess().getColonKeyword_1());
+		}
+		(
+			(
+				lv_value_2_0=RULE_STRING
+				{
+					newLeafNode(lv_value_2_0, grammarAccess.getTaggedValueAccess().getValueSTRINGTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTaggedValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_2_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
 	)
 ;
 

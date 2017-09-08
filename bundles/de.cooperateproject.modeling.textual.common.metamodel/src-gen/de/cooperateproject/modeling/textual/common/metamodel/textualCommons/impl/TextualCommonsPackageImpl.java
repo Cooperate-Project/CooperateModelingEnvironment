@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TaggedValue;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsFactory;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -121,6 +122,13 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * @generated
      */
     private EClass stereotypeApplicationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass taggedValueEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -468,6 +476,42 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getStereotypeApplication_Values() {
+        return (EReference)stereotypeApplicationEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getTaggedValue() {
+        return taggedValueEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTaggedValue_Name() {
+        return (EAttribute)taggedValueEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTaggedValue_Value() {
+        return (EAttribute)taggedValueEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public TextualCommonsFactory getTextualCommonsFactory() {
         return (TextualCommonsFactory)getEFactoryInstance();
     }
@@ -532,6 +576,11 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         stereotypeApplicationEClass = createEClass(STEREOTYPE_APPLICATION);
         createEReference(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__REFERENCED_ELEMENT);
         createEAttribute(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__STEREOTYPE);
+        createEReference(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__VALUES);
+
+        taggedValueEClass = createEClass(TAGGED_VALUE);
+        createEAttribute(taggedValueEClass, TAGGED_VALUE__NAME);
+        createEAttribute(taggedValueEClass, TAGGED_VALUE__VALUE);
     }
 
     /**
@@ -624,7 +673,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
         initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getUMLReferencingElement_AppliedStereotypes(), this.getStereotypeApplication(), null, "appliedStereotypes", null, 0, -1, UMLReferencingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUMLReferencingElement_AppliedStereotypes(), this.getStereotypeApplication(), null, "appliedStereotypes", null, 0, -1, UMLReferencingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(packageBaseEClass, PackageBase.class, "PackageBase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(packageBaseEClass_PackageType);
@@ -662,6 +711,11 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEClass(stereotypeApplicationEClass, StereotypeApplication.class, "StereotypeApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getStereotypeApplication_ReferencedElement(), theEcorePackage.getEObject(), null, "referencedElement", null, 0, 1, StereotypeApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getStereotypeApplication_Stereotype(), theEcorePackage.getEString(), "stereotype", null, 0, 1, StereotypeApplication.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getStereotypeApplication_Values(), this.getTaggedValue(), null, "values", null, 0, -1, StereotypeApplication.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(taggedValueEClass, TaggedValue.class, "TaggedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getTaggedValue_Name(), theEcorePackage.getEString(), "name", null, 0, 1, TaggedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTaggedValue_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TaggedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
