@@ -333,7 +333,7 @@ query notation::Edge::isCommentLinkForAssociation() : Boolean {
  * or should be recreated.
  */
 query notation::View::findViewCommentViews() : OrderedSet(notation::View) {
-    var allEdges := self.diagram.edges;
+    var allEdges := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_COMMENTLINK);
 	return
 		allEdges->select(source = self and target.element.oclIsKindOf(uml::Comment))->collect(target)
 		->union(
