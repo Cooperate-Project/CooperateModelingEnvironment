@@ -46,6 +46,12 @@ public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
         }
         IFile launcherFile = foundResources[0];
 
+        Optional<IEditorPart> existingEditor = findAnyOpenEditor(launcherFile);
+        if (existingEditor.isPresent()) {
+            existingEditor.get().setFocus();
+            return;
+        }
+
         // determine preferred editor type
         Optional<EditorType> preferredEditorType = getPreferredEditorType();
         if (!preferredEditorType.isPresent()) {
@@ -59,22 +65,35 @@ public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
             if (!editorLauncherFactory.isPresent()) {
                 throw new PartInitException("No editor available for that type.");
             }
-            Optional<IEditorPart> existingEditor = editorLauncherFactory.get().findExistingEditor(launcherFile);
-            if (existingEditor.isPresent()) {
-                existingEditor.get().setFocus();
-            } else {
-                IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile);
-                launcher.openEditor();
-            }
+            IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile);
+            launcher.openEditor();
         } catch (IOException e) {
             LOGGER.error("Could not read launcher file.", e);
         } catch (ConcreteSyntaxTypeNotAvailableException e) {
-            LOGGER.warn("The selected editor type is not available for this model.", e);
-            // TODO maybe display warning to user
+            final String errorMessage = "The selected editor type is not available for this model.";
+            MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error in opening the editor", errorMessage);
+            LOGGER.warn(errorMessage, e);
         } catch (PartInitException e) {
             LOGGER.error("Error during initialization of editor.", e);
         }
 
+    }
+
+    private static Optional<IEditorPart> findAnyOpenEditor(IFile launcherFile) {
+        for (IEditorLauncherFactory factory : EditorLauncherRegistry.getInstance().getFactories()) {
+            try {
+                Optional<IEditorPart> foundEditor = factory.findExistingEditor(launcherFile);
+                if (foundEditor.isPresent()) {
+                    return foundEditor;
+                }
+            } catch (ConcreteSyntaxTypeNotAvailableException e) {
+                LOGGER.trace("The launcher file {} does not contain information about the concrete syntax type of {}.",
+                        launcherFile, factory, e);
+            } catch (IOException e) {
+                LOGGER.error("Could not read launcher file {}.", launcherFile, e);
+            }
+        }
+        return Optional.empty();
     }
 
     private static Optional<EditorType> getPreferredEditorType() {
