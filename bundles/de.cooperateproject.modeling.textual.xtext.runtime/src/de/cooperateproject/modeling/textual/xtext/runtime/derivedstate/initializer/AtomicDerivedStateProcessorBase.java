@@ -2,10 +2,14 @@ package de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initiali
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.AutomatedIssueResolutionOngoingAdapter;
 
 /**
  * Base class for {@link IAtomicDerivedStateProcessor} implementations.
@@ -62,4 +66,8 @@ public abstract class AtomicDerivedStateProcessorBase<T extends EObject> impleme
         return Collections.emptyList();
     }
 
+    protected static boolean undergoesAutomatedIssueResolution(EObject object) {
+        return Optional.ofNullable(object.eResource()).map(Resource::eAdapters)
+                .map(l -> l.stream().anyMatch(AutomatedIssueResolutionOngoingAdapter.class::isInstance)).orElse(false);
+    }
 }
