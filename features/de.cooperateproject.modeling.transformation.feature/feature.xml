@@ -57,21 +57,7 @@
          unpack="false"/>
 
    <plugin
-         id="de.cooperateproject.modeling.transformation.cls"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="de.cooperateproject.modeling.transformation.registry"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.cooperateproject.modeling.transformation.usecase"
          download-size="0"
          install-size="0"
          version="0.0.0"

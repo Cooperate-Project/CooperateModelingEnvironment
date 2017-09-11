@@ -36,15 +36,28 @@ import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.junit.After;
+import org.junit.Before;
 
 import de.cooperateproject.modeling.transformation.tests.commons.utils.ModelComparator;
+import de.cooperateproject.modeling.transformation.tests.commons.utils.ModelComparisonFactory;
+import de.cooperateproject.modeling.transformation.tests.commons.utils.ModelComparisonFactoryImpl;
 
 public abstract class PlainTransformationTestBase extends TransformationTestBase {
 
     private static final URI UML_PRIMITIVE_TYPES = URI
             .createURI("pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml");
     private File debugSerializationDir = null;
+    protected ModelComparator modelComparator;
 
+    @Before
+    public void setupModelComparator() {
+        this.modelComparator = new ModelComparator(getModelComparisonFactory());
+    }
+
+    protected ModelComparisonFactory getModelComparisonFactory() {
+        return new ModelComparisonFactoryImpl();
+    }
+    
     @After
     public void tearDown() {
         setDebugSerializationDir(null);
@@ -97,15 +110,15 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
         assertModelEquals(expected, actual, (c -> Collections.emptyList()));
     }
 
-    protected static void assertModelEqualsStrict(EObject expected, EObject actual)
+    protected void assertModelEqualsStrict(EObject expected, EObject actual)
             throws UnsupportedEncodingException {
-        Comparison result = ModelComparator.compareStrict(expected, actual);
+        Comparison result = modelComparator.compareStrict(expected, actual);
         assertComparison(result);
     }
 
-    protected static void assertModelEquals(EObject expected, EObject actual,
+    protected void assertModelEquals(EObject expected, EObject actual,
             Function<Collection<Diff>, Collection<Diff>> diffProcessor) throws UnsupportedEncodingException {
-        Comparison result = ModelComparator.compare(expected, actual);
+        Comparison result = modelComparator.compare(expected, actual);
         Collection<Diff> ignoredDiffs = diffProcessor.apply(result.getDifferences());
         ignoredDiffs.stream().forEach(PlainTransformationTestBase::removeDifference);
         assertComparison(result);

@@ -8,11 +8,11 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 public class TextualToGraphicalUseCaseTraceTest extends UsecaseDirectionalTraceTransformationTestBase {
 
     private static final URI T2G_MODEL_TRANSFORMATION_URI = createTransformationURI(TestEnvironmentConstants.PLUGIN_ID,
-            "Textual_to_Graphical_for_Usecase.qvto");
+            "Textual_to_Graphical_for_UseCase.qvto");
     private static final URI G2T_MODEL_TRANSFORMATION_URI = createTransformationURI(TestEnvironmentConstants.PLUGIN_ID,
-            "Graphical_to_Textual_for_Usecase.qvto");
+            "Graphical_to_Textual_for_UseCase.qvto");
     private static final URI T2G_TRACE_TRANSFORMATION_URI = createTransformationURI(TestEnvironmentConstants.PLUGIN_ID,
-            "Textual_to_Graphical_for_Usecase_Trace.qvto");
+            "Textual_to_Graphical_for_UseCase_Trace.qvto");
 
     static {
         UsecasePackage.eINSTANCE.eClass();
