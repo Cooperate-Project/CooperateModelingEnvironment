@@ -20,6 +20,7 @@ import de.cooperateproject.ui.diff.labeling.SummaryLabelProvider;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
@@ -104,7 +105,8 @@ public class DiffView extends ViewPart {
         }
         selectedFile = file;
         comparisonManager = new ComparisonManager(file);
-        commitViewer.setInput(comparisonManager.getAllCommitInfos());
+        Set<CDOCommitInfo> allCommitInfos = comparisonManager.getAllCommitInfos();
+        commitViewer.setInput(allCommitInfos);
         for (TableColumn c : commitViewer.getTable().getColumns()) {
             c.pack();
         }
