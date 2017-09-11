@@ -412,7 +412,7 @@ public class DiffView extends ViewPart {
         commitViewer.getTable().setHeaderVisible(true);
         commitViewer.getTable().setLinesVisible(false);
         commitViewer.setComparator(new CommitViewerComparator());
-        String[] columnNames1 = new String[] { "Date", "Time" };
+        String[] columnNames1 = new String[] { "Date", "Time", "Message" };
         for (int i = 0; i < columnNames1.length; i++) {
             TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
             tableColumn.setText(columnNames1[i]);

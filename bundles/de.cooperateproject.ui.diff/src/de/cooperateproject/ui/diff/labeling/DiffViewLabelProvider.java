@@ -28,7 +28,7 @@ public class DiffViewLabelProvider extends LabelProvider {
 
     @Override
     public String getText(Object element) {
-        String ret = "";
+        StringBuilder result = new StringBuilder();
         if (!(element instanceof DiffTreeItem)) {
             return null;
         }
@@ -41,11 +41,11 @@ public class DiffViewLabelProvider extends LabelProvider {
         }
 
         if (item.getDiffKind() != null) {
-            ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
+            result.append(DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ");
         }
 
         if (object instanceof EObject) {
-            return ret + labelHandler.getText((EObject) object);
+            return result.append(labelHandler.getText((EObject) object)).toString();
         }
         return null;
     }
