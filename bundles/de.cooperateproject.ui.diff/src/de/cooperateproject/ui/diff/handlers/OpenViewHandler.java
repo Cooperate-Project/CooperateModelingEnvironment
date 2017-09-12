@@ -61,7 +61,7 @@ public class OpenViewHandler extends AbstractHandler {
 
     private static DiffView getDiffView(IWorkbenchWindow window, IWorkbenchPage page) {
         try {
-            return (DiffView) page.showView(DiffView.ID);
+            return (DiffView) page.showView(DiffView.PLUGIN_ID);
         } catch (PartInitException e) {
             LOGGER.error(e.getMessage(), e);
             openErrorDialog("Diff View couldn't be initialized. " + e.getMessage(), window.getShell());

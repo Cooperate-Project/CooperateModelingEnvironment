@@ -14,9 +14,9 @@
    </extension>
    
     <extension point="org.eclipse.ui.commands">
-   		<command name="OpenView"
-   		description=""
-   		id="de.cooperateproject.ui.diff.command.openView"/>
+   		<command
+           id="de.cooperateproject.ui.diff.command.openView"
+           name="OpenView"/>
    	</extension>
    	
    	<extension point="org.eclipse.ui.handlers">
