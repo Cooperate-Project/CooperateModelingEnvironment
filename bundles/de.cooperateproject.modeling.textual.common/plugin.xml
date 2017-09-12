@@ -7,6 +7,9 @@
             class="de.cooperateproject.modeling.textual.common.issues.CommonUMLReferencingElementMissingElementFactory">
       </factory>
       <factory
+            class="de.cooperateproject.modeling.textual.common.issues.CommonStereotypeApplicationMissingStereotypeFactory">
+      </factory>
+      <factory
             class="de.cooperateproject.modeling.textual.common.issues.VisibilityHavingElementResolutionFactory">
       </factory>
    </extension>
@@ -59,6 +62,9 @@
       </class>
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.PackageImportCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.StereotypeApplicationCalculator">
       </class>
    </extension>
    <extension

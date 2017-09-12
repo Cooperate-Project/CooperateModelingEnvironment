@@ -114,7 +114,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
+	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN] appliedStereotypes+=StereotypeApplication*)
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -241,7 +241,12 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? ((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? members+=Member*))?)
+	 *     (
+	 *         visibility=Visibility? 
+	 *         ((name=STRING alias=ID) | name=ID) 
+	 *         appliedStereotypes+=StereotypeApplication* 
+	 *         (comments+=Comment | (comments+=Comment? members+=Member*))?
+	 *     )
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -259,6 +264,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         abstract?='abstract'? 
 	 *         static?='static'? 
 	 *         name=ID 
+	 *         appliedStereotypes+=StereotypeApplication* 
 	 *         (parameters+=Parameter parameters+=Parameter*)* 
 	 *         type=[Classifier|FQN]?
 	 *     )
@@ -291,7 +297,14 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Package returns Package
 	 *
 	 * Constraint:
-	 *     (name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*)
+	 *     (
+	 *         name=FQN 
+	 *         appliedStereotypes+=StereotypeApplication* 
+	 *         packageImports+=PackageImport* 
+	 *         classifiers+=Classifier* 
+	 *         connectors+=Connector* 
+	 *         packages+=Package*
+	 *     )
 	 */
 	protected void sequence_Package(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Package semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -303,7 +316,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? name=ID type=[Classifier|FQN])
+	 *     (visibility=Visibility? appliedStereotypes+=StereotypeApplication* name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -383,6 +396,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         twoSideBidirectionality?='bi'? 
 	 *         twoSideAggregationKind=AggregationKind 
 	 *         name=ID 
+	 *         appliedStereotypes+=StereotypeApplication* 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType* 
 	 *         (memberEndNames+=RoleName memberEndNames+=RoleName*)? 

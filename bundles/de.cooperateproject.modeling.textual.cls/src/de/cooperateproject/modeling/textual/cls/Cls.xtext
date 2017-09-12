@@ -29,7 +29,7 @@ RootPackage returns Package:
 ;
 
 Package:
-	'package' name=FQN '{'
+	'package' name=FQN (appliedStereotypes+=StereotypeApplication)* '{'
 	packageImports+=PackageImport*
 	classifiers+=Classifier*
 	connectors+=Connector*
@@ -67,7 +67,7 @@ Class:
 
 Interface:
 	visibility=Visibility? 'interface'
-	((name=STRING 'as' alias = ID)|name = ID)( (comments+=Comment)? |
+	((name=STRING 'as' alias = ID)|name = ID) (appliedStereotypes+=StereotypeApplication)* ( (comments+=Comment)? |
 		(('{' (comments+=Comment)? (members += Member)* '}')))
 ;
 
@@ -81,19 +81,20 @@ Attribute:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	name = ID ':' type=[uml::Classifier|FQN]
+	(appliedStereotypes+=StereotypeApplication)*
 ;
 	
 Method: 
 	(visibility = Visibility)? 
 	(abstract ?= 'abstract')? 
 	(static ?= 'static')? 
-	name = ID '(' 
+	name = ID (appliedStereotypes+=StereotypeApplication)* '(' 
 	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
 	(':' type = [uml::Classifier|FQN])?
 ;
 
 Parameter:
-	(visibility = Visibility)? 
+	(visibility = Visibility)? (appliedStereotypes+=StereotypeApplication)*
 	name = ID ':' type = [uml::Classifier|FQN]
 ;
 
@@ -117,7 +118,7 @@ Implementation:
 
 XtextAssociation:
 	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
+	name=ID (appliedStereotypes+=StereotypeApplication)* '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
 	('role' '[' memberEndNames+=RoleName (',' memberEndNames+=RoleName)* ']')?
 	('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')?
 	comments+=Comment?
@@ -145,7 +146,7 @@ CardinalityBound returns ecore::EInt:
 ;
 
 StereotypeApplication returns commons::StereotypeApplication:
-	'<<' stereotype=ID '>>' ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
+	STEREOTYPE_O stereotype=ID STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
 ;
 
 
@@ -176,3 +177,6 @@ RoleName returns ecore::EString:
 @Override
 terminal ID         : '^'?('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 terminal UNDERSCORE : '_';
+terminal STEREOTYPE_O : ('«'|'<<');
+terminal STEREOTYPE_C : ('»'|'>>');
+
