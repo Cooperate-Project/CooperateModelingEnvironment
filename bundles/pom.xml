@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
+		<version>0.2.2-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>bundles</artifactId>
@@ -34,9 +34,18 @@
 		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.ui</module>
+		<module>de.cooperateproject.modeling.transformation.cls</module>
+		<module>de.cooperateproject.modeling.transformation.usecase</module>
+		<module>de.cooperateproject.modeling.transformation.sequence</module>
 		<module>de.cooperateproject.modeling.transformation.engine</module>
-		<module>de.cooperateproject.modeling.transformation.transformations</module>
+		<module>de.cooperateproject.modeling.transformation.common</module>
+		<module>de.cooperateproject.modeling.transformation.tests.common</module>
+		<module>de.cooperateproject.modeling.transformation.registry</module>
 		<module>de.cooperateproject.ui</module>
+		<module>de.cooperateproject.ui.diff</module>
+		<module>de.cooperateproject.ui.diff.cls</module>
+		<module>de.cooperateproject.ui.diff.common</module>
+		<module>de.cooperateproject.ui.diff.usecase</module>
 		<module>de.cooperateproject.ui.focus</module>
 		<module>de.cooperateproject.ui.focus.papyrus</module>
 		<module>de.cooperateproject.ui.focus.textual</module>

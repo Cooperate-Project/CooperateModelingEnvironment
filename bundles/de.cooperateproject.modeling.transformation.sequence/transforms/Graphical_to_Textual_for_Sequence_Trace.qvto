@@ -1,0 +1,212 @@
+import TraceUtils_Sequence;
+
+transformation Graphical_to_Textual_for_Sequence_Trace(in graphicalTrace : TRACE, out textualTrace : TRACE, in textualModel : TEXTUAL, in t2gTransformation : QVTO);
+
+modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
+modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TEXTUAL uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
+modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype GMFSTYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+
+property notationDiagram : notation::Diagram = null;
+main() {
+    var traces := graphicalTrace.rootObjects()[trace::Trace];
+    assert fatal (traces->size() = 1);
+    traces->initializeProperties();
+    
+    notationDiagram := traces.traceRecords->any(mappingOperation.name = "diagramToDiagram").getSelf().modelElement.oclAsType(notation::Diagram);
+    traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+    TARGET_TRANSFORMATION_NAME := "Textual_to_Graphical_for_Sequence";
+    TARGET_TRANSFORMATION := t2gTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
+}
+
+mapping trace::Trace::trace() : trace::Trace
+{
+    traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+    result += self.map traceRecordDiagram();
+    result += self.map traceRecordActor();
+    result += self.map traceRecordMessage();
+    result += self.map traceRecordCombinedFragment();
+    result += self.map traceRecordOrderedFragmentContainer();
+    result += self.map traceRecordCondition();
+}
+
+mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
+{
+    var seqDiagram := self.getResult().modelElement;
+    var notationDiagram := self.getSelf().modelElement.oclAsType(notation::Diagram);
+
+    result += new TraceRecord("diagramToDiagram", "SequenceDiagram", seqDiagram, "Diagram", notationDiagram.eobject());
+    result += new TraceRecord("stringValueStyle", "SequenceDiagram", seqDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
+    result += new TraceRecord("diagramStyle", "SequenceDiagram", seqDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
+    var viewStyleRecord := new TraceRecord("papyrusDiagramStyle", "SequenceDiagram", seqDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
+    viewStyleRecord.parameters.parameters += object VarParameterValue {
+        name := "rootElement";
+        type := "Package";
+        value := new EValue(notationDiagram.styles[PapyrusDiagramStyle]->any(true).owner);
+    };
+    result += viewStyleRecord;
+    var shape = notationDiagram.children->any(element = seqDiagram.oclAsType(SequenceDiagram).referencedElement); 
+    result += new TraceRecord("diagramToShape", "FragmentSequence", seqDiagram, "Shape", shape.eobject());
+    result += new TraceRecord("fragmentSequenceToShape", "FragmentSequence", seqDiagram, "Shape", shape.eobject());
+    result += new TraceRecord("fragmentSequenceToNameLabel", "FragmentSequence", seqDiagram, "DecorationNode", 
+        shape.children[DecorationNode]->any(type = seqDiagram.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_NAME)).eobject());
+    result += shape.map traceRecordExtended_notationBounds();
+    var subfrgmtComp := shape.children[BasicCompartment]->any(type = seqDiagram.addNodeTypePrefix(PAPYRUS_NOTATION_SUBFRAGMENT_COMPARTMENT)); 
+    result += new TraceRecord("sequenceDiagramToSubfragmentCompartment", "SequenceDiagram", seqDiagram, "BasicCompartment",
+        subfrgmtComp.eobject());
+    result += subfrgmtComp.map traceRecordExtended_notationBounds();
+}
+
+mapping trace::TraceRecord::traceRecordActor() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "shapeToActor"}
+{   
+    var actor := self.getResult().modelElement;
+    var shape := self.getSelf().modelElement;
+    
+	result += new TraceRecord("actorToLifelineShape", "Actor", actor, "Shape", shape);
+	result += new TraceRecord("actorToNameLabel", "Actor", actor, "DecorationNode", 
+	   shape.oclAsType(Shape).children->any(type = actor.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_NAME)).eobject());
+    result += shape.oclAsType(Shape).map traceRecordCompartmentShape(actor.oclAsType(sequence::Actor));
+    result += actor.oclAsType(sequence::Actor)
+        .map traceRecordBehaviorExecutionSpecificationOfActor(shape.oclAsType(Shape));
+    result += shape.oclAsType(Shape).map traceRecordExtended_notationBounds();
+}
+
+mapping notation::Shape::traceRecordCompartmentShape(el: UMLReferencingElement): List(trace::TraceRecord) {
+    var shape := self.children[BasicCompartment]->any(type = PAPYRUS_NOTATION_COMPARTEMENT_SHAPE_DISPLAY);
+    result += new TraceRecord("umlReferencingElementToCompartmentShapeDisplay", "UMLReferencingElement", el.eobject(), 
+        "BasicCompartment", shape.eobject());
+    result += shape.map traceRecordExtended_notationBounds();
+    result += new TraceRecord("titleStyle", "EObject", shape.eobject(), "TitleStyle", shape.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+}
+
+mapping sequence::Actor::traceRecordBehaviorExecutionSpecificationOfActor(actorShape: Shape): List(trace::TraceRecord) {
+	result += self.getAssociatedBehaviorExecutionSpecifications().map traceRecordBehaviorExecutionSpecification(actorShape);
+	result += self.getAssociatedDestructionOccurrenceSpecifications().map traceRecordDestructionOccurrenceSpecification(actorShape);
+}
+
+mapping uml::BehaviorExecutionSpecification::traceRecordBehaviorExecutionSpecification(actorShape: Shape): List(trace::TraceRecord) {
+    var besShape := actorShape.children->any(element = self and type = self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE));
+    result += new TraceRecord("behaviorExecutionSpecificationToShape", "BehaviorExecutionSpecification", self.eobject(),
+        "Shape", besShape.eobject());
+    var behNodeShape := besShape.children[DecorationNode]->any(type = self.addNodeTypePrefix(PAPYRUS_NOTATION_BEHAVIOR));
+    result += new TraceRecord("behaviorExecutionSpecificationToBehaviorNode", "BehaviorExecutionSpecification", self.eobject(),
+        "DecorationNode", behNodeShape.eobject());
+    result += besShape.map traceRecordExtended_notationBounds();
+    result += behNodeShape.map traceRecordExtended_locationConstraint();
+}
+
+mapping sequence::DestructionOccurenceSpecification::traceRecordDestructionOccurrenceSpecification(actorShape: Shape): List(trace::TraceRecord) {
+    var destShape := actorShape.children->any(element = self.referencedElement and type = self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE));
+    result += new TraceRecord("destructionOccurrenceSpecificationToShape", "DestructionOccurenceSpecification", self.eobject(),
+        "Shape", destShape.eobject());
+    result += destShape.map traceRecordExtended_notationBounds();
+}
+
+mapping trace::TraceRecord::traceRecordMessage() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "messageOccurrenceToStandardMessage" or 
+      self.mappingOperation.name = "messageOccurrenceToResponseMessage" or 
+      self.mappingOperation.name = "messageOccurrenceToCreateMessage"} {
+    var umlMsg := self.getSelf().modelElement.oclAsType(MessageOccurrenceSpecification).message;
+    var seqMsg := self.getResult().modelElement;
+    var connector := notationDiagram.edges->any(type = seqMsg.addNodeTypePrefix(PAPYRUS_NOTATION_EDGE)
+        and element = umlMsg);
+    var cNameLabel := connector.children[DecorationNode]->any(type = seqMsg.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_NAME));
+    result += new TraceRecord("messageToConnector", "Message", seqMsg.eobject(), "Connector", connector.eobject());
+	result += new TraceRecord("messageToNameLabel", "Message", seqMsg.eobject(), "DecorationNode",
+	   cNameLabel.eobject());	
+	result += new TraceRecord("connectorToBendpoint", "Connector", connector.eobject(), "RelativeBendpoints", 
+	   connector.bendpoints.eobject());
+	result += connector.map traceRecordFontStyle();
+	result += connector.map traceRecordLineStyle();   
+    result += cNameLabel.map traceRecordExtended_locationConstraint();
+    var cStLabel := connector.children[DecorationNode]->any(type = seqMsg.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_STEREOTYPE));
+	result += new TraceRecord("messageToStereotypeLabel", "Message", seqMsg.eobject(), "DecorationNode",
+       cStLabel.eobject());
+    result += cStLabel.map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordCombinedFragment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "combinedFragmentToCombinedFragment"} {
+	var umlFrag := self.getSelf().modelElement;
+	var seqFrag := self.getResult().modelElement;
+	
+	var combShape := notationDiagram.getAllContentsOfType(Shape.oclAsType(EClass), false).oclAsType(Shape)
+	   ->any(element = umlFrag and type = seqFrag.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE));
+	result += new TraceRecord("combinedFragmentToShape", "CombinedFragment", seqFrag.eobject(), "Shape",
+	   combShape.eobject());
+    result += combShape.map traceRecordExtended_notationBounds();
+    
+    var subFrag := combShape.children[notation::BasicCompartment]->any(type = seqFrag.addNodeTypePrefix(PAPYRUS_NOTATION_SUBFRAGMENT_COMPARTMENT));
+	result += new TraceRecord("combinedFragmentToSubfragmentCompartment", "CombinedFragment", seqFrag.eobject(), "BasicCompartment",
+       subFrag.eobject());
+    result += subFrag.map traceRecordSortingStyle();
+    result += subFrag.map traceRecordFilteringStyle();
+    result += subFrag.map traceRecordExtended_notationBounds();
+    result += seqFrag.oclAsType(sequence::CombinedFragment).map combindedFragmentToTraceRecord(subFrag);
+}
+
+mapping trace::TraceRecord::traceRecordOrderedFragmentContainer(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "interactionOperandToOrderedFragmentContainer"} {
+    var umlFrag := self.getSelf().modelElement.oclAsType(uml::InteractionOperand);
+    var seqFrag := self.getResult().modelElement.oclAsType(OrderedFragmentContainer);	
+    
+    var containerShape := notationDiagram.getAllContentsOfType(Shape.oclAsType(EClass), false).oclAsType(Shape)
+       ->any(element = umlFrag and type = seqFrag.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE));
+    
+    result += new TraceRecord("fragmentSequenceToShape", "FragmentSequence", seqFrag.eobject(), "Shape",
+       containerShape.eobject());
+    result += new TraceRecord("orderedFragmentContainerToShape", "FragmentSequence", seqFrag.eobject(), "Shape",
+       containerShape.eobject());
+    result += containerShape.map traceRecordExtended_notationBounds();
+    
+    if (seqFrag.fragments->selectByKind(sequence::CombinedFragment)->notEmpty()) {
+    	result += containerShape.map traceRecordCompartmentShape(seqFrag);
+    }
+}
+
+mapping trace::TraceRecord::traceRecordCondition(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "interactionConstraintToCondition"} {
+    var umlFrag := self.getSelf().modelElement.oclAsType(uml::InteractionConstraint);
+    var seqFrag := self.getResult().modelElement.oclAsType(sequence::Condition);
+    
+    var conditionNode := notationDiagram.getAllContentsOfType(DecorationNode.oclAsType(EClass), false).oclAsType(DecorationNode)
+       ->any(element = umlFrag and type = seqFrag.addNodeTypePrefix(PAPYRUS_NOTATION_GUARD));
+       
+    result += new TraceRecord("conditionToDecorationNode", "Condition", seqFrag.eobject(), "DecorationNode",
+       conditionNode.eobject());  
+    result += conditionNode.map traceRecordExtended_notationBounds();  
+}
+
+mapping sequence::CombinedFragment::combindedFragmentToTraceRecord(compartment: BasicCompartment): List(trace::TraceRecord)
+disjuncts sequence::SingleRegionContainer::singleRegionContainerToTraceRecord, 
+sequence::MultipleRegionContainer::multipleRegionContainerToTraceRecord;
+
+mapping sequence::SingleRegionContainer::singleRegionContainerToTraceRecord(compartment: BasicCompartment): List(trace::TraceRecord) {
+	result += new TraceRecord("singleRegionContainerToSubfragmentCompartment", "CombinedFragment", self.eobject(), 
+	   "BasicCompartment", compartment.eobject());
+}
+
+mapping sequence::MultipleRegionContainer::multipleRegionContainerToTraceRecord(compartment: BasicCompartment): List(trace::TraceRecord) {
+    result += new TraceRecord("multipleRegionContainerToSubfragmentCompartment", "CombinedFragment", self.eobject(), 
+       "BasicCompartment", compartment.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordDestructionOccurrence(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "destructionOccurrenceSpecificationToShape"} {
+	
+}    
+
+

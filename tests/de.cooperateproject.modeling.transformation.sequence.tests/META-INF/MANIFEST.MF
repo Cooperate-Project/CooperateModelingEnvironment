@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sequence Transformation Tests
+Bundle-SymbolicName: de.cooperateproject.modeling.transformation.sequence.tests
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: de.cooperateproject.modeling.transformation.sequence;bundle-version="0.2.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.cooperateproject.modeling.transformation.tests.common;bundle-version="1.0.0",
+ de.cooperateproject.modeling.textual.sequence.metamodel,
+ org.eclipse.emf.compare
+Import-Package: org.junit

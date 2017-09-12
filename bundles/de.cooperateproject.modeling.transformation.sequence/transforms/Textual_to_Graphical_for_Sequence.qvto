@@ -1,0 +1,248 @@
+import TransformationUtils_Sequence;
+import de.cooperateproject.qvtoutils.CooperateLibrary;
+
+transformation Textual_to_Graphical_for_Sequence(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype GMFSTYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+
+main() {
+    var diagrams := textual.rootObjects()[sequence::SequenceDiagram];
+    assert fatal (diagrams->size() = 1) with log ("Expected one diagram but got other number.", diagrams->size());
+    diagrams->map diagramToDiagram();
+}
+
+mapping sequence::SequenceDiagram::diagramToDiagram() : notation::Diagram {
+    var rootPackage := self.rootPackage.referencedElement.oclAsType(uml::Package);
+    type := PAPYRUS_NOTATION_DIAGRAM_SEQUENCE;
+    name := self.title;
+    measurementUnit := notation::MeasurementUnit::Pixel;
+    
+    children += self.map fragmentSequenceToShape();
+    
+    styles += self.map stringValueStyle();
+    styles += self.map diagramStyle();
+    styles += self.map papyrusDiagramStyle(rootPackage);
+    
+    element := self.referencedElement.toEObject();
+    
+    edges += self.getAllContainedMessagesInOrder().map messageToConnector();
+}
+
+mapping sequence::FragmentSequence::fragmentSequenceToShape(): notation::Shape 
+merges sequence::FragmentSequence::diagramToShape, sequence::FragmentSequence::orderedFragmentContainerToShape {
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE);
+    
+    
+    layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping sequence::FragmentSequence::diagramToShape() : notation::Shape 
+when {self.oclIsKindOf(sequence::SequenceDiagram)}{
+    var children_old = children;
+    children := self.map fragmentSequenceToNameLabel();
+    children += self.oclAsType(SequenceDiagram).map sequenceDiagramToSubfragmentCompartment();
+    children += children_old;
+    
+	element := self.oclAsType(sequence::SequenceDiagram).referencedElement.toEObject();   
+}
+
+mapping sequence::FragmentSequence::orderedFragmentContainerToShape(): notation::Shape 
+when {self.oclIsKindOf(sequence::OrderedFragmentContainer)}{
+    var old_children = result.children;
+    children := self.oclAsType(OrderedFragmentContainer).condition.map conditionToDecorationNode();
+    
+    if (self.fragments->selectByKind(sequence::CombinedFragment)->notEmpty()) {
+        children += self.oclAsType(sequence::OrderedFragmentContainer).map umlReferencingElementToCompartmentShapeDisplay();
+    };
+    children += old_children;
+    children += self.fragments[sequence::CombinedFragment].map combinedFragmentToShape();
+    
+    element := self.oclAsType(sequence::OrderedFragmentContainer).referencedElement.toEObject();
+}
+
+mapping sequence::Condition::conditionToDecorationNode(): notation::DecorationNode {
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_GUARD);
+    
+	element := self.referencedElement.toEObject();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping sequence::FragmentSequence::fragmentSequenceToNameLabel() : notation::DecorationNode {
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_NAME);
+}
+
+mapping sequence::SequenceDiagram::sequenceDiagramToSubfragmentCompartment() : notation::BasicCompartment 
+{
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SUBFRAGMENT_COMPARTMENT);
+    
+    layoutConstraint := result.toEObject().map notationBounds();
+
+    children += self.fragments[sequence::CombinedFragment].map combinedFragmentToShape();
+	children += self.oclAsType(sequence::SequenceDiagram).actors.map actorToLifelineShape();
+}
+
+
+mapping sequence::CombinedFragment::combinedFragmentToShape(): notation::Shape {
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE);
+	
+    children += self.map combinedFragmentToSubfragmentCompartment();
+    
+	element := self.referencedElement.toEObject();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping sequence::CombinedFragment::combinedFragmentToSubfragmentCompartment(): notation::BasicCompartment 
+merges sequence::CombinedFragment::singleRegionContainerToSubfragmentCompartment, sequence::CombinedFragment::multipleRegionContainerToSubfragmentCompartment 
+{
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SUBFRAGMENT_COMPARTMENT);
+	
+	styles += result.toEObject().map sortingStyle();
+    styles += result.toEObject().map filteringStyle();
+    layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping sequence::CombinedFragment::singleRegionContainerToSubfragmentCompartment(): notation::BasicCompartment 
+when {self.oclIsKindOf(sequence::SingleRegionContainer)}{
+    children += self.oclAsType(SingleRegionContainer).region.map fragmentSequenceToShape();
+}
+
+mapping sequence::CombinedFragment::multipleRegionContainerToSubfragmentCompartment(): notation::BasicCompartment 
+when {self.oclIsKindOf(sequence::MultipleRegionContainer)}{
+    children += self.oclAsType(MultipleRegionContainer).regions.map fragmentSequenceToShape();
+}
+
+mapping sequence::Actor::actorToLifelineShape() : notation::Shape {
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE);
+	
+	children += self.map actorToNameLabel();
+	children += self.map umlReferencingElementToCompartmentShapeDisplay();
+	children += self.getAssociatedBehaviorExecutionSpecifications().map behaviorExecutionSpecificationToShape();
+	children += self.getAssociatedDestructionOccurrenceSpecifications().map destructionOccurrenceSpecificationToShape();
+	
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping sequence::Actor::actorToNameLabel() : notation::DecorationNode {
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_NAME);
+}
+
+mapping textualCommons::UMLReferencingElement::umlReferencingElementToCompartmentShapeDisplay() : notation::BasicCompartment {
+    type := PAPYRUS_NOTATION_COMPARTEMENT_SHAPE_DISPLAY;
+    
+    styles += result.toEObject().map titleStyle();
+    
+    layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping uml::BehaviorExecutionSpecification::behaviorExecutionSpecificationToShape(): notation::Shape {
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE);
+    
+    children += self.map behaviorExecutionSpecificationToBehaviorNode();
+    
+    element := self.toEObject();
+    
+    layoutConstraint := result.toEObject().map notationBounds();
+} 
+
+mapping uml::BehaviorExecutionSpecification::behaviorExecutionSpecificationToBehaviorNode(): notation::DecorationNode {
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_BEHAVIOR);
+	
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping sequence::DestructionOccurenceSpecification::destructionOccurrenceSpecificationToShape(): notation::Shape {
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_SHAPE);
+
+	element := self.referencedElement.toEObject();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping sequence::Message::messageToConnector(): notation::Connector {
+	type := self.addNodeTypePrefix(PAPYRUS_NOTATION_EDGE);
+	
+	source := self.determineShapeOfConnectorSource();
+	target := self.determineShapeOfConnectorTarget();
+	
+	children += self.map messageToNameLabel();
+	children += self.map messageToStereotypeLabel();
+	
+	element := self.referencedElement.toEObject();
+	
+	bendpoints := result.map connectorToBendpoint();
+    styles += result.toEObject().map fontStyle();
+    styles += result.toEObject().map lineStyle();
+}
+
+mapping sequence::Message::messageToNameLabel(): notation::DecorationNode {
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_NAME);
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping sequence::Message::messageToStereotypeLabel(): notation::DecorationNode {
+    type := self.addNodeTypePrefix(PAPYRUS_NOTATION_LABEL_STEREOTYPE);
+    layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping sequence::SequenceDiagram::stringValueStyle() : notation::StringValueStyle
+{
+    name := "diagram_compatibility_version";
+    stringValue := "1.3.0"; 
+}
+
+mapping sequence::SequenceDiagram::diagramStyle() : notation::DiagramStyle
+{   
+}
+
+mapping sequence::SequenceDiagram::papyrusDiagramStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
+{
+    diagramKindId := PAPYRUS_GMFSTYLE_DIAGRAM_KIND_ID;
+    owner := rootElement.toEObject();
+}
+
+query sequence::Message::determineShapeOfConnectorSource(): notation::Shape
+{
+	return self.sendEvent.getOccurenceSpecification().getContainingExecutionSpecification()
+	   .resolveoneIn(uml::BehaviorExecutionSpecification::behaviorExecutionSpecificationToShape)
+}
+
+query sequence::CreateMessage::determineShapeOfConnectorTarget(): notation::Shape {
+	return self.right.resolveoneIn(sequence::Actor::actorToLifelineShape);
+}
+
+query sequence::Message::determineShapeOfConnectorTarget(): notation::Shape {
+    var arrOcc = self.arrivalEvent.getOccurenceSpecification().referencedElement.oclAsType(OccurrenceSpecification);
+    return umlmodel.objectsOfKind(BehaviorExecutionSpecification)->selectOne(s | s.start = arrOcc)
+       .resolveoneIn(uml::BehaviorExecutionSpecification::behaviorExecutionSpecificationToShape)
+}
+
+query sequence::ResponseMessage::determineShapeOfConnectorSource(): notation::Shape {
+    return self.getCorrespondingRequest().determineShapeOfConnectorTarget()
+}
+
+query sequence::ResponseMessage::determineShapeOfConnectorTarget(): notation::Shape {
+    return self.getCorrespondingRequest().determineShapeOfConnectorSource()
+}
+
+query sequence::FragmentSequence::getAllContainedMessagesInOrder(): OrderedSet(sequence::Message) {
+	var res : OrderedSet(sequence::Message);
+	self.fragments->forEach(frag) {
+		if (frag.oclIsKindOf(sequence::Message)) {
+			res += frag.oclAsType(sequence::Message)
+		} else if (frag.oclIsKindOf(SingleRegionContainer)) {
+			res += frag.oclAsType(SingleRegionContainer).region.getAllContainedMessagesInOrder()
+		} else if (frag.oclIsKindOf(MultipleRegionContainer)) {
+            res += frag.oclAsType(MultipleRegionContainer).regions.getAllContainedMessagesInOrder()
+        }
+	};
+	return res
+}
+

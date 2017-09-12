@@ -5,27 +5,29 @@ package de.cooperateproject.modeling.textual.usecase.ui.labeling
 
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
+import de.cooperateproject.ui.outline.UMLImage
+import de.cooperateproject.ui.outline.CooperateOutlineLabelProvider
 
 /**
- * Provides labels for EObjects.
+ * Provides labels for Usecase EObjects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class UsecaseLabelProvider extends DefaultEObjectLabelProvider {
+class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
 
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
 
-	// Labels and icons can be computed like this:
-	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def text(Generalization element) {
+        val general = element.general;
+        val specific = element.specific;
+        specific.doGetText + " is a " + general.doGetText
+    }
+
+    def image(Generalization element) {
+        return UMLImage.GENERALIZATION.image
+    }
 }

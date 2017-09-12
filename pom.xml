@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>de.cooperateproject.modeling</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Cooperate Modeling Environment</name>
 
@@ -41,6 +41,8 @@
 		<jacoco.itReportPath>../../releng/de.cooperateproject.modeling.dev/target/jacoco-it.exec</jacoco.itReportPath>
 		<sonar.jacoco.reportPaths>${jacoco.reportPath}, ${jacoco.itReportPath}</sonar.jacoco.reportPaths>
 	</properties>
+	
+	
 
 	<repositories>
 		<!-- If you adjust a repository here, please also adjust the repository in the b3 aggregator. -->
@@ -51,7 +53,7 @@
 		</repository>
 		<repository>
 			<id>papyrus</id>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
+			<url>https://dl.bintray.com/cooperate-project/PapyrusMirror/201708080218/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -66,12 +68,12 @@
 		</repository>
 		<repository>
 			<id>cooperate-cdoxtext</id>
-			<url>https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.3.0/</url>
+			<url>https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.3.2/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
 			<id>cooperate-externals</id>
-			<url>https://dl.bintray.com/cooperate-project/Externals/updatesite/latest</url>
+			<url>https://dl.bintray.com/cooperate-project/Externals/updatesite/1.0.0/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -86,18 +88,27 @@
 		</repository>
 		<repository>
 			<id>Papyrus Collaborative Modeling</id>
-			<url>https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/latest/</url>
+			<url>https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/1.2.0.RC1/</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
 
 	<build>
+		<testSourceDirectory>src</testSourceDirectory>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.6.2</version>
+				<executions> 
+					<execution> 
+						<id>compiletests</id> 
+						<phase>test-compile</phase> 
+						<goals> 
+							<goal>testCompile</goal> 
+						</goals> 
+					</execution> 
+				</executions> 
 				<configuration>
 					<compilerId>eclipse</compilerId>
 					<source>${java.version}</source>
@@ -235,6 +246,27 @@
 					<failIfNoTests>false</failIfNoTests>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20</version>
+				<executions>
+				  <execution>
+					<id>test</id>
+					<phase>test</phase>
+					<configuration>
+					  <includes>
+						<include>**/*Test.java</include>
+					  </includes>
+					  <failIfNoTests>false</failIfNoTests>
+					</configuration>
+					<goals>
+					  <goal>test</goal>
+					</goals>
+				  </execution>
+				</executions>
+			  </plugin>
 
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>

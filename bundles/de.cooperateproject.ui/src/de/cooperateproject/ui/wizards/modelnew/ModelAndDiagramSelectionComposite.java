@@ -23,8 +23,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 
+import de.cooperateproject.ui.util.NonNullValidator;
 import de.cooperateproject.ui.wizards.modelnew.AtomicModelNameProcessor.ModelName;
 
+/**
+ * Reusable composite that allows defining a model and diagram name based on a selection of available projects.
+ */
 public class ModelAndDiagramSelectionComposite extends Composite {
     private final DataBindingContext m_bindingContext;
     private final Text textModel;
@@ -39,7 +43,13 @@ public class ModelAndDiagramSelectionComposite extends Composite {
      * Create the composite.
      * 
      * @param parent
+     *            The parent composite.
      * @param style
+     *            A style to be used in the parent.
+     * @param dto
+     *            A transfer object that gives access to the names selected in the composite.
+     * @param validatorStatusListener
+     *            A listener that will be notified if the state of the overall validation has changed.
      */
     public ModelAndDiagramSelectionComposite(Composite parent, int style, SelectedNamesDTO dto,
             IChangeListener validatorStatusListener) {
@@ -95,8 +105,10 @@ public class ModelAndDiagramSelectionComposite extends Composite {
         IObservableValue<?> observeSingleSelectionTreeViewer = ViewerProperties.singleSelection().observe(treeViewer);
         @SuppressWarnings("unchecked")
         IObservableValue<?> textTextModelObserveValue = PojoProperties.value("text").observe(textModel);
+        @SuppressWarnings("squid:S00117")
         UpdateValueStrategy strategy_1 = new UpdateValueStrategy();
         strategy_1.setConverter(new ModelNodeConverter());
+        strategy_1.setBeforeSetValidator(new NonNullValidator());
         bindingContext.bindValue(observeSingleSelectionTreeViewer, textTextModelObserveValue, strategy_1,
                 new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER));
         //
@@ -109,8 +121,8 @@ public class ModelAndDiagramSelectionComposite extends Composite {
         IObservableValue<?> observedDiagramName = WidgetProperties.text(SWT.Modify).observe(textDiagramName);
         IObservableValue<?> observedModelName = WidgetProperties.text(SWT.Modify).observe(textModel);
 
-        IObservableValue<String> atomicValidatedDiagramName = new WritableValue<String>(null, String.class);
-        IObservableValue<ModelName> atomicValidatedModelName = new WritableValue<ModelName>(null, ModelName.class);
+        IObservableValue<String> atomicValidatedDiagramName = new WritableValue<>(null, String.class);
+        IObservableValue<ModelName> atomicValidatedModelName = new WritableValue<>(null, ModelName.class);
 
         UpdateValueStrategy strategyAtomicModelNameTargetToModel = new UpdateValueStrategy();
         strategyAtomicModelNameTargetToModel.setAfterGetValidator(new AtomicModelNameProcessor());
@@ -153,7 +165,7 @@ public class ModelAndDiagramSelectionComposite extends Composite {
         super.dispose();
     }
 
-    private static abstract class TextFieldVerifier implements VerifyListener {
+    private abstract static class TextFieldVerifier implements VerifyListener {
 
         @Override
         public void verifyText(VerifyEvent e) {

@@ -4,9 +4,9 @@ import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.ui.focus.manager.IFocusManager;
 import de.cooperateproject.ui.focus.manager.IFocusManagerFactory;
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 /**
  * Factory for the graphical focus manager.

@@ -8,19 +8,19 @@ import de.cooperateproject.modeling.common.types.DiagramTypes;
 public enum NotationDiagramTypes {
 
     CLASS(DiagramTypes.CLASS, "PapyrusUMLClassDiagram", "org.eclipse.papyrus.uml.diagram.class"),
-    USECASE(DiagramTypes.USECASE, "UseCase", "org.eclipse.papyrus.uml.diagram.usecase"),
+    USECASE(DiagramTypes.USECASE, "UseCase", "org.eclipse.papyrus.uml.diagram.useCase"),
     ACTIVITY(DiagramTypes.ACTIVITY, "PapyrusUMLActivityDiagram", "org.eclipse.papyrus.uml.diagram.activity"),
     SEQUENCE(DiagramTypes.SEQUENCE, "PapyrusUMLSequenceDiagram", "org.eclipse.papyrus.uml.diagram.sequence"),
-    STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram", "org.eclipse.papyrus.uml.diagram.state");
+    STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram", "org.eclipse.papyrus.uml.diagram.stateMachine");
 
     private final DiagramTypes diagramType;
     private final String notationDiagramType;
-    private final String papyrusDiagramKindId;
+    private final String diagramKindId;
 
     private NotationDiagramTypes(DiagramTypes diagramType, String notationDiagramType, String diagramKindId) {
         this.diagramType = diagramType;
         this.notationDiagramType = notationDiagramType;
-        this.papyrusDiagramKindId = diagramKindId;
+        this.diagramKindId = diagramKindId;
     }
 
     public DiagramTypes getDiagramType() {
@@ -29,10 +29,6 @@ public enum NotationDiagramTypes {
 
     public String getNotationDiagramType() {
         return notationDiagramType;
-    }
-
-    public String getPapyrusDiagramKindId() {
-        return papyrusDiagramKindId;
     }
 
     public static Optional<NotationDiagramTypes> getByDiagramType(DiagramTypes diagramType) {
@@ -45,5 +41,9 @@ public enum NotationDiagramTypes {
 
     public static Optional<NotationDiagramTypes> getByPapyrusDiagramKindId(String diagramKindId) {
         return Arrays.stream(values()).filter(x -> x.getPapyrusDiagramKindId().equals(diagramKindId)).findFirst();
+    }
+
+    public String getPapyrusDiagramKindId() {
+        return diagramKindId;
     }
 }

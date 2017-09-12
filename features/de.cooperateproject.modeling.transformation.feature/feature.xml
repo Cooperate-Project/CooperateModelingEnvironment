@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.transformation.feature"
       label="%featureName"
-      version="0.2.0.qualifier"
+      version="0.2.2.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -36,13 +36,6 @@
          unpack="false"/>
 
    <plugin
-         id="de.cooperateproject.modeling.transformation.transformations"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="de.cooperateproject.modeling.common"
          download-size="0"
          install-size="0"
@@ -51,6 +44,20 @@
 
    <plugin
          id="de.cooperateproject.modeling.textual.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.transformation.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.transformation.registry"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -1,0 +1,130 @@
+import TransformationUtils_Usecase;
+
+transformation Graphical_to_Textual_for_Usecase(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses usecase('http://www.cooperateproject.de/modeling/textual/usecase/Usecase');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+
+
+
+main() {
+    var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="UseCase");
+    assert fatal (diagrams->size() = 1);
+
+    diagrams->map diagramToDiagram();
+}
+
+mapping notation::Diagram::diagramToDiagram() : usecase::UseCaseDiagram
+{
+    title := self.name;
+    rootPackage := self.map diagramToRootPackage();
+}
+
+mapping notation::Diagram::diagramToRootPackage() : usecase::RootPackage
+{
+    referencedElement := self.element.toElement();
+    systems := self.children->select(type = PAPYRUS_NOTATION_SHAPE_SUBJECT_REGULAR).map nodeToSystem();
+    actors := self.children->select(type = PAPYRUS_NOTATION_SHAPE_ACTOR_REGULAR).map nodeToBehavioredClassifier().oclAsType(usecase::Actor);
+    relationships := self.edges.map edgeToRelationship();
+}
+
+mapping notation::Node::nodeToBehavioredClassifier() : usecase::BehavioredClassifier
+disjuncts notation::Node::nodeToUsecase, notation::Node::nodeToActor
+{
+}
+
+mapping notation::Node::nodeToSystem() : usecase::System
+{
+    referencedElement := self.element.toElement();
+    usecases := self.children->any(type = PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR).children->select(type = PAPYRUS_NOTATION_SHAPE_USECASE_NESTED).map nodeToBehavioredClassifier().oclAsType(usecase::UseCase);
+    comments := self.getCommentShape().map commentToComment();
+}
+
+mapping notation::Node::nodeToUsecase() : usecase::UseCase
+when {self.element.oclIsKindOf(uml::UseCase)}
+{
+    var umlUseCase := self.element.oclAsType(uml::UseCase);
+    referencedElement := self.element.toElement();
+    extensionPoints := self.children->any(type = PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED).children->select(type = PAPYRUS_NOTATION_NODE_EXTENSIONPOINTLABEL_REGULAR).map nodeToExtensionPoint();
+    comments := self.getCommentShape().map commentToComment();
+}
+
+mapping notation::Node::nodeToExtensionPoint() : usecase::ExtensionPoint
+{
+    var umlExtensionPoint := self.element.oclAsType(uml::ExtensionPoint);
+    referencedElement := self.element.toElement();
+}
+
+mapping notation::Node::nodeToActor() : usecase::Actor
+when {self.element.oclIsKindOf(uml::Actor)}
+{
+    var umlActor := self.element.oclAsType(uml::Actor);
+    referencedElement := self.element.toElement();
+    comments := self.getCommentShape().map commentToComment();
+}
+
+mapping notation::View::commentToComment() : textualCommons::Comment
+when {not self.oclIsInvalid() and not self.oclIsUndefined()}
+{
+    referencedElement := self.element.oclAsType(uml::Comment);
+}
+
+mapping notation::Edge::edgeToRelationship() : usecase::Relationship
+disjuncts
+    notation::Edge::edgeToAssociation,
+    notation::Edge::edgeToGeneralization,
+    notation::Edge::edgeToExtend,
+    notation::Edge::edgeToInclude
+{
+}
+
+mapping notation::Edge::edgeToAssociation() : usecase::Association
+when {self.element != null and self.element.oclIsKindOf(uml::Association)}
+{
+    var umlAssociation := self.element.oclAsType(uml::Association);
+    var umlActorEnd := umlAssociation.memberEnd->any(type.oclIsKindOf(uml::Actor)).oclAsType(uml::Property);
+    var umlUseCaseEnd := umlAssociation.memberEnd->any(type.oclIsKindOf(uml::UseCase));
+    
+    referencedElement := self.element.toElement();
+    actorCardinality := umlActorEnd.map multiplicityElementToCardinality();
+    useCaseCardinality := umlUseCaseEnd.map multiplicityElementToCardinality();
+}
+
+mapping notation::Edge::edgeToGeneralization() : usecase::Generalization
+when {self.element != null and self.element.oclIsKindOf(uml::Generalization)}
+{
+    referencedElement := self.element.toElement();
+}
+
+mapping notation::Edge::edgeToExtend() : usecase::Extend
+when {self.element != null and self.element.oclIsKindOf(uml::Extend)}
+{
+    referencedElement := self.element.toElement();
+}
+
+mapping notation::Edge::edgeToInclude() : usecase::Include
+when {self.element != null and self.element.oclIsKindOf(uml::Include)}
+{
+    referencedElement := self.element.toElement();
+}
+
+
+mapping uml::MultiplicityElement::multiplicityElementToCardinality() : Cardinality
+when {self.hasCardinality()}
+{
+    referencedElement := self;
+}
+
+query notation::View::getCommentShape() : notation::View
+{
+    return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR)->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
+//  return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR).element
+//         ->selectByKind(uml::Comment)->any(annotatedElement->includes(self.element));
+}
+
+query ecore::EObject::toElement() : uml::Element {
+    return self.oclAsType(uml::Element);
+}
