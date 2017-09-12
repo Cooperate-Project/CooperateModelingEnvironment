@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Class Diagram Transformation Tests
+Bundle-SymbolicName: de.cooperateproject.modeling.transformation.cls.tests
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: de.cooperateproject.modeling.transformation.cls;bundle-version="0.2.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.cooperateproject.modeling.transformation.tests.common,
+ org.junit,
+ de.cooperateproject.modeling.textual.cls.metamodel,
+ org.eclipse.emf.compare,
+ com.google.guava;bundle-version="21.0.0"

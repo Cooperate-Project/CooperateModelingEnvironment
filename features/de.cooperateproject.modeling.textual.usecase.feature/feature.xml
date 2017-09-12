@@ -22,6 +22,10 @@
          id="de.cooperateproject.modeling.textual.commons.feature"
          version="0.0.0"/>
 
+   <requires>
+      <import feature="de.cooperateproject.modeling.transformation.feature" version="0.2.2.qualifier"/>
+   </requires>
+
    <plugin
          id="de.cooperateproject.modeling.textual.usecase.metamodel"
          download-size="0"
@@ -45,6 +49,13 @@
 
    <plugin
          id="de.cooperateproject.modeling.textual.usecase.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.transformation.usecase"
          download-size="0"
          install-size="0"
          version="0.0.0"

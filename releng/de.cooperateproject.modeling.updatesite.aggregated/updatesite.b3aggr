@@ -30,6 +30,9 @@
       <repositories location="https://dl.bintray.com/cooperate-project/Externals/updatesite/1.0.0/" mirrorArtifacts="false">
         <bundles name="org.apache.activemq.all"/>
       </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/latest/" mirrorArtifacts="false">
+        <features name="de.cooperateproject.qvtoutils.blackbox.feature.feature.group"/>
+      </repositories>      
     </contributions>
   </validationSets>
   <configurations/>

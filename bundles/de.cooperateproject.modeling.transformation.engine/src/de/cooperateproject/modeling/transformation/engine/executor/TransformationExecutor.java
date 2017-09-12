@@ -8,20 +8,29 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
-import de.cooperateproject.modeling.transformation.transformations.registry.ITransformationFactory;
-import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactoryRegistry;
+import de.cooperateproject.modeling.transformation.common.ITransformationExecutor;
+import de.cooperateproject.modeling.transformation.common.ITransformationFactory;
+import de.cooperateproject.modeling.transformation.common.ITransformationFactoryRegistry;
+import de.cooperateproject.modeling.transformation.common.registry.Transformation;
 
-public enum TransformationExecutor {
+public class TransformationExecutor implements ITransformationExecutor {
+    private ITransformationFactoryRegistry transformationFactoryRegistry;
 
-    INSTANCE;
+    public synchronized void setTransformationFactoryRegistry(ITransformationFactoryRegistry registry) {
+        this.transformationFactoryRegistry = registry;
+    }
 
-    public static TransformationExecutor getInstance() {
-        return TransformationExecutor.INSTANCE;
+    public synchronized void unsetTransformationFactoryRegistry(ITransformationFactoryRegistry registry) {
+        if (this.transformationFactoryRegistry == registry) {
+            this.transformationFactoryRegistry = null;
+        }
     }
 
     public void transformChanged(URI changedResource, ResourceSet resourceSet) throws IOException {
-        Collection<ITransformationFactory> transformationFactories = TransformationFactoryRegistry.getInstance()
+        if (transformationFactoryRegistry == null)
+            throw new IllegalStateException(
+                    "No TransformationFactoryRegistry registered. Please make sure that Eclipse DS is running.");
+        Collection<ITransformationFactory> transformationFactories = transformationFactoryRegistry
                 .getTransformationFactories();
         Collection<Transformation> transformations = transformationFactories.stream()
                 .map(f -> f.create(changedResource, resourceSet)).filter(Optional::isPresent).map(Optional::get)
