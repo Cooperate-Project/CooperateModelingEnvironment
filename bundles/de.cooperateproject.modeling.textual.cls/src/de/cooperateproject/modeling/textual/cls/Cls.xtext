@@ -146,7 +146,7 @@ CardinalityBound returns ecore::EInt:
 ;
 
 StereotypeApplication returns commons::StereotypeApplication:
-	STEREOTYPE_O stereotype=ID STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
+	STEREOTYPE_O stereotype=[uml::Stereotype|FQN] STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
 ;
 
 

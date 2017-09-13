@@ -6,6 +6,7 @@ import org.eclipse.emf.cdo.CDOObject;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getReferencedElement <em>Referenced Element</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getValues <em>Values</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getStereotypeApplication()
@@ -54,57 +55,30 @@ public interface StereotypeApplication extends CDOObject {
     void setReferencedElement(EObject value);
 
     /**
-     * Returns the value of the '<em><b>Stereotype</b></em>' attribute.
+     * Returns the value of the '<em><b>Stereotype</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Stereotype</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Stereotype</em>' attribute.
-     * @see #isSetStereotype()
-     * @see #unsetStereotype()
-     * @see #setStereotype(String)
+     * @return the value of the '<em>Stereotype</em>' reference.
+     * @see #setStereotype(Stereotype)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getStereotypeApplication_Stereotype()
-     * @model unsettable="true" transient="true"
+     * @model transient="true"
      * @generated
      */
-    String getStereotype();
+    Stereotype getStereotype();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}' attribute.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Stereotype</em>' attribute.
-     * @see #isSetStereotype()
-     * @see #unsetStereotype()
+     * @param value the new value of the '<em>Stereotype</em>' reference.
      * @see #getStereotype()
      * @generated
      */
-    void setStereotype(String value);
-
-    /**
-     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetStereotype()
-     * @see #getStereotype()
-     * @see #setStereotype(String)
-     * @generated
-     */
-    void unsetStereotype();
-
-    /**
-     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Stereotype</em>' attribute is set.
-     * @see #unsetStereotype()
-     * @see #getStereotype()
-     * @see #setStereotype(String)
-     * @generated
-     */
-    boolean isSetStereotype();
+    void setStereotype(Stereotype value);
 
     /**
      * Returns the value of the '<em><b>Values</b></em>' containment reference list.

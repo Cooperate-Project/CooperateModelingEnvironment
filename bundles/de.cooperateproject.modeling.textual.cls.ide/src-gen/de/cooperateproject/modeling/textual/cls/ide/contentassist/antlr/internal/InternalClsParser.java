@@ -17435,21 +17435,33 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StereotypeApplication__StereotypeAssignment_1"
-    // InternalCls.g:5690:1: rule__StereotypeApplication__StereotypeAssignment_1 : ( RULE_ID ) ;
+    // InternalCls.g:5690:1: rule__StereotypeApplication__StereotypeAssignment_1 : ( ( ruleFQN ) ) ;
     public final void rule__StereotypeApplication__StereotypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:5694:1: ( ( RULE_ID ) )
-            // InternalCls.g:5695:2: ( RULE_ID )
+            // InternalCls.g:5694:1: ( ( ( ruleFQN ) ) )
+            // InternalCls.g:5695:2: ( ( ruleFQN ) )
             {
-            // InternalCls.g:5695:2: ( RULE_ID )
-            // InternalCls.g:5696:3: RULE_ID
+            // InternalCls.g:5695:2: ( ( ruleFQN ) )
+            // InternalCls.g:5696:3: ( ruleFQN )
             {
-             before(grammarAccess.getStereotypeApplicationAccess().getStereotypeIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStereotypeApplicationAccess().getStereotypeIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeCrossReference_1_0()); 
+            // InternalCls.g:5697:3: ( ruleFQN )
+            // InternalCls.g:5698:4: ruleFQN
+            {
+             before(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeFQNParserRuleCall_1_0_1()); 
+            pushFollow(FOLLOW_2);
+            ruleFQN();
+
+            state._fsp--;
+
+             after(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeFQNParserRuleCall_1_0_1()); 
+
+            }
+
+             after(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeCrossReference_1_0()); 
 
             }
 
@@ -17472,17 +17484,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StereotypeApplication__ValuesAssignment_3_1"
-    // InternalCls.g:5705:1: rule__StereotypeApplication__ValuesAssignment_3_1 : ( ruleTaggedValue ) ;
+    // InternalCls.g:5709:1: rule__StereotypeApplication__ValuesAssignment_3_1 : ( ruleTaggedValue ) ;
     public final void rule__StereotypeApplication__ValuesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:5709:1: ( ( ruleTaggedValue ) )
-            // InternalCls.g:5710:2: ( ruleTaggedValue )
+            // InternalCls.g:5713:1: ( ( ruleTaggedValue ) )
+            // InternalCls.g:5714:2: ( ruleTaggedValue )
             {
-            // InternalCls.g:5710:2: ( ruleTaggedValue )
-            // InternalCls.g:5711:3: ruleTaggedValue
+            // InternalCls.g:5714:2: ( ruleTaggedValue )
+            // InternalCls.g:5715:3: ruleTaggedValue
             {
              before(grammarAccess.getStereotypeApplicationAccess().getValuesTaggedValueParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17513,17 +17525,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StereotypeApplication__ValuesAssignment_3_2_1"
-    // InternalCls.g:5720:1: rule__StereotypeApplication__ValuesAssignment_3_2_1 : ( ruleTaggedValue ) ;
+    // InternalCls.g:5724:1: rule__StereotypeApplication__ValuesAssignment_3_2_1 : ( ruleTaggedValue ) ;
     public final void rule__StereotypeApplication__ValuesAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:5724:1: ( ( ruleTaggedValue ) )
-            // InternalCls.g:5725:2: ( ruleTaggedValue )
+            // InternalCls.g:5728:1: ( ( ruleTaggedValue ) )
+            // InternalCls.g:5729:2: ( ruleTaggedValue )
             {
-            // InternalCls.g:5725:2: ( ruleTaggedValue )
-            // InternalCls.g:5726:3: ruleTaggedValue
+            // InternalCls.g:5729:2: ( ruleTaggedValue )
+            // InternalCls.g:5730:3: ruleTaggedValue
             {
              before(grammarAccess.getStereotypeApplicationAccess().getValuesTaggedValueParserRuleCall_3_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17554,17 +17566,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TaggedValue__NameAssignment_0"
-    // InternalCls.g:5735:1: rule__TaggedValue__NameAssignment_0 : ( RULE_STRING ) ;
+    // InternalCls.g:5739:1: rule__TaggedValue__NameAssignment_0 : ( RULE_STRING ) ;
     public final void rule__TaggedValue__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:5739:1: ( ( RULE_STRING ) )
-            // InternalCls.g:5740:2: ( RULE_STRING )
+            // InternalCls.g:5743:1: ( ( RULE_STRING ) )
+            // InternalCls.g:5744:2: ( RULE_STRING )
             {
-            // InternalCls.g:5740:2: ( RULE_STRING )
-            // InternalCls.g:5741:3: RULE_STRING
+            // InternalCls.g:5744:2: ( RULE_STRING )
+            // InternalCls.g:5745:3: RULE_STRING
             {
              before(grammarAccess.getTaggedValueAccess().getNameSTRINGTerminalRuleCall_0_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -17591,17 +17603,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TaggedValue__ValueAssignment_2"
-    // InternalCls.g:5750:1: rule__TaggedValue__ValueAssignment_2 : ( RULE_STRING ) ;
+    // InternalCls.g:5754:1: rule__TaggedValue__ValueAssignment_2 : ( RULE_STRING ) ;
     public final void rule__TaggedValue__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:5754:1: ( ( RULE_STRING ) )
-            // InternalCls.g:5755:2: ( RULE_STRING )
+            // InternalCls.g:5758:1: ( ( RULE_STRING ) )
+            // InternalCls.g:5759:2: ( RULE_STRING )
             {
-            // InternalCls.g:5755:2: ( RULE_STRING )
-            // InternalCls.g:5756:3: RULE_STRING
+            // InternalCls.g:5759:2: ( RULE_STRING )
+            // InternalCls.g:5760:3: RULE_STRING
             {
              before(grammarAccess.getTaggedValueAccess().getValueSTRINGTerminalRuleCall_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 

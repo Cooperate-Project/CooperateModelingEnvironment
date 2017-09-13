@@ -14,13 +14,12 @@ class CommonStereotypeApplicationMissingStereotypeResolution extends AutomatedIs
 	}
 	
 	override resolve() {
-		val stereotypeName = problematicElement.stereotype
+		val stereotype = problematicElement.stereotype
 		
 		val umlElement = problematicElement.parentUML
-		val stereotype = getApplicableStereotype(umlElement, stereotypeName)
 
-		if(stereotype.present)
-			problematicElement.referencedElement = umlElement.applyStereotype(stereotype.get)		
+		if(umlElement.isStereotypeApplicable(stereotype))
+			problematicElement.referencedElement = umlElement.applyStereotype(stereotype)		
 	}
 	
 	def static getApplicableStereotype(Element umlElement, String stereotypeName) {

@@ -721,22 +721,22 @@ public interface TextualCommonsPackage extends EPackage {
     int STEREOTYPE_APPLICATION__REFERENCED_ELEMENT = 0;
 
     /**
-     * The feature id for the '<em><b>Stereotype</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int STEREOTYPE_APPLICATION__STEREOTYPE = 1;
-
-    /**
      * The feature id for the '<em><b>Values</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEREOTYPE_APPLICATION__VALUES = 2;
+    int STEREOTYPE_APPLICATION__VALUES = 1;
+
+    /**
+     * The feature id for the '<em><b>Stereotype</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEREOTYPE_APPLICATION__STEREOTYPE = 2;
 
     /**
      * The number of structural features of the '<em>Stereotype Application</em>' class.
@@ -1111,15 +1111,15 @@ public interface TextualCommonsPackage extends EPackage {
     EReference getStereotypeApplication_ReferencedElement();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype <em>Stereotype</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Stereotype</em>'.
+     * @return the meta object for the reference '<em>Stereotype</em>'.
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getStereotype()
      * @see #getStereotypeApplication()
      * @generated
      */
-    EAttribute getStereotypeApplication_Stereotype();
+    EReference getStereotypeApplication_Stereotype();
 
     /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication#getValues <em>Values</em>}'.
@@ -1444,12 +1444,12 @@ public interface TextualCommonsPackage extends EPackage {
         EReference STEREOTYPE_APPLICATION__REFERENCED_ELEMENT = eINSTANCE.getStereotypeApplication_ReferencedElement();
 
         /**
-         * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Stereotype</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute STEREOTYPE_APPLICATION__STEREOTYPE = eINSTANCE.getStereotypeApplication_Stereotype();
+        EReference STEREOTYPE_APPLICATION__STEREOTYPE = eINSTANCE.getStereotypeApplication_Stereotype();
 
         /**
          * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.

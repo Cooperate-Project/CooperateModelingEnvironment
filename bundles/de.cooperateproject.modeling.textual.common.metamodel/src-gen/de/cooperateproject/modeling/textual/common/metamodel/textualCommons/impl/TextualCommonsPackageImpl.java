@@ -467,8 +467,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getStereotypeApplication_Stereotype() {
-        return (EAttribute)stereotypeApplicationEClass.getEStructuralFeatures().get(1);
+    public EReference getStereotypeApplication_Stereotype() {
+        return (EReference)stereotypeApplicationEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -477,7 +477,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * @generated
      */
     public EReference getStereotypeApplication_Values() {
-        return (EReference)stereotypeApplicationEClass.getEStructuralFeatures().get(2);
+        return (EReference)stereotypeApplicationEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -575,8 +575,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         stereotypeApplicationEClass = createEClass(STEREOTYPE_APPLICATION);
         createEReference(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__REFERENCED_ELEMENT);
-        createEAttribute(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__STEREOTYPE);
         createEReference(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__VALUES);
+        createEReference(stereotypeApplicationEClass, STEREOTYPE_APPLICATION__STEREOTYPE);
 
         taggedValueEClass = createEClass(TAGGED_VALUE);
         createEAttribute(taggedValueEClass, TAGGED_VALUE__NAME);
@@ -710,8 +710,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         initEClass(stereotypeApplicationEClass, StereotypeApplication.class, "StereotypeApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getStereotypeApplication_ReferencedElement(), theEcorePackage.getEObject(), null, "referencedElement", null, 0, 1, StereotypeApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getStereotypeApplication_Stereotype(), theEcorePackage.getEString(), "stereotype", null, 0, 1, StereotypeApplication.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getStereotypeApplication_Values(), this.getTaggedValue(), null, "values", null, 0, -1, StereotypeApplication.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getStereotypeApplication_Stereotype(), theUMLPackage.getStereotype(), null, "stereotype", null, 0, 1, StereotypeApplication.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(taggedValueEClass, TaggedValue.class, "TaggedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTaggedValue_Name(), theEcorePackage.getEString(), "name", null, 0, 1, TaggedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

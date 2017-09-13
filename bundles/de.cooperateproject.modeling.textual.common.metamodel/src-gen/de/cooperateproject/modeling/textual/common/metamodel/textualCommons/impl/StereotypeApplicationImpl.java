@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,23 +26,13 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl#getReferencedElement <em>Referenced Element</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl#getValues <em>Values</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.StereotypeApplicationImpl#getStereotype <em>Stereotype</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StereotypeApplicationImpl extends CDOObjectImpl implements StereotypeApplication {
-    /**
-     * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getStereotype()
-     * @generated
-     * @ordered
-     */
-    protected static final String STEREOTYPE_EDEFAULT = null;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -103,8 +94,8 @@ public class StereotypeApplicationImpl extends CDOObjectImpl implements Stereoty
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getStereotype() {
-        return (String)eDynamicGet(TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE, TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE, true, true);
+    public Stereotype getStereotype() {
+        return (Stereotype)eDynamicGet(TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE, TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE, true, true);
     }
 
     /**
@@ -112,26 +103,17 @@ public class StereotypeApplicationImpl extends CDOObjectImpl implements Stereoty
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStereotype(String newStereotype) {
+    public Stereotype basicGetStereotype() {
+        return (Stereotype)eDynamicGet(TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE, TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setStereotype(Stereotype newStereotype) {
         eDynamicSet(TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE, TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE, newStereotype);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetStereotype() {
-        eDynamicUnset(TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE, TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetStereotype() {
-        return eDynamicIsSet(TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE, TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE);
     }
 
     /**
@@ -169,10 +151,11 @@ public class StereotypeApplicationImpl extends CDOObjectImpl implements Stereoty
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
-            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
-                return getStereotype();
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__VALUES:
                 return getValues();
+            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
+                if (resolve) return getStereotype();
+                return basicGetStereotype();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -189,12 +172,12 @@ public class StereotypeApplicationImpl extends CDOObjectImpl implements Stereoty
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__REFERENCED_ELEMENT:
                 setReferencedElement((EObject)newValue);
                 return;
-            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
-                setStereotype((String)newValue);
-                return;
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__VALUES:
                 getValues().clear();
                 getValues().addAll((Collection<? extends TaggedValue>)newValue);
+                return;
+            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
+                setStereotype((Stereotype)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -211,11 +194,11 @@ public class StereotypeApplicationImpl extends CDOObjectImpl implements Stereoty
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__REFERENCED_ELEMENT:
                 setReferencedElement((EObject)null);
                 return;
-            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
-                unsetStereotype();
-                return;
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__VALUES:
                 getValues().clear();
+                return;
+            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
+                setStereotype((Stereotype)null);
                 return;
         }
         super.eUnset(featureID);
@@ -231,10 +214,10 @@ public class StereotypeApplicationImpl extends CDOObjectImpl implements Stereoty
         switch (featureID) {
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
-            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
-                return isSetStereotype();
             case TextualCommonsPackage.STEREOTYPE_APPLICATION__VALUES:
                 return !getValues().isEmpty();
+            case TextualCommonsPackage.STEREOTYPE_APPLICATION__STEREOTYPE:
+                return basicGetStereotype() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -6,11 +6,13 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 class CommonStereotypeApplicationMissingStereotypeResolvableChecker implements IResolvableChecker<StereotypeApplication> {
 	
 	override isResolvable(StereotypeApplication element) {
-		val stereotypeName = element.stereotype
+		val stereotype = element.stereotype
+		if (stereotype === null)
+			return false
+	
 		val umlElement = CommonStereotypeApplicationMissingStereotypeResolution.getParentUML(element)
-		val stereotype = CommonStereotypeApplicationMissingStereotypeResolution.getApplicableStereotype(umlElement, stereotypeName)
 		
-		return stereotype.present	   
+		return umlElement.isStereotypeApplicable(stereotype)	   
 }
 
 	

@@ -1167,7 +1167,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cSTEREOTYPE_OTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cStereotypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cStereotypeIDTerminalRuleCall_1_0 = (RuleCall)cStereotypeAssignment_1.eContents().get(0);
+		private final CrossReference cStereotypeStereotypeCrossReference_1_0 = (CrossReference)cStereotypeAssignment_1.eContents().get(0);
+		private final RuleCall cStereotypeStereotypeFQNParserRuleCall_1_0_1 = (RuleCall)cStereotypeStereotypeCrossReference_1_0.eContents().get(1);
 		private final RuleCall cSTEREOTYPE_CTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftCurlyBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
@@ -1180,20 +1181,23 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		
 		//StereotypeApplication commons::StereotypeApplication:
-		//	STEREOTYPE_O stereotype=ID STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?;
+		//	STEREOTYPE_O stereotype=[uml::Stereotype|FQN] STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//STEREOTYPE_O stereotype=ID STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
+		//STEREOTYPE_O stereotype=[uml::Stereotype|FQN] STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?
 		public Group getGroup() { return cGroup; }
 		
 		//STEREOTYPE_O
 		public RuleCall getSTEREOTYPE_OTerminalRuleCall_0() { return cSTEREOTYPE_OTerminalRuleCall_0; }
 		
-		//stereotype=ID
+		//stereotype=[uml::Stereotype|FQN]
 		public Assignment getStereotypeAssignment_1() { return cStereotypeAssignment_1; }
 		
-		//ID
-		public RuleCall getStereotypeIDTerminalRuleCall_1_0() { return cStereotypeIDTerminalRuleCall_1_0; }
+		//[uml::Stereotype|FQN]
+		public CrossReference getStereotypeStereotypeCrossReference_1_0() { return cStereotypeStereotypeCrossReference_1_0; }
+		
+		//FQN
+		public RuleCall getStereotypeStereotypeFQNParserRuleCall_1_0_1() { return cStereotypeStereotypeFQNParserRuleCall_1_0_1; }
 		
 		//STEREOTYPE_C
 		public RuleCall getSTEREOTYPE_CTerminalRuleCall_2() { return cSTEREOTYPE_CTerminalRuleCall_2; }
@@ -1721,7 +1725,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//StereotypeApplication commons::StereotypeApplication:
-	//	STEREOTYPE_O stereotype=ID STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?;
+	//	STEREOTYPE_O stereotype=[uml::Stereotype|FQN] STEREOTYPE_C ('{' values+=TaggedValue (',' values+=TaggedValue)* '}')?;
 	public StereotypeApplicationElements getStereotypeApplicationAccess() {
 		return pStereotypeApplication;
 	}

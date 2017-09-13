@@ -340,7 +340,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     StereotypeApplication returns StereotypeApplication
 	 *
 	 * Constraint:
-	 *     (stereotype=ID (values+=TaggedValue values+=TaggedValue*)?)
+	 *     (stereotype=[Stereotype|FQN] (values+=TaggedValue values+=TaggedValue*)?)
 	 */
 	protected void sequence_StereotypeApplication(ISerializationContext context, StereotypeApplication semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

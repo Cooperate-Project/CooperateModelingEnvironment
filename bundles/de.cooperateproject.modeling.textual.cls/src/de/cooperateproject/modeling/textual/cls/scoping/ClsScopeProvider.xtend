@@ -13,6 +13,20 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.FilteringScope
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.StereotypeApplication
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import org.eclipse.emf.ecore.EGenericType
+import org.eclipse.uml2.uml.Type
+import org.eclipse.uml2.uml.Stereotype
+import org.eclipse.uml2.uml.Element
+import org.eclipse.uml2.uml.util.UMLUtil
+import org.eclipse.uml2.common.util.UML2Util
+import org.eclipse.uml2.uml.Property
+import org.eclipse.uml2.uml.Association
+import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.uml2.uml.Extension
+import org.eclipse.uml2.uml.UMLPackage
 
 /**
  * This class contains custom scoping description.
@@ -47,8 +61,58 @@ class ClsScopeProvider extends AbstractClsScopeProvider {
 		}
 	}
 	
+	protected def dispatch getSpecificScope(StereotypeApplication context, EReference reference) {
+		if (reference == TextualCommonsPackage.Literals.STEREOTYPE_APPLICATION__STEREOTYPE) {
+			
+			val stereotypedObject = context.eContainer as UMLReferencingElement<Element>
+			if(stereotypedObject.referencedElement !== null) {
+				return super.getScope(context, reference).filterApplicable(stereotypedObject.referencedElement)
+			}
+
+			val type = stereotypedObject.eClass.getFeatureType(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT)
+			val elemType = type.EClassifier
+			return super.getScope(context, reference).filterApplicable(elemType)
+		}
+		
+		return null
+	}
+	
 	protected def dispatch getSpecificScope(EObject context, EReference reference) {
 		return null
+	}
+	
+	protected static def filterApplicable(IScope baseScope, Element requestedElement) {
+		if (requestedElement === null) {
+			return baseScope
+		}
+		return new FilteringScope(baseScope, [EObjectOrProxy instanceof Stereotype && requestedElement.isStereotypeApplicable(EObjectOrProxy as Stereotype)])
+	}
+	
+	
+	protected static def filterApplicable(IScope baseScope, EClassifier requestedType) {
+		if (requestedType === null) {
+			return baseScope
+		}
+		return new FilteringScope(baseScope, [EObjectOrProxy instanceof Stereotype && isExtension(requestedType,EObjectOrProxy as Stereotype)])
+	}
+	
+	def static Boolean isExtension(EClassifier eClass,
+			Stereotype stereotype) {
+
+		for (Property attribute : stereotype.getAllAttributes.filter[association instanceof Extension]) {
+				val name = attribute.getName();
+				if (!UML2Util.isEmpty(name)
+					&& name.startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+
+					val type = attribute.getType();
+					val typeClassifier = UMLPackage.eINSTANCE.getEClassifier(type.getName())
+					if (typeClassifier == eClass) {
+							return true
+					}
+				}
+		}
+
+		return false
 	}
 	
 	protected static def filter(IScope baseScope, EClass requestedType) {

@@ -5693,9 +5693,13 @@ rule__StereotypeApplication__StereotypeAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getStereotypeApplicationAccess().getStereotypeIDTerminalRuleCall_1_0()); }
-		RULE_ID
-		{ after(grammarAccess.getStereotypeApplicationAccess().getStereotypeIDTerminalRuleCall_1_0()); }
+		{ before(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeCrossReference_1_0()); }
+		(
+			{ before(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeFQNParserRuleCall_1_0_1()); }
+			ruleFQN
+			{ after(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeFQNParserRuleCall_1_0_1()); }
+		)
+		{ after(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeCrossReference_1_0()); }
 	)
 ;
 finally {

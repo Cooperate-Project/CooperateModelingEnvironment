@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.ProfileApplication;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -45,6 +47,8 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
 
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
 
+    private static final URI UML_STANDARD_PROFILE_URI = URI.createURI(UMLResource.STANDARD_PROFILE_URI);
+
     @Inject
     private IQualifiedNameProvider qualifiedNameProvider;
 
@@ -68,21 +72,52 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
         if (!umlResource.isPresent()) {
             return IScope.NULLSCOPE;
         }
+
+        if (type.equals(UMLPackage.eINSTANCE.getStereotype()))
+            return getStereotypeScopeFromUMLResource(umlResource.get(), predicate);
+
         return getScopeFromUMLResource(umlResource.get(), type, predicate);
     }
 
     private IScope getScopeFromUMLResource(Resource umlResource, EClass type,
             Predicate<IEObjectDescription> predicate) {
         Stream<EObject> umlResourceElements;
+
         if (umlResource instanceof CDOResource && ((CDOResource) umlResource).cdoView() instanceof CDOTransaction) {
             umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, type);
         } else {
             umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
         }
         Stream<EObject> umlPrimitiveElements = getPrimitiveTypesIfRequested(umlResource, type);
+        // Stream<EObject> umlStereotypes = getStereotypes(umlResource, type);
 
         Stream<EObject> scopeElements = Stream.concat(umlPrimitiveElements, umlResourceElements);
+        // scopeElements = Stream.concat(scopeElements, umlStereotypes);
         return createScopeForStream(scopeElements, predicate);
+    }
+
+    // private Stream<EObject> getStereotypes(Resource umlResource, EClass type) {
+    // Resource umlPrimitives = umlResource.getResourceSet().getResource(UML_STANDARD_PROFILE_URI, true);
+    // return getScopeElementsFromUMLResource(umlPrimitives, type).filter(Stereotype.class::isInstance)
+    // .map(Stereotype.class::cast).map(EObject.class::cast);
+    // }
+
+    private IScope getStereotypeScopeFromUMLResource(Resource umlResource, Predicate<IEObjectDescription> predicate) {
+        Stream<EObject> umlResourceProfileApplications;
+
+        if (umlResource instanceof CDOResource && ((CDOResource) umlResource).cdoView() instanceof CDOTransaction) {
+            umlResourceProfileApplications = getScopeElementsFromUMLResource((CDOResource) umlResource,
+                    UMLPackage.eINSTANCE.getProfileApplication());
+        } else {
+            umlResourceProfileApplications = getScopeElementsFromUMLResource(umlResource,
+                    UMLPackage.eINSTANCE.getProfileApplication());
+        }
+
+        Stream<EObject> umlResourceStereotypes = umlResourceProfileApplications.map(ProfileApplication.class::cast)
+                .map(ProfileApplication::getAppliedProfile).flatMap(profile -> profile.allOwnedElements().stream())
+                .filter(Stereotype.class::isInstance).map(EObject.class::cast);
+
+        return createScopeForStream(umlResourceStereotypes, predicate);
     }
 
     private Stream<EObject> getPrimitiveTypesIfRequested(Resource umlResource, EClass type) {

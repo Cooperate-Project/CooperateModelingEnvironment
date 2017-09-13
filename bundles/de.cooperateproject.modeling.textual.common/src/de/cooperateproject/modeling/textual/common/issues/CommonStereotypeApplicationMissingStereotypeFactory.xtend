@@ -20,16 +20,11 @@ class CommonStereotypeApplicationMissingStereotypeFactory extends CommonAutomate
 	}
 
 	override hasIssueInternal(StereotypeApplication app) {
-//	    if (!ONLY_CHECK_FIXABLE_TYPES || CommonStereotypeApplicationMissingElementResolution.
-//	        acceptableTypes.exists[t | t.isInstance(element)]) {
-//            return element.referencedElement === null;
-//	    }
-//	    return false;
 		var umlElement = app.umlElement;
-		for(s: umlElement.appliedStereotypes) {
-			if(s.name == app.stereotype)
-				return false
-		}
+		
+		if(umlElement.isStereotypeApplied(app.stereotype))
+			return false
+		
 		return app.referencedElement === null
 	}
 	

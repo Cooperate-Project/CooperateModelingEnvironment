@@ -38,7 +38,7 @@ public class UMLReferencingElementInitializer extends AtomicDerivedStateProcesso
             for (Stereotype stereotype : appliedStereotypes) {
                 StereotypeApplication textualApplication = TextualCommonsFactory.eINSTANCE
                         .createStereotypeApplication();
-                textualApplication.setStereotype(stereotype.getName());
+                textualApplication.setStereotype(stereotype);
                 EObject stereoApp = object.getReferencedElement().getStereotypeApplication(stereotype);
                 textualApplication.setReferencedElement(stereoApp);
                 object.getAppliedStereotypes().add(textualApplication);

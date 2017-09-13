@@ -2009,19 +2009,17 @@ ruleStereotypeApplication returns [EObject current=null]
 		}
 		(
 			(
-				lv_stereotype_1_0=RULE_ID
-				{
-					newLeafNode(lv_stereotype_1_0, grammarAccess.getStereotypeApplicationAccess().getStereotypeIDTerminalRuleCall_1_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getStereotypeApplicationRule());
 					}
-					setWithLastConsumed(
-						$current,
-						"stereotype",
-						lv_stereotype_1_0,
-						"de.cooperateproject.modeling.textual.cls.Cls.ID");
+				}
+				{
+					newCompositeNode(grammarAccess.getStereotypeApplicationAccess().getStereotypeStereotypeCrossReference_1_0());
+				}
+				ruleFQN
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
