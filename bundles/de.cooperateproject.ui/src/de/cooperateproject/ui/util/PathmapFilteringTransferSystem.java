@@ -1,6 +1,7 @@
 package de.cooperateproject.ui.util;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IPath;
@@ -27,7 +28,8 @@ public class PathmapFilteringTransferSystem extends CDOTransferSystem {
     public void saveModels(EList<Resource> resources, IProgressMonitor monitor) {
         BasicEList<Resource> filteredResources = new BasicEList<>(
                 resources.stream().filter(r -> !"pathmap".equals(r.getURI().scheme())).collect(Collectors.toList()));
-        resources.stream().filter(DerivedStateAwareResource.class::isInstance)
+
+        (new ArrayList<>(resources)).stream().filter(DerivedStateAwareResource.class::isInstance)
                 .map(DerivedStateAwareResource.class::cast).forEach(PathmapFilteringTransferSystem::calculateState);
         transferSystem.saveModels(filteredResources, monitor);
     }
