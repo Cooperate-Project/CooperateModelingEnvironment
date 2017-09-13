@@ -17,7 +17,7 @@ import de.cooperateproject.ui.diff.content.SummaryItem;
 
 /**
  * Handles click and keyboard events in DiffView.
- * @author czogalik
+ * @author Jasmin, czogalik
  *
  */
 public class ClickHandler {
@@ -25,8 +25,12 @@ public class ClickHandler {
     private TableViewer summaryViewer;
     private TreeViewer diffViewer;
     
+    /**
+     * Handles click and keyboard events in DiffView.
+     * @param summaryViewer TableViewer of DiffView.
+     * @param diffViewer TreeViewer of DiffView.
+     */
     public ClickHandler(TableViewer summaryViewer, TreeViewer diffViewer) {
-        
         this.summaryViewer = summaryViewer;
         this.diffViewer = diffViewer;
     }

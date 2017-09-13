@@ -18,12 +18,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.diff.views.DiffView;
+import de.cooperateproject.ui.diff.views.IDiffView;
 
 /**
  * Handler for filling this plugin's view with content and passing the selected .cooperate-file to
  * the view.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class OpenViewHandler extends AbstractHandler {
@@ -37,7 +38,7 @@ public class OpenViewHandler extends AbstractHandler {
      */
     public Object execute(ExecutionEvent event) {
 
-        DiffView diffView;
+        IDiffView diffView;
         IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
         IWorkbenchPage page = window.getActivePage();
 
@@ -59,9 +60,9 @@ public class OpenViewHandler extends AbstractHandler {
         return null;
     }
 
-    private static DiffView getDiffView(IWorkbenchWindow window, IWorkbenchPage page) {
+    private static IDiffView getDiffView(IWorkbenchWindow window, IWorkbenchPage page) {
         try {
-            return (DiffView) page.showView(DiffView.PLUGIN_ID);
+            return (IDiffView) page.showView(DiffView.PLUGIN_ID);
         } catch (PartInitException e) {
             LOGGER.error(e.getMessage(), e);
             openErrorDialog("Diff View couldn't be initialized. " + e.getMessage(), window.getShell());

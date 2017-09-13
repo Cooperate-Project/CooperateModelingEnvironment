@@ -34,7 +34,7 @@ public class CommitLabelProvider extends LabelProvider implements ITableLabelPro
         return getColumnText((CDOCommitInfo) element, columnIndex);
     }
 
-    public String getColumnText(CDOCommitInfo element, int columnIndex) {
+    private String getColumnText(CDOCommitInfo element, int columnIndex) {
         Date date = new Date(element.getTimeStamp());
 
         switch (columnIndex) {

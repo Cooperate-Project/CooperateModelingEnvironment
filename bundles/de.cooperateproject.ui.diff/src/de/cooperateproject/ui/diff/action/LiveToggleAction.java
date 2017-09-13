@@ -9,8 +9,11 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.ui.diff.views.IDiffView;
-
+/**
+ * Action that allows user to decide if he wants the diff view to update if the textual diagram changes.
+ * @author czogalik
+ *
+ */
 public class LiveToggleAction extends Action implements IToggleAction {
     
     private static final String ENABLE_TOOLTIP = "Enable Live Transformation";
@@ -23,11 +26,11 @@ public class LiveToggleAction extends Action implements IToggleAction {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(LiveToggleAction.class);
     
-    private IDiffView diffView;
-    
-    public LiveToggleAction(IDiffView diffView) {
+    /**
+     * Action that allows user to decide if he wants the diff view to update if the textual diagram changes.
+     */
+    public LiveToggleAction() {
         super("", IAction.AS_PUSH_BUTTON);
-        this.diffView = diffView;
         setImageDescriptor(getImage(TERMINATE));
         setToolTipText(DISABLE_TOOLTIP);
         setChecked(true);
@@ -39,7 +42,6 @@ public class LiveToggleAction extends Action implements IToggleAction {
         if (toggleAutoUpdate) {
             setImageDescriptor(getImage(TERMINATE));
             setToolTipText(DISABLE_TOOLTIP);
-            diffView.setCommits();
         } else {
             setImageDescriptor(getImage(START));
             setToolTipText(ENABLE_TOOLTIP);
