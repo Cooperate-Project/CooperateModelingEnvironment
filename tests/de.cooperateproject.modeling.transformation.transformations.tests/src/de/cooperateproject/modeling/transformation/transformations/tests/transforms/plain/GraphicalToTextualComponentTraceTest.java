@@ -78,12 +78,18 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testRequireInterface() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
+
         testTraceTransformation("ComponentDiagramRequire");
     }
 
     @Test
     public void testRequireMultipleInterface() throws Exception {
         testTraceTransformation("ComponentDiagramMultipleRequire");
+    }
+
+    @Test
+    public void testManifestation() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
+        testTraceTransformation("ComponentDiagramManifestation");
     }
 }
