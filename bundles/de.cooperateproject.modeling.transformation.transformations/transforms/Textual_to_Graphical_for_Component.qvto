@@ -27,7 +27,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
   	element := rootPackage.toEObject();
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
-	self.rootpackage.relations.map relationsToShape();
+	edges += self.rootpackage.relations.map relationsToShape();
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -111,7 +111,7 @@ when { self.oclIsKindOf(cmp::Require) }
 	type := PAPYRUS_NOTATION_EDGE_USAGE;	
 	source := late resolveoneIn(
 		cmp::Component::componentToShape,
-		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).source->asOrderedSet()->first().toEObject()
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).source->any(true).toEObject()
 	);
 	log("source    " + source.toString());
 		target := late resolveoneIn(
@@ -146,7 +146,7 @@ mapping cmp::Attribute::interfaceAttributeToShape() : notation::Shape
 }
 
 
-mapping cmp::ClassifierRelation::relationsToShape() : notation::Shape
+mapping cmp::ClassifierRelation::relationsToShape() : notation::Edge
 {
 	
 }
