@@ -34,3 +34,5 @@ property PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE : String = "Usage_St
 property PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR ="Usage_NameLabel";
 
 property PAPYRUS_NOTATION_EDGE_MANIFESTATION : String = "Manifestation_Edge";
+property PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR ="Manifestation_NameLabel";
+property PAPYRUS_NOTATION_EDGE_MANIFESTATION_STEREOTYPE : String = "Manifestation_StereotypeLabel";

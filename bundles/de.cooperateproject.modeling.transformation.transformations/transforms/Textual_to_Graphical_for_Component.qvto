@@ -27,7 +27,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
   	element := rootPackage.toEObject();
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
-	edges += self.rootpackage.relations.map relationsToShape();
+	edges += self.rootpackage.relations.map classifierRelationsToEdge();
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -119,8 +119,8 @@ when { self.oclIsKindOf(cmp::Require) }
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).target->asOrderedSet()->first().toEObject()
 	);	
 	element := self.referencedElement.toEObject();
-	children += self.map stereotypeInterfaceDecorationNameLabel();	children += self.map stereotypeInterfaceDecorationRequire();
-
+	children += self.map stereotypeInterfaceDecorationNameLabel();
+	children += self.map stereotypeInterfaceDecorationRequire();
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
@@ -139,17 +139,51 @@ when {self.oclIsKindOf(cmp::Interface)}
 }
 
 mapping cmp::Attribute::interfaceAttributeToShape() : notation::Shape
-{ log("ausgabe into");
-		type := PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE;
-		element := self.referencedElement.toEObject();
-		layoutConstraint := result.toEObject().map locationConstraint();
+{
+	type := PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE;
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 
-mapping cmp::ClassifierRelation::relationsToShape() : notation::Edge
+mapping cmp::ClassifierRelation::classifierRelationsToEdge() : notation::Edge
+disjuncts cmp::Manifestation::manifestationToEdge
+{
+
+}
+
+mapping cmp::Manifestation::manifestationToEdge() : notation::Connector
+when{self.oclIsKindOf(cmp::Manifestation)}
+{
+	type:= PAPYRUS_NOTATION_EDGE_MANIFESTATION;
+	source := late resolveoneIn(
+		cmp::Classifier::classifiersToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Manifestation).source->any(true).toEObject()
+	);
+	target := late resolveoneIn(
+		cmp::Classifier::classifiersToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Manifestation).target->any(true).toEObject()
+	);	
+
+	element := self.referencedElement.toEObject();		
+	children += self.map manifestationDecorationNameLabel();
+	children += self.map stereotypeManifestationDecoration();
+	styles += result.toEObject().map fontStyle();
+	bendpoints := result.map connectorToBendpoint();
+		
+}
+/**DELETE
+mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
+disjuncts
+ notation::Edge::edgeToGeneralization,
+ notation::Edge::edgeToManifestation,
+ notation::Edge::edgeToSubstitution,
+ notation::Edge::edgeToDependency,
+ notation::Edge::edgeToAbstraction
 {
 	
 }
+**/
 
 //TODO restliche commentable einfügen
 mapping textualCommons::Commentable::commentableToShape() : notation::Shape
@@ -231,6 +265,19 @@ mapping cmp::Require::stereotypeInterfaceDecorationRequire() : notation::Decorat
 	type := PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
+
+mapping cmp::Manifestation::stereotypeManifestationDecoration() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_EDGE_MANIFESTATION_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping cmp::Manifestation::manifestationDecorationNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
 
 mapping cmp::Provide::stereotypeInterfaceDecorationNameLabel() : notation::DecorationNode
 {
