@@ -31,6 +31,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
 	result += self.map traceRecordClassifier();
+	result += self.map traceRecordClassifierRelation();
 	result += self.map traceNodeToComponent();
 	result += self.map traceNodeToInterface();
 	result += self.map traceNodeToProperty();
@@ -38,6 +39,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToInterfaceRelation();
 	result += self.map traceEdgeToProvide();
 	result += self.map traceEdgeToRequire();
+	result += self.map traceEdgeToManifestation();
 }
 /**
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
@@ -56,7 +58,13 @@ when {self.mappingOperation.name = "classifiersToShape"}//classifier to node ent
 	var classifier := self.getSelf().modelElement;
 	result += new TraceRecord("nodeToClassifier", "Node", node, "Classifier", classifier.toEObject());
 }
-
+mapping trace::TraceRecord::traceRecordClassifierRelation() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "classifierRelationsToEdge"}
+{ 
+	var edge := self.getResult().modelElement;
+	var classifierRelation := self.getSelf().modelElement;
+	result += new TraceRecord("edgeToClassifierRelation", "Edge", edge, "ClassifierRelation", classifierRelation.toEObject());
+}
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "diagramToDiagram"}
 {
@@ -121,6 +129,14 @@ when {self.mappingOperation.name = "requireToEdge"}
 	var edge := self.getResult().modelElement;
 	var require := self.getSelf().modelElement.oclAsType(cmp::Require);
 	result += new TraceRecord("edgeToRequire", "Edge", edge, "Require", require.eobject());
+}
+
+mapping trace::TraceRecord::traceEdgeToManifestation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "manifestationToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var manifestation := self.getSelf().modelElement.oclAsType(cmp::Manifestation);
+	result += new TraceRecord("edgeToManifestation", "Edge", edge, "Manifestation", manifestation.eobject());
 }
 
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
