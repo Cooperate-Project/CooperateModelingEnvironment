@@ -13,6 +13,7 @@ import de.cooperateproject.ui.diff.views.IDiffView;
 
 /**
  * Listens to events concerning textual diagram switch.
+ * 
  * @author czogalik
  *
  */
@@ -21,12 +22,17 @@ public class ViewPartListener implements IPartListener2 {
     private IDiffView diffView;
     private IWorkbenchPartSite workbenchPartSite;
     private IToggleAction liveUpdateAction;
+    private static final String COOPERATE_EDITOR_ID = "de.cooperateproject.modeling.textual.";
 
     /**
      * Listens to events concerning textual diagram switch.
-     * @param diffView to be updated if diagram changed.
-     * @param workbenchPartSite to get actual IFile in case of diagram switch.
-     * @param liveUpdateAction Action to check if user wants live updates.
+     * 
+     * @param diffView
+     *            to be updated if diagram changed.
+     * @param workbenchPartSite
+     *            to get actual IFile in case of diagram switch.
+     * @param liveUpdateAction
+     *            Action to check if user wants live updates.
      */
     public ViewPartListener(IDiffView diffView, IWorkbenchPartSite workbenchPartSite, IToggleAction liveUpdateAction) {
         this.diffView = diffView;
@@ -36,7 +42,7 @@ public class ViewPartListener implements IPartListener2 {
 
     @Override
     public void partOpened(IWorkbenchPartReference partRef) {
-        if (partRef.getId().contains("de.cooperateproject.modeling.textual.")) {
+        if (isPartTextEditor(partRef)) {
             partRef.addPropertyListener((source, propId) -> {
                 if (liveUpdateAction.isLiveActivated()) {
                     diffView.setSelectedFile(getFile());
@@ -47,7 +53,9 @@ public class ViewPartListener implements IPartListener2 {
 
     @Override
     public void partActivated(IWorkbenchPartReference partRef) {
-        diffView.setSelectedFile(getFile());
+        if (isPartTextEditor(partRef)) {
+            diffView.setSelectedFile(getFile());
+        }
     }
 
     @Override
@@ -91,6 +99,10 @@ public class ViewPartListener implements IPartListener2 {
             return launcherFileEditorInput.getAssociatedLauncherFile();
         }
         return null;
+    }
+    
+    private static boolean isPartTextEditor(IWorkbenchPartReference partRef) {
+        return partRef.getId().contains(COOPERATE_EDITOR_ID);
     }
 
 }

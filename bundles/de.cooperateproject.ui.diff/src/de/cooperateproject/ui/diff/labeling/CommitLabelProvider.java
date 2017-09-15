@@ -18,7 +18,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class CommitLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-    private final DateFormat formatterTime = new SimpleDateFormat("HH:mm:s");
+    private final DateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
     private final DateFormat formatterDate = new SimpleDateFormat("d. MMMM yyyy", Locale.ENGLISH);
 
     @Override
