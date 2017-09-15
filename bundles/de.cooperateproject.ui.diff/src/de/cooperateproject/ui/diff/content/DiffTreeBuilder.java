@@ -6,8 +6,10 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Builds an own containment hierarchy of the diagram, also containing deleted elements from the
@@ -26,7 +28,7 @@ public class DiffTreeBuilder {
     /**
      * Links all diffTreeItems to their corresponding EObject.
      */
-    private final HashMap<EObject, DiffTreeItem> tree;
+    private final Map<EObject, DiffTreeItem> tree;
 
     /**
      * Build diagram hierarchy.
@@ -36,7 +38,7 @@ public class DiffTreeBuilder {
     public DiffTreeBuilder(Resource resource, List<SummaryItem> summaryList) {
         this.resource = resource;
         this.summaryList = summaryList;
-        this.tree = new HashMap<>();
+        this.tree = new LinkedHashMap<>();
     }
 
     /**
@@ -54,9 +56,18 @@ public class DiffTreeBuilder {
         
         DiffTreeItem newResource = createDiffTreeItems(it);
         PostProcessorManager.postProcessDiffTree(tree);
+        
+        build();
 
         addChanges();
         return newResource;
+    }
+
+    private void build() {
+        for (Entry<EObject, DiffTreeItem> entry : tree.entrySet()) {
+            entry.getValue();
+        }
+        
     }
 
     /**
@@ -103,7 +114,8 @@ public class DiffTreeBuilder {
     }
 
     private void createDiffTreeItemChildren(EObject obj, DiffTreeItem diffTreeItem) {
-        for (EObject child : obj.eContents()) {
+        EList<EObject> eContents = obj.eContents();
+        for (EObject child : eContents) {
             if (tree.containsKey(child)) {
                 continue;
             }
