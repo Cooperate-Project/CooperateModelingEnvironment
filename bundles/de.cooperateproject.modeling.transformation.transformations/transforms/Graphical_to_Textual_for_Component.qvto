@@ -100,28 +100,21 @@ mapping notation::Edge::edgeToManifestation() : cmp::Manifestation
 	self.type = PAPYRUS_NOTATION_EDGE_MANIFESTATION 
 	}
 {
-	log("tada" + self.type);
 	var manifestation := self.element.oclAsType(uml::Manifestation);
 	assert error (manifestation.source->size() = 1 and manifestation.target->size() = 1) with log ('Manifestation : Log must of exactly one source and one target.', manifestation);
 	referencedElement := manifestation;
-	//leftClassifier := self.source;/**
 	var umlManifestation :=self.element.oclAsType(uml::Manifestation);
 	var umlSourceClassifierEnd := umlManifestation.client;
 	var umlTargetClassifierEnd := umlManifestation.supplier;
-	log("uml   " + (umlSourceClassifierEnd->asOrderedSet())->first().toString()+ (umlSourceClassifierEnd->asOrderedSet()->first()).oclIsKindOf(cmp::Classifier).toString());
-	log(self.source.oclAsType(uml::Element).toString());
-	log("self" + self.source.oclAsType(cmp::Component).toString() + self.source.oclIsKindOf(cmp::Component).toString()+ self.source.oclIsKindOf(cmp::Classifier).toString()+ self.source.oclIsKindOf(cmp::Interface).toString()+ self.source.oclIsKindOf(uml::Component).toString()+ self.source.oclIsKindOf(uml::Interface).toString());
-	/**
 	leftClassifier := late resolveoneIn(
-	notation::Node::nodeToClassifier,
-	s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);**/
-
-	leftClassifier := self.findSourceClassifier();
-	rightClassifier := late resolveoneIn(
-	notation::Node::nodeToClassifier,
-	s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
+		notation::Node::nodeToClassifier,
+		s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
 	);
+	rightClassifier := late resolveoneIn(
+		notation::Node::nodeToClassifier,
+		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
+	);
+
 }
 mapping notation::Edge::edgeToSubstitution() : cmp::Substitution
 	when {
@@ -199,31 +192,19 @@ mapping notation::Edge::edgeToRequire() : cmp::Require
 	assert error (usage.source->size() = 1 and usage.target->size() = 1) with log ('Interface usages: Log must of exactly one source and one target.', usage);
 	referencedElement := usage;
 }
+/**
 query notation::Edge::findSourceClassifier() : cmp::Classifier
-{ 	var umlManifestation :=self.element.oclAsType(uml::Manifestation);
+{ 	
+	var umlManifestation :=self.element.oclAsType(uml::Manifestation);
 	var umlSourceClassifierEnd := umlManifestation.client;
-	var umlTargetClassifierEnd := umlManifestation.supplier;
 	var leftClassifier := resolveoneIn(
 	notation::Node::nodeToClassifier,
 	s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
 	);
-	log("uml   " + (umlSourceClassifierEnd->asOrderedSet())->first().toString()+ (umlSourceClassifierEnd->asOrderedSet()->first()).oclIsKindOf(cmp::Classifier).toString());
-	log(leftClassifier.toString());
-	return leftClassifier;
-}
-/**
-mapping notation::Edge::edgeToManifestation1() : cmp::ClassifierRelation
-{ 	var umlManifestation :=self.element.oclAsType(uml::Manifestation);
-	var umlSourceClassifierEnd := umlManifestation.client;
-	var umlTargetClassifierEnd := umlManifestation.supplier;
-	var leftClassifier := late resolveoneIn(
-	notation::Node::nodeToClassifier,
-	s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-	log("uml   " + (umlSourceClassifierEnd->asOrderedSet())->first().toString()+ (umlSourceClassifierEnd->asOrderedSet()->first()).oclIsKindOf(cmp::Classifier).toString());
-	log(leftClassifier.toString());
 
+	return leftClassifier;
 }**/
+
 query notation::Edge::isCommentLinkForAssociation() : Boolean {
 	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
 }
