@@ -89,7 +89,12 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testManifestation() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
         testTraceTransformation("ComponentDiagramManifestation");
+    }
+
+    @Test
+    public void testEntireClassifierRelations() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
+        testTraceTransformation("ComponentDiagramEntireClassifierRelations");
     }
 }

@@ -44,6 +44,10 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordExtendedProvideToEdge();
 	result += self.map traceRecordExtendedRequireToEdge();
 	result += self.map traceRecordExtendedManifestationToEdge();
+	result += self.map traceRecordExtendedGeneralizationToEdge();
+	result += self.map traceRecordExtendedAbstractionToEdge();
+	result += self.map traceRecordExtendedSubstitutionToEdge();
+	result += self.map traceRecordExtendedDependencyToEdge();
 	}
 
 
@@ -229,6 +233,59 @@ when {self.mappingOperation.name = "edgeToManifestation"}
 	result += edge.getChild(PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
 }
 
+mapping trace::TraceRecord::traceRecordExtendedSubstitutionToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToSubstitution"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Substitution);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("substitutionToEdge", "Substitution", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeSubstitutionDecoration", "Substitution", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE).eobject());
+	result += new TraceRecord("substitutionDecorationNameLabel", "Substitution", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_NAME_REGULAR).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE).map traceRecordExtended_locationConstraint();
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedGeneralizationToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToGeneralization"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Generalization);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("generalizationToEdge", "Generalization", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeGeneralizationDecoration", "Generalization", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_GENERALIZATION_STEREOTYPE).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_GENERALIZATION_STEREOTYPE).map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedAbstractionToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToAbstraction"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Abstraction);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("abstractionToEdge", "Abstraction", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeAbstractionDecoration", "Abstraction", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_STEREOTYPE).eobject());
+	result += new TraceRecord("abstractionDecorationNameLabel", "Abstraction", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_NAME_REGULAR).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_STEREOTYPE).map traceRecordExtended_locationConstraint();
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedDependencyToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToDependency"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Dependency);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("dependencyToEdge", "Dependency", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeDependencyDecoration", "Dependency", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE).eobject());
+	result += new TraceRecord("dependencyDecorationNameLabel", "Dependency", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE).map traceRecordExtended_locationConstraint();
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR).map traceRecordExtended_locationConstraint();
+}
 
 mapping trace::TraceRecord::traceRecordExtended_InterfaceRelationToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToInterfaceRelation"}

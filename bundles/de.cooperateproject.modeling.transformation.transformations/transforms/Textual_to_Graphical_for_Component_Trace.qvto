@@ -40,6 +40,10 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToProvide();
 	result += self.map traceEdgeToRequire();
 	result += self.map traceEdgeToManifestation();
+	result += self.map traceEdgeToAbstraction();
+	result += self.map traceEdgeToSubstitution();
+	result += self.map traceEdgeToGeneralization();
+	result += self.map traceEdgeToDependency();
 }
 /**
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
@@ -137,6 +141,38 @@ when {self.mappingOperation.name = "manifestationToEdge"}
 	var edge := self.getResult().modelElement;
 	var manifestation := self.getSelf().modelElement.oclAsType(cmp::Manifestation);
 	result += new TraceRecord("edgeToManifestation", "Edge", edge, "Manifestation", manifestation.eobject());
+}
+
+mapping trace::TraceRecord::traceEdgeToDependency() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "dependencyToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var dependency := self.getSelf().modelElement.oclAsType(cmp::Dependency);
+	result += new TraceRecord("edgeToDependency", "Edge", edge, "Dependency", dependency.eobject());
+}
+
+mapping trace::TraceRecord::traceEdgeToGeneralization() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "generalizationToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var generalization := self.getSelf().modelElement.oclAsType(cmp::Generalization);
+	result += new TraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", generalization.eobject());
+}
+
+mapping trace::TraceRecord::traceEdgeToAbstraction() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "abstractionToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var abstraction := self.getSelf().modelElement.oclAsType(cmp::Abstraction);
+	result += new TraceRecord("edgeToAbstraction", "Edge", edge, "Abstraction", abstraction.eobject());
+}
+
+mapping trace::TraceRecord::traceEdgeToSubstitution() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "substitutionToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var substitution := self.getSelf().modelElement.oclAsType(cmp::Substitution);
+	result += new TraceRecord("edgeToSubstitution", "Edge", edge, "Substitution", substitution.eobject());
 }
 
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
