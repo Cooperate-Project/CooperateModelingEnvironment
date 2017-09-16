@@ -36,3 +36,19 @@ property PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR ="Usage_NameLabel";
 property PAPYRUS_NOTATION_EDGE_MANIFESTATION : String = "Manifestation_Edge";
 property PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR ="Manifestation_NameLabel";
 property PAPYRUS_NOTATION_EDGE_MANIFESTATION_STEREOTYPE : String = "Manifestation_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION : String = "Generalization_Edge";
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION_NAME_REGULAR ="Generalization_NameLabel";
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION_STEREOTYPE : String = "Generalization_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_ABSTRACTION : String = "Abstraction_Edge";
+property PAPYRUS_NOTATION_EDGE_ABSTRACTION_NAME_REGULAR ="Abstraction_NameLabel";
+property PAPYRUS_NOTATION_EDGE_ABSTRACTION_STEREOTYPE : String = "Abstraction_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_SUBSTITUTION : String = "Substitution_Edge";
+property PAPYRUS_NOTATION_EDGE_SUBSTITUTION_NAME_REGULAR ="Substitution_NameLabel";
+property PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE : String = "Substitution_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_DEPENDENCY : String = "Dependency_Edge";
+property PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR ="Dependency_NameLabel";
+property PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE : String = "Dependency_StereotypeLabel";
