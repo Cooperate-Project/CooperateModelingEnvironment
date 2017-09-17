@@ -643,13 +643,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPortKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Keyword cRealizesKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cRealizedClassifierAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cRealizedClassifierClassifierCrossReference_5_0 = (CrossReference)cRealizedClassifierAssignment_5.eContents().get(0);
+		private final RuleCall cRealizedClassifierClassifierIDTerminalRuleCall_5_0_1 = (RuleCall)cRealizedClassifierClassifierCrossReference_5_0.eContents().get(1);
 		
 		//Port:
 		//	{Port} visibility=Visibility? 'port'
-		//	name=ID;
+		//	name=ID
+		//	'realizes' realizedClassifier=[Classifier];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Port} visibility=Visibility? 'port' name=ID
+		//{Port} visibility=Visibility? 'port' name=ID 'realizes' realizedClassifier=[Classifier]
 		public Group getGroup() { return cGroup; }
 		
 		//{Port}
@@ -669,6 +674,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
+		
+		//'realizes'
+		public Keyword getRealizesKeyword_4() { return cRealizesKeyword_4; }
+		
+		//realizedClassifier=[Classifier]
+		public Assignment getRealizedClassifierAssignment_5() { return cRealizedClassifierAssignment_5; }
+		
+		//[Classifier]
+		public CrossReference getRealizedClassifierClassifierCrossReference_5_0() { return cRealizedClassifierClassifierCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1() { return cRealizedClassifierClassifierIDTerminalRuleCall_5_0_1; }
 	}
 	public class InterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Interface");
@@ -1552,7 +1569,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Port:
 	//	{Port} visibility=Visibility? 'port'
-	//	name=ID;
+	//	name=ID
+	//	'realizes' realizedClassifier=[Classifier];
 	public PortElements getPortAccess() {
 		return pPort;
 	}

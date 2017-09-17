@@ -2593,6 +2593,7 @@ rule__Port__Group__3
 	}
 :
 	rule__Port__Group__3__Impl
+	rule__Port__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -2607,6 +2608,59 @@ rule__Port__Group__3__Impl
 	{ before(grammarAccess.getPortAccess().getNameAssignment_3()); }
 	(rule__Port__NameAssignment_3)
 	{ after(grammarAccess.getPortAccess().getNameAssignment_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Port__Group__4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Port__Group__4__Impl
+	rule__Port__Group__5
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Port__Group__4__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getPortAccess().getRealizesKeyword_4()); }
+	'realizes'
+	{ after(grammarAccess.getPortAccess().getRealizesKeyword_4()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Port__Group__5
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Port__Group__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Port__Group__5__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getPortAccess().getRealizedClassifierAssignment_5()); }
+	(rule__Port__RealizedClassifierAssignment_5)
+	{ after(grammarAccess.getPortAccess().getRealizedClassifierAssignment_5()); }
 )
 ;
 finally {
@@ -4823,6 +4877,25 @@ rule__Port__NameAssignment_3
 		{ before(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_3_0()); }
 		RULE_ID
 		{ after(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_3_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Port__RealizedClassifierAssignment_5
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0()); }
+		(
+			{ before(grammarAccess.getPortAccess().getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1()); }
+			RULE_ID
+			{ after(grammarAccess.getPortAccess().getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1()); }
+		)
+		{ after(grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0()); }
 	)
 ;
 finally {

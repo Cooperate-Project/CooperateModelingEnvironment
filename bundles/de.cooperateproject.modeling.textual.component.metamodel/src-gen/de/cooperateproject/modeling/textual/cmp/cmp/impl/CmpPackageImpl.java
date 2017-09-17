@@ -663,6 +663,15 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getPort_RealizedClassifier() {
+        return (EReference)portEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public CmpFactory getCmpFactory() {
         return (CmpFactory)getEFactoryInstance();
     }
@@ -750,6 +759,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         requireEClass = createEClass(REQUIRE);
 
         portEClass = createEClass(PORT);
+        createEReference(portEClass, PORT__REALIZED_CLASSIFIER);
     }
 
     /**
@@ -785,6 +795,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         ETypeParameter classifierRelationEClass_RightUMLType = addETypeParameter(classifierRelationEClass, "RightUMLType");
         ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
         ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
+        ETypeParameter portEClass_realizeClassifierUMLType = addETypeParameter(portEClass, "realizeClassifierUMLType");
 
         // Set bounds for type parameters
         EGenericType g1 = createEGenericType(theUMLPackage.getClassifier());
@@ -795,6 +806,8 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         classifierEClass_T.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getNamedElement());
         propertyEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getClassifier());
+        portEClass_realizeClassifierUMLType.getEBounds().add(g1);
 
         // Add supertypes to classes
         g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
@@ -994,6 +1007,10 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         initEClass(requireEClass, Require.class, "Require", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType(portEClass_realizeClassifierUMLType);
+        g1.getETypeArguments().add(g2);
+        initEReference(getPort_RealizedClassifier(), g1, null, "realizedClassifier", null, 1, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

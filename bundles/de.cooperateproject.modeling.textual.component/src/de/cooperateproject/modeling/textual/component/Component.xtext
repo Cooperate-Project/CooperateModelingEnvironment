@@ -85,6 +85,7 @@ Port returns Port:
 	{Port}
 	(visibility = Visibility)? 'port'
 	name = ID 
+	'realizes' realizedClassifier=[Classifier]
 ;
 
 Interface returns Interface: 

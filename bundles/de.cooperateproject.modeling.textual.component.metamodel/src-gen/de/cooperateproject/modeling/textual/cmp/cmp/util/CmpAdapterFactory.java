@@ -163,7 +163,7 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
                 return createRequireAdapter();
             }
             @Override
-            public Adapter casePort(Port object) {
+            public <realizeClassifierUMLType extends Classifier> Adapter casePort(Port<realizeClassifierUMLType> object) {
                 return createPortAdapter();
             }
             @Override

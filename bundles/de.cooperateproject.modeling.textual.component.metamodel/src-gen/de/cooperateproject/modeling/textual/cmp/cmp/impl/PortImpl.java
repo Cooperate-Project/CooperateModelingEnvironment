@@ -14,6 +14,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
@@ -26,11 +27,12 @@ import org.eclipse.uml2.uml.VisibilityKind;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.PortImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.PortImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.PortImpl#getRealizedClassifier <em>Realized Classifier</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PortImpl extends NamedElementImpl implements Port {
+public class PortImpl<realizeClassifierUMLType extends Classifier> extends NamedElementImpl implements Port<realizeClassifierUMLType> {
     /**
      * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -138,6 +140,34 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    public de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType> getRealizedClassifier() {
+        return (de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType>)eDynamicGet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType> basicGetRealizedClassifier() {
+        return (de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType>)eDynamicGet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRealizedClassifier(de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType> newRealizedClassifier) {
+        eDynamicSet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, newRealizedClassifier);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -146,6 +176,9 @@ public class PortImpl extends NamedElementImpl implements Port {
             case CmpPackage.PORT__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case CmpPackage.PORT__REALIZED_CLASSIFIER:
+                if (resolve) return getRealizedClassifier();
+                return basicGetRealizedClassifier();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -155,6 +188,7 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -163,6 +197,9 @@ public class PortImpl extends NamedElementImpl implements Port {
                 return;
             case CmpPackage.PORT__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Port)newValue);
+                return;
+            case CmpPackage.PORT__REALIZED_CLASSIFIER:
+                setRealizedClassifier((de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -182,6 +219,9 @@ public class PortImpl extends NamedElementImpl implements Port {
             case CmpPackage.PORT__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Port)null);
                 return;
+            case CmpPackage.PORT__REALIZED_CLASSIFIER:
+                setRealizedClassifier((de.cooperateproject.modeling.textual.cmp.cmp.Classifier<realizeClassifierUMLType>)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -198,6 +238,8 @@ public class PortImpl extends NamedElementImpl implements Port {
                 return isSetVisibility();
             case CmpPackage.PORT__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case CmpPackage.PORT__REALIZED_CLASSIFIER:
+                return basicGetRealizedClassifier() != null;
         }
         return super.eIsSet(featureID);
     }

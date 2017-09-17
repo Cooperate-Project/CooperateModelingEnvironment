@@ -222,10 +222,13 @@ class ComponentParsingTest extends AbstractComponentTest{
 		val model = '''
 			@start-cpd "someDiagram"
 			rootPackage RootElement
+			component testC
+			component testD
 			component testComp {
-				port portiport
-				public port port2
+				port portiport realizes testC
+				public port port2 realizes testD
 			}
+			interface testIface { }
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -236,12 +239,13 @@ class ComponentParsingTest extends AbstractComponentTest{
 		val model = '''
 			@start-cpd "someDiagram"
 			rootPackage RootElement
+			component testA
 			component testComp {
 				component innerComp{
-					port port2
+					port port2 realizes testA
 					con contest (port2, port1)
 				}				
-				port port1
+				port port1 realizes testA
 			}
 			@end-cpd
 		'''.parse(rs)

@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.cmp.cmp;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -163,7 +164,7 @@ public interface CmpFactory extends EFactory {
      * @return a new object of class '<em>Port</em>'.
      * @generated
      */
-    Port createPort();
+    <realizeClassifierUMLType extends Classifier> Port<realizeClassifierUMLType> createPort();
 
     /**
      * Returns the package supported by this factory.

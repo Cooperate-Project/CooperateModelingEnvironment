@@ -55,6 +55,7 @@ public class PortItemProvider extends NamedElementItemProvider {
 
             addVisibilityPropertyDescriptor(object);
             addReferencedElementPropertyDescriptor(object);
+            addRealizedClassifierPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -95,6 +96,28 @@ public class PortItemProvider extends NamedElementItemProvider {
                  getString("_UI_UMLReferencingElement_referencedElement_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_UMLReferencingElement_referencedElement_feature", "_UI_UMLReferencingElement_type"),
                  TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Realized Classifier feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addRealizedClassifierPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Port_realizedClassifier_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Port_realizedClassifier_feature", "_UI_Port_type"),
+                 CmpPackage.Literals.PORT__REALIZED_CLASSIFIER,
                  true,
                  false,
                  true,

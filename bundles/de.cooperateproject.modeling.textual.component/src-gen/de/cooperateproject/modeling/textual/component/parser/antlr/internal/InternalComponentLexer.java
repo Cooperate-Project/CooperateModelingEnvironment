@@ -12,31 +12,16 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalComponentLexer extends Lexer {
-    public static final int RULE_STRING=4;
-    public static final int RULE_SL_COMMENT=8;
     public static final int T__19=19;
     public static final int T__15=15;
-    public static final int T__37=37;
     public static final int T__16=16;
-    public static final int T__38=38;
     public static final int T__17=17;
-    public static final int T__39=39;
     public static final int T__18=18;
     public static final int T__11=11;
-    public static final int T__33=33;
     public static final int T__12=12;
-    public static final int T__34=34;
     public static final int T__13=13;
-    public static final int T__35=35;
     public static final int T__14=14;
-    public static final int T__36=36;
-    public static final int EOF=-1;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
     public static final int RULE_ID=5;
-    public static final int RULE_WS=9;
-    public static final int RULE_ANY_OTHER=10;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -47,11 +32,27 @@ public class InternalComponentLexer extends Lexer {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
+    public static final int T__20=20;
+    public static final int T__21=21;
+    public static final int RULE_STRING=4;
+    public static final int RULE_SL_COMMENT=8;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int EOF=-1;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int RULE_WS=9;
+    public static final int RULE_ANY_OTHER=10;
     public static final int T__40=40;
     public static final int T__41=41;
-    public static final int T__20=20;
     public static final int T__42=42;
-    public static final int T__21=21;
+    public static final int T__43=43;
 
     // delegates
     // delegators
@@ -423,10 +424,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:28:7: ( 'interface' )
-            // InternalComponent.g:28:9: 'interface'
+            // InternalComponent.g:28:7: ( 'realizes' )
+            // InternalComponent.g:28:9: 'realizes'
             {
-            match("interface"); 
+            match("realizes"); 
 
 
             }
@@ -444,10 +445,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:29:7: ( 'con' )
-            // InternalComponent.g:29:9: 'con'
+            // InternalComponent.g:29:7: ( 'interface' )
+            // InternalComponent.g:29:9: 'interface'
             {
-            match("con"); 
+            match("interface"); 
 
 
             }
@@ -465,10 +466,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:30:7: ( 'provide' )
-            // InternalComponent.g:30:9: 'provide'
+            // InternalComponent.g:30:7: ( 'con' )
+            // InternalComponent.g:30:9: 'con'
             {
-            match("provide"); 
+            match("con"); 
 
 
             }
@@ -486,10 +487,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:31:7: ( 'require' )
-            // InternalComponent.g:31:9: 'require'
+            // InternalComponent.g:31:7: ( 'provide' )
+            // InternalComponent.g:31:9: 'provide'
             {
-            match("require"); 
+            match("provide"); 
 
 
             }
@@ -507,10 +508,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:32:7: ( 'abstract' )
-            // InternalComponent.g:32:9: 'abstract'
+            // InternalComponent.g:32:7: ( 'require' )
+            // InternalComponent.g:32:9: 'require'
             {
-            match("abstract"); 
+            match("require"); 
 
 
             }
@@ -528,10 +529,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:33:7: ( 'static' )
-            // InternalComponent.g:33:9: 'static'
+            // InternalComponent.g:33:7: ( 'abstract' )
+            // InternalComponent.g:33:9: 'abstract'
             {
-            match("static"); 
+            match("abstract"); 
 
 
             }
@@ -549,10 +550,11 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:34:7: ( ':' )
-            // InternalComponent.g:34:9: ':'
+            // InternalComponent.g:34:7: ( 'static' )
+            // InternalComponent.g:34:9: 'static'
             {
-            match(':'); 
+            match("static"); 
+
 
             }
 
@@ -569,10 +571,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:35:7: ( '.' )
-            // InternalComponent.g:35:9: '.'
+            // InternalComponent.g:35:7: ( ':' )
+            // InternalComponent.g:35:9: ':'
             {
-            match('.'); 
+            match(':'); 
 
             }
 
@@ -589,10 +591,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:36:7: ( '+' )
-            // InternalComponent.g:36:9: '+'
+            // InternalComponent.g:36:7: ( '.' )
+            // InternalComponent.g:36:9: '.'
             {
-            match('+'); 
+            match('.'); 
 
             }
 
@@ -609,11 +611,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:37:7: ( 'public' )
-            // InternalComponent.g:37:9: 'public'
+            // InternalComponent.g:37:7: ( '+' )
+            // InternalComponent.g:37:9: '+'
             {
-            match("public"); 
-
+            match('+'); 
 
             }
 
@@ -630,10 +631,11 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:38:7: ( '-' )
-            // InternalComponent.g:38:9: '-'
+            // InternalComponent.g:38:7: ( 'public' )
+            // InternalComponent.g:38:9: 'public'
             {
-            match('-'); 
+            match("public"); 
+
 
             }
 
@@ -650,11 +652,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:39:7: ( 'private' )
-            // InternalComponent.g:39:9: 'private'
+            // InternalComponent.g:39:7: ( '-' )
+            // InternalComponent.g:39:9: '-'
             {
-            match("private"); 
-
+            match('-'); 
 
             }
 
@@ -671,10 +672,11 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:40:7: ( '#' )
-            // InternalComponent.g:40:9: '#'
+            // InternalComponent.g:40:7: ( 'private' )
+            // InternalComponent.g:40:9: 'private'
             {
-            match('#'); 
+            match("private"); 
+
 
             }
 
@@ -691,11 +693,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:41:7: ( 'protected' )
-            // InternalComponent.g:41:9: 'protected'
+            // InternalComponent.g:41:7: ( '#' )
+            // InternalComponent.g:41:9: '#'
             {
-            match("protected"); 
-
+            match('#'); 
 
             }
 
@@ -712,10 +713,11 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:42:7: ( '~' )
-            // InternalComponent.g:42:9: '~'
+            // InternalComponent.g:42:7: ( 'protected' )
+            // InternalComponent.g:42:9: 'protected'
             {
-            match('~'); 
+            match("protected"); 
+
 
             }
 
@@ -727,15 +729,35 @@ public class InternalComponentLexer extends Lexer {
     }
     // $ANTLR end "T__42"
 
+    // $ANTLR start "T__43"
+    public final void mT__43() throws RecognitionException {
+        try {
+            int _type = T__43;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalComponent.g:43:7: ( '~' )
+            // InternalComponent.g:43:9: '~'
+            {
+            match('~'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__43"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2038:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalComponent.g:2038:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalComponent.g:2055:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalComponent.g:2055:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalComponent.g:2038:11: ( '^' )?
+            // InternalComponent.g:2055:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -744,7 +766,7 @@ public class InternalComponentLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalComponent.g:2038:11: '^'
+                    // InternalComponent.g:2055:11: '^'
                     {
                     match('^'); 
 
@@ -762,7 +784,7 @@ public class InternalComponentLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalComponent.g:2038:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalComponent.g:2055:36: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -811,10 +833,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2040:10: ( ( '0' .. '9' )+ )
-            // InternalComponent.g:2040:12: ( '0' .. '9' )+
+            // InternalComponent.g:2057:10: ( ( '0' .. '9' )+ )
+            // InternalComponent.g:2057:12: ( '0' .. '9' )+
             {
-            // InternalComponent.g:2040:12: ( '0' .. '9' )+
+            // InternalComponent.g:2057:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -828,7 +850,7 @@ public class InternalComponentLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalComponent.g:2040:13: '0' .. '9'
+            	    // InternalComponent.g:2057:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -860,10 +882,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2042:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalComponent.g:2042:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalComponent.g:2059:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalComponent.g:2059:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalComponent.g:2042:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalComponent.g:2059:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -881,10 +903,10 @@ public class InternalComponentLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalComponent.g:2042:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalComponent.g:2059:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalComponent.g:2042:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalComponent.g:2059:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -900,7 +922,7 @@ public class InternalComponentLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalComponent.g:2042:21: '\\\\' .
+                    	    // InternalComponent.g:2059:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -908,7 +930,7 @@ public class InternalComponentLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalComponent.g:2042:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalComponent.g:2059:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -933,10 +955,10 @@ public class InternalComponentLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalComponent.g:2042:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalComponent.g:2059:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalComponent.g:2042:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalComponent.g:2059:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -952,7 +974,7 @@ public class InternalComponentLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalComponent.g:2042:54: '\\\\' .
+                    	    // InternalComponent.g:2059:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -960,7 +982,7 @@ public class InternalComponentLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalComponent.g:2042:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalComponent.g:2059:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1003,12 +1025,12 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2044:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalComponent.g:2044:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalComponent.g:2061:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalComponent.g:2061:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalComponent.g:2044:24: ( options {greedy=false; } : . )*
+            // InternalComponent.g:2061:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1033,7 +1055,7 @@ public class InternalComponentLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalComponent.g:2044:52: .
+            	    // InternalComponent.g:2061:52: .
             	    {
             	    matchAny(); 
 
@@ -1063,12 +1085,12 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2046:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalComponent.g:2046:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalComponent.g:2063:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalComponent.g:2063:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalComponent.g:2046:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalComponent.g:2063:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1081,7 +1103,7 @@ public class InternalComponentLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalComponent.g:2046:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalComponent.g:2063:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1101,7 +1123,7 @@ public class InternalComponentLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalComponent.g:2046:40: ( ( '\\r' )? '\\n' )?
+            // InternalComponent.g:2063:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1110,9 +1132,9 @@ public class InternalComponentLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalComponent.g:2046:41: ( '\\r' )? '\\n'
+                    // InternalComponent.g:2063:41: ( '\\r' )? '\\n'
                     {
-                    // InternalComponent.g:2046:41: ( '\\r' )?
+                    // InternalComponent.g:2063:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1121,7 +1143,7 @@ public class InternalComponentLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalComponent.g:2046:41: '\\r'
+                            // InternalComponent.g:2063:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1153,10 +1175,10 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2048:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalComponent.g:2048:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalComponent.g:2065:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalComponent.g:2065:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalComponent.g:2048:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalComponent.g:2065:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1210,8 +1232,8 @@ public class InternalComponentLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalComponent.g:2050:16: ( . )
-            // InternalComponent.g:2050:18: .
+            // InternalComponent.g:2067:16: ( . )
+            // InternalComponent.g:2067:18: .
             {
             matchAny(); 
 
@@ -1226,8 +1248,8 @@ public class InternalComponentLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // InternalComponent.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=39;
+        // InternalComponent.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=40;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1455,49 +1477,56 @@ public class InternalComponentLexer extends Lexer {
                 }
                 break;
             case 33 :
-                // InternalComponent.g:1:202: RULE_ID
+                // InternalComponent.g:1:202: T__43
+                {
+                mT__43(); 
+
+                }
+                break;
+            case 34 :
+                // InternalComponent.g:1:208: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 34 :
-                // InternalComponent.g:1:210: RULE_INT
+            case 35 :
+                // InternalComponent.g:1:216: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 35 :
-                // InternalComponent.g:1:219: RULE_STRING
+            case 36 :
+                // InternalComponent.g:1:225: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 36 :
-                // InternalComponent.g:1:231: RULE_ML_COMMENT
+            case 37 :
+                // InternalComponent.g:1:237: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 37 :
-                // InternalComponent.g:1:247: RULE_SL_COMMENT
+            case 38 :
+                // InternalComponent.g:1:253: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 38 :
-                // InternalComponent.g:1:263: RULE_WS
+            case 39 :
+                // InternalComponent.g:1:269: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 39 :
-                // InternalComponent.g:1:271: RULE_ANY_OTHER
+            case 40 :
+                // InternalComponent.g:1:277: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1511,17 +1540,17 @@ public class InternalComponentLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\35\3\42\2\uffff\1\42\3\uffff\5\42\6\uffff\1\35\2\uffff\3\35\4\uffff\2\42\1\uffff\1\42\1\104\1\42\2\uffff\2\42\3\uffff\10\42\13\uffff\3\42\1\124\1\uffff\1\126\1\127\1\42\1\131\1\132\1\42\1\134\10\42\1\uffff\1\42\2\uffff\1\42\2\uffff\1\42\1\uffff\1\151\1\152\12\42\2\uffff\11\42\1\176\3\42\1\u0082\1\42\1\u0084\3\42\1\uffff\1\u0088\1\42\1\u008a\1\uffff\1\42\1\uffff\1\42\1\u008d\1\42\1\uffff\1\42\1\uffff\1\42\1\u0091\1\uffff\1\u0092\1\u0093\1\42\3\uffff\1\u0095\1\uffff";
+        "\1\uffff\1\35\3\42\2\uffff\1\42\3\uffff\5\42\6\uffff\1\35\2\uffff\3\35\4\uffff\2\42\1\uffff\1\42\1\105\1\42\2\uffff\2\42\3\uffff\10\42\13\uffff\4\42\1\126\1\uffff\1\130\1\131\1\42\1\133\1\134\1\42\1\136\11\42\1\uffff\1\42\2\uffff\1\42\2\uffff\1\42\1\uffff\1\154\1\155\13\42\2\uffff\12\42\1\u0083\3\42\1\u0087\2\42\1\u008a\3\42\1\uffff\1\u008e\1\42\1\u0090\1\uffff\1\42\1\u0092\1\uffff\1\42\1\u0094\1\42\1\uffff\1\42\1\uffff\1\42\1\uffff\1\u0098\1\uffff\1\u0099\1\u009a\1\42\3\uffff\1\u009c\1\uffff";
     static final String DFA12_eofS =
-        "\u0096\uffff";
+        "\u009d\uffff";
     static final String DFA12_minS =
-        "\1\0\2\145\1\157\1\142\2\uffff\1\156\3\uffff\1\141\1\164\1\145\2\157\6\uffff\1\101\2\uffff\2\0\1\52\4\uffff\1\157\1\161\1\uffff\1\155\1\60\1\163\2\uffff\1\141\1\164\3\uffff\1\156\1\142\1\141\1\160\1\164\1\162\1\151\1\142\13\uffff\1\164\1\165\1\160\1\60\1\uffff\2\60\1\145\2\60\1\164\1\60\1\145\2\164\1\166\1\154\1\120\1\151\1\157\1\uffff\1\162\2\uffff\1\162\2\uffff\1\151\1\uffff\2\60\1\151\1\145\1\141\1\151\1\141\1\162\1\156\1\141\1\146\1\143\2\uffff\1\144\1\143\1\164\2\143\2\145\1\143\1\141\1\60\1\145\1\164\1\145\1\60\1\153\1\60\1\156\1\164\1\143\1\uffff\1\60\1\145\1\60\1\uffff\1\141\1\uffff\1\164\1\60\1\145\1\uffff\1\144\1\uffff\1\147\1\60\1\uffff\2\60\1\145\3\uffff\1\60\1\uffff";
+        "\1\0\2\145\1\157\1\142\2\uffff\1\156\3\uffff\1\141\1\164\1\145\2\157\6\uffff\1\101\2\uffff\2\0\1\52\4\uffff\1\157\1\141\1\uffff\1\155\1\60\1\163\2\uffff\1\141\1\164\3\uffff\1\156\1\142\1\141\1\160\1\164\1\162\1\151\1\142\13\uffff\1\164\1\154\1\165\1\160\1\60\1\uffff\2\60\1\145\2\60\1\164\1\60\1\145\2\164\1\166\1\154\1\120\2\151\1\157\1\uffff\1\162\2\uffff\1\162\2\uffff\1\151\1\uffff\2\60\1\151\1\145\1\141\1\151\1\141\1\172\1\162\1\156\1\141\1\146\1\143\2\uffff\1\144\1\143\1\164\2\143\3\145\1\143\1\141\1\60\1\145\1\164\1\145\1\60\1\153\1\163\1\60\1\156\1\164\1\143\1\uffff\1\60\1\145\1\60\1\uffff\1\141\1\60\1\uffff\1\164\1\60\1\145\1\uffff\1\144\1\uffff\1\147\1\uffff\1\60\1\uffff\2\60\1\145\3\uffff\1\60\1\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\163\2\157\1\163\2\uffff\1\163\3\uffff\1\141\1\165\1\145\1\157\1\165\6\uffff\1\172\2\uffff\2\uffff\1\57\4\uffff\1\157\1\161\1\uffff\1\156\1\172\1\163\2\uffff\1\141\1\164\3\uffff\1\156\1\142\1\141\1\160\1\164\1\162\1\157\1\142\13\uffff\1\164\1\165\1\160\1\172\1\uffff\2\172\1\145\2\172\1\164\1\172\1\145\1\164\2\166\1\154\1\120\1\151\1\157\1\uffff\1\162\2\uffff\1\162\2\uffff\1\151\1\uffff\2\172\1\151\1\145\1\141\1\151\1\141\1\162\1\156\1\141\1\146\1\143\2\uffff\1\144\1\143\1\164\2\143\2\145\1\143\1\141\1\172\1\145\1\164\1\145\1\172\1\153\1\172\1\156\1\164\1\143\1\uffff\1\172\1\145\1\172\1\uffff\1\141\1\uffff\1\164\1\172\1\145\1\uffff\1\144\1\uffff\1\147\1\172\1\uffff\2\172\1\145\3\uffff\1\172\1\uffff";
+        "\1\uffff\1\163\2\157\1\163\2\uffff\1\163\3\uffff\1\141\1\165\1\145\1\157\1\165\6\uffff\1\172\2\uffff\2\uffff\1\57\4\uffff\1\157\1\161\1\uffff\1\156\1\172\1\163\2\uffff\1\141\1\164\3\uffff\1\156\1\142\1\141\1\160\1\164\1\162\1\157\1\142\13\uffff\1\164\1\154\1\165\1\160\1\172\1\uffff\2\172\1\145\2\172\1\164\1\172\1\145\1\164\2\166\1\154\1\120\2\151\1\157\1\uffff\1\162\2\uffff\1\162\2\uffff\1\151\1\uffff\2\172\1\151\1\145\1\141\1\151\1\141\1\172\1\162\1\156\1\141\1\146\1\143\2\uffff\1\144\1\143\1\164\2\143\3\145\1\143\1\141\1\172\1\145\1\164\1\145\1\172\1\153\1\163\1\172\1\156\1\164\1\143\1\uffff\1\172\1\145\1\172\1\uffff\1\141\1\172\1\uffff\1\164\1\172\1\145\1\uffff\1\144\1\uffff\1\147\1\uffff\1\172\1\uffff\2\172\1\145\3\uffff\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\5\uffff\1\6\1\7\1\uffff\1\11\1\12\1\13\5\uffff\1\30\1\31\1\32\1\34\1\36\1\40\1\uffff\1\41\1\42\3\uffff\1\46\1\47\1\1\1\2\2\uffff\1\41\3\uffff\1\6\1\7\2\uffff\1\11\1\12\1\13\10\uffff\1\30\1\31\1\32\1\34\1\36\1\40\1\42\1\43\1\44\1\45\1\46\4\uffff\1\5\17\uffff\1\23\1\uffff\1\14\1\10\1\uffff\1\15\1\16\1\uffff\1\17\14\uffff\1\20\1\21\23\uffff\1\27\3\uffff\1\33\1\uffff\1\25\3\uffff\1\24\1\uffff\1\35\2\uffff\1\26\3\uffff\1\4\1\22\1\37\1\uffff\1\3";
+        "\5\uffff\1\6\1\7\1\uffff\1\11\1\12\1\13\5\uffff\1\31\1\32\1\33\1\35\1\37\1\41\1\uffff\1\42\1\43\3\uffff\1\47\1\50\1\1\1\2\2\uffff\1\42\3\uffff\1\6\1\7\2\uffff\1\11\1\12\1\13\10\uffff\1\31\1\32\1\33\1\35\1\37\1\41\1\43\1\44\1\45\1\46\1\47\5\uffff\1\5\20\uffff\1\24\1\uffff\1\14\1\10\1\uffff\1\15\1\16\1\uffff\1\17\15\uffff\1\20\1\21\25\uffff\1\30\3\uffff\1\34\2\uffff\1\26\3\uffff\1\25\1\uffff\1\36\1\uffff\1\22\1\uffff\1\27\3\uffff\1\4\1\23\1\40\1\uffff\1\3";
     static final String DFA12_specialS =
-        "\1\1\30\uffff\1\0\1\2\173\uffff}>";
+        "\1\1\30\uffff\1\2\1\0\u0082\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\35\2\34\2\35\1\34\22\35\1\34\1\35\1\31\1\24\3\35\1\32\1\10\1\12\1\35\1\22\1\11\1\23\1\21\1\33\12\30\1\20\5\35\1\1\32\27\3\35\1\26\2\35\1\4\1\27\1\3\1\15\4\27\1\7\3\27\1\13\1\16\1\27\1\17\1\27\1\2\1\14\7\27\1\5\1\35\1\6\1\25\uff81\35",
             "\1\37\15\uffff\1\36",
@@ -1556,71 +1585,70 @@ public class InternalComponentLexer extends Lexer {
             "",
             "",
             "\1\100",
-            "\1\101",
+            "\1\101\17\uffff\1\102",
             "",
-            "\1\102\1\103",
+            "\1\103\1\104",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\1\105",
-            "",
-            "",
             "\1\106",
+            "",
+            "",
             "\1\107",
-            "",
-            "",
-            "",
             "\1\110",
+            "",
+            "",
+            "",
             "\1\111",
             "\1\112",
             "\1\113",
             "\1\114",
             "\1\115",
-            "\1\117\5\uffff\1\116",
-            "\1\120",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\116",
+            "\1\120\5\uffff\1\117",
             "\1\121",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\122",
             "\1\123",
+            "\1\124",
+            "\1\125",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
             "",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\23\42\1\125\6\42",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\23\42\1\127\6\42",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\1\130",
+            "\1\132",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\1\133",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
             "\1\135",
-            "\1\136",
-            "\1\140\1\uffff\1\137",
-            "\1\141",
-            "\1\142",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\137",
+            "\1\140",
+            "\1\142\1\uffff\1\141",
             "\1\143",
             "\1\144",
             "\1\145",
-            "",
             "\1\146",
-            "",
-            "",
             "\1\147",
-            "",
-            "",
             "\1\150",
             "",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\151",
+            "",
+            "",
+            "\1\152",
+            "",
+            "",
             "\1\153",
-            "\1\154",
-            "\1\155",
+            "",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
             "\1\156",
             "\1\157",
             "\1\160",
@@ -1628,46 +1656,54 @@ public class InternalComponentLexer extends Lexer {
             "\1\162",
             "\1\163",
             "\1\164",
-            "",
-            "",
             "\1\165",
             "\1\166",
             "\1\167",
             "\1\170",
+            "",
+            "",
             "\1\171",
             "\1\172",
             "\1\173",
             "\1\174",
             "\1\175",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\176",
             "\1\177",
             "\1\u0080",
             "\1\u0081",
+            "\1\u0082",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\1\u0083",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\u0084",
             "\1\u0085",
             "\1\u0086",
-            "\1\u0087",
-            "",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\u0088",
             "\1\u0089",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "",
             "\1\u008b",
-            "",
             "\1\u008c",
-            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\1\u008e",
+            "\1\u008d",
             "",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
             "\1\u008f",
-            "",
-            "\1\u0090",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
             "",
+            "\1\u0091",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "",
+            "\1\u0093",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "\1\u0095",
+            "",
+            "\1\u0096",
+            "",
+            "\1\u0097",
+            "",
+            "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
+            "",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
             "\12\42\7\uffff\32\42\4\uffff\1\42\1\uffff\32\42",
-            "\1\u0094",
+            "\1\u009b",
             "",
             "",
             "",
@@ -1705,17 +1741,17 @@ public class InternalComponentLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_25 = input.LA(1);
+                        int LA12_26 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_25>='\u0000' && LA12_25<='\uFFFF')) ) {s = 60;}
+                        if ( ((LA12_26>='\u0000' && LA12_26<='\uFFFF')) ) {s = 60;}
 
                         else s = 29;
 
@@ -1786,10 +1822,10 @@ public class InternalComponentLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_26 = input.LA(1);
+                        int LA12_25 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_26>='\u0000' && LA12_26<='\uFFFF')) ) {s = 60;}
+                        if ( ((LA12_25>='\u0000' && LA12_25<='\uFFFF')) ) {s = 60;}
 
                         else s = 29;
 

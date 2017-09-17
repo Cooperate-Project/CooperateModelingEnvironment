@@ -1809,13 +1809,22 @@ public interface CmpPackage extends EPackage {
     int PORT__REFERENCED_ELEMENT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Realized Classifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT__REALIZED_CLASSIFIER = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Port</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PORT_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+    int PORT_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2288,6 +2297,17 @@ public interface CmpPackage extends EPackage {
     EClass getPort();
 
     /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cmp.cmp.Port#getRealizedClassifier <em>Realized Classifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Realized Classifier</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Port#getRealizedClassifier()
+     * @see #getPort()
+     * @generated
+     */
+    EReference getPort_RealizedClassifier();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2697,6 +2717,14 @@ public interface CmpPackage extends EPackage {
          * @generated
          */
         EClass PORT = eINSTANCE.getPort();
+
+        /**
+         * The meta object literal for the '<em><b>Realized Classifier</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PORT__REALIZED_CLASSIFIER = eINSTANCE.getPort_RealizedClassifier();
 
     }
 

@@ -1066,6 +1066,23 @@ rulePort returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_4='realizes'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getPortAccess().getRealizesKeyword_4());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getPortRule());
+					}
+				}
+				otherlv_5=RULE_ID
+				{
+					newLeafNode(otherlv_5, grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0());
+				}
+			)
+		)
 	)
 ;
 
