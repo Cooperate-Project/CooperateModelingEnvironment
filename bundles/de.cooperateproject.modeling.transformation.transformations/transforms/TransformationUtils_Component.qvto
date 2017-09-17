@@ -52,3 +52,7 @@ property PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE : String = "Substitution_
 property PAPYRUS_NOTATION_EDGE_DEPENDENCY : String = "Dependency_Edge";
 property PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR ="Dependency_NameLabel";
 property PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE : String = "Dependency_StereotypeLabel";
+
+property PAPYRUS_NOTATION_SHAPE_PORT_REGULAR = "Port_Shape";
+property PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR : String = "Port_NameLabel";
+property PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_STEREOTYPE : String = "Port_StereotypeLabel";

@@ -49,12 +49,11 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement :=self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
-	
 	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
 	nestedInterface += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
 	component += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
-	log("testoutput" + referencedElement.toString());
-	log("testoutput2   " + referencedElement.toEObject().toString());
+	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
+
 }
 
 
@@ -63,6 +62,16 @@ mapping notation::Node::nodeToInterface() : cmp::Interface
 	referencedElement :=self.element.oclAsType(uml::Interface);
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
+}
+//	
+mapping notation::Node::nodeToPort() : cmp::Port
+	when {		self.element.oclIsKindOf(uml::Port)		}
+	{
+	referencedElement :=self.element.oclAsType(uml::Port);
+	realizedClassifier  := late resolveoneIn(
+		notation::Node::nodeToClassifier,
+		s : cmp::Classifier | s.referencedElement.toEObject() = self.element.oclAsType(uml::Port).type.toEObject()
+	);
 }
 
 mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
