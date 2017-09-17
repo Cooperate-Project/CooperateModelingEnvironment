@@ -70,7 +70,9 @@ when {self.oclIsKindOf(cmp::Component)}
 	//children += self.nestedInterface.map interfaceToShape();
 	children += self.map componentToCompartment();
 	//log("owning component" + self.owningComponent.toString());
-
+	//children += self.port->select(type = PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR).map portToShape();    //packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
+	children += self.port->first().map PortToShapeDisplay();
+	children += self.port.map portToShape();
 	//element := self.referencedElement.toEObject();
 	//<element href="ComponentDiagramSingleComponent.uml#_4IVy1IOUEeed1vSrRFufdg"/>
 	element := self.referencedElement.oclAsType(ecore::EObject);
@@ -82,7 +84,30 @@ when {self.oclIsKindOf(cmp::Component)}
 	//children +=self.rootpackage.classifiers.map classifiersToShape();
 
 }
-//TODO
+
+mapping cmp::Port::portToShape() : notation::Shape
+when { self.oclIsKindOf(cmp::Port) }
+{
+	type := PAPYRUS_NOTATION_SHAPE_PORT_REGULAR;	
+	//source := late resolveoneIn(
+	//	cmp::Component::componentToShape,
+	//	s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::InterfaceRealization).implementingClassifier.toEObject()
+	//);
+	//	target := late resolveoneIn(
+	//	cmp::Interface::interfaceToShape,
+	//	s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::InterfaceRealization).contract.toEObject()
+	//);	
+	element := self.referencedElement.toEObject();
+	children += self.map portToNameLabel();
+	children += self.map portToStereotypeLabel();
+	//children += self.map stereotypeInterfaceDecorationNameLabel();
+	//bendpoints := result.map connectorToBendpoint();
+	//styles += result.toEObject().map fontStyle();
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+
 mapping cmp::Provide::provideToEdge() : notation::Connector
 when { self.oclIsKindOf(cmp::Provide) }
 {
@@ -308,12 +333,32 @@ mapping cmp::Method::interfaceMethodToShape() : notation::Shape
 		layoutConstraint := result.toEObject().map locationConstraint();
 }
 
+mapping cmp::Port::PortToShapeDisplay() : notation::BasicCompartment
+{
+	type := PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY;
+	styles += self.toEObject().map titleStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+
 // Labels /Decorations /...
 
 
 mapping cmp::Component::componentToNameLabel() : notation::DecorationNode
 {
 	type := self.getNestedName(PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR);
+}
+
+mapping cmp::Port::portToNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping cmp::Port::portToStereotypeLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cmp::Component::componentFloatingNameLabel() : notation::DecorationNode

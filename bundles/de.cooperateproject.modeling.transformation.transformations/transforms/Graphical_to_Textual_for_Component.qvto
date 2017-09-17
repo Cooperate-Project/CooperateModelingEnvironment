@@ -65,8 +65,7 @@ mapping notation::Node::nodeToInterface() : cmp::Interface
 }
 //	
 mapping notation::Node::nodeToPort() : cmp::Port
-	when {		self.element.oclIsKindOf(uml::Port)		}
-	{
+	when {		self.element.oclIsKindOf(uml::Port)		}{
 	referencedElement :=self.element.oclAsType(uml::Port);
 	realizedClassifier  := late resolveoneIn(
 		notation::Node::nodeToClassifier,
