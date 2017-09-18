@@ -71,7 +71,7 @@ when {self.oclIsKindOf(cmp::Component)}
 	children += self.map componentToCompartment();
 	//log("owning component" + self.owningComponent.toString());
 	//children += self.port->select(type = PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR).map portToShape();    //packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
-	children += self.port->first().map PortToShapeDisplay();
+	children += self.port->first().map portToShapeDisplay();
 	children += self.port.map portToShape();
 	//element := self.referencedElement.toEObject();
 	//<element href="ComponentDiagramSingleComponent.uml#_4IVy1IOUEeed1vSrRFufdg"/>
@@ -294,7 +294,7 @@ mapping textualCommons::Commentable::commentableToShape() : notation::Shape
 disjuncts cmp::Classifier::classifiersToShape;
 
 mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
-{	//	log ("log12345\n");
+{	
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
 	children += self.nestedInterface.map interfaceToShape();
 	styles += result.toEObject().map titleStyle();
@@ -333,7 +333,7 @@ mapping cmp::Method::interfaceMethodToShape() : notation::Shape
 		layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cmp::Port::PortToShapeDisplay() : notation::BasicCompartment
+mapping cmp::Port::portToShapeDisplay() : notation::BasicCompartment
 {
 	type := PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY;
 	styles += self.toEObject().map titleStyle();

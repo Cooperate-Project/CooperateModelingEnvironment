@@ -94,7 +94,18 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testEntireClassifierRelations() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
         testTraceTransformation("ComponentDiagramEntireClassifierRelations");
+    }
+
+    @Test
+    public void testSinglePort() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
+        testTraceTransformation("ComponentDiagramSinglePort");
+    }
+
+    @Test
+    public void testPorts() throws Exception {
+
+        testTraceTransformation("ComponentDiagramPorts");
     }
 }

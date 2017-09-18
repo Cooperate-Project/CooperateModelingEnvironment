@@ -53,9 +53,13 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	nestedInterface += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
 	component += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
 	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
-
+	//self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY).map nodeToPortDisplay();
 }
-
+/**
+mapping notation::Node::nodeToPortDisplay()
+{	
+	referencedElement := self.element.oclAsType(cmp::Interface);
+}**/
 
 mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
@@ -72,6 +76,8 @@ mapping notation::Node::nodeToPort() : cmp::Port
 		s : cmp::Classifier | s.referencedElement.toEObject() = self.element.oclAsType(uml::Port).type.toEObject()
 	);
 }
+
+
 
 mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
 disjuncts
@@ -295,6 +301,7 @@ query notation::Edge::findOwningPackage() : uml::Package
 { 
 	return if self.oclIsKindOf(notation::Connector) then self.oclAsType(notation::Connector).findOwningPackage() else null endif;
 }
+
 
 mapping notation::View::commentViewToComment() : textualCommons::Comment
 {

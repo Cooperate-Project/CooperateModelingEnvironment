@@ -89,7 +89,24 @@ constructor trace::TraceRecord::TraceRecord(mappingName : String, contextType : 
 	result._result := new EMappingResults(resultType, resultValue);			
 }
 
-
+constructor trace::TraceRecord::TraceRecord(mappingName : String, contextType : String, contextValue : ecore::EObject)
+{
+	mappingOperation := object trace::EMappingOperation {
+		name := mappingName;
+		package := mappingName.getMappingModuleName();
+		module := mappingName.getMappingModuleName();
+		//runtimeMappingOperation := TARGET_TRANSFORMATION.getMapping(mappingName, contextType);
+	};
+	context := object trace::EMappingContext {
+		context := object trace::VarParameterValue {
+			name := "self";
+			type := contextType;
+			value := new EValue(contextValue);
+		};
+	};
+	parameters := object trace::EMappingParameters {};
+		
+}
 /*
 =============================================
               Regular Utilities        
