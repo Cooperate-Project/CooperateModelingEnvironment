@@ -31,8 +31,6 @@ mapping trace::Trace::trace() : trace::Trace
 mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
-	//result += self.map traceRecordClassifier();
-	//result += self.map traceRecordComponent();
 	result += self.map traceRecordClassifier();
 	result += self.map traceRecordClassifierRelations();
 	result += self.map traceRecordComponentToNode();

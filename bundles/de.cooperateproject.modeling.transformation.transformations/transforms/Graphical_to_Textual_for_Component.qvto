@@ -48,7 +48,10 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	nestedInterface += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
 	component += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
 	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
-
+	var edges = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
+	portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(e | e = source))->map edgeToPortRelation();
+	//portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(self = source))->map edgeToPortRelation();
+	//portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = edges->any(true))->map edgeToPortRelation();
 }
 
 
@@ -228,6 +231,32 @@ disjuncts
 	notation::Edge::edgeToRequire
 {}
 
+mapping notation::Edge::edgeToPortRelation() : cmp::PortRelation
+disjuncts
+	notation::Edge::edgeToConnector
+{}
+
+
+
+mapping notation::Edge::edgeToConnector() : cmp::Connector
+	when {
+		self.element != null and
+		self.element.oclIsKindOf(uml::Connector)  and
+		self.element.oclAsType(uml::Connector)._end->size() = 2
+	}
+{
+	var realization := self.element.oclAsType(uml::Connector);
+	var connectorEnds :=self.element.oclAsType(uml::Connector)._end;
+	outerPort := late resolveoneIn(
+		notation::Node::nodeToPort,
+		s : cmp::Port | s.referencedElement.toEObject() = (connectorEnds->at(1).role.toEObject())
+	);
+	innerPort := late resolveoneIn(
+		notation::Node::nodeToPort,
+		s : cmp::Port | s.referencedElement.toEObject() = (connectorEnds->at(2).role.toEObject())
+	);
+	referencedElement := realization;
+}
 mapping notation::Edge::edgeToProvide() : cmp::Provide
 	when {
 		self.element != null and

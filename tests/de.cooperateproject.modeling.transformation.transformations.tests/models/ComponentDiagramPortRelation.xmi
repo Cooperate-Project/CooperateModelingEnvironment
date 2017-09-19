@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Component Diagram">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramPortRelation.uml#_BBoNAJzWEeekxamVBtf-ow"/>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortRelation.uml#_RVhSQJzWEeekxamVBtf-ow"/>
+      <component>
+        <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortRelation.uml#_R-qV4JzWEeekxamVBtf-ow"/>
+        <port realizedClassifier="//@rootpackage/@classifiers.1">
+          <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortRelation.uml#_XftjoJzWEeekxamVBtf-ow"/>
+        </port>
+      </component>
+      <portRelation xsi:type="cmp:Connector" outerPort="//@rootpackage/@classifiers.0/@port.0" innerPort="//@rootpackage/@classifiers.0/@component.0/@port.0">
+        <referencedElement xsi:type="uml:Connector" href="ComponentDiagramPortRelation.uml#_dJRNIJzWEeekxamVBtf-ow"/>
+      </portRelation>
+      <port realizedClassifier="//@rootpackage/@classifiers.1">
+        <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortRelation.uml#_X8FWkJzWEeekxamVBtf-ow"/>
+      </port>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramPortRelation.uml#_W1h-MJzWEeekxamVBtf-ow"/>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>
