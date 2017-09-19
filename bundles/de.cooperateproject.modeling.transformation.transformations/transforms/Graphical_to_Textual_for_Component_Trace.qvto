@@ -38,7 +38,6 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordComponentToNode();
 	result += self.map traceRecordInterfaceToNode();
 	result += self.map traceRecordPortToShape();
-	result += self.map traceRecordPortToShapeDisplay();
 	result+= self.map traceRecordClassifier_interfaceToOperationsCompartment();
 	result+= self.map traceRecordClassifier_interfaceAttributeToShape();
 	result+= self.map traceRecordClassifier_interfaceOperationToShape();
@@ -122,13 +121,23 @@ when {self.mappingOperation.name = "nodeToComponent"}
 	log("neuer log" + portShape.toString());
 	//result += self.getSelfNode(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY).map traceRecordPortShapeToNode();
 	//portShape.map traceRecordPortShapeToNode();
-	result += new TraceRecord("portToShapeDisplay", "Port", classifier, "BasicCompartment", portShape.eobject());
+//	result += new TraceRecord("portToShapeDisplay", "Port", classifier, "BasicCompartment", portShape.eobject());
 	/**
 	var compartment := shape.getChild(PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_REGULAR).oclAsType(notation::BasicCompartment);
 	result += new TraceRecord("packageToCompartment", "Package", package, "BasicCompartment", compartment.eobject());
 	result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
 	result += compartment.map traceRecordExtended_notationBounds();
 	**/
+	//tmp Port
+	var port := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY);
+	if(port!=null){
+	result += new TraceRecord("portToShapeDisplay", "Component", classifier, "BasicCompartment", port.eobject());
+	//result += self.getSelfNode().map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("titleStyle", "EObject", classifier.eobject(), "TitleStyle", port.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+	//result += port.map traceRecordExtended_locationConstraint();
+	result += port.map traceRecordExtended_notationBounds();
+	}
+	
 }
 
 mapping trace::TraceRecord::traceRecordPortShapeToNode() : List(trace::TraceRecord)
@@ -169,23 +178,18 @@ when {self.mappingOperation.name = "nodeToPort"}
 {	
 	var port := self.getResult().modelElement;
 	var shape := self.getSelf().modelElement;
-	var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR);
+	var decorationName :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR);
+	var decorationStereotype :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_STEREOTYPE);
 	result += new TraceRecord("portToShape", "Port", port, "Shape", shape);
-	//result += self.getSelfNode().map traceRecordExtended_locationConstraint();
-	result += new TraceRecord("portToNameLabel", "Port", port, "DecorationNode", decoration.eobject());
+	result += new TraceRecord("portToStereotypeLabel", "Port", port.eobject(), "DecorationNode", decorationStereotype.eobject());
+
+	result += new TraceRecord("portToNameLabel", "Port", port, "DecorationNode", decorationName.eobject());
 	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
-	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
+	result+= decorationName.map traceRecordExtended_locationConstraint();
+	result+= decorationStereotype.map traceRecordExtended_locationConstraint();
+
 }
 
-mapping trace::TraceRecord::traceRecordPortToShapeDisplay() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "isPortDisplay"}
-{ log("into this \n\\n");
-	var port := self.getResult().modelElement;
-	var compartment := self.getSelf().modelElement;
-	result += new TraceRecord("portToShapeDisplay", "Port", port, "BasicCompartment", compartment);
-	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
-	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
-}
 
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "diagramToDiagram"}
@@ -198,19 +202,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
 	result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }
-/**
-mapping trace::TraceRecord::traceRecordComponent() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "nodeToComponent"}
-{
-	var component := self.getSelf().modelElement.oclAsType(notation::Node);
-	var component1 := self.getResult().modelElement;
-	//result += new TraceRecord("nodeToComponent123", "Component", component1, "Diagram", component.toEObject());
-	//result += new TraceRecord("diagramToDiagram", "ComponentDiagram", componentDiagram, "Diagram", notationDiagram.toEObject());
-	//result += new TraceRecord("diagramToStringValueStyle", "ComponentDiagram", componentDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
-	//result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
-	//result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
-}
-**/
+
 mapping trace::TraceRecord::traceRecordClassifier_interfaceAttributeToShape() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToProperty"}
 {
