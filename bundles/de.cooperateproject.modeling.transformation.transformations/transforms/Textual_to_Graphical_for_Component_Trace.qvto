@@ -44,6 +44,8 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToSubstitution();
 	result += self.map traceEdgeToGeneralization();
 	result += self.map traceEdgeToDependency();
+	result += self.map traceEdgeToConnector();
+	result += self.map traceEdgeToPortRelation();
 	result += self.map traceNodeToPort();
 	//result += self.map traceNodeToPortDisplay();
 }
@@ -139,6 +141,15 @@ when {self.mappingOperation.name = "interfaceRelationToEdge"}
 	var ifaceRelation := self.getSelf().modelElement.oclAsType(cmp::InterfaceRelation);
 	result += new TraceRecord("edgeToInterfaceRelation", "Edge", edge, "InterfaceRelation", ifaceRelation.eobject());
 }
+
+mapping trace::TraceRecord::traceEdgeToPortRelation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "portRelationToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var portRelation := self.getSelf().modelElement.oclAsType(cmp::PortRelation);
+	result += new TraceRecord("edgeToPortRelation", "Edge", edge, "PortRelation", portRelation.eobject());
+}
+
 mapping trace::TraceRecord::traceEdgeToProvide() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "provideToEdge"}
 {
@@ -194,7 +205,13 @@ when {self.mappingOperation.name = "substitutionToEdge"}
 	result += new TraceRecord("edgeToSubstitution", "Edge", edge, "Substitution", substitution.eobject());
 }
 
-
+mapping trace::TraceRecord::traceEdgeToConnector() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "connectorToEdge"}
+{
+	var edge := self.getResult().modelElement;
+	var connector := self.getSelf().modelElement.oclAsType(cmp::Connector);
+	result += new TraceRecord("edgeToConnector", "Edge", edge, "Connector", connector.eobject());
+}
 
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {

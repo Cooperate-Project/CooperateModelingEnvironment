@@ -18,7 +18,6 @@ main() {
 mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
 	var interfaceRelation = self.rootpackage.findAllInterfaceRelations();
-	log((interfaceRelation = null).toString() + "                testoutput" + interfaceRelation->size().toString() + interfaceRelation->selectByKind(cmp::Provide)->size().toString());
 	
 	type := "PapyrusUMLComponentDiagram";
 	name := self.title;
@@ -28,7 +27,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
 	edges += self.rootpackage.relations.map classifierRelationsToEdge();
-	edges += self.rootpackage.classifiers->select(e | e.oclIsKindOf(cmp::Component)).oclAsType(cmp::Component)->flatten().portRelation.map portRelationsToEdge();
+	edges += self.rootpackage.classifiers->select(e | e.oclIsKindOf(cmp::Component)).oclAsType(cmp::Component)->flatten().portRelation.map portRelationToEdge();
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -120,8 +119,8 @@ when { self.oclIsKindOf(cmp::Require) }
 		cmp::Component::componentToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).source->any(true).toEObject()
 	);
-	log("source    " + source.toString());
-		target := late resolveoneIn(
+
+	target := late resolveoneIn(
 		cmp::Interface::interfaceToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).target->asOrderedSet()->first().toEObject()
 	);	
@@ -162,7 +161,7 @@ disjuncts cmp::Generalization::generalizationToEdge,
 {
 
 }
-mapping cmp::PortRelation::portRelationsToEdge() : notation::Edge
+mapping cmp::PortRelation::portRelationToEdge() : notation::Edge
 disjuncts cmp::Connector::connectorToEdge
 {
 
@@ -172,11 +171,6 @@ mapping cmp::Connector::connectorToEdge() : notation::Connector
 when{self.oclIsKindOf(cmp::Connector)}
 {
 	type:= PAPYRUS_NOTATION_EDGE_CONNECTOR;
-	//var connectorEnds :=self.element.oclAsType(uml::Connector)._end;
-	//s : cmp::Port | s.referencedElement.toEObject() = (connectorEnds->at(1).role.toEObject())
-	//var umlTargetClassifierEnd := umlDependency.supplier;
-	//s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	log("neuer testoutput" + self.referencedElement.oclAsType(uml::Connector)._end->at(1).role.toString());
 	source := late resolveoneIn(
 		cmp::Port::portToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(1).role.toEObject()
@@ -314,7 +308,7 @@ mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 }
 
 mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompartment
-{		log ("log12345\n");
+{
 	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR;
 	children += self.members->select(oclIsKindOf(cmp::Attribute))->oclAsType(cmp::Attribute)->map interfaceAttributeToShape();
 	styles += result.toEObject().map titleStyle();
@@ -324,7 +318,7 @@ mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompa
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompartment
-{		//log ("log12345\n");
+{
 	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR;
 	children += self.members->select(oclIsKindOf(cmp::Method))->oclAsType(cmp::Method)->map interfaceMethodToShape();
 	styles += result.toEObject().map titleStyle();

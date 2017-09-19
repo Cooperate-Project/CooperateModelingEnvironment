@@ -110,7 +110,7 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testComponentDiagramPortRelation() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramPortRelation");
     }
+
 }
