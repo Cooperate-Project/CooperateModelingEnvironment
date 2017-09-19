@@ -32,7 +32,8 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordDiagram();
 	result += self.map traceRecordClassifier();
-	result += self.map traceRecordClassifierRelations();
+	result += self.map traceRecordClassifierRelation();
+	result += self.map traceRecordPortRelation();
 	result += self.map traceRecordComponentToNode();
 	result += self.map traceRecordInterfaceToNode();
 	result += self.map traceRecordPortToShape();
@@ -47,6 +48,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordExtendedAbstractionToEdge();
 	result += self.map traceRecordExtendedSubstitutionToEdge();
 	result += self.map traceRecordExtendedDependencyToEdge();
+	result += self.map traceRecordExtendedConnectorToEdge();
 	}
 
 
@@ -61,12 +63,20 @@ when {self.mappingOperation.name = "nodeToClassifier"}
 
 }
 
-mapping trace::TraceRecord::traceRecordClassifierRelations() :List(trace::TraceRecord)
+mapping trace::TraceRecord::traceRecordClassifierRelation() :List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToClassifierRelation"}
 { 
 	var classifierRelation := self.getResult().modelElement;
 	var edge := self.getSelf().modelElement;
 	result += new TraceRecord("classifierRelationsToEdge", "ClassifierRelation", classifierRelation, "Edge", edge.toEObject());
+}
+
+mapping trace::TraceRecord::traceRecordPortRelation() :List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToPortRelation"}
+{ 
+	var portRelation := self.getResult().modelElement;
+	var edge := self.getSelf().modelElement;
+	result += new TraceRecord("portRelationToEdge", "PortRelation", portRelation, "Edge", edge.toEObject());
 }
 
 
@@ -312,6 +322,20 @@ when {self.mappingOperation.name = "edgeToDependency"}
 	result += new TraceRecord("dependencyDecorationNameLabel", "Dependency", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR).eobject());
 	result += edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE).map traceRecordExtended_locationConstraint();
 	result += edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR).map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToConnector"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cmp::Connector);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("connectorToEdge", "Connector", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeConnectorDecoration", "Connector", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_CONNECTOR_STEREOTYPE).eobject());
+	result += new TraceRecord("connectorDecorationNameLabel", "Connector", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_CONNECTOR_NAME_REGULAR).eobject());
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_CONNECTOR_STEREOTYPE).map traceRecordExtended_locationConstraint();
+	result += edge.getChild(PAPYRUS_NOTATION_EDGE_CONNECTOR_NAME_REGULAR).map traceRecordExtended_locationConstraint();
 }
 
 mapping trace::TraceRecord::traceRecordExtended_InterfaceRelationToEdge() : List(trace::TraceRecord)
