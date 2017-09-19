@@ -94,7 +94,6 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testEntireClassiferRelations() throws Exception {
-
         testRegular("ComponentDiagramEntireClassifierRelations");
     }
 
@@ -106,7 +105,12 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testComponentDiagramSinglePort() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramSinglePort");
+    }
+
+    @Test
+    public void testComponentDiagramPortRelation() throws Exception {
+        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
+        testRegular("ComponentDiagramPortRelation");
     }
 }

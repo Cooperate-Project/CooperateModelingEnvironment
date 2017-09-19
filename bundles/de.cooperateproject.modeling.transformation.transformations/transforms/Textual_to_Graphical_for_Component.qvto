@@ -28,6 +28,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
 	edges += self.rootpackage.relations.map classifierRelationsToEdge();
+	edges += self.rootpackage.classifiers->select(e | e.oclIsKindOf(cmp::Component)).oclAsType(cmp::Component)->flatten().portRelation.map portRelationsToEdge();
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -160,15 +161,42 @@ disjuncts cmp::Generalization::generalizationToEdge,
 	cmp::Abstraction::abstractionToEdge
 {
 
-}/**
-mapping cmp::ClassifierRelation::classifierRelationsToEdge() : notation::Edge
-disjuncts 
-	cmp::Manifestation::manifestationToEdge
-
+}
+mapping cmp::PortRelation::portRelationsToEdge() : notation::Edge
+disjuncts cmp::Connector::connectorToEdge
 {
 
 }
-**/
+
+mapping cmp::Connector::connectorToEdge() : notation::Connector
+when{self.oclIsKindOf(cmp::Connector)}
+{
+	type:= PAPYRUS_NOTATION_EDGE_CONNECTOR;
+	//var connectorEnds :=self.element.oclAsType(uml::Connector)._end;
+	//s : cmp::Port | s.referencedElement.toEObject() = (connectorEnds->at(1).role.toEObject())
+	//var umlTargetClassifierEnd := umlDependency.supplier;
+	//s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
+	log("neuer testoutput" + self.referencedElement.oclAsType(uml::Connector)._end->at(1).role.toString());
+	source := late resolveoneIn(
+		cmp::Port::portToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(1).role.toEObject()
+	);
+	target := late resolveoneIn(
+		cmp::Port::portToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(2).role.toEObject()
+	);
+
+	children += self.map stereotypeConnectorDecoration();	
+	children += self.map connectorDecorationNameLabel();
+	styles += result.toEObject().map fontStyle();
+	bendpoints := result.map connectorToBendpoint();
+	//source := self.outerPort;		
+	element := self.referencedElement.toEObject();	
+	styles += result.toEObject().map fontStyle();
+	bendpoints := result.map connectorToBendpoint();	
+}
+
+
 mapping cmp::Generalization::generalizationToEdge() : notation::Connector
 when{self.oclIsKindOf(cmp::Generalization)}
 {
@@ -404,6 +432,18 @@ mapping cmp::Generalization::stereotypeGeneralizationDecoration() : notation::De
 mapping cmp::Generalization::generalizationDecorationNameLabel() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_EDGE_GENERALIZATION_NAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping cmp::Connector::stereotypeConnectorDecoration() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_EDGE_CONNECTOR_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping cmp::Connector::connectorDecorationNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_EDGE_CONNECTOR_NAME_REGULAR;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 

@@ -57,3 +57,7 @@ property PAPYRUS_NOTATION_SHAPE_PORT_REGULAR = "Port_Shape";
 property PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR : String = "Port_NameLabel";
 property PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_STEREOTYPE : String = "Port_StereotypeLabel";
 property PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY : String = "compartment_shape_display";
+
+property PAPYRUS_NOTATION_EDGE_CONNECTOR : String = "Connector_Edge";
+property PAPYRUS_NOTATION_EDGE_CONNECTOR_NAME_REGULAR ="Connector_NameLabel";
+property PAPYRUS_NOTATION_EDGE_CONNECTOR_STEREOTYPE : String = "Connector_StereotypeLabel";
