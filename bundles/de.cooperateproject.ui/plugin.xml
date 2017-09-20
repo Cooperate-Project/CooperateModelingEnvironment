@@ -41,6 +41,11 @@
             id="de.cooperateproject.ui.DeleteProjectFromRepositoryCommand"
             name="Delete Project from Repositoy">
       </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.nature.ResetToPreviousStateCommand"
+            id="de.cooperateproject.ui.ResetToPreviousStateCommand"
+            name="Reset to previous state">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -314,6 +319,50 @@
                   name="importWizardId"
                   value="de.cooperateproject.ui.importCooperateProjectWizard">
             </parameter>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?endof=org.eclipse.ui.edit.delete">
+         <command
+               commandId="de.cooperateproject.ui.ResetToPreviousStateCommand"
+               label="Reset to previous state"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <or>
+                        <and>
+                           <instanceof
+                                 value="org.eclipse.core.resources.IProject">
+                           </instanceof>
+                           <test
+                                 property="org.eclipse.core.resources.projectNature"
+                                 value="de.cooperateproject.ui.CooperateProjectNature">
+                           </test>
+                        </and>
+                        <and>
+                           <instanceof
+                                 value="org.eclipse.core.resources.IFile">
+                           </instanceof>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="cooperate">
+                           </test>
+                        </and>
+                     </or>
+                  </iterate>
+               </and>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
