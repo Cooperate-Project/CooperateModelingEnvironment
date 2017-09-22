@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperate.modeling.graphical.papyrus.extensions.Activator;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CooperateConstraintBase;
 
 /**
  * SaveAndDirtyService for papyrus models created in cooperate projects. Provides model

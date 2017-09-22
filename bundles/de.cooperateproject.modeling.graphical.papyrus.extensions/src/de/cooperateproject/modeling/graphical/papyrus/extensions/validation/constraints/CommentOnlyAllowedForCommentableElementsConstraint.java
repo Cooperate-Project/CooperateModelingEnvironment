@@ -12,8 +12,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.UseCase;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Constraint ensuring that a comment is only about commentable elements.
  */

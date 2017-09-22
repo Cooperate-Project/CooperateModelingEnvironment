@@ -13,12 +13,10 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.StringExpression;
 import org.eclipse.uml2.uml.UseCase;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Constraint ensuring that elements have names available that can be used in qualified names.
  */
-public class NameHasToBeIDForNonAliasedElementsClass extends CooperateConstraintBase<NamedElement> {
+public class NameHasToBeIDForNonAliasedElementsClassConstraint extends CooperateConstraintBase<NamedElement> {
 
     private static final Collection<Class<? extends NamedElement>> IGNORED_ELEMENTS = Arrays
             .asList(StringExpression.class);
@@ -28,7 +26,7 @@ public class NameHasToBeIDForNonAliasedElementsClass extends CooperateConstraint
     /**
      * Constructs the constraint.
      */
-    public NameHasToBeIDForNonAliasedElementsClass() {
+    public NameHasToBeIDForNonAliasedElementsClassConstraint() {
         super(NamedElement.class);
     }
 
@@ -46,7 +44,7 @@ public class NameHasToBeIDForNonAliasedElementsClass extends CooperateConstraint
         return isID(target.getName())
                 || ALIASED_ELEMENTS.stream().anyMatch(aliasedType -> aliasedType.isInstance(target))
                         && Optional.ofNullable(target.getNameExpression()).map(StringExpression::getName)
-                                .map(NameHasToBeIDForNonAliasedElementsClass::isID).orElse(false);
+                                .map(NameHasToBeIDForNonAliasedElementsClassConstraint::isID).orElse(false);
     }
 
     private static boolean isID(String name) {

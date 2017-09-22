@@ -11,12 +11,23 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 import de.cooperateproject.modeling.common.primitivetypes.DefaultUMLPrimitiveTypeFilter;
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
 
+/**
+ * Base constraint for checking validity of used primitive types.
+ * 
+ * @param <T>
+ *            The concrete type of element to be checked.
+ */
 public abstract class PrimitiveTypeCheckingConstraintBase<T extends Element> extends CooperateConstraintBase<T> {
 
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
 
+    /**
+     * Constructs the constraint.
+     * 
+     * @param targetType
+     *            The type of element to be checked.
+     */
     public PrimitiveTypeCheckingConstraintBase(Class<? extends T> targetType) {
         super(targetType);
     }

@@ -9,8 +9,6 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Constraint ensuring that an association in a class diagram has a name.
  */

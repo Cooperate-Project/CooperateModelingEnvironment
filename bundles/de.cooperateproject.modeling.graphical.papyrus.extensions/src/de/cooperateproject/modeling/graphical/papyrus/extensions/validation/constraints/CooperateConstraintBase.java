@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints;
 
 import java.util.Optional;
 

@@ -9,8 +9,6 @@ import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.UseCase;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Constraint ensuring that associations in use case diagrams do not have names.
  */

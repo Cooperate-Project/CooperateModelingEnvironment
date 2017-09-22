@@ -4,8 +4,6 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Base constraint that ensures that a typed element has a type.
  * 

@@ -3,8 +3,6 @@ package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.con
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Comment;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Constraint ensuring that a comment has exactly one annotated element.
  */

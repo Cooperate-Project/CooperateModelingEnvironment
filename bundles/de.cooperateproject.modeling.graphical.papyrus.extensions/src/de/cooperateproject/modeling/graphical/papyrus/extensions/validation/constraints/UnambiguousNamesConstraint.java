@@ -5,8 +5,6 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.uml.tools.databinding.NamedElementValidator;
 import org.eclipse.uml2.uml.NamedElement;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateConstraintBase;
-
 /**
  * Constraint ensuring that names are not ambiguous.
  */

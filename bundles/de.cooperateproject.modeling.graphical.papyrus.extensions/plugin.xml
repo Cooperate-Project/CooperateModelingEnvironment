@@ -145,7 +145,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.NameHasToBeIDForNonAliasedElementsClass"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.NameHasToBeIDForNonAliasedElementsClassConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.nameHasToBeIDForNonAliasedElements"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -183,7 +183,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.TypedElementHasOnlyAllowedPrimitiveType"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.TypedElementHasOnlyAllowedPrimitiveTypeConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.typedElementHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
