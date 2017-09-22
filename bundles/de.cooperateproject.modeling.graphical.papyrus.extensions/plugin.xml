@@ -126,7 +126,7 @@
                </description>
             </constraint>
             <constraint
-                  class="ParameterMustHaveATypeConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.ParameterMustHaveATypeConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.parameterMustHaveAType"
                   isEnabledByDefault="true"
                   lang="Java"
