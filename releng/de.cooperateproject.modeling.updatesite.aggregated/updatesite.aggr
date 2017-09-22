@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/b3/2011/aggregator/1.1.0" label="Cooperate Modeling Environment" buildRoot="target">
+<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Cooperate Modeling Environment" buildRoot="target">
   <validationSets label="main">
     <contributions label="local">
       <repositories location="../de.cooperateproject.modeling.updatesite/target/repository"/>
