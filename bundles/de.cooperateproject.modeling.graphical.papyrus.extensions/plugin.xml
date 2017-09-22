@@ -32,7 +32,7 @@
          <constraints
                categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.ClassDiagramAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.ClassDiagramAssociationConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.classAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -51,7 +51,7 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UseCaseDiagramAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.UseCaseDiagramAssociationConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -70,7 +70,7 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UnambiguousNamesConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.UnambiguousNamesConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.unambiguousNamesConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -86,6 +86,100 @@
                </target>
                <description>
                   All named elements in the workspace must be distinguishable by their name.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CommentHasExactlyOneAnnotatedElementConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentHasOnlyOneAnnotatedElement"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Comment has exactly one annotated element"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The comment {0} must annotate exactly one element.
+               </message>
+               <target
+                     class="Comment">
+               </target>
+               <description>
+                  A comment must annotate exactly one element.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.AttributeMustHaveATypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.attributesMustHaveAType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Attributes must have a type"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The attribute {0} must have a type.
+               </message>
+               <target
+                     class="Property"></target>
+               <description>
+                  An attribute must have a type.
+               </description>
+            </constraint>
+            <constraint
+                  class="ParameterMustHaveATypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.parameterMustHaveAType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Parameter must have a type"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The parameter {0} must have a type.
+               </message>
+               <target
+                     class="Parameter">
+               </target>
+               <description>
+                  A property must have a type.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.NameHasToBeIDForNonAliasedElementsClass"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.nameHasToBeIDForNonAliasedElements"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Name has to be ID if element is not aliased"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The named element {0} has to have a name that is an ID or has to have an alias that is an ID.
+               </message>
+               <target
+                     class="NamedElement">
+               </target>
+               <description>
+                  A named element has to have a name that is an ID. If the named element can have an alias, the name can be freely chosen but if it is not an ID, there has to be an alias that is an ID.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CommentOnlyAllowedForCommentableElementsConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentOnlyAllowedForCommentableElements"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Comments can only be used on commentable elements."
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The comment {0} is about an element that is not commentable.
+               </message>
+               <target
+                     class="Comment">
+               </target>
+               <description>
+                  A comment must only be used with elements that are commentable.
                </description>
             </constraint>
          </constraints>

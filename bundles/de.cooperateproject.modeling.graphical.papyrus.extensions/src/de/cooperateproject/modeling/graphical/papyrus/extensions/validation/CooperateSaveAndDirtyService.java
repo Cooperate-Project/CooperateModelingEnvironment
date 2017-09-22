@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -17,7 +18,6 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
@@ -78,10 +78,10 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
             Optional<EObject> umlRootElement = getActiveUMLRootElement();
             if (umlRootElement.isPresent()) {
                 ValidateModelCommand validateModelCommand = new ValidateModelCommand(umlRootElement.get());
-                GMFtoEMFCommandWrapper.wrap(validateModelCommand).execute();
+                validateModelCommand.execute(null, null);
                 Diagnostic diagnostic = validateModelCommand.getDiagnostic();
                 List<Diagnostic> relevantDiagnostics = diagnostic.getChildren().stream()
-                        .filter(d -> CooperateConstraint.isCooperateConstraint(d.getSource()))
+                        .filter(d -> CooperateConstraintBase.isCooperateConstraint(d.getSource()))
                         .collect(Collectors.toList());
                 if (!relevantDiagnostics.isEmpty()) {
                     Diagnostic entryToShow = relevantDiagnostics.iterator().next();
@@ -92,7 +92,7 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
                 }
             }
             return true;
-        } catch (ServiceException | PartInitException e) {
+        } catch (ServiceException | PartInitException | ExecutionException e) {
             LOGGER.error("Error while validating model", e);
             return false;
         }
