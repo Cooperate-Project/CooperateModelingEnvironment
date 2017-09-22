@@ -1,39 +1,38 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
+import java.util.Optional;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.eclipse.emf.validation.service.ConstraintRegistry;
+import org.eclipse.emf.validation.service.IConstraintDescriptor;
 
+/**
+ * Base class for all Cooperate constraints to be used inside of Papyrus.
+ */
 public abstract class CooperateConstraint extends AbstractModelConstraint {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateConstraint.class);
+    private static final String COOPERATE_CONSTRAINT_CATEGORY_ID = "de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints";
 
     @Override
     public final IStatus validate(IValidationContext ctx) {
-        IStatus status = validateCooperateModel(ctx);
-        if (!status.isOK()) {
-            try {
-                // Tell SaveAndDirtyService not to save the invalid model
-                ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance()
-                        .getServiceRegistry(ctx.getTarget());
-                ISaveAndDirtyService saveAndDirtyService = serviceRegistry.getService(ISaveAndDirtyService.class);
-                if (saveAndDirtyService instanceof CooperateSaveAndDirtyService) {
-                    CooperateSaveAndDirtyService cooperateService = (CooperateSaveAndDirtyService) saveAndDirtyService;
-                    cooperateService
-                            .setModelInconsistent(new CooperateValidationError(status.getMessage(), ctx.getTarget()));
-                }
-            } catch (ServiceException e) {
-                LOGGER.error("Could not get ServicesRegistry on validation", e);
-            }
-        }
-        return status;
+        return validateCooperateModel(ctx);
     }
 
-    public abstract IStatus validateCooperateModel(IValidationContext ctx);
+    protected abstract IStatus validateCooperateModel(IValidationContext ctx);
+
+    /**
+     * Checks if the constraint with the given ID is an instance of {@link CooperateConstraint}.
+     * 
+     * @param constraintId
+     *            The constraint ID to check.
+     * @return True if the given constraint ID belongs to a {@link CooperateConstraint}. False otherwise.
+     */
+    public static boolean isCooperateConstraint(String constraintId) {
+        return Optional.ofNullable(ConstraintRegistry.getInstance().getDescriptor(constraintId))
+                .map(IConstraintDescriptor::getCategories).map(categories -> categories.stream()
+                        .anyMatch(c -> COOPERATE_CONSTRAINT_CATEGORY_ID.equals(c.getId())))
+                .orElse(false);
+    }
 }

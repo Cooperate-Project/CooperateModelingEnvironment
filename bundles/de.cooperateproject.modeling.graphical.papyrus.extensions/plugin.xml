@@ -36,7 +36,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.classAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Live"
+                  mode="Batch"
                   name="Class Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -55,7 +55,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Live"
+                  mode="Batch"
                   name="Use Case Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -74,7 +74,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.unambiguousNamesConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Live"
+                  mode="Batch"
                   name="Unambiguous Names Constraint"
                   severity="WARNING"
                   statusCode="2">
