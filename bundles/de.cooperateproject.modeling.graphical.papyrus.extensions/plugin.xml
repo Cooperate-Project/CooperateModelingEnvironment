@@ -182,6 +182,44 @@
                   A comment must only be used with elements that are commentable.
                </description>
             </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.TypedElementHasOnlyAllowedPrimitiveType"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.typedElementHasOnlyAllowedPrimitiveType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Typed elements have only allowed primitive types"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The typed element {0} has an invalid primitive type.
+               </message>
+               <target
+                     class="TypedElement">
+               </target>
+               <description>
+                  A primitive type must be an Ecore primitive type that has a common type.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.OperationHasOnlyAllowedPrimitiveTypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.operationHasOnlyAllowedPrimitiveType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Operation has only allowed primitive types"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The operation {0} has an invalid primitive type.
+               </message>
+               <target
+                     class="Operation">
+               </target>
+               <description>
+                  A primitive type must be an Ecore primitive type that has a common type.
+               </description>
+            </constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">

@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.xtext,
  de.cooperateproject.modeling.textual.common.metamodel,
  net.winklerweb.cdoxtext.runtime;visibility:=reexport,
  org.eclipse.uml2.codegen.ecore;bundle-version="2.1.2",
- de.cooperateproject.modeling.textual.common
+ de.cooperateproject.modeling.textual.common,
+ de.cooperateproject.modeling.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
  de.cooperateproject.modeling.textual.usecase.derivedstate.calculator,
