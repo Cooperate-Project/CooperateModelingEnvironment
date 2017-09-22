@@ -1,7 +1,7 @@
 package de.cooperateproject.ui.diff.content;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,12 +12,12 @@ import org.eclipse.emf.compare.DifferenceKind;
  * need information about whether the item has changed in this commit or not, all needed information
  * about the item will be stored here.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class DiffTreeItem {
 
-    private final HashSet<DiffTreeItem> children;
+    private final Set<DiffTreeItem> children;
     /**original object (of this one) from the EMF Containment Hierarchy.*/
     private final Object object; 
     private DiffTreeItem parent;
@@ -35,7 +35,7 @@ public class DiffTreeItem {
         this.object = object;
         this.kind = null;
         this.parent = null;
-        children = new HashSet<>();
+        children = new LinkedHashSet<>();
     }
 
     /**

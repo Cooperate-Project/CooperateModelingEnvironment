@@ -35,7 +35,6 @@ import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
 import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
-import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.Activator;
 
 public class ModelCreator {
@@ -115,8 +114,8 @@ public class ModelCreator {
             // TODO set factory in resourceset // should be dependency injection
             ResourceSet rs = transaction.getResourceSet();
             rs.setResourceFactoryRegistry(CDOResourceHandler.createFactoryWrapper(rs.getResourceFactoryRegistry()));
-            TransformationExecutor.getInstance().transformChanged(papyrusURI, rs);
-            TransformationExecutor.getInstance().transformChanged(textualResource.getURI(), rs);
+            Activator.getDefault().getTransformationExecutor().transformChanged(papyrusURI, rs);
+            Activator.getDefault().getTransformationExecutor().transformChanged(textualResource.getURI(), rs);
         } catch (IOException e) {
             throw new ModelCreatorException("Initial transformation of models failed.", e);
         }

@@ -262,7 +262,14 @@ public class ComparisonManager {
                 IOUtil.closeSilent(currentState);
             }
         }
+        filterCreateDiagramCommit(commitInfos);
         return commitInfos;
+    }
+
+    private static void filterCreateDiagramCommit(List<CDOCommitInfo> commitInfos) {
+        if (!commitInfos.isEmpty()) {
+            commitInfos.remove(commitInfos.size() - 1);
+        }
     }
 
     private ConcreteSyntaxModel getConcreteSyntaxModel(CDOView view) {

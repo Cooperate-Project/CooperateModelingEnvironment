@@ -27,7 +27,8 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  de.cooperateproject.modeling.common;bundle-version="0.2.2",
  de.cooperateproject.ui.preferences;bundle-version="0.2.2",
  de.cooperateproject.modeling.textual.common.metamodel,
- de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.2.2"
+ de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.2.2",
+ de.cooperateproject.ui;bundle-version="0.2.2"
 Import-Package: org.slf4j;version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls.ui,

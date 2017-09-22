@@ -1,0 +1,162 @@
+import TraceUtils_Usecase;
+
+transformation Textual_to_Graphical_for_Usecase_Trace(in textualTrace : TRACE, out graphicalTrace : TRACE, in graphicalModel : GRAPHICAL, in g2tTransformation : QVTO);
+
+modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
+modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TEXTUAL uses usecase('http://www.cooperateproject.de/modeling/textual/usecase/Usecase');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+
+main() {
+    var traces := textualTrace.rootObjects()[trace::Trace];
+    assert fatal (traces->size() = 1);
+    traces->initializeProperties();
+    traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+    TARGET_TRANSFORMATION_NAME := "Graphical_to_Textual_for_Usecase";
+    TARGET_TRANSFORMATION := g2tTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
+}
+
+mapping trace::Trace::trace() : trace::Trace
+{
+    traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+    result += self.map traceRecordDiagram();
+    result += self.map traceRecordSystem();
+    result += self.map traceRecordBehavioredClassifier();
+    result += self.map traceRecordActor();
+    result += self.map traceRecordUseCase();
+    result += self.map traceRecordExtensionPoint();
+    result += self.map traceRecordComment();
+    result += self.map traceRecordRelationship();
+    result += self.map traceRecordGeneralization();
+    result += self.map traceRecordExtend();
+    result += self.map traceRecordInclude();
+    result += self.map traceRecordAssociation();
+}
+
+mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
+{
+    var notationDiagram := self.getResult().modelElement;
+    var useCaseDiagram := self.getSelf().modelElement.oclAsType(usecase::UseCaseDiagram);
+    
+    result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram, "UseCaseDiagram", useCaseDiagram.eobject());
+    result += new TraceRecord("diagramToRootPackage", "Diagram", notationDiagram, "RootPackage", useCaseDiagram.rootPackage.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordSystem() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "systemToShape"}
+{
+    var node := self.getResult().modelElement;
+    var system := self.getSelf().modelElement.oclAsType(usecase::System);
+    
+    result += new TraceRecord("nodeToSystem", "Node", node, "System", system.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordBehavioredClassifier() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "behavioredClassifierToShape"}
+{
+    var node := self.getResult().modelElement;
+    var classifier := self.getSelf().modelElement.oclAsType(usecase::BehavioredClassifier);
+    
+    result += new TraceRecord("nodeToBehavioredClassifier", "Node", node, "BehavioredClassifier", classifier.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordActor() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "actorToShape"}
+{
+    var node := self.getResult().modelElement;
+    var actor := self.getSelf().modelElement.oclAsType(usecase::Actor);
+    
+    result += new TraceRecord("nodeToActor", "Node", node, "Actor", actor.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordUseCase() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "usecaseToShape"}
+{
+    var node := self.getResult().modelElement;
+    var usecase := self.getSelf().modelElement.oclAsType(usecase::UseCase);
+    
+    result += new TraceRecord("nodeToUsecase", "Node", node, "UseCase", usecase.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordExtensionPoint() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "extensionPointToShape"}
+{
+    var node := self.getResult().modelElement;
+    var extensionPoint := self.getSelf().modelElement.oclAsType(usecase::ExtensionPoint);
+    
+    result += new TraceRecord("nodeToExtensionPoint", "Node", node, "ExtensionPoint", extensionPoint.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToShape"}
+{
+    var node := self.getResult().modelElement;
+    var comment := self.getSelf().modelElement.oclAsType(textualCommons::Comment);
+    
+    result += new TraceRecord("commentToComment", "View", node, "Comment", comment.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordRelationship() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "relationshipToEdge"}
+{
+    var edge := self.getResult().modelElement;
+    var relationship := self.getSelf().modelElement.oclAsType(usecase::Relationship);
+    
+    result += new TraceRecord("edgeToRelationship", "Edge", edge, "Relationship", relationship.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordGeneralization() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "generalizationToEdge"}
+{
+    var edge := self.getResult().modelElement;
+    var generalization := self.getSelf().modelElement.oclAsType(usecase::Generalization);
+    
+    result += new TraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", generalization.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordExtend() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "extendToEdge"}
+{
+    var edge := self.getResult().modelElement;
+    var extend := self.getSelf().modelElement.oclAsType(usecase::Extend);
+    
+    result += new TraceRecord("edgeToExtend", "Edge", edge, "Extend", extend.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordInclude() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "includeToEdge"}
+{
+    var edge := self.getResult().modelElement;
+    var include := self.getSelf().modelElement.oclAsType(usecase::Include);
+    
+    result += new TraceRecord("edgeToInclude", "Edge", edge, "Include", include.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordAssociation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "associationToEdge"}
+{
+    var edge := self.getResult().modelElement;
+    var association := self.getSelf().modelElement.oclAsType(usecase::Association);
+    var umlAssociation := association.referencedElement.oclAsType(uml::Association);
+    var actorMemberEnd := umlAssociation.memberEnd->any(type.oclIsKindOf(uml::Actor)).toEObject();
+    var usecaseMemberEnd := umlAssociation.memberEnd->any(type.oclIsKindOf(uml::UseCase)).toEObject();
+    
+    result += new TraceRecord("edgeToAssociation", "Edge", edge, "Association", association.eobject());
+    if actorMemberEnd.oclAsType(uml::MultiplicityElement).hasCardinality() then
+        result += new TraceRecord("multiplicityElementToCardinality", "Property", actorMemberEnd, "Cardinality", association.actorCardinality.toEObject())
+    endif;
+    if usecaseMemberEnd.oclAsType(uml::MultiplicityElement).hasCardinality() then
+        result += new TraceRecord("multiplicityElementToCardinality", "Property", usecaseMemberEnd, "Cardinality", association.useCaseCardinality.toEObject())
+    endif;
+}

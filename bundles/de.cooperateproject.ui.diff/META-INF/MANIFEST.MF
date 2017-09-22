@@ -25,7 +25,8 @@ Require-Bundle: org.eclipse.ui,
  org.slf4j.api;bundle-version="1.7.2",
  de.cooperateproject.modeling.textual.common.metamodel;bundle-version="0.2.0",
  de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.2.0",
- de.cooperateproject.modeling.textual.common;bundle-version="0.2.0"
+ de.cooperateproject.modeling.textual.common;bundle-version="0.2.0",
+ de.cooperateproject.modeling.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.ui.diff.content,

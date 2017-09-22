@@ -29,7 +29,7 @@ public class SummaryViewBuilder {
         Comparison comparisonResult = comparison;
         EList<Diff> resultList = comparisonResult.getDifferences();
         List<SummaryItem> sumList = createSummaryItemList(comparisonResult, resultList);
-
+        
         PostProcessorManager.postProcessSummaryList(sumList);
 
         return sumList;

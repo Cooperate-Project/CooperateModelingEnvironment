@@ -6,8 +6,6 @@ package de.cooperateproject.modeling.textual.cls.ui
 import com.google.inject.Binder
 import com.google.inject.name.Names
 import de.cooperateproject.modeling.textual.cls.ui.inFile.ClsLocationInFileProvider
-import de.cooperateproject.modeling.textual.cls.ui.outline.FlatOutlineViewContribution
-import de.cooperateproject.modeling.textual.cls.ui.outline.OutlineFlattenFilterAndSorter
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.resource.ILocationInFileProvider
 import org.eclipse.xtext.resource.SaveOptions
@@ -15,6 +13,8 @@ import org.eclipse.xtext.ui.editor.model.edit.DefaultTextEditComposer
 import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer
 import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
+import de.cooperateproject.ui.outline.FlatOutlineViewContribution
+import de.cooperateproject.ui.outline.OutlineFlattenFilterAndSorter
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -38,7 +38,7 @@ class ClsUiModule extends AbstractClsUiModule {
 	def Class<? extends OutlineFilterAndSorter> bindOutlineFilterAndSorter() {
 		return OutlineFlattenFilterAndSorter
 	}
-
+	
 	public static class ClsTextEditComposer extends DefaultTextEditComposer {
 
 		override SaveOptions getSaveOptions() {

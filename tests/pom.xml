@@ -20,7 +20,9 @@
 		<module>de.cooperateproject.modeling.textual.usecase.tests</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.tests</module>
-		<module>de.cooperateproject.modeling.transformation.transformations.tests</module>
+		<module>de.cooperateproject.modeling.transformation.cls.tests</module>
+		<module>de.cooperateproject.modeling.transformation.common.tests</module>
+		<module>de.cooperateproject.modeling.transformation.usecase.tests</module>
 	</modules>
 
 	<properties>

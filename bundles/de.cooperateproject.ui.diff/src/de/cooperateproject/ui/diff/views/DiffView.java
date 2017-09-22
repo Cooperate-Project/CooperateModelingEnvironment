@@ -2,40 +2,39 @@ package de.cooperateproject.ui.diff.views;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DateTime;
 
+import de.cooperateproject.ui.diff.action.DoubleClickCommitViewerAction;
+import de.cooperateproject.ui.diff.action.IToggleAction;
+import de.cooperateproject.ui.diff.action.LiveToggleAction;
 import de.cooperateproject.ui.diff.content.CommitContentProvider;
 import de.cooperateproject.ui.diff.content.DiffTreeBuilder;
-import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.content.SummaryItem;
 import de.cooperateproject.ui.diff.content.SummaryViewBuilder;
+import de.cooperateproject.ui.diff.handlers.ClickHandler;
 import de.cooperateproject.ui.diff.internal.ComparisonManager;
 import de.cooperateproject.ui.diff.internal.CommitCDOViewManager;
 import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
 import de.cooperateproject.ui.diff.labeling.CommitLabelProvider;
 import de.cooperateproject.ui.diff.labeling.DiffViewLabelProvider;
 import de.cooperateproject.ui.diff.labeling.SummaryLabelProvider;
+import de.cooperateproject.ui.diff.listener.ViewPartListener;
 
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -50,65 +49,39 @@ import org.eclipse.swt.layout.FormLayout;
  * Represents the view of the plugin, mainly responsible for the gui and communication between user
  * and program.
  * 
- * @author Jasmin, thomcz
+ * @author Jasmin, czogalik
  *
  */
-public class DiffView extends ViewPart {
-    public static final String ID = "de.cooperateproject.ui.diff.views.DiffView";
+public class DiffView extends ViewPart implements IDiffView {
+
+    public static final String PLUGIN_ID = "de.cooperateproject.ui.diff.views.DiffView";
     private ComparisonManager comparisonManager;
-    private CommitCDOViewManager cdoViewManager;
     private TableViewer commitViewer;
     private TableViewer summaryViewer;
     private TreeViewer diffViewer;
-    private Action doubleClickActionCommitViewer;
-    private Action doubleClickActionDiffViewer;
-    private Action doubleClickActionSummaryViewer;
     private TabFolder tabFolder;
     private TabItem commitHistoryTab;
     private TabItem diffViewTab;
     private Composite commitHistoryComposite;
     private Composite diffViewComposite;
-    private IFile selectedFile;
+    private IToggleAction liveUpdateAction;
+    private ClickHandler clickHandler;
+
+    private IFile file;
 
     /**
      * This is a callback that will allow us to create the viewer and initialize it.
      */
     @Override
     public void createPartControl(Composite parent) {
-        parent.addDisposeListener(e -> {
-            if (cdoViewManager != null) {
-                cdoViewManager.closeAllViews();
-            }
-        });
         setUpTabs(parent);
         setUpCommitHistoryTabContent();
         setUpDiffViewTabContent();
-        makeActionSummaryViewer();
-        makeActionDiffViewer();
-        makeActionCommitViewer();
-        hookKeyboard();
-        hookDoubleClickAction();
-    }
+        setUpClickHandler();
 
-    /**
-     * This method will be invoked from a handler bound to a command that is able to retrieve a
-     * selected .cooperate file from the project explorer.
-     * 
-     * @param file
-     *            the selected .cooperate file
-     */
-    public void setSelectedFile(IFile file) {
-        // If a new file is selected, close all CDOViews that may still be open.
-        if (cdoViewManager != null) {
-            cdoViewManager.closeAllViews();
-        }
-        selectedFile = file;
-        comparisonManager = new ComparisonManager(file);
-        commitViewer.setInput(comparisonManager.getAllCommitInfos());
-        for (TableColumn c : commitViewer.getTable().getColumns()) {
-            c.pack();
-        }
-        tabFolder.setSelection(commitHistoryTab);
+        createToolbar();
+
+        getSite().getPage().addPartListener(new ViewPartListener(this, getSite(), liveUpdateAction));
     }
 
     /**
@@ -119,169 +92,70 @@ public class DiffView extends ViewPart {
         commitViewer.getControl().setFocus();
     }
 
-    private void makeActionCommitViewer() {
-        // tells this class to open the diff view of the diagram's selected
-        // commit if Enter is pressed on it
-        doubleClickActionCommitViewer = new Action() {
-            @Override
-            public void run() {
-                ISelection selection = commitViewer.getSelection();
-                Object obj = ((IStructuredSelection) selection).getFirstElement();
-
-                if (obj instanceof CDOCommitInfo) {
-                    cdoViewManager = new CommitCDOViewManager((CDOCommitInfo) obj, selectedFile);
-                    showDiffViewOfCommit();
-                }
-            }
-        };
-    }
-
-    private void makeActionDiffViewer() {
-        doubleClickActionDiffViewer = new Action() {
-            @Override
-            public void run() {
-                setElementFocus();
-            }
-        };
-    }
-
-    /**
-     * sets the focus from the tree viewer to the corresponding element in the summary table.
-     */
-    private void setElementFocus() {
-        ISelection selection = diffViewer.getSelection();
-        Object obj = ((IStructuredSelection) selection).getFirstElement();
-
-        if (!(obj instanceof DiffTreeItem)) {
-            return;
-        }
-        DiffTreeItem item = (DiffTreeItem) obj;
-        if (item.getDiffKind() != null) {
-            setElementFocus(item);
+    @Override
+    public void setSelectedFile(IFile file) {
+        this.file = file;
+        setCommits(file);
+        if (!isDisposed()) {
+            setTabFolder(commitHistoryTab);
         }
     }
 
-    /**
-     * if it can't find a linking with the elements, just set the focus to its parent (if existing).
-     * 
-     * @param item
-     *            the item to set focus.
-     */
-    private void setElementFocus(DiffTreeItem item) {
-        TableItem backupParent = null;
-        for (TableItem tableItem : summaryViewer.getTable().getItems()) {
-
-            if (!(tableItem.getData() instanceof SummaryItem)) {
-                break;
-            }
-
-            SummaryItem summaryItem = (SummaryItem) tableItem.getData();
-            if (summaryItem.getLeft() == item.getObject() || summaryItem.getRight() == item.getObject()) {
-                summaryViewer.getTable().setSelection(tableItem);
-                summaryViewer.getControl().setFocus();
-                return;
-            } else if (item.getObject() == summaryItem.getCommonParent()) {
-                backupParent = tableItem;
-            }
-        }
-        if (backupParent != null) {
-            summaryViewer.getTable().setSelection(backupParent);
-            summaryViewer.getControl().setFocus();
-        }
-    }
-
-    private void makeActionSummaryViewer() {
-        doubleClickActionSummaryViewer = new Action() {
-            @Override
-            public void run() {
-                setFocusToElementInTreeViewer();
-            }
-        };
-    }
-
-    /**
-     * sets the focus from the summary viewer to the corresponding element in the tree viewer.
-     */
-    private void setFocusToElementInTreeViewer() {
-        ISelection selection = summaryViewer.getSelection();
-        Object obj = ((IStructuredSelection) selection).getFirstElement();
-
-        if (!(obj instanceof SummaryItem)) {
-            return;
-        }
-        SummaryItem item = (SummaryItem) obj;
-        // if it can't find a linking with the elements, just set
-        // the focus to its parent (if existing)
-        TreeItem backupParent = null;
-        backupParent = getRootsOfDiffViewer(item, backupParent);
-        if (backupParent != null) {
-            diffViewer.getTree().setSelection(backupParent);
-            diffViewer.getControl().setFocus();
-        }
-    }
-
-    private TreeItem getRootsOfDiffViewer(SummaryItem item, TreeItem backupParent) {
-        TreeItem resultParent = backupParent;
-        for (TreeItem treeItem : diffViewer.getTree().getItems()) {
-            for (TreeItem child : getAllTreeItems(treeItem)) {
-
-                if (!(child.getData() instanceof DiffTreeItem)) {
-                    break;
-                }
-                DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
-                if (diffTreeItem.getObject() == item.getLeft() || diffTreeItem.getObject() == item.getRight()) {
-                    diffViewer.getTree().setSelection(child);
-                    diffViewer.getControl().setFocus();
-                    return null;
-                } else if (item.getCommonParent() == diffTreeItem.getObject()) {
-                    resultParent = child;
-                }
-            }
-        }
-        return resultParent;
-    }
-
-    private static List<TreeItem> getAllTreeItems(TreeItem parent) {
-        List<TreeItem> allItems = new ArrayList<>();
-        allItems.add(parent);
-        for (TreeItem child : parent.getItems()) {
-            allItems.addAll(getAllTreeItems(child));
-        }
-        return allItems;
-    }
-
-    /**
-     * Opens the tabFolder with the tree viewer and summary table for the selected commit.
-     * 
-     * @param obj
-     *            the commit of interest and to be opened in the tree viewer and summary table
-     */
-    private void showDiffViewOfCommit() {
+    @Override
+    public void showDiffViewOfCommit(CommitCDOViewManager cdoViewManager) {
         SummaryViewBuilder svb = new SummaryViewBuilder();
         List<SummaryItem> summaryList = svb.buildSummaryView(
                 comparisonManager.getComparison(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
-        summaryViewer.setInput(summaryList);
+        
+        fillTable(summaryViewer, summaryList);
+        setTabFolder(diffViewTab);
 
-        for (TableColumn c : summaryViewer.getTable().getColumns()) {
-            c.pack();
-        }
-        tabFolder.setSelection(diffViewTab);
+        setDiffViewerInput(cdoViewManager, summaryList);
+    }
 
+    private void setDiffViewerInput(CommitCDOViewManager cdoViewManager, List<SummaryItem> summaryList) {
         CDOResource resource = comparisonManager.getResource(cdoViewManager.getCurrentView());
         DiffTreeBuilder dtb = new DiffTreeBuilder(resource, summaryList);
         diffViewer.setInput(dtb.buildTree());
         diffViewer.expandAll();
         diffViewer.getControl().setFocus();
     }
+    
+    private static void fillTable(TableViewer viewer, Object input) {
+        viewer.setInput(input);
+        for (TableColumn c : viewer.getTable().getColumns()) {
+            c.pack();
+        }
+    }
+    
+    private void setTabFolder(TabItem item) {
+        if (tabFolder != null) {
+            tabFolder.setSelection(item);
+        }
+    }
+
+    private boolean isDisposed() {
+        Control control = commitViewer.getControl();
+        if (control == null) {
+            return true;
+        }
+        return control.isDisposed();
+    }
+
+    private void setUpClickHandler() {
+        clickHandler = new ClickHandler(summaryViewer, diffViewer);
+        hookDoubleClickAction();
+        hookKeyboard();
+    }
 
     private void hookDoubleClickAction() {
-        commitViewer.addDoubleClickListener(event -> doubleClickActionCommitViewer.run());
-        diffViewer.addDoubleClickListener(event -> doubleClickActionDiffViewer.run());
-        summaryViewer.addDoubleClickListener(event -> doubleClickActionSummaryViewer.run());
+        commitViewer.addDoubleClickListener(event -> new DoubleClickCommitViewerAction(this, commitViewer, file).run());
+        diffViewer.addDoubleClickListener(event -> clickHandler.setElementFocus());
+        summaryViewer.addDoubleClickListener(event -> clickHandler.setFocusToElementInTreeViewer());
     }
 
     private void hookKeyboard() {
-        KeyListener kl = new KeyListener() {
+        KeyListener keyListener = new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
                 return;
@@ -289,63 +163,26 @@ public class DiffView extends ViewPart {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                handleKeyReleased(e);
+                clickHandler.handleKeyReleased(e);
             }
         };
-        diffViewer.getTree().addKeyListener(kl);
+        diffViewer.getTree().addKeyListener(keyListener);
     }
 
-    private void handleKeyReleased(KeyEvent event) {
-        // If space was released, set the focus on the item's parent in the
-        // tree.
-        if (event.character == SWT.SPACE) {
-            focusOnParentTreeItem();
-        }
-        // collapse to level of classes
-        else if (event.keyCode == SWT.KEYPAD_1) {
-            diffViewer.collapseAll();
-            diffViewer.expandToLevel(2);
-        }
-        // expand to level of attributes and methods
-        else if (event.keyCode == SWT.KEYPAD_2) {
-            diffViewer.collapseAll();
-            diffViewer.expandToLevel(3);
-
-        }
-        // expand all levels
-        else if (event.keyCode == SWT.KEYPAD_3) {
-            diffViewer.expandAll();
-        }
+    private void createToolbar() {
+        IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
+        liveUpdateAction = new LiveToggleAction();
+        toolBarManager.add((Action) liveUpdateAction);
     }
 
-    /**
-     * Finds the parent of the current selection in the diffViewer and sets the focus on it.
-     */
-    private void focusOnParentTreeItem() {
-        ISelection selection = diffViewer.getSelection();
-        Object obj = ((IStructuredSelection) selection).getFirstElement();
+    private void setCommits(IFile file) {
+        comparisonManager = new ComparisonManager(file);
 
-        if (!(obj instanceof DiffTreeItem)) {
+        if (isDisposed()) {
             return;
         }
-        DiffTreeItem item = (DiffTreeItem) obj;
-        DiffTreeItem parent = item.getParent();
-
-        // gets all roots of the diff viewer
-        for (TreeItem treeItem : diffViewer.getTree().getItems()) {
-            for (TreeItem child : getAllTreeItems(treeItem)) {
-                if (!(child.getData() instanceof DiffTreeItem)) {
-                    break;
-                }
-                DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
-                if (diffTreeItem == parent) {
-                    diffViewer.getTree().setSelection(child);
-                    diffViewer.getControl().setFocus();
-                    return;
-                }
-            }
-
-        }
+        
+        fillTable(commitViewer, comparisonManager.getAllCommitInfos());
     }
 
     private void setUpTabs(Composite parent) {
@@ -410,7 +247,7 @@ public class DiffView extends ViewPart {
         commitViewer.getTable().setHeaderVisible(true);
         commitViewer.getTable().setLinesVisible(false);
         commitViewer.setComparator(new CommitViewerComparator());
-        String[] columnNames1 = new String[] { "Date", "Time" };
+        String[] columnNames1 = new String[] { "Date", "Time", "Message" };
         for (int i = 0; i < columnNames1.length; i++) {
             TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
             tableColumn.setText(columnNames1[i]);

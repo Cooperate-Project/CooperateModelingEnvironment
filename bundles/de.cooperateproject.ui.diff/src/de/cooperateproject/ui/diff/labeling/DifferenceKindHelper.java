@@ -22,25 +22,17 @@ public final class DifferenceKindHelper {
      * @return a short String representation of the DifferenceKind
      */
     public static String convertToToken(DifferenceKind diffKind) {
-        String ret;
-
         switch (diffKind) {
         case ADD:
-            ret = "add";
-            break;
+            return "add";
         case DELETE:
-            ret = "del";
-            break;
+            return "del";
         case MOVE:
-            ret = "mov";
-            break;
+            return "mov";
         case CHANGE:
-            ret = "cha";
-            break;
+            return "cha";
         default:
-            ret = diffKind.toString();
+            return diffKind.toString();
         }
-
-        return ret;
     }
 }
