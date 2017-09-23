@@ -2,7 +2,6 @@ package de.cooperateproject.modeling.transformation.tests.commons;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -45,6 +44,7 @@ import de.cooperateproject.modeling.transformation.common.impl.Slf4JLogger;
 import de.cooperateproject.modeling.transformation.common.impl.Slf4JLogger.Level;
 import de.cooperateproject.qvtoutils.blackbox.CooperateLibrary;
 
+@SuppressWarnings("restriction")
 public abstract class TransformationTestBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TransformationTestBase.class);
@@ -55,7 +55,7 @@ public abstract class TransformationTestBase {
         delegate.registerQVTOResolutionURIs(createPlatformURI(Activator.PLUGIN_ID).appendSegment("transforms"));
     }
     
-    public static void initialize(Consumer<UnitTestEnvironmentSetupDelegate> initializer) throws Exception {
+	public static void initialize(Consumer<UnitTestEnvironmentSetupDelegate> initializer) throws IllegalAccessException {
         BasicConfigurator.resetConfiguration();
         BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
 
@@ -80,7 +80,8 @@ public abstract class TransformationTestBase {
             TextualCommonsPackage.eINSTANCE.eClass();
             org.eclipse.papyrus.infra.gmfdiag.style.StylePackage.eINSTANCE.eClass();
             
-            List<UnitResolverFactory> fFactories = (List<UnitResolverFactory>) 
+            @SuppressWarnings("unchecked")
+			List<UnitResolverFactory> fFactories = (List<UnitResolverFactory>) 
                     FieldUtils.readField(UnitResolverFactory.Registry.INSTANCE, "fFactories", true);
             fFactories.clear();
             fFactories.add(new MockUnitResolverFactory(new ArrayList<>(baseURIs)));
@@ -92,7 +93,7 @@ public abstract class TransformationTestBase {
     }
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         resourceSet = new ResourceSetImpl();
     }
 
@@ -100,9 +101,8 @@ public abstract class TransformationTestBase {
         return resourceSet;
     }
 
-    @SuppressWarnings("restriction")
     protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
-            Trace traceModel) throws IOException {
+            Trace traceModel) {
         TransformationExecutor executor = new TransformationExecutor(transformationURI);
         ExecutionContextImpl ctx = new ExecutionContextImpl();
         ctx.setLog(new Slf4JLogger(LOGGER, Level.INFO));

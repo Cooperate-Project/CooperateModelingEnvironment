@@ -85,7 +85,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 
     @Override
     protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
-            Trace traceModel) throws IOException {
+            Trace traceModel) {
         super.runTransformation(transformationURI, transformationParameters, traceModel);
         repairTransformationTrace(traceModel);
     }
@@ -115,7 +115,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         results.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
     }
 
-    protected void assertTraceEquals(Trace t2gTraceModel, ModelExtent actualTraceModel) throws Exception {
+    protected void assertTraceEquals(Trace t2gTraceModel, ModelExtent actualTraceModel) throws IOException {
         assertEquals(1, t2gTraceModel.getTraceContent().size());
         EObject expectedTrace = t2gTraceModel.getTraceContent().get(0);
         assertEquals(1, actualTraceModel.getContents().size());
