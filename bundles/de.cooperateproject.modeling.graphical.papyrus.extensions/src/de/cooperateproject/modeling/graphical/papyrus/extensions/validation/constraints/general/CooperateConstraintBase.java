@@ -30,11 +30,15 @@ public abstract class CooperateConstraintBase<T extends EObject> extends Abstrac
         this.targetType = targetType;
     }
 
+    public Class<? extends T> getTargetType() {
+        return targetType;
+    }
+
     @Override
     public final IStatus validate(IValidationContext ctx) {
-        if (!targetType.isInstance(ctx.getTarget())) {
+        if (!getTargetType().isInstance(ctx.getTarget())) {
             throw new IllegalArgumentException(String.format("The given target object %s has not the required type %s",
-                    ctx.getTarget(), targetType.getSimpleName()));
+                    ctx.getTarget(), getTargetType().getSimpleName()));
         }
         @SuppressWarnings("unchecked")
         T target = (T) ctx.getTarget();
