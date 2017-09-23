@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general;
 
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Type;

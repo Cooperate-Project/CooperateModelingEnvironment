@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general;
 
 import java.util.Optional;
 
@@ -41,6 +41,10 @@ public abstract class CooperateConstraintBase<T extends EObject> extends Abstrac
         if (validateCooperateModel(ctx, target)) {
             return ctx.createSuccessStatus();
         }
+        return createFailureStatus(ctx, target);
+    }
+
+    protected IStatus createFailureStatus(IValidationContext ctx, EObject target) {
         return ctx.createFailureStatus(target);
     }
 

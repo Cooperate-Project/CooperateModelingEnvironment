@@ -5,8 +5,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IClientSelector;
-import org.eclipse.uml2.uml.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,8 +18,8 @@ public class CooperateClientSelector implements IClientSelector {
 
     @Override
     public boolean selects(Object object) {
-        if (object instanceof Element) {
-            Element model = (Element) object;
+        if (object instanceof EObject) {
+            EObject model = (EObject) object;
             URI uri = model.eResource().getURI();
             IProject project;
             if (uri.scheme().startsWith("cdo")) {

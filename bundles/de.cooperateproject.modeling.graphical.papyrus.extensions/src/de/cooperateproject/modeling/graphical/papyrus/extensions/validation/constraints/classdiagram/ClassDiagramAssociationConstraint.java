@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.classdiagram;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,6 +8,8 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
+
+import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 
 /**
  * Constraint ensuring that an association in a class diagram has a name.

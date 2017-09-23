@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,6 +8,8 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.UseCase;
+
+import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 
 /**
  * Constraint ensuring that associations in use case diagrams do not have names.

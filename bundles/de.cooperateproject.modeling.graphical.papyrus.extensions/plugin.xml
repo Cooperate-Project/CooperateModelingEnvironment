@@ -32,7 +32,7 @@
          <constraints
                categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.ClassDiagramAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.classdiagram.ClassDiagramAssociationConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.classAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -51,7 +51,7 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.UseCaseDiagramAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -70,7 +70,7 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.UnambiguousNamesConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.UnambiguousNamesConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.unambiguousNamesConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -89,7 +89,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CommentHasExactlyOneAnnotatedElementConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CommentHasExactlyOneAnnotatedElementConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentHasOnlyOneAnnotatedElement"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -108,7 +108,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.AttributeMustHaveATypeConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.AttributeMustHaveATypeConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.attributesMustHaveAType"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -126,7 +126,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.ParameterMustHaveATypeConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.ParameterMustHaveATypeConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.parameterMustHaveAType"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -145,7 +145,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.NameHasToBeIDForNonAliasedElementsClassConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.NameHasToBeIDForNonAliasedElementsClassConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.nameHasToBeIDForNonAliasedElements"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -164,7 +164,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CommentOnlyAllowedForCommentableElementsConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CommentOnlyAllowedForCommentableElementsConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentOnlyAllowedForCommentableElements"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -183,7 +183,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.TypedElementHasOnlyAllowedPrimitiveTypeConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.TypedElementHasOnlyAllowedPrimitiveTypeConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.typedElementHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -202,7 +202,7 @@
                </description>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.OperationHasOnlyAllowedPrimitiveTypeConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.OperationHasOnlyAllowedPrimitiveTypeConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.operationHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
@@ -223,6 +223,34 @@
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </package>
+      </constraintProvider>
+      <constraintProvider
+            cache="true">
+         <constraints
+               categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseSystemMustBeOfTypeComponent"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.systemMustBeAComponent"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="System must be a component"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The system {0} must be of type component.
+               </message>
+               <target
+                     class="Shape">
+               </target>
+               <description>
+                  The system used in a use case diagram must be of type component.
+               </description>
+            </constraint>
+         </constraints>
+         <package
+               namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
          </package>
       </constraintProvider>
    </extension>

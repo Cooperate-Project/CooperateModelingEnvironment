@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general;
 
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Comment;

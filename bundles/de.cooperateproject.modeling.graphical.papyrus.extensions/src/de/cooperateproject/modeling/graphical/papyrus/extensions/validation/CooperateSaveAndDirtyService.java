@@ -1,7 +1,8 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperate.modeling.graphical.papyrus.extensions.Activator;
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CooperateConstraintBase;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 
 /**
  * SaveAndDirtyService for papyrus models created in cooperate projects. Provides model
@@ -76,39 +77,54 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
     private boolean validate() {
         try {
-            Optional<EObject> umlRootElement = getActiveUMLRootElement();
-            if (umlRootElement.isPresent()) {
-                ValidateModelCommand validateModelCommand = new ValidateModelCommand(umlRootElement.get());
-                validateModelCommand.execute(null, null);
-                Diagnostic diagnostic = validateModelCommand.getDiagnostic();
-                List<Diagnostic> relevantDiagnostics = diagnostic.getChildren().stream()
-                        .filter(d -> CooperateConstraintBase.isCooperateConstraint(d.getSource()))
-                        .collect(Collectors.toList());
-                if (!relevantDiagnostics.isEmpty()) {
-                    Diagnostic entryToShow = relevantDiagnostics.iterator().next();
-                    showErrorDialog(entryToShow.getMessage());
-                    OpenElementService openElementService = serviceRegistry.getService(OpenElementService.class);
-                    openElementService.openSemanticElement((EObject) entryToShow.getData().get(0));
-                    return false;
-                }
+            Collection<Diagnostic> validationResults = new ArrayList<>();
+            getActiveDiagram().map(CooperateSaveAndDirtyService::validate).ifPresent(validationResults::addAll);
+            getActiveDiagram().flatMap(CooperateSaveAndDirtyService::getActiveUMLRootElement)
+                    .map(CooperateSaveAndDirtyService::validate).ifPresent(validationResults::addAll);
+
+            Collection<Diagnostic> relevantDiagnostics = validationResults.stream()
+                    .filter(d -> CooperateConstraintBase.isCooperateConstraint(d.getSource()))
+                    .collect(Collectors.toList());
+            if (!relevantDiagnostics.isEmpty()) {
+                Diagnostic entryToShow = relevantDiagnostics.iterator().next();
+                showErrorDialog(entryToShow.getMessage());
+                OpenElementService openElementService = serviceRegistry.getService(OpenElementService.class);
+                openElementService.openSemanticElement((EObject) entryToShow.getData().get(0));
+                return false;
             }
+
             return true;
-        } catch (ServiceException | PartInitException | ExecutionException e) {
+        } catch (ServiceException | PartInitException e) {
             LOGGER.error("Error while validating model", e);
             return false;
         }
     }
 
-    private Optional<EObject> getActiveUMLRootElement() throws ServiceException {
+    private static Collection<Diagnostic> validate(EObject rootObject) {
+        try {
+            ValidateModelCommand validateModelCommand = new ValidateModelCommand(rootObject);
+            validateModelCommand.execute(null, null);
+            Diagnostic diagnostic = validateModelCommand.getDiagnostic();
+            return diagnostic.getChildren();
+        } catch (ExecutionException e) {
+            LOGGER.error("Could not validate root object {} of current diagram.", rootObject, e);
+            return Collections.emptyList();
+        }
+    }
+
+    private Optional<Diagram> getActiveDiagram() throws ServiceException {
         IPageManager pageManager = serviceRegistry.getService(IPageManager.class);
-        Optional<Diagram> activeDiagram = pageManager.allPages().stream().filter(pageManager::isOpen)
-                .filter(Diagram.class::isInstance).map(Diagram.class::cast).findFirst();
+        return pageManager.allPages().stream().filter(pageManager::isOpen).filter(Diagram.class::isInstance)
+                .map(Diagram.class::cast).findFirst();
+    }
+
+    private static Optional<EObject> getActiveUMLRootElement(Diagram activeDiagram) {
         @SuppressWarnings("unchecked")
-        EObject umlRootElement = activeDiagram.map(Diagram::getStyles)
+        EObject umlRootElement = Optional.ofNullable(activeDiagram.getStyles())
                 .flatMap(styles -> ((Collection<Style>) styles).stream().filter(PapyrusDiagramStyle.class::isInstance)
                         .map(PapyrusDiagramStyle.class::cast).findFirst())
                 .map(PapyrusDiagramStyle::getOwner)
-                .orElseGet(() -> activeDiagram.map(Diagram::getElement).orElse(null));
+                .orElseGet(() -> Optional.ofNullable(activeDiagram.getElement()).orElse(null));
         return Optional.ofNullable(umlRootElement);
     }
 }
