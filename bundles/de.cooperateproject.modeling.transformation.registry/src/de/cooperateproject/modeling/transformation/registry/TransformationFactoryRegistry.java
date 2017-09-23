@@ -43,7 +43,7 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
     private Set<ITransformationFactory> factories = null;
 
     protected synchronized void initializeFactories() {
-        factories = new HashSet<ITransformationFactory>();
+        factories = new HashSet<>();
 
         IExtensionRegistry registry = Platform.getExtensionRegistry();
         if (registry != null) {
@@ -65,7 +65,7 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
             case TRANSFORMATION_FACTORY_ELEMENT_NAME: tfactories.add(createTransformationFactory(e)); break;
             case URI_RESOLVER_ELEMENT_NAME: resolver = createURIResolver(e); break;
             case TRANSFORMATION_FOLDER_ELEMENT_NAME: resolver = createDefaultResolver(e); break;
-            default:;
+            default: break;
             }
         }
         final ITransformationUnitURIResolver res = resolver;

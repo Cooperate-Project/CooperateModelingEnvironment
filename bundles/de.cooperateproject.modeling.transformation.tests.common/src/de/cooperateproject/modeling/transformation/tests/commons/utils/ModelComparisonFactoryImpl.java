@@ -6,7 +6,8 @@ import org.eclipse.emf.compare.diff.IDiffEngine;
 import org.eclipse.emf.compare.diff.IDiffProcessor;
 
 public class ModelComparisonFactoryImpl implements ModelComparisonFactory {
-    FeatureFilterFactory featureFilterFactory = null;
+	
+    private FeatureFilterFactory featureFilterFactory = null;
 
     public ModelComparisonFactoryImpl() {
         featureFilterFactory = new DefaultFeatureFilterFactory();

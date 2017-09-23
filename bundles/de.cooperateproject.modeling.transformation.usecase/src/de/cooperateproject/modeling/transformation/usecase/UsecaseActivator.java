@@ -13,28 +13,16 @@ public class UsecaseActivator extends Plugin {
 
 	// The shared instance
 	private static UsecaseActivator plugin;
-	
-	/**
-	 * The constructor
-	 */
-	public UsecaseActivator() {
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
-	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		plugin = this;
+		setPluginInstance(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
-		plugin = null;
+		setPluginInstance(null);
 		super.stop(context);
 	}
 
@@ -45,6 +33,10 @@ public class UsecaseActivator extends Plugin {
 	 */
 	public static UsecaseActivator getDefault() {
 		return plugin;
+	}
+	
+	private static void setPluginInstance(UsecaseActivator instance) {
+		plugin = instance;
 	}
 
 }
