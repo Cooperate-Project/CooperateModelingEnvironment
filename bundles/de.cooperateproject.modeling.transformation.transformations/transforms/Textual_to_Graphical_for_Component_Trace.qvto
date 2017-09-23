@@ -47,20 +47,11 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToConnector();
 	result += self.map traceEdgeToPortRelation();
 	result += self.map traceNodeToPort();
-	//result += self.map traceNodeToPortDisplay();
 }
-/**
-mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
-when {self.mappingOperation.name = "nodeToClassifier"}//classifier to node entsprechung textuelle seite
-{ 
-	log("t1234212");
-	var component := self.getResult().modelElement;
-	var component1 := self.getSelf().modelElement;
-	result += new TraceRecord("nodeToComponent", "Component", component1, "Diagram", component.toEObject());
-}**/
+
 
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
-when {self.mappingOperation.name = "classifiersToShape"}//classifier to node entsprechung textuelle seite
+when {self.mappingOperation.name = "classifiersToShape"}
 { 
 	var node := self.getResult().modelElement;
 	var classifier := self.getSelf().modelElement;
@@ -98,17 +89,7 @@ when {self.mappingOperation.name = "portToShape"}
 	var port := self.getSelf().modelElement.oclAsType(cmp::Port);
 	result += new TraceRecord("nodeToPort", "Node", node, "Port", port.eobject());
 }
-/**
-mapping trace::TraceRecord::traceNodeToPortDisplay() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "portToShape"}
-{
-	var node := self.getResult().modelElement;
-	self.getSelf();
-	var substitution := self.getSelf().modelElement.oclAsType(cmp::Port);
-	log("NodeToPort");
-	result += new TraceRecord("nodeToPortDisplay", "Node", self.getSelf().modelElement);
-}
-**/
+
 
 mapping trace::TraceRecord::traceNodeToInterface() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "interfaceToShape"}

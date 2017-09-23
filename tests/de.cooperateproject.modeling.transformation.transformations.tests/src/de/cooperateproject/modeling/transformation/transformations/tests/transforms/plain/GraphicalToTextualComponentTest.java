@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -61,25 +59,21 @@ public class GraphicalToTextualComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testProvide() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramProvide");
     }
 
     @Test
     public void testMultipleProvide() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramMultipleProvide");
     }
 
     @Test
     public void testRequire() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramRequire");
     }
 
     @Test
     public void testMultipleRequire() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramMultipleRequire");
     }
 
@@ -95,7 +89,6 @@ public class GraphicalToTextualComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testComponentDiagramPorts() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramPorts");
     }
 
@@ -111,7 +104,6 @@ public class GraphicalToTextualComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testComponentDiagramAliasedClassifier() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2T_Normal"));
         testRegular("ComponentDiagramAliasedClassifier");
     }
 }

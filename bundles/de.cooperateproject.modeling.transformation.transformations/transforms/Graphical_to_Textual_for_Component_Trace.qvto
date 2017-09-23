@@ -58,7 +58,7 @@ when {self.mappingOperation.name = "nodeToClassifier"}
 	var classifier := self.getResult().modelElement;
 	var shape := self.getSelf().modelElement;
 	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
-	result += self.map traceRecordClassifier_FloatingLabelDecorationNode();
+
 
 
 }
@@ -80,30 +80,6 @@ when {self.mappingOperation.name = "edgeToPortRelation"}
 }
 
 
-/**
-mapping trace::TraceRecord::traceRecordComponent() :List(trace::TraceRecord)
-when {self.mappingOperation.name = "nodeToClassifier"}
-{ 
-	var classifier := self.getResult().modelElement;
-	var shape := self.getSelf().modelElement;
-	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
-}**/
-
-mapping trace::TraceRecord::traceRecordClassifier_FloatingLabelDecorationNode() : List(trace::TraceRecord)
-{
-	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeComponent();
-	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
-	//result += self.map traceRecordShapeToComponent();
-	//result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
-}
-/**
-mapping trace::TraceRecord::traceRecordShapeToComponent() :List(trace::TraceRecord) //TODO delete
-when {self.getResult().modelElement.oclIsKindOf(cmp::Component)} //Aktuell
-{ 
-	var component1 := self.getResult().modelElement;
-	var component := self.getSelf().modelElement;
-	//result += new TraceRecord("classifiersToShape", "Classifier1", component1, "Shape", component.toEObject());
-}**/
 
 
 mapping trace::TraceRecord::traceRecordComponentToNode() : List(trace::TraceRecord)
@@ -122,27 +98,14 @@ when {self.mappingOperation.name = "nodeToComponent"}
 	result += node.map traceRecordExtended_locationConstraint();
 	result += compartment.map traceRecordExtended_notationBounds();
 
-	//nested component
+	//nested component transformation begins here
 	var compartmentNested := self.getSelfNode().getChild(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_INPACKAGE);	
 	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
 	var portShape := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY);
-	log("neuer log" + portShape.toString());
-	//result += self.getSelfNode(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY).map traceRecordPortShapeToNode();
-	//portShape.map traceRecordPortShapeToNode();
-//	result += new TraceRecord("portToShapeDisplay", "Port", classifier, "BasicCompartment", portShape.eobject());
-	/**
-	var compartment := shape.getChild(PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_REGULAR).oclAsType(notation::BasicCompartment);
-	result += new TraceRecord("packageToCompartment", "Package", package, "BasicCompartment", compartment.eobject());
-	result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
-	result += compartment.map traceRecordExtended_notationBounds();
-	**/
-	//tmp Port
 	var port := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY);
 	if(port!=null){
 	result += new TraceRecord("portToShapeDisplay", "Component", classifier, "BasicCompartment", port.eobject());
-	//result += self.getSelfNode().map traceRecordExtended_locationConstraint();
 	result += new TraceRecord("titleStyle", "EObject", classifier.eobject(), "TitleStyle", port.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
-	//result += port.map traceRecordExtended_locationConstraint();
 	result += port.map traceRecordExtended_notationBounds();
 	}
 	
@@ -218,7 +181,6 @@ when {self.mappingOperation.name = "nodeToProperty"}
 	var shape := self.getSelf().modelElement;
 	result += new TraceRecord("interfaceAttributeToShape", "Attribute", classifier, "Shape", shape);
 	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
-	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 mapping trace::TraceRecord::traceRecordClassifier_interfaceOperationToShape() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToOperation"}
@@ -227,7 +189,6 @@ when {self.mappingOperation.name = "nodeToOperation"}
 	var shape := self.getSelf().modelElement;
 	result += new TraceRecord("interfaceMethodToShape", "Method", classifier, "Shape", shape);
 	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
-	//result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 mapping trace::TraceRecord::traceRecordExtendedProvideToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToProvide"}
@@ -362,11 +323,6 @@ query trace::TraceRecord::getSelfNode() : notation::Node {
 	assert error (self.getSelf().modelElement.oclIsKindOf(notation::Node)) with log('The contained model element is not a node.');
 	return self.getSelf().modelElement.oclAsType(notation::Node);
 }
-/**
-query getAllClassifiers() : OrderedSet(cmp::Classifier)
-{
-	return textualModel.rootObjects()[cmp::ComponentDiagram]->any(true).getAllTransitiveClassifiers();
-}**/
 
 query trace::TraceRecord::hasCommentLinkForAssociation() : Boolean
 {

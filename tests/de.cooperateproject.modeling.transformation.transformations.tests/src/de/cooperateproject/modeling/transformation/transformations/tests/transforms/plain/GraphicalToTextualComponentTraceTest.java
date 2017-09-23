@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -27,25 +25,21 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testMinimal() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\tracedebug2"));
         testTraceTransformation("ComponentMinimal");
     }
 
     @Test
     public void testSingleComponent() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace_old"));
         testTraceTransformation("ComponentDiagramSingleComponent");
     }
 
     @Test
     public void testSingleInterface() throws Exception {
-
         testTraceTransformation("ComponentDiagramSingleInterface");
     }
 
     @Test
     public void testInnerClassifiers() throws Exception {
-
         testTraceTransformation("ComponentDiagramInnerClassifiers");
     }
 
@@ -56,7 +50,6 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testInterfaceAttribute() throws Exception {
-
         testTraceTransformation("ComponentDiagramInterfaceAttribute");
     }
 
@@ -67,7 +60,6 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testProvideInterface() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2Ttrace"));
         testTraceTransformation("ComponentDiagramProvide");
     }
 
@@ -115,7 +107,6 @@ public class GraphicalToTextualComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testAliasedClassifier() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\G2T_Trace"));
         testTraceTransformation("ComponentDiagramAliasedClassifier");
     }
 }

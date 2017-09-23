@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -21,13 +19,11 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testMinimal() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\normaldebug1"));
         testRegular("ComponentMinimal");
     }
 
     @Test
     public void testSingleComponent() throws Exception {
-
         testRegular("ComponentDiagramSingleComponent");
     }
 
@@ -38,7 +34,6 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testSingleInterface() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\normaldebug"));
         testRegular("ComponentDiagramSingleInterface");
     }
 
@@ -54,31 +49,26 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testInterfaceAttribute() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramInterfaceAttribute");
     }
 
     @Test
     public void testInterfaceMembers() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramInterfaceMembers");
     }
 
     @Test
     public void testProvideInterface() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramProvide");
     }
 
     @Test
     public void testMultipleProvide() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramMultipleProvide");
     }
 
     @Test
     public void testRequireInterface() throws Exception {
-
         testRegular("ComponentDiagramRequire");
     }
 
@@ -99,7 +89,6 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testComponentDiagramPorts() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramPorts");
     }
 
@@ -115,7 +104,6 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
 
     @Test
     public void testComponentDiagramAliasedClassifier() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Normal"));
         testRegular("ComponentDiagramAliasedClassifier");
     }
 }

@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -62,25 +60,21 @@ public class TextualToGraphicalComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testProvideInterface() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
         testTraceTransformation("ComponentDiagramProvide");
     }
 
     @Test
     public void testProvideMultipleInterface() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
         testTraceTransformation("ComponentDiagramMultipleProvide");
     }
 
     @Test
     public void testRequireInterface() throws Exception {
-
         testTraceTransformation("ComponentDiagramRequire");
     }
 
     @Test
     public void testRequireMultipleInterface() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
         testTraceTransformation("ComponentDiagramMultipleRequire");
     }
 
@@ -101,19 +95,16 @@ public class TextualToGraphicalComponentTraceTest extends DirectedTraceTransform
 
     @Test
     public void testPorts() throws Exception {
-        // setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
         testTraceTransformation("ComponentDiagramPorts");
     }
 
     @Test
     public void testPortRelation() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
         testTraceTransformation("ComponentDiagramPortRelation");
     }
 
     @Test
     public void testPortAliasedClassifier() throws Exception {
-        setDebugSerializationDir(new File("D:\\Debug\\T2G_Trace"));
         testTraceTransformation("ComponentDiagramAliasedClassifier");
     }
 }

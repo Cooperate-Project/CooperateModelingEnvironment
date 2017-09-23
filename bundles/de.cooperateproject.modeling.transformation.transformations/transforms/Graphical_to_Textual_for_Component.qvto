@@ -23,7 +23,6 @@ mapping notation::Diagram::diagramToDiagram() : cmp::ComponentDiagram
 
 mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 {
-	//var relevantEdges := self.findRelevantEdges();
 	referencedElement := self.element.oclAsType(uml::Package);
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToClassifier();
 	relations += self.edges.map edgeToClassifierRelation();
@@ -34,8 +33,7 @@ disjuncts
 	notation::Node::nodeToComponent,
 	notation::Node::nodeToInterface
 {
-	//referencedElement := self.element.toElement();
-	//comments := self.getCommentShape().map commentToComment();
+
 }
 
 	
@@ -50,8 +48,6 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
 	var edges = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
 	portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(e | e = source))->map edgeToPortRelation();
-	//portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(self = source))->map edgeToPortRelation();
-	//portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = edges->any(true))->map edgeToPortRelation();
 }
 
 
@@ -278,18 +274,6 @@ mapping notation::Edge::edgeToRequire() : cmp::Require
 	assert error (usage.source->size() = 1 and usage.target->size() = 1) with log ('Interface usages: Log must of exactly one source and one target.', usage);
 	referencedElement := usage;
 }
-/**
-query notation::Edge::findSourceClassifier() : cmp::Classifier
-{ 	
-	var umlManifestation :=self.element.oclAsType(uml::Manifestation);
-	var umlSourceClassifierEnd := umlManifestation.client;
-	var leftClassifier := resolveoneIn(
-	notation::Node::nodeToClassifier,
-	s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-
-	return leftClassifier;
-}**/
 
 query notation::Edge::isCommentLinkForAssociation() : Boolean {
 	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));

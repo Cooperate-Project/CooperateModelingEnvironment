@@ -184,7 +184,6 @@ when{self.oclIsKindOf(cmp::Connector)}
 	children += self.map connectorDecorationNameLabel();
 	styles += result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();
-	//source := self.outerPort;		
 	element := self.referencedElement.toEObject();	
 	styles += result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();	
@@ -205,7 +204,6 @@ when{self.oclIsKindOf(cmp::Generalization)}
 	);	
 
 	element := self.referencedElement.toEObject();		
-//	children += self.map generalizationDecorationNameLabel();
 	children += self.map stereotypeGeneralizationDecoration();
 	styles += result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();		
@@ -292,7 +290,7 @@ when{self.oclIsKindOf(cmp::Abstraction)}
 }
 
 
-//TODO restliche commentable einfügen
+//TODO insert any commentable elements here
 mapping textualCommons::Commentable::commentableToShape() : notation::Shape
 disjuncts cmp::Classifier::classifiersToShape;
 
@@ -301,7 +299,6 @@ mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
 	children += self.nestedInterface.map interfaceToShape();
 	styles += result.toEObject().map titleStyle();
-	//children += self.component.map commentableToShape();
 	children += self.component.map componentToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
@@ -314,7 +311,6 @@ mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompa
 	styles += result.toEObject().map titleStyle();
 	styles += result.toEObject().map sortingStyle();
 	styles += result.toEObject().map filteringStyle();
-	//children := self.interface.map commentableToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompartment
@@ -324,7 +320,6 @@ mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompa
 	styles += result.toEObject().map titleStyle();
 	styles += result.toEObject().map sortingStyle();
 	styles += result.toEObject().map filteringStyle();
-	//children := self.interface.map commentableToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
 }
@@ -495,27 +490,13 @@ mapping cmp::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : st
 	owner := rootElement.toEObject();
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component";
 }
-/**
-query textualCommons::Element::isNested() : Boolean
-{
-	var owningPackage := if self.getNearestPackage() = self then self.getNearestPackage().owningPackage else self.getNearestPackage() endif;
-	var owningPackage2 := owningPackage.owningPackage;
-		log("owning " + owningPackage.toString()+" self " + self.toString() + " nearest " + self.getNearestPackage().toString() + " nearestOwning " + self.getNearestPackage().owningPackage.toString());
-	log("owningP2 " + owningPackage2.toString());
-	var outi := owningPackage != null and owningPackage2 != null;
-	log("varout " + outi.toString());
-	return owningPackage != null and owningPackage2 != null;
-}**/
+
 query cmp::Component::isNestedCmp() : Boolean
-{	log("owning component2" + self.owningComponent.toString() + " self " + self.toString());
-	log((if self.owningComponent.toString() = self.toString() then true else false endif).toString());
+{	
 	return if self.owningComponent.toString() = self.toString() then true else false endif;
 }
 query cmp::Component::getNestedName(type : String) : String
 {
-	log("IsNested  " +type.toString() +  "  p" + type.getNestedName(self.isNestedCmp())+"\n");
-	//log("is nested? " + self.isNested().toString());
-	
 	return type.getNestedCmpName(self.isNestedCmp());
 }
 
@@ -524,9 +505,8 @@ query String::getNestedCmpName(isNested : Boolean) : String
 	return if isNested then self + "_CCN" else self endif;
 }
 
-// helpers
+
 query cmp::RootPackage::findAllInterfaceRelations() : Sequence(cmp::InterfaceRelation) {
-	//var interfaceRelation := self.classifiers.referencedElement->flatten();
 	var interfaceRelation = self.classifiers->select(oclIsKindOf(cmp::Component))->oclAsType(cmp::Component).interfaceRelation->flatten();
 	return interfaceRelation;
 }
