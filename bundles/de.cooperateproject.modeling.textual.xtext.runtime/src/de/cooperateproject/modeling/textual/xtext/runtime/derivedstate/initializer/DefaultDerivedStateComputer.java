@@ -8,7 +8,7 @@ import com.google.inject.Inject;
 public class DefaultDerivedStateComputer implements IDerivedStateComputer {
 
     @Inject
-    private IDerivedStateProcessor derivedStateProcessor;
+    protected IDerivedStateProcessor derivedStateProcessor;
 
     @Override
     public void installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {

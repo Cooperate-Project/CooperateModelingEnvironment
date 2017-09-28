@@ -24,6 +24,9 @@
        <class
              class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.OccurenceSpecificationCalculator">
        </class>
+       <class
+             class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.SequenceIntermediateModelCalculator">
+       </class>
     </extension>
     <extension
           point="de.cooperateproject.modeling.textual.xtext.runtime.unresolvableissuefilters">

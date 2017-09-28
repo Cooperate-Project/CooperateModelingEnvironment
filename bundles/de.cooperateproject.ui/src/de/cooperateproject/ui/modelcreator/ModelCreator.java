@@ -88,7 +88,8 @@ public class ModelCreator {
         }
     }
 
-    private static CDOResource getOrCreate(CDOTransaction transaction, CDOResourceFolder folder, String modelName) {
+    public static CDOResource getOrCreateCDOResource(CDOTransaction transaction, CDOResourceFolder folder,
+            String modelName) {
         String modelPath = String.format("%s%s%s", folder.getPath(), folder.getPath().endsWith("/") ? "" : "/",
                 modelName);
         return transaction.getOrCreateResource(modelPath);
@@ -103,7 +104,7 @@ public class ModelCreator {
                 diagramType);
 
         SupplementaryModelCreatorRegistry.getInstance().getSupplementaryModelCreators()
-                .forEach(c -> c.createSupplementaryModels(transaction, folder, diagramName, diagramType));
+                .forEach(c -> c.createSupplementaryModels(transaction, folder, modelName, diagramName, diagramType));
 
         try {
             transaction.commit();
@@ -126,7 +127,7 @@ public class ModelCreator {
     }
 
     private static CDOResource createUMLModel(CDOTransaction transaction, CDOResourceFolder folder, String modelName) {
-        CDOResource umlResource = getOrCreate(transaction, folder, modelName + ".uml");
+        CDOResource umlResource = getOrCreateCDOResource(transaction, folder, modelName + ".uml");
         if (umlResource.getContents().isEmpty()) {
             Model umlModel = UMLFactory.eINSTANCE.createModel();
             umlModel.setName("RootElement");
@@ -139,9 +140,9 @@ public class ModelCreator {
     private static CDOResource createGraphicalModel(CDOTransaction transaction, CDOResourceFolder folder,
             String modelName, String diagramName, DiagramTypes diagramType, CDOResource umlResource)
             throws ModelCreatorException {
-        getOrCreate(transaction, folder, modelName + ".di");
+        getOrCreateCDOResource(transaction, folder, modelName + ".di");
 
-        CDOResource notationResource = getOrCreate(transaction, folder, modelName + ".notation");
+        CDOResource notationResource = getOrCreateCDOResource(transaction, folder, modelName + ".notation");
 
         Optional<NotationDiagramTypes> notationType = NotationDiagramTypes.getByDiagramType(diagramType);
         if (!notationType.isPresent()) {
@@ -185,7 +186,7 @@ public class ModelCreator {
 
         URI textualURI = ModelNamingConventions.getTextualFromGraphicalURI(papyrusResource.getURI(), diagramName,
                 textualFileExtension.get().getFileExtension());
-        return getOrCreate(transaction, folder, textualURI.lastSegment());
+        return getOrCreateCDOResource(transaction, folder, textualURI.lastSegment());
     }
 
 }

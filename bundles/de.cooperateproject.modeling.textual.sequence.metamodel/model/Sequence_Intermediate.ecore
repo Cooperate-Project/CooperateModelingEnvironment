@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sequenceintermediate" nsURI="http://www.cooperateproject.de/modeling/textual/sequence/SequenceIntermediate"
     nsPrefix="seqint">
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
-    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
     <details key="sequence" value="Sequence.ecore#/"/>
   </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -69,9 +69,16 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SIElementWithTextualReference">
     <eTypeParameters name="ElementType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
+    <eOperations name="calculateUniqueIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUniqueIdentifierForSequenceElement(this.getReferencedElement());"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" transient="true">
       <eGenericType eTypeParameter="#//SIElementWithTextualReference/ElementType"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueIdentifierOfReferencedElement"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SITimedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="start" lowerBound="1" eType="#//PointInTime"/>

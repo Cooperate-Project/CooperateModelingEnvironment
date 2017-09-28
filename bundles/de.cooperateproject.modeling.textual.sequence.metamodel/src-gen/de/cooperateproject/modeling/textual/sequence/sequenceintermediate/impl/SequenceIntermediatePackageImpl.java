@@ -408,6 +408,24 @@ public class SequenceIntermediatePackageImpl extends EPackageImpl implements Seq
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getSIElementWithTextualReference_UniqueIdentifierOfReferencedElement() {
+        return (EAttribute)siElementWithTextualReferenceEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getSIElementWithTextualReference__CalculateUniqueIdentifier() {
+        return siElementWithTextualReferenceEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getSITimedElement() {
         return siTimedElementEClass;
     }
@@ -663,6 +681,8 @@ public class SequenceIntermediatePackageImpl extends EPackageImpl implements Seq
 
         siElementWithTextualReferenceEClass = createEClass(SI_ELEMENT_WITH_TEXTUAL_REFERENCE);
         createEReference(siElementWithTextualReferenceEClass, SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT);
+        createEAttribute(siElementWithTextualReferenceEClass, SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT);
+        createEOperation(siElementWithTextualReferenceEClass, SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER);
 
         siTimedElementEClass = createEClass(SI_TIMED_ELEMENT);
         createEReference(siTimedElementEClass, SI_TIMED_ELEMENT__START);
@@ -801,7 +821,10 @@ public class SequenceIntermediatePackageImpl extends EPackageImpl implements Seq
 
         initEClass(siElementWithTextualReferenceEClass, SIElementWithTextualReference.class, "SIElementWithTextualReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(siElementWithTextualReferenceEClass_ElementType);
-        initEReference(getSIElementWithTextualReference_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, SIElementWithTextualReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSIElementWithTextualReference_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, SIElementWithTextualReference.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSIElementWithTextualReference_UniqueIdentifierOfReferencedElement(), ecorePackage.getEString(), "uniqueIdentifierOfReferencedElement", null, 0, 1, SIElementWithTextualReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEOperation(getSIElementWithTextualReference__CalculateUniqueIdentifier(), ecorePackage.getEString(), "calculateUniqueIdentifier", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(siTimedElementEClass, SITimedElement.class, "SITimedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSITimedElement_Start(), this.getPointInTime(), null, "start", null, 1, 1, SITimedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

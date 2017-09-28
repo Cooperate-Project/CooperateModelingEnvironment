@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.FragmentIndexPointInTimeImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.FragmentIndexPointInTimeImpl#getUniqueIdentifierOfReferencedElement <em>Unique Identifier Of Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.FragmentIndexPointInTimeImpl#getFragmentIndex <em>Fragment Index</em>}</li>
  * </ul>
  *
@@ -45,6 +46,26 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
      * @ordered
      */
     protected Fragment referencedElement;
+
+    /**
+     * The default value of the '{@link #getUniqueIdentifierOfReferencedElement() <em>Unique Identifier Of Referenced Element</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUniqueIdentifierOfReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected static final String UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getUniqueIdentifierOfReferencedElement() <em>Unique Identifier Of Referenced Element</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUniqueIdentifierOfReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected String uniqueIdentifierOfReferencedElement = UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT;
 
     /**
      * The default value of the '{@link #getFragmentIndex() <em>Fragment Index</em>}' attribute.
@@ -128,6 +149,27 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getUniqueIdentifierOfReferencedElement() {
+        return uniqueIdentifierOfReferencedElement;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUniqueIdentifierOfReferencedElement(String newUniqueIdentifierOfReferencedElement) {
+        String oldUniqueIdentifierOfReferencedElement = uniqueIdentifierOfReferencedElement;
+        uniqueIdentifierOfReferencedElement = newUniqueIdentifierOfReferencedElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT, oldUniqueIdentifierOfReferencedElement, uniqueIdentifierOfReferencedElement));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public int getFragmentIndex() {
         return fragmentIndex;
     }
@@ -162,12 +204,23 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
      * <!-- end-user-doc -->
      * @generated
      */
+    public String calculateUniqueIdentifier() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUniqueIdentifierForSequenceElement(this.getReferencedElement());
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                return getUniqueIdentifierOfReferencedElement();
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__FRAGMENT_INDEX:
                 return getFragmentIndex();
         }
@@ -184,6 +237,9 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         switch (featureID) {
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT:
                 setReferencedElement((Fragment)newValue);
+                return;
+            case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                setUniqueIdentifierOfReferencedElement((String)newValue);
                 return;
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__FRAGMENT_INDEX:
                 setFragmentIndex((Integer)newValue);
@@ -203,6 +259,9 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT:
                 setReferencedElement((Fragment)null);
                 return;
+            case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                setUniqueIdentifierOfReferencedElement(UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT);
+                return;
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__FRAGMENT_INDEX:
                 setFragmentIndex(FRAGMENT_INDEX_EDEFAULT);
                 return;
@@ -220,6 +279,8 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         switch (featureID) {
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT:
                 return referencedElement != null;
+            case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                return UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT == null ? uniqueIdentifierOfReferencedElement != null : !UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT.equals(uniqueIdentifierOfReferencedElement);
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__FRAGMENT_INDEX:
                 return fragmentIndex != FRAGMENT_INDEX_EDEFAULT;
         }
@@ -236,6 +297,7 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         if (baseClass == SIElementWithTextualReference.class) {
             switch (derivedFeatureID) {
                 case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT: return SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT;
+                case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT: return SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
@@ -252,6 +314,7 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         if (baseClass == SIElementWithTextualReference.class) {
             switch (baseFeatureID) {
                 case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT: return SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT;
+                case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT: return SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
@@ -273,6 +336,7 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         }
         if (baseClass == SIElementWithTextualReference.class) {
             switch (baseOperationID) {
+                case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER: return SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME___CALCULATE_UNIQUE_IDENTIFIER;
                 default: return -1;
             }
         }
@@ -289,6 +353,8 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         switch (operationID) {
             case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME___GET_TIME_INTERNAL:
                 return getTimeInternal();
+            case SequenceIntermediatePackage.FRAGMENT_INDEX_POINT_IN_TIME___CALCULATE_UNIQUE_IDENTIFIER:
+                return calculateUniqueIdentifier();
         }
         return super.eInvoke(operationID, arguments);
     }
@@ -303,7 +369,9 @@ public class FragmentIndexPointInTimeImpl extends PointInTimeImpl implements Fra
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (fragmentIndex: ");
+        result.append(" (uniqueIdentifierOfReferencedElement: ");
+        result.append(uniqueIdentifierOfReferencedElement);
+        result.append(", fragmentIndex: ");
         result.append(fragmentIndex);
         result.append(')');
         return result.toString();

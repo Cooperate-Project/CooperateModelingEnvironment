@@ -305,6 +305,9 @@ public class SequenceIntermediateTables
 		public static final /*@NonNull*/ ExecutorOperation _PointInTime__getTimeInternal = new ExecutorOperation("getTimeInternal", TypeUtil.EMPTY_PARAMETER_TYPES, Types._PointInTime,
 			0, TemplateParameters.EMPTY_LIST, null);
 
+		public static final /*@NonNull*/ ExecutorOperation _SIElementWithTextualReference__calculateUniqueIdentifier = new ExecutorOperation("calculateUniqueIdentifier", TypeUtil.EMPTY_PARAMETER_TYPES, Types._SIElementWithTextualReference,
+			0, TemplateParameters.EMPTY_LIST, null);
+
 		public static final /*@NonNull*/ ExecutorOperation _StartDeterminesPointIntTime__getTimeInternal = new ExecutorOperation("getTimeInternal", TypeUtil.EMPTY_PARAMETER_TYPES, Types._StartDeterminesPointIntTime,
 			0, TemplateParameters.EMPTY_LIST, null);
 
@@ -349,6 +352,7 @@ public class SequenceIntermediateTables
 		public static final /*@NonNull*/ ExecutorProperty _SIDiagram__regions = new EcoreExecutorProperty(SequenceIntermediatePackage.Literals.SI_DIAGRAM__REGIONS, Types._SIDiagram, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _SIElementWithTextualReference__referencedElement = new EcoreExecutorProperty(SequenceIntermediatePackage.Literals.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT, Types._SIElementWithTextualReference, 0);
+		public static final /*@NonNull*/ ExecutorProperty _SIElementWithTextualReference__uniqueIdentifierOfReferencedElement = new EcoreExecutorProperty(SequenceIntermediatePackage.Literals.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT, Types._SIElementWithTextualReference, 1);
 
 		public static final /*@NonNull*/ ExecutorProperty _SIExecution__callstack = new EcoreExecutorProperty(SequenceIntermediatePackage.Literals.SI_EXECUTION__CALLSTACK, Types._SIExecution, 0);
 		public static final /*@NonNull*/ ExecutorProperty _SIExecution__container = new EcoreExecutorProperty(SequenceIntermediatePackage.Literals.SI_EXECUTION__CONTAINER, Types._SIExecution, 1);
@@ -625,7 +629,9 @@ public class SequenceIntermediateTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FragmentIndexPointInTime__PointInTime = {
 			SequenceIntermediateTables.Operations._FragmentIndexPointInTime__getTimeInternal /* getTimeInternal() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FragmentIndexPointInTime__SIElementWithTextualReference = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _FragmentIndexPointInTime__SIElementWithTextualReference = {
+			SequenceIntermediateTables.Operations._SIElementWithTextualReference__calculateUniqueIdentifier /* calculateUniqueIdentifier() */
+		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _MaximumPointInTime__MaximumPointInTime = {
 			SequenceIntermediateTables.Operations._MaximumPointInTime__getTimeInternal /* getTimeInternal() */
@@ -750,10 +756,14 @@ public class SequenceIntermediateTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIDiagram__SIElementWithTextualReference = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIDiagram__SIElementWithTextualReference = {
+			SequenceIntermediateTables.Operations._SIElementWithTextualReference__calculateUniqueIdentifier /* calculateUniqueIdentifier() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIDiagram__SIExecutionContainer = {};
 
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIElementWithTextualReference__SIElementWithTextualReference = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIElementWithTextualReference__SIElementWithTextualReference = {
+			SequenceIntermediateTables.Operations._SIElementWithTextualReference__calculateUniqueIdentifier /* calculateUniqueIdentifier() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIElementWithTextualReference__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -866,7 +876,9 @@ public class SequenceIntermediateTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SILifeline__SIElementWithTextualReference = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SILifeline__SIElementWithTextualReference = {
+			SequenceIntermediateTables.Operations._SIElementWithTextualReference__calculateUniqueIdentifier /* calculateUniqueIdentifier() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SILifeline__SITimedElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIMessage__SIMessage = {};
@@ -896,7 +908,9 @@ public class SequenceIntermediateTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIMessage__SIElementWithTextualReference = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIMessage__SIElementWithTextualReference = {
+			SequenceIntermediateTables.Operations._SIElementWithTextualReference__calculateUniqueIdentifier /* calculateUniqueIdentifier() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIMessage__SITimedElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIRegion__SIRegion = {};
@@ -926,7 +940,9 @@ public class SequenceIntermediateTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
-		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIRegion__SIElementWithTextualReference = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIRegion__SIElementWithTextualReference = {
+			SequenceIntermediateTables.Operations._SIElementWithTextualReference__calculateUniqueIdentifier /* calculateUniqueIdentifier() */
+		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIRegion__SIExecutionContainer = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _SIRegion__SITimedElement = {};
 
@@ -1094,7 +1110,8 @@ public class SequenceIntermediateTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _FragmentIndexPointInTime = {
 			SequenceIntermediateTables.Properties._FragmentIndexPointInTime__fragmentIndex,
 			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement,
-			SequenceIntermediateTables.Properties._PointInTime__time
+			SequenceIntermediateTables.Properties._PointInTime__time,
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__uniqueIdentifierOfReferencedElement
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MaximumPointInTime = {
@@ -1115,11 +1132,13 @@ public class SequenceIntermediateTables
 			SequenceIntermediateTables.Properties._SIExecutionContainer__executions,
 			SequenceIntermediateTables.Properties._SIDiagram__lifelines,
 			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement,
-			SequenceIntermediateTables.Properties._SIDiagram__regions
+			SequenceIntermediateTables.Properties._SIDiagram__regions,
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__uniqueIdentifierOfReferencedElement
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SIElementWithTextualReference = {
-			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement,
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__uniqueIdentifierOfReferencedElement
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SIExecution = {
@@ -1142,7 +1161,8 @@ public class SequenceIntermediateTables
 			SequenceIntermediateTables.Properties._SILifeline__diagram,
 			SequenceIntermediateTables.Properties._SITimedElement__finish,
 			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement,
-			SequenceIntermediateTables.Properties._SITimedElement__start
+			SequenceIntermediateTables.Properties._SITimedElement__start,
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__uniqueIdentifierOfReferencedElement
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SIMessage = {
@@ -1150,7 +1170,8 @@ public class SequenceIntermediateTables
 			SequenceIntermediateTables.Properties._SITimedElement__finish,
 			SequenceIntermediateTables.Properties._SIMessage__origin,
 			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement,
-			SequenceIntermediateTables.Properties._SITimedElement__start
+			SequenceIntermediateTables.Properties._SITimedElement__start,
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__uniqueIdentifierOfReferencedElement
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SIRegion = {
@@ -1158,7 +1179,8 @@ public class SequenceIntermediateTables
 			SequenceIntermediateTables.Properties._SIExecutionContainer__executions,
 			SequenceIntermediateTables.Properties._SITimedElement__finish,
 			SequenceIntermediateTables.Properties._SIElementWithTextualReference__referencedElement,
-			SequenceIntermediateTables.Properties._SITimedElement__start
+			SequenceIntermediateTables.Properties._SITimedElement__start,
+			SequenceIntermediateTables.Properties._SIElementWithTextualReference__uniqueIdentifierOfReferencedElement
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SITimedElement = {

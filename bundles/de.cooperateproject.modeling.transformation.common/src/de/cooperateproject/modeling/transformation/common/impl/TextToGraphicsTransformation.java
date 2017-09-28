@@ -2,7 +2,7 @@ package de.cooperateproject.modeling.transformation.common.impl;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.SortedSet;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -21,7 +21,7 @@ public class TextToGraphicsTransformation extends TransformationBase {
 
     public TextToGraphicsTransformation(DiagramTypes diagramType, String fileExtension,
             ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source,
-            SortedSet<URI> supplementarySourceURIs, URI target, SortedSet<URI> supplementaryTargetURIs) {
+            List<URI> supplementarySourceURIs, URI target, List<URI> supplementaryTargetURIs) {
         this(diagramType, fileExtension, transformationURIResolver, rs, source, supplementarySourceURIs, target,
                 supplementaryTargetURIs, Collections.emptySet());
     }
@@ -29,13 +29,13 @@ public class TextToGraphicsTransformation extends TransformationBase {
     public TextToGraphicsTransformation(DiagramTypes diagramType, String fileExtension,
             ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source, URI target,
             Collection<PostProcessor> postProcessors) {
-        this(diagramType, fileExtension, transformationURIResolver, rs, source, Collections.emptySortedSet(), target,
-                Collections.emptySortedSet(), postProcessors);
+        this(diagramType, fileExtension, transformationURIResolver, rs, source, Collections.emptyList(), target,
+                Collections.emptyList(), postProcessors);
     }
 
     public TextToGraphicsTransformation(DiagramTypes diagramType, String fileExtension,
             ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source,
-            SortedSet<URI> supplementarySourceURIs, URI target, SortedSet<URI> supplementaryTargetURIs,
+            List<URI> supplementarySourceURIs, URI target, List<URI> supplementaryTargetURIs,
             Collection<PostProcessor> postProcessors) {
         super(createCharacteristics(diagramType), transformationURIResolver, rs, source, supplementarySourceURIs,
                 target, supplementaryTargetURIs, postProcessors);

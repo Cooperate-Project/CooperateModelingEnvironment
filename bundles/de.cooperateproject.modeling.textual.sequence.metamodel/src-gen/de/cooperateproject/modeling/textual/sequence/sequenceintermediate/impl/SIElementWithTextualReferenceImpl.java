@@ -5,8 +5,10 @@ package de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl;
 import de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIElementWithTextualReference;
 import de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SequenceIntermediatePackage;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIElementWithTextualReferenceImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIElementWithTextualReferenceImpl#getUniqueIdentifierOfReferencedElement <em>Unique Identifier Of Referenced Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,6 +40,25 @@ public class SIElementWithTextualReferenceImpl<ElementType> extends MinimalEObje
      * @ordered
      */
     protected ElementType referencedElement;
+
+    /**
+     * The default value of the '{@link #getUniqueIdentifierOfReferencedElement() <em>Unique Identifier Of Referenced Element</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUniqueIdentifierOfReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected static final String UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getUniqueIdentifierOfReferencedElement() <em>Unique Identifier Of Referenced Element</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUniqueIdentifierOfReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected String uniqueIdentifierOfReferencedElement = UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -101,12 +123,44 @@ public class SIElementWithTextualReferenceImpl<ElementType> extends MinimalEObje
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getUniqueIdentifierOfReferencedElement() {
+        return uniqueIdentifierOfReferencedElement;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUniqueIdentifierOfReferencedElement(String newUniqueIdentifierOfReferencedElement) {
+        String oldUniqueIdentifierOfReferencedElement = uniqueIdentifierOfReferencedElement;
+        uniqueIdentifierOfReferencedElement = newUniqueIdentifierOfReferencedElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT, oldUniqueIdentifierOfReferencedElement, uniqueIdentifierOfReferencedElement));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String calculateUniqueIdentifier() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUniqueIdentifierForSequenceElement(this.getReferencedElement());
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                return getUniqueIdentifierOfReferencedElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -123,6 +177,9 @@ public class SIElementWithTextualReferenceImpl<ElementType> extends MinimalEObje
             case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT:
                 setReferencedElement((ElementType)newValue);
                 return;
+            case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                setUniqueIdentifierOfReferencedElement((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -138,6 +195,9 @@ public class SIElementWithTextualReferenceImpl<ElementType> extends MinimalEObje
             case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT:
                 setReferencedElement((ElementType)null);
                 return;
+            case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                setUniqueIdentifierOfReferencedElement(UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -152,8 +212,40 @@ public class SIElementWithTextualReferenceImpl<ElementType> extends MinimalEObje
         switch (featureID) {
             case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT:
                 return referencedElement != null;
+            case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                return UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT == null ? uniqueIdentifierOfReferencedElement != null : !UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT.equals(uniqueIdentifierOfReferencedElement);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER:
+                return calculateUniqueIdentifier();
+        }
+        return super.eInvoke(operationID, arguments);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (uniqueIdentifierOfReferencedElement: ");
+        result.append(uniqueIdentifierOfReferencedElement);
+        result.append(')');
+        return result.toString();
     }
 
 } //SIElementWithTextualReferenceImpl

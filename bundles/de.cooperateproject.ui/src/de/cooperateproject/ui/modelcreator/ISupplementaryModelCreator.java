@@ -21,6 +21,6 @@ public interface ISupplementaryModelCreator {
      *
      */
     Optional<CDOResource> createSupplementaryModels(CDOTransaction transaction, CDOResourceFolder folder,
-            String diagramName, DiagramTypes diagramType);
+            String modelName, String diagramName, DiagramTypes diagramType);
 
 }

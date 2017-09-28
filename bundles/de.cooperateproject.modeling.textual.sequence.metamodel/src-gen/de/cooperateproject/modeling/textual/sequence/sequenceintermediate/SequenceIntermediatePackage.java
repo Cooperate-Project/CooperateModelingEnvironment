@@ -77,13 +77,31 @@ public interface SequenceIntermediatePackage extends EPackage {
     int SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT = 0;
 
     /**
+     * The feature id for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = 1;
+
+    /**
      * The number of structural features of the '<em>SI Element With Textual Reference</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SI_ELEMENT_WITH_TEXTUAL_REFERENCE_FEATURE_COUNT = 1;
+    int SI_ELEMENT_WITH_TEXTUAL_REFERENCE_FEATURE_COUNT = 2;
+
+    /**
+     * The operation id for the '<em>Calculate Unique Identifier</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER = 0;
 
     /**
      * The number of operations of the '<em>SI Element With Textual Reference</em>' class.
@@ -92,7 +110,7 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SI_ELEMENT_WITH_TEXTUAL_REFERENCE_OPERATION_COUNT = 0;
+    int SI_ELEMENT_WITH_TEXTUAL_REFERENCE_OPERATION_COUNT = 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIDiagramImpl <em>SI Diagram</em>}' class.
@@ -112,6 +130,15 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @ordered
      */
     int SI_DIAGRAM__REFERENCED_ELEMENT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_DIAGRAM__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Executions</b></em>' containment reference list.
@@ -150,6 +177,15 @@ public interface SequenceIntermediatePackage extends EPackage {
     int SI_DIAGRAM_FEATURE_COUNT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE_FEATURE_COUNT + 3;
 
     /**
+     * The operation id for the '<em>Calculate Unique Identifier</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_DIAGRAM___CALCULATE_UNIQUE_IDENTIFIER = SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER;
+
+    /**
      * The number of operations of the '<em>SI Diagram</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -176,6 +212,15 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @ordered
      */
     int SI_LIFELINE__REFERENCED_ELEMENT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_LIFELINE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Start</b></em>' reference.
@@ -212,6 +257,15 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @ordered
      */
     int SI_LIFELINE_FEATURE_COUNT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Calculate Unique Identifier</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_LIFELINE___CALCULATE_UNIQUE_IDENTIFIER = SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER;
 
     /**
      * The number of operations of the '<em>SI Lifeline</em>' class.
@@ -406,6 +460,15 @@ public interface SequenceIntermediatePackage extends EPackage {
     int SI_REGION__REFERENCED_ELEMENT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_REGION__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Start</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -449,6 +512,15 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @ordered
      */
     int SI_REGION_FEATURE_COUNT = SI_ELEMENT_WITH_TEXTUAL_REFERENCE_FEATURE_COUNT + 4;
+
+    /**
+     * The operation id for the '<em>Calculate Unique Identifier</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_REGION___CALCULATE_UNIQUE_IDENTIFIER = SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER;
 
     /**
      * The number of operations of the '<em>SI Region</em>' class.
@@ -497,13 +569,22 @@ public interface SequenceIntermediatePackage extends EPackage {
     int SI_MESSAGE__REFERENCED_ELEMENT = SI_TIMED_ELEMENT_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = SI_TIMED_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Origin</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SI_MESSAGE__ORIGIN = SI_TIMED_ELEMENT_FEATURE_COUNT + 1;
+    int SI_MESSAGE__ORIGIN = SI_TIMED_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Causes Execution</b></em>' reference.
@@ -512,7 +593,7 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SI_MESSAGE__CAUSES_EXECUTION = SI_TIMED_ELEMENT_FEATURE_COUNT + 2;
+    int SI_MESSAGE__CAUSES_EXECUTION = SI_TIMED_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>SI Message</em>' class.
@@ -521,7 +602,16 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SI_MESSAGE_FEATURE_COUNT = SI_TIMED_ELEMENT_FEATURE_COUNT + 3;
+    int SI_MESSAGE_FEATURE_COUNT = SI_TIMED_ELEMENT_FEATURE_COUNT + 4;
+
+    /**
+     * The operation id for the '<em>Calculate Unique Identifier</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SI_MESSAGE___CALCULATE_UNIQUE_IDENTIFIER = SI_TIMED_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The number of operations of the '<em>SI Message</em>' class.
@@ -530,7 +620,7 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SI_MESSAGE_OPERATION_COUNT = SI_TIMED_ELEMENT_OPERATION_COUNT + 0;
+    int SI_MESSAGE_OPERATION_COUNT = SI_TIMED_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.PointInTimeImpl <em>Point In Time</em>}' class.
@@ -827,13 +917,22 @@ public interface SequenceIntermediatePackage extends EPackage {
     int FRAGMENT_INDEX_POINT_IN_TIME__REFERENCED_ELEMENT = POINT_IN_TIME_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_INDEX_POINT_IN_TIME__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = POINT_IN_TIME_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Fragment Index</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FRAGMENT_INDEX_POINT_IN_TIME__FRAGMENT_INDEX = POINT_IN_TIME_FEATURE_COUNT + 1;
+    int FRAGMENT_INDEX_POINT_IN_TIME__FRAGMENT_INDEX = POINT_IN_TIME_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Fragment Index Point In Time</em>' class.
@@ -842,7 +941,16 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FRAGMENT_INDEX_POINT_IN_TIME_FEATURE_COUNT = POINT_IN_TIME_FEATURE_COUNT + 2;
+    int FRAGMENT_INDEX_POINT_IN_TIME_FEATURE_COUNT = POINT_IN_TIME_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Calculate Unique Identifier</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_INDEX_POINT_IN_TIME___CALCULATE_UNIQUE_IDENTIFIER = POINT_IN_TIME_OPERATION_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Time Internal</em>' operation.
@@ -851,7 +959,7 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FRAGMENT_INDEX_POINT_IN_TIME___GET_TIME_INTERNAL = POINT_IN_TIME_OPERATION_COUNT + 0;
+    int FRAGMENT_INDEX_POINT_IN_TIME___GET_TIME_INTERNAL = POINT_IN_TIME_OPERATION_COUNT + 1;
 
     /**
      * The number of operations of the '<em>Fragment Index Point In Time</em>' class.
@@ -860,7 +968,7 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FRAGMENT_INDEX_POINT_IN_TIME_OPERATION_COUNT = POINT_IN_TIME_OPERATION_COUNT + 1;
+    int FRAGMENT_INDEX_POINT_IN_TIME_OPERATION_COUNT = POINT_IN_TIME_OPERATION_COUNT + 2;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIExecutionContainerImpl <em>SI Execution Container</em>}' class.
@@ -1112,6 +1220,27 @@ public interface SequenceIntermediatePackage extends EPackage {
      * @generated
      */
     EReference getSIElementWithTextualReference_ReferencedElement();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIElementWithTextualReference#getUniqueIdentifierOfReferencedElement <em>Unique Identifier Of Referenced Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Unique Identifier Of Referenced Element</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIElementWithTextualReference#getUniqueIdentifierOfReferencedElement()
+     * @see #getSIElementWithTextualReference()
+     * @generated
+     */
+    EAttribute getSIElementWithTextualReference_UniqueIdentifierOfReferencedElement();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIElementWithTextualReference#calculateUniqueIdentifier() <em>Calculate Unique Identifier</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Calculate Unique Identifier</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIElementWithTextualReference#calculateUniqueIdentifier()
+     * @generated
+     */
+    EOperation getSIElementWithTextualReference__CalculateUniqueIdentifier();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SITimedElement <em>SI Timed Element</em>}'.
@@ -1546,6 +1675,22 @@ public interface SequenceIntermediatePackage extends EPackage {
          * @generated
          */
         EReference SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT = eINSTANCE.getSIElementWithTextualReference_ReferencedElement();
+
+        /**
+         * The meta object literal for the '<em><b>Unique Identifier Of Referenced Element</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT = eINSTANCE.getSIElementWithTextualReference_UniqueIdentifierOfReferencedElement();
+
+        /**
+         * The meta object literal for the '<em><b>Calculate Unique Identifier</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER = eINSTANCE.getSIElementWithTextualReference__CalculateUniqueIdentifier();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SITimedElementImpl <em>SI Timed Element</em>}' class.

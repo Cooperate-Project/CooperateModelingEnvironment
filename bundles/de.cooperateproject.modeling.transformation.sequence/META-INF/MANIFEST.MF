@@ -1,11 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sequence Model Transformations
-Bundle-SymbolicName: de.cooperateproject.modeling.transformation.sequence
+Bundle-SymbolicName: de.cooperateproject.modeling.transformation.sequence;singleton:=true
 Bundle-Version: 0.2.2.qualifier
 Bundle-Activator: de.cooperateproject.modeling.transformation.sequence.SequenceActivator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,
- de.cooperateproject.modeling.transformation.common;bundle-version="0.2.2"
+ de.cooperateproject.modeling.transformation.common;bundle-version="0.2.2",
+ de.cooperateproject.modeling.transformation.registry;bundle-version="0.2.2",
+ de.cooperateproject.modeling.graphical.common,
+ de.cooperateproject.modeling.common;bundle-version="0.2.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

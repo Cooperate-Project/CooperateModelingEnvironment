@@ -24,9 +24,12 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Streams;
+
+import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
 import de.cooperateproject.modeling.textual.sequence.sequence.CoRegion;
 import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment;
@@ -239,6 +242,24 @@ public class SequenceUtils {
                 }).get();
         }
         return null;
+    }
+    
+    public static final SequenceSwitch<String> UNIQUE_IDENTIFIER_SWITCH = new SequenceSwitch<String>() {
+        public String caseAliasedElement(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement object) {
+            String baseName = (object instanceof Fragment) ? UNIQUE_IDENTIFIER_SWITCH.doSwitch(((Fragment)object).getContainingSequence()) : "//";
+            return String.format("%s//@%s;%s", baseName, object.eClass().getName(), SequenceUniqueNameGenerator.ensureUniqueIdentification(object));
+        };
+    };
+    
+    public static String getUniqueIdentifierForSequenceElement(Object element) {
+        if (!(element instanceof EObject)) {
+            throw new IllegalArgumentException("Unique identifier can only be calculated for sequence diagram elements");
+        }
+        EObject sequenceElement = (EObject) element;
+        if (!sequenceElement.eClass().getEPackage().equals(SequencePackage.eINSTANCE)) {
+            throw new IllegalArgumentException("Unique identifier can only be calculated for sequence diagram elements");
+        }
+        return UNIQUE_IDENTIFIER_SWITCH.doSwitch(sequenceElement);
     }
 
 }

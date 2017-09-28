@@ -398,5 +398,11 @@
     <class
           class="de.cooperateproject.modeling.textual.sequence.ui.modelcreator.postprocessor.SequenceModelCreatorPostProcessor">
     </class>
+ </extension>
+ <extension
+       point="de.cooperateproject.ui.modelcreator.supplementarymodelcreator">
+    <class
+          class="de.cooperateproject.modeling.textual.sequence.ui.modelcreator.postprocessor.SequenceIntermediateModelCreator">
+    </class>
  </extension>	
 </plugin>

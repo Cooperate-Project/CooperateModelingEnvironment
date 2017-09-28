@@ -7,6 +7,7 @@ modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ec
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype TEXTUAL uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype SEQINT uses sequenceintermediate('http://www.cooperateproject.de/modeling/textual/sequence/SequenceIntermediate');
 modeltype GMFSTYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');

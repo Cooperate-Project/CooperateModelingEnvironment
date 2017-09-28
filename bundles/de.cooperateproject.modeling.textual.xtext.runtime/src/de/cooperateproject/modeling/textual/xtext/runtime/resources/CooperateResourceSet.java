@@ -2,6 +2,7 @@ package de.cooperateproject.modeling.textual.xtext.runtime.resources;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.cdo.common.protocol.CDOProtocolConstants;
 import org.eclipse.emf.cdo.eresource.CDOResource;
@@ -14,62 +15,93 @@ import org.eclipse.xtext.resource.ResourceSetReferencingResourceSetImpl;
 import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+
 public class CooperateResourceSet extends ResourceSetReferencingResourceSetImpl {
 
-	@Override
-	public Resource getResource(URI uri, boolean loadOnDemand) {
-		Resource resource = findResourceInResourceSet(uri, this);
-		Iterator<ResourceSet> iterator = getReferencedResourceSets().iterator();
-		while (resource == null && iterator.hasNext()) {
-			resource = findResourceInResourceSet(uri, iterator.next());
-		}
-		
-		if (resource == null && loadOnDemand) {
-			resource = tryCreateCDOResource(uri);
-		}
-		
-		if (resource != null) {
-			return load(resource, loadOnDemand);
-		}
+    protected final ListChangeListener<ResourceSet> uriConverterUpdatingListener = new ListChangeListener<ResourceSet>() {
+        @Override
+        public synchronized void onChanged(Change<? extends ResourceSet> c) {
+            boolean changed = false;
+            while (c.next()) {
+                changed = changed | (c.wasRemoved() || c.wasAdded());
+            }
+            if (changed) {
+                getURIConverter().getURIHandlers().clear();
+                getURIConverter().getContentHandlers().clear();
 
-		return super.getResource(uri, loadOnDemand);
-	}
+                getReferencedResourceSets().stream().flatMap(rs -> rs.getURIConverter().getURIHandlers().stream())
+                        .distinct().forEach(getURIConverter().getURIHandlers()::add);
+                getReferencedResourceSets().stream().flatMap(rs -> rs.getURIConverter().getContentHandlers().stream())
+                        .distinct().forEach(getURIConverter().getContentHandlers()::add);
+            }
 
-	private Resource tryCreateCDOResource(URI uri) {
-		if (!uri.scheme().startsWith(CDOProtocolConstants.PROTOCOL_NAME)) {
-			return null;
-		}
+        }
+    };
 
-		Optional<ResourceSet> cdoResourceSet = Iterables.tryFind(getReferencedResourceSets(),
-				CooperateResourceSet::isCDOResourceSet);
+    @Override
+    public List<ResourceSet> getReferencedResourceSets() {
+        ObservableList<ResourceSet> observableList = FXCollections.observableList(super.getReferencedResourceSets());
+        observableList.addListener(uriConverterUpdatingListener);
+        return observableList;
+    }
 
-		if (!cdoResourceSet.isPresent()) {
-			return null;
-		}
+    @Override
+    public Resource getResource(URI uri, boolean loadOnDemand) {
+        Resource resource = findResourceInResourceSet(uri, this);
+        Iterator<ResourceSet> iterator = getReferencedResourceSets().iterator();
+        while (resource == null && iterator.hasNext()) {
+            resource = findResourceInResourceSet(uri, iterator.next());
+        }
 
-		return cdoResourceSet.get().getResource(uri, true);
-	}
+        if (resource == null && loadOnDemand) {
+            resource = tryCreateCDOResource(uri);
+        }
 
-	private static boolean isCDOResourceSet(ResourceSet rs) {
-		return rs.getResources().stream().filter(r -> r instanceof CDOResource).map(r -> (CDOResource) r)
-				.anyMatch(r -> r.cdoView() != null);
-	}
+        if (resource != null) {
+            return load(resource, loadOnDemand);
+        }
 
-	private Resource findResourceInResourceSet(URI uri, ResourceSet set) {
-		Optional<Resource> foundResource = Iterables.tryFind(set.getResources(), r -> uri.equals(r.getURI()));
-		if (!foundResource.isPresent()) {
-			return null;
-		}
-		return foundResource.get();
-	}
+        return super.getResource(uri, loadOnDemand);
+    }
 
-	private Resource load(Resource resource, boolean loadOnDemand) {
-		if (!loadOnDemand)
-			try {
-				resource.load(resource.getResourceSet().getLoadOptions());
-			} catch (IOException e) {
-				throw new WrappedException(e);
-			}
-		return resource;
-	}
+    private Resource tryCreateCDOResource(URI uri) {
+        if (!uri.scheme().startsWith(CDOProtocolConstants.PROTOCOL_NAME)) {
+            return null;
+        }
+
+        Optional<ResourceSet> cdoResourceSet = Iterables.tryFind(getReferencedResourceSets(),
+                CooperateResourceSet::isCDOResourceSet);
+
+        if (!cdoResourceSet.isPresent()) {
+            return null;
+        }
+
+        return cdoResourceSet.get().getResource(uri, true);
+    }
+
+    private static boolean isCDOResourceSet(ResourceSet rs) {
+        return rs.getResources().stream().filter(r -> r instanceof CDOResource).map(r -> (CDOResource) r)
+                .anyMatch(r -> r.cdoView() != null);
+    }
+
+    private Resource findResourceInResourceSet(URI uri, ResourceSet set) {
+        Optional<Resource> foundResource = Iterables.tryFind(set.getResources(), r -> uri.equals(r.getURI()));
+        if (!foundResource.isPresent()) {
+            return null;
+        }
+        return foundResource.get();
+    }
+
+    private Resource load(Resource resource, boolean loadOnDemand) {
+        if (!loadOnDemand)
+            try {
+                resource.load(resource.getResourceSet().getLoadOptions());
+            } catch (IOException e) {
+                throw new WrappedException(e);
+            }
+        return resource;
+    }
 }

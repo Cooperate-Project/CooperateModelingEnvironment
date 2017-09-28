@@ -9,9 +9,11 @@ import de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIExec
 import de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SIMessage;
 import de.cooperateproject.modeling.textual.sequence.sequenceintermediate.SequenceIntermediatePackage;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIMessageImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIMessageImpl#getUniqueIdentifierOfReferencedElement <em>Unique Identifier Of Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIMessageImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequenceintermediate.impl.SIMessageImpl#getCausesExecution <em>Causes Execution</em>}</li>
  * </ul>
@@ -45,6 +48,26 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
      * @ordered
      */
     protected Message referencedElement;
+
+    /**
+     * The default value of the '{@link #getUniqueIdentifierOfReferencedElement() <em>Unique Identifier Of Referenced Element</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUniqueIdentifierOfReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected static final String UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getUniqueIdentifierOfReferencedElement() <em>Unique Identifier Of Referenced Element</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUniqueIdentifierOfReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected String uniqueIdentifierOfReferencedElement = UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getCausesExecution() <em>Causes Execution</em>}' reference.
@@ -111,6 +134,27 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
         referencedElement = newReferencedElement;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getUniqueIdentifierOfReferencedElement() {
+        return uniqueIdentifierOfReferencedElement;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUniqueIdentifierOfReferencedElement(String newUniqueIdentifierOfReferencedElement) {
+        String oldUniqueIdentifierOfReferencedElement = uniqueIdentifierOfReferencedElement;
+        uniqueIdentifierOfReferencedElement = newUniqueIdentifierOfReferencedElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT, oldUniqueIdentifierOfReferencedElement, uniqueIdentifierOfReferencedElement));
     }
 
     /**
@@ -219,6 +263,15 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String calculateUniqueIdentifier() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUniqueIdentifierForSequenceElement(this.getReferencedElement());
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -275,6 +328,8 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
             case SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                return getUniqueIdentifierOfReferencedElement();
             case SequenceIntermediatePackage.SI_MESSAGE__ORIGIN:
                 return getOrigin();
             case SequenceIntermediatePackage.SI_MESSAGE__CAUSES_EXECUTION:
@@ -294,6 +349,9 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
         switch (featureID) {
             case SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT:
                 setReferencedElement((Message)newValue);
+                return;
+            case SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                setUniqueIdentifierOfReferencedElement((String)newValue);
                 return;
             case SequenceIntermediatePackage.SI_MESSAGE__ORIGIN:
                 setOrigin((SIExecution)newValue);
@@ -316,6 +374,9 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
             case SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT:
                 setReferencedElement((Message)null);
                 return;
+            case SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                setUniqueIdentifierOfReferencedElement(UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT);
+                return;
             case SequenceIntermediatePackage.SI_MESSAGE__ORIGIN:
                 setOrigin((SIExecution)null);
                 return;
@@ -336,6 +397,8 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
         switch (featureID) {
             case SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT:
                 return referencedElement != null;
+            case SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT:
+                return UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT == null ? uniqueIdentifierOfReferencedElement != null : !UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT_EDEFAULT.equals(uniqueIdentifierOfReferencedElement);
             case SequenceIntermediatePackage.SI_MESSAGE__ORIGIN:
                 return getOrigin() != null;
             case SequenceIntermediatePackage.SI_MESSAGE__CAUSES_EXECUTION:
@@ -354,6 +417,7 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
         if (baseClass == SIElementWithTextualReference.class) {
             switch (derivedFeatureID) {
                 case SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT: return SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT;
+                case SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT: return SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
@@ -370,10 +434,57 @@ public class SIMessageImpl extends SITimedElementImpl implements SIMessage {
         if (baseClass == SIElementWithTextualReference.class) {
             switch (baseFeatureID) {
                 case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__REFERENCED_ELEMENT: return SequenceIntermediatePackage.SI_MESSAGE__REFERENCED_ELEMENT;
+                case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT: return SequenceIntermediatePackage.SI_MESSAGE__UNIQUE_IDENTIFIER_OF_REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == SIElementWithTextualReference.class) {
+            switch (baseOperationID) {
+                case SequenceIntermediatePackage.SI_ELEMENT_WITH_TEXTUAL_REFERENCE___CALCULATE_UNIQUE_IDENTIFIER: return SequenceIntermediatePackage.SI_MESSAGE___CALCULATE_UNIQUE_IDENTIFIER;
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequenceIntermediatePackage.SI_MESSAGE___CALCULATE_UNIQUE_IDENTIFIER:
+                return calculateUniqueIdentifier();
+        }
+        return super.eInvoke(operationID, arguments);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (uniqueIdentifierOfReferencedElement: ");
+        result.append(uniqueIdentifierOfReferencedElement);
+        result.append(')');
+        return result.toString();
     }
 
 } //SIMessageImpl

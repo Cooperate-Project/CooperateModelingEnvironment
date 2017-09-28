@@ -31,9 +31,9 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 
     private final TransformationCharacteristic characteristics;
     private final URI sourceURI;
-    private final SortedSet<URI> supplementarySourceURIs;
+    private final Collection<URI> supplementarySourceURIs;
     private final URI targetURI;
-    private final SortedSet<URI> supplementaryTargetURIs;
+    private final Collection<URI> supplementaryTargetURIs;
     private final TraceTransformation traceTransformation;
     private final SortedSet<PostProcessor> postProcessors = new TreeSet<>();
 
@@ -41,15 +41,15 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 
     protected TransformationBase(TransformationCharacteristic characteristics,
             ITransformationUnitURIResolver uriResolver, ResourceSet rs, URI sourceURI,
-            SortedSet<URI> supplementarySourceURIs, URI targetURI, SortedSet<URI> supplementaryTargetURIs,
+            List<URI> supplementarySourceURIs, URI targetURI, List<URI> supplementaryTargetURIs,
             Collection<PostProcessor> postProcessors) {
         super(rs);
         this.characteristics = characteristics;
         this.transformationURIResolver = uriResolver;
         this.sourceURI = sourceURI;
-        this.supplementarySourceURIs = Collections.unmodifiableSortedSet(new TreeSet<>(supplementarySourceURIs));
+        this.supplementarySourceURIs = Collections.unmodifiableCollection(new ArrayList<>(supplementarySourceURIs));
         this.targetURI = targetURI;
-        this.supplementaryTargetURIs = Collections.unmodifiableSortedSet(new TreeSet<>(supplementaryTargetURIs));
+        this.supplementaryTargetURIs = Collections.unmodifiableCollection(new ArrayList<>(supplementaryTargetURIs));
         this.traceTransformation = createTraceTransformation(characteristics, uriResolver, sourceURI, targetURI,
                 supplementaryTargetURIs, rs);
         this.postProcessors.addAll(postProcessors);

@@ -73,9 +73,11 @@ class IntermediateModelTransformation {
     }
     
     protected def transform() {
+        targetResource.contents.clear
         targetResource.contents += result = siFac.createSIDiagram => [
             referencedElement = sourceDiagram
         ]
+        result.transformInternal
     }
     
     protected def dispatch void transformInternal(SIDiagram diagram) {
