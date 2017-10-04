@@ -16,6 +16,8 @@ import org.eclipse.xtext.validation.Check;
 
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.cls.cls.Association;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
@@ -57,6 +59,12 @@ public class ClsValidator extends AbstractClsValidator {
 
     @Check
     private void checkUniqueNamedElementInItsPackage(NamedElement element) {
+        if (element instanceof AssociationMemberEnd) {
+            Association association = ((AssociationMemberEnd) element).getAssociation();
+            checkUniqueElements(element, association.getMemberEnds());
+            return;
+        }
+
         PackageBase<?> nearestPackage = element.getNearestPackage();
         if (!(nearestPackage instanceof Package)) {
             return;
