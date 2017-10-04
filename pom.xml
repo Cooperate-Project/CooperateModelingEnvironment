@@ -53,7 +53,7 @@
 		</repository>
 		<repository>
 			<id>papyrus</id>
-			<url>https://dl.bintray.com/cooperate-project/PapyrusMirror/201708080218/</url>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
@@ -78,12 +78,12 @@
 		</repository>
 		<repository>
 			<id>cooperate-qvtoutils</id>
-			<url>https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/latest/</url>
+			<url>https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/1.0.1/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827</url>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201709090201/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
