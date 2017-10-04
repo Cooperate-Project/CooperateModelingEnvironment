@@ -78,7 +78,7 @@
 		</repository>
 		<repository>
 			<id>cooperate-qvtoutils</id>
-			<url>https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/latest/</url>
+			<url>https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/1.0.1/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
