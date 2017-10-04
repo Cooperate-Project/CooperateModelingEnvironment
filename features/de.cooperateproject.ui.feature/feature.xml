@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.ui.feature"
       label="%featureName"
-      version="0.3.0"
+      version="0.3.1.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
