@@ -38,6 +38,8 @@ public class AliasedElementInitializer extends AtomicDerivedStateProcessorBase<A
                 Optional.of((NamedElement) umlElement).map(NamedElement::getNameExpression)
                         .map(StringExpression::getName).ifPresent(object::setAlias);
             }
+        } else if (object.getAlias() == null) {
+            object.unsetAlias();
         }
     }
 

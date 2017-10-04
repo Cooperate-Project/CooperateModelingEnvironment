@@ -14,13 +14,19 @@
 	<name>Test Modules</name>
 
 	<modules>
+		<module>de.cooperateproject.modeling.graphical.papyrus.extensions.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.common.tests</module>
+		<module>de.cooperateproject.modeling.textual.component.tests</module>
+		<module>de.cooperateproject.modeling.textual.component.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.usecase.tests</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.tests</module>
-		<module>de.cooperateproject.modeling.transformation.transformations.tests</module>
+		<module>de.cooperateproject.modeling.transformation.cls.tests</module>
+		<module>de.cooperateproject.modeling.transformation.common.tests</module>
+		<module>de.cooperateproject.modeling.transformation.component.tests</module>
+		<module>de.cooperateproject.modeling.transformation.usecase.tests</module>
 	</modules>
 
 	<properties>

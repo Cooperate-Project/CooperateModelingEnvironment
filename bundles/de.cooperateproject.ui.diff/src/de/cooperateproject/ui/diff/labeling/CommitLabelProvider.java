@@ -13,36 +13,39 @@ import org.eclipse.swt.graphics.Image;
 /**
  * Label Provider for a table view which lists all found commits to one diagram.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class CommitLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-	private final DateFormat formatterTime = new SimpleDateFormat("HH:mm:s");
-	private final DateFormat formatterDate = new SimpleDateFormat("d. MMMM yyyy", Locale.ENGLISH);
+    private final DateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
+    private final DateFormat formatterDate = new SimpleDateFormat("d. MMMM yyyy", Locale.ENGLISH);
 
-	@Override
-	public Image getColumnImage(Object element, int columnIndex) {
-		return null;
-	}
+    @Override
+    public Image getColumnImage(Object element, int columnIndex) {
+        return null;
+    }
 
-	@Override
-	public String getColumnText(Object element, int columnIndex) {
-		String info = "";
-		if (element instanceof CDOCommitInfo) {
-			CDOCommitInfo element_temp = ((CDOCommitInfo) element);
-			Date date = new Date(element_temp.getTimeStamp());
+    @Override
+    public String getColumnText(Object element, int columnIndex) {
+        if (!(element instanceof CDOCommitInfo)) {
+            return "";
+        }
+        return getColumnText((CDOCommitInfo) element, columnIndex);
+    }
 
-			switch (columnIndex) {
-			case 0:
-				info = formatterDate.format(date);
-				break;
-			case 1:
-				info = formatterTime.format(date);
-				break;
-			default:
-			}
-		}
-		return info;
-	}
+    private String getColumnText(CDOCommitInfo element, int columnIndex) {
+        Date date = new Date(element.getTimeStamp());
+
+        switch (columnIndex) {
+        case 0:
+            return formatterDate.format(date);
+        case 1:
+            return formatterTime.format(date);
+        case 2:
+            return element.getComment();
+        default:
+            return "";
+        }
+    }
 }

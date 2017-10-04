@@ -22,6 +22,10 @@
          id="de.cooperateproject.modeling.textual.commons.feature"
          version="0.0.0"/>
 
+   <requires>
+      <import feature="de.cooperateproject.modeling.transformation.feature"/>
+   </requires>
+
    <plugin
          id="de.cooperateproject.modeling.textual.cls"
          download-size="0"
@@ -45,6 +49,13 @@
 
    <plugin
          id="de.cooperateproject.modeling.textual.cls.metamodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.transformation.cls"
          download-size="0"
          install-size="0"
          version="0.0.0"

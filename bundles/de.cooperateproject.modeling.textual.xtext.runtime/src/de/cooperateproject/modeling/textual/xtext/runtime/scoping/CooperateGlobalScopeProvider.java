@@ -33,6 +33,8 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.common.primitivetypes.IUMLPrimitiveTypeFilter;
+
 /**
  * Global scope provider with special handling of queries to UML elements.
  * 
@@ -55,7 +57,7 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
     private IUMLUriFinder umlUriFinder;
 
     @Inject
-    private IUMLPrimitiveTypeSelector umlPrimitiveTypeSelector;
+    private IUMLPrimitiveTypeFilter umlPrimitiveTypeSelector;
 
     @Override
     protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
@@ -88,7 +90,7 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
     private Stream<EObject> getPrimitiveTypesIfRequested(Resource umlResource, EClass type) {
         Resource umlPrimitives = umlResource.getResourceSet().getResource(UML_PRIMITIVE_TYPES_URI, true);
         return getScopeElementsFromUMLResource(umlPrimitives, type).filter(PrimitiveType.class::isInstance)
-                .map(PrimitiveType.class::cast).filter(umlPrimitiveTypeSelector::isSelected).map(EObject.class::cast);
+                .map(PrimitiveType.class::cast).filter(umlPrimitiveTypeSelector::isAllowed).map(EObject.class::cast);
     }
 
     private static Stream<EObject> getScopeElementsFromUMLResource(Resource umlResource, EClass type) {

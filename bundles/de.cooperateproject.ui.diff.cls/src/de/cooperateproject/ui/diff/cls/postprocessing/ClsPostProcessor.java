@@ -13,10 +13,21 @@ import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.content.IPostProcessor;
 import de.cooperateproject.ui.diff.content.SummaryItem;
 
+/**
+ * Postprocessor for editing the results of the builders of the cls diff tree and the summary list.
+ * 
+ * @author czogalik
+ *
+ */
 public class ClsPostProcessor implements IPostProcessor {
 
     @Override
     public Map<EObject, DiffTreeItem> postProcessDiffTreeBuilder(Map<EObject, DiffTreeItem> tree) {
+        removeUnnecessaryChildren(tree);
+        return tree;
+    }
+
+    private static void removeUnnecessaryChildren(Map<EObject, DiffTreeItem> tree) {
         for (Entry<EObject, DiffTreeItem> obj : tree.entrySet()) {
             if (!(obj.getValue().getObject() instanceof EObject)) {
                 continue;
@@ -29,7 +40,6 @@ public class ClsPostProcessor implements IPostProcessor {
                 }
             }
         }
-        return tree;
     }
 
     @Override

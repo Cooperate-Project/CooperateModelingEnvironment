@@ -1,12 +1,14 @@
 package de.cooperate.modeling.graphical.papyrus.extensions;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -47,7 +49,7 @@ public class Activator extends AbstractUIPlugin {
 
     }
 
-    public static void enableCooperatePropertyContext() {
+    private static void enableCooperatePropertyContext() {
         Collection<Context> contexts = ConfigurationManager.getInstance().getCustomizableContexts();
         contexts.forEach(ctx -> {
             if (!"CooperateProperties".equals(ctx.getName())) {
@@ -58,4 +60,8 @@ public class Activator extends AbstractUIPlugin {
         });
     }
 
+    public static String getPluginID() {
+        return Optional.ofNullable(getPluginInstance()).map(Plugin::getBundle).map(Bundle::getSymbolicName)
+                .orElse("de.cooperateproject.modeling.graphical.papyrus.extensions");
+    }
 }

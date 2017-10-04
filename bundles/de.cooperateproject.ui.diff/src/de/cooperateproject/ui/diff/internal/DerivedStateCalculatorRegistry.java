@@ -11,24 +11,26 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
 public enum DerivedStateCalculatorRegistry {
-	
-	INSTANCE;
 
-	private static final String EXTENSION_ID = "de.cooperateproject.ui.diff.derivedcalculator";
-	private static final String EXTENSION_ATTRIBUTE = "class";
-	private Map<String, IDerivedStateProcessor> extensions;
+    INSTANCE;
 
-	public static DerivedStateCalculatorRegistry getInstance() {
-		return INSTANCE;
-	}
+    private static final String EXTENSION_ID = "de.cooperateproject.ui.diff.derivedcalculator";
+    private static final String EXTENSION_ATTRIBUTE = "class";
+    private Map<String, IDerivedStateProcessor> extensions;
 
-	private DerivedStateCalculatorRegistry() {
-		Collection<Pair<IDerivedStateProcessor,Map<String,String>>> extensionPairs = ExtensionPointHelper.getExtensions(EXTENSION_ID, EXTENSION_ATTRIBUTE, IDerivedStateProcessor.class, "ns_uri");
-		extensions = extensionPairs.stream().collect(Collectors.toMap(x -> x.getValue().get("ns_uri"), Pair::getKey));
-	}
+    private DerivedStateCalculatorRegistry() {
+        Collection<Pair<IDerivedStateProcessor, Map<String, String>>> extensionPairs = ExtensionPointHelper
+                .getExtensions(EXTENSION_ID, EXTENSION_ATTRIBUTE, IDerivedStateProcessor.class, "ns_uri");
+        extensions = extensionPairs.stream().collect(Collectors.toMap(x -> x.getValue().get("ns_uri"), Pair::getKey));
+    }
 
-	public Optional<IDerivedStateProcessor> getExtension(String nsUri) {
-		return Optional.ofNullable(extensions.getOrDefault(nsUri, null));
-	}
+    public static DerivedStateCalculatorRegistry getInstance() {
+        return INSTANCE;
+    }
+
+
+    public Optional<IDerivedStateProcessor> getExtension(String nsUri) {
+        return Optional.ofNullable(extensions.getOrDefault(nsUri, null));
+    }
 
 }

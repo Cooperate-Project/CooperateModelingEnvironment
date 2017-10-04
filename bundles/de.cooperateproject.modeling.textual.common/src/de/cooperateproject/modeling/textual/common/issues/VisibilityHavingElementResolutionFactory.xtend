@@ -6,7 +6,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visi
 import org.eclipse.uml2.uml.NamedElement
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import org.eclipse.uml2.uml.UMLPackage
 
 class VisibilityHavingElementResolutionFactory extends CommonAutomatedIssueResolutionFactoryBase<VisibilityHavingElement> {
     

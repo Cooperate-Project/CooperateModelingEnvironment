@@ -9,6 +9,9 @@
       <factory
             class="de.cooperateproject.modeling.textual.common.issues.VisibilityHavingElementResolutionFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.common.issues.AliasedElementWrongAliasFactory">
+      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">

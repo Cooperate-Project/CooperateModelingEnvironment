@@ -15,87 +15,87 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Finds the correct post-processor for the specific meta-model. Delegates the
- * post-processing request.
+ * Finds the correct post-processor for the specific meta-model. Delegates the post-processing
+ * request.
  * 
  * @author Jasmin, czogalik
  *
  */
-public class PostProcessorManager {
+public final class PostProcessorManager {
 
-	private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.postProcessor";
-	private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
-	private static final String CLASS_ATTRIBUTE_ID = "class";
-	
-	private static final Logger logger = LoggerFactory.getLogger(PostProcessorManager.class);
-	
-	private PostProcessorManager() {
-	    //private constructor to hide creation of object
-	}
+    private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.postProcessor";
+    private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
+    private static final String CLASS_ATTRIBUTE_ID = "class";
 
-	static Map<EObject, DiffTreeItem> postProcessDiffTree(Map<EObject, DiffTreeItem> tree) {
-		if (tree.isEmpty()) {
-			return tree;
-		}
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostProcessorManager.class);
 
-		Collection<EObject> keys = tree.keySet();
-		// Find one item in the tree and check its type to know from
-		// which meta model it is.
-		EObject oneKey = keys.iterator().next();
-		String objectType = oneKey.getClass().getPackage().getName();
-		IPostProcessor postProcessor = findPostProcessor(objectType);
-		if (postProcessor != null) {
-			return postProcessor.postProcessDiffTreeBuilder(tree);
-		}
+    private PostProcessorManager() {
+        // private constructor to hide creation of object
+    }
 
-		return tree;
-	}
+    static Map<EObject, DiffTreeItem> postProcessDiffTree(Map<EObject, DiffTreeItem> tree) {
+        if (tree.isEmpty()) {
+            return tree;
+        }
 
-	static List<SummaryItem> postProcessSummaryList(List<SummaryItem> summaryList) {
-		List<SummaryItem> ret = summaryList;
-		if (summaryList.isEmpty()) {
-			return ret;
-		}
+        Collection<EObject> keys = tree.keySet();
+        // Find one item in the tree and check its type to know from
+        // which meta model it is.
+        EObject oneKey = keys.iterator().next();
+        String objectType = oneKey.getClass().getPackage().getName();
+        IPostProcessor postProcessor = findPostProcessor(objectType);
+        if (postProcessor != null) {
+            return postProcessor.postProcessDiffTreeBuilder(tree);
+        }
 
-		SummaryItem summaryItem = summaryList.get(0);
-		String objectType;
-		Object concreteItem;
-		// Find one item of the summary list and check its type to know from
-		// which meta model it is.
-		if (summaryItem.getLeft() != null) {
-			concreteItem = summaryItem.getLeft();
-		} else {
-			concreteItem = summaryItem.getRight();
-		}
-		objectType = concreteItem.getClass().getPackage().getName();
-		IPostProcessor postProcessor = findPostProcessor(objectType);
+        return tree;
+    }
 
-		if (postProcessor != null) {
-			ret = postProcessor.postProcessSummaryViewBuilder(summaryList);
-		}
-		return ret;
-	}
+    static List<SummaryItem> postProcessSummaryList(List<SummaryItem> summaryList) {
+        List<SummaryItem> ret = summaryList;
+        if (summaryList.isEmpty()) {
+            return ret;
+        }
 
-	private static IPostProcessor findPostProcessor(String objectType) {
-		IPostProcessor postProcessor = null;
-		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
-		IExtension[] extensions = ep.getExtensions();
+        SummaryItem summaryItem = summaryList.get(0);
+        String objectType;
+        Object concreteItem;
+        // Find one item of the summary list and check its type to know from
+        // which meta model it is.
+        if (summaryItem.getLeft() != null) {
+            concreteItem = summaryItem.getLeft();
+        } else {
+            concreteItem = summaryItem.getRight();
+        }
+        objectType = concreteItem.getClass().getPackage().getName();
+        IPostProcessor postProcessor = findPostProcessor(objectType);
 
-		for (IExtension extension : extensions) {
-			IConfigurationElement[] configurationElements = extension.getConfigurationElements();
-			for (IConfigurationElement configurationElement : configurationElements) {
-			    if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
+        if (postProcessor != null) {
+            ret = postProcessor.postProcessSummaryViewBuilder(summaryList);
+        }
+        return ret;
+    }
+
+    private static IPostProcessor findPostProcessor(String objectType) {
+        IPostProcessor postProcessor = null;
+        IExtensionRegistry reg = Platform.getExtensionRegistry();
+        IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
+        IExtension[] extensions = ep.getExtensions();
+
+        for (IExtension extension : extensions) {
+            IConfigurationElement[] configurationElements = extension.getConfigurationElements();
+            for (IConfigurationElement configurationElement : configurationElements) {
+                if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
                     continue;
                 }
                 try {
                     postProcessor = (IPostProcessor) configurationElement.createExecutableExtension(CLASS_ATTRIBUTE_ID);
                 } catch (CoreException e) {
-                    logger.error(e.getMessage());
+                    LOGGER.error(e.getMessage(), e);
                 }
-			}
-		}
+            }
+        }
 
-		return postProcessor;
-	}
+        return postProcessor;
+    }
 }

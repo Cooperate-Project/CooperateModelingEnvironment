@@ -24,54 +24,54 @@ public class DiffViewLabelProvider extends LabelProvider {
     private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
     private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
     private static final String CLASS_ATTRIBUTE_ID = "class";
-    private static final Logger logger = LoggerFactory.getLogger(DiffViewLabelProvider.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiffViewLabelProvider.class);
 
-	@Override
-	public String getText(Object element) {
-		String ret = "";
-		if (!(element instanceof DiffTreeItem)) {
-			return null;
-		}
-		DiffTreeItem item = (DiffTreeItem) element;
-		Object object = item.getObject();
+    @Override
+    public String getText(Object element) {
+        StringBuilder result = new StringBuilder();
+        if (!(element instanceof DiffTreeItem)) {
+            return null;
+        }
+        DiffTreeItem item = (DiffTreeItem) element;
+        Object object = item.getObject();
         LabelHandler labelHandler = findLabelHandler(object.getClass().getPackage().getName());
-		
-		if (labelHandler == null) {
-		    return null;
-		}
 
-		if (item.getDiffKind() != null) {
-			ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
-		}
+        if (labelHandler == null) {
+            return null;
+        }
 
-		if (object instanceof EObject) {
-		    return ret + labelHandler.getText((EObject) object);
-		}
-		return null;
-	}
+        if (item.getDiffKind() != null) {
+            result.append(DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ");
+        }
 
-	private LabelHandler findLabelHandler(String objectType) {
-		LabelHandler labelHandler = null;
-		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
-		IExtension[] extensions = ep.getExtensions();
+        if (object instanceof EObject) {
+            return result.append(labelHandler.getText((EObject) object)).toString();
+        }
+        return null;
+    }
 
-		for (IExtension ext : extensions) {
-			IConfigurationElement[] configurationElements = ext.getConfigurationElements();
-			for (IConfigurationElement configurationElement : configurationElements) {
-				if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
-					continue;
-				}
-				try {
-					labelHandler = (LabelHandler) configurationElement.createExecutableExtension(CLASS_ATTRIBUTE_ID);
+    private static LabelHandler findLabelHandler(String objectType) {
+        LabelHandler labelHandler = null;
+        IExtensionRegistry reg = Platform.getExtensionRegistry();
+        IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
+        IExtension[] extensions = ep.getExtensions();
 
-				} catch (CoreException e) {
-					logger.error(e.getMessage());
-				}
+        for (IExtension ext : extensions) {
+            IConfigurationElement[] configurationElements = ext.getConfigurationElements();
+            for (IConfigurationElement configurationElement : configurationElements) {
+                if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
+                    continue;
+                }
+                try {
+                    labelHandler = (LabelHandler) configurationElement.createExecutableExtension(CLASS_ATTRIBUTE_ID);
 
-			}
-		}
-		return labelHandler;
-	}
+                } catch (CoreException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
+
+            }
+        }
+        return labelHandler;
+    }
 
 }

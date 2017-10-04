@@ -356,13 +356,16 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     }
 
     private void performIssueValidationFixing(Collection<Issue> detectedIssues, Resource documentResource) {
+        final AutomatedIssueResolutionOngoingAdapter adapter = new AutomatedIssueResolutionOngoingAdapter();
         Optional<DerivedStateAwareResource> stateAwareResource = Optional.of(documentResource)
                 .filter(DerivedStateAwareResource.class::isInstance).map(DerivedStateAwareResource.class::cast);
         try {
+            documentResource.eAdapters().add(adapter);
             stateAwareResource.ifPresent(s -> s.setDerivedStateComputer(null));
             performIssueValidationFixingWithoutAutomatedStateCalculation(detectedIssues, documentResource);
         } finally {
             stateAwareResource.ifPresent(r -> r.setDerivedStateComputer(derivedStateComputer));
+            documentResource.eAdapters().remove(adapter);
         }
     }
 

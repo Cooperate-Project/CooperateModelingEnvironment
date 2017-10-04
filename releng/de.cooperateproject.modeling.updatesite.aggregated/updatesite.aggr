@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Cooperate Modeling Environment" buildRoot="target">
+  <validationSets label="main">
+    <contributions label="local">
+      <repositories location="../de.cooperateproject.modeling.updatesite/target/repository"/>
+    </contributions>
+    <contributions label="externals">
+      <repositories location="http://download.eclipse.org/tools/orbit/downloads/drops/R20170516192513/repository/" mirrorArtifacts="false">
+        <bundles name="com.google.inject"/>
+        <bundles name="org.apache.commons.io"/>
+        <bundles name="org.apache.commons.lang3"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/releases/oxygen/" mirrorArtifacts="false">
+        <features name="org.eclipse.jdt.feature.group"/>
+        <features name="org.eclipse.emf.cdo.sdk.feature.group"/>
+        <features name="org.eclipse.xtext.sdk.feature.group"/>
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/PapyrusMirror/201708080218/" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.sdk.feature.feature.group"/>
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/1.2.0.RC1/" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.extra.cdo.feature.feature.group"/>
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/CooperateLicense/updatesite/1.0.0/" mirrorArtifacts="false">
+        <features name="de.cooperateproject.license.feature.group"/>
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.3.2/" mirrorArtifacts="false">
+        <features name="de.cooperateproject.cdoxtext.feature.feature.group"/>
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/Externals/updatesite/1.0.0/" mirrorArtifacts="false">
+        <bundles name="org.apache.activemq.all"/>
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/latest/" mirrorArtifacts="false">
+        <features name="de.cooperateproject.qvtoutils.blackbox.feature.feature.group"/>
+      </repositories>      
+    </contributions>
+  </validationSets>
+  <configurations/>
+  <configurations architecture="x86_64"/>
+  <configurations operatingSystem="linux" windowSystem="gtk"/>
+  <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
+  <configurations operatingSystem="macosx" windowSystem="cocoa" architecture="x86_64"/>
+</aggregator:Aggregation>

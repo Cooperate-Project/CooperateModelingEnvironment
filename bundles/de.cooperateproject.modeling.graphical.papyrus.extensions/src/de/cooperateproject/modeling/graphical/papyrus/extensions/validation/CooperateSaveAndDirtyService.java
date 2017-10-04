@@ -1,32 +1,37 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.ExecutionEvent;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.NotEnabledException;
-import org.eclipse.core.commands.NotHandledException;
-import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.core.runtime.jobs.ILock;
-import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
+import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.SaveAndDirtyService;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.cooperate.modeling.graphical.papyrus.extensions.Activator;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 
 /**
  * SaveAndDirtyService for papyrus models created in cooperate projects. Provides model
@@ -38,38 +43,22 @@ import org.slf4j.LoggerFactory;
 public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CooperateSaveAndDirtyService.class);
-    private static final String PLUG_IN_ID = "de.cooperateproject.validation";
     private ServicesRegistry serviceRegistry;
-    private CooperateValidationError validationError;
-    private static ILock lock = Job.getJobManager().newLock();
 
     @Override
     public void doSave(IProgressMonitor monitor) {
-        Job job = new Job("Save") {
-            @Override
-            protected IStatus run(IProgressMonitor monitor) {
-                SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
-                Display.getDefault().syncExec(() -> {
-                    try {
-                        lock.acquire();
-                        subMonitor.setTaskName("Saving diagram.");
-                        if (validate()) {
-                            internalDoSave(subMonitor.split(100));
-                        }
-                    } finally {
-                        lock.release();
-                    }
-                });
-                return Status.OK_STATUS;
-            }
-        };
-        job.setUser(true);
-        job.schedule();
-        try {
-            job.join();
-        } catch (InterruptedException e) {
-            LOGGER.error("Error during save operation.", e);
-            return;
+        if (Display.getCurrent() == null) {
+            Display.getDefault().syncExec(() -> doSaveIfValid(monitor));
+        } else {
+            doSaveIfValid(monitor);
+        }
+    }
+
+    private void doSaveIfValid(IProgressMonitor monitor) {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+        subMonitor.setTaskName("Saving diagram.");
+        if (validate()) {
+            super.doSave(subMonitor.split(100));
         }
     }
 
@@ -79,58 +68,63 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
         this.serviceRegistry = servicesRegistry;
     }
 
-    public synchronized void setModelInconsistent(CooperateValidationError validationError) {
-        this.validationError = validationError;
-    }
-
-    private void internalDoSave(IProgressMonitor monitor) {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
-        super.doSave(subMonitor.split(100));
-    }
-
     private static void showErrorDialog(String reason) {
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         ErrorDialog.openError(shell, "Could not save model",
                 "The model contains inconsistencies or unsupported elements and cannot be saved in this state.",
-                new Status(IStatus.ERROR, PLUG_IN_ID, reason));
+                new Status(IStatus.ERROR, Activator.getPluginID(), reason));
     }
 
     private boolean validate() {
-        ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
-        Command validateCommand = commandService.getCommand("org.eclipse.papyrus.validation.ValidateModelCommand");
         try {
-            // Open arbitrary element from ModelSet, so ValidateModelCommand can operate
-            OpenElementService openElementService = serviceRegistry.getService(OpenElementService.class);
-            ModelSet modelSet = serviceRegistry.getService(ModelSet.class);
-            // Get .uml file
-            Resource resource = modelSet.getResources().stream()
-                    .filter(r -> r.getURI().lastSegment().matches(".*\\.uml")).findFirst().get();
-            EObject object = resource.getAllContents().next();
-            openElementService.openSemanticElement(object);
-            if (validateCommand.isEnabled()) {
-                // Validate Model
-                validateCommand.executeWithChecks(new ExecutionEvent());
+            Collection<Diagnostic> validationResults = new ArrayList<>();
+            getActiveDiagram().map(CooperateSaveAndDirtyService::validate).ifPresent(validationResults::addAll);
+            getActiveDiagram().flatMap(CooperateSaveAndDirtyService::getActiveUMLRootElement)
+                    .map(CooperateSaveAndDirtyService::validate).ifPresent(validationResults::addAll);
+
+            Collection<Diagnostic> relevantDiagnostics = validationResults.stream()
+                    .filter(d -> CooperateConstraintBase.isCooperateConstraint(d.getSource()))
+                    .collect(Collectors.toList());
+            if (!relevantDiagnostics.isEmpty()) {
+                Diagnostic entryToShow = relevantDiagnostics.iterator().next();
+                showErrorDialog(entryToShow.getMessage());
+                OpenElementService openElementService = serviceRegistry.getService(OpenElementService.class);
+                openElementService.openSemanticElement((EObject) entryToShow.getData().get(0));
+                return false;
             }
-            // Synchronize with setModelInconsistent
-            synchronized (this) {
-                if (null != validationError) {
-                    showErrorDialog(validationError.getMessage());
-                    // Open view part of invalid element
-                    openElementService.openElement(validationError.getInvalidObject());
-                    validationError = null;
-                    return false;
-                }
-            }
-        } catch (ExecutionException | NotDefinedException | NotEnabledException | NotHandledException e) {
-            LOGGER.error("Error while executing ValidateModelCommand on save of Model", e);
-            return false; // Do not save when Exception occurs
-        } catch (ServiceException e) {
-            LOGGER.error("Cannot access required services to validate model on save", e);
-            return false;
-        } catch (PartInitException e) {
-            LOGGER.error("Cannot open view part after validation", e);
+
+            return true;
+        } catch (ServiceException | PartInitException e) {
+            LOGGER.error("Error while validating model", e);
             return false;
         }
-        return true;
+    }
+
+    private static Collection<Diagnostic> validate(EObject rootObject) {
+        try {
+            ValidateModelCommand validateModelCommand = new ValidateModelCommand(rootObject);
+            validateModelCommand.execute(null, null);
+            Diagnostic diagnostic = validateModelCommand.getDiagnostic();
+            return diagnostic.getChildren();
+        } catch (ExecutionException e) {
+            LOGGER.error("Could not validate root object {} of current diagram.", rootObject, e);
+            return Collections.emptyList();
+        }
+    }
+
+    private Optional<Diagram> getActiveDiagram() throws ServiceException {
+        IPageManager pageManager = serviceRegistry.getService(IPageManager.class);
+        return pageManager.allPages().stream().filter(pageManager::isOpen).filter(Diagram.class::isInstance)
+                .map(Diagram.class::cast).findFirst();
+    }
+
+    private static Optional<EObject> getActiveUMLRootElement(Diagram activeDiagram) {
+        @SuppressWarnings("unchecked")
+        EObject umlRootElement = Optional.ofNullable(activeDiagram.getStyles())
+                .flatMap(styles -> ((Collection<Style>) styles).stream().filter(PapyrusDiagramStyle.class::isInstance)
+                        .map(PapyrusDiagramStyle.class::cast).findFirst())
+                .map(PapyrusDiagramStyle::getOwner)
+                .orElseGet(() -> Optional.ofNullable(activeDiagram.getElement()).orElse(null));
+        return Optional.ofNullable(umlRootElement);
     }
 }

@@ -8,28 +8,28 @@ import de.cooperateproject.ui.diff.labeling.LabelHandler;
 /**
  * Labeling for the cls meta-model.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class ClsLabelHandler implements LabelHandler {
 
-	private ClsSwitch<String> classTextSwitch = new ClsClassTextSwitch();
-	private ClsSwitch<String> labelSwitch = new ClsLabelSwitch();
+    private ClsSwitch<String> classTextSwitch = new ClsClassTextSwitch();
+    private ClsSwitch<String> labelSwitch = new ClsLabelSwitch();
 
-	@Override
-	public String getText(EObject item) {
-	    if (item == null) {
-	        return null;
-	    }
-		return labelSwitch.doSwitch(item);
-	}
-
-	@Override
-	public String getClassText(EObject item) {
-	    if (item == null) {
+    @Override
+    public String getText(EObject item) {
+        if (item == null) {
             return null;
         }
-		return classTextSwitch.doSwitch(item);
-	}
+        return labelSwitch.doSwitch(item);
+    }
+
+    @Override
+    public String getClassText(EObject item) {
+        if (item == null) {
+            return null;
+        }
+        return classTextSwitch.doSwitch(item);
+    }
 
 }

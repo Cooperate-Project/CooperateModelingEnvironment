@@ -18,216 +18,147 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
 import java.util.Collection
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
-import org.eclipse.jface.viewers.DecorationOverlayIcon
-import org.eclipse.jface.viewers.IDecoration
-import org.eclipse.swt.graphics.Image
-import org.eclipse.uml2.uml.PrimitiveType
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import org.eclipse.uml2.uml.VisibilityKind
+import de.cooperateproject.ui.outline.UMLImage
+import de.cooperateproject.ui.outline.CooperateOutlineLabelProvider
 
 /**
- * Provides labels for EObjects.
+ * Provides labels for Cls Objects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class ClsLabelProvider extends DefaultEObjectLabelProvider {
+class ClsLabelProvider extends CooperateOutlineLabelProvider {
 
-	static val visibilityMap = #{VisibilityKind.PUBLIC -> UMLImage.VISIBILITY_PUBLIC.image,
-		VisibilityKind.PRIVATE -> UMLImage.VISIBILITY_PRIVATE.image,
-		VisibilityKind.PROTECTED -> UMLImage.VISIBILITY_PROTECTED.image,
-		VisibilityKind.PACKAGE -> UMLImage.VISIBILITY_PACKAGE.image}
+    @Inject
+    new(AdapterFactoryLabelProvider delegate) {
+        super(delegate)
+    }
 
-	@Inject
-	IQualifiedNameProvider qualifiedNameProvider;
+    def image(ClassDiagram ele) {
+        return UMLImage.MODEL.image
+    }
 
-	@Inject
-	new(AdapterFactoryLabelProvider delegate) {
-		super(delegate)
-	}
-	
-	def image(ClassDiagram ele) {
-		return UMLImage.MODEL.image
-	}
+    def text(Class ele) {
+        var name = ele.name
+        return name
+    }
 
-	def text(Class ele) {
-		var name = ele.name
-		return name
-	}
+    def text(Method ele) {
+        var text = text(ele as Property)
+        if (text.contains(":")) {
+            text = text.replaceAll(":", "():")
+        } else {
+            text += "()"
+        }
+        return text
+    }
 
-	def text(NamedElement ele) {
-		ele.name
-	}
+    def text(Property ele) {
+        val typeRef = ele.type
+        var type = ""
+        if (typeRef !== null) {
+            type = ": " + typeRef.doGetText
+        }
+        ele.name + type
+    }
 
-	def text(PackageImport ele) {
-		ele.referencedElement.importedPackage.name;
-	}
+    def image(Class ele) {
+        UMLImage.CLASS.image
+    }
 
-	def image(PackageImport ele) {
-		UMLImage.PACKAGE_IMPORT.image
-	}
+    def image(Interface ele) {
+        UMLImage.INTERFACE.image
+    }
 
-	def text(Method ele) {
-		var text = text(ele as Property)
-		if (text.contains(":")) {
-			text = text.replaceAll(":", "():")
-		} else {
-			text += "()"
-		}
-		return text
-	}
+    def image(Attribute ele) {
+        UMLImage.PROPERTY.image.decorate(ele.visibility)
+    }
 
-	def text(Property ele) {
-		val typeRef = ele.type
-		var type = ""
-		if (typeRef !== null) {
-			type = ": " + typeRef.doGetText
-		}
-		ele.name + type
-	}
+    def image(Parameter ele) {
+        UMLImage.PARAMETER.image.decorate(ele.visibility)
+    }
 
-	def image(Class ele) {
-		UMLImage.CLASS.image
-	}
+    def image(Method ele) {
+        UMLImage.OPERATION.image.decorate(ele.visibility)
+    }
 
-	def image(Interface ele) {
-		UMLImage.INTERFACE.image
-	}
+    def text(Association ele) {
+        if (ele.memberEnds.size == 2) {
+            val left = ele.memberEnds.get(0).text
+            val right = ele.memberEnds.get(1).text
+            return left + " " + ele.name + " " + right
+        }
+        return ele.name
+    }
 
-	def image(Attribute ele) {
-		UMLImage.PROPERTY.image.decorate(ele.visibility)
-	}
+    def image(Association ele) {
+        var img = UMLImage.ASSOCIATION.image
+        if (ele.memberEnds.size == 2) {
+            val aggregationKind = ele.memberEnds.get(0).aggregationKind
+            img = switch aggregationKind {
+                case COMPOSITION: UMLImage.ASSOCIATION_COMPOSITE.image
+                case AGGREGATION: UMLImage.ASSOCIATION_SHARED.image
+                default: img
+            }
+        }
+        return img
+    }
 
-	def image(Parameter ele) {
-		UMLImage.PARAMETER.image.decorate(ele.visibility)
-	}
+    def text(AssociationMemberEnd ele) {
+        return ele.name ?: ele.type.name
+    }
 
-	def image(Method ele) {
-		UMLImage.OPERATION.image.decorate(ele.visibility)
-	}
+    def image(AssociationMemberEnd ele) {
+        UMLImage.PROPERTY.image
+    }
 
-	def text(Association ele) {
-		if (ele.memberEnds.size == 2) {
-			val left = ele.memberEnds.get(0).text
-			val right = ele.memberEnds.get(1).text
-			return left + " " + ele.name + " " + right
-		}
-		return ele.name
-	}
+    def text(Generalization ele) {
+        val leftChild = ele.left;
+        val rightChild = ele.right;
+        leftChild.doGetText + " is a " + rightChild.doGetText
+    }
 
-	def image(Association ele) {
-		var img = UMLImage.ASSOCIATION.image
-		if (ele.memberEnds.size == 2) {
-			val aggregationKind = ele.memberEnds.get(0).aggregationKind
-			img = switch aggregationKind {
-				case COMPOSITION: UMLImage.ASSOCIATION_COMPOSITE.image
-				case AGGREGATION: UMLImage.ASSOCIATION_SHARED.image
-				default: img
-			}
-		}
-		return img
-	}
+    def image(Generalization ele) {
+        return UMLImage.GENERALIZATION.image
+    }
 
-	
-	def text(AssociationMemberEnd ele) {
-		return ele.name ?: ele.type.name
-	}
-	
-	def image(AssociationMemberEnd ele) {
-		UMLImage.PROPERTY.image
-	}
+    def text(Implementation ele) {
+        val leftChild = ele.left;
+        val rightChild = ele.right;
+        leftChild.doGetText + " implements " + rightChild.doGetText
+    }
 
-	def text(Generalization ele) {
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		leftChild.doGetText + " is a " + rightChild.doGetText
-	}
+    def image(Implementation ele) {
+        return UMLImage.INTERFACE_REALIZATION.image
+    }
 
-	def image(Generalization ele) {
-		return UMLImage.GENERALIZATION.image
-	}
+    def image(Package pkg) {
+        return UMLImage.PACKAGE.image
+    }
 
-	def text(Implementation ele) {
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		leftChild.doGetText + " implements " + rightChild.doGetText
-	}
+    def text(XtextAssociationMemberEndReferencedType typeReference) {
+        val association = typeReference.eContainer as XtextAssociation
+        val index = association.memberEndTypes.indexOf(typeReference)
+        val name = association.memberEndNames.tryGet(index)
+        val typeName = association.memberEndTypes.tryGet(index)?.type?.getText
+        val cardinality = association.memberEndCardinalities.tryGet(index)
+        var txt = String.format("%s : %s", name ?: "unnamed", typeName)
+        if (cardinality !== null) {
+            txt += String.format(" [%s]", cardinality.getText)
+        }
+        return txt
+    }
 
-	def image(Implementation ele) {
-		return UMLImage.INTERFACE_REALIZATION.image
-	}
-	
-	def text(Comment ele) {
-		return "note" + " : " + ele.body
-	}
-	
-	def image(Comment ele) {
-		return UMLImage.COMMENT.image
-	}
-	
-	def image(Package pkg) {
-		return UMLImage.PACKAGE.image
-	}
-	
-	def text(PrimitiveType type) {
-		return qualifiedNameProvider.getFullyQualifiedName(type).toString;
-	}
-	
-	def text(XtextAssociationMemberEndReferencedType typeReference) {
-		val association = typeReference.eContainer as XtextAssociation
-		val index = association.memberEndTypes.indexOf(typeReference)
-		val name = association.memberEndNames.tryGet(index)
-		val typeName = association.memberEndTypes.tryGet(index)?.type?.text
-		val cardinality = association.memberEndCardinalities.tryGet(index)
-		var txt = String.format("%s : %s", name ?: "unnamed", typeName)
-		if (cardinality !== null) {
-			txt += String.format(" [%s]", cardinality.text)	
-		}
-		return txt
-	}
-	
-	def image(XtextAssociationMemberEndReferencedType typeReference) {
-		return UMLImage.PROPERTY
-	}
-	
-	def text(Cardinality cardinality) {
-		var lowerString = cardinality.lowerBound.convert
-		var upperString = cardinality.upperBound.convert
+    def image(XtextAssociationMemberEndReferencedType typeReference) {
+        return UMLImage.PROPERTY
+    }
 
-		if (cardinality.lowerBound >= 0 && (cardinality.upperBound > cardinality.lowerBound || cardinality.upperBound < 0)) {
-			return lowerString +  ".." + upperString
-		}
-		return lowerString
-	}
-	
-	private def decorate(Image img, VisibilityKind visibility) {
-		if (visibility === null) {
-			return img
-		}
-		val visibilityImage = visibilityMap.get(visibility)
-		val imgDescriptor = new DecorationOverlayIcon(img, convertToImageDescriptor(visibilityImage), IDecoration.BOTTOM_RIGHT)
-		imgDescriptor.createImage
-	}
-	
-	private static def convert(int value) {
-		if (value < 0) {
-			return "*"
-		}
-		return value.toString
-	}
-	
-	private static def <T> T tryGet(Collection<T> collection, int i) {
-		if (collection.size > i) {
-			return collection.get(i)
-		}
-		return null
-	}
+    private static def <T> T tryGet(Collection<T> collection, int i) {
+        if (collection.size > i) {
+            return collection.get(i)
+        }
+        return null
+    }
 
-}	
+}

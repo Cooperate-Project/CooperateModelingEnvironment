@@ -6,6 +6,8 @@ package de.cooperateproject.modeling.textual.component;
 import com.google.inject.Binder;
 import com.google.inject.Provider;
 import com.google.inject.name.Names;
+import de.cooperateproject.modeling.common.primitivetypes.DefaultUMLPrimitiveTypeFilter;
+import de.cooperateproject.modeling.common.primitivetypes.IUMLPrimitiveTypeFilter;
 import de.cooperateproject.modeling.textual.component.formatting2.ComponentFormatter;
 import de.cooperateproject.modeling.textual.component.issues.ComponentAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.component.parser.antlr.ComponentAntlrTokenFileProvider;
@@ -25,9 +27,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateRes
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNameProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.CooperateAutomatedValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
@@ -231,8 +231,8 @@ public abstract class AbstractComponentRuntimeModule extends DefaultRuntimeModul
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
-	public Class<? extends IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
-		return DefaultUMLPrimitiveTypeSelector.class;
+	public Class<? extends IUMLPrimitiveTypeFilter> bindIUMLPrimitiveTypeFilter() {
+		return DefaultUMLPrimitiveTypeFilter.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2

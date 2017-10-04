@@ -5,6 +5,12 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.usecase.usecase.util.UsecaseSwitch;
 import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
+/**
+ * Labeling for the usecase meta-model.
+ * 
+ * @author czogalik
+ *
+ */
 public class UsecaseLabelHandler implements LabelHandler {
 
 

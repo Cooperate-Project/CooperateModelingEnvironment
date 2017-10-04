@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.cooperateproject.modeling.transformation.registry.transformationfactories">
+      <transformation>
+         <defaulttransformation
+               diagramName="Component"
+               graphicalFileExtension="notation"
+               textualFileExtension="cmp">
+         </defaulttransformation>
+         <transformationfolder
+               foldername="transforms">
+         </transformationfolder>
+      </transformation>
+   </extension>
+
+</plugin>

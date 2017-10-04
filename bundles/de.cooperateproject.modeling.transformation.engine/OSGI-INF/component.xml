@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="de.cooperateproject.modeling.transformation.engine">
+   <implementation class="de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor"/>
+   <service>
+      <provide interface="de.cooperateproject.modeling.transformation.common.ITransformationExecutor"/>
+   </service>
+   <reference bind="setTransformationFactoryRegistry" cardinality="1..1" interface="de.cooperateproject.modeling.transformation.common.ITransformationFactoryRegistry" name="ITransformationFactoryRegistry" policy="static" unbind="unsetTransformationFactoryRegistry"/>
+</scr:component>

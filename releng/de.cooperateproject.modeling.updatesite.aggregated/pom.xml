@@ -48,9 +48,9 @@
 				<configuration>
 					<repositories>
 						<repository>
-							<id>Eclipse B3 Aggregator</id>
+							<id>Eclipse CBI Aggregator</id>
 							<layout>p2</layout>
-							<url>http://download.eclipse.org/modeling/emft/b3/headless-4.4</url>
+							<url>http://download.eclipse.org/cbi/updates/aggregator/headless/4.7</url>
 						</repository>
 					</repositories>
 					<jvmArgs>
@@ -58,16 +58,16 @@
 					</jvmArgs>
 					<applicationsArgs>
 						<args>-application</args>
-						<args>org.eclipse.b3.cli.headless</args>
+						<args>org.eclipse.cbi.p2repo.cli.headless</args>
 						<args>aggregate</args>
 						<args>--buildModel</args>
-						<args>updatesite.b3aggr</args>
+						<args>updatesite.aggr</args>
 						<args>--action</args>
 						<args>BUILD</args>
 					</applicationsArgs>
 					<dependencies>
 						<dependency>
-							<artifactId>org.eclipse.b3.aggregator.engine.feature</artifactId>
+							<artifactId>org.eclipse.cbi.p2repo.cli.product.feature</artifactId>
 							<type>eclipse-feature</type>
 						</dependency>                 
 					</dependencies>

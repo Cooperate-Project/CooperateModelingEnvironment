@@ -38,7 +38,8 @@ import com.google.common.collect.Lists;
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
-import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
+import de.cooperateproject.modeling.transformation.common.ITransformationExecutor;
+import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
 /**
@@ -70,6 +71,7 @@ public class TransformationManager {
     private final CDOCheckout cdoCheckout;
     private long lastMergeTimeBranch;
     private long lastMergeTimeMain;
+    private ITransformationExecutor transformationExecutor;
 
     /**
      * Instantiates the transformation manager.
@@ -241,19 +243,19 @@ public class TransformationManager {
 
     }
 
-    private static void triggerTransformationRegular(URI uri) throws IOException {
+    private void triggerTransformationRegular(URI uri) throws IOException {
         ResourceSet rs = new ResourceSetImpl();
         triggerTransformation(uri, rs);
     }
 
-    private static void triggerTransformation(URI changedUri, ResourceSet rs) throws IOException {
+    private void triggerTransformation(URI changedUri, ResourceSet rs) throws IOException {
         Iterable<URI> uris = createRootElementURIs(changedUri, rs);
         for (URI uri : uris) {
-            TransformationExecutor.getInstance().transformChanged(uri, rs);
+            Activator.getDefault().getTransformationExecutor().transformChanged(uri, rs);
         }
     }
 
-    private static Iterable<URI> createRootElementURIs(URI normalizedURI, ResourceSet rs) {
+    private Iterable<URI> createRootElementURIs(URI normalizedURI, ResourceSet rs) {
         Resource r = rs.getResource(normalizedURI, true);
         return r.getContents().stream().map(r::getURIFragment).map(f -> normalizedURI.trimFragment().appendFragment(f))
                 .collect(Collectors.toSet());
