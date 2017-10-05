@@ -13,73 +13,72 @@ import de.cooperateproject.ui.util.EmptyPartListener2;
 
 public class DisposedListener extends EmptyPartListener2 {
 
-	@FunctionalInterface
-	public interface PartClosedHandler {
-		public void editorClosed(IWorkbenchPage page);
-	}
-	
-	@FunctionalInterface
-	public interface PartDisposedChecker {
-		public boolean partDisposed(IWorkbenchPartReference partRef);
-	}
-	
-	private final PartClosedHandler partClosedHandler;
-	private final PartDisposedChecker partDisposedChecker;
-	private final IEditorPart editorPart;
+    @FunctionalInterface
+    public interface PartClosedHandler {
+        public void editorClosed(IWorkbenchPage page);
+    }
 
-	public DisposedListener(IEditorPart editorPart, PartClosedHandler partClosedHandler) {
-		this(editorPart, partClosedHandler, p -> p.getPart(false) == null);
-	}
-	
-	public DisposedListener(IEditorPart editorPart, PartClosedHandler partClosedHandler, PartDisposedChecker partDisposedChecker) {
-		this.editorPart = editorPart;
-		this.partClosedHandler = partClosedHandler;
-		this.partDisposedChecker = partDisposedChecker;
-	}
+    @FunctionalInterface
+    public interface PartDisposedChecker {
+        public boolean partDisposed(IWorkbenchPartReference partRef);
+    }
 
-	@Override
-	public void partClosed(IWorkbenchPartReference partRef) {
-		IWorkbenchPart part = partRef.getPart(false);
-		if (editorPart == part) {
-			Runnable runnable = () -> handlePartClosed(partRef);
-			new Thread(runnable).start();
-		}
-	}
+    private final PartClosedHandler partClosedHandler;
+    private final PartDisposedChecker partDisposedChecker;
+    private final IEditorPart editorPart;
 
-	private void handlePartClosed(IWorkbenchPartReference partRef) {
-		waitForDisposed(partRef);
-		editorClosed(partRef.getPage());
-	}
+    public DisposedListener(IEditorPart editorPart, PartClosedHandler partClosedHandler) {
+        this(editorPart, partClosedHandler, p -> p.getPart(false) == null);
+    }
 
-	private void waitForDisposed(final IWorkbenchPartReference partRef) {
-		ExecutorService executor = Executors.newFixedThreadPool(1);
-		executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				while (!partDisposedChecker.partDisposed(partRef)) {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						return;
-					}
-				}
-			}
-		});
-		executor.shutdown();
-		try {
-			executor.awaitTermination(1, TimeUnit.MINUTES);
-		} catch (InterruptedException e) {
-			return;
-		} finally {
-			if (!executor.isShutdown()) {
-				executor.shutdownNow();
-			}
-		}
+    public DisposedListener(IEditorPart editorPart, PartClosedHandler partClosedHandler,
+            PartDisposedChecker partDisposedChecker) {
+        this.editorPart = editorPart;
+        this.partClosedHandler = partClosedHandler;
+        this.partDisposedChecker = partDisposedChecker;
+    }
 
-	}
+    @Override
+    public void partClosed(IWorkbenchPartReference partRef) {
+        IWorkbenchPart part = partRef.getPart(false);
+        if (editorPart == part) {
+            Runnable runnable = () -> handlePartClosed(partRef);
+            new Thread(runnable).start();
+        }
+    }
 
-	protected void editorClosed(IWorkbenchPage page) {
-		partClosedHandler.editorClosed(page);
-	}
+    private void handlePartClosed(IWorkbenchPartReference partRef) {
+        waitForDisposed(partRef);
+        editorClosed(partRef.getPage());
+    }
+
+    private void waitForDisposed(final IWorkbenchPartReference partRef) {
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                while (!partDisposedChecker.partDisposed(partRef)) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
+                }
+            }
+        });
+        executor.shutdown();
+        try {
+            executor.awaitTermination(30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            return;
+        } finally {
+            executor.shutdownNow();
+        }
+
+    }
+
+    protected void editorClosed(IWorkbenchPage page) {
+        partClosedHandler.editorClosed(page);
+    }
 
 }
