@@ -4,16 +4,22 @@
 package de.cooperateproject.modeling.textual.cls.validation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.xtext.validation.Check;
 
+import com.google.common.base.Objects;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
@@ -25,6 +31,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
@@ -56,36 +63,65 @@ public class ClsValidator extends AbstractClsValidator {
     }
 
     @Check
-    private void checkUniqueNamedElementInItsPackage(NamedElement element) {
-        PackageBase<?> nearestPackage = element.getNearestPackage();
-        if (!(nearestPackage instanceof Package)) {
+    private void checkUniqueNamedElementInItsNamespace(NamedElement element) {
+        if (StringUtils.isEmpty(element.getName())) {
             return;
         }
 
-        checkUniqueElements(element, getNamedElementsFromPackage((Package) nearestPackage));
-    }
-
-    private static List<? extends NamedElement> getNamedElementsFromPackage(Package nearestPackage) {
-
-        return Stream
-                .concat(nearestPackage.getClassifiers().stream(),
-                        nearestPackage.getConnectors().stream().filter(x -> x instanceof NamedElement)
-                                .map(x -> (NamedElement) x).collect(Collectors.toList()).stream())
-                .collect(Collectors.toList());
-    }
-
-    private void checkUniqueElements(NamedElement element, List<? extends NamedElement> namedElements) {
-
-        for (NamedElement namedElement : namedElements) {
-            if (element.equals(namedElement)) {
-                continue;
-            }
-            if (element.getName().equals(namedElement.getName())) {
-                error("\"" + element.getName() + "\"" + " no duplicates!",
-                        TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NAME_TAKEN);
-            }
+        int depth = 1;
+        EObject namespaceCandidate = Optional.ofNullable(element).map(EObject::eContainer).orElse(null);
+        while (namespaceCandidate != null && !(namespaceCandidate instanceof NamedElement)) {
+            namespaceCandidate = namespaceCandidate.eContainer();
+            depth++;
         }
 
+        if (namespaceCandidate == null) {
+            return;
+        }
+
+        Collection<NamedElement> elementsToCheck = getElementsToCheck(Arrays.asList(namespaceCandidate), depth).stream()
+                .filter(NamedElement.class::isInstance).map(NamedElement.class::cast).filter(o -> o != element)
+                .collect(Collectors.toSet());
+
+        if (elementsToCheck.stream()
+                .anyMatch(elementToTest -> Objects.equal(elementToTest.getName(), element.getName()))) {
+            error("\"" + element.getName() + "\"" + " no duplicates!",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NAME_TAKEN);
+        }
+
+    }
+
+    private static Collection<EObject> getElementsToCheck(Collection<EObject> elementsToCheck, int depth) {
+        if (depth == 0) {
+            return elementsToCheck;
+        }
+        Set<EObject> result = new HashSet<>(elementsToCheck);
+        result.addAll(getElementsToCheck(elementsToCheck.stream().map(EObject::eContents).flatMap(Collection::stream)
+                .collect(Collectors.toSet()), depth - 1));
+        return result;
+    }
+
+    @Check
+    private void checkUniqueNamedElementInItsUMLNamespace(NamedElement element) {
+        if (StringUtils.isEmpty(element.getName())) {
+            return;
+        }
+
+        Optional<UMLReferencingElement<Element>> referencedUMLElement = Optional.ofNullable(element)
+                .filter(UMLReferencingElement.class::isInstance).map(UMLReferencingElement.class::cast);
+        Optional<Namespace> relevantUMLNamespace = referencedUMLElement
+                .map(UMLReferencingElement::getUMLParentNamespace);
+        if (!relevantUMLNamespace.isPresent()) {
+            return;
+        }
+
+        if (relevantUMLNamespace.get().getMembers().stream().filter(org.eclipse.uml2.uml.NamedElement.class::isInstance)
+                .map(org.eclipse.uml2.uml.NamedElement.class::cast)
+                .filter(o -> o != referencedUMLElement.get().getReferencedElement())
+                .anyMatch(elementToTest -> Objects.equal(element.getName(), elementToTest.getName()))) {
+            error("\"" + element.getName() + "\"" + " no duplicates!",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NAME_TAKEN);
+        }
     }
 
     @Check
