@@ -1,20 +1,17 @@
 package de.cooperateproject.modeling.textual.component.issues
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import de.cooperateproject.modeling.textual.cmp.cmp.Classifier
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage
 import de.cooperateproject.modeling.textual.cmp.cmp.Component
-import de.cooperateproject.modeling.textual.cmp.cmp.Interface
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
-import java.util.concurrent.Callable
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.uml2.uml.Classifier
 import org.eclipse.uml2.uml.Element
-import org.eclipse.uml2.uml.Namespace
 import org.eclipse.uml2.uml.UMLFactory
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
-import java.util.function.BiConsumer
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
-import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage
-import java.util.function.Consumer
+import org.eclipse.uml2.uml.UMLPackage
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -27,38 +24,33 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 	}
 	
 	private def dispatch fixMissingUMLElement(UMLReferencingElement element) {
-		return Void
+	    
+	    val referencedType = element.eClass.getFeatureType(TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement).EClassifier as EClass
+	    
+	    if (UMLPackage.eINSTANCE.classifier.isSuperTypeOf(referencedType) &&
+	           CmpPackage.eINSTANCE.classifier.isInstance(element)) {
+	       (element as de.cooperateproject.modeling.textual.cmp.cmp.Classifier).fixMissingUMLElementClassifier([UMLFactory.eINSTANCE.create(referencedType) as Classifier])       
+	    }
 	}
 	
-	private def dispatch fixMissingUMLElement(Component element) {
-		if(!resolvePossible) return Void
-		element.fixMissingUMLElementClassifier([UMLFactory.eINSTANCE.createComponent])
+	
+	private static def <UMLType extends Classifier, T extends de.cooperateproject.modeling.textual.cmp.cmp.Classifier<UMLType>> fixMissingUMLElementClassifier(T element, ()=>UMLType factoryMethod) {
+		element.elementReference = factoryMethod.apply => [
+		    name = element.name
+		    if (element.alias !== null) {
+                it.createNameExpression(element.alias, null)
+            }
+		]
 	}
 	
-	private def dispatch fixMissingUMLElement(Interface element) {
-		if(!resolvePossible) return Void
-		element.fixMissingUMLElementClassifier([UMLFactory.eINSTANCE.createInterface])
-	}
-	
-	private static def <UMLType extends org.eclipse.uml2.uml.Classifier, T extends Classifier<UMLType>> fixMissingUMLElementClassifier(T element, Callable<UMLType> factoryMethod) {
-		val setter = element.createSetter
-		val umlclassifier = factoryMethod.call
-		umlclassifier.name = element.name
-		if (element.alias !== null) {
-			umlclassifier.createNameExpression(element.alias, null)
-		}
-		setter.accept(umlclassifier)
-		
-		element.referencedElement = umlclassifier
-	}
-	
-	private static def <UMLType extends org.eclipse.uml2.uml.Classifier> Consumer<UMLType> createSetter(UMLReferencingElement<UMLType> element) {
+	private static def <UMLType extends Classifier> void setElementReference(UMLReferencingElement<UMLType> element, UMLType newElement) {
 		val parent = element.eContainer
 		if (parent instanceof Component) {
-			return [newElement | (parent as Component).referencedElement.packagedElements += newElement]
+			(parent as Component).referencedElement.packagedElements += newElement
 		} else if (parent instanceof RootPackage) {
-			return [newElement | (parent as RootPackage).referencedElement.packagedElements += newElement]
+			(parent as RootPackage).referencedElement.packagedElements += newElement
 		}
+		element.referencedElement = newElement
 	}
 	
 	
