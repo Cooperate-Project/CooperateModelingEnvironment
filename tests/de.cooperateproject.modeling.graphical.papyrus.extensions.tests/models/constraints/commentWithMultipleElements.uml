@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_UBn1AKBsEeefzfy8OH_WgA">
+  <ownedComment xmi:id="_WwMUEKBsEeefzfy8OH_WgA" annotatedElement="_VeQLEKBsEeefzfy8OH_WgA _WMMPIKBsEeefzfy8OH_WgA"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_VeQLEKBsEeefzfy8OH_WgA"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_WMMPIKBsEeefzfy8OH_WgA"/>
+</uml:Model>

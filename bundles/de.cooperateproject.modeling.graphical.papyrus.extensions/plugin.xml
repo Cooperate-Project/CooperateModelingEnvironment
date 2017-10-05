@@ -32,11 +32,11 @@
          <constraints
                categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.ClassDiagramAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.classdiagram.ClassDiagramAssociationConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.classAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Live"
+                  mode="Batch"
                   name="Class Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -51,11 +51,11 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UseCaseDiagramAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Live"
+                  mode="Batch"
                   name="Use Case Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -70,11 +70,11 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UnambiguousNamesConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.UnambiguousNamesConstraint"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.unambiguousNamesConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Live"
+                  mode="Batch"
                   name="Unambiguous Names Constraint"
                   severity="WARNING"
                   statusCode="2">
@@ -88,9 +88,169 @@
                   All named elements in the workspace must be distinguishable by their name.
                </description>
             </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CommentHasExactlyOneAnnotatedElementConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentHasOnlyOneAnnotatedElement"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Comment has exactly one annotated element"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The comment {0} must annotate exactly one element.
+               </message>
+               <target
+                     class="Comment">
+               </target>
+               <description>
+                  A comment must annotate exactly one element.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.AttributeMustHaveATypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.attributesMustHaveAType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Attributes must have a type"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The attribute {0} must have a type.
+               </message>
+               <target
+                     class="Property"></target>
+               <description>
+                  An attribute must have a type.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.ParameterMustHaveATypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.parameterMustHaveAType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Parameter must have a type"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The parameter {0} must have a type.
+               </message>
+               <target
+                     class="Parameter">
+               </target>
+               <description>
+                  A property must have a type.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.NameHasToBeIDForNonAliasedElementsClassConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.nameHasToBeIDForNonAliasedElements"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Name has to be ID if element is not aliased"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The named element {0} has to have a name that is an ID or has to have an alias that is an ID.
+               </message>
+               <target
+                     class="NamedElement">
+               </target>
+               <description>
+                  A named element has to have a name that is an ID. If the named element can have an alias, the name can be freely chosen but if it is not an ID, there has to be an alias that is an ID.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CommentOnlyAllowedForCommentableElementsConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentOnlyAllowedForCommentableElements"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Comments can only be used on commentable elements."
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The comment {0} is about an element that is not commentable.
+               </message>
+               <target
+                     class="Comment">
+               </target>
+               <description>
+                  A comment must only be used with elements that are commentable.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.TypedElementHasOnlyAllowedPrimitiveTypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.typedElementHasOnlyAllowedPrimitiveType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Typed elements have only allowed primitive types"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The typed element {0} has an invalid primitive type.
+               </message>
+               <target
+                     class="TypedElement">
+               </target>
+               <description>
+                  A primitive type must be an Ecore primitive type that has a common type.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.OperationHasOnlyAllowedPrimitiveTypeConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.operationHasOnlyAllowedPrimitiveType"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Operation has only allowed primitive types"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The operation {0} has an invalid primitive type.
+               </message>
+               <target
+                     class="Operation">
+               </target>
+               <description>
+                  A primitive type must be an Ecore primitive type that has a common type.
+               </description>
+            </constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </package>
+      </constraintProvider>
+      <constraintProvider
+            cache="true">
+         <constraints
+               categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseSystemMustBeOfTypeComponent"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.systemMustBeAComponent"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="System must be a component"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The system {0} must be of type component.
+               </message>
+               <target
+                     class="Shape">
+               </target>
+               <description>
+                  The system used in a use case diagram must be of type component.
+               </description>
+            </constraint>
+         </constraints>
+         <package
+               namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
          </package>
       </constraintProvider>
    </extension>

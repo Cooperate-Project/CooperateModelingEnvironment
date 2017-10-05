@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Namespace;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,5 +47,14 @@ public interface UMLReferencingElement<UMLType extends Element> extends de.coope
      * @generated
      */
 	void setReferencedElement(UMLType value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%org.eclipse.emf.ecore.EObject%&gt; currentElement = &lt;%java.util.Optional%&gt;.ofNullable(getReferencedElement()).map(&lt;%org.eclipse.emf.ecore.EObject%&gt;::eContainer).orElse(null);\r\nwhile (currentElement != null &amp;&amp; !(currentElement instanceof &lt;%org.eclipse.uml2.uml.Namespace%&gt;)) {\r\n\tcurrentElement = currentElement.eContainer();\r\n}\r\nreturn &lt;%java.util.Optional%&gt;.ofNullable(currentElement).filter(&lt;%org.eclipse.uml2.uml.Namespace%&gt;.class::isInstance).map(&lt;%org.eclipse.uml2.uml.Namespace%&gt;.class::cast).orElse(null);'"
+     * @generated
+     */
+    Namespace getUMLParentNamespace();
 
 } // UMLReferencingElement

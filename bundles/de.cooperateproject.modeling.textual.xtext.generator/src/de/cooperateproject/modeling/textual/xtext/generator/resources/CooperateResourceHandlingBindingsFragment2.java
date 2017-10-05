@@ -17,6 +17,8 @@ import org.eclipse.xtext.xtext.generator.model.TypeReference;
 
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.common.primitivetypes.DefaultUMLPrimitiveTypeFilter;
+import de.cooperateproject.modeling.common.primitivetypes.IUMLPrimitiveTypeFilter;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
@@ -27,8 +29,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.CooperateAutomatedValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
@@ -70,7 +70,7 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(XtextResourceSet.class), typeRef(CooperateResourceSet.class))
                 .addTypeToType(typeRef(IGlobalScopeProvider.class), typeRef(CooperateGlobalScopeProvider.class))
                 .addTypeToType(typeRef(IUMLUriFinder.class), typeRef(ConventionalUMLUriFinder.class))
-                .addTypeToType(typeRef(IUMLPrimitiveTypeSelector.class), typeRef(DefaultUMLPrimitiveTypeSelector.class))
+                .addTypeToType(typeRef(IUMLPrimitiveTypeFilter.class), typeRef(DefaultUMLPrimitiveTypeFilter.class))
                 .addTypeToType(typeRef(IAutomatedIssueResolutionProvider.class),
                         typeRef(getAutomatedIssueResolutionProviderName()))
                 .addTypeToType(typeRef(IIssueCodeRegistry.class), typeRef(IssueCodeRegistry.class))

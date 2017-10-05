@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.2.2-SNAPSHOT</version>
+		<version>0.3.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>tests</artifactId>
@@ -14,6 +14,7 @@
 	<name>Test Modules</name>
 
 	<modules>
+		<module>de.cooperateproject.modeling.graphical.papyrus.extensions.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.common.tests</module>

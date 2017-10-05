@@ -20,98 +20,98 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class DummyFactoryImpl extends EFactoryImpl implements DummyFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static DummyFactory init() {
-		try {
-			DummyFactory theDummyFactory = (DummyFactory)EPackage.Registry.INSTANCE.getEFactory(DummyPackage.eNS_URI);
-			if (theDummyFactory != null) {
-				return theDummyFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new DummyFactoryImpl();
-	}
+        try {
+            DummyFactory theDummyFactory = (DummyFactory)EPackage.Registry.INSTANCE.getEFactory(DummyPackage.eNS_URI);
+            if (theDummyFactory != null) {
+                return theDummyFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new DummyFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DummyFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case DummyPackage.REFERENCING_ELEMENT: return (EObject)createReferencingElement();
-			case DummyPackage.CONTAINER: return (EObject)createContainer();
-			case DummyPackage.REFERENCING_ELEMENT2: return (EObject)createReferencingElement2();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case DummyPackage.REFERENCING_ELEMENT: return (EObject)createReferencingElement();
+            case DummyPackage.CONTAINER: return (EObject)createContainer();
+            case DummyPackage.REFERENCING_ELEMENT2: return (EObject)createReferencingElement2();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ReferencingElement createReferencingElement() {
-		ReferencingElementImpl referencingElement = new ReferencingElementImpl();
-		return referencingElement;
-	}
+        ReferencingElementImpl referencingElement = new ReferencingElementImpl();
+        return referencingElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public dummy.Container createContainer() {
-		ContainerImpl container = new ContainerImpl();
-		return container;
-	}
+        ContainerImpl container = new ContainerImpl();
+        return container;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ReferencingElement2 createReferencingElement2() {
-		ReferencingElement2Impl referencingElement2 = new ReferencingElement2Impl();
-		return referencingElement2;
-	}
+        ReferencingElement2Impl referencingElement2 = new ReferencingElement2Impl();
+        return referencingElement2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DummyPackage getDummyPackage() {
-		return (DummyPackage)getEPackage();
-	}
+        return (DummyPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static DummyPackage getPackage() {
-		return DummyPackage.eINSTANCE;
-	}
+        return DummyPackage.eINSTANCE;
+    }
 
 } //DummyFactoryImpl

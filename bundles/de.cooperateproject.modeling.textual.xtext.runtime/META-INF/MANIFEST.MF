@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtext Runtime Utilities
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime;singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.3.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.xtext.xbase.lib;bundle-version="2.9.1",
@@ -10,11 +10,11 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.uml2.uml;bundle-version="5.1.2",
  net.winklerweb.cdoxtext.runtime;bundle-version="0.1.4";visibility:=reexport,
  org.apache.commons.lang3;bundle-version="3.1.0",
- de.cooperateproject.util;bundle-version="0.2.2",
+ de.cooperateproject.util;bundle-version="0.3.1",
  org.eclipse.emf.transaction,
  de.cooperateproject.modeling.common,
  org.jgrapht.core;bundle-version="1.0.1",
- de.cooperateproject.ui.preferences;bundle-version="0.2.2"
+ de.cooperateproject.ui.preferences;bundle-version="0.3.1"
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer,
  de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
