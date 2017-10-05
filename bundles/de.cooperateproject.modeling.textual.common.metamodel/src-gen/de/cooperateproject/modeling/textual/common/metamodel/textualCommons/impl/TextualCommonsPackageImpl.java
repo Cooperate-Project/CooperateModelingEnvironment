@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -160,6 +161,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         isInited = true;
 
         // Initialize simple dependencies
+        EcorePackage.eINSTANCE.eClass();
+        TypesPackage.eINSTANCE.eClass();
         UMLPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
@@ -252,6 +255,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      */
     public EReference getUMLReferencingElement_ReferencedElement() {
         return (EReference)umlReferencingElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getUMLReferencingElement__GetUMLParentNamespace() {
+        return umlReferencingElementEClass.getEOperations().get(0);
     }
 
     /**
@@ -455,6 +467,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         umlReferencingElementEClass = createEClass(UML_REFERENCING_ELEMENT);
         createEReference(umlReferencingElementEClass, UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+        createEOperation(umlReferencingElementEClass, UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE);
 
         packageBaseEClass = createEClass(PACKAGE_BASE);
         createEReference(packageBaseEClass, PACKAGE_BASE__OWNING_PACKAGE);
@@ -572,6 +585,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
         initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEOperation(getUMLReferencingElement__GetUMLParentNamespace(), theUMLPackage.getNamespace(), "getUMLParentNamespace", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(packageBaseEClass, PackageBase.class, "PackageBase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(packageBaseEClass_PackageType);

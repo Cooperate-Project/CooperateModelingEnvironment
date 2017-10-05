@@ -20,7 +20,7 @@ public interface Element extends CDOObject {
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.ecore.EObject%> parent = this;\r\nwhile (parent != null && !(parent instanceof PackageBase)) {\r\n\tparent = parent.eContainer();\r\n}\r\nreturn (PackageBase<?>)parent;'"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='&lt;%org.eclipse.emf.ecore.EObject%&gt; parent = this;\r\nwhile (parent != null &amp;&amp; !(parent instanceof PackageBase)) {\r\n\tparent = parent.eContainer();\r\n}\r\nreturn (PackageBase&lt;?&gt;)parent;'"
      * @generated
      */
 	PackageBase<?> getNearestPackage();

@@ -7,17 +7,21 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Optional;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.uml.Namespace;
 
 /**
  * <!-- begin-user-doc -->
@@ -188,6 +192,19 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Namespace getUMLParentNamespace() {
+        EObject currentElement = Optional.ofNullable(getReferencedElement()).map(EObject::eContainer).orElse(null);
+        while (currentElement != null && !(currentElement instanceof Namespace)) {
+            currentElement = currentElement.eContainer();
+        }
+        return Optional.ofNullable(currentElement).filter(Namespace.class::isInstance).map(Namespace.class::cast).orElse(null);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -384,6 +401,41 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return TextualCommonsPackage.PACKAGE_BASE___GET_UML_PARENT_NAMESPACE;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case TextualCommonsPackage.PACKAGE_BASE___GET_UML_PARENT_NAMESPACE:
+                return getUMLParentNamespace();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //PackageBaseImpl

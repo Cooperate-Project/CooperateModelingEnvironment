@@ -152,6 +152,15 @@ public interface UsecasePackage extends EPackage {
     int BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIORED_CLASSIFIER___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Behaviored Classifier</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -241,6 +250,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int ROOT_PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Root Package</em>' class.
@@ -343,6 +361,15 @@ public interface UsecasePackage extends EPackage {
     int ACTOR___GET_NEAREST_PACKAGE = BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR___GET_UML_PARENT_NAMESPACE = BEHAVIORED_CLASSIFIER___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Actor</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -423,6 +450,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int SYSTEM___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>System</em>' class.
@@ -534,6 +570,15 @@ public interface UsecasePackage extends EPackage {
     int USE_CASE___GET_NEAREST_PACKAGE = BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USE_CASE___GET_UML_PARENT_NAMESPACE = BEHAVIORED_CLASSIFIER___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Use Case</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -605,6 +650,15 @@ public interface UsecasePackage extends EPackage {
      * @ordered
      */
     int EXTENSION_POINT___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTENSION_POINT___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Extension Point</em>' class.
@@ -726,6 +780,15 @@ public interface UsecasePackage extends EPackage {
     int ASSOCIATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Association</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -790,13 +853,22 @@ public interface UsecasePackage extends EPackage {
     int GENERALIZATION___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION___GET_UML_PARENT_NAMESPACE = RELATIONSHIP_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Generalization</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+    int GENERALIZATION_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl <em>Include</em>}' class.
@@ -854,13 +926,22 @@ public interface UsecasePackage extends EPackage {
     int INCLUDE___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INCLUDE___GET_UML_PARENT_NAMESPACE = RELATIONSHIP_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Include</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INCLUDE_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+    int INCLUDE_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl <em>Extend</em>}' class.
@@ -936,13 +1017,22 @@ public interface UsecasePackage extends EPackage {
     int EXTEND___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTEND___GET_UML_PARENT_NAMESPACE = RELATIONSHIP_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Extend</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXTEND_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+    int EXTEND_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}' enum.
