@@ -136,7 +136,7 @@ public class ResetRepositoryComposite extends Composite {
         try {
             for (IResource resource : ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName())
                     .getFolder("models").members()) {
-                if (resource.toString().endsWith("cooperate")) {
+                if (resource.toString().endsWith(LauncherModelHelper.FILE_EXTENSION)) {
                     IFile file = (IFile) resource;
                     commitInfos.addAll(getCommitsFromMainBranch(session, getFirstCommitTimeStamp(session, file), file));
                 }

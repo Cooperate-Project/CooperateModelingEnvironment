@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
+import de.cooperateproject.ui.launchermodel.Launcher.util.LauncherResourceImpl;
 
 /**
  * Helper for loading a diagram.
@@ -18,7 +19,7 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
  */
 public class LauncherModelHelper {
 
-    public static final String FILE_EXTENSION = "cooperate";
+    public static final String FILE_EXTENSION = LauncherResourceImpl.EXTENSION;
 
     public static Diagram loadDiagram(ResourceSet rs, IFile launcherFile) throws IOException {
         Validate.notNull(rs);
