@@ -5,7 +5,7 @@ import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.jface.wizard.Wizard;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
-import de.cooperateproject.ui.nature.ResetToPreviousStateCommand;
+import de.cooperateproject.ui.commands.ResetToPreviousStateCommand;
 
 public class ResetRepositoryWizard extends Wizard {
 

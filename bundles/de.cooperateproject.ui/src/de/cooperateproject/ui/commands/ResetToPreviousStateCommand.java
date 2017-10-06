@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.nature;
+package de.cooperateproject.ui.commands;
 
 import java.io.IOException;
 import java.text.DateFormat;
