@@ -79,18 +79,12 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-        category="de.cooperateproject.modeling.textual.cls.ui.cooperate"
+        category="de.cooperateproject.ui.preferences.cooperate"
         class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
         id="de.cooperateproject.modeling.textual.cls.Cls"
         name="Cls">
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
-  <page
-        category="de.cooperateproject.modeling.textual.cls.ui.cooperate"
-        class="de.cooperateproject.ui.preferences.preferencepage.CDOServerConnectionPreference"
-        id="de.cooperateproject.modeling.textual.cls.cdoserver"
-        name="CDO">
-  </page>
 		<page
 			category="de.cooperateproject.modeling.textual.cls.Cls"
 			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
@@ -105,11 +99,6 @@
 			name="Templates">
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
-  <page
-        class="de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorIndicator"
-        id="de.cooperateproject.modeling.textual.cls.ui.cooperate"
-        name="Cooperate">
-  </page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">

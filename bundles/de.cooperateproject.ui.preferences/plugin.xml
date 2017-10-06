@@ -10,5 +10,19 @@
             class="de.cooperateproject.ui.preferences.CDOServerPreferenceInitializer">
       </initializer>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="de.cooperateproject.ui.preferences.cooperate"
+            class="de.cooperateproject.ui.preferences.preferencepage.CDOServerConnectionPreference"
+            id="de.cooperateproject.ui.preferences.cdoserver"
+            name="CDO">
+      </page>
+      <page
+            class="de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorIndicator"
+            id="de.cooperateproject.ui.preferences.cooperate"
+            name="Cooperate">
+      </page>
+   </extension>
 
 </plugin>

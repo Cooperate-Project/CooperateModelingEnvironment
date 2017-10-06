@@ -78,9 +78,10 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="de.cooperateproject.modeling.textual.usecase.Usecase"
-			name="Usecase">
+        category="de.cooperateproject.ui.preferences.cooperate"
+        class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+        id="de.cooperateproject.modeling.textual.usecase.Usecase"
+        name="Usecase">
 			<keywordReference id="de.cooperateproject.modeling.textual.usecase.ui.keyword_Usecase"/>
 		</page>
 		<page
