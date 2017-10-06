@@ -3,10 +3,74 @@
  */
 package de.cooperateproject.modeling.textual.usecase.ui.contentassist
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.eclipse.xtext.Assignment
+import org.eclipse.uml2.uml.UMLPackage
+import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
+import de.cooperateproject.modeling.textual.usecase.usecase.System
+import org.eclipse.uml2.uml.NamedElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
  */
 class UsecaseProposalProvider extends AbstractUsecaseProposalProvider {
+	
+	def addProposalsFromUML(EObject model, EClass type, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		 // compute the name proposal from package
+ 		 if(model instanceof UMLReferencingElement<?>) {
+ 		 	val umlContainer = model.referencedElement
+ 		 	for(element : umlContainer.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
+ 		 		if(!model.eContents.filter(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement)
+ 		 		.exists[name == element.name]) {
+ 		 			acceptor.accept(createCompletionProposal(element.name, context))
+ 		 		}
+ 		 	}
+ 		 }
+ 		 
+ 		 
+ 		  		 //TODO: Clean up
+// 		 if(model instanceof RootPackage) {
+// 		 	val umlPackage = model.referencedElement as org.eclipse.uml2.uml.Package
+//
+// 		 	for(element : umlPackage.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
+// 		 		if(!model.actors.exists[name == element.name] && 
+// 		 			!model.systems.exists[name == element.name]
+// 		 		)
+// 		 			acceptor.accept(createCompletionProposal(element.name, context))
+// 		 	}
+// 		 } else if (model instanceof System) {
+// 		 	var umlContainer = model.referencedElement as org.eclipse.uml2.uml.Component
+// 		 	for(element : umlContainer.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
+// 		 		if(!model.usecases.exists[name == element.name])
+// 		 			acceptor.accept(createCompletionProposal(element.name, context))
+// 		 	}
+// 		 	
+// 		 }
+// 		 	
+		
+	}
+	
+	
+	
+	override completeActor_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeActor_Name(model, assignment, context, acceptor)
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.actor, context, acceptor)
+	}
+	
+	override completeSystem_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeSystem_Name(model, assignment, context, acceptor)
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.interface, context, acceptor)
+	}
+	
+	override completeUseCase_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeUseCase_Name(model, assignment, context, acceptor)
+		
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.package, context, acceptor)
+	}
+	
 }
