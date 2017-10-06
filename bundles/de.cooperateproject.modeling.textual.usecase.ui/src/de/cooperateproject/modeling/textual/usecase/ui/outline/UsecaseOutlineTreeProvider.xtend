@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
 import de.cooperateproject.ui.outline.CooperateOutlineTreeProvider
 import de.cooperateproject.ui.outline.UMLImage
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
 
 /**
  * Customization of the default outline structure.
@@ -58,5 +59,9 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
 			createEObjectNode(parentNode, commentable.comments.findFirst[true])
 		}
 	}
+	
+	dispatch def createChildren(IOutlineNode parentNode, Element object) {
+       createEObjectNode(parentNode, object)
+    }
 	
 }
