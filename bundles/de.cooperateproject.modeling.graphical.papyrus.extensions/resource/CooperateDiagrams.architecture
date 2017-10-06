@@ -65,7 +65,6 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </owningRules>
       <childRules xmi:id="_9UEMIp-0Eeev3P7grPQovA"/>
-      <paletteRules xmi:id="_xQcz0J-1Eeev3P7grPQovA" element="usecase.tool.package"/>
       <paletteRules xmi:id="_yTm58J-1Eeev3P7grPQovA" element="usecase.tool.subject"/>
       <paletteRules xmi:id="_0QA8QJ-1Eeev3P7grPQovA" element="usecase.tool.actor"/>
       <paletteRules xmi:id="_2OxH8J-1Eeev3P7grPQovA" element="usecase.tool.usecase"/>
