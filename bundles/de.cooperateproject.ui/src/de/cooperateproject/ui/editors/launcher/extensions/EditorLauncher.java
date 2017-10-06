@@ -12,6 +12,7 @@ import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
     private final ConcreteSyntaxModel concreteSyntaxModel;
     private final IFile launcherFile;
     private final TransformationManager transformationManager;
-    private DisposedListener disposeListener;
+    private Optional<IPartListener2> disposeListener = Optional.empty();
 
     /**
      * Instantiates the editor launcher.
@@ -83,6 +84,10 @@ public abstract class EditorLauncher implements IEditorLauncher {
         return cdoView;
     }
 
+    protected CDOCheckout getCDOCheckout() {
+        return cdoCheckout;
+    }
+
     protected ConcreteSyntaxModel getConcreteSyntaxModel() {
         return concreteSyntaxModel;
     }
@@ -95,17 +100,19 @@ public abstract class EditorLauncher implements IEditorLauncher {
         Validate.notNull(editorPart);
 
         disposeListener = createDisposeListener(editorPart);
-        editorPart.getSite().getPage().addPartListener(disposeListener);
+        disposeListener.ifPresent(editorPart.getSite().getPage()::addPartListener);
     }
 
-    protected DisposedListener createDisposeListener(IEditorPart editorPart) {
-        return new DisposedListener(editorPart, this::editorClosed);
+    protected Optional<IPartListener2> createDisposeListener(IEditorPart editorPart) {
+        return Optional.of(new DisposedListener(editorPart, this::editorClosed));
     }
 
     protected void editorClosed(IWorkbenchPage p) {
         Validate.notNull(p);
 
-        p.removePartListener(disposeListener);
+        disposeListener.ifPresent(p::removePartListener);
+        disposeListener = Optional.empty();
+
         cdoCheckout.close();
         CDOConnectionManager.getInstance().deleteCDOCheckout(cdoCheckout);
     }
