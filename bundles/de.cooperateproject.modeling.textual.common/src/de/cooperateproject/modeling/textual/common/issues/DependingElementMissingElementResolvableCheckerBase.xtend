@@ -19,7 +19,7 @@ abstract class DependingElementMissingElementResolvableCheckerBase implements IR
         element.dependenciesAreResolved && element.localResolutionPossible
     }
     
-    protected def dispatch localResolutionPossible(UMLReferencingElement element) {
+    protected def dispatch localResolutionPossible(EObject element) {
         return false;
     }
     

@@ -1,78 +1,54 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import de.cooperateproject.modeling.textual.common.issues.DependingElementMissingElementResolvableCheckerBase
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor
 import de.cooperateproject.modeling.textual.usecase.usecase.Association
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
 import de.cooperateproject.modeling.textual.usecase.usecase.Include
+import de.cooperateproject.modeling.textual.usecase.usecase.Relationship
 import de.cooperateproject.modeling.textual.usecase.usecase.System
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
-import org.eclipse.uml2.uml.Element
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import static extension de.cooperateproject.modeling.textual.usecase.issues.UsecaseIssueResolutionUtilities.*
 
-class UsecaseUMLReferencingElementMissingElementChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
+class UsecaseUMLReferencingElementMissingElementChecker extends DependingElementMissingElementResolvableCheckerBase {
 	
-	override isResolvable(UMLReferencingElement<Element> element) {
-		element.resolvePossible
-	}	
-	
-	private def dispatch resolvePossible(Actor element) {
-		return element.hasValidRootPackageParent
+	protected def dispatch localResolutionPossible(Actor element) {
+		return element.hasValidParent(UsecasePackage.Literals.ROOT_PACKAGE)
 	}
 	
-	private def dispatch resolvePossible(System element) {
-		return element.hasValidRootPackageParent;	
+	protected def dispatch localResolutionPossible(System element) {
+		return element.hasValidParent(UsecasePackage.Literals.ROOT_PACKAGE)	
 	}
 	
-	private def dispatch resolvePossible(UseCase element) {
+	protected def dispatch localResolutionPossible(UseCase element) {
 		return element.hasValidParent(UsecasePackage.Literals.SYSTEM);	
 	}
 	
-	private def dispatch resolvePossible(ExtensionPoint element) {
+	protected def dispatch localResolutionPossible(ExtensionPoint element) {
 		return element.hasValidParent(UsecasePackage.Literals.USE_CASE);	
 	}
 	
-	private def dispatch resolvePossible(Extend element) {
-		return
-			element.extension !== null &&
-			element.extendedCase !== null &&
-			element.extensionLocation !== null &&
-			element.extendedCase.hasReferencedElement &&
-			element.extensionLocation.hasReferencedElement &&
-			element.extension.hasReferencedElement;
+	protected def dispatch localResolutionPossible(Relationship element) {
+        return true;    
+    }
+	
+	protected def dispatch getDependencies(Extend element) {
+	   #[element.extendedCase, element.extensionLocation, element.extension]    
 	}
 	
-	private def dispatch resolvePossible(Include element) {
-		return
-			element.includingCase !== null &&
-			element.addition !== null &&
-			element.includingCase.hasReferencedElement &&
-			element.addition.hasReferencedElement
+	protected def dispatch getDependencies(Include element) {
+		#[element.includingCase, element.addition]
 	}
 
-	private def dispatch resolvePossible(Generalization element) {
-		 return
-		 	element.specific !== null &&
-		 	element.general !== null &&
-		 	element.specific.hasReferencedElement &&
-		 	element.general.hasReferencedElement
+	protected def dispatch getDependencies(Generalization element) {
+		 #[element.specific, element.general]
 	}
 	
-	private def dispatch resolvePossible(Association element) {
-		return
-			element.actor !== null &&
-			element.usecase !== null &&
-			element.actor.hasReferencedElement &&
-			element.usecase.hasReferencedElement
-	}
-	
-	private def dispatch resolvePossible(UMLReferencingElement element) {
-	    return false;
+	protected def dispatch getDependencies(Association element) {
+		#[element.actor, element.usecase]
 	}
 }
