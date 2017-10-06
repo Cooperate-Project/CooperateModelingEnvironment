@@ -8,14 +8,16 @@ public class TextbasedCDOResourceFactoryImpl extends ResourceFactoryImpl {
     /**
      * Constructor for TextbasedCDOResourceFactoryImpl.
      */
-    public TextbasedCDOResourceFactoryImpl()
-    {
-      super();
+    public TextbasedCDOResourceFactoryImpl() {
+        super();
     }
 
     @Override
-    public Resource createResource(URI uri)
-    {
-      return new TextbasedCDOResource(uri);
+    public Resource createResource(URI uri) {
+        return new TextbasedCDOResource(uri);
+    }
+
+    public static Object getAdditionalFileExtension() {
+        return TextbasedCDOResource.ADDITIONAL_FILE_EXTENSION;
     }
 }

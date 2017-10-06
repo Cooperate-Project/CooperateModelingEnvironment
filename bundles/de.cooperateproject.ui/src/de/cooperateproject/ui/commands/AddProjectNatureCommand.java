@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.nature;
+package de.cooperateproject.ui.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -14,6 +14,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+import de.cooperateproject.ui.nature.CooperateProjectNature;
+import de.cooperateproject.ui.nature.NatureUtils;
 
 /**
  * Handler which provides logic for adding the CooperateProjectNature to a project.

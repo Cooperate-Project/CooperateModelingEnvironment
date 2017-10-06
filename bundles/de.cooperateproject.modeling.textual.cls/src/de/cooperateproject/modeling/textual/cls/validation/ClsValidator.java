@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,7 +20,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.xtext.validation.Check;
 
-import com.google.common.base.Objects;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
@@ -86,7 +86,7 @@ public class ClsValidator extends AbstractClsValidator {
                 .collect(Collectors.toSet());
 
         if (elementsToCheck.stream()
-                .anyMatch(elementToTest -> Objects.equal(elementToTest.getName(), element.getName()))) {
+                .anyMatch(elementToTest -> Objects.equals(elementToTest.getName(), element.getName()))) {
             error("\"" + element.getName() + "\"" + " no duplicates!",
                     TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NAME_TAKEN);
         }
@@ -120,7 +120,7 @@ public class ClsValidator extends AbstractClsValidator {
         if (relevantUMLNamespace.get().getMembers().stream().filter(org.eclipse.uml2.uml.NamedElement.class::isInstance)
                 .map(org.eclipse.uml2.uml.NamedElement.class::cast)
                 .filter(o -> o != referencedUMLElement.get().getReferencedElement())
-                .anyMatch(elementToTest -> Objects.equal(element.getName(), elementToTest.getName()))) {
+                .anyMatch(elementToTest -> Objects.equals(element.getName(), elementToTest.getName()))) {
             error("\"" + element.getName() + "\"" + " no duplicates!",
                     TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NAME_TAKEN);
         }
@@ -143,7 +143,8 @@ public class ClsValidator extends AbstractClsValidator {
                 continue;
             }
             String classifierAlias = aliasedElement.getAlias();
-            if (alias.getAlias().equals(classifierAlias)) {
+            if (Optional.ofNullable(alias.getAlias()).filter(StringUtils::isNotEmpty)
+                    .map(a -> Objects.equals(classifierAlias, a)).orElse(false)) {
                 error("\"" + classifierAlias + "\"" + " Alias is taken!",
                         TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, ALIAS_TAKEN);
             }

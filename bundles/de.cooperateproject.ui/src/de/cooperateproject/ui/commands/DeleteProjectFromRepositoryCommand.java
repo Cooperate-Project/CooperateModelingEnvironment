@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.nature;
+package de.cooperateproject.ui.commands;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.ui.nature.CooperateProjectNature;
 
 /**
  * Handler which provides logic for deleting all selected projects with CooperateProjectNature from the workspace and

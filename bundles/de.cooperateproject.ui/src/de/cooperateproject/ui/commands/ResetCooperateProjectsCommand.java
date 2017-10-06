@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.nature;
+package de.cooperateproject.ui.commands;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +14,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.cooperateproject.ui.nature.CooperateProjectNature;
 
 /**
  * Handler which provides logic for reseting all open projects with CooperateProjectNature in the workspace.
