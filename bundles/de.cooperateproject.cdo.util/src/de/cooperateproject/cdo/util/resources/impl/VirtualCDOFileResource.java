@@ -89,7 +89,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
     }
 
     private String getRealCDORepositoryPath(CDOView view) {
-        URI pathUri = getURI().deresolve(view.getRootResource().getURI());
+        URI pathUri = getURI().deresolve(view.getRootResource().getURI().appendSegment(""));
         String actualURI = pathUri.toString();
         if (!getAdditionalFileExtension().equals(pathUri.fileExtension())) {
             return String.format("%s.%s", actualURI, getAdditionalFileExtension());

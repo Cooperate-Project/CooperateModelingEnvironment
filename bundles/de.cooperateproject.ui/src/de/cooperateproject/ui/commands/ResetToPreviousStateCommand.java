@@ -3,6 +3,7 @@ package de.cooperateproject.ui.commands;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -17,9 +18,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IncrementalProjectBuilder;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
@@ -106,14 +104,11 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
             try {
                 reset(historicView, transaction, resource);
                 transaction.commit();
-                resource.getProject().build(IncrementalProjectBuilder.CLEAN_BUILD, new NullProgressMonitor());
                 return true;
             } catch (ConcurrentAccessException e) {
                 LOGGER.error("Could not reset repository.", e);
             } catch (CommitException e) {
                 LOGGER.error("Could not reset repository.", e);
-            } catch (CoreException e) {
-                LOGGER.error("Could not refresh workspace. Please refresh manually.", e);
             } catch (IOException e) {
                 LOGGER.error("Could not load/save all resources.", e);
             } catch (ConcreteSyntaxTypeNotAvailableException e) {
@@ -202,9 +197,15 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
 
     private static void reset(CDOView historicView, CDOTransaction transaction, Collection<URI> relevantUris)
             throws IOException {
-        // delete resources that shall be reseted
+
+        Collection<URI> urisToCreate = relevantUris.stream().filter(u -> exists(u, historicView))
+                .collect(Collectors.toList());
+        ArrayList<URI> urisToDelete = new ArrayList<>(relevantUris);
+        urisToDelete.removeAll(urisToCreate);
+
+        // clear resources that shall be reseted
         URI rootUri = transaction.getRootResource().getURI();
-        Collection<String> relevantPaths = relevantUris.stream().map(u -> u.deresolve(rootUri)).map(URI::toString)
+        Collection<String> relevantPaths = urisToDelete.stream().map(u -> u.deresolve(rootUri)).map(URI::toString)
                 .collect(Collectors.toList());
         relevantPaths.stream().map(transaction::getResourceNode).forEach(r -> {
             try {
@@ -217,10 +218,6 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
         // recreate resources
         ResourceSet currentRS = transaction.getResourceSet();
         ResourceSet historicRS = historicView.getResourceSet();
-
-        Collection<URI> urisToCreate = relevantUris.stream().filter(u -> exists(u, historicView))
-                .collect(Collectors.toList());
-
         Copier copier = new Copier(true);
         for (URI uri : urisToCreate) {
             Optional.ofNullable(historicRS.getResource(uri, true))
@@ -251,7 +248,8 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
 
     private static Copier createModelResource(Copier copier, ResourceSet currentResourceSet,
             Resource historicResource) {
-        Resource newResource = currentResourceSet.createResource(historicResource.getURI());
+        Resource newResource = currentResourceSet.getResource(historicResource.getURI(), true);
+        newResource.getContents().clear();
         newResource.getContents().addAll(copier.copyAll(historicResource.getContents()));
         return copier;
     }
