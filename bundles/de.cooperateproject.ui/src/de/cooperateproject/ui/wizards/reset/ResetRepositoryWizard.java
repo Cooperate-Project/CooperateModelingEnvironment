@@ -7,11 +7,20 @@ import org.eclipse.jface.wizard.Wizard;
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.commands.ResetToPreviousStateCommand;
 
+/**
+ * Wizard for resetting a resource to a selectable revision.
+ */
 public class ResetRepositoryWizard extends Wizard {
 
     private ResetRepositoryPage resetPage;
     private IResource resourceToReset;
 
+    /**
+     * Constructs the wizard.
+     * 
+     * @param resource
+     *            The resource that shall be reset.
+     */
     public ResetRepositoryWizard(IResource resource) {
         super();
         setWindowTitle("Reset to previous state");

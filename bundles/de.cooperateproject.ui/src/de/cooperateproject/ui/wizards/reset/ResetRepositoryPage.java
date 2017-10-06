@@ -5,6 +5,9 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
+/**
+ * Wizard page for selecting a revision from a list.
+ */
 public class ResetRepositoryPage extends WizardPage {
 
     private IResource resource;
