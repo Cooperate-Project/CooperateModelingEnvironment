@@ -71,7 +71,7 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
     }
     
     def text (Association element) {
-    	element.actor " interacts with " + element.usecase
+    	element.actor.doGetText + " interacts with " + element.usecase.doGetText
     }
     
     def text(UseCaseDiagram element) {
