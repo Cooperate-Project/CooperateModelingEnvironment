@@ -1,10 +1,12 @@
 package de.cooperateproject.modeling.textual.usecase.derivedstate.calculator;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.uml2.uml.UseCase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -25,15 +27,17 @@ public class IncludeCalculator extends AtomicDerivedStateProcessorBase<Include> 
 
     @Override
     protected void applyTyped(Include object) {
-        UseCase umlIncludingCase = object.getIncludingCase().getReferencedElement();
-        UseCase umlAddition = object.getAddition().getReferencedElement();
+        Optional<UseCase> umlIncludingCase = Optional.of(object).map(Include::getIncludingCase)
+                .map(UMLReferencingElement::getReferencedElement);
+        Optional<UseCase> umlAddition = Optional.of(object).map(Include::getAddition)
+                .map(UMLReferencingElement::getReferencedElement);
 
-        if (umlIncludingCase == null || umlAddition == null) {
+        if (!(umlIncludingCase.isPresent() && umlAddition.isPresent())) {
             return;
         }
 
-        Set<org.eclipse.uml2.uml.Include> candidates = umlIncludingCase.getIncludes().stream()
-                .filter(i -> umlAddition == i.getAddition()).collect(Collectors.toSet());
+        Set<org.eclipse.uml2.uml.Include> candidates = umlIncludingCase.get().getIncludes().stream()
+                .filter(i -> umlAddition.get() == i.getAddition()).collect(Collectors.toSet());
         if (candidates.size() == 1) {
             object.setReferencedElement(candidates.iterator().next());
             return;
