@@ -3,9 +3,85 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.uml2.uml.NamedElement
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.uml2.uml.UMLPackage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import java.util.Optional
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
+
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
  */
 class ClsProposalProvider extends AbstractClsProposalProvider {
+
+	def addProposalsFromUML(EObject model, EClass type, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+		// compute the name proposal scope
+		var umlContainer = Optional.empty
+		if (model instanceof UMLReferencingElement<?>) {
+			umlContainer = Optional.ofNullable(model.referencedElement)
+		}
+
+		if (umlContainer.present) {
+			val candidates = umlContainer.get.allOwnedElements.filter[eClass == type].filter(NamedElement)
+			for (element : candidates) {
+				if (!model.eContents.filter(
+					de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement).exists [
+					name == element.name
+				]) {
+					acceptor.accept(createCompletionProposal(element.name, context))
+				}
+			}
+
+		}
+
+	}
+
+	override completeClass_Name(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+		super.completeClass_Name(model, assignment, context, acceptor)
+		addProposalsFromUML(model, UMLPackage.eINSTANCE.class_, context, acceptor)
+	}
+
+	override completeInterface_Name(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+		super.completeInterface_Name(model, assignment, context, acceptor)
+		addProposalsFromUML(model, UMLPackage.eINSTANCE.interface, context, acceptor)
+	}
+
+	override completePackage_Name(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+		super.completePackage_Name(model, assignment, context, acceptor)
+		addProposalsFromUML(model, UMLPackage.eINSTANCE.package, context, acceptor)
+	}
+
+//	override completeXtextAssociation_Name(EObject model, Assignment assignment, ContentAssistContext context,
+//		ICompletionProposalAcceptor acceptor) {
+//		super.completeXtextAssociation_Name(model, assignment, context, acceptor)
+//		addProposalsFromUML(model, UMLPackage.eINSTANCE.association, context, acceptor)
+//	}
+//
+//	override completeMethod_Name(EObject model, Assignment assignment, ContentAssistContext context,
+//		ICompletionProposalAcceptor acceptor) {
+//		super.completeMethod_Name(model, assignment, context, acceptor)
+//		addProposalsFromUML(model, UMLPackage.eINSTANCE.operation, context, acceptor)
+//	}
+//
+//	override completeParameter_Name(EObject model, Assignment assignment, ContentAssistContext context,
+//		ICompletionProposalAcceptor acceptor) {
+//		super.completeParameter_Name(model, assignment, context, acceptor)
+//		addProposalsFromUML(model, UMLPackage.eINSTANCE.parameter, context, acceptor)
+//	}
+//
+//	override completeAttribute_Name(EObject model, Assignment assignment, ContentAssistContext context,
+//		ICompletionProposalAcceptor acceptor) {
+//		super.completeAttribute_Name(model, assignment, context, acceptor)
+//		addProposalsFromUML(model, UMLPackage.eINSTANCE.property, context, acceptor)
+//	}
 
 }

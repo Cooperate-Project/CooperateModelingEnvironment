@@ -7,4 +7,8 @@ public interface IResolvableChecker<T extends EObject> {
 
     public boolean isResolvable(T element);
 
+    default public boolean isDirectlyResolvable(T element) {
+        return isResolvable(element);
+    }
+
 }

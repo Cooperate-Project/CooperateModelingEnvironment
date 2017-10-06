@@ -21,12 +21,7 @@ class CommonIssueResolutionUtilities {
 	
 	static def hasValidParent(EObject element, EClass parentType) {
         var parent = element.eContainer
-        if (parent !== null && parentType.isInstance(parent)) {
-            if (parent instanceof UMLReferencingElement<?>) {
-                return parent.hasReferencedElement
-            }
-        }
-        return false
+        return (parent !== null && parentType.isInstance(parent))
     }
 	
 	public static def setVisibility(NamedElement element, Visibility visibility) {

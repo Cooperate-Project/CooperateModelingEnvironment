@@ -22,7 +22,7 @@ public abstract class AutomatedIssueResolutionBase<T extends EObject> implements
 
     @Override
     public boolean resolvePossible() {
-        return resolvableChecker.isResolvable(getProblematicElement());
+        return resolvableChecker.isDirectlyResolvable(getProblematicElement());
     }
 
 }
