@@ -9,10 +9,9 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import org.eclipse.xtext.Assignment
 import org.eclipse.uml2.uml.UMLPackage
-import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
-import de.cooperateproject.modeling.textual.usecase.usecase.System
 import org.eclipse.uml2.uml.NamedElement
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import java.util.Optional
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
@@ -21,39 +20,26 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 class UsecaseProposalProvider extends AbstractUsecaseProposalProvider {
 	
 	def addProposalsFromUML(EObject model, EClass type, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		 // compute the name proposal from package
+		 // compute the name proposal from scope
  		 if(model instanceof UMLReferencingElement<?>) {
- 		 	val umlContainer = model.referencedElement
- 		 	for(element : umlContainer.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
- 		 		if(!model.eContents.filter(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement)
- 		 		.exists[name == element.name]) {
- 		 			acceptor.accept(createCompletionProposal(element.name, context))
- 		 		}
+ 		 	var container = model
+ 		 	var umlContainer = Optional.ofNullable(container.referencedElement)
+ 		 	if(!umlContainer.present) { //TODO: dirty hack for system proposal
+ 		 		container = container.eContainer as UMLReferencingElement<?>
+ 		 		umlContainer = Optional.ofNullable(container.referencedElement) 
+ 		 	}
+ 		 	
+ 		 	
+ 		 	if(umlContainer.isPresent) {
+	 		 	for(element : umlContainer.get.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
+	 		 		if(!container.eContents.filter(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement)
+	 		 		.exists[name == element.name]) {
+	 		 			acceptor.accept(createCompletionProposal(element.name, context))
+	 		 		}
+	 		 	}
  		 	}
  		 }
- 		 
- 		 
- 		  		 //TODO: Clean up
-// 		 if(model instanceof RootPackage) {
-// 		 	val umlPackage = model.referencedElement as org.eclipse.uml2.uml.Package
-//
-// 		 	for(element : umlPackage.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
-// 		 		if(!model.actors.exists[name == element.name] && 
-// 		 			!model.systems.exists[name == element.name]
-// 		 		)
-// 		 			acceptor.accept(createCompletionProposal(element.name, context))
-// 		 	}
-// 		 } else if (model instanceof System) {
-// 		 	var umlContainer = model.referencedElement as org.eclipse.uml2.uml.Component
-// 		 	for(element : umlContainer.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
-// 		 		if(!model.usecases.exists[name == element.name])
-// 		 			acceptor.accept(createCompletionProposal(element.name, context))
-// 		 	}
-// 		 	
-// 		 }
-// 		 	
-		
-	}
+ 	}
 	
 	
 	
@@ -64,13 +50,13 @@ class UsecaseProposalProvider extends AbstractUsecaseProposalProvider {
 	
 	override completeSystem_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.completeSystem_Name(model, assignment, context, acceptor)
- 		addProposalsFromUML(model, UMLPackage.eINSTANCE.interface, context, acceptor)
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.component, context, acceptor)
 	}
 	
 	override completeUseCase_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.completeUseCase_Name(model, assignment, context, acceptor)
 		
- 		addProposalsFromUML(model, UMLPackage.eINSTANCE.package, context, acceptor)
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.useCase, context, acceptor)
 	}
 	
 }
