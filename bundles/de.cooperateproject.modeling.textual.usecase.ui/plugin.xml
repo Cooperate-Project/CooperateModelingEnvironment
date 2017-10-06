@@ -81,7 +81,7 @@
         category="de.cooperateproject.ui.preferences.cooperate"
         class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
         id="de.cooperateproject.modeling.textual.usecase.Usecase"
-        name="Usecase">
+        name="Usecase Diagram">
 			<keywordReference id="de.cooperateproject.modeling.textual.usecase.ui.keyword_Usecase"/>
 		</page>
 		<page

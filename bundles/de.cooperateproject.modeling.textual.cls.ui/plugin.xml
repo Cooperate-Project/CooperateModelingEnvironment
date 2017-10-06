@@ -82,7 +82,7 @@
         category="de.cooperateproject.ui.preferences.cooperate"
         class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
         id="de.cooperateproject.modeling.textual.cls.Cls"
-        name="Cls">
+        name="Class Diagram">
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
 		<page
