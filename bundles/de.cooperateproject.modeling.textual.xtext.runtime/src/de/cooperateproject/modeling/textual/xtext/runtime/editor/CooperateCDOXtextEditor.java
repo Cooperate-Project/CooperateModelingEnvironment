@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -345,7 +346,11 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
                     public IStatus validate(Transaction tx) {
                         IStatus result = super.validate(tx);
                         if (result.isOK() && !detectedIssues.isEmpty()) {
-                            return new Status(IStatus.ERROR, result.getPlugin(), "There are unfixed issues remaining.");
+                            IStatus[] children = detectedIssues.stream()
+                                    .map(i -> new Status(IStatus.ERROR, result.getPlugin(), i.toString()))
+                                    .collect(Collectors.toList()).toArray(new Status[0]);
+                            return new MultiStatus(result.getPlugin(), IStatus.ERROR, children,
+                                    "There are unfixed issues remaining.", null);
                         }
                         return result;
                     }

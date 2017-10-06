@@ -185,13 +185,13 @@ merges cls::Method::classMethodToShape, cls::Method::interfaceMethodToShape
 mapping cls::Method::classMethodToShape() : notation::Shape
 when {self.owner.oclIsKindOf(cls::Class)}
 {
-    type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_CLASS_OPERATION);
+    type := PAPYRUS_NOTATION_SHAPE_CLASS_OPERATION;
 }
 
 mapping cls::Method::interfaceMethodToShape() : notation::Shape
 when {self.owner.oclIsKindOf(cls::Interface)}
 {
-    type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION);
+    type := PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION;
 }
 
 mapping cls::Classifier::classifierToSignalsCompartment() : notation::BasicCompartment
