@@ -57,6 +57,7 @@ public class CooperatePerspective implements IPerspectiveFactory {
     private static void defineActions(IPageLayout layout) {
         layout.addNewWizardShortcut("de.cooperateproject.ui.newCooperateProjectWizard");
         layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newClassDiagram");
+        layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newUsecaseDiagram");
     }
 
     private static void defineLayout(IPageLayout layout) {

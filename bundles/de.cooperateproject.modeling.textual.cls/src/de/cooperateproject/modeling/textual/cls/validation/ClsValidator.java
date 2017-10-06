@@ -24,6 +24,7 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
@@ -45,6 +46,7 @@ public class ClsValidator extends AbstractClsValidator {
     private static final String ALIAS_TAKEN = "alias_taken";
     private static final String NAME_TAKEN = "name_taken";
     private static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
+    private static final String GEN_NO_SELF = "no_self_generalization";
 
     @Inject
     @SuppressWarnings("unused")
@@ -156,6 +158,13 @@ public class ClsValidator extends AbstractClsValidator {
             error(classifier.getName() + " should be a class but it's not!",
                     TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NOT_AN_INTERFACE);
         }
+    }
+
+    @Check
+    private void checkNoSelfGeneralization(Generalization gen) {
+        if (gen.getLeft() == gen.getRight())
+            error("A classifier can not be a generalization of itself!", ClsPackage.Literals.TYPED_CONNECTOR__RIGHT,
+                    GEN_NO_SELF);
     }
 
     @Check
