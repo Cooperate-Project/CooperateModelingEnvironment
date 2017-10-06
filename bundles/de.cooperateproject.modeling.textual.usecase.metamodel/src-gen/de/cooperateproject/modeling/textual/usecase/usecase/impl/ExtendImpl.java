@@ -207,6 +207,24 @@ public class ExtendImpl extends ElementImpl implements Extend {
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetCondition() {
+        eDynamicUnset(UsecasePackage.EXTEND__CONDITION, UsecasePackage.Literals.EXTEND__CONDITION);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetCondition() {
+        return eDynamicIsSet(UsecasePackage.EXTEND__CONDITION, UsecasePackage.Literals.EXTEND__CONDITION);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public Namespace getUMLParentNamespace() {
         EObject currentElement = Optional.ofNullable(getReferencedElement()).map(EObject::eContainer).orElse(null);
         while (currentElement != null && !(currentElement instanceof Namespace)) {
@@ -289,7 +307,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
                 setExtensionLocation((ExtensionPoint)null);
                 return;
             case UsecasePackage.EXTEND__CONDITION:
-                setCondition(CONDITION_EDEFAULT);
+                unsetCondition();
                 return;
         }
         super.eUnset(featureID);
@@ -312,7 +330,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
             case UsecasePackage.EXTEND__EXTENSION_LOCATION:
                 return basicGetExtensionLocation() != null;
             case UsecasePackage.EXTEND__CONDITION:
-                return CONDITION_EDEFAULT == null ? getCondition() != null : !CONDITION_EDEFAULT.equals(getCondition());
+                return isSetCondition();
         }
         return super.eIsSet(featureID);
     }

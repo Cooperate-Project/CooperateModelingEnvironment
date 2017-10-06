@@ -5,12 +5,10 @@ import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.in
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ExtensionPoint;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UseCase;
-import org.eclipse.uml2.uml.ValueSpecification;
-
-import com.google.common.base.Strings;
 
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
@@ -36,8 +34,10 @@ public class ExtendInitializer extends AtomicDerivedStateProcessorBase<Extend> {
     protected void applyTyped(Extend object) {
         if (object.getReferencedElement() != null) {
             org.eclipse.uml2.uml.Extend umlExtend = object.getReferencedElement();
-            if (Strings.isNullOrEmpty(object.getCondition())) {
+            if (!object.isSetCondition()) {
                 initCondition(object, umlExtend);
+            } else if (object.getCondition() == null) {
+                object.unsetCondition();
             }
             if (object.getExtendedCase() == null) {
                 initExtendedCase(object, umlExtend);
@@ -76,9 +76,11 @@ public class ExtendInitializer extends AtomicDerivedStateProcessorBase<Extend> {
     }
 
     private static void initCondition(Extend object, org.eclipse.uml2.uml.Extend umlExtend) {
-        ValueSpecification valueSpecification = umlExtend.getCondition().getSpecification();
-        if (valueSpecification instanceof OpaqueExpression) {
-            OpaqueExpression expression = (OpaqueExpression) valueSpecification;
+        Optional<OpaqueExpression> valueSpecification = Optional.ofNullable(umlExtend.getCondition())
+                .map(Constraint::getSpecification).filter(OpaqueExpression.class::isInstance)
+                .map(OpaqueExpression.class::cast);
+        if (valueSpecification.isPresent()) {
+            OpaqueExpression expression = valueSpecification.get();
             int bodyIndex = expression.getLanguages().indexOf(CONDITION_LANGUAGE_NAME);
             if (bodyIndex != -1 && expression.getBodies().size() > bodyIndex) {
                 String conditionString = expression.getBodies().get(bodyIndex);

@@ -17,7 +17,7 @@ main() {
 
 mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
     var rootPackage := self.rootPackage.referencedElement.oclAsType(uml::Package);
-    var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(referencedElement.oclAsType(uml::Extend).condition != null);
+    var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(not referencedElement.oclAsType(uml::Extend).condition.oclIsUndefined());
 
     type := "UseCase";
     name := self.title;
