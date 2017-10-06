@@ -111,9 +111,11 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Condition</em>' attribute.
+     * @see #isSetCondition()
+     * @see #unsetCondition()
      * @see #setCondition(String)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Condition()
-     * @model transient="true"
+     * @model unsettable="true" transient="true"
      * @generated
      */
     String getCondition();
@@ -123,9 +125,34 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Condition</em>' attribute.
+     * @see #isSetCondition()
+     * @see #unsetCondition()
      * @see #getCondition()
      * @generated
      */
     void setCondition(String value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getCondition <em>Condition</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetCondition()
+     * @see #getCondition()
+     * @see #setCondition(String)
+     * @generated
+     */
+    void unsetCondition();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getCondition <em>Condition</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Condition</em>' attribute is set.
+     * @see #unsetCondition()
+     * @see #getCondition()
+     * @see #setCondition(String)
+     * @generated
+     */
+    boolean isSetCondition();
 
 } // Extend

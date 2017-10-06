@@ -3,7 +3,6 @@ package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.con
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
@@ -14,12 +13,12 @@ import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cons
 /**
  * Constraint ensuring that associations in use case diagrams do not have names.
  */
-public class UseCaseDiagramAssociationConstraint extends CooperateConstraintBase<Association> {
+public class UseCaseDiagramAssociationEndpointsConstraint extends CooperateConstraintBase<Association> {
 
     /**
      * Constructs the constraint.
      */
-    public UseCaseDiagramAssociationConstraint() {
+    public UseCaseDiagramAssociationEndpointsConstraint() {
         super(Association.class);
     }
 
@@ -31,8 +30,8 @@ public class UseCaseDiagramAssociationConstraint extends CooperateConstraintBase
             // The association is not in a use case diagram and therefore not relevant for this constraint
             return true;
         }
-
-        return StringUtils.isBlank(target.getName());
+        return target.getEndTypes().size() == 2 && target.getEndTypes().stream().anyMatch(Actor.class::isInstance)
+                && target.getEndTypes().stream().anyMatch(UseCase.class::isInstance);
     }
 
 }

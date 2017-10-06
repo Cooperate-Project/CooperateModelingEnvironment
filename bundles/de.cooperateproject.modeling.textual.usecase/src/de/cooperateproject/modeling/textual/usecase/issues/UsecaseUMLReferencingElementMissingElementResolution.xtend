@@ -23,6 +23,7 @@ import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 import de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ExtendInitializer
+import com.google.common.base.Strings
 
 class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -88,10 +89,12 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		val extendingUseCase = element.extension
 		val umlExtend = extendingUseCase.referencedElement.createExtend(null, element.extendedCase.referencedElement)
 		umlExtend.extensionLocations += element.extensionLocation.referencedElement
-		val umlCondition = umlExtend.createCondition(null, UMLPackage.eINSTANCE.constraint)
-		val umlExpression = umlCondition.createSpecification(null, null, UMLPackage.eINSTANCE.opaqueExpression) as OpaqueExpression
-		umlExpression.languages += ExtendInitializer.CONDITION_LANGUAGE_NAME
-		umlExpression.bodies += element.condition
+		if (!Strings.isNullOrEmpty(element.condition)) {
+			val umlCondition = umlExtend.createCondition(null, UMLPackage.eINSTANCE.constraint)
+			val umlExpression = umlCondition.createSpecification(null, null, UMLPackage.eINSTANCE.opaqueExpression) as OpaqueExpression
+			umlExpression.languages += ExtendInitializer.CONDITION_LANGUAGE_NAME
+			umlExpression.bodies += element.condition			
+		}
 		element.referencedElement = umlExtend
 	}
 	
