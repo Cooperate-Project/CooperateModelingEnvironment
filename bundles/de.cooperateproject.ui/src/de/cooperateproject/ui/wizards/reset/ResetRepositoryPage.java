@@ -1,25 +1,17 @@
 package de.cooperateproject.ui.wizards.reset;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 public class ResetRepositoryPage extends WizardPage {
 
-    private IProject project;
-    private IFile file;
+    private IResource resource;
 
-    protected ResetRepositoryPage(IProject project) {
+    protected ResetRepositoryPage(IResource resource) {
         super("Reset");
-        this.project = project;
-        this.setPageComplete(false);
-    }
-
-    protected ResetRepositoryPage(IFile file) {
-        super("Reset");
-        this.file = file;
+        this.resource = resource;
         this.setPageComplete(false);
     }
 
@@ -28,11 +20,7 @@ public class ResetRepositoryPage extends WizardPage {
         setTitle("Choose a revision");
         setDescription("Select the revision to which the repository will be reset.");
         ResetRepositoryComposite composite;
-        if (file == null) {
-            composite = new ResetRepositoryComposite(parent, SWT.FILL, project, this);
-        } else {
-            composite = new ResetRepositoryComposite(parent, SWT.FILL, file, this);
-        }
+        composite = new ResetRepositoryComposite(parent, SWT.FILL, resource, this);
         setControl(composite);
     }
 

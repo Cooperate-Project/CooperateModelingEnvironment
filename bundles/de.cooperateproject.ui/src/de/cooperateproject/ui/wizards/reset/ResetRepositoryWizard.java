@@ -1,10 +1,8 @@
 package de.cooperateproject.ui.wizards.reset;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.net4j.util.io.IOUtil;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.nature.ResetToPreviousStateCommand;
@@ -12,29 +10,18 @@ import de.cooperateproject.ui.nature.ResetToPreviousStateCommand;
 public class ResetRepositoryWizard extends Wizard {
 
     private ResetRepositoryPage resetPage;
-    private IProject project;
-    private IFile file;
+    private IResource resourceToReset;
 
-    public ResetRepositoryWizard(IProject project) {
+    public ResetRepositoryWizard(IResource resource) {
         super();
         setWindowTitle("Reset to previous state");
-        this.project = project;
-    }
-
-    public ResetRepositoryWizard(IFile file) {
-        super();
-        setWindowTitle("Reset to previous state");
-        this.file = file;
+        this.resourceToReset = resource;
     }
 
     @Override
     public void addPages() {
         super.addPages();
-        if (file == null) {
-            resetPage = new ResetRepositoryPage(project);
-        } else {
-            resetPage = new ResetRepositoryPage(file);
-        }
+        resetPage = new ResetRepositoryPage(resourceToReset);
         addPage(resetPage);
     }
 
@@ -43,11 +30,11 @@ public class ResetRepositoryWizard extends Wizard {
         if (!canFinish()) {
             return false;
         }
-        CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
+        CDOSession session = CDOConnectionManager.getInstance().acquireSession(resourceToReset.getProject());
         try {
-            ResetToPreviousStateCommand.resetProject(session, ResetRepositoryComposite.getSelectedCommit(), project);
+            ResetToPreviousStateCommand.reset(session, ResetRepositoryComposite.getSelectedCommit(), resourceToReset);
         } finally {
-            IOUtil.closeSilent(session);
+            CDOConnectionManager.getInstance().releaseSession(session);
         }
         return true;
     }

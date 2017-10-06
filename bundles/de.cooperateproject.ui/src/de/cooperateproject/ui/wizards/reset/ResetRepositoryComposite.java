@@ -54,16 +54,10 @@ public class ResetRepositoryComposite extends Composite {
     private static TableViewer tv;
     private static final long LOADING_TIMEOUT = 8000;
 
-    ResetRepositoryComposite(Composite parent, int style, IProject project, ResetRepositoryPage page) {
+    ResetRepositoryComposite(Composite parent, int style, IResource resource, ResetRepositoryPage page) {
         super(parent, style);
         createComposite(style, page);
-        fillTable(project, Optional.ofNullable(null));
-    }
-
-    ResetRepositoryComposite(Composite parent, int style, IFile file, ResetRepositoryPage page) {
-        super(parent, style);
-        createComposite(style, page);
-        fillTable(file.getProject(), Optional.ofNullable(file));
+        fillTable(resource.getProject(), Optional.ofNullable(resource.getAdapter(IFile.class)));
     }
 
     private static void fillTable(IProject project, Optional<IFile> file) {
