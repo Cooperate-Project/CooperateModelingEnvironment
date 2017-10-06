@@ -40,8 +40,7 @@ class ClsLabelProvider extends CooperateOutlineLabelProvider {
     }
 
     def text(Class ele) {
-        var name = ele.name
-        return name
+        return ele.name
     }
 
     def text(Method ele) {

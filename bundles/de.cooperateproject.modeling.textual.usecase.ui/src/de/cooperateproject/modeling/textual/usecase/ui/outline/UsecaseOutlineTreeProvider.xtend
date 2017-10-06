@@ -3,14 +3,15 @@
  */
 package de.cooperateproject.modeling.textual.usecase.ui.outline
 
-import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
-import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
-import de.cooperateproject.modeling.textual.usecase.usecase.System
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
+import de.cooperateproject.modeling.textual.usecase.usecase.System
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
 import de.cooperateproject.ui.outline.CooperateOutlineTreeProvider
 import de.cooperateproject.ui.outline.UMLImage
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 
 /**
  * Customization of the default outline structure.
@@ -18,29 +19,44 @@ import de.cooperateproject.ui.outline.UMLImage
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
 class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
-dispatch def createChildren(IOutlineNode parentNode, UseCaseDiagram root) {
+
+	dispatch def createChildren(IOutlineNode parentNode, UseCaseDiagram root) {
         if (root.rootPackage === null) {
             return
         }
-        createNode(parentNode, root.rootPackage)
-    }
-
-    dispatch def createChildren(IOutlineNode parentNode, RootPackage pkg) {
+        
+        val pkg = root.rootPackage
+        
         createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, UMLImage.PACKAGE.image,
             getStyledString("Actors", pkg.actors.size), false)
         createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__SYSTEMS, UMLImage.PACKAGE.image,
             getStyledString("Systems", pkg.systems.size), false)
         createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, UMLImage.PACKAGE.image,
             getStyledString("Relationships", pkg.relationships.size), false)
-        
     }
-    
+   
     dispatch def createChildren(IOutlineNode parentNode, System system) {
+        createChild(parentNode, system)
         for (usecase : system.usecases) {
             createEObjectNode(parentNode, usecase)
         }
     }
+    
     dispatch def createChildren(IOutlineNode parentNode, Generalization generalization) {
        createEObjectNode(parentNode, generalization)
     }
+    
+    dispatch def createChildren(IOutlineNode parentNode, UseCase uc) {
+    	createChild(parentNode, uc)
+    	for (ep : uc.extensionPoints) {
+    		createEObjectNode(parentNode, ep)
+    	}
+    }
+				
+	protected def createChild(IOutlineNode parentNode, Commentable<?> commentable) {
+		if (!commentable.comments.isEmpty) {
+			createEObjectNode(parentNode, commentable.comments.findFirst[true])
+		}
+	}
+	
 }

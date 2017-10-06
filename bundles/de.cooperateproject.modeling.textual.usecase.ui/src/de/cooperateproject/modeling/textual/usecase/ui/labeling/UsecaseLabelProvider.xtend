@@ -4,10 +4,19 @@
 package de.cooperateproject.modeling.textual.usecase.ui.labeling
 
 import com.google.inject.Inject
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import de.cooperateproject.modeling.textual.usecase.usecase.Actor
+import de.cooperateproject.modeling.textual.usecase.usecase.Association
+import de.cooperateproject.modeling.textual.usecase.usecase.Extend
+import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
-import de.cooperateproject.ui.outline.UMLImage
+import de.cooperateproject.modeling.textual.usecase.usecase.Include
+import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
+import de.cooperateproject.modeling.textual.usecase.usecase.System
 import de.cooperateproject.ui.outline.CooperateOutlineLabelProvider
+import de.cooperateproject.ui.outline.UMLImage
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 
 /**
  * Provides labels for Usecase EObjects.
@@ -21,13 +30,78 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
 		super(delegate);
 	}
 
+	def image(Actor element) {
+		UMLImage.ACTOR.image
+	}
+	
+	def image(Association element) {
+		UMLImage.ASSOCIATION.image
+	}
+	
+	def image(System element) {
+		UMLImage.COMPONENT.image
+	}
+	
+	def image(Extend element) {
+		UMLImage.EXTEND.image
+	}
+	
+	def image(ExtensionPoint element) {
+		UMLImage.EXTENSIONPOINT.image
+	}
+	
+	def image(Include element) {
+		UMLImage.INCLUDE.image
+	}
+	
+	def image(UseCase element) {
+		UMLImage.USECASE.image
+	}
+	
+	def image(RootPackage element) {
+		UMLImage.PACKAGE.image
+	}
+	
+    def image(Generalization element) {
+        return UMLImage.GENERALIZATION.image
+    }
+    
+    def text(Actor element) {
+    	element.name
+    }
+    
+    def text (Association element) {
+    	element.actor " interacts with " + element.usecase
+    }
+    
+    def text(UseCaseDiagram element) {
+    	element.title
+    }
+
+	def text(ExtensionPoint element) {
+		element.name
+	}
+
 	def text(Generalization element) {
         val general = element.general;
         val specific = element.specific;
         specific.doGetText + " is a " + general.doGetText
     }
-
-    def image(Generalization element) {
-        return UMLImage.GENERALIZATION.image
+    
+    def text(Extend element) {
+    	element.extension.doGetText + " extends " + element.extendedCase.doGetText + " via " + element.extensionLocation.doGetText
     }
+    
+    def text(Include element) {
+    	element.includingCase.doGetText + " includes " + element.addition.doGetText
+    }
+    
+    def text(System element) {
+    	element.name
+    }
+    
+    def text(UseCase element) {
+    	element.name
+    }   
+
 }

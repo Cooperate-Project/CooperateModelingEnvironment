@@ -12,12 +12,17 @@ import org.slf4j.LoggerFactory;
 
 public enum UMLImage {
 
+    ACTOR("obj16/Actor.gif"),
     ASSOCIATION("obj16/Association.gif"),
     ASSOCIATION_COMPOSITE("obj16/Association_composite.gif"),
     ASSOCIATION_SHARED("obj16/Association_shared.gif"),
     CLASS("obj16/Class.gif"),
+    COMPONENT("obj16/Component.gif"),
     COMMENT("obj16/Comment.gif"),
+    EXTEND("obj16/Extend.gif"),
+    EXTENSIONPOINT("obj16/ExtensionPoint.gif"),
     GENERALIZATION("obj16/Generalization.gif"),
+    INCLUDE("obj16/Include.gif"),
     INTERFACE("obj16/Interface.gif"),
     INTERFACE_REALIZATION("obj16/InterfaceRealization.gif"),
     MODEL("obj16/Model.gif"),
@@ -26,6 +31,7 @@ public enum UMLImage {
     PACKAGE_IMPORT("obj16/PackageImport.gif"),
     PARAMETER("obj16/Parameter.gif"),
     PROPERTY("obj16/Property.gif"),
+    USECASE("obj16/UseCase.gif"),
     VISIBILITY_PACKAGE("ovr16/VisibilityKind_package.gif"),
     VISIBILITY_PRIVATE("ovr16/VisibilityKind_private.gif"),
     VISIBILITY_PROTECTED("ovr16/VisibilityKind_protected.gif"),
