@@ -220,6 +220,16 @@
                   A primitive type must be an Ecore primitive type that has a common type.
                </description>
             </constraint>
+            <constraint lang="OCL" severity="WARNING" mode="Live" 
+            	name="Allow only use-cases in component" 
+            	id="de.cooperateproject.modeling.graphical.papyrus.extensions.allowOnlyUsecasesInComponent" statusCode="2">
+      		<description>Describe it</description>
+      		<message>Use-Cases have to be nested in components</message>
+      		<target class="UseCase"/>
+      		<![CDATA[
+         		self.owner.oclIsKindOf(Component)
+      		]]>
+   			</constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
