@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.textual.metamodels.feature"
       label="%featureName"
-      version="0.4.0"
+      version="0.4.1"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
