@@ -434,13 +434,32 @@
    <extension
          point="de.cooperateproject.ui.startup">
       <class
-            class="de.cooperateproject.ui.startup.impl.PerspectiveInitializer">
-      </class>
-      <class
             class="de.cooperateproject.ui.startup.impl.ProjectMonitorInstaller">
       </class>
       <class
             class="de.cooperateproject.ui.startup.impl.ProjectBuilderAction">
       </class>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonFilter
+            activeByDefault="true"
+            class="de.cooperateproject.ui.perspective.filter.CDOCheckoutFilter"
+            description="Omit CDO checkouts"
+            id="de.cooperateproject.ui.perspective.filter.cdocheckout"
+            name="CDO Checkout Filter"
+            visibleInUI="false">
+      </commonFilter>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding
+            viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension
+                  pattern="de.cooperateproject.ui.perspective.filter.*">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
    </extension>
 </plugin>

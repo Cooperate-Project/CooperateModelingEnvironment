@@ -2,14 +2,7 @@ package de.cooperateproject.ui.perspective;
 
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
-import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveFactory;
-import org.eclipse.ui.IPerspectiveListener;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.navigator.CommonNavigator;
-import org.eclipse.ui.navigator.INavigatorContentService;
 
 /**
  * Special perspective which should be used when working with Cooperate projects.
@@ -19,34 +12,7 @@ import org.eclipse.ui.navigator.INavigatorContentService;
  */
 public class CooperatePerspective implements IPerspectiveFactory {
 
-    /**
-     * Listener which checks whether the Cooperate perspective is used and toggles the activated extensions.
-     */
-    public static void addPerspectiveActivatedListener() {
-        for (IWorkbenchWindow window : PlatformUI.getWorkbench().getWorkbenchWindows()) {
-            window.addPerspectiveListener(new IPerspectiveListener() {
-                @Override
-                public void perspectiveChanged(IWorkbenchPage page, IPerspectiveDescriptor perspective,
-                        String changeId) {
-                    // do nothing
-                }
-
-                @Override
-                public void perspectiveActivated(IWorkbenchPage page, IPerspectiveDescriptor perspective) {
-                    String[] ext = { "org.eclipse.emf.cdo.explorer.ui.CDOCheckouts" };
-                    CommonNavigator commonNavigator = (CommonNavigator) page.findView(IPageLayout.ID_PROJECT_EXPLORER);
-                    INavigatorContentService contentService = commonNavigator.getNavigatorContentService();
-                    if (perspective.getId().contentEquals("de.cooperateproject.ui.perspective")
-                            && contentService.isActive(ext[0])) {
-                        contentService.getActivationService().deactivateExtensions(ext, false);
-                    } else if (!contentService.isActive(ext[0])) {
-                        contentService.getActivationService().activateExtensions(ext, false);
-                    }
-                }
-
-            });
-        }
-    }
+    public static final String PERSPECTIVE_ID = "de.cooperateproject.ui.perspective";
 
     @Override
     public void createInitialLayout(IPageLayout layout) {
