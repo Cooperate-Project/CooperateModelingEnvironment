@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI
 Bundle-SymbolicName: de.cooperateproject.ui;singleton:=true
-Bundle-Version: 0.4.1
+Bundle-Version: 0.4.2.qualifier
 Bundle-Activator: de.cooperateproject.ui.Activator
 Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
@@ -28,19 +28,19 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
  de.cooperateproject.modeling.transformation.engine,
- de.cooperateproject.cdo.util;bundle-version="0.4.1",
+ de.cooperateproject.cdo.util;bundle-version="0.4.2",
  org.apache.commons.lang3,
  org.eclipse.core.filesystem;bundle-version="1.5.0",
  de.cooperateproject.modeling.textual.common,
  de.cooperateproject.util;visibility:=reexport,
  org.eclipse.core.resources,
  org.eclipse.uml2.uml.resources,
- de.cooperateproject.modeling.graphical.common;bundle-version="0.4.1",
+ de.cooperateproject.modeling.graphical.common;bundle-version="0.4.2",
  de.cooperateproject.modeling.common,
  org.eclipse.xtext,
  org.eclipse.ui.navigator,
  org.apache.activemq.activemq-client;bundle-version="5.14.3",
- de.cooperateproject.ui.preferences;bundle-version="0.4.1",
+ de.cooperateproject.ui.preferences;bundle-version="0.4.2",
  org.eclipse.papyrus.infra.gmfdiag.style,
  org.eclipse.xtext.ui;bundle-version="2.12.0",
  org.eclipse.osgi,
