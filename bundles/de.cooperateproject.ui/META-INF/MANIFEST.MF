@@ -55,6 +55,7 @@ Export-Package: de.cooperateproject.ui.editors.launcher,
  de.cooperateproject.ui.nature,
  de.cooperateproject.ui.outline,
  de.cooperateproject.ui.properties,
+ de.cooperateproject.ui.startup,
  de.cooperateproject.ui.util
 Import-Package: org.apache.commons.io.input,
  org.slf4j;version="1.7.2"

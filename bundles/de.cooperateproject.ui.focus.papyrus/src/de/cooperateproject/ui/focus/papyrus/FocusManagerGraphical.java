@@ -108,8 +108,8 @@ class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramEditor> 
     public Optional<DiagramTypes> getDiagramType() {
         try {
             IPageManager pageManager = getEditorPart().getServicesRegistry().getService(IPageManager.class);
-            Collection<DiagramTypes> diagramTypes = pageManager.allPages().stream().filter(Diagram.class::isInstance)
-                    .map(Diagram.class::cast).map(Diagram::getType).distinct()
+            Collection<DiagramTypes> diagramTypes = pageManager.allPages().stream().filter(pageManager::isOpen)
+                    .filter(Diagram.class::isInstance).map(Diagram.class::cast).map(Diagram::getType).distinct()
                     .map(NotationDiagramTypes::getByNotationDiagramType).filter(Optional::isPresent).map(Optional::get)
                     .map(NotationDiagramTypes::getDiagramType).collect(Collectors.toSet());
             if (diagramTypes.size() == 1) {
