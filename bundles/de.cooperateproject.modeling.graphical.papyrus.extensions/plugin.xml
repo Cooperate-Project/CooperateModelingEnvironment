@@ -51,8 +51,8 @@
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationConstraint"
-                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationNoNameConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationNoNameConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Batch"
@@ -64,6 +64,25 @@
                </message>
                <description>
                   An association in a use case diagram must have an empty name.
+               </description>
+               <target
+                     class="Association">
+               </target>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationEndpointsConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationEndpointsConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Use Case Diagram Association Must Connect Actor and Usecase Constraint"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} is only allowed to connect an Actor with a Use Case.
+               </message>
+               <description>
+                  An association in a use case diagram must interconnect Actors with Use Cases.
                </description>
                <target
                      class="Association">
