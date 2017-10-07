@@ -55,7 +55,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationNoNameConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Use Case Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -74,7 +74,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationEndpointsConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Use Case Diagram Association Must Connect Actor and Usecase Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -187,7 +187,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentOnlyAllowedForCommentableElements"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Comments can only be used on commentable elements."
                   severity="WARNING"
                   statusCode="2">
@@ -206,7 +206,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.typedElementHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Typed elements have only allowed primitive types"
                   severity="WARNING"
                   statusCode="2">
@@ -225,7 +225,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.operationHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Operation has only allowed primitive types"
                   severity="WARNING"
                   statusCode="2">
@@ -263,7 +263,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.systemMustBeAComponent"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="System must be a component"
                   severity="WARNING"
                   statusCode="2">
