@@ -28,6 +28,7 @@
       <paletteRules xmi:id="_98BhUGZLEeek84eIY1oucg" permit="false" element="clazz.tool.associationclass"/>
       <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association*"/>
       <paletteRules xmi:id="_XwNGgGZLEeek84eIY1oucg" element="clazz.tool.packageimport"/>
+      <paletteRules xmi:id="_VriI4Kt_EeeSEPUIHdH6Kg" element="clazz.tool.link"/>
       <paletteRules xmi:id="_Zu7qEB3SEeaWluI_M9CcJQ" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_JR-5AB3eEeaWluI_M9CcJQ" permit="false" element="createTimeObservation22CreationTool"/>
       <paletteRules xmi:id="_Ri5mUB3eEeaWluI_M9CcJQ" permit="false" element="createDurationObservation7CreationTool"/>
@@ -74,6 +75,7 @@
       <paletteRules xmi:id="_8mkXgJ-1Eeev3P7grPQovA" element="usecase.tool.generalization"/>
       <paletteRules xmi:id="_9okAAJ-1Eeev3P7grPQovA" element="usecase.tool.include"/>
       <paletteRules xmi:id="__sjRAJ-1Eeev3P7grPQovA" element="usecase.tool.extend"/>
+      <paletteRules xmi:id="_5ZtAEKuAEeeSEPUIHdH6Kg" element="usecase.tool.commentlink"/>
       <paletteRules xmi:id="_BCrWcJ-2Eeev3P7grPQovA" permit="false" element="usecase.tool.*"/>
       <assistantRules xmi:id="_GrSIQJ-3Eeev3P7grPQovA" elementTypeID="org.eclipse.papyrus.umldi.Include_Edge"/>
       <assistantRules xmi:id="_uqrZgJ-3Eeev3P7grPQovA" elementTypeID="org.eclipse.papyrus.umldi.Extend_Edge"/>
