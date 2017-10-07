@@ -296,4 +296,14 @@
       point="org.eclipse.papyrus.infra.properties.contexts">
    <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
 </extension>
+      <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
+      <target
+            description="Display elements in the current active editor"
+            id="de.cooperateproject.modeling.graphical.papyrus.extensions.navigation.target.activeEditor"
+            label="Show in the active editor"
+            navigationTargetProvider="de.cooperate.modeling.graphical.papyrus.extensions.navigation.FixedActiveEditorNavigationTargetProvider"
+            order="5">
+      </target>
+   </extension>
 </plugin>
