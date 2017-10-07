@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Cooperate Modeling Environment" buildRoot="target">
+<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Cooperate Modeling Environment" buildRoot="target">
   <validationSets label="main">
     <contributions label="local">
       <repositories location="../de.cooperateproject.modeling.updatesite/target/repository"/>
@@ -12,13 +12,13 @@
       </repositories>
       <repositories location="http://download.eclipse.org/releases/oxygen/" mirrorArtifacts="false">
         <features name="org.eclipse.jdt.feature.group"/>
-        <features name="org.eclipse.emf.cdo.sdk.feature.group"/>
         <features name="org.eclipse.xtext.sdk.feature.group"/>
+        <mapRules xsi:type="aggregator:ExclusionRule" name="org.eclipse.emf.cdo.sdk"/>
       </repositories>
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.sdk.feature.feature.group"/>
       </repositories>
-      <repositories location="https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/1.2.0.RC1/" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/1.2.0.RC2/" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.extra.cdo.feature.feature.group"/>
       </repositories>
       <repositories location="https://dl.bintray.com/cooperate-project/CooperateLicense/updatesite/1.0.0/" mirrorArtifacts="false">
@@ -32,7 +32,12 @@
       </repositories>
       <repositories location="https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/1.0.1/" mirrorArtifacts="false">
         <features name="de.cooperateproject.qvtoutils.blackbox.feature.feature.group"/>
-      </repositories>      
+      </repositories>
+      <repositories location="https://dl.bintray.com/cooperate-project/CDO/updatesite/4.6.0.coop2/" mirrorArtifacts="false">
+        <features name="org.eclipse.emf.cdo.sdk.feature.group"/>
+        <features name="org.eclipse.emf.cdo.dawn.sdk.feature.group"/>
+        <features name="org.eclipse.emf.cdo.epp.feature.group"/>
+      </repositories>
     </contributions>
   </validationSets>
   <configurations/>
