@@ -15,6 +15,8 @@ import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
 import de.cooperateproject.ui.outline.FlatOutlineViewContribution
 import de.cooperateproject.ui.outline.OutlineFlattenFilterAndSorter
+import org.eclipse.xtext.ui.editor.templates.DefaultTemplateProposalProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -22,6 +24,10 @@ import de.cooperateproject.ui.outline.OutlineFlattenFilterAndSorter
 @FinalFieldsConstructor
 class ClsUiModule extends AbstractClsUiModule {
 
+	def Class<? extends DefaultTemplateProposalProvider> bindDefaultTemplateProposalProvider(){
+			return CooperateTemplateProposalProvider
+	}
+	
 	def Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return ClsLocationInFileProvider;
 	}
