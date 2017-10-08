@@ -65,6 +65,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 		for(InterfaceRelation portRel: cmp.getInterfaceRelation()){
 			portRel.append[newLine]
 		}
+		cmp.append[newLine; priority = 2]
 	}
 	
 	def dispatch void format(Interface iface, extension IFormattableDocument document) {

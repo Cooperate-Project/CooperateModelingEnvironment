@@ -31,7 +31,11 @@ class FormatterTest extends AbstractComponentTest {
 	def testExtendedModel() {
 		"extended.cmp".test
 	}
-		
+	
+	@Test
+	def testMinimalClassifiers() {
+		"minimal_classifiers.cmp".test
+	}	
 	private def test(String modelName) {
 		val path = modelName.getRelativePath
 		val expected = path.readText
