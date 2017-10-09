@@ -240,7 +240,7 @@ public class ComparisonManager {
             long timeStamp) {
         List<CDOCommitInfo> commitInfos = new ArrayList<>();
 
-        for (int i = 0; i < mainHistory.size(); i++) {
+        for (int i = 0; i < mainHistory.size() - 1; i++) {
             CDOCommitInfo commitInfo = mainHistory.getElement(i);
 
             if (isTimeStampValid(commitInfo, timeStamp)) {
