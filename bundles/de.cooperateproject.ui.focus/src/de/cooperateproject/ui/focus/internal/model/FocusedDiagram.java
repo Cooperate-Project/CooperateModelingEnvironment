@@ -65,6 +65,7 @@ class FocusedDiagram implements IFocusedDiagram {
     }
 
     private void handleFocusRequest(CDOObject object, long timestamp) {
+        LOGGER.debug("handleFocusRequest for id={} at t={}", object.cdoID(), timestamp);
         history.add(new HistoryElement(object, timestamp));
         historyChangedListeners.forEach(l -> l.historyChanged(this));
         if (!mute) {
@@ -85,6 +86,8 @@ class FocusedDiagram implements IFocusedDiagram {
     @Override
     public void setFocusedElement(EObject element) {
         focusManager.setFocusedElement(element);
+        LOGGER.debug("setFocusedElement element={}", element);
+
     }
 
     @Override
@@ -106,6 +109,8 @@ class FocusedDiagram implements IFocusedDiagram {
         try {
             CDOObject cdoObject = CDOUtil.getCDOObject(focusedElement);
             messageHandler.sendFocus(cdoObject);
+            LOGGER.debug("sendCurrentlyFocusedElement element={}", cdoObject);
+
         } catch (Exception e) {
             LOGGER.error("Could not send focus request.", e);
         }
