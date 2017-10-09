@@ -43,10 +43,10 @@ public class ProjectPropertiesStore {
     }
 
     public void initFromStore() {
-        preferences.setCdoHost(CDOServerPreferenceHandler.INSTANCE.getCDOServerHostnameSetting());
-        preferences.setCdoPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerPortSetting());
-        preferences.setCdoRepo(CDOServerPreferenceHandler.INSTANCE.getCDOServerRepositorySetting());
-        preferences.setMsgPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerMessageBrokerSetting());
+        preferences.setCdoHost(CDO_HOST.getValue(preferencesStore));
+        preferences.setCdoPort(CDO_PORT.getValue(preferencesStore));
+        preferences.setCdoRepo(CDO_REPO.getValue(preferencesStore));
+        preferences.setMsgPort(MSG_PORT.getValue(preferencesStore));
     }
 
     public void saveToStore() throws IOException {
