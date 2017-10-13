@@ -23,9 +23,9 @@ import de.cooperateproject.ui.nature.CooperateProjectNature;
  * @author persch
  *
  */
-public class ResetCooperateProjectsCommand extends AbstractHandler {
+public class ReconnectLocalProjectsCommand extends AbstractHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResetCooperateProjectsCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReconnectLocalProjectsCommand.class);
 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
