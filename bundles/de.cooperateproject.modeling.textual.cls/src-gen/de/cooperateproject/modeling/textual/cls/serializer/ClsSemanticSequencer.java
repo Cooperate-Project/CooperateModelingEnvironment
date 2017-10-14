@@ -335,7 +335,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         twoSideBidirectionality?='bi'? 
 	 *         twoSideAggregationKind=AggregationKind 
-	 *         name=ID 
+	 *         name=ID? 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType* 
 	 *         (memberEndNames+=RoleName memberEndNames+=RoleName*)? 

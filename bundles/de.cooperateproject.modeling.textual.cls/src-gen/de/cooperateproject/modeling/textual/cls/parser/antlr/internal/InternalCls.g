@@ -1469,7 +1469,7 @@ ruleXtextAssociation returns [EObject current=null]
 						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
-		)
+		)?
 		otherlv_3='('
 		{
 			newLeafNode(otherlv_3, grammarAccess.getXtextAssociationAccess().getLeftParenthesisKeyword_3());

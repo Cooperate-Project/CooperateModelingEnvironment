@@ -3245,7 +3245,7 @@ rule__XtextAssociation__Group__2__Impl
 :
 (
 	{ before(grammarAccess.getXtextAssociationAccess().getNameAssignment_2()); }
-	(rule__XtextAssociation__NameAssignment_2)
+	(rule__XtextAssociation__NameAssignment_2)?
 	{ after(grammarAccess.getXtextAssociationAccess().getNameAssignment_2()); }
 )
 ;

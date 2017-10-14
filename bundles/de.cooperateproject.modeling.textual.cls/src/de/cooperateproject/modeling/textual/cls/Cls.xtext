@@ -117,7 +117,7 @@ Implementation:
 
 XtextAssociation:
 	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
+	(name=ID)? '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
 	('role' '[' memberEndNames+=RoleName (',' memberEndNames+=RoleName)* ']')?
 	('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')?
 	comments+=Comment?

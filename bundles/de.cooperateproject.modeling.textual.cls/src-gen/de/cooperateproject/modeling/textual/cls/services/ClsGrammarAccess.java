@@ -875,14 +875,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommentsCommentParserRuleCall_9_0 = (RuleCall)cCommentsAssignment_9.eContents().get(0);
 		
 		//XtextAssociation:
-		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
+		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID? '('
 		//	memberEndTypes+=XtextAssociationMemberEndReferencedType (','
 		//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=RoleName (','
 		//	memberEndNames+=RoleName)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':'
 		//	memberEndCardinalities+=Cardinality)* ']')? comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
+		//twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID? '('
 		//memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)*
 		//')' ('role' '[' memberEndNames+=RoleName (',' memberEndNames+=RoleName)* ']')? ('card' '['
 		//memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')? comments+=Comment?
@@ -900,7 +900,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//AggregationKind
 		public RuleCall getTwoSideAggregationKindAggregationKindEnumRuleCall_1_0() { return cTwoSideAggregationKindAggregationKindEnumRuleCall_1_0; }
 		
-		//name=ID
+		//name=ID?
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//ID
@@ -1495,7 +1495,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XtextAssociation:
-	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
+	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID? '('
 	//	memberEndTypes+=XtextAssociationMemberEndReferencedType (','
 	//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=RoleName (','
 	//	memberEndNames+=RoleName)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':'

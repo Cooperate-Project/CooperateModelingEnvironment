@@ -28,9 +28,7 @@ class ClsUMLReferencingElementMissingElementResolvableChecker extends DependingE
 	}
 	
 	protected def dispatch localResolutionPossible(Association element) {
-        val nameCheck = StringUtils.isNotBlank(element.name)
-        val memberEndCheck = element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
-        return nameCheck && memberEndCheck
+        return element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
     }
 
     protected def dispatch localResolutionPossible(Generalization element) {

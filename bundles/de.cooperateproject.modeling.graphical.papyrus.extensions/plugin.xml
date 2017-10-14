@@ -41,10 +41,10 @@
                   severity="WARNING"
                   statusCode="1">
                <message>
-                  {0} has no proper name.
+                  {0} has no proper name and the types do not identify the association unambiguously.
                </message>
                <description>
-                  An association in a class diagram needs a proper non null and non empty name.
+                  An association in a class diagram needs a proper non null and non empty name or the involved member ends have to allow distinguishing it from all other associations in the same package.
                </description>
                <target
                      class="Association">

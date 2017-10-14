@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.cls.validation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.xtext.validation.Check;
@@ -28,6 +30,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+import de.cooperateproject.modeling.textual.cls.utils.AssociationMatcher;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
@@ -47,6 +51,7 @@ public class ClsValidator extends AbstractClsValidator {
     private static final String NAME_TAKEN = "name_taken";
     private static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
     private static final String GEN_NO_SELF = "no_self_generalization";
+    private static final String ASSOCIATION_AMBIGUOUS = "cls_association_ambiguous";
 
     @Inject
     @SuppressWarnings("unused")
@@ -162,9 +167,10 @@ public class ClsValidator extends AbstractClsValidator {
 
     @Check
     private void checkNoSelfGeneralization(Generalization gen) {
-        if (gen.getLeft() == gen.getRight())
+        if (gen.getLeft() == gen.getRight()) {
             error("A classifier can not be a generalization of itself!", ClsPackage.Literals.TYPED_CONNECTOR__RIGHT,
                     GEN_NO_SELF);
+        }
     }
 
     @Check
@@ -203,6 +209,37 @@ public class ClsValidator extends AbstractClsValidator {
 
         }
 
+    }
+
+    @Check
+    private void checkAssociationsUnambigous(XtextAssociation association) {
+        if (StringUtils.isNotEmpty(association.getName())) {
+            return;
+        }
+
+        List<Classifier<? extends org.eclipse.uml2.uml.Classifier>> chosenTypes = getTypes(association);
+        if (association.getOwningPackage().getConnectors().stream().filter(XtextAssociation.class::isInstance)
+                .map(XtextAssociation.class::cast).filter(a -> a != association).map(ClsValidator::getTypes)
+                .anyMatch(chosenTypes::equals)) {
+            error("The association is not clearly distinguishable from other associations in this diagram.",
+                    ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES, ASSOCIATION_AMBIGUOUS);
+            return;
+        }
+
+        Collection<Association> candidates = Optional.ofNullable(association.getOwningPackage().getReferencedElement())
+                .map(umlPackage -> AssociationMatcher.findUMLElements(association, umlPackage))
+                .orElse(Collections.emptySet());
+        candidates.remove(association.getReferencedElement());
+        if (!candidates.isEmpty()) {
+            error("The association is not clearly distinguishable from other associations in the UML model.",
+                    ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES, ASSOCIATION_AMBIGUOUS);
+        }
+
+    }
+
+    private static List<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getTypes(XtextAssociation association) {
+        return association.getMemberEndTypes().stream().map(XtextAssociationMemberEndReferencedType::getType)
+                .collect(Collectors.toList());
     }
 
     private void error(String message, EStructuralFeature feature, String code) {
