@@ -4,14 +4,15 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.cooperateproject.ui.focus.internal.model.FocusViewManager;
 import de.cooperateproject.ui.focus.internal.views.FocusView;
 import de.cooperateproject.ui.startup.IStartupAction;
 
@@ -40,13 +41,12 @@ public class ViewInitializerStartupAction implements IStartupAction {
     }
 
     private static void initView(IWorkbenchPage activePage) {
-        Display.getDefault().asyncExec(() -> {
-            try {
-                activePage.showView(FocusView.ID, null, IWorkbenchPage.VIEW_CREATE);
-            } catch (PartInitException e) {
-                LOGGER.warn("Failed to create {}", FocusView.ID, e);
-            }
-        });
+        if (Arrays.stream(activePage.getViewReferences()).map(IViewReference::getId).anyMatch(FocusView.ID::equals)) {
+            LOGGER.info("Found focus view. Therefore, listening on focus requests.");
+            Display.getDefault().asyncExec(() -> FocusViewManager.getInstance().start());
+        } else {
+            LOGGER.info("Focus view not found. Therefore, not lesting on focus requests.");
+        }
     }
 
 }
