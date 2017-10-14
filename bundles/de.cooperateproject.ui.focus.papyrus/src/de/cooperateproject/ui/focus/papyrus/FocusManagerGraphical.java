@@ -57,6 +57,7 @@ class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramEditor> 
             OpenElementService openService = getEditorPart().getServicesRegistry().getService(OpenElementService.class);
             openService.openSemanticElement(element);
             getEditorPart().setFocus();
+            getEditorPart().getSite().getPage().activate(getEditorPart());
         } catch (PartInitException | ServiceException e) {
             LOGGER.error("Something went wrong while programmatically setting a focus in the Papyrus editor.", e);
         }
