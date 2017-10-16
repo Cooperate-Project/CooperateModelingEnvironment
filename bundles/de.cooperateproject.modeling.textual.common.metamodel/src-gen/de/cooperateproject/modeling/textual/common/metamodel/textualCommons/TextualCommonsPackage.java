@@ -702,6 +702,35 @@ public interface TextualCommonsPackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getNameOptional()
+     * @generated
+     */
+    int NAME_OPTIONAL = 11;
+
+    /**
+     * The number of structural features of the '<em>Name Optional</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NAME_OPTIONAL_FEATURE_COUNT = 0;
+
+    /**
+     * The number of operations of the '<em>Name Optional</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NAME_OPTIONAL_OPERATION_COUNT = 0;
+
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -986,6 +1015,16 @@ public interface TextualCommonsPackage extends EPackage {
     EAttribute getVisibilityHavingElement_Visibility();
 
     /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Name Optional</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+     * @generated
+     */
+    EClass getNameOptional();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1245,6 +1284,16 @@ public interface TextualCommonsPackage extends EPackage {
          * @generated
          */
         EAttribute VISIBILITY_HAVING_ELEMENT__VISIBILITY = eINSTANCE.getVisibilityHavingElement_Visibility();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getNameOptional()
+         * @generated
+         */
+        EClass NAME_OPTIONAL = eINSTANCE.getNameOptional();
 
     }
 

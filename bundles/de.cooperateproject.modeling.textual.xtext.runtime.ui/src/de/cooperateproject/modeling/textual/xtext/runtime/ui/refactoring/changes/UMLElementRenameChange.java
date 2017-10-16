@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
@@ -47,7 +48,11 @@ public class UMLElementRenameChange extends Change {
         pm.beginTask(getName(), 0);
         try {
             String oldName = umlElement.getName();
-            umlElement.setName(newName);
+            if (StringUtils.isBlank(newName)) {
+                umlElement.unsetName();
+            } else {
+                umlElement.setName(newName);
+            }
             return new UMLElementRenameChange(umlElement, oldName);
         } finally {
             pm.done();

@@ -116,4 +116,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//VisibilityKind"
         transient="true" unsettable="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NameOptional" abstract="true" interface="true"/>
 </ecore:EPackage>

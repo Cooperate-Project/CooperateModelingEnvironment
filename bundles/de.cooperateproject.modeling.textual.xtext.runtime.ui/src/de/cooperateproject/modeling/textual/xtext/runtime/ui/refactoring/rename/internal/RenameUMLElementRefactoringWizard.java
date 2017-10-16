@@ -7,6 +7,7 @@ import org.eclipse.ltk.ui.refactoring.RefactoringWizard;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.NamedElement;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
@@ -17,6 +18,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 public class RenameUMLElementRefactoringWizard extends RefactoringWizard {
 
     private final WritableValue<String> newName = new WritableValue<>(null, String.class);
+    private final boolean nameMightBeEmpty;
 
     /**
      * Instantiates the wizard.
@@ -28,6 +30,7 @@ public class RenameUMLElementRefactoringWizard extends RefactoringWizard {
      */
     public RenameUMLElementRefactoringWizard(UMLReferencingElement<NamedElement> namedElement, IEditorPart editor) {
         super(new RenameUMLElementRefactoring(), RefactoringWizard.DIALOG_BASED_USER_INTERFACE);
+        nameMightBeEmpty = determineIfNameMightBeEmpty(namedElement);
         getTypedRefactoring().setElementToRename(namedElement);
         newName.addChangeListener(e -> getTypedRefactoring().setNewName(newName.getValue()));
         newName.setValue(
@@ -35,9 +38,13 @@ public class RenameUMLElementRefactoringWizard extends RefactoringWizard {
         getTypedRefactoring().setEditor(editor);
     }
 
+    private static boolean determineIfNameMightBeEmpty(UMLReferencingElement<NamedElement> namedElement) {
+        return namedElement instanceof NameOptional;
+    }
+
     @Override
     protected void addUserInputPages() {
-        addPage(new RenameUMLElementRefactoringWizardUserPage(newName));
+        addPage(new RenameUMLElementRefactoringWizardUserPage(newName, nameMightBeEmpty));
     }
 
     protected RenameUMLElementRefactoring getTypedRefactoring() {

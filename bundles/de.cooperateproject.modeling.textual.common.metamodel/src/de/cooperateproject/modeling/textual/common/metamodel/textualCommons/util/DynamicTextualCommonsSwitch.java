@@ -16,6 +16,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Card
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
@@ -42,19 +43,21 @@ public class DynamicTextualCommonsSwitch<T> extends TextualCommonsSwitch<T> {
         switchCases.put(TextualCommonsPackage.PACKAGEABLE_ELEMENT,
                 (s, o) -> s.casePackageableElement((PackageableElement) o));
         switchCases.put(TextualCommonsPackage.PACKAGE_IMPORT, (s, o) -> s.casePackageImport((PackageImport) o));
+        switchCases.put(TextualCommonsPackage.NAME_OPTIONAL, (s, o) -> s.caseNameOptional((NameOptional) o));
 
         standardHierarchy = new HashMap<>();
         standardHierarchy.put(TextualCommonsPackage.ELEMENT, Arrays.asList(TextualCommonsPackage.ELEMENT));
-        standardHierarchy.put(TextualCommonsPackage.NAMED_ELEMENT,
-                Arrays.asList(TextualCommonsPackage.NAMED_ELEMENT, TextualCommonsPackage.ELEMENT));
+        standardHierarchy.put(TextualCommonsPackage.NAMED_ELEMENT, Arrays.asList(TextualCommonsPackage.NAMED_ELEMENT,
+                TextualCommonsPackage.ELEMENT, TextualCommonsPackage.NAME_OPTIONAL));
         standardHierarchy.put(TextualCommonsPackage.ALIASED_ELEMENT,
                 Arrays.asList(TextualCommonsPackage.ALIASED_ELEMENT, TextualCommonsPackage.NAMED_ELEMENT,
-                        TextualCommonsPackage.ELEMENT));
+                        TextualCommonsPackage.ELEMENT, TextualCommonsPackage.NAME_OPTIONAL));
         standardHierarchy.put(TextualCommonsPackage.UML_REFERENCING_ELEMENT,
                 Arrays.asList(TextualCommonsPackage.UML_REFERENCING_ELEMENT, TextualCommonsPackage.ELEMENT));
         standardHierarchy.put(TextualCommonsPackage.PACKAGE_BASE,
                 Arrays.asList(TextualCommonsPackage.PACKAGEABLE_ELEMENT, TextualCommonsPackage.UML_REFERENCING_ELEMENT,
-                        TextualCommonsPackage.NAMED_ELEMENT, TextualCommonsPackage.ELEMENT));
+                        TextualCommonsPackage.NAMED_ELEMENT, TextualCommonsPackage.ELEMENT,
+                        TextualCommonsPackage.NAME_OPTIONAL));
         standardHierarchy.put(TextualCommonsPackage.COMMENTABLE, Arrays.asList(TextualCommonsPackage.COMMENTABLE));
         standardHierarchy.put(TextualCommonsPackage.COMMENT, Arrays.asList(TextualCommonsPackage.COMMENT,
                 TextualCommonsPackage.UML_REFERENCING_ELEMENT, TextualCommonsPackage.ELEMENT));
@@ -73,8 +76,8 @@ public class DynamicTextualCommonsSwitch<T> extends TextualCommonsSwitch<T> {
     }
 
     /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-     * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
+     * yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
@@ -89,9 +92,9 @@ public class DynamicTextualCommonsSwitch<T> extends TextualCommonsSwitch<T> {
      * result; it yields that result.
      * 
      * @param eClass
-     *            the class or superclass of <code>eObject</code> to consider. The class's
-     *            containing <code>EPackage</code> determines whether the receiving switch object
-     *            can handle the request.
+     *            the class or superclass of <code>eObject</code> to consider. The class's containing
+     *            <code>EPackage</code> determines whether the receiving switch object can handle the
+     *            request.
      * @param eObject
      *            the model object to pass to the appropriate <code>caseXXX</code>.
      * @return the first non-null result returned by a <code>caseXXX</code> call.

@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class RenameUMLElementRefactoringWizardUserPage extends UserInputWizardPage {
 
+    private final boolean nameMightBeEmpty;
     private final IObservableValue<String> validationErrorMessage;
     private final IObservableValue<String> newName;
 
@@ -20,9 +21,11 @@ public class RenameUMLElementRefactoringWizardUserPage extends UserInputWizardPa
      * 
      * @param newName
      *            The object that will receive the new name specified by the user.
+     * @param nameMightBeEmpty
      */
-    public RenameUMLElementRefactoringWizardUserPage(IObservableValue<String> newName) {
+    public RenameUMLElementRefactoringWizardUserPage(IObservableValue<String> newName, boolean nameMightBeEmpty) {
         super("Refactoring input data");
+        this.nameMightBeEmpty = nameMightBeEmpty;
         this.newName = newName;
         this.validationErrorMessage = new WritableValue<>();
         validationErrorMessage.addValueChangeListener(event -> handleValidationErrorMessage(event.diff.getNewValue()));
@@ -31,7 +34,7 @@ public class RenameUMLElementRefactoringWizardUserPage extends UserInputWizardPa
     @Override
     public void createControl(Composite parent) {
         setControl(new RenameUMLElementRefactoringWizardUserPageComposite(parent, SWT.FILL, newName,
-                validationErrorMessage));
+                validationErrorMessage, nameMightBeEmpty));
     }
 
     @Override

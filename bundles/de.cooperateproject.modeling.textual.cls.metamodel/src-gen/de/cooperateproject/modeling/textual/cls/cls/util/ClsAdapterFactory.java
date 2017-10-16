@@ -22,6 +22,7 @@ import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndRef
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -198,6 +199,10 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
                 return createVisibilityHavingElementAdapter();
+            }
+            @Override
+            public Adapter caseNameOptional(NameOptional object) {
+                return createNameOptionalAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -580,6 +585,20 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createVisibilityHavingElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+     * @generated
+     */
+    public Adapter createNameOptionalAdapter() {
         return null;
     }
 

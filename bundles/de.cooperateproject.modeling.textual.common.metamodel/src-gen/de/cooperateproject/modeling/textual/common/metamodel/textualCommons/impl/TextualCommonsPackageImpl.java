@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Card
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
@@ -113,6 +114,13 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * @generated
      */
     private EClass visibilityHavingElementEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass nameOptionalEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -433,6 +441,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getNameOptional() {
+        return nameOptionalEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public TextualCommonsFactory getTextualCommonsFactory() {
         return (TextualCommonsFactory)getEFactoryInstance();
     }
@@ -493,6 +510,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         visibilityHavingElementEClass = createEClass(VISIBILITY_HAVING_ELEMENT);
         createEAttribute(visibilityHavingElementEClass, VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+
+        nameOptionalEClass = createEClass(NAME_OPTIONAL);
     }
 
     /**
@@ -620,6 +639,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         initEClass(visibilityHavingElementEClass, VisibilityHavingElement.class, "VisibilityHavingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getVisibilityHavingElement_Visibility(), theUMLPackage.getVisibilityKind(), "visibility", null, 0, 1, VisibilityHavingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(nameOptionalEClass, NameOptional.class, "NameOptional", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);

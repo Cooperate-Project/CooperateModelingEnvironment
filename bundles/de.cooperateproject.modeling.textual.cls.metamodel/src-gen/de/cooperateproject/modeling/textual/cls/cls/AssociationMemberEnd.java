@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.cls.cls;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -28,7 +29,7 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface AssociationMemberEnd extends UMLReferencingElement<Property>, NamedElement {
+public interface AssociationMemberEnd extends UMLReferencingElement<Property>, NamedElement, NameOptional {
     /**
      * Returns the value of the '<em><b>Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->

@@ -112,6 +112,10 @@ public class TextualCommonsAdapterFactory extends AdapterFactoryImpl {
                 return createVisibilityHavingElementAdapter();
             }
             @Override
+            public Adapter caseNameOptional(NameOptional object) {
+                return createNameOptionalAdapter();
+            }
+            @Override
             public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
@@ -282,6 +286,20 @@ public class TextualCommonsAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createVisibilityHavingElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+     * @generated
+     */
+    public Adapter createNameOptionalAdapter() {
         return null;
     }
 

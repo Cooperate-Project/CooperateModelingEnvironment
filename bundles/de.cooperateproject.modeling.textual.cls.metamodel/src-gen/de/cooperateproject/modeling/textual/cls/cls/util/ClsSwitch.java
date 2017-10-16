@@ -23,6 +23,7 @@ import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndRef
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -254,6 +255,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseConnector(association);
                 if (result == null) result = caseCommentable(association);
                 if (result == null) result = caseNamedElement(association);
+                if (result == null) result = caseNameOptional(association);
                 if (result == null) result = caseUMLReferencingElement(association);
                 if (result == null) result = casePackageableElement(association);
                 if (result == null) result = caseElement(association);
@@ -265,6 +267,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 T1 result = caseAssociationMemberEnd(associationMemberEnd);
                 if (result == null) result = caseUMLReferencingElement(associationMemberEnd);
                 if (result == null) result = caseNamedElement(associationMemberEnd);
+                if (result == null) result = caseNameOptional(associationMemberEnd);
                 if (result == null) result = caseElement(associationMemberEnd);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -276,6 +279,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseConnector(xtextAssociation);
                 if (result == null) result = caseCommentable(xtextAssociation);
                 if (result == null) result = caseNamedElement(xtextAssociation);
+                if (result == null) result = caseNameOptional(xtextAssociation);
                 if (result == null) result = caseUMLReferencingElement(xtextAssociation);
                 if (result == null) result = casePackageableElement(xtextAssociation);
                 if (result == null) result = caseElement(xtextAssociation);
@@ -679,6 +683,21 @@ public class ClsSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseVisibilityHavingElement(VisibilityHavingElement object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Name Optional</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Name Optional</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseNameOptional(NameOptional object) {
         return null;
     }
 

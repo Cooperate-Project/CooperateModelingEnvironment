@@ -21,6 +21,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.ui.Activator;
  * Composite that contains the controls to ask for a new name.
  */
 public class RenameUMLElementRefactoringWizardUserPageComposite extends Composite {
+    private final boolean elementNameMightBeEmpty;
     private final IObservableValue<String> newName;
     private final IObservableValue<String> validationErrorMessage;
     private Text textNewName;
@@ -37,8 +38,10 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
      * @param validationErrorMessage
      */
     public RenameUMLElementRefactoringWizardUserPageComposite(Composite parent, int style,
-            IObservableValue<String> newNameDTO, IObservableValue<String> validationErrorMessage) {
+            IObservableValue<String> newNameDTO, IObservableValue<String> validationErrorMessage,
+            boolean elementNameMightBeEmpty) {
         super(parent, style);
+        this.elementNameMightBeEmpty = elementNameMightBeEmpty;
         this.validationErrorMessage = validationErrorMessage;
         this.newName = newNameDTO;
         setLayout(new GridLayout(2, false));
@@ -74,7 +77,7 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
         if (!(newName instanceof String)) {
             errorMessage = "The new name must be a string.";
         }
-        if (Strings.isNullOrEmpty((String) newName)) {
+        if (!elementNameMightBeEmpty && Strings.isNullOrEmpty((String) newName)) {
             errorMessage = "The new name must not be empty.";
         }
         validationErrorMessage.setValue(errorMessage);
