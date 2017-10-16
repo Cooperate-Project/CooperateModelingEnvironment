@@ -22,6 +22,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.ui.Activator;
  */
 public class RenameUMLElementRefactoringWizardUserPageComposite extends Composite {
     private final IObservableValue<String> newName;
+    private final IObservableValue<String> validationErrorMessage;
     private Text textNewName;
 
     /**
@@ -33,10 +34,12 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
      *            The SWT style.
      * @param newNameDTO
      *            The object that receives the chosen new name.
+     * @param validationErrorMessage
      */
     public RenameUMLElementRefactoringWizardUserPageComposite(Composite parent, int style,
-            IObservableValue<String> newNameDTO) {
+            IObservableValue<String> newNameDTO, IObservableValue<String> validationErrorMessage) {
         super(parent, style);
+        this.validationErrorMessage = validationErrorMessage;
         this.newName = newNameDTO;
         setLayout(new GridLayout(2, false));
 
@@ -61,21 +64,24 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
         IObservableValue<?> observedNewName = WidgetProperties.text(SWT.Modify).observe(textNewName);
 
         UpdateValueStrategy strategyAtomicModelNameTargetToModel = new UpdateValueStrategy();
-        strategyAtomicModelNameTargetToModel
-                .setAfterGetValidator(RenameUMLElementRefactoringWizardUserPageComposite::newNameIsValid);
+        strategyAtomicModelNameTargetToModel.setAfterGetValidator(this::newNameIsValid);
         bindingContext.bindValue(observedNewName, newName, strategyAtomicModelNameTargetToModel,
                 new UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE));
     }
 
-    private static IStatus newNameIsValid(Object newName) {
+    private IStatus newNameIsValid(Object newName) {
+        String errorMessage = null;
         if (!(newName instanceof String)) {
-            return new Status(IStatus.ERROR, Activator.getInstance().getBundle().getSymbolicName(),
-                    "The new name must be a string.");
+            errorMessage = "The new name must be a string.";
         }
         if (Strings.isNullOrEmpty((String) newName)) {
-            return new Status(IStatus.ERROR, Activator.getInstance().getBundle().getSymbolicName(),
-                    "The new name must not be empty.");
+            errorMessage = "The new name must not be empty.";
         }
-        return Status.OK_STATUS;
+        validationErrorMessage.setValue(errorMessage);
+        if (errorMessage == null) {
+            return Status.OK_STATUS;
+        } else {
+            return new Status(IStatus.ERROR, Activator.getInstance().getBundle().getSymbolicName(), errorMessage);
+        }
     }
 }
