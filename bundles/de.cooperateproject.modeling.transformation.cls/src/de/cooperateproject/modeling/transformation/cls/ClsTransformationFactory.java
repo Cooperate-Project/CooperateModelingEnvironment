@@ -6,12 +6,12 @@ import java.util.Collections;
 
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
 import de.cooperateproject.modeling.transformation.cls.postprocessors.ClsPostProcessingSwitch;
-import de.cooperateproject.modeling.transformation.common.impl.InjectedURIResolvingTransformationFactory;
 import de.cooperateproject.modeling.transformation.common.impl.PostProcessor;
 import de.cooperateproject.modeling.transformation.common.impl.postprocessors.ContentIteratingPostProcessor;
 import de.cooperateproject.modeling.transformation.common.impl.postprocessors.switches.NotationPostProcessingSwitch;
+import de.cooperateproject.modeling.transformation.registry.BidirectionalTransformationFactoryWithInjectedContext;
 
-public class ClsTransformationFactory extends InjectedURIResolvingTransformationFactory {
+public class ClsTransformationFactory extends BidirectionalTransformationFactoryWithInjectedContext {
 	private Collection<PostProcessor> t2gProcessors;
 	private Collection<PostProcessor> g2tProcessors;
 

@@ -3,5 +3,5 @@
    <implementation class="de.cooperateproject.modeling.transformation.registry.TransformationFactoryRegistry"/>
    <service>
       <provide interface="de.cooperateproject.modeling.transformation.common.ITransformationFactoryRegistry"/>
-   </service>/>e>
+   </service>
 </scr:component>

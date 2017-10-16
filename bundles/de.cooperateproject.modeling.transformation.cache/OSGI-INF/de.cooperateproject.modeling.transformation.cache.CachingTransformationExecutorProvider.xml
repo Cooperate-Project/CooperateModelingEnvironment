@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="de.cooperateproject.modeling.transformation.cache.CachingTransformationExecutorProvider">
+   <service>
+      <provide interface="de.cooperateproject.modeling.transformation.common.IQVTOTransformationExecutorProvider"/>
+   </service>
+   <implementation class="de.cooperateproject.modeling.transformation.cache.CachingTransformationExecutorProvider"/>
+</scr:component>

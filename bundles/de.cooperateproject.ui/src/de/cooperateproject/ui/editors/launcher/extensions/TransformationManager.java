@@ -38,7 +38,6 @@ import com.google.common.collect.Lists;
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
-import de.cooperateproject.modeling.transformation.common.ITransformationExecutor;
 import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
@@ -71,7 +70,6 @@ public class TransformationManager {
     private final CDOCheckout cdoCheckout;
     private long lastMergeTimeBranch;
     private long lastMergeTimeMain;
-    private ITransformationExecutor transformationExecutor;
 
     /**
      * Instantiates the transformation manager.

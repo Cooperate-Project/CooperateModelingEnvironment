@@ -1,18 +1,14 @@
-package de.cooperateproject.modeling.transformation.common;
+package de.cooperateproject.modeling.transformation.registry;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
-import org.osgi.util.tracker.ServiceTracker;
+
+import de.cooperateproject.modeling.transformation.common.impl.TransformationContextBuilder;
 
 public class Activator extends Plugin {
-
-    // The plug-in ID
-    public static final String PLUGIN_ID = "de.cooperateproject.modeling.transformation.common";
-
     // The shared instance
     private static Activator plugin;
-
-    private ServiceTracker<IQVTOResourceProvider, IQVTOResourceProvider> qvtoResourceProvider;
+    private BundleContext context;
 
     /**
      * The constructor
@@ -24,24 +20,23 @@ public class Activator extends Plugin {
     /*
      * (non-Javadoc)
      * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
-     * BundleContext)
+     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework. BundleContext)
      */
+    @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
         setPlugin(this);
-        qvtoResourceProvider = new ServiceTracker<>(context, IQVTOResourceProvider.class, null);
-        qvtoResourceProvider.open();
+        this.context = context;
     }
 
     /*
      * (non-Javadoc)
      * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
-     * BundleContext)
+     * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework. BundleContext)
      */
+    @Override
     public void stop(BundleContext context) throws Exception {
-        qvtoResourceProvider.close();
+        this.context = null;
         setPlugin(null);
         super.stop(context);
     }
@@ -59,8 +54,8 @@ public class Activator extends Plugin {
         return plugin;
     }
 
-    public IQVTOResourceProvider getQVTOResourceProvider() {
-        return qvtoResourceProvider.getService();
+    public TransformationContextBuilder getContextBuilder() {
+        return (new OSGiServiceAwareTransformationContextBuilder()).processBundleContext(this.context);
     }
 
 }

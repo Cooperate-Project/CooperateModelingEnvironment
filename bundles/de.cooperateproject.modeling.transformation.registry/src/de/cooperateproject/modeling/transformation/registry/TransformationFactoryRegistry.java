@@ -17,11 +17,10 @@ import com.google.common.base.Strings;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.transformation.common.ITransformationContext;
 import de.cooperateproject.modeling.transformation.common.ITransformationFactory;
 import de.cooperateproject.modeling.transformation.common.ITransformationFactoryRegistry;
 import de.cooperateproject.modeling.transformation.common.ITransformationUnitURIResolver;
-import de.cooperateproject.modeling.transformation.common.ITransformationUnitURIResolverInjectionExpecting;
-import de.cooperateproject.modeling.transformation.common.impl.InjectedURIResolvingTransformationFactory;
 import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
 public class TransformationFactoryRegistry implements ITransformationFactoryRegistry {
@@ -77,11 +76,11 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
                 break;
             }
         }
-        final ITransformationUnitURIResolver res = resolver;
+        final ITransformationContext ctx = Activator.getDefault().getContextBuilder()
+                .setTransformationUnitURIResolver(resolver).build();
         tfactories.stream().filter(Objects::nonNull).peek(this.factories::add)
-                .filter(ITransformationUnitURIResolverInjectionExpecting.class::isInstance)
-                .map(ITransformationUnitURIResolverInjectionExpecting.class::cast)
-                .forEach(f -> f.injectTransformationUnitURIResolver(res));
+                .filter(InjectTransformationContext.class::isInstance).map(InjectTransformationContext.class::cast)
+                .forEach(f -> f.setTransformationContext(ctx));
     }
 
     protected ITransformationUnitURIResolver createDefaultResolver(IConfigurationElement e) {
@@ -111,7 +110,8 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
 
         if (diagType.isPresent()
                 && !(Strings.isNullOrEmpty(graphicalExtension) || Strings.isNullOrEmpty(textualExtension))) {
-            return new InjectedURIResolvingTransformationFactory(diagType.get(), graphicalExtension, textualExtension);
+            return new BidirectionalTransformationFactoryWithInjectedContext(diagType.get(), graphicalExtension,
+                    textualExtension);
         }
         return null;
     }

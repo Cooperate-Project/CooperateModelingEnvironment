@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,19 +30,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import de.cooperateproject.modeling.transformation.common.Activator;
+import de.cooperateproject.modeling.transformation.common.ITransformationContext;
 
 public abstract class DomainIndependentTransformationBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DomainIndependentTransformationBase.class);
-    private final Map<URI, QVTOResource> specialMappings = Maps.newHashMap();
-    private final Map<URI, TransformationExecutor> transformationExecutors = Maps.newHashMap();
+
     private final ResourceSet rs;
 
-    protected DomainIndependentTransformationBase(ResourceSet rs) {
+    protected ITransformationContext transformationContext;
+
+    protected DomainIndependentTransformationBase(ResourceSet rs, ITransformationContext transformationContext) {
         this.rs = rs;
+        this.transformationContext = transformationContext;
     }
 
     protected IStatus transform(URI transformationURI, Collection<URI> parameterURIs) throws IOException {
@@ -80,7 +81,7 @@ public abstract class DomainIndependentTransformationBase {
 
     @SuppressWarnings("restriction")
     private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
-            Optional<Trace> transformationTrace) {
+            Optional<Trace> transformationTrace) throws IOException {
 
         ExecutionContextImpl context = new ExecutionContextImpl();
         if (transformationTrace.isPresent()) {
@@ -89,7 +90,8 @@ public abstract class DomainIndependentTransformationBase {
         context.setConfigProperty("keepModeling", true);
         context.setLog(new Slf4JLogger(LOGGER));
 
-        TransformationExecutor executor = getOrCreateTransformationExecutor(transformationURI);
+        TransformationExecutor executor = this.transformationContext.getQVTOTransformationExecutorProvider()
+                .getTransformationExecutor(transformationURI);
         ExecutionDiagnostic result = executor.execute(context, transformationParameters.toArray(new ModelExtent[0]));
 
         if (result.getSeverity() != Diagnostic.OK) {
@@ -98,13 +100,6 @@ public abstract class DomainIndependentTransformationBase {
         }
 
         return BasicDiagnostic.toIStatus(result);
-    }
-
-    private TransformationExecutor getOrCreateTransformationExecutor(URI transformationURI) {
-        if (!transformationExecutors.containsKey(transformationURI)) {
-            transformationExecutors.put(transformationURI, new TransformationExecutor(transformationURI));
-        }
-        return transformationExecutors.get(transformationURI);
     }
 
     private void saveTransformationResources(URI transformationURI,
@@ -190,10 +185,7 @@ public abstract class DomainIndependentTransformationBase {
     }
 
     private QVTOResource getQVTOResource(URI uri) throws IOException {
-        if (!specialMappings.containsKey(uri)) {
-            specialMappings.put(uri, new QVTOResource(uri, rs.getPackageRegistry()));
-        }
-        return specialMappings.get(uri);
+        return this.transformationContext.getQVTOResourceProvider().getQVTOResource(uri);
     }
 
     private ModelExtent createModelExtent(URI uri) throws IOException {

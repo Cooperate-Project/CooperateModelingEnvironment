@@ -18,7 +18,7 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
-import de.cooperateproject.modeling.transformation.common.ITransformationUnitURIResolver;
+import de.cooperateproject.modeling.transformation.common.ITransformationContext;
 import de.cooperateproject.modeling.transformation.common.TransformationCharacteristic;
 import de.cooperateproject.modeling.transformation.common.TransformationType;
 import de.cooperateproject.modeling.transformation.common.registry.Transformation;
@@ -37,28 +37,23 @@ public abstract class TransformationBase extends DomainIndependentTransformation
     private final TraceTransformation traceTransformation;
     private final SortedSet<PostProcessor> postProcessors = new TreeSet<>();
 
-    private ITransformationUnitURIResolver transformationURIResolver;
-
-    protected TransformationBase(TransformationCharacteristic characteristics,
-            ITransformationUnitURIResolver uriResolver, ResourceSet rs, URI sourceURI,
-            SortedSet<URI> supplementarySourceURIs, URI targetURI, SortedSet<URI> supplementaryTargetURIs,
-            Collection<PostProcessor> postProcessors) {
-        super(rs);
+    protected TransformationBase(TransformationCharacteristic characteristics, ResourceSet rs,
+            ITransformationContext transformationContext, URI sourceURI, SortedSet<URI> supplementarySourceURIs,
+            URI targetURI, SortedSet<URI> supplementaryTargetURIs, Collection<PostProcessor> postProcessors) {
+        super(rs, transformationContext);
         this.characteristics = characteristics;
-        this.transformationURIResolver = uriResolver;
         this.sourceURI = sourceURI;
         this.supplementarySourceURIs = Collections.unmodifiableSortedSet(new TreeSet<>(supplementarySourceURIs));
         this.targetURI = targetURI;
         this.supplementaryTargetURIs = Collections.unmodifiableSortedSet(new TreeSet<>(supplementaryTargetURIs));
-        this.traceTransformation = createTraceTransformation(characteristics, uriResolver, sourceURI, targetURI,
+        this.traceTransformation = createTraceTransformation(characteristics, sourceURI, targetURI,
                 supplementaryTargetURIs, rs);
         this.postProcessors.addAll(postProcessors);
     }
 
     private TraceTransformation createTraceTransformation(TransformationCharacteristic sourceCharacteristics,
-            ITransformationUnitURIResolver uriResolver, URI sourceURI, URI targetURI,
-            Collection<URI> supplementaryTargetURIs, ResourceSet rs) {
-        return new TraceTransformationBase(sourceCharacteristics, uriResolver, sourceURI, targetURI,
+            URI sourceURI, URI targetURI, Collection<URI> supplementaryTargetURIs, ResourceSet rs) {
+        return new TraceTransformationBase(sourceCharacteristics, transformationContext, sourceURI, targetURI,
                 supplementaryTargetURIs, rs);
     }
 
@@ -68,8 +63,8 @@ public abstract class TransformationBase extends DomainIndependentTransformation
     }
 
     public IStatus transform(URI traceBase) throws IOException {
-        URI transformationURI = transformationURIResolver.getTransformationURI(getCharacteristics(),
-                TransformationType.REGULAR);
+        URI transformationURI = transformationContext.getTransformationUnitURIResolver()
+                .getTransformationURI(getCharacteristics(), TransformationType.REGULAR);
         URI umlURI = createUMLURI(sourceURI, targetURI);
         List<URI> transformationParameters = new ArrayList<>(
                 supplementarySourceURIs.size() + supplementaryTargetURIs.size() + STATIC_MODELS_COUNT);
@@ -98,9 +93,8 @@ public abstract class TransformationBase extends DomainIndependentTransformation
     protected abstract URI getGraphicalModelURI(URI from, URI to);
 
     private URI createTraceURI(URI traceBase, URI from, URI to) {
-        return TransformationNameUtilsOld.createTraceURI(
-                transformationURIResolver.getTransformationURI(getCharacteristics(), TransformationType.TRACE), from,
-                to, traceBase);
+        return TransformationNameUtilsOld.createTraceURI(transformationContext.getTransformationUnitURIResolver()
+                .getTransformationURI(getCharacteristics(), TransformationType.TRACE), from, to, traceBase);
     }
 
     @Override
