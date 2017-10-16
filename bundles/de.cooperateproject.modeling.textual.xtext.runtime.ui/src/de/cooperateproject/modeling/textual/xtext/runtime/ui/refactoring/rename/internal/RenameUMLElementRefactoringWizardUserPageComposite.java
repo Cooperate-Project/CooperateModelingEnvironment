@@ -34,7 +34,8 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
      * @param newNameDTO
      *            The object that receives the chosen new name.
      */
-    public RenameUMLElementRefactoringWizardUserPageComposite(Composite parent, int style, IObservableValue<String> newNameDTO) {
+    public RenameUMLElementRefactoringWizardUserPageComposite(Composite parent, int style,
+            IObservableValue<String> newNameDTO) {
         super(parent, style);
         this.newName = newNameDTO;
         setLayout(new GridLayout(2, false));
@@ -46,6 +47,7 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
         textNewName = new Text(this, SWT.BORDER);
         textNewName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         initCustomDataBindings();
+        textNewName.setFocus();
     }
 
     @Override
