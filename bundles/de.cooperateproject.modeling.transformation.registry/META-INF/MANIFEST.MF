@@ -8,10 +8,8 @@ Require-Bundle: de.cooperateproject.modeling.transformation.common,
  com.google.guava;bundle-version="21.0.0",
  de.cooperateproject.util,
  de.cooperateproject.modeling.graphical.common,
- de.cooperateproject.modeling.common,
- com.google.inject,
- org.ops4j.peaberry;bundle-version="1.3.0"
+ de.cooperateproject.modeling.common
 Service-Component: OSGI-INF/component.xml
-Bundle-ActivationPolicy: lazy
+Bundle-ActivationPolicy: lazy 
 Export-Package: de.cooperateproject.modeling.transformation.registry
 Bundle-Activator: de.cooperateproject.modeling.transformation.registry.Activator
