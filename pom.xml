@@ -83,7 +83,7 @@
 		</repository>
 		<repository>
 			<id>cooperate-cdo</id>
-			<url>https://dl.bintray.com/cooperate-project/CDO/updatesite/4.6.0.coop2/</url>
+			<url>https://dl.bintray.com/cooperate-project/CDO/updatesite/4.6.0.coop3/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
