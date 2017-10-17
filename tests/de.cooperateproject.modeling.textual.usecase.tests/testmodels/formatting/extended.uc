@@ -2,8 +2,8 @@
 
 rootElement RootElement
 
-# abstract act "AbstractHumanUser" as hu role[human] note "abstr human comment"
-# abstract act "AbstractMachineUser" as mu role[machine]
+# abstract act hu as "AbstractHumanUser" role[human] note "abstr human comment"
+# abstract act mu as "AbstractMachineUser" role[machine]
 + act HumanUser1 note "hum user comment"
 + act MachineUser1
 

@@ -125,11 +125,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_3_0_0 = (RuleCall)cNameAssignment_3_0.eContents().get(0);
 		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Assignment cNameAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_3_1_0_0 = (RuleCall)cNameAssignment_3_1_0.eContents().get(0);
+		private final Assignment cAliasAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_3_1_0_0 = (RuleCall)cAliasAssignment_3_1_0.eContents().get(0);
 		private final Keyword cAsKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
-		private final Assignment cAliasAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
-		private final RuleCall cAliasIDTerminalRuleCall_3_1_2_0 = (RuleCall)cAliasAssignment_3_1_2.eContents().get(0);
+		private final Assignment cNameAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_3_1_2_0 = (RuleCall)cNameAssignment_3_1_2.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cRoleKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
@@ -140,11 +140,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommentsCommentParserRuleCall_5_0 = (RuleCall)cCommentsAssignment_5.eContents().get(0);
 		
 		//Actor:
-		//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID) ('role' '[' type=ActorType
+		//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | alias=ID 'as' name=STRING) ('role' '[' type=ActorType
 		//	']')? comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID) ('role' '[' type=ActorType
+		//visibility=Visibility? abstract?='abstract'? 'act' (name=ID | alias=ID 'as' name=STRING) ('role' '[' type=ActorType
 		//']')? comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
@@ -163,7 +163,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//'act'
 		public Keyword getActKeyword_2() { return cActKeyword_2; }
 		
-		//name=ID | name=STRING 'as' alias=ID
+		//name=ID | alias=ID 'as' name=STRING
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//name=ID
@@ -172,23 +172,23 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_3_0_0() { return cNameIDTerminalRuleCall_3_0_0; }
 		
-		//name=STRING 'as' alias=ID
+		//alias=ID 'as' name=STRING
 		public Group getGroup_3_1() { return cGroup_3_1; }
 		
-		//name=STRING
-		public Assignment getNameAssignment_3_1_0() { return cNameAssignment_3_1_0; }
+		//alias=ID
+		public Assignment getAliasAssignment_3_1_0() { return cAliasAssignment_3_1_0; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_3_1_0_0() { return cNameSTRINGTerminalRuleCall_3_1_0_0; }
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_3_1_0_0() { return cAliasIDTerminalRuleCall_3_1_0_0; }
 		
 		//'as'
 		public Keyword getAsKeyword_3_1_1() { return cAsKeyword_3_1_1; }
 		
-		//alias=ID
-		public Assignment getAliasAssignment_3_1_2() { return cAliasAssignment_3_1_2; }
+		//name=STRING
+		public Assignment getNameAssignment_3_1_2() { return cNameAssignment_3_1_2; }
 		
-		//ID
-		public RuleCall getAliasIDTerminalRuleCall_3_1_2_0() { return cAliasIDTerminalRuleCall_3_1_2_0; }
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_3_1_2_0() { return cNameSTRINGTerminalRuleCall_3_1_2_0; }
 		
 		//('role' '[' type=ActorType ']')?
 		public Group getGroup_4() { return cGroup_4; }
@@ -289,11 +289,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_3_0_0 = (RuleCall)cNameAssignment_3_0.eContents().get(0);
 		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Assignment cNameAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_3_1_0_0 = (RuleCall)cNameAssignment_3_1_0.eContents().get(0);
+		private final Assignment cAliasAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_3_1_0_0 = (RuleCall)cAliasAssignment_3_1_0.eContents().get(0);
 		private final Keyword cAsKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
-		private final Assignment cAliasAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
-		private final RuleCall cAliasIDTerminalRuleCall_3_1_2_0 = (RuleCall)cAliasAssignment_3_1_2.eContents().get(0);
+		private final Assignment cNameAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_3_1_2_0 = (RuleCall)cNameAssignment_3_1_2.eContents().get(0);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
 		private final Assignment cCommentsAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
 		private final RuleCall cCommentsCommentParserRuleCall_4_0_0 = (RuleCall)cCommentsAssignment_4_0.eContents().get(0);
@@ -306,11 +306,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4_1_3 = (Keyword)cGroup_4_1.eContents().get(3);
 		
 		//UseCase:
-		//	visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | name=STRING 'as' alias=ID) (comments+=Comment? | '{'
+		//	visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{'
 		//	comments+=Comment? extensionPoints+=ExtensionPoint* '}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | name=STRING 'as' alias=ID) (comments+=Comment? | '{'
+		//visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{'
 		//comments+=Comment? extensionPoints+=ExtensionPoint* '}')
 		public Group getGroup() { return cGroup; }
 		
@@ -329,7 +329,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//'uc'
 		public Keyword getUcKeyword_2() { return cUcKeyword_2; }
 		
-		//name=ID | name=STRING 'as' alias=ID
+		//name=ID | alias=ID 'as' name=STRING
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//name=ID
@@ -338,23 +338,23 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_3_0_0() { return cNameIDTerminalRuleCall_3_0_0; }
 		
-		//name=STRING 'as' alias=ID
+		//alias=ID 'as' name=STRING
 		public Group getGroup_3_1() { return cGroup_3_1; }
 		
-		//name=STRING
-		public Assignment getNameAssignment_3_1_0() { return cNameAssignment_3_1_0; }
+		//alias=ID
+		public Assignment getAliasAssignment_3_1_0() { return cAliasAssignment_3_1_0; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_3_1_0_0() { return cNameSTRINGTerminalRuleCall_3_1_0_0; }
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_3_1_0_0() { return cAliasIDTerminalRuleCall_3_1_0_0; }
 		
 		//'as'
 		public Keyword getAsKeyword_3_1_1() { return cAsKeyword_3_1_1; }
 		
-		//alias=ID
-		public Assignment getAliasAssignment_3_1_2() { return cAliasAssignment_3_1_2; }
+		//name=STRING
+		public Assignment getNameAssignment_3_1_2() { return cNameAssignment_3_1_2; }
 		
-		//ID
-		public RuleCall getAliasIDTerminalRuleCall_3_1_2_0() { return cAliasIDTerminalRuleCall_3_1_2_0; }
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_3_1_2_0() { return cNameSTRINGTerminalRuleCall_3_1_2_0; }
 		
 		//comments+=Comment? | '{' comments+=Comment? extensionPoints+=ExtensionPoint* '}'
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
@@ -394,23 +394,23 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Assignment cNameAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_1_1_0_0 = (RuleCall)cNameAssignment_1_1_0.eContents().get(0);
+		private final Assignment cAliasAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_1_1_0_0 = (RuleCall)cAliasAssignment_1_1_0.eContents().get(0);
 		private final Keyword cAsKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
-		private final Assignment cAliasAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
-		private final RuleCall cAliasIDTerminalRuleCall_1_1_2_0 = (RuleCall)cAliasAssignment_1_1_2.eContents().get(0);
+		private final Assignment cNameAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_1_2_0 = (RuleCall)cNameAssignment_1_1_2.eContents().get(0);
 		
 		//ExtensionPoint:
-		//	'ep' (name=ID | name=STRING 'as' alias=ID);
+		//	'ep' (name=ID | alias=ID 'as' name=STRING);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'ep' (name=ID | name=STRING 'as' alias=ID)
+		//'ep' (name=ID | alias=ID 'as' name=STRING)
 		public Group getGroup() { return cGroup; }
 		
 		//'ep'
 		public Keyword getEpKeyword_0() { return cEpKeyword_0; }
 		
-		//name=ID | name=STRING 'as' alias=ID
+		//name=ID | alias=ID 'as' name=STRING
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//name=ID
@@ -419,23 +419,23 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0_0() { return cNameIDTerminalRuleCall_1_0_0; }
 		
-		//name=STRING 'as' alias=ID
+		//alias=ID 'as' name=STRING
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
-		//name=STRING
-		public Assignment getNameAssignment_1_1_0() { return cNameAssignment_1_1_0; }
+		//alias=ID
+		public Assignment getAliasAssignment_1_1_0() { return cAliasAssignment_1_1_0; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_1_1_0_0() { return cNameSTRINGTerminalRuleCall_1_1_0_0; }
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_1_1_0_0() { return cAliasIDTerminalRuleCall_1_1_0_0; }
 		
 		//'as'
 		public Keyword getAsKeyword_1_1_1() { return cAsKeyword_1_1_1; }
 		
-		//alias=ID
-		public Assignment getAliasAssignment_1_1_2() { return cAliasAssignment_1_1_2; }
+		//name=STRING
+		public Assignment getNameAssignment_1_1_2() { return cNameAssignment_1_1_2; }
 		
-		//ID
-		public RuleCall getAliasIDTerminalRuleCall_1_1_2_0() { return cAliasIDTerminalRuleCall_1_1_2_0; }
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_1_1_2_0() { return cNameSTRINGTerminalRuleCall_1_1_2_0; }
 	}
 	public class RelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Relationship");
@@ -1067,7 +1067,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Actor:
-	//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID) ('role' '[' type=ActorType
+	//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | alias=ID 'as' name=STRING) ('role' '[' type=ActorType
 	//	']')? comments+=Comment?;
 	public ActorElements getActorAccess() {
 		return pActor;
@@ -1088,7 +1088,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//UseCase:
-	//	visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | name=STRING 'as' alias=ID) (comments+=Comment? | '{'
+	//	visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{'
 	//	comments+=Comment? extensionPoints+=ExtensionPoint* '}');
 	public UseCaseElements getUseCaseAccess() {
 		return pUseCase;
@@ -1099,7 +1099,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExtensionPoint:
-	//	'ep' (name=ID | name=STRING 'as' alias=ID);
+	//	'ep' (name=ID | alias=ID 'as' name=STRING);
 	public ExtensionPointElements getExtensionPointAccess() {
 		return pExtensionPoint;
 	}

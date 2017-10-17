@@ -307,9 +307,9 @@ ruleActor returns [EObject current=null]
 			(
 				(
 					(
-						lv_name_4_0=RULE_STRING
+						lv_alias_4_0=RULE_ID
 						{
-							newLeafNode(lv_name_4_0, grammarAccess.getActorAccess().getNameSTRINGTerminalRuleCall_3_1_0_0());
+							newLeafNode(lv_alias_4_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_3_1_0_0());
 						}
 						{
 							if ($current==null) {
@@ -317,9 +317,9 @@ ruleActor returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"name",
-								lv_name_4_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
+								"alias",
+								lv_alias_4_0,
+								"org.eclipse.xtext.common.Terminals.ID");
 						}
 					)
 				)
@@ -329,9 +329,9 @@ ruleActor returns [EObject current=null]
 				}
 				(
 					(
-						lv_alias_6_0=RULE_ID
+						lv_name_6_0=RULE_STRING
 						{
-							newLeafNode(lv_alias_6_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_3_1_2_0());
+							newLeafNode(lv_name_6_0, grammarAccess.getActorAccess().getNameSTRINGTerminalRuleCall_3_1_2_0());
 						}
 						{
 							if ($current==null) {
@@ -339,9 +339,9 @@ ruleActor returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"alias",
-								lv_alias_6_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"name",
+								lv_name_6_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
 						}
 					)
 				)
@@ -590,9 +590,9 @@ ruleUseCase returns [EObject current=null]
 			(
 				(
 					(
-						lv_name_4_0=RULE_STRING
+						lv_alias_4_0=RULE_ID
 						{
-							newLeafNode(lv_name_4_0, grammarAccess.getUseCaseAccess().getNameSTRINGTerminalRuleCall_3_1_0_0());
+							newLeafNode(lv_alias_4_0, grammarAccess.getUseCaseAccess().getAliasIDTerminalRuleCall_3_1_0_0());
 						}
 						{
 							if ($current==null) {
@@ -600,9 +600,9 @@ ruleUseCase returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"name",
-								lv_name_4_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
+								"alias",
+								lv_alias_4_0,
+								"org.eclipse.xtext.common.Terminals.ID");
 						}
 					)
 				)
@@ -612,9 +612,9 @@ ruleUseCase returns [EObject current=null]
 				}
 				(
 					(
-						lv_alias_6_0=RULE_ID
+						lv_name_6_0=RULE_STRING
 						{
-							newLeafNode(lv_alias_6_0, grammarAccess.getUseCaseAccess().getAliasIDTerminalRuleCall_3_1_2_0());
+							newLeafNode(lv_name_6_0, grammarAccess.getUseCaseAccess().getNameSTRINGTerminalRuleCall_3_1_2_0());
 						}
 						{
 							if ($current==null) {
@@ -622,9 +622,9 @@ ruleUseCase returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"alias",
-								lv_alias_6_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"name",
+								lv_name_6_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
 						}
 					)
 				)
@@ -746,9 +746,9 @@ ruleExtensionPoint returns [EObject current=null]
 			(
 				(
 					(
-						lv_name_2_0=RULE_STRING
+						lv_alias_2_0=RULE_ID
 						{
-							newLeafNode(lv_name_2_0, grammarAccess.getExtensionPointAccess().getNameSTRINGTerminalRuleCall_1_1_0_0());
+							newLeafNode(lv_alias_2_0, grammarAccess.getExtensionPointAccess().getAliasIDTerminalRuleCall_1_1_0_0());
 						}
 						{
 							if ($current==null) {
@@ -756,9 +756,9 @@ ruleExtensionPoint returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"name",
-								lv_name_2_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
+								"alias",
+								lv_alias_2_0,
+								"org.eclipse.xtext.common.Terminals.ID");
 						}
 					)
 				)
@@ -768,9 +768,9 @@ ruleExtensionPoint returns [EObject current=null]
 				}
 				(
 					(
-						lv_alias_4_0=RULE_ID
+						lv_name_4_0=RULE_STRING
 						{
-							newLeafNode(lv_alias_4_0, grammarAccess.getExtensionPointAccess().getAliasIDTerminalRuleCall_1_1_2_0());
+							newLeafNode(lv_name_4_0, grammarAccess.getExtensionPointAccess().getNameSTRINGTerminalRuleCall_1_1_2_0());
 						}
 						{
 							if ($current==null) {
@@ -778,9 +778,9 @@ ruleExtensionPoint returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"alias",
-								lv_alias_4_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"name",
+								lv_name_4_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
 						}
 					)
 				)

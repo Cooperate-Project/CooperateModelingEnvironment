@@ -21,7 +21,7 @@ RootPackage:
 ;
 
 Actor:
-	visibility=Visibility? (abstract?='abstract')? 'act' (name = ID | name = STRING 'as' alias = ID) ('role' '['type=ActorType']')? comments+=Comment? 
+	visibility=Visibility? (abstract?='abstract')? 'act' (name = ID | alias = ID 'as' name = STRING) ('role' '['type=ActorType']')? comments+=Comment? 
 ;
 
 System:
@@ -31,14 +31,14 @@ System:
 ;
 
 UseCase:
-	visibility=Visibility? abstract?='abstract'? 'uc' (name = ID | name = STRING 'as' alias = ID) (
+	visibility=Visibility? abstract?='abstract'? 'uc' (name = ID | alias = ID 'as' name = STRING) (
 		comments+=Comment? |  
 		('{' comments+=Comment? extensionPoints += ExtensionPoint* '}')
 	)
 ;
 
 ExtensionPoint:
-	'ep' (name = ID | name = STRING 'as' alias = ID)
+	'ep' (name = ID | alias = ID 'as' name = STRING)
 ;
 
 Relationship:

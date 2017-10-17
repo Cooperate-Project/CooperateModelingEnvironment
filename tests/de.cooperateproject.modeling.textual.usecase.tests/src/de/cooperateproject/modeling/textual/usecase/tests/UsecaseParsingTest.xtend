@@ -86,11 +86,11 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			act "Employee of the month" as Bob
+			act Bob as "Employee of the month"
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				abstract uc AbstractUseCase1 {
-					ep "The real functionality" as AliasedExtensionPoint1
+					ep AliasedExtensionPoint1 as "The real functionality"
 				}	
 			}
 			@end-ucd
@@ -104,9 +104,9 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			@start-ucd "someDiagram"
 			rootElement RootElement
 			act Alice
-			act "Employee of the month" as Bob
+			act Bob as "Employee of the month"
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
 				}
@@ -124,9 +124,9 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			@start-ucd "someDiagram"
 			rootElement RootElement
 			act Alice
-			act "Employee of the month" as Bob
+			act Bob as "Employee of the month"
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
 				}
@@ -144,14 +144,14 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			@start-ucd "someDiagram"
 			rootElement RootElement
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				uc ConcreteUseCase2
 				uc IncludedUseCase1
 				uc Extension1ToAbstractUseCase1
 				uc Extension2ToAbstractUseCase1
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
-					ep "The real functionality" as AliasedExtensionPoint1
+					ep AliasedExtensionPoint1 as "The real functionality"
 				}
 			}
 			inc (ConcreteUseCase2, IncludedUseCase1)
@@ -167,7 +167,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			act "Employee of the month" as Bob
+			act Bob as "Employee of the month"
 			act BobInABadMood
 			sys System1 {
 				abstract uc AbstractUseCase1
