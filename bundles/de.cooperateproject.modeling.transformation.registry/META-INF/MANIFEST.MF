@@ -8,6 +8,11 @@ Require-Bundle: de.cooperateproject.modeling.transformation.common,
  com.google.guava;bundle-version="21.0.0",
  de.cooperateproject.util,
  de.cooperateproject.modeling.graphical.common,
- de.cooperateproject.modeling.common
-Service-Component: OSGI-INF/component.xml
-Bundle-ActivationPolicy: lazy
+ de.cooperateproject.modeling.common,
+ org.eclipse.m2m.qvt.oml
+Service-Component: OSGI-INF/de.cooperateproject.modeling.transformation.registry.QVTOTransformationExecutorProvider.xml,
+ OSGI-INF/de.cooperateproject.modeling.transformation.registry.QVTOResourceProvider.xml,
+ OSGI-INF/de.cooperateproject.modeling.transformation.registry.TransformationFactoryRegistry.xml
+Bundle-ActivationPolicy: lazy 
+Export-Package: de.cooperateproject.modeling.transformation.registry
+Import-Package: org.osgi.service.component.annotations

@@ -9,36 +9,34 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.modeling.transformation.common.ITransformationUnitURIResolver;
+import de.cooperateproject.modeling.transformation.common.ITransformationContext;
 import de.cooperateproject.modeling.transformation.common.TransformationCharacteristic;
 
 public class GraphicsToTextTransformation extends TransformationBase {
 
-    public GraphicsToTextTransformation(DiagramTypes diagramType,
-            ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source, URI target) {
-        this(diagramType, transformationURIResolver, rs, source, target, Collections.emptySet());
+    public GraphicsToTextTransformation(DiagramTypes diagramType, ITransformationContext transformationContext,
+            ResourceSet rs, URI source, URI target) {
+        this(diagramType, transformationContext, rs, source, target, Collections.emptySet());
     }
 
-    public GraphicsToTextTransformation(DiagramTypes diagramType,
-            ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source,
-            SortedSet<URI> supplementarySourceURIs, URI target, SortedSet<URI> supplementaryTargetURIs) {
-        this(diagramType, transformationURIResolver, rs, source, supplementarySourceURIs, target,
-                supplementaryTargetURIs, Collections.emptySet());
+    public GraphicsToTextTransformation(DiagramTypes diagramType, ITransformationContext transformationContext,
+            ResourceSet rs, URI source, SortedSet<URI> supplementarySourceURIs, URI target,
+            SortedSet<URI> supplementaryTargetURIs) {
+        this(diagramType, transformationContext, rs, source, supplementarySourceURIs, target, supplementaryTargetURIs,
+                Collections.emptySet());
     }
 
-    public GraphicsToTextTransformation(DiagramTypes diagramType,
-            ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source, URI target,
-            Collection<PostProcessor> postProcessors) {
-        this(diagramType, transformationURIResolver, rs, source, Collections.emptySortedSet(), target,
+    public GraphicsToTextTransformation(DiagramTypes diagramType, ITransformationContext transformationContext,
+            ResourceSet rs, URI source, URI target, Collection<PostProcessor> postProcessors) {
+        this(diagramType, transformationContext, rs, source, Collections.emptySortedSet(), target,
                 Collections.emptySortedSet(), postProcessors);
     }
 
-    public GraphicsToTextTransformation(DiagramTypes diagramType,
-            ITransformationUnitURIResolver transformationURIResolver, ResourceSet rs, URI source,
-            SortedSet<URI> supplementarySourceURIs, URI target, SortedSet<URI> supplementaryTargetURIs,
-            Collection<PostProcessor> postProcessors) {
-        super(createCharacteristics(diagramType), transformationURIResolver, rs, source, supplementarySourceURIs,
-                target, supplementaryTargetURIs, postProcessors);
+    public GraphicsToTextTransformation(DiagramTypes diagramType, ITransformationContext transformationContext,
+            ResourceSet rs, URI source, SortedSet<URI> supplementarySourceURIs, URI target,
+            SortedSet<URI> supplementaryTargetURIs, Collection<PostProcessor> postProcessors) {
+        super(createCharacteristics(diagramType), rs, transformationContext, source, supplementarySourceURIs, target,
+                supplementaryTargetURIs, postProcessors);
     }
 
     @Override

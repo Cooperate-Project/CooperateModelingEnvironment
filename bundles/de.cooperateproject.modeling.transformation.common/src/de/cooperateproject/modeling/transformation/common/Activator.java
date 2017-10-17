@@ -2,6 +2,7 @@ package de.cooperateproject.modeling.transformation.common;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
 public class Activator extends Plugin {
 
@@ -10,6 +11,8 @@ public class Activator extends Plugin {
 
     // The shared instance
     private static Activator plugin;
+
+    private ServiceTracker<IQVTOResourceProvider, IQVTOResourceProvider> qvtoResourceProvider;
 
     /**
      * The constructor
@@ -27,6 +30,8 @@ public class Activator extends Plugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         setPlugin(this);
+        qvtoResourceProvider = new ServiceTracker<>(context, IQVTOResourceProvider.class, null);
+        qvtoResourceProvider.open();
     }
 
     /*
@@ -36,6 +41,7 @@ public class Activator extends Plugin {
      * BundleContext)
      */
     public void stop(BundleContext context) throws Exception {
+        qvtoResourceProvider.close();
         setPlugin(null);
         super.stop(context);
     }
@@ -51,6 +57,10 @@ public class Activator extends Plugin {
      */
     public static Activator getDefault() {
         return plugin;
+    }
+
+    public IQVTOResourceProvider getQVTOResourceProvider() {
+        return qvtoResourceProvider.getService();
     }
 
 }

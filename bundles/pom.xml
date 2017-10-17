@@ -30,6 +30,7 @@
 		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.ui</module>
+		<module>de.cooperateproject.modeling.transformation.cache</module>
 		<module>de.cooperateproject.modeling.transformation.cls</module>
 		<module>de.cooperateproject.modeling.transformation.usecase</module>
 		<module>de.cooperateproject.modeling.transformation.engine</module>
