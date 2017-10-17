@@ -5,33 +5,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+import org.osgi.service.component.annotations.ServiceScope;
 
 import de.cooperateproject.modeling.transformation.common.IQVTOResourceProvider;
 import de.cooperateproject.modeling.transformation.common.impl.QVTOResource;
 
-@Component
+@Component(
+        property = {
+                "service.ranking:Integer=2"
+        },
+        scope = ServiceScope.SINGLETON
+)
 public class CachingQVTOResourceProvider implements IQVTOResourceProvider {
-    private final Registry packageRegistry;
-    protected final Map<String, QVTOResource> resourceCache;
-
-    public CachingQVTOResourceProvider() {
-        this(EPackage.Registry.INSTANCE);
+    protected final Map<String, QVTOResource> resourceCache = new HashMap<>();
+    private IQVTOResourceProvider delegateProvider;
+    
+    @Reference(
+            policy=ReferencePolicy.DYNAMIC,
+            policyOption=ReferencePolicyOption.RELUCTANT,
+            target="(service.ranking<=1)"
+    )
+    public void setDelegateProvider(IQVTOResourceProvider delegateProvider) {
+        this.delegateProvider = delegateProvider;
     }
     
-    
-    public CachingQVTOResourceProvider(EPackage.Registry packageRegistry) {
-        this.packageRegistry = packageRegistry;
-        this.resourceCache = new HashMap<>();
+    public void unsetDelegateProvider(IQVTOResourceProvider delegateProvider) {
+        if (this.delegateProvider == delegateProvider) {
+            this.delegateProvider = null;
+        }
     }
 
     @Override
     public QVTOResource getQVTOResource(URI resourceURI) throws IOException {
         QVTOResource result = null;
         if ((result = resourceCache.get(resourceURI.toString())) == null) {
-            result = new QVTOResource(resourceURI, packageRegistry);
+            result = delegateProvider.getQVTOResource(resourceURI);
             resourceCache.put(resourceURI.toString(), result);
         }
         return result;

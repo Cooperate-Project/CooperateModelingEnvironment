@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="de.cooperateproject.modeling.transformation.cache.CachingQVTOResourceProvider">
-   <service>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="de.cooperateproject.modeling.transformation.cache.CachingQVTOResourceProvider">
+   <property name="service.ranking" type="Integer" value="2"/>
+   <service scope="singleton">
       <provide interface="de.cooperateproject.modeling.transformation.common.IQVTOResourceProvider"/>
    </service>
+   <reference bind="setDelegateProvider" interface="de.cooperateproject.modeling.transformation.common.IQVTOResourceProvider" name="DelegateProvider" policy="dynamic" policy-option="reluctant" target="(service.ranking&lt;=1)" unbind="unsetDelegateProvider"/>
    <implementation class="de.cooperateproject.modeling.transformation.cache.CachingQVTOResourceProvider"/>
 </scr:component>

@@ -12,17 +12,24 @@ import java.util.Set;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
 
 import com.google.common.base.Strings;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.transformation.common.IQVTOResourceProvider;
+import de.cooperateproject.modeling.transformation.common.IQVTOTransformationExecutorProvider;
 import de.cooperateproject.modeling.transformation.common.ITransformationContext;
 import de.cooperateproject.modeling.transformation.common.ITransformationFactory;
 import de.cooperateproject.modeling.transformation.common.ITransformationFactoryRegistry;
 import de.cooperateproject.modeling.transformation.common.ITransformationUnitURIResolver;
+import de.cooperateproject.modeling.transformation.common.impl.TransformationContextBuilder;
 import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
+@Component(scope = ServiceScope.SINGLETON)
 public class TransformationFactoryRegistry implements ITransformationFactoryRegistry {
     private static final String TRANSFORMATION_ELEMENT_NAME = "transformation";
     private static final String DEFAULT_TRANSFORMATION_ELEMENT_NAME = "defaulttransformation";
@@ -39,6 +46,12 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
     private static final String EXTENSION_POINT_ID = "de.cooperateproject.modeling.transformation.registry.transformationfactories";
 
     private Set<ITransformationFactory> factories = null;
+
+    @Reference
+    protected IQVTOResourceProvider resourceProvider;
+
+    @Reference
+    protected IQVTOTransformationExecutorProvider transformationExecutorProvider;
 
     protected synchronized void initializeFactories() {
         factories = new HashSet<>();
@@ -76,7 +89,9 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
                 break;
             }
         }
-        final ITransformationContext ctx = Activator.getDefault().getContextBuilder()
+        final ITransformationContext ctx = (new TransformationContextBuilder())
+                .setQVTOResourceProvider(resourceProvider)
+                .setQVTOTransformationExecutorProvider(transformationExecutorProvider)
                 .setTransformationUnitURIResolver(resolver).build();
         tfactories.stream().filter(Objects::nonNull).peek(this.factories::add)
                 .filter(InjectTransformationContext.class::isInstance).map(InjectTransformationContext.class::cast)

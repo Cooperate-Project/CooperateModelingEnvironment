@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="de.cooperateproject.modeling.transformation.registry.TransformationFactoryRegistry">
+   <service scope="singleton">
+      <provide interface="de.cooperateproject.modeling.transformation.common.ITransformationFactoryRegistry"/>
+   </service>
+   <reference cardinality="1..1" field="resourceProvider" interface="de.cooperateproject.modeling.transformation.common.IQVTOResourceProvider" name="resourceProvider"/>
+   <reference cardinality="1..1" field="transformationExecutorProvider" interface="de.cooperateproject.modeling.transformation.common.IQVTOTransformationExecutorProvider" name="transformationExecutorProvider"/>
+   <implementation class="de.cooperateproject.modeling.transformation.registry.TransformationFactoryRegistry"/>
+</scr:component>
