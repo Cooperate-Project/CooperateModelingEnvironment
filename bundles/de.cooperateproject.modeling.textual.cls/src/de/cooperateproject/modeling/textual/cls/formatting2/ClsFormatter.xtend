@@ -77,8 +77,8 @@ class ClsFormatter extends AbstractFormatter2 {
 	}
 	
 	def dispatch void format(Class clz, extension IFormattableDocument document) {
-		clz.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "].append[space = " "]
-		clz.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "]
+		clz.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
+		clz.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "].append[space = " "]
 		clz.regionFor.feature(ClsPackage.Literals.CLASS__ABSTRACT).prepend[space = " "].append[space = " "]
 		interior(
 			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_4_1_0).append[newLine].prepend[space = " "],

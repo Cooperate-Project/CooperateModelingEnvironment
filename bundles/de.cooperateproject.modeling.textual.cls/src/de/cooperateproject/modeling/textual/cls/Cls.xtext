@@ -60,14 +60,14 @@ Classifier:
 
 Class:
 	visibility=Visibility? (abstract ?= 'abstract')? 'class'
-	((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? |
+	(name = ID|(alias = ID 'as' name=STRING)) ((comments+=Comment)? |
 		(('{' (comments+=Comment)? (members += Member)* '}')))
 	
 ;
 
 Interface:
 	visibility=Visibility? 'interface'
-	((name=STRING 'as' alias = ID)|name = ID)( (comments+=Comment)? |
+	(name = ID|(alias = ID 'as' name=STRING)) ((comments+=Comment)? |
 		(('{' (comments+=Comment)? (members += Member)* '}')))
 ;
 

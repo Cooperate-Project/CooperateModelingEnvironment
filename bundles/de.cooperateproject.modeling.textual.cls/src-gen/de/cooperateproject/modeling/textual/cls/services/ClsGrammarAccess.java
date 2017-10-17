@@ -290,14 +290,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAbstractAbstractKeyword_1_0 = (Keyword)cAbstractAssignment_1.eContents().get(0);
 		private final Keyword cClassKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
-		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
-		private final Assignment cNameAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_3_0_0_0 = (RuleCall)cNameAssignment_3_0_0.eContents().get(0);
-		private final Keyword cAsKeyword_3_0_1 = (Keyword)cGroup_3_0.eContents().get(1);
-		private final Assignment cAliasAssignment_3_0_2 = (Assignment)cGroup_3_0.eContents().get(2);
-		private final RuleCall cAliasIDTerminalRuleCall_3_0_2_0 = (RuleCall)cAliasAssignment_3_0_2.eContents().get(0);
-		private final Assignment cNameAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_3_1_0 = (RuleCall)cNameAssignment_3_1.eContents().get(0);
+		private final Assignment cNameAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_3_0_0 = (RuleCall)cNameAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Assignment cAliasAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_3_1_0_0 = (RuleCall)cAliasAssignment_3_1_0.eContents().get(0);
+		private final Keyword cAsKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
+		private final Assignment cNameAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_3_1_2_0 = (RuleCall)cNameAssignment_3_1_2.eContents().get(0);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
 		private final Assignment cCommentsAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
 		private final RuleCall cCommentsCommentParserRuleCall_4_0_0 = (RuleCall)cCommentsAssignment_4_0.eContents().get(0);
@@ -310,11 +310,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4_1_3 = (Keyword)cGroup_4_1.eContents().get(3);
 		
 		//Class:
-		//	visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
+		//	visibility=Visibility? abstract?='abstract'? 'class' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{'
 		//	comments+=Comment? members+=Member* '}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
+		//visibility=Visibility? abstract?='abstract'? 'class' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{'
 		//comments+=Comment? members+=Member* '}')
 		public Group getGroup() { return cGroup; }
 		
@@ -333,32 +333,32 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'class'
 		public Keyword getClassKeyword_2() { return cClassKeyword_2; }
 		
-		//name=STRING 'as' alias=ID | name=ID
+		//name=ID | alias=ID 'as' name=STRING
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//name=STRING 'as' alias=ID
-		public Group getGroup_3_0() { return cGroup_3_0; }
+		//name=ID
+		public Assignment getNameAssignment_3_0() { return cNameAssignment_3_0; }
 		
-		//name=STRING
-		public Assignment getNameAssignment_3_0_0() { return cNameAssignment_3_0_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_3_0_0() { return cNameIDTerminalRuleCall_3_0_0; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_3_0_0_0() { return cNameSTRINGTerminalRuleCall_3_0_0_0; }
-		
-		//'as'
-		public Keyword getAsKeyword_3_0_1() { return cAsKeyword_3_0_1; }
+		//alias=ID 'as' name=STRING
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//alias=ID
-		public Assignment getAliasAssignment_3_0_2() { return cAliasAssignment_3_0_2; }
+		public Assignment getAliasAssignment_3_1_0() { return cAliasAssignment_3_1_0; }
 		
 		//ID
-		public RuleCall getAliasIDTerminalRuleCall_3_0_2_0() { return cAliasIDTerminalRuleCall_3_0_2_0; }
+		public RuleCall getAliasIDTerminalRuleCall_3_1_0_0() { return cAliasIDTerminalRuleCall_3_1_0_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_3_1() { return cNameAssignment_3_1; }
+		//'as'
+		public Keyword getAsKeyword_3_1_1() { return cAsKeyword_3_1_1; }
 		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_3_1_0() { return cNameIDTerminalRuleCall_3_1_0; }
+		//name=STRING
+		public Assignment getNameAssignment_3_1_2() { return cNameAssignment_3_1_2; }
+		
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_3_1_2_0() { return cNameSTRINGTerminalRuleCall_3_1_2_0; }
 		
 		//comments+=Comment? | '{' comments+=Comment? members+=Member* '}'
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
@@ -397,14 +397,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVisibilityVisibilityEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
 		private final Keyword cInterfaceKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Assignment cNameAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_2_0_0_0 = (RuleCall)cNameAssignment_2_0_0.eContents().get(0);
-		private final Keyword cAsKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
-		private final Assignment cAliasAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
-		private final RuleCall cAliasIDTerminalRuleCall_2_0_2_0 = (RuleCall)cAliasAssignment_2_0_2.eContents().get(0);
-		private final Assignment cNameAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
+		private final Assignment cNameAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_2_0_0 = (RuleCall)cNameAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Assignment cAliasAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_2_1_0_0 = (RuleCall)cAliasAssignment_2_1_0.eContents().get(0);
+		private final Keyword cAsKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
+		private final Assignment cNameAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_2_1_2_0 = (RuleCall)cNameAssignment_2_1_2.eContents().get(0);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Assignment cCommentsAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cCommentsCommentParserRuleCall_3_0_0 = (RuleCall)cCommentsAssignment_3_0.eContents().get(0);
@@ -417,11 +417,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3_1_3 = (Keyword)cGroup_3_1.eContents().get(3);
 		
 		//Interface:
-		//	visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+		//	visibility=Visibility? 'interface' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{' comments+=Comment?
 		//	members+=Member* '}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+		//visibility=Visibility? 'interface' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{' comments+=Comment?
 		//members+=Member* '}')
 		public Group getGroup() { return cGroup; }
 		
@@ -434,32 +434,32 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'interface'
 		public Keyword getInterfaceKeyword_1() { return cInterfaceKeyword_1; }
 		
-		//name=STRING 'as' alias=ID | name=ID
+		//name=ID | alias=ID 'as' name=STRING
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//name=STRING 'as' alias=ID
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//name=ID
+		public Assignment getNameAssignment_2_0() { return cNameAssignment_2_0; }
 		
-		//name=STRING
-		public Assignment getNameAssignment_2_0_0() { return cNameAssignment_2_0_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0_0() { return cNameIDTerminalRuleCall_2_0_0; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_2_0_0_0() { return cNameSTRINGTerminalRuleCall_2_0_0_0; }
-		
-		//'as'
-		public Keyword getAsKeyword_2_0_1() { return cAsKeyword_2_0_1; }
+		//alias=ID 'as' name=STRING
+		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//alias=ID
-		public Assignment getAliasAssignment_2_0_2() { return cAliasAssignment_2_0_2; }
+		public Assignment getAliasAssignment_2_1_0() { return cAliasAssignment_2_1_0; }
 		
 		//ID
-		public RuleCall getAliasIDTerminalRuleCall_2_0_2_0() { return cAliasIDTerminalRuleCall_2_0_2_0; }
+		public RuleCall getAliasIDTerminalRuleCall_2_1_0_0() { return cAliasIDTerminalRuleCall_2_1_0_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
+		//'as'
+		public Keyword getAsKeyword_2_1_1() { return cAsKeyword_2_1_1; }
 		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_1_0() { return cNameIDTerminalRuleCall_2_1_0; }
+		//name=STRING
+		public Assignment getNameAssignment_2_1_2() { return cNameAssignment_2_1_2; }
+		
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_2_1_2_0() { return cNameSTRINGTerminalRuleCall_2_1_2_0; }
 		
 		//comments+=Comment? | '{' comments+=Comment? members+=Member* '}'
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
@@ -1402,7 +1402,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Class:
-	//	visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
+	//	visibility=Visibility? abstract?='abstract'? 'class' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{'
 	//	comments+=Comment? members+=Member* '}');
 	public ClassElements getClassAccess() {
 		return pClass;
@@ -1413,7 +1413,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Interface:
-	//	visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+	//	visibility=Visibility? 'interface' (name=ID | alias=ID 'as' name=STRING) (comments+=Comment? | '{' comments+=Comment?
 	//	members+=Member* '}');
 	public InterfaceElements getInterfaceAccess() {
 		return pInterface;

@@ -146,7 +146,7 @@ class ClsParsingTest extends AbstractClsTest {
 		val model = '''
 			@start-clsd "SomeName"
 			rootPackage RootElement
-			class "Alias Alice" as AA {
+			class AA as "Alias Alice" {
 			}
 			@end-clsd
 		'''.parse(rs)
