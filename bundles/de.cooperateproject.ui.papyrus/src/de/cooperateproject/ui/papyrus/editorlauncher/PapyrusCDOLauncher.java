@@ -67,7 +67,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
      *             Thrown, if the requested editor type is not available in the launcher file.
      */
     public PapyrusCDOLauncher(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        super(launcherFile, EditorType.GRAPHICAL, true);
+        super(launcherFile, EditorType.GRAPHICAL);
     }
 
     @Override

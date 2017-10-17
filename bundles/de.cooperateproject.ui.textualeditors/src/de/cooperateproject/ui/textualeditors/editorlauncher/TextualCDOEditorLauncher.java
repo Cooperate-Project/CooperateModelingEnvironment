@@ -40,7 +40,7 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
      *             Thrown if there is no textual syntax defined in the launcher file.
      */
     public TextualCDOEditorLauncher(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        super(launcherFile, EditorType.TEXTUAL, false);
+        super(launcherFile, EditorType.TEXTUAL);
     }
 
     @Override

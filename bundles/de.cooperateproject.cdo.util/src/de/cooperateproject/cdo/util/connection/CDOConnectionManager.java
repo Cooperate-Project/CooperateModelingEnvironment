@@ -33,7 +33,7 @@ public enum CDOConnectionManager {
         }
     }
 
-    public CDOCheckout createCDOCheckout(IProject project, boolean createBranch) {
+    public CDOCheckout createCDOCheckout(IProject project, boolean createBranch, boolean readOnly) {
         CDORepository repository = getRepository(project);
         CDOSession session = acquireSession(project);
         try {
@@ -42,7 +42,7 @@ public enum CDOConnectionManager {
                 CDOBranch newBranch = CDOHelper.createRandomBranchFromMain(session);
                 branchId = newBranch.getID();
             }
-            return CDOHelper.createCheckout(repository, branchId);
+            return CDOHelper.createCheckout(repository, branchId, readOnly);
         } finally {
             releaseSession(session);
         }

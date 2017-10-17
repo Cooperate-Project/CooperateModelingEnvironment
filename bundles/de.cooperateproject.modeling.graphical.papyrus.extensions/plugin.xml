@@ -306,4 +306,14 @@
             order="5">
       </target>
    </extension>
+      <extension
+            point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
+         <readOnlyHandler
+               class="de.cooperateproject.modeling.graphical.papyrus.extensions.cdo.CooperateCDOReadOnlyHandler"
+               priority="17">
+            <affinity
+                  axis="permission">
+            </affinity>
+         </readOnlyHandler>
+      </extension>
 </plugin>

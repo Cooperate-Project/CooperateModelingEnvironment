@@ -439,6 +439,9 @@
       <class
             class="de.cooperateproject.ui.startup.impl.ProjectBuilderAction">
       </class>
+      <class
+            class="de.cooperateproject.ui.editors.launcher.impl.CheckoutListenerRegistration">
+      </class>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
