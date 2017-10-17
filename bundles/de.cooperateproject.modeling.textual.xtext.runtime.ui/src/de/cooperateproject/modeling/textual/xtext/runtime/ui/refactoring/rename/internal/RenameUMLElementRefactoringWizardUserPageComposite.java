@@ -1,10 +1,14 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.internal;
 
+import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.databinding.validation.MultiValidator;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -13,18 +17,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.google.common.base.Strings;
-
-import de.cooperateproject.modeling.textual.xtext.runtime.ui.Activator;
-
 /**
  * Composite that contains the controls to ask for a new name.
  */
 public class RenameUMLElementRefactoringWizardUserPageComposite extends Composite {
     private final boolean elementNameMightBeEmpty;
+    private final boolean aliasIsAvailable;
     private final IObservableValue<String> newName;
+    private final IObservableValue<String> newAlias;
     private final IObservableValue<String> validationErrorMessage;
+    private final IChangeListener aggregatedStatusListener = this::handleValidationStatusChange;
+    private AggregateValidationStatus aggregatedStatus;
     private Text textNewName;
+    private Text textNewAlias;
 
     /**
      * Creates the composite.
@@ -38,12 +43,15 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
      * @param validationErrorMessage
      */
     public RenameUMLElementRefactoringWizardUserPageComposite(Composite parent, int style,
-            IObservableValue<String> newNameDTO, IObservableValue<String> validationErrorMessage,
-            boolean elementNameMightBeEmpty) {
+            IObservableValue<String> newNameDTO, IObservableValue<String> newAliasDTO,
+            IObservableValue<String> validationErrorMessage, boolean elementNameMightBeEmpty,
+            boolean aliasIsAvailable) {
         super(parent, style);
         this.elementNameMightBeEmpty = elementNameMightBeEmpty;
+        this.aliasIsAvailable = aliasIsAvailable;
         this.validationErrorMessage = validationErrorMessage;
         this.newName = newNameDTO;
+        this.newAlias = newAliasDTO;
         setLayout(new GridLayout(2, false));
 
         Label lblNewName = new Label(this, SWT.NONE);
@@ -52,6 +60,16 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
 
         textNewName = new Text(this, SWT.BORDER);
         textNewName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+        if (aliasIsAvailable) {
+            Label lblNewAlias = new Label(this, SWT.NONE);
+            lblNewAlias.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+            lblNewAlias.setText("New Alias");
+
+            textNewAlias = new Text(this, SWT.BORDER);
+            textNewAlias.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        }
+
         initCustomDataBindings();
         textNewName.setFocus();
     }
@@ -64,27 +82,34 @@ public class RenameUMLElementRefactoringWizardUserPageComposite extends Composit
     private void initCustomDataBindings() {
         DataBindingContext bindingContext = new DataBindingContext();
 
-        IObservableValue<?> observedNewName = WidgetProperties.text(SWT.Modify).observe(textNewName);
+        UpdateValueStrategy defaultStrategy = new UpdateValueStrategy();
 
-        UpdateValueStrategy strategyAtomicModelNameTargetToModel = new UpdateValueStrategy();
-        strategyAtomicModelNameTargetToModel.setAfterGetValidator(this::newNameIsValid);
-        bindingContext.bindValue(observedNewName, newName, strategyAtomicModelNameTargetToModel,
-                new UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE));
+        IObservableValue<String> observedNewName = WidgetProperties.text(SWT.Modify).observe(textNewName);
+        IObservableValue<String> observedNewAlias = new WritableValue<String>("", String.class);
+        if (aliasIsAvailable) {
+            observedNewAlias = WidgetProperties.text(SWT.Modify).observe(textNewAlias);
+        }
+
+        MultiValidator nameAndAliasValidator = new NameAndAliasValidator(observedNewName, observedNewAlias,
+                elementNameMightBeEmpty);
+        bindingContext.addValidationStatusProvider(nameAndAliasValidator);
+        IObservableValue<String> validatedNewName = nameAndAliasValidator.observeValidatedValue(observedNewName);
+        IObservableValue<String> validatedNewAlias = nameAndAliasValidator.observeValidatedValue(observedNewAlias);
+
+        bindingContext.bindValue(validatedNewName, newName, defaultStrategy, defaultStrategy);
+        bindingContext.bindValue(validatedNewAlias, newAlias, defaultStrategy, defaultStrategy);
+
+        aggregatedStatus = new AggregateValidationStatus(bindingContext, AggregateValidationStatus.MAX_SEVERITY);
+        aggregatedStatus.addChangeListener(aggregatedStatusListener);
     }
 
-    private IStatus newNameIsValid(Object newName) {
-        String errorMessage = null;
-        if (!(newName instanceof String)) {
-            errorMessage = "The new name must be a string.";
-        }
-        if (!elementNameMightBeEmpty && Strings.isNullOrEmpty((String) newName)) {
-            errorMessage = "The new name must not be empty.";
-        }
-        validationErrorMessage.setValue(errorMessage);
-        if (errorMessage == null) {
-            return Status.OK_STATUS;
+    private void handleValidationStatusChange(ChangeEvent event) {
+        AggregateValidationStatus status = (AggregateValidationStatus) event.getObservable();
+        IStatus validationStatus = status.getValue();
+        if (validationStatus.getSeverity() == IStatus.OK) {
+            validationErrorMessage.setValue(null);
         } else {
-            return new Status(IStatus.ERROR, Activator.getInstance().getBundle().getSymbolicName(), errorMessage);
+            validationErrorMessage.setValue(validationStatus.getMessage());
         }
     }
 }

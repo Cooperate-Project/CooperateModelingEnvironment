@@ -15,6 +15,8 @@ public class RenameUMLElementRefactoringWizardUserPage extends UserInputWizardPa
     private final boolean nameMightBeEmpty;
     private final IObservableValue<String> validationErrorMessage;
     private final IObservableValue<String> newName;
+    private final IObservableValue<String> newAlias;
+    private boolean aliasIsAvailable;
 
     /**
      * Instantiates the wizard page.
@@ -23,18 +25,21 @@ public class RenameUMLElementRefactoringWizardUserPage extends UserInputWizardPa
      *            The object that will receive the new name specified by the user.
      * @param nameMightBeEmpty
      */
-    public RenameUMLElementRefactoringWizardUserPage(IObservableValue<String> newName, boolean nameMightBeEmpty) {
+    public RenameUMLElementRefactoringWizardUserPage(IObservableValue<String> newName,
+            IObservableValue<String> newAlias, boolean nameMightBeEmpty, boolean aliasIsAvailable) {
         super("Refactoring input data");
         this.nameMightBeEmpty = nameMightBeEmpty;
+        this.aliasIsAvailable = aliasIsAvailable;
         this.newName = newName;
+        this.newAlias = newAlias;
         this.validationErrorMessage = new WritableValue<>();
         validationErrorMessage.addValueChangeListener(event -> handleValidationErrorMessage(event.diff.getNewValue()));
     }
 
     @Override
     public void createControl(Composite parent) {
-        setControl(new RenameUMLElementRefactoringWizardUserPageComposite(parent, SWT.FILL, newName,
-                validationErrorMessage, nameMightBeEmpty));
+        setControl(new RenameUMLElementRefactoringWizardUserPageComposite(parent, SWT.FILL, newName, newAlias,
+                validationErrorMessage, nameMightBeEmpty, aliasIsAvailable));
     }
 
     @Override
