@@ -105,7 +105,7 @@ public class DiffView extends ViewPart implements IDiffView {
     public void showDiffViewOfCommit(CommitCDOViewManager cdoViewManager) {
         SummaryViewBuilder svb = new SummaryViewBuilder();
         List<SummaryItem> summaryList = svb.buildSummaryView(
-                comparisonManager.getComparison(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
+                comparisonManager.getComparison(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView(), file));
         
         fillTable(summaryViewer, summaryList);
         setTabFolder(diffViewTab);
@@ -114,7 +114,7 @@ public class DiffView extends ViewPart implements IDiffView {
     }
 
     private void setDiffViewerInput(CommitCDOViewManager cdoViewManager, List<SummaryItem> summaryList) {
-        CDOResource resource = comparisonManager.getResource(cdoViewManager.getCurrentView());
+        CDOResource resource = comparisonManager.getResource(cdoViewManager.getCurrentView(), file);
         DiffTreeBuilder dtb = new DiffTreeBuilder(resource, summaryList);
         diffViewer.setInput(dtb.buildTree());
         diffViewer.expandAll();
@@ -176,13 +176,13 @@ public class DiffView extends ViewPart implements IDiffView {
     }
 
     private void setCommits(IFile file) {
-        comparisonManager = new ComparisonManager(file);
+        comparisonManager = new ComparisonManager();
 
         if (isDisposed()) {
             return;
         }
         
-        fillTable(commitViewer, comparisonManager.getAllCommitInfos());
+        fillTable(commitViewer, comparisonManager.getAllCommitInfos(file));
     }
 
     private void setUpTabs(Composite parent) {
@@ -275,7 +275,7 @@ public class DiffView extends ViewPart implements IDiffView {
                 instance.set(Calendar.MONTH, selectDateToFilter.getMonth());
                 instance.set(Calendar.YEAR, selectDateToFilter.getYear());
 
-                commitViewer.setInput(comparisonManager.getAllCommitInfos(instance.getTimeInMillis()));
+                commitViewer.setInput(comparisonManager.getAllCommitInfos(instance.getTimeInMillis(), file));
             }
         });
 
