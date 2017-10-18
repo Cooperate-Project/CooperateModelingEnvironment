@@ -12,8 +12,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comm
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
-import de.cooperateproject.ui.outline.CooperateOutlineTreeProvider
-import de.cooperateproject.ui.outline.UMLImage
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
 
 /**
  * Customization of the default outline structure.
