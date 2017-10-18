@@ -865,9 +865,9 @@ rule__RootPackage__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRootPackageAccess().getRootElementKeyword_0()); }
-	'rootElement'
-	{ after(grammarAccess.getRootPackageAccess().getRootElementKeyword_0()); }
+	{ before(grammarAccess.getRootPackageAccess().getRootPackageKeyword_0()); }
+	'rootPackage'
+	{ after(grammarAccess.getRootPackageAccess().getRootPackageKeyword_0()); }
 )
 ;
 finally {

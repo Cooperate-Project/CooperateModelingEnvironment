@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUsecaseParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'@start-ucd'", "'@end-ucd'", "'rootElement'", "'abstract'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'*'", "'.'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'@start-ucd'", "'@end-ucd'", "'rootPackage'", "'abstract'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'*'", "'.'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -301,7 +301,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRootPackage"
-    // InternalUsecase.g:143:1: ruleRootPackage returns [EObject current=null] : (otherlv_0= 'rootElement' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* ) ;
+    // InternalUsecase.g:143:1: ruleRootPackage returns [EObject current=null] : (otherlv_0= 'rootPackage' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* ) ;
     public final EObject ruleRootPackage() throws RecognitionException {
         EObject current = null;
 
@@ -319,15 +319,15 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalUsecase.g:149:2: ( (otherlv_0= 'rootElement' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* ) )
-            // InternalUsecase.g:150:2: (otherlv_0= 'rootElement' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* )
+            // InternalUsecase.g:149:2: ( (otherlv_0= 'rootPackage' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* ) )
+            // InternalUsecase.g:150:2: (otherlv_0= 'rootPackage' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* )
             {
-            // InternalUsecase.g:150:2: (otherlv_0= 'rootElement' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* )
-            // InternalUsecase.g:151:3: otherlv_0= 'rootElement' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )*
+            // InternalUsecase.g:150:2: (otherlv_0= 'rootPackage' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )* )
+            // InternalUsecase.g:151:3: otherlv_0= 'rootPackage' ( (lv_name_1_0= ruleFQN ) ) ( (lv_actors_2_0= ruleActor ) )* ( (lv_systems_3_0= ruleSystem ) )* ( (lv_relationships_4_0= ruleRelationship ) )*
             {
             otherlv_0=(Token)match(input,13,FOLLOW_6); 
 
-            			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootElementKeyword_0());
+            			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootPackageKeyword_0());
             		
             // InternalUsecase.g:155:3: ( (lv_name_1_0= ruleFQN ) )
             // InternalUsecase.g:156:4: (lv_name_1_0= ruleFQN )

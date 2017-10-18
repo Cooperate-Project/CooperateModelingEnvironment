@@ -69,7 +69,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.RootPackage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRootElementKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cRootPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cActorsAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -80,14 +80,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationshipsRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
 		
 		//RootPackage:
-		//	'rootElement' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+		//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rootElement' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*
+		//'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*
 		public Group getGroup() { return cGroup; }
 		
-		//'rootElement'
-		public Keyword getRootElementKeyword_0() { return cRootElementKeyword_0; }
+		//'rootPackage'
+		public Keyword getRootPackageKeyword_0() { return cRootPackageKeyword_0; }
 		
 		//name=FQN
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1057,7 +1057,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	'rootElement' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+	//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}

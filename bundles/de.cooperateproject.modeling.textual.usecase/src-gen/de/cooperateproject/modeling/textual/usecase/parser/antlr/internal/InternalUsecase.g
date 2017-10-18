@@ -148,9 +148,9 @@ ruleRootPackage returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='rootElement'
+		otherlv_0='rootPackage'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootElementKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootPackageKeyword_0());
 		}
 		(
 			(

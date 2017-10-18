@@ -14,7 +14,7 @@ UseCaseDiagram:
 ;
 
 RootPackage:
-	'rootElement' name = FQN
+	'rootPackage' name = FQN
 	actors += Actor*
 	systems += System*
 	relationships += Relationship*

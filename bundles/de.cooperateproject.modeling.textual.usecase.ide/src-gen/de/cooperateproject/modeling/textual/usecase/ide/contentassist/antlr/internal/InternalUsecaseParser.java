@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'", "'@start-ucd'", "'@end-ucd'", "'rootElement'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'.'", "'abstract'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'", "'@start-ucd'", "'@end-ucd'", "'rootPackage'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'.'", "'abstract'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -2859,21 +2859,21 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RootPackage__Group__0__Impl"
-    // InternalUsecase.g:862:1: rule__RootPackage__Group__0__Impl : ( 'rootElement' ) ;
+    // InternalUsecase.g:862:1: rule__RootPackage__Group__0__Impl : ( 'rootPackage' ) ;
     public final void rule__RootPackage__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUsecase.g:866:1: ( ( 'rootElement' ) )
-            // InternalUsecase.g:867:1: ( 'rootElement' )
+            // InternalUsecase.g:866:1: ( ( 'rootPackage' ) )
+            // InternalUsecase.g:867:1: ( 'rootPackage' )
             {
-            // InternalUsecase.g:867:1: ( 'rootElement' )
-            // InternalUsecase.g:868:2: 'rootElement'
+            // InternalUsecase.g:867:1: ( 'rootPackage' )
+            // InternalUsecase.g:868:2: 'rootPackage'
             {
-             before(grammarAccess.getRootPackageAccess().getRootElementKeyword_0()); 
+             before(grammarAccess.getRootPackageAccess().getRootPackageKeyword_0()); 
             match(input,23,FOLLOW_2); 
-             after(grammarAccess.getRootPackageAccess().getRootElementKeyword_0()); 
+             after(grammarAccess.getRootPackageAccess().getRootPackageKeyword_0()); 
 
             }
 
