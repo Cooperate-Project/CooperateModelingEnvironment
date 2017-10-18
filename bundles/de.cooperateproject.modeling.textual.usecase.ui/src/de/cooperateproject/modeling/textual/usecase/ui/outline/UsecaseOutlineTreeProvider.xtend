@@ -9,10 +9,10 @@ import de.cooperateproject.modeling.textual.usecase.usecase.System
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
-import de.cooperateproject.ui.outline.CooperateOutlineTreeProvider
-import de.cooperateproject.ui.outline.UMLImage
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
 
 /**
  * Customization of the default outline structure.

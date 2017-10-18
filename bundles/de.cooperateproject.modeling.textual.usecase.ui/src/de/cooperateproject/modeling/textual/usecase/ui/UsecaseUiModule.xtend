@@ -8,10 +8,10 @@ import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
 import com.google.inject.name.Names
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
 import com.google.inject.Binder
-import de.cooperateproject.ui.outline.FlatOutlineViewContribution
-import de.cooperateproject.ui.outline.OutlineFlattenFilterAndSorter
 import org.eclipse.xtext.ui.editor.templates.DefaultTemplateProposalProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider
+import de.cooperateproject.modeling.textual.common.outline.FlatOutlineViewContribution
+import de.cooperateproject.modeling.textual.common.outline.OutlineFlattenFilterAndSorter
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.

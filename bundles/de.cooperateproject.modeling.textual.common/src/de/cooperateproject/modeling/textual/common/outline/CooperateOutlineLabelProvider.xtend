@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.outline
+package de.cooperateproject.modeling.textual.common.outline
 
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
