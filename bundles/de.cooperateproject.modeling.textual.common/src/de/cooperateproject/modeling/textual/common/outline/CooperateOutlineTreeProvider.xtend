@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.outline
+package de.cooperateproject.modeling.textual.common.outline
 
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode

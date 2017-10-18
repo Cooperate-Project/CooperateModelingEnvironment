@@ -3,6 +3,7 @@ package de.cooperateproject.modeling.textual.xtext.runtime.editor.input;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.internal.ui.CDOLobEditorInput;
+import org.eclipse.net4j.util.lifecycle.LifecycleException;
 
 import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
@@ -35,6 +36,18 @@ public class CooperateCDOLobEditorInput extends CDOLobEditorInput implements ILa
     @Override
     public ConcreteSyntaxTypes getEditorType() {
         return ConcreteSyntaxTypes.TEXTUAL;
+    }
+
+    @Override
+    public String getName() {
+        String name;
+        try {
+            name = super.getName();
+        } catch (LifecycleException ex) {
+            name = associatedLauncherFile.getName();
+        }
+
+        return name;
     }
 
 }

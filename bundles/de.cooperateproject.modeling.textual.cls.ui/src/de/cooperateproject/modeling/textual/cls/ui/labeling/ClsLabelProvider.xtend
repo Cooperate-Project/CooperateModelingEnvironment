@@ -20,8 +20,8 @@ import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
 import java.util.Collection
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
-import de.cooperateproject.ui.outline.UMLImage
-import de.cooperateproject.ui.outline.CooperateOutlineLabelProvider
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
 
 /**
  * Provides labels for Cls Objects.

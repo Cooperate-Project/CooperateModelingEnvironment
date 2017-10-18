@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.outline;
+package de.cooperateproject.modeling.textual.common.outline;
 
 import java.util.ArrayList;
 import java.util.Arrays;

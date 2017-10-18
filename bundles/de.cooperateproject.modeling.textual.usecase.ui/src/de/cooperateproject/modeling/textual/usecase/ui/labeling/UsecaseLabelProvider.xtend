@@ -12,11 +12,11 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
 import de.cooperateproject.modeling.textual.usecase.usecase.Include
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
 import de.cooperateproject.modeling.textual.usecase.usecase.System
-import de.cooperateproject.ui.outline.CooperateOutlineLabelProvider
-import de.cooperateproject.ui.outline.UMLImage
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
 
 /**
  * Provides labels for Usecase EObjects.
