@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.cmp.cmp;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +37,7 @@ public interface PortRelation extends AliasedElement {
      * @model required="true"
      * @generated
      */
-    Port getOuterPort();
+    Port<Classifier> getOuterPort();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.cmp.cmp.PortRelation#getOuterPort <em>Outer Port</em>}' reference.
@@ -46,7 +47,7 @@ public interface PortRelation extends AliasedElement {
      * @see #getOuterPort()
      * @generated
      */
-    void setOuterPort(Port value);
+    void setOuterPort(Port<Classifier> value);
 
     /**
      * Returns the value of the '<em><b>Inner Port</b></em>' reference.
@@ -62,7 +63,7 @@ public interface PortRelation extends AliasedElement {
      * @model required="true"
      * @generated
      */
-    Port getInnerPort();
+    Port<Classifier> getInnerPort();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.cmp.cmp.PortRelation#getInnerPort <em>Inner Port</em>}' reference.
@@ -72,6 +73,6 @@ public interface PortRelation extends AliasedElement {
      * @see #getInnerPort()
      * @generated
      */
-    void setInnerPort(Port value);
+    void setInnerPort(Port<Classifier> value);
 
 } // PortRelation

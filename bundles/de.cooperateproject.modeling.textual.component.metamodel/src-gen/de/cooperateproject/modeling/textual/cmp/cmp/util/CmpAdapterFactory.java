@@ -91,12 +91,12 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
                 return createClassifierRelationAdapter();
             }
             @Override
-            public Adapter casePortRelation(PortRelation object) {
-                return createPortRelationAdapter();
-            }
-            @Override
             public Adapter caseConnector(Connector object) {
                 return createConnectorAdapter();
+            }
+            @Override
+            public Adapter caseConnectorEnd(ConnectorEnd object) {
+                return createConnectorEndAdapter();
             }
             @Override
             public Adapter caseGeneralization(Generalization object) {
@@ -261,20 +261,6 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cmp.cmp.PortRelation <em>Port Relation</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.PortRelation
-     * @generated
-     */
-    public Adapter createPortRelationAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cmp.cmp.Connector <em>Connector</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -285,6 +271,20 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createConnectorAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd <em>Connector End</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd
+     * @generated
+     */
+    public Adapter createConnectorEndAdapter() {
         return null;
     }
 

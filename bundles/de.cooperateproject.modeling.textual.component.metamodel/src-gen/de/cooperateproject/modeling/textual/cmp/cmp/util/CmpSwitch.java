@@ -102,23 +102,21 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CmpPackage.PORT_RELATION: {
-                PortRelation portRelation = (PortRelation)theEObject;
-                T1 result = casePortRelation(portRelation);
-                if (result == null) result = caseAliasedElement(portRelation);
-                if (result == null) result = caseNamedElement(portRelation);
-                if (result == null) result = caseElement(portRelation);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case CmpPackage.CONNECTOR: {
                 Connector connector = (Connector)theEObject;
                 T1 result = caseConnector(connector);
                 if (result == null) result = caseUMLReferencingElement(connector);
-                if (result == null) result = casePortRelation(connector);
                 if (result == null) result = caseAliasedElement(connector);
                 if (result == null) result = caseNamedElement(connector);
                 if (result == null) result = caseElement(connector);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CmpPackage.CONNECTOR_END: {
+                ConnectorEnd connectorEnd = (ConnectorEnd)theEObject;
+                T1 result = caseConnectorEnd(connectorEnd);
+                if (result == null) result = caseUMLReferencingElement(connectorEnd);
+                if (result == null) result = caseElement(connectorEnd);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -182,6 +180,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 T1 result = caseClassifier(classifier);
                 if (result == null) result = caseCommentable(classifier);
                 if (result == null) result = caseAliasedElement(classifier);
+                if (result == null) result = casePackageableElement(classifier);
                 if (result == null) result = caseUMLReferencingElement(classifier);
                 if (result == null) result = caseNamedElement(classifier);
                 if (result == null) result = caseElement(classifier);
@@ -204,6 +203,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseClassifier(component);
                 if (result == null) result = caseCommentable(component);
                 if (result == null) result = caseAliasedElement(component);
+                if (result == null) result = casePackageableElement(component);
                 if (result == null) result = caseUMLReferencingElement(component);
                 if (result == null) result = caseNamedElement(component);
                 if (result == null) result = caseElement(component);
@@ -216,6 +216,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseClassifier(interface_);
                 if (result == null) result = caseCommentable(interface_);
                 if (result == null) result = caseAliasedElement(interface_);
+                if (result == null) result = casePackageableElement(interface_);
                 if (result == null) result = caseUMLReferencingElement(interface_);
                 if (result == null) result = caseNamedElement(interface_);
                 if (result == null) result = caseElement(interface_);
@@ -359,21 +360,6 @@ public class CmpSwitch<T1> extends Switch<T1> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Port Relation</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Port Relation</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePortRelation(PortRelation object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Connector</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -385,6 +371,21 @@ public class CmpSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseConnector(Connector object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Connector End</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Connector End</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseConnectorEnd(ConnectorEnd object) {
         return null;
     }
 

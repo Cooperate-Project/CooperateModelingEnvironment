@@ -278,79 +278,6 @@ public interface CmpPackage extends EPackage {
     int CLASSIFIER_RELATION_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.PortRelationImpl <em>Port Relation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.PortRelationImpl
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getPortRelation()
-     * @generated
-     */
-    int PORT_RELATION = 3;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Outer Port</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION__OUTER_PORT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Inner Port</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION__INNER_PORT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Port Relation</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
-
-    /**
-     * The number of operations of the '<em>Port Relation</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl <em>Connector</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -358,7 +285,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getConnector()
      * @generated
      */
-    int CONNECTOR = 4;
+    int CONNECTOR = 3;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -388,22 +315,13 @@ public interface CmpPackage extends EPackage {
     int CONNECTOR__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Outer Port</b></em>' reference.
+     * The feature id for the '<em><b>Connector Ends</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CONNECTOR__OUTER_PORT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Inner Port</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CONNECTOR__INNER_PORT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int CONNECTOR__CONNECTOR_ENDS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Connector</em>' class.
@@ -412,7 +330,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CONNECTOR_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int CONNECTOR_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -431,6 +349,70 @@ public interface CmpPackage extends EPackage {
      * @ordered
      */
     int CONNECTOR_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorEndImpl <em>Connector End</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorEndImpl
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getConnectorEnd()
+     * @generated
+     */
+    int CONNECTOR_END = 4;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR_END__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Part</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR_END__PART = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Role</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR_END__ROLE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Connector End</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR_END_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR_END___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Connector End</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR_END_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.GeneralizationImpl <em>Generalization</em>}' class.
@@ -1044,22 +1026,13 @@ public interface CmpPackage extends EPackage {
     int COMPONENT__ALIAS = CLASSIFIER__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' containment reference list.
+     * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COMPONENT__COMPONENT = CLASSIFIER_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Port Relation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMPONENT__PORT_RELATION = CLASSIFIER_FEATURE_COUNT + 1;
+    int COMPONENT__ATTRIBUTES = CLASSIFIER_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Interface Relation</b></em>' containment reference list.
@@ -1068,16 +1041,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__INTERFACE_RELATION = CLASSIFIER_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Nested Interface</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMPONENT__NESTED_INTERFACE = CLASSIFIER_FEATURE_COUNT + 3;
+    int COMPONENT__INTERFACE_RELATION = CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Port</b></em>' containment reference list.
@@ -1086,16 +1050,25 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__PORT = CLASSIFIER_FEATURE_COUNT + 4;
+    int COMPONENT__PORT = CLASSIFIER_FEATURE_COUNT + 2;
 
     /**
-     * The feature id for the '<em><b>Owning Component</b></em>' container reference.
+     * The feature id for the '<em><b>Connectors</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COMPONENT__OWNING_COMPONENT = CLASSIFIER_FEATURE_COUNT + 5;
+    int COMPONENT__CONNECTORS = CLASSIFIER_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Packaged Elements</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPONENT__PACKAGED_ELEMENTS = CLASSIFIER_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Component</em>' class.
@@ -1104,7 +1077,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 6;
+    int COMPONENT_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1942,38 +1915,6 @@ public interface CmpPackage extends EPackage {
     EReference getClassifierRelation_RightClassifier();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.PortRelation <em>Port Relation</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Port Relation</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.PortRelation
-     * @generated
-     */
-    EClass getPortRelation();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cmp.cmp.PortRelation#getOuterPort <em>Outer Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Outer Port</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.PortRelation#getOuterPort()
-     * @see #getPortRelation()
-     * @generated
-     */
-    EReference getPortRelation_OuterPort();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cmp.cmp.PortRelation#getInnerPort <em>Inner Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Inner Port</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.PortRelation#getInnerPort()
-     * @see #getPortRelation()
-     * @generated
-     */
-    EReference getPortRelation_InnerPort();
-
-    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.Connector <em>Connector</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1982,6 +1923,49 @@ public interface CmpPackage extends EPackage {
      * @generated
      */
     EClass getConnector();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Connector#getConnectorEnds <em>Connector Ends</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Connector Ends</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Connector#getConnectorEnds()
+     * @see #getConnector()
+     * @generated
+     */
+    EReference getConnector_ConnectorEnds();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd <em>Connector End</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Connector End</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd
+     * @generated
+     */
+    EClass getConnectorEnd();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd#getPart <em>Part</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Part</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd#getPart()
+     * @see #getConnectorEnd()
+     * @generated
+     */
+    EReference getConnectorEnd_Part();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd#getRole <em>Role</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Role</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd#getRole()
+     * @see #getConnectorEnd()
+     * @generated
+     */
+    EReference getConnectorEnd_Role();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.Generalization <em>Generalization</em>}'.
@@ -2086,26 +2070,26 @@ public interface CmpPackage extends EPackage {
     EClass getComponent();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getComponent <em>Component</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getAttributes <em>Attributes</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Component</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getComponent()
+     * @return the meta object for the containment reference list '<em>Attributes</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getAttributes()
      * @see #getComponent()
      * @generated
      */
-    EReference getComponent_Component();
+    EReference getComponent_Attributes();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getPortRelation <em>Port Relation</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getPackagedElements <em>Packaged Elements</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Port Relation</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getPortRelation()
+     * @return the meta object for the containment reference list '<em>Packaged Elements</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getPackagedElements()
      * @see #getComponent()
      * @generated
      */
-    EReference getComponent_PortRelation();
+    EReference getComponent_PackagedElements();
 
     /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getInterfaceRelation <em>Interface Relation</em>}'.
@@ -2119,17 +2103,6 @@ public interface CmpPackage extends EPackage {
     EReference getComponent_InterfaceRelation();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getNestedInterface <em>Nested Interface</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Nested Interface</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getNestedInterface()
-     * @see #getComponent()
-     * @generated
-     */
-    EReference getComponent_NestedInterface();
-
-    /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getPort <em>Port</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2141,15 +2114,15 @@ public interface CmpPackage extends EPackage {
     EReference getComponent_Port();
 
     /**
-     * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getOwningComponent <em>Owning Component</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getConnectors <em>Connectors</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the container reference '<em>Owning Component</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getOwningComponent()
+     * @return the meta object for the containment reference list '<em>Connectors</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getConnectors()
      * @see #getComponent()
      * @generated
      */
-    EReference getComponent_OwningComponent();
+    EReference getComponent_Connectors();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.Interface <em>Interface</em>}'.
@@ -2409,32 +2382,6 @@ public interface CmpPackage extends EPackage {
         EReference CLASSIFIER_RELATION__RIGHT_CLASSIFIER = eINSTANCE.getClassifierRelation_RightClassifier();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.PortRelationImpl <em>Port Relation</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.PortRelationImpl
-         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getPortRelation()
-         * @generated
-         */
-        EClass PORT_RELATION = eINSTANCE.getPortRelation();
-
-        /**
-         * The meta object literal for the '<em><b>Outer Port</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference PORT_RELATION__OUTER_PORT = eINSTANCE.getPortRelation_OuterPort();
-
-        /**
-         * The meta object literal for the '<em><b>Inner Port</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference PORT_RELATION__INNER_PORT = eINSTANCE.getPortRelation_InnerPort();
-
-        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl <em>Connector</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2443,6 +2390,40 @@ public interface CmpPackage extends EPackage {
          * @generated
          */
         EClass CONNECTOR = eINSTANCE.getConnector();
+
+        /**
+         * The meta object literal for the '<em><b>Connector Ends</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CONNECTOR__CONNECTOR_ENDS = eINSTANCE.getConnector_ConnectorEnds();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorEndImpl <em>Connector End</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorEndImpl
+         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getConnectorEnd()
+         * @generated
+         */
+        EClass CONNECTOR_END = eINSTANCE.getConnectorEnd();
+
+        /**
+         * The meta object literal for the '<em><b>Part</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CONNECTOR_END__PART = eINSTANCE.getConnectorEnd_Part();
+
+        /**
+         * The meta object literal for the '<em><b>Role</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CONNECTOR_END__ROLE = eINSTANCE.getConnectorEnd_Role();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.GeneralizationImpl <em>Generalization</em>}' class.
@@ -2541,20 +2522,20 @@ public interface CmpPackage extends EPackage {
         EClass COMPONENT = eINSTANCE.getComponent();
 
         /**
-         * The meta object literal for the '<em><b>Component</b></em>' containment reference list feature.
+         * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference COMPONENT__COMPONENT = eINSTANCE.getComponent_Component();
+        EReference COMPONENT__ATTRIBUTES = eINSTANCE.getComponent_Attributes();
 
         /**
-         * The meta object literal for the '<em><b>Port Relation</b></em>' containment reference list feature.
+         * The meta object literal for the '<em><b>Packaged Elements</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference COMPONENT__PORT_RELATION = eINSTANCE.getComponent_PortRelation();
+        EReference COMPONENT__PACKAGED_ELEMENTS = eINSTANCE.getComponent_PackagedElements();
 
         /**
          * The meta object literal for the '<em><b>Interface Relation</b></em>' containment reference list feature.
@@ -2565,14 +2546,6 @@ public interface CmpPackage extends EPackage {
         EReference COMPONENT__INTERFACE_RELATION = eINSTANCE.getComponent_InterfaceRelation();
 
         /**
-         * The meta object literal for the '<em><b>Nested Interface</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference COMPONENT__NESTED_INTERFACE = eINSTANCE.getComponent_NestedInterface();
-
-        /**
          * The meta object literal for the '<em><b>Port</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2581,12 +2554,12 @@ public interface CmpPackage extends EPackage {
         EReference COMPONENT__PORT = eINSTANCE.getComponent_Port();
 
         /**
-         * The meta object literal for the '<em><b>Owning Component</b></em>' container reference feature.
+         * The meta object literal for the '<em><b>Connectors</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference COMPONENT__OWNING_COMPONENT = eINSTANCE.getComponent_OwningComponent();
+        EReference COMPONENT__CONNECTORS = eINSTANCE.getComponent_Connectors();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.InterfaceImpl <em>Interface</em>}' class.

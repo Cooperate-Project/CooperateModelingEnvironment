@@ -20,6 +20,8 @@ import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation
 import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector
 
 class ComponentFormatter extends AbstractFormatter2 {
 	
@@ -53,14 +55,14 @@ class ComponentFormatter extends AbstractFormatter2 {
 			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_3_1_2).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
-		for(Component component: cmp.getComponent()){
-			component.format();
+		for(Attribute attribute: cmp.attributes) {
+			attribute.format();
 		}
-		for(Interface iface: cmp.getNestedInterface()){
-			iface.format();
+		for(PackageableElement elem: cmp.packagedElements) {
+			elem.format();
 		}
-		for(PortRelation portRel: cmp.getPortRelation){
-			portRel.append[newLine]
+		for(Connector conn: cmp.connectors){
+			conn.append[newLine]
 		}
 		for(InterfaceRelation portRel: cmp.getInterfaceRelation()){
 			portRel.append[newLine]
@@ -72,7 +74,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 		interior(
 			iface.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_3_1_0).append[newLine],
 			iface.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_3_1_3),
-			[indent]
+			[indent] 
 		)
 		
 		for (Member members : iface.getMembers()) {

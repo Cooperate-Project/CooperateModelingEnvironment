@@ -3,17 +3,18 @@
 package de.cooperateproject.modeling.textual.cmp.cmp.impl;
 
 import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
-import de.cooperateproject.modeling.textual.cmp.cmp.Port;
-import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation;
-
+import de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
+import java.util.Collection;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.Connector;
 
 /**
@@ -26,8 +27,7 @@ import org.eclipse.uml2.uml.Connector;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl#getAlias <em>Alias</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl#getOuterPort <em>Outer Port</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl#getInnerPort <em>Inner Port</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ConnectorImpl#getConnectorEnds <em>Connector Ends</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,7 +42,6 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * @ordered
      */
     protected static final String NAME_EDEFAULT = null;
-
     /**
      * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -160,8 +159,9 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Port getOuterPort() {
-        return (Port)eDynamicGet(CmpPackage.CONNECTOR__OUTER_PORT, CmpPackage.Literals.PORT_RELATION__OUTER_PORT, true, true);
+    @SuppressWarnings("unchecked")
+    public EList<ConnectorEnd> getConnectorEnds() {
+        return (EList<ConnectorEnd>)eDynamicGet(CmpPackage.CONNECTOR__CONNECTOR_ENDS, CmpPackage.Literals.CONNECTOR__CONNECTOR_ENDS, true, true);
     }
 
     /**
@@ -169,44 +169,13 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Port basicGetOuterPort() {
-        return (Port)eDynamicGet(CmpPackage.CONNECTOR__OUTER_PORT, CmpPackage.Literals.PORT_RELATION__OUTER_PORT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setOuterPort(Port newOuterPort) {
-        eDynamicSet(CmpPackage.CONNECTOR__OUTER_PORT, CmpPackage.Literals.PORT_RELATION__OUTER_PORT, newOuterPort);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Port getInnerPort() {
-        return (Port)eDynamicGet(CmpPackage.CONNECTOR__INNER_PORT, CmpPackage.Literals.PORT_RELATION__INNER_PORT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Port basicGetInnerPort() {
-        return (Port)eDynamicGet(CmpPackage.CONNECTOR__INNER_PORT, CmpPackage.Literals.PORT_RELATION__INNER_PORT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setInnerPort(Port newInnerPort) {
-        eDynamicSet(CmpPackage.CONNECTOR__INNER_PORT, CmpPackage.Literals.PORT_RELATION__INNER_PORT, newInnerPort);
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CmpPackage.CONNECTOR__CONNECTOR_ENDS:
+                return ((InternalEList<?>)getConnectorEnds()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
     /**
@@ -221,12 +190,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 return getName();
             case CmpPackage.CONNECTOR__ALIAS:
                 return getAlias();
-            case CmpPackage.CONNECTOR__OUTER_PORT:
-                if (resolve) return getOuterPort();
-                return basicGetOuterPort();
-            case CmpPackage.CONNECTOR__INNER_PORT:
-                if (resolve) return getInnerPort();
-                return basicGetInnerPort();
+            case CmpPackage.CONNECTOR__CONNECTOR_ENDS:
+                return getConnectorEnds();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -236,6 +201,7 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -245,11 +211,9 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
             case CmpPackage.CONNECTOR__ALIAS:
                 setAlias((String)newValue);
                 return;
-            case CmpPackage.CONNECTOR__OUTER_PORT:
-                setOuterPort((Port)newValue);
-                return;
-            case CmpPackage.CONNECTOR__INNER_PORT:
-                setInnerPort((Port)newValue);
+            case CmpPackage.CONNECTOR__CONNECTOR_ENDS:
+                getConnectorEnds().clear();
+                getConnectorEnds().addAll((Collection<? extends ConnectorEnd>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -269,11 +233,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
             case CmpPackage.CONNECTOR__ALIAS:
                 unsetAlias();
                 return;
-            case CmpPackage.CONNECTOR__OUTER_PORT:
-                setOuterPort((Port)null);
-                return;
-            case CmpPackage.CONNECTOR__INNER_PORT:
-                setInnerPort((Port)null);
+            case CmpPackage.CONNECTOR__CONNECTOR_ENDS:
+                getConnectorEnds().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -291,10 +252,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 return isSetName();
             case CmpPackage.CONNECTOR__ALIAS:
                 return isSetAlias();
-            case CmpPackage.CONNECTOR__OUTER_PORT:
-                return basicGetOuterPort() != null;
-            case CmpPackage.CONNECTOR__INNER_PORT:
-                return basicGetInnerPort() != null;
+            case CmpPackage.CONNECTOR__CONNECTOR_ENDS:
+                return !getConnectorEnds().isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -318,13 +277,6 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 default: return -1;
             }
         }
-        if (baseClass == PortRelation.class) {
-            switch (derivedFeatureID) {
-                case CmpPackage.CONNECTOR__OUTER_PORT: return CmpPackage.PORT_RELATION__OUTER_PORT;
-                case CmpPackage.CONNECTOR__INNER_PORT: return CmpPackage.PORT_RELATION__INNER_PORT;
-                default: return -1;
-            }
-        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -344,13 +296,6 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return CmpPackage.CONNECTOR__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == PortRelation.class) {
-            switch (baseFeatureID) {
-                case CmpPackage.PORT_RELATION__OUTER_PORT: return CmpPackage.CONNECTOR__OUTER_PORT;
-                case CmpPackage.PORT_RELATION__INNER_PORT: return CmpPackage.CONNECTOR__INNER_PORT;
                 default: return -1;
             }
         }

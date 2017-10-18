@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl;
@@ -227,6 +228,11 @@ public abstract class ClassifierImpl<T extends Classifier> extends CommentableIm
                 default: return -1;
             }
         }
+        if (baseClass == PackageableElement.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -246,6 +252,11 @@ public abstract class ClassifierImpl<T extends Classifier> extends CommentableIm
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return CmpPackage.CLASSIFIER__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == PackageableElement.class) {
+            switch (baseFeatureID) {
                 default: return -1;
             }
         }

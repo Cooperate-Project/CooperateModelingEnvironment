@@ -11,6 +11,7 @@ import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.cmp.cmp.Component;
 import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram;
 import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
+import de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd;
 import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
 import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
 import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
@@ -20,7 +21,6 @@ import de.cooperateproject.modeling.textual.cmp.cmp.Member;
 import de.cooperateproject.modeling.textual.cmp.cmp.Method;
 import de.cooperateproject.modeling.textual.cmp.cmp.Parameter;
 import de.cooperateproject.modeling.textual.cmp.cmp.Port;
-import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation;
 import de.cooperateproject.modeling.textual.cmp.cmp.Property;
 import de.cooperateproject.modeling.textual.cmp.cmp.Provide;
 import de.cooperateproject.modeling.textual.cmp.cmp.Require;
@@ -76,14 +76,14 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass portRelationEClass = null;
+    private EClass connectorEClass = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass connectorEClass = null;
+    private EClass connectorEndEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -357,35 +357,44 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getPortRelation() {
-        return portRelationEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPortRelation_OuterPort() {
-        return (EReference)portRelationEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPortRelation_InnerPort() {
-        return (EReference)portRelationEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getConnector() {
         return connectorEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConnector_ConnectorEnds() {
+        return (EReference)connectorEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getConnectorEnd() {
+        return connectorEndEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConnectorEnd_Part() {
+        return (EReference)connectorEndEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConnectorEnd_Role() {
+        return (EReference)connectorEndEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -483,7 +492,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_Component() {
+    public EReference getComponent_Attributes() {
         return (EReference)componentEClass.getEStructuralFeatures().get(0);
     }
 
@@ -492,34 +501,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_PortRelation() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getComponent_InterfaceRelation() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getComponent_NestedInterface() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getComponent_Port() {
+    public EReference getComponent_PackagedElements() {
         return (EReference)componentEClass.getEStructuralFeatures().get(4);
     }
 
@@ -528,8 +510,26 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_OwningComponent() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(5);
+    public EReference getComponent_InterfaceRelation() {
+        return (EReference)componentEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getComponent_Port() {
+        return (EReference)componentEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getComponent_Connectors() {
+        return (EReference)componentEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -707,11 +707,12 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         createEReference(classifierRelationEClass, CLASSIFIER_RELATION__LEFT_CLASSIFIER);
         createEReference(classifierRelationEClass, CLASSIFIER_RELATION__RIGHT_CLASSIFIER);
 
-        portRelationEClass = createEClass(PORT_RELATION);
-        createEReference(portRelationEClass, PORT_RELATION__OUTER_PORT);
-        createEReference(portRelationEClass, PORT_RELATION__INNER_PORT);
-
         connectorEClass = createEClass(CONNECTOR);
+        createEReference(connectorEClass, CONNECTOR__CONNECTOR_ENDS);
+
+        connectorEndEClass = createEClass(CONNECTOR_END);
+        createEReference(connectorEndEClass, CONNECTOR_END__PART);
+        createEReference(connectorEndEClass, CONNECTOR_END__ROLE);
 
         generalizationEClass = createEClass(GENERALIZATION);
 
@@ -730,12 +731,11 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         createEReference(propertyEClass, PROPERTY__TYPE);
 
         componentEClass = createEClass(COMPONENT);
-        createEReference(componentEClass, COMPONENT__COMPONENT);
-        createEReference(componentEClass, COMPONENT__PORT_RELATION);
+        createEReference(componentEClass, COMPONENT__ATTRIBUTES);
         createEReference(componentEClass, COMPONENT__INTERFACE_RELATION);
-        createEReference(componentEClass, COMPONENT__NESTED_INTERFACE);
         createEReference(componentEClass, COMPONENT__PORT);
-        createEReference(componentEClass, COMPONENT__OWNING_COMPONENT);
+        createEReference(componentEClass, COMPONENT__CONNECTORS);
+        createEReference(componentEClass, COMPONENT__PACKAGED_ELEMENTS);
 
         interfaceEClass = createEClass(INTERFACE);
         createEReference(interfaceEClass, INTERFACE__MEMBERS);
@@ -815,13 +815,16 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g1.getETypeArguments().add(g2);
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         classifierRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
-        portRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getConnector());
         g1.getETypeArguments().add(g2);
         connectorEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getPortRelation());
+        g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
         connectorEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getConnectorEnd());
+        g1.getETypeArguments().add(g2);
+        connectorEndEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getGeneralization());
         g1.getETypeArguments().add(g2);
@@ -877,6 +880,8 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g1.getETypeArguments().add(g2);
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
+        classifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(propertyEClass_T);
@@ -955,11 +960,15 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g1.getETypeArguments().add(g2);
         initEReference(getClassifierRelation_RightClassifier(), g1, null, "rightClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(portRelationEClass, PortRelation.class, "PortRelation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPortRelation_OuterPort(), this.getPort(), null, "outerPort", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPortRelation_InnerPort(), this.getPort(), null, "innerPort", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
         initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getConnector_ConnectorEnds(), this.getConnectorEnd(), null, "connectorEnds", null, 0, -1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(connectorEndEClass, ConnectorEnd.class, "ConnectorEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getConnectorEnd_Part(), this.getAttribute(), null, "part", null, 0, 1, ConnectorEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getPort());
+        g2 = createEGenericType(theUMLPackage.getClassifier());
+        g1.getETypeArguments().add(g2);
+        initEReference(getConnectorEnd_Role(), g1, null, "role", null, 0, 1, ConnectorEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -978,12 +987,14 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getComponent_Component(), this.getComponent(), this.getComponent_OwningComponent(), "component", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_PortRelation(), this.getPortRelation(), null, "portRelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_InterfaceRelation(), this.getInterfaceRelation(), null, "interfaceRelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_NestedInterface(), this.getInterface(), null, "nestedInterface", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_Port(), this.getPort(), null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_OwningComponent(), this.getComponent(), this.getComponent_Component(), "owningComponent", null, 0, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getPort());
+        g2 = createEGenericType(theUMLPackage.getClassifier());
+        g1.getETypeArguments().add(g2);
+        initEReference(getComponent_Port(), g1, null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_Connectors(), this.getConnector(), null, "connectors", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_PackagedElements(), theTextualCommonsPackage.getPackageableElement(), null, "packagedElements", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getInterface_Members(), this.getMember(), null, "members", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

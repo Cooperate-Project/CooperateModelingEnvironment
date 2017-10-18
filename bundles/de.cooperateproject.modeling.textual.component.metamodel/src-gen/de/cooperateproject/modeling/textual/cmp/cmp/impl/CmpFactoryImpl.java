@@ -60,6 +60,7 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
             case CmpPackage.COMPONENT_DIAGRAM: return (EObject)createComponentDiagram();
             case CmpPackage.ROOT_PACKAGE: return (EObject)createRootPackage();
             case CmpPackage.CONNECTOR: return (EObject)createConnector();
+            case CmpPackage.CONNECTOR_END: return (EObject)createConnectorEnd();
             case CmpPackage.GENERALIZATION: return (EObject)createGeneralization();
             case CmpPackage.ABSTRACTION: return (EObject)createAbstraction();
             case CmpPackage.MANIFESTATION: return (EObject)createManifestation();
@@ -106,6 +107,16 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
     public Connector createConnector() {
         ConnectorImpl connector = new ConnectorImpl();
         return connector;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ConnectorEnd createConnectorEnd() {
+        ConnectorEndImpl connectorEnd = new ConnectorEndImpl();
+        return connectorEnd;
     }
 
     /**

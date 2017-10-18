@@ -50,6 +50,15 @@ public interface CmpFactory extends EFactory {
     Connector createConnector();
 
     /**
+     * Returns a new object of class '<em>Connector End</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Connector End</em>'.
+     * @generated
+     */
+    ConnectorEnd createConnectorEnd();
+
+    /**
      * Returns a new object of class '<em>Generalization</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

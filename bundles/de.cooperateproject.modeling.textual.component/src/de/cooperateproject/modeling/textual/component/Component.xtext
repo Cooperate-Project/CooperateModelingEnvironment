@@ -20,8 +20,6 @@ ClassifierRelation returns ClassifierRelation:
 Classifier returns Classifier: 
 	Interface | Component;
 
-PortRelation returns PortRelation: 
-	Connector;
 
 InterfaceRelation returns InterfaceRelation: 
 	Provide | Require;
@@ -34,23 +32,22 @@ Member returns Member:
 	
 
 RootPackage returns RootPackage: 
-	{RootPackage}
 	'rootPackage' name=FQN
 			classifiers+=Classifier*
 			relations+=ClassifierRelation*
 	;
 
 Component returns Component: 
-	{Component}
-	'component'
-	((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? | ('{'  (
-		(((comments+=Comment)? 
-		(component+=Component)*
-		(port+=Port)*
-		(nestedInterface+=Interface)*
-		(portRelation+=PortRelation)*
-		(interfaceRelation+=InterfaceRelation)*
-		 )))'}' ))
+	'component'	((name=STRING 'as' alias = ID)|name = ID) (
+		 (comments+=Comment)? | 
+		 ('{'
+			(comments+=Comment)? 
+			(port+=Port)*
+		 	(attributes+=ComponentTypeAttribute)*  
+			(connectors+=Connector)*
+			(interfaceRelation+=InterfaceRelation)*
+			(packagedElements+=Classifier)*
+		 '}' ))
 		
 		;
 
@@ -99,8 +96,12 @@ Interface returns Interface:
 Connector returns Connector: 
 	'con' ((name=STRING 'as' alias = ID)|name = ID) 
 	'('
-		outerPort=[Port] ',' innerPort=[Port] 
+		connectorEnds+=ConnectorEnd (',' connectorEnds+=ConnectorEnd)* 
 	')';
+
+ConnectorEnd returns ConnectorEnd:
+	(part=[Attribute]'.')? role=[Port]
+;
 
 Provide returns Provide: 
 	{Provide}
@@ -133,10 +134,13 @@ Method returns Method:
 ;
 
 Attribute returns Attribute: 
-	{Attribute} 
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	name = ID ':' type=[uml::Classifier|FQN]
+;
+
+ComponentTypeAttribute returns Attribute: 
+	name = ID ':' type=[uml::Component|FQN]
 ;
 
 Parameter returns Parameter: 

@@ -2,12 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.cmp.cmp.impl;
 
+import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
 import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
-import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
 import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation;
 import de.cooperateproject.modeling.textual.cmp.cmp.Port;
-import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Component;
 
 /**
@@ -29,12 +30,11 @@ import org.eclipse.uml2.uml.Component;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getComponent <em>Component</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getPortRelation <em>Port Relation</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getInterfaceRelation <em>Interface Relation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getPort <em>Port</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getOwningComponent <em>Owning Component</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getPackagedElements <em>Packaged Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,8 +65,8 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<de.cooperateproject.modeling.textual.cmp.cmp.Component> getComponent() {
-        return (EList<de.cooperateproject.modeling.textual.cmp.cmp.Component>)eDynamicGet(CmpPackage.COMPONENT__COMPONENT, CmpPackage.Literals.COMPONENT__COMPONENT, true, true);
+    public EList<Attribute> getAttributes() {
+        return (EList<Attribute>)eDynamicGet(CmpPackage.COMPONENT__ATTRIBUTES, CmpPackage.Literals.COMPONENT__ATTRIBUTES, true, true);
     }
 
     /**
@@ -75,8 +75,8 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<PortRelation> getPortRelation() {
-        return (EList<PortRelation>)eDynamicGet(CmpPackage.COMPONENT__PORT_RELATION, CmpPackage.Literals.COMPONENT__PORT_RELATION, true, true);
+    public EList<PackageableElement> getPackagedElements() {
+        return (EList<PackageableElement>)eDynamicGet(CmpPackage.COMPONENT__PACKAGED_ELEMENTS, CmpPackage.Literals.COMPONENT__PACKAGED_ELEMENTS, true, true);
     }
 
     /**
@@ -95,8 +95,8 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Interface> getNestedInterface() {
-        return (EList<Interface>)eDynamicGet(CmpPackage.COMPONENT__NESTED_INTERFACE, CmpPackage.Literals.COMPONENT__NESTED_INTERFACE, true, true);
+    public EList<Port<Classifier>> getPort() {
+        return (EList<Port<Classifier>>)eDynamicGet(CmpPackage.COMPONENT__PORT, CmpPackage.Literals.COMPONENT__PORT, true, true);
     }
 
     /**
@@ -105,55 +105,8 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Port> getPort() {
-        return (EList<Port>)eDynamicGet(CmpPackage.COMPONENT__PORT, CmpPackage.Literals.COMPONENT__PORT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public de.cooperateproject.modeling.textual.cmp.cmp.Component getOwningComponent() {
-        return (de.cooperateproject.modeling.textual.cmp.cmp.Component)eDynamicGet(CmpPackage.COMPONENT__OWNING_COMPONENT, CmpPackage.Literals.COMPONENT__OWNING_COMPONENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetOwningComponent(de.cooperateproject.modeling.textual.cmp.cmp.Component newOwningComponent, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newOwningComponent, CmpPackage.COMPONENT__OWNING_COMPONENT, msgs);
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setOwningComponent(de.cooperateproject.modeling.textual.cmp.cmp.Component newOwningComponent) {
-        eDynamicSet(CmpPackage.COMPONENT__OWNING_COMPONENT, CmpPackage.Literals.COMPONENT__OWNING_COMPONENT, newOwningComponent);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CmpPackage.COMPONENT__COMPONENT:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComponent()).basicAdd(otherEnd, msgs);
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetOwningComponent((de.cooperateproject.modeling.textual.cmp.cmp.Component)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
+    public EList<Connector> getConnectors() {
+        return (EList<Connector>)eDynamicGet(CmpPackage.COMPONENT__CONNECTORS, CmpPackage.Literals.COMPONENT__CONNECTORS, true, true);
     }
 
     /**
@@ -164,18 +117,16 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__COMPONENT:
-                return ((InternalEList<?>)getComponent()).basicRemove(otherEnd, msgs);
-            case CmpPackage.COMPONENT__PORT_RELATION:
-                return ((InternalEList<?>)getPortRelation()).basicRemove(otherEnd, msgs);
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 return ((InternalEList<?>)getInterfaceRelation()).basicRemove(otherEnd, msgs);
-            case CmpPackage.COMPONENT__NESTED_INTERFACE:
-                return ((InternalEList<?>)getNestedInterface()).basicRemove(otherEnd, msgs);
             case CmpPackage.COMPONENT__PORT:
                 return ((InternalEList<?>)getPort()).basicRemove(otherEnd, msgs);
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                return basicSetOwningComponent(null, msgs);
+            case CmpPackage.COMPONENT__CONNECTORS:
+                return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
+            case CmpPackage.COMPONENT__PACKAGED_ELEMENTS:
+                return ((InternalEList<?>)getPackagedElements()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -186,34 +137,18 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @Override
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                return eInternalContainer().eInverseRemove(this, CmpPackage.COMPONENT__COMPONENT, de.cooperateproject.modeling.textual.cmp.cmp.Component.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__COMPONENT:
-                return getComponent();
-            case CmpPackage.COMPONENT__PORT_RELATION:
-                return getPortRelation();
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                return getAttributes();
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 return getInterfaceRelation();
-            case CmpPackage.COMPONENT__NESTED_INTERFACE:
-                return getNestedInterface();
             case CmpPackage.COMPONENT__PORT:
                 return getPort();
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                return getOwningComponent();
+            case CmpPackage.COMPONENT__CONNECTORS:
+                return getConnectors();
+            case CmpPackage.COMPONENT__PACKAGED_ELEMENTS:
+                return getPackagedElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -227,28 +162,25 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__COMPONENT:
-                getComponent().clear();
-                getComponent().addAll((Collection<? extends de.cooperateproject.modeling.textual.cmp.cmp.Component>)newValue);
-                return;
-            case CmpPackage.COMPONENT__PORT_RELATION:
-                getPortRelation().clear();
-                getPortRelation().addAll((Collection<? extends PortRelation>)newValue);
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                getAttributes().clear();
+                getAttributes().addAll((Collection<? extends Attribute>)newValue);
                 return;
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 getInterfaceRelation().clear();
                 getInterfaceRelation().addAll((Collection<? extends InterfaceRelation>)newValue);
                 return;
-            case CmpPackage.COMPONENT__NESTED_INTERFACE:
-                getNestedInterface().clear();
-                getNestedInterface().addAll((Collection<? extends Interface>)newValue);
-                return;
             case CmpPackage.COMPONENT__PORT:
                 getPort().clear();
-                getPort().addAll((Collection<? extends Port>)newValue);
+                getPort().addAll((Collection<? extends Port<Classifier>>)newValue);
                 return;
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                setOwningComponent((de.cooperateproject.modeling.textual.cmp.cmp.Component)newValue);
+            case CmpPackage.COMPONENT__CONNECTORS:
+                getConnectors().clear();
+                getConnectors().addAll((Collection<? extends Connector>)newValue);
+                return;
+            case CmpPackage.COMPONENT__PACKAGED_ELEMENTS:
+                getPackagedElements().clear();
+                getPackagedElements().addAll((Collection<? extends PackageableElement>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -262,23 +194,20 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__COMPONENT:
-                getComponent().clear();
-                return;
-            case CmpPackage.COMPONENT__PORT_RELATION:
-                getPortRelation().clear();
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                getAttributes().clear();
                 return;
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 getInterfaceRelation().clear();
                 return;
-            case CmpPackage.COMPONENT__NESTED_INTERFACE:
-                getNestedInterface().clear();
-                return;
             case CmpPackage.COMPONENT__PORT:
                 getPort().clear();
                 return;
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                setOwningComponent((de.cooperateproject.modeling.textual.cmp.cmp.Component)null);
+            case CmpPackage.COMPONENT__CONNECTORS:
+                getConnectors().clear();
+                return;
+            case CmpPackage.COMPONENT__PACKAGED_ELEMENTS:
+                getPackagedElements().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -292,18 +221,16 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__COMPONENT:
-                return !getComponent().isEmpty();
-            case CmpPackage.COMPONENT__PORT_RELATION:
-                return !getPortRelation().isEmpty();
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                return !getAttributes().isEmpty();
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 return !getInterfaceRelation().isEmpty();
-            case CmpPackage.COMPONENT__NESTED_INTERFACE:
-                return !getNestedInterface().isEmpty();
             case CmpPackage.COMPONENT__PORT:
                 return !getPort().isEmpty();
-            case CmpPackage.COMPONENT__OWNING_COMPONENT:
-                return getOwningComponent() != null;
+            case CmpPackage.COMPONENT__CONNECTORS:
+                return !getConnectors().isEmpty();
+            case CmpPackage.COMPONENT__PACKAGED_ELEMENTS:
+                return !getPackagedElements().isEmpty();
         }
         return super.eIsSet(featureID);
     }
