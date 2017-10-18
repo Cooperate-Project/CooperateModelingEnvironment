@@ -54,7 +54,6 @@ when {self.element.oclIsKindOf(uml::UseCase)}
 
 mapping notation::Node::nodeToExtensionPoint() : usecase::ExtensionPoint
 {
-    var umlExtensionPoint := self.element.oclAsType(uml::ExtensionPoint);
     referencedElement := self.element.toElement();
 }
 

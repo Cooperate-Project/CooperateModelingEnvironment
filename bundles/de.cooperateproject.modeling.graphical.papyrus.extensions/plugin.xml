@@ -239,16 +239,97 @@
                   A primitive type must be an Ecore primitive type that has a common type.
                </description>
             </constraint>
-            <constraint lang="OCL" severity="WARNING" mode="Live" 
-            	name="Allow only use-cases in component" 
-            	id="de.cooperateproject.modeling.graphical.papyrus.extensions.allowOnlyUsecasesInComponent" statusCode="2">
-      		<description>Describe it</description>
+            <constraint
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.allowOnlyUsecasesInComponent"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Live"
+                  name="Allow only use-cases in component"
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>Use cases must not exist outside of systems modeled as components.</description>
       		<message>Use-Cases have to be nested in components</message>
       		<target class="UseCase"/>
       		<![CDATA[
          		self.owner.oclIsKindOf(Component)
       		]]>
    			</constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConstraintsOnExtendsHaveToBeContained"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintModelingCorrectForExtends"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Constraints on extend relations have to be nested"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The constraint {0} must be contained by the extend relationship.
+               </message>
+               <description>
+                  Constraints on extend relationships must be contained as condition in the extend relationship itself.
+               </description>
+               <target
+                     class="Constraint">
+               </target>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConstraintsMustHaveNaturalLanguageDescription"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintOnExtendMustHaveNaturalLanguageSpecification"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Constraints on extend relations have to have a natural language specification"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The constraint {0} must have an OpaqueExpression including a &quot;Natural Language&quot; description of the constraint.
+               </message>
+               <target
+                     class="Constraint">
+               </target>
+               <description>
+                  Constraints for extend relationships must have an OpaqueSpecification that has a specification "Natural Language" that includes a non-empty body.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConditionAvailableForMultipleExtensions"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.conditionAvailableForMultipleExtensions"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Multiple extensions are distinguishable"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The extend relationship {0} is not distinguishable from other ones because of a missing condition.
+               </message>
+               <target
+                     class="Model">
+               </target>
+               <description>
+                  If more than one extend relationships are defined for a common extension location (extension point), there has to be a condition to distinguish them.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramExtendHasOnlyOneLocation"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.extendHasOnlyOneLocation"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Extend has exactly one location"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The extend relationship {0} has not exactly one extension location (extension point).
+               </message>
+               <description>
+                  An extend relationship must have exactly one extension location (extension point).
+               </description>
+               <target
+                     class="Extend">
+               </target>
+            </constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
