@@ -6,8 +6,13 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +24,7 @@ import de.cooperateproject.ui.diff.content.DiffTreeItem;
  * @author Jasmin, czogalik
  *
  */
-public class DiffViewLabelProvider extends LabelProvider {
+public class DiffViewLabelProvider extends LabelProvider implements IColorProvider {
 
     private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
     private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
@@ -72,6 +77,30 @@ public class DiffViewLabelProvider extends LabelProvider {
             }
         }
         return labelHandler;
+    }
+
+    @Override
+    public Color getForeground(Object element) {
+        DiffTreeItem item = (DiffTreeItem) element;
+        if (item.getDiffKind() == null) {
+            return null;
+        }
+        switch (item.getDiffKind()) {
+            case ADD:
+                return new Color(Display.getDefault(), 0, 100, 0);
+            case CHANGE:
+                return new Color(Display.getDefault(), 255, 69, 0);
+            case DELETE:
+                return new Color(Display.getDefault(), 139, 0, 0);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public Color getBackground(Object element) {
+        // no changes to background color
+        return null;
     }
 
 }
