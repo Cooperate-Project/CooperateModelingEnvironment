@@ -7,7 +7,7 @@ Bundle-SymbolicName: de.cooperateproject.modeling.textual.component.ui; singleto
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.component,
  de.cooperateproject.modeling.textual.component.ide,
- de.cooperateproject.modeling.textual.component.metamodel;bundle-version="0.2.2",
+ de.cooperateproject.modeling.textual.component.metamodel,
  org.eclipse.xtext.ui,
  org.eclipse.xtext.ui.shared,
  org.eclipse.xtext.ui.codetemplates.ui,

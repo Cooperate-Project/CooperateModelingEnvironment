@@ -4,24 +4,25 @@
 package de.cooperateproject.modeling.textual.component.serializer;
 
 import com.google.inject.Inject;
-import de.cooperateproject.modeling.textual.cmp.cmp.Abstraction;
-import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
-import de.cooperateproject.modeling.textual.cmp.cmp.Component;
-import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram;
-import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
-import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
-import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
-import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
-import de.cooperateproject.modeling.textual.cmp.cmp.Manifestation;
-import de.cooperateproject.modeling.textual.cmp.cmp.Method;
-import de.cooperateproject.modeling.textual.cmp.cmp.Port;
-import de.cooperateproject.modeling.textual.cmp.cmp.Provide;
-import de.cooperateproject.modeling.textual.cmp.cmp.Require;
-import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage;
-import de.cooperateproject.modeling.textual.cmp.cmp.Substitution;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.component.cmp.Abstraction;
+import de.cooperateproject.modeling.textual.component.cmp.Attribute;
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.cmp.Component;
+import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram;
+import de.cooperateproject.modeling.textual.component.cmp.Connector;
+import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd;
+import de.cooperateproject.modeling.textual.component.cmp.Dependency;
+import de.cooperateproject.modeling.textual.component.cmp.Generalization;
+import de.cooperateproject.modeling.textual.component.cmp.Interface;
+import de.cooperateproject.modeling.textual.component.cmp.Manifestation;
+import de.cooperateproject.modeling.textual.component.cmp.Method;
+import de.cooperateproject.modeling.textual.component.cmp.Port;
+import de.cooperateproject.modeling.textual.component.cmp.Provide;
+import de.cooperateproject.modeling.textual.component.cmp.Require;
+import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
+import de.cooperateproject.modeling.textual.component.cmp.Substitution;
 import de.cooperateproject.modeling.textual.component.services.ComponentGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -52,7 +53,18 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				sequence_Abstraction(context, (Abstraction) semanticObject); 
 				return; 
 			case CmpPackage.ATTRIBUTE:
-				sequence_Attribute(context, (Attribute) semanticObject); 
+				if (rule == grammarAccess.getMemberRule()
+						|| rule == grammarAccess.getAttributeRule()) {
+					sequence_Attribute(context, (Attribute) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getComponentTypeAttributeRule()) {
+					sequence_ComponentTypeAttribute(context, (Attribute) semanticObject); 
+					return; 
+				}
+				else break;
+			case CmpPackage.CLASS:
+				sequence_Class(context, (de.cooperateproject.modeling.textual.component.cmp.Class) semanticObject); 
 				return; 
 			case CmpPackage.COMPONENT:
 				sequence_Component(context, (Component) semanticObject); 
@@ -62,6 +74,9 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case CmpPackage.CONNECTOR:
 				sequence_Connector(context, (Connector) semanticObject); 
+				return; 
+			case CmpPackage.CONNECTOR_END:
+				sequence_ConnectorEnd(context, (ConnectorEnd) semanticObject); 
 				return; 
 			case CmpPackage.DEPENDENCY:
 				sequence_Dependency(context, (Dependency) semanticObject); 
@@ -79,7 +94,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				sequence_Method(context, (Method) semanticObject); 
 				return; 
 			case CmpPackage.PARAMETER:
-				sequence_Parameter(context, (de.cooperateproject.modeling.textual.cmp.cmp.Parameter) semanticObject); 
+				sequence_Parameter(context, (de.cooperateproject.modeling.textual.component.cmp.Parameter) semanticObject); 
 				return; 
 			case CmpPackage.PORT:
 				sequence_Port(context, (Port) semanticObject); 
@@ -144,6 +159,19 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Classifier returns Class
+	 *     Class returns Class
+	 *
+	 * Constraint:
+	 *     (((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? interfaceRelation+=InterfaceRelation*))?)
+	 */
+	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.component.cmp.Class semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Comment returns Comment
 	 *
 	 * Constraint:
@@ -183,6 +211,27 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     ComponentTypeAttribute returns Attribute
+	 *
+	 * Constraint:
+	 *     (name=ID type=[Component|FQN])
+	 */
+	protected void sequence_ComponentTypeAttribute(ISerializationContext context, Attribute semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, CmpPackage.Literals.PROPERTY__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, CmpPackage.Literals.PROPERTY__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getComponentTypeAttributeAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getComponentTypeAttributeAccess().getTypeComponentFQNParserRuleCall_2_0_1(), semanticObject.eGet(CmpPackage.Literals.PROPERTY__TYPE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Classifier returns Component
 	 *     Component returns Component
 	 *
@@ -193,11 +242,11 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             comments+=Comment | 
 	 *             (
 	 *                 comments+=Comment? 
-	 *                 component+=Component* 
 	 *                 port+=Port* 
-	 *                 nestedInterface+=Interface* 
-	 *                 portRelation+=PortRelation* 
-	 *                 interfaceRelation+=InterfaceRelation*
+	 *                 attributes+=ComponentTypeAttribute* 
+	 *                 connectors+=Connector* 
+	 *                 interfaceRelation+=InterfaceRelation* 
+	 *                 packagedElements+=Classifier*
 	 *             )
 	 *         )?
 	 *     )
@@ -209,11 +258,22 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     PortRelation returns Connector
+	 *     ConnectorEnd returns ConnectorEnd
+	 *
+	 * Constraint:
+	 *     (part=[Attribute|ID]? role=[Port|ID])
+	 */
+	protected void sequence_ConnectorEnd(ISerializationContext context, ConnectorEnd semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Connector returns Connector
 	 *
 	 * Constraint:
-	 *     (((name=STRING alias=ID) | name=ID) outerPort=[Port|ID] innerPort=[Port|ID])
+	 *     (((name=STRING alias=ID) | name=ID) connectorEnds+=ConnectorEnd connectorEnds+=ConnectorEnd*)
 	 */
 	protected void sequence_Connector(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -326,7 +386,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
-	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cmp.cmp.Parameter semanticObject) {
+	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.component.cmp.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

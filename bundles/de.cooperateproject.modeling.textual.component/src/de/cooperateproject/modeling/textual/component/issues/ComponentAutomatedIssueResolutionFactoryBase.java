@@ -20,6 +20,6 @@ public abstract class ComponentAutomatedIssueResolutionFactoryBase<T extends EOb
 
     @Override
     public EPackage getSupportedEPackage() {
-        return de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage.eINSTANCE;
+        return de.cooperateproject.modeling.textual.component.cmp.CmpPackage.eINSTANCE;
     }
 }

@@ -1,7 +1,7 @@
 package de.cooperateproject.modeling.textual.component.issues
 
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.cmp.cmp.Method
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.cmp.Method
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker

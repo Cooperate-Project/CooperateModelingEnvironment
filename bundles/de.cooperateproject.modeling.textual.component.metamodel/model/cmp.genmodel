@@ -11,7 +11,7 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>cmp.ecore</foreignModel>
   <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
-  <genPackages prefix="Cmp" basePackage="de.cooperateproject.modeling.textual.cmp"
+  <genPackages prefix="Cmp" basePackage="de.cooperateproject.modeling.textual.component"
       disposableProviderFactory="true" ecorePackage="cmp.ecore#/">
     <genClasses ecoreClass="cmp.ecore#//ComponentDiagram">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cmp.ecore#//ComponentDiagram/title"/>
@@ -27,11 +27,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//ClassifierRelation/leftClassifier"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//ClassifierRelation/rightClassifier"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="cmp.ecore#//PortRelation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//PortRelation/outerPort"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//PortRelation/innerPort"/>
+    <genClasses ecoreClass="cmp.ecore#//Connector">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Connector/connectorEnds"/>
     </genClasses>
-    <genClasses ecoreClass="cmp.ecore#//Connector"/>
+    <genClasses ecoreClass="cmp.ecore#//ConnectorEnd">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//ConnectorEnd/part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//ConnectorEnd/role"/>
+    </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Generalization"/>
     <genClasses ecoreClass="cmp.ecore#//Abstraction"/>
     <genClasses ecoreClass="cmp.ecore#//Manifestation"/>
@@ -46,12 +48,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//Property/type"/>
     </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Component">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/component"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/portRelation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/interfaceRelation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/nestedInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/attributes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/port"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cmp.ecore#//Component/owningComponent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/connectors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Component/packagedElements"/>
+    </genClasses>
+    <genClasses ecoreClass="cmp.ecore#//Class"/>
+    <genClasses image="false" ecoreClass="cmp.ecore#//InterfaceProvidingRequiringEntity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//InterfaceProvidingRequiringEntity/interfaceRelation"/>
     </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Interface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cmp.ecore#//Interface/members"/>
@@ -70,6 +74,9 @@
     </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Provide"/>
     <genClasses ecoreClass="cmp.ecore#//Require"/>
-    <genClasses ecoreClass="cmp.ecore#//Port"/>
+    <genClasses ecoreClass="cmp.ecore#//Port">
+      <genTypeParameters ecoreTypeParameter="cmp.ecore#//Port/realizeClassifierUMLType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//Port/realizedClassifier"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

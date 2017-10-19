@@ -5,7 +5,7 @@ package de.cooperateproject.modeling.textual.component.ui.internal;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.IInjectorProvider;
 import org.eclipse.emf.ecore.EPackage;
 

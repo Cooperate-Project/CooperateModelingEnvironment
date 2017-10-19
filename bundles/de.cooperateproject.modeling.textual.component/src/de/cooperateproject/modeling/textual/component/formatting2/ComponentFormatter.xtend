@@ -4,24 +4,23 @@
 package de.cooperateproject.modeling.textual.component.formatting2
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram
-import de.cooperateproject.modeling.textual.cmp.cmp.Classifier
-import de.cooperateproject.modeling.textual.cmp.cmp.ClassifierRelation
-import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage
+import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.cmp.Classifier
+import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation
+import de.cooperateproject.modeling.textual.component.cmp.RootPackage
 import de.cooperateproject.modeling.textual.component.services.ComponentGrammarAccess
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.cmp.cmp.Component
-import de.cooperateproject.modeling.textual.cmp.cmp.Attribute
-import de.cooperateproject.modeling.textual.cmp.cmp.Method
-import de.cooperateproject.modeling.textual.cmp.cmp.Parameter
-import de.cooperateproject.modeling.textual.cmp.cmp.Interface
-import de.cooperateproject.modeling.textual.cmp.cmp.Member
-import de.cooperateproject.modeling.textual.cmp.cmp.PortRelation
-import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.component.cmp.Attribute
+import de.cooperateproject.modeling.textual.component.cmp.Method
+import de.cooperateproject.modeling.textual.component.cmp.Parameter
+import de.cooperateproject.modeling.textual.component.cmp.Interface
+import de.cooperateproject.modeling.textual.component.cmp.Member
+import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
-import de.cooperateproject.modeling.textual.cmp.cmp.Connector
+import de.cooperateproject.modeling.textual.component.cmp.Connector
 
 class ComponentFormatter extends AbstractFormatter2 {
 	
@@ -40,7 +39,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 		for (Classifier elementContent : rootPackage.getClassifiers()) {
 			elementContent.format;
 		}
-		rootPackage.regionFor.assignment(rootPackageAccess.nameAssignment_2).append[newLines = 2]
+		rootPackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
 
 	}
 		 
@@ -51,8 +50,8 @@ class ComponentFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Component cmp, extension IFormattableDocument document) {
 		interior(			
-			cmp.regionFor.keyword(componentAccess.leftCurlyBracketKeyword_3_1_0).append[newLine],
-			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_3_1_2).append[newLine].prepend[newLines = 1 priority = 4],
+			cmp.regionFor.keyword(componentAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_2_1_7).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
 		for(Attribute attribute: cmp.attributes) {
@@ -72,8 +71,8 @@ class ComponentFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Interface iface, extension IFormattableDocument document) {
 		interior(
-			iface.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_3_1_0).append[newLine],
-			iface.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_3_1_3),
+			iface.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			iface.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_2_1_3),
 			[indent] 
 		)
 		

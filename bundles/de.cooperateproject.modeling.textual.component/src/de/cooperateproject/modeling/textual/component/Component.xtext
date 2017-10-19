@@ -85,14 +85,12 @@ Comment returns textualCommons::Comment:
 ;
 
 Port returns Port:
-	{Port}
 	(visibility = Visibility)? 'port'
 	name = ID 
 	'realizes' realizedClassifier=[Classifier]
 ;
 
 Interface returns Interface: 
-	{Interface}
 	'interface'
 	((name=STRING 'as' alias = ID)|name = ID)( (comments+=Comment)? |
 		(('{' (comments+=Comment)? (members += Member)* '}')))

@@ -3,7 +3,7 @@ package de.cooperateproject.modeling.transformation.component.tests;
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.transformation.component.ComponentActivator;
 
 public class TextualToGraphicalComponentTest extends ComponentDirectionalTransformationTestBase {
