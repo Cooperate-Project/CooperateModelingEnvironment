@@ -31,25 +31,25 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.UseCaseDiagram");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cUseCaseDiagramAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cStartUcdKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cStartUscdKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTitleAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
 		private final Assignment cRootPackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootPackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootPackageAssignment_3.eContents().get(0);
-		private final Keyword cEndUcdKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cEndUscdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//UseCaseDiagram:
-		//	{UseCaseDiagram} '@start-ucd' title=STRING rootPackage=RootPackage '@end-ucd';
+		//	{UseCaseDiagram} '@start-uscd' title=STRING rootPackage=RootPackage '@end-uscd';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{UseCaseDiagram} '@start-ucd' title=STRING rootPackage=RootPackage '@end-ucd'
+		//{UseCaseDiagram} '@start-uscd' title=STRING rootPackage=RootPackage '@end-uscd'
 		public Group getGroup() { return cGroup; }
 		
 		//{UseCaseDiagram}
 		public Action getUseCaseDiagramAction_0() { return cUseCaseDiagramAction_0; }
 		
-		//'@start-ucd'
-		public Keyword getStartUcdKeyword_1() { return cStartUcdKeyword_1; }
+		//'@start-uscd'
+		public Keyword getStartUscdKeyword_1() { return cStartUscdKeyword_1; }
 		
 		//title=STRING
 		public Assignment getTitleAssignment_2() { return cTitleAssignment_2; }
@@ -63,13 +63,13 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//RootPackage
 		public RuleCall getRootPackageRootPackageParserRuleCall_3_0() { return cRootPackageRootPackageParserRuleCall_3_0; }
 		
-		//'@end-ucd'
-		public Keyword getEndUcdKeyword_4() { return cEndUcdKeyword_4; }
+		//'@end-uscd'
+		public Keyword getEndUscdKeyword_4() { return cEndUscdKeyword_4; }
 	}
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.RootPackage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRootElementKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cRootPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cActorsAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -80,14 +80,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationshipsRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
 		
 		//RootPackage:
-		//	'rootElement' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+		//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rootElement' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*
+		//'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*
 		public Group getGroup() { return cGroup; }
 		
-		//'rootElement'
-		public Keyword getRootElementKeyword_0() { return cRootElementKeyword_0; }
+		//'rootPackage'
+		public Keyword getRootPackageKeyword_0() { return cRootPackageKeyword_0; }
 		
 		//name=FQN
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1047,7 +1047,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//UseCaseDiagram:
-	//	{UseCaseDiagram} '@start-ucd' title=STRING rootPackage=RootPackage '@end-ucd';
+	//	{UseCaseDiagram} '@start-uscd' title=STRING rootPackage=RootPackage '@end-uscd';
 	public UseCaseDiagramElements getUseCaseDiagramAccess() {
 		return pUseCaseDiagram;
 	}
@@ -1057,7 +1057,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	'rootElement' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+	//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}

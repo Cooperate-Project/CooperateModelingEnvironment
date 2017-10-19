@@ -84,9 +84,9 @@ ruleUseCaseDiagram returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='@start-ucd'
+		otherlv_1='@start-uscd'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getUseCaseDiagramAccess().getStartUcdKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getUseCaseDiagramAccess().getStartUscdKeyword_1());
 		}
 		(
 			(
@@ -125,9 +125,9 @@ ruleUseCaseDiagram returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4='@end-ucd'
+		otherlv_4='@end-uscd'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getUseCaseDiagramAccess().getEndUcdKeyword_4());
+			newLeafNode(otherlv_4, grammarAccess.getUseCaseDiagramAccess().getEndUscdKeyword_4());
 		}
 	)
 ;
@@ -148,9 +148,9 @@ ruleRootPackage returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='rootElement'
+		otherlv_0='rootPackage'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootElementKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootPackageKeyword_0());
 		}
 		(
 			(
