@@ -4,12 +4,12 @@
     <referencedElement xsi:type="uml:Model" href="ComponentDiagramInnerClassifiers.uml#_7Y-2EIqYEeeQ_5Oe0XR2MQ"/>
     <classifiers xsi:type="cmp:Component">
       <referencedElement xsi:type="uml:Component" href="ComponentDiagramInnerClassifiers.uml#_HQAucIqZEeeQ_5Oe0XR2MQ"/>
-      <component>
-        <referencedElement xsi:type="uml:Component" href="ComponentDiagramInnerClassifiers.uml#_3yHAkIqZEeeQ_5Oe0XR2MQ"/>
-      </component>
-      <nestedInterface>
+      <packagedElements xsi:type="cmp:Interface">
         <referencedElement xsi:type="uml:Interface" href="ComponentDiagramInnerClassifiers.uml#_IkTn4IqZEeeQ_5Oe0XR2MQ"/>
-      </nestedInterface>
+      </packagedElements>
+      <packagedElements xsi:type="cmp:Component">
+        <referencedElement xsi:type="uml:Component" href="ComponentDiagramInnerClassifiers.uml#_3yHAkIqZEeeQ_5Oe0XR2MQ"/>
+      </packagedElements>
     </classifiers>
   </rootpackage>
 </cmp:ComponentDiagram>

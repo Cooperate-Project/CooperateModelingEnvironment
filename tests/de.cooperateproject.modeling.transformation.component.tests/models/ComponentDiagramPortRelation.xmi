@@ -4,15 +4,19 @@
     <referencedElement xsi:type="uml:Model" href="ComponentDiagramPortRelation.uml#_BBoNAJzWEeekxamVBtf-ow"/>
     <classifiers xsi:type="cmp:Component">
       <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortRelation.uml#_RVhSQJzWEeekxamVBtf-ow"/>
-      <component>
+      <packagedElements xsi:type="cmp:Component">
         <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortRelation.uml#_R-qV4JzWEeekxamVBtf-ow"/>
         <port realizedClassifier="//@rootpackage/@classifiers.1">
           <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortRelation.uml#_XftjoJzWEeekxamVBtf-ow"/>
         </port>
-      </component>
-      <portRelation xsi:type="cmp:Connector" outerPort="//@rootpackage/@classifiers.0/@port.0" innerPort="//@rootpackage/@classifiers.0/@component.0/@port.0">
+      </packagedElements>
+      <connectors xsi:type="cmp:Connector">
         <referencedElement xsi:type="uml:Connector" href="ComponentDiagramPortRelation.uml#_dJRNIJzWEeekxamVBtf-ow"/>
-      </portRelation>
+        <connectorEnds role="//@rootpackage/@classifiers.0/@port.0">
+        </connectorEnds>
+        <connectorEnds role="//@rootpackage/@classifiers.0/@packagedElements.0/@port.0">
+        </connectorEnds>
+      </connectors>
       <port realizedClassifier="//@rootpackage/@classifiers.1">
         <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortRelation.uml#_X8FWkJzWEeekxamVBtf-ow"/>
       </port>
