@@ -259,14 +259,15 @@ mapping notation::Edge::edgeToConnector() : cmp::Connector
 
 mapping uml::ConnectorEnd::connectorEndToConnectorEnd() : cmp::ConnectorEnd
 {
+	referencedElement := self;
 	role :=	late resolveoneIn(
 		notation::Node::nodeToPort,
-		s : cmp::Port | s.referencedElement.toEObject() = (self.role.toEObject())
+		s : cmp::Port | s.referencedElement = self.role
 	);
 	
 	part := late resolveoneIn(
 		notation::Node::nodeToAttribute,
-		s : cmp::Attribute | s.referencedElement.toEObject() = (self.partWithPort.toEObject())
+		s : cmp::Attribute | s.referencedElement = self.partWithPort
 		);
 	
 }
