@@ -27,7 +27,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
 	edges += self.rootpackage.relations.map classifierRelationsToEdge();
-	edges += self.rootpackage.classifiers->select(e | e.oclIsKindOf(cmp::Component)).oclAsType(cmp::Component)->flatten().portRelation.map portRelationToEdge();
+	edges += self.rootpackage.classifiers->select(e | e.oclIsKindOf(cmp::Component)).oclAsType(cmp::Component)->flatten().connectors.map connectorToEdge();
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -54,7 +54,7 @@ mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDi
 //acutal mapping
 
 mapping cmp::Classifier::classifiersToShape() : notation::Shape
-disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape;
+disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape, cmp::Class::classToShape;
 
 mapping cmp::InterfaceRelation::interfaceRelationToEdge() : notation::Connector
 disjuncts cmp::Provide::provideToEdge, cmp::Require::requireToEdge;
@@ -152,6 +152,16 @@ mapping cmp::Attribute::interfaceAttributeToShape() : notation::Shape
 }
 
 
+mapping cmp::Class::classToShape() : notation::Shape
+when {self.oclIsKindOf(cmp::Class)}
+{
+	type := PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT;
+	children += self.map namedElementToNameLabel();
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+
 mapping cmp::ClassifierRelation::classifierRelationsToEdge() : notation::Edge
 disjuncts cmp::Generalization::generalizationToEdge,
 	cmp::Manifestation::manifestationToEdge, 
@@ -161,11 +171,7 @@ disjuncts cmp::Generalization::generalizationToEdge,
 {
 
 }
-mapping cmp::PortRelation::portRelationToEdge() : notation::Edge
-disjuncts cmp::Connector::connectorToEdge
-{
 
-}
 
 mapping cmp::Connector::connectorToEdge() : notation::Connector
 when{self.oclIsKindOf(cmp::Connector)}
@@ -297,9 +303,9 @@ disjuncts cmp::Classifier::classifiersToShape;
 mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 {	
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
-	children += self.nestedInterface.map interfaceToShape();
+	children += self.packagedElements->selectByType(cmp::Interface).map interfaceToShape();
 	styles += result.toEObject().map titleStyle();
-	children += self.component.map componentToShape();
+	children += self.packagedElements->selectByType(cmp::Component).map componentToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
 }
@@ -368,6 +374,11 @@ mapping cmp::Component::componentFloatingNameLabel() : notation::DecorationNode
 mapping cmp::Interface::interfaceToNameLabel() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR;
+}
+
+mapping textualCommons::NamedElement::namedElementToNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_NAMED_ELEMENT_NAME_REGULAR
 }
 
 mapping cmp::Interface::interfaceFloatingNameLabel() : notation::DecorationNode
@@ -493,7 +504,7 @@ mapping cmp::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : st
 
 query cmp::Component::isNestedCmp() : Boolean
 {	
-	return if self.owningComponent.toString() = self.toString() then true else false endif;
+	return self.container().oclIsTypeOf(cmp::Component);
 }
 query cmp::Component::getNestedName(type : String) : String
 {

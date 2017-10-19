@@ -40,28 +40,43 @@ disjuncts
 	
 mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
-	referencedElement :=self.element.oclAsType(uml::Component);
+	referencedElement := self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
+	attributes += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
 	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
-	nestedInterface += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
-	component += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
+	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
+	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
 	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
 	var edges = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
-	portRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(e | e = source))->map edgeToPortRelation();
+	connectors += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(e | e = source))->map edgeToConnector();
 }
 
 
 
 mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
-	referencedElement :=self.element.oclAsType(uml::Interface);
+	referencedElement := self.element.oclAsType(uml::Interface);
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
+
+mapping notation::Node::nodeToClass() : cmp::Class
+	when {		self.element.oclIsKindOf(uml::Class)	}{
+	referencedElement := self.element.oclAsType(uml::Class);
+	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
+}
 //	
+
+mapping notation::Node::nodeToAttribute() : cmp::Attribute
+	when {		self.element.oclIsKindOf(uml::Property)	}{
+	referencedElement := self.element.oclAsType(uml::Property);
+	//TODO map type?
+}
+
+
 mapping notation::Node::nodeToPort() : cmp::Port
 	when {		self.element.oclIsKindOf(uml::Port)		}{
-	referencedElement :=self.element.oclAsType(uml::Port);
+	referencedElement := self.element.oclAsType(uml::Port);
 	realizedClassifier  := late resolveoneIn(
 		notation::Node::nodeToClassifier,
 		s : cmp::Classifier | s.referencedElement.toEObject() = self.element.oclAsType(uml::Port).type.toEObject()
@@ -227,13 +242,6 @@ disjuncts
 	notation::Edge::edgeToRequire
 {}
 
-mapping notation::Edge::edgeToPortRelation() : cmp::PortRelation
-disjuncts
-	notation::Edge::edgeToConnector
-{}
-
-
-
 mapping notation::Edge::edgeToConnector() : cmp::Connector
 	when {
 		self.element != null and
@@ -242,17 +250,28 @@ mapping notation::Edge::edgeToConnector() : cmp::Connector
 	}
 {
 	var realization := self.element.oclAsType(uml::Connector);
-	var connectorEnds :=self.element.oclAsType(uml::Connector)._end;
-	outerPort := late resolveoneIn(
-		notation::Node::nodeToPort,
-		s : cmp::Port | s.referencedElement.toEObject() = (connectorEnds->at(1).role.toEObject())
-	);
-	innerPort := late resolveoneIn(
-		notation::Node::nodeToPort,
-		s : cmp::Port | s.referencedElement.toEObject() = (connectorEnds->at(2).role.toEObject())
-	);
+	var umlConnectorEnds :=self.element.oclAsType(uml::Connector)._end;
+	
+	connectorEnds += umlConnectorEnds->map connectorEndToConnectorEnd(); 
 	referencedElement := realization;
 }
+
+
+mapping uml::ConnectorEnd::connectorEndToConnectorEnd() : cmp::ConnectorEnd
+{
+	role :=	late resolveoneIn(
+		notation::Node::nodeToPort,
+		s : cmp::Port | s.referencedElement.toEObject() = (self.role.toEObject())
+	);
+	
+	part := late resolveoneIn(
+		notation::Node::nodeToAttribute,
+		s : cmp::Attribute | s.referencedElement.toEObject() = (self.partWithPort.toEObject())
+		);
+	
+}
+
+
 mapping notation::Edge::edgeToProvide() : cmp::Provide
 	when {
 		self.element != null and

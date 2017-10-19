@@ -45,7 +45,6 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToGeneralization();
 	result += self.map traceEdgeToDependency();
 	result += self.map traceEdgeToConnector();
-	result += self.map traceEdgeToPortRelation();
 	result += self.map traceNodeToPort();
 }
 
@@ -123,13 +122,6 @@ when {self.mappingOperation.name = "interfaceRelationToEdge"}
 	result += new TraceRecord("edgeToInterfaceRelation", "Edge", edge, "InterfaceRelation", ifaceRelation.eobject());
 }
 
-mapping trace::TraceRecord::traceEdgeToPortRelation() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "portRelationToEdge"}
-{
-	var edge := self.getResult().modelElement;
-	var portRelation := self.getSelf().modelElement.oclAsType(cmp::PortRelation);
-	result += new TraceRecord("edgeToPortRelation", "Edge", edge, "PortRelation", portRelation.eobject());
-}
 
 mapping trace::TraceRecord::traceEdgeToProvide() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "provideToEdge"}
