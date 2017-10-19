@@ -15,6 +15,7 @@ import de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd;
 import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
 import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
 import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity;
 import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation;
 import de.cooperateproject.modeling.textual.cmp.cmp.Manifestation;
 import de.cooperateproject.modeling.textual.cmp.cmp.Member;
@@ -140,6 +141,20 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * @generated
      */
     private EClass componentEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass classEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass interfaceProvidingRequiringEntityEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -502,7 +517,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * @generated
      */
     public EReference getComponent_PackagedElements() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(4);
+        return (EReference)componentEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -510,8 +525,26 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_InterfaceRelation() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(1);
+    public EClass getClass_() {
+        return classEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInterfaceProvidingRequiringEntity() {
+        return interfaceProvidingRequiringEntityEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getInterfaceProvidingRequiringEntity_InterfaceRelation() {
+        return (EReference)interfaceProvidingRequiringEntityEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -520,7 +553,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * @generated
      */
     public EReference getComponent_Port() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(2);
+        return (EReference)componentEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -529,7 +562,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * @generated
      */
     public EReference getComponent_Connectors() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(3);
+        return (EReference)componentEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -732,10 +765,14 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         componentEClass = createEClass(COMPONENT);
         createEReference(componentEClass, COMPONENT__ATTRIBUTES);
-        createEReference(componentEClass, COMPONENT__INTERFACE_RELATION);
         createEReference(componentEClass, COMPONENT__PORT);
         createEReference(componentEClass, COMPONENT__CONNECTORS);
         createEReference(componentEClass, COMPONENT__PACKAGED_ELEMENTS);
+
+        classEClass = createEClass(CLASS);
+
+        interfaceProvidingRequiringEntityEClass = createEClass(INTERFACE_PROVIDING_REQUIRING_ENTITY);
+        createEReference(interfaceProvidingRequiringEntityEClass, INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION);
 
         interfaceEClass = createEClass(INTERFACE);
         createEReference(interfaceEClass, INTERFACE__MEMBERS);
@@ -897,6 +934,14 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g2 = createEGenericType(theUMLPackage.getComponent());
         g1.getETypeArguments().add(g2);
         componentEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getInterfaceProvidingRequiringEntity());
+        componentEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType(theUMLPackage.getClass_());
+        g1.getETypeArguments().add(g2);
+        classEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getInterfaceProvidingRequiringEntity());
+        classEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(theUMLPackage.getInterface());
         g1.getETypeArguments().add(g2);
@@ -988,13 +1033,17 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getComponent_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_InterfaceRelation(), this.getInterfaceRelation(), null, "interfaceRelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getPort());
         g2 = createEGenericType(theUMLPackage.getClassifier());
         g1.getETypeArguments().add(g2);
         initEReference(getComponent_Port(), g1, null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_Connectors(), this.getConnector(), null, "connectors", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_PackagedElements(), theTextualCommonsPackage.getPackageableElement(), null, "packagedElements", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(classEClass, de.cooperateproject.modeling.textual.cmp.cmp.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(interfaceProvidingRequiringEntityEClass, InterfaceProvidingRequiringEntity.class, "InterfaceProvidingRequiringEntity", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getInterfaceProvidingRequiringEntity_InterfaceRelation(), this.getInterfaceRelation(), null, "interfaceRelation", null, 0, -1, InterfaceProvidingRequiringEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getInterface_Members(), this.getMember(), null, "members", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -2,6 +2,30 @@
  */
 package de.cooperateproject.modeling.textual.cmp.cmp.util;
 
+import de.cooperateproject.modeling.textual.cmp.cmp.Abstraction;
+import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
+import de.cooperateproject.modeling.textual.cmp.cmp.Classifier;
+import de.cooperateproject.modeling.textual.cmp.cmp.ClassifierRelation;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Component;
+import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram;
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
+import de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd;
+import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
+import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity;
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation;
+import de.cooperateproject.modeling.textual.cmp.cmp.Manifestation;
+import de.cooperateproject.modeling.textual.cmp.cmp.Member;
+import de.cooperateproject.modeling.textual.cmp.cmp.Method;
+import de.cooperateproject.modeling.textual.cmp.cmp.Parameter;
+import de.cooperateproject.modeling.textual.cmp.cmp.Port;
+import de.cooperateproject.modeling.textual.cmp.cmp.Property;
+import de.cooperateproject.modeling.textual.cmp.cmp.Provide;
+import de.cooperateproject.modeling.textual.cmp.cmp.Require;
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Substitution;
 import de.cooperateproject.modeling.textual.cmp.cmp.*;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
@@ -201,12 +225,33 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 Component component = (Component)theEObject;
                 T1 result = caseComponent(component);
                 if (result == null) result = caseClassifier(component);
+                if (result == null) result = caseInterfaceProvidingRequiringEntity(component);
                 if (result == null) result = caseCommentable(component);
                 if (result == null) result = caseAliasedElement(component);
                 if (result == null) result = casePackageableElement(component);
                 if (result == null) result = caseUMLReferencingElement(component);
                 if (result == null) result = caseNamedElement(component);
                 if (result == null) result = caseElement(component);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CmpPackage.CLASS: {
+                de.cooperateproject.modeling.textual.cmp.cmp.Class class_ = (de.cooperateproject.modeling.textual.cmp.cmp.Class)theEObject;
+                T1 result = caseClass(class_);
+                if (result == null) result = caseClassifier(class_);
+                if (result == null) result = caseInterfaceProvidingRequiringEntity(class_);
+                if (result == null) result = caseCommentable(class_);
+                if (result == null) result = caseAliasedElement(class_);
+                if (result == null) result = casePackageableElement(class_);
+                if (result == null) result = caseUMLReferencingElement(class_);
+                if (result == null) result = caseNamedElement(class_);
+                if (result == null) result = caseElement(class_);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CmpPackage.INTERFACE_PROVIDING_REQUIRING_ENTITY: {
+                InterfaceProvidingRequiringEntity interfaceProvidingRequiringEntity = (InterfaceProvidingRequiringEntity)theEObject;
+                T1 result = caseInterfaceProvidingRequiringEntity(interfaceProvidingRequiringEntity);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -506,6 +551,36 @@ public class CmpSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseComponent(Component object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseClass(de.cooperateproject.modeling.textual.cmp.cmp.Class object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Interface Providing Requiring Entity</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Interface Providing Requiring Entity</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseInterfaceProvidingRequiringEntity(InterfaceProvidingRequiringEntity object) {
         return null;
     }
 

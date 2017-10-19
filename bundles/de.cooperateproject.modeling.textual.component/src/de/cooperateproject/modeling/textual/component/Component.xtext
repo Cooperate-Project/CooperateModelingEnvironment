@@ -18,7 +18,7 @@ ClassifierRelation returns ClassifierRelation:
 	Generalization | Abstraction | Manifestation | Substitution | Dependency;
 
 Classifier returns Classifier: 
-	Interface | Component;
+	Interface | Component | Class;
 
 
 InterfaceRelation returns InterfaceRelation: 
@@ -50,6 +50,12 @@ Component returns Component:
 		 '}' ))
 		
 		;
+
+Class returns Class:
+	'class' ((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? |
+		(('{' (comments+=Comment)? (interfaceRelation+=InterfaceRelation)* '}')))
+	
+;
 
 
 Generalization returns Generalization:

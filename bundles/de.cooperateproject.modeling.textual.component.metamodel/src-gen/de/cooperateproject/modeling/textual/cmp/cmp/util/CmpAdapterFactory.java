@@ -2,6 +2,29 @@
  */
 package de.cooperateproject.modeling.textual.cmp.cmp.util;
 
+import de.cooperateproject.modeling.textual.cmp.cmp.Abstraction;
+import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
+import de.cooperateproject.modeling.textual.cmp.cmp.ClassifierRelation;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Component;
+import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram;
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
+import de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd;
+import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
+import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity;
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation;
+import de.cooperateproject.modeling.textual.cmp.cmp.Manifestation;
+import de.cooperateproject.modeling.textual.cmp.cmp.Member;
+import de.cooperateproject.modeling.textual.cmp.cmp.Method;
+import de.cooperateproject.modeling.textual.cmp.cmp.Parameter;
+import de.cooperateproject.modeling.textual.cmp.cmp.Port;
+import de.cooperateproject.modeling.textual.cmp.cmp.Property;
+import de.cooperateproject.modeling.textual.cmp.cmp.Provide;
+import de.cooperateproject.modeling.textual.cmp.cmp.Require;
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Substitution;
 import de.cooperateproject.modeling.textual.cmp.cmp.*;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
@@ -129,6 +152,14 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseComponent(Component object) {
                 return createComponentAdapter();
+            }
+            @Override
+            public Adapter caseClass(de.cooperateproject.modeling.textual.cmp.cmp.Class object) {
+                return createClassAdapter();
+            }
+            @Override
+            public Adapter caseInterfaceProvidingRequiringEntity(InterfaceProvidingRequiringEntity object) {
+                return createInterfaceProvidingRequiringEntityAdapter();
             }
             @Override
             public Adapter caseInterface(Interface object) {
@@ -397,6 +428,34 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createComponentAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cmp.cmp.Class <em>Class</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Class
+     * @generated
+     */
+    public Adapter createClassAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity <em>Interface Providing Requiring Entity</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity
+     * @generated
+     */
+    public Adapter createInterfaceProvidingRequiringEntityAdapter() {
         return null;
     }
 

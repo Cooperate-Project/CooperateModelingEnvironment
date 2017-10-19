@@ -2,6 +2,25 @@
  */
 package de.cooperateproject.modeling.textual.cmp.cmp.impl;
 
+import de.cooperateproject.modeling.textual.cmp.cmp.Abstraction;
+import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpFactory;
+import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Component;
+import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram;
+import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
+import de.cooperateproject.modeling.textual.cmp.cmp.ConnectorEnd;
+import de.cooperateproject.modeling.textual.cmp.cmp.Dependency;
+import de.cooperateproject.modeling.textual.cmp.cmp.Generalization;
+import de.cooperateproject.modeling.textual.cmp.cmp.Interface;
+import de.cooperateproject.modeling.textual.cmp.cmp.Manifestation;
+import de.cooperateproject.modeling.textual.cmp.cmp.Method;
+import de.cooperateproject.modeling.textual.cmp.cmp.Parameter;
+import de.cooperateproject.modeling.textual.cmp.cmp.Port;
+import de.cooperateproject.modeling.textual.cmp.cmp.Provide;
+import de.cooperateproject.modeling.textual.cmp.cmp.Require;
+import de.cooperateproject.modeling.textual.cmp.cmp.RootPackage;
+import de.cooperateproject.modeling.textual.cmp.cmp.Substitution;
 import de.cooperateproject.modeling.textual.cmp.cmp.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -67,6 +86,7 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
             case CmpPackage.SUBSTITUTION: return (EObject)createSubstitution();
             case CmpPackage.DEPENDENCY: return (EObject)createDependency();
             case CmpPackage.COMPONENT: return (EObject)createComponent();
+            case CmpPackage.CLASS: return (EObject)createClass();
             case CmpPackage.INTERFACE: return (EObject)createInterface();
             case CmpPackage.METHOD: return (EObject)createMethod();
             case CmpPackage.PARAMETER: return (EObject)createParameter();
@@ -177,6 +197,16 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
     public Component createComponent() {
         ComponentImpl component = new ComponentImpl();
         return component;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public de.cooperateproject.modeling.textual.cmp.cmp.Class createClass() {
+        ClassImpl class_ = new ClassImpl();
+        return class_;
     }
 
     /**

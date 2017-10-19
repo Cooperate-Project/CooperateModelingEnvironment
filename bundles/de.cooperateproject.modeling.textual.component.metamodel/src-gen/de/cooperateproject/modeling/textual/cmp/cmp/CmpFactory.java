@@ -113,6 +113,15 @@ public interface CmpFactory extends EFactory {
     Component createComponent();
 
     /**
+     * Returns a new object of class '<em>Class</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Class</em>'.
+     * @generated
+     */
+    Class createClass();
+
+    /**
      * Returns a new object of class '<em>Interface</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

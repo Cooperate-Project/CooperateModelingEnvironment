@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.cmp.cmp.impl;
 import de.cooperateproject.modeling.textual.cmp.cmp.Attribute;
 import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.cmp.cmp.Connector;
+import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity;
 import de.cooperateproject.modeling.textual.cmp.cmp.InterfaceRelation;
 import de.cooperateproject.modeling.textual.cmp.cmp.Port;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
@@ -30,8 +31,8 @@ import org.eclipse.uml2.uml.Component;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getInterfaceRelation <em>Interface Relation</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getPort <em>Port</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getConnectors <em>Connectors</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ComponentImpl#getPackagedElements <em>Packaged Elements</em>}</li>
@@ -86,7 +87,7 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      */
     @SuppressWarnings("unchecked")
     public EList<InterfaceRelation> getInterfaceRelation() {
-        return (EList<InterfaceRelation>)eDynamicGet(CmpPackage.COMPONENT__INTERFACE_RELATION, CmpPackage.Literals.COMPONENT__INTERFACE_RELATION, true, true);
+        return (EList<InterfaceRelation>)eDynamicGet(CmpPackage.COMPONENT__INTERFACE_RELATION, CmpPackage.Literals.INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION, true, true);
     }
 
     /**
@@ -117,10 +118,10 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__ATTRIBUTES:
-                return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 return ((InternalEList<?>)getInterfaceRelation()).basicRemove(otherEnd, msgs);
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
             case CmpPackage.COMPONENT__PORT:
                 return ((InternalEList<?>)getPort()).basicRemove(otherEnd, msgs);
             case CmpPackage.COMPONENT__CONNECTORS:
@@ -139,10 +140,10 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__ATTRIBUTES:
-                return getAttributes();
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 return getInterfaceRelation();
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                return getAttributes();
             case CmpPackage.COMPONENT__PORT:
                 return getPort();
             case CmpPackage.COMPONENT__CONNECTORS:
@@ -162,13 +163,13 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__ATTRIBUTES:
-                getAttributes().clear();
-                getAttributes().addAll((Collection<? extends Attribute>)newValue);
-                return;
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 getInterfaceRelation().clear();
                 getInterfaceRelation().addAll((Collection<? extends InterfaceRelation>)newValue);
+                return;
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                getAttributes().clear();
+                getAttributes().addAll((Collection<? extends Attribute>)newValue);
                 return;
             case CmpPackage.COMPONENT__PORT:
                 getPort().clear();
@@ -194,11 +195,11 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__ATTRIBUTES:
-                getAttributes().clear();
-                return;
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 getInterfaceRelation().clear();
+                return;
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                getAttributes().clear();
                 return;
             case CmpPackage.COMPONENT__PORT:
                 getPort().clear();
@@ -221,10 +222,10 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CmpPackage.COMPONENT__ATTRIBUTES:
-                return !getAttributes().isEmpty();
             case CmpPackage.COMPONENT__INTERFACE_RELATION:
                 return !getInterfaceRelation().isEmpty();
+            case CmpPackage.COMPONENT__ATTRIBUTES:
+                return !getAttributes().isEmpty();
             case CmpPackage.COMPONENT__PORT:
                 return !getPort().isEmpty();
             case CmpPackage.COMPONENT__CONNECTORS:
@@ -233,6 +234,38 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
                 return !getPackagedElements().isEmpty();
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == InterfaceProvidingRequiringEntity.class) {
+            switch (derivedFeatureID) {
+                case CmpPackage.COMPONENT__INTERFACE_RELATION: return CmpPackage.INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == InterfaceProvidingRequiringEntity.class) {
+            switch (baseFeatureID) {
+                case CmpPackage.INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION: return CmpPackage.COMPONENT__INTERFACE_RELATION;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //ComponentImpl

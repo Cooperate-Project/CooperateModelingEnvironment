@@ -136,8 +136,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaceRelation" upperBound="-1"
-        eType="#//InterfaceRelation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="port" upperBound="-1" containment="true">
       <eGenericType eClassifier="#//Port">
         <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
@@ -151,6 +149,18 @@
     <eGenericSuperTypes eClassifier="#//Classifier">
       <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//InterfaceProvidingRequiringEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class">
+    <eGenericSuperTypes eClassifier="#//Classifier">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//InterfaceProvidingRequiringEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceProvidingRequiringEntity" abstract="true"
+      interface="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaceRelation" upperBound="-1"
+        eType="#//InterfaceRelation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interface">
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"

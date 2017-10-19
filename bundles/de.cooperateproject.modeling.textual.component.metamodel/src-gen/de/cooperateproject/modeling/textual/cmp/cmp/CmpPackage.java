@@ -1026,22 +1026,22 @@ public interface CmpPackage extends EPackage {
     int COMPONENT__ALIAS = CLASSIFIER__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMPONENT__ATTRIBUTES = CLASSIFIER_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Interface Relation</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COMPONENT__INTERFACE_RELATION = CLASSIFIER_FEATURE_COUNT + 1;
+    int COMPONENT__INTERFACE_RELATION = CLASSIFIER_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPONENT__ATTRIBUTES = CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Port</b></em>' containment reference list.
@@ -1098,6 +1098,125 @@ public interface CmpPackage extends EPackage {
     int COMPONENT_OPERATION_COUNT = CLASSIFIER_OPERATION_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ClassImpl <em>Class</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.ClassImpl
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getClass_()
+     * @generated
+     */
+    int CLASS = 13;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__REFERENCED_ELEMENT = CLASSIFIER__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__COMMENTS = CLASSIFIER__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__NAME = CLASSIFIER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__ALIAS = CLASSIFIER__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Interface Relation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__INTERFACE_RELATION = CLASSIFIER_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Class</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Class</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS_OPERATION_COUNT = CLASSIFIER_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity <em>Interface Providing Requiring Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getInterfaceProvidingRequiringEntity()
+     * @generated
+     */
+    int INTERFACE_PROVIDING_REQUIRING_ENTITY = 14;
+
+    /**
+     * The feature id for the '<em><b>Interface Relation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION = 0;
+
+    /**
+     * The number of structural features of the '<em>Interface Providing Requiring Entity</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE_PROVIDING_REQUIRING_ENTITY_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Interface Providing Requiring Entity</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE_PROVIDING_REQUIRING_ENTITY_OPERATION_COUNT = 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.InterfaceImpl <em>Interface</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1105,7 +1224,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getInterface()
      * @generated
      */
-    int INTERFACE = 13;
+    int INTERFACE = 15;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1187,7 +1306,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getMember()
      * @generated
      */
-    int MEMBER = 17;
+    int MEMBER = 19;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1269,7 +1388,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getMethod()
      * @generated
      */
-    int METHOD = 14;
+    int METHOD = 16;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1369,7 +1488,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getParameter()
      * @generated
      */
-    int PARAMETER = 15;
+    int PARAMETER = 17;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1460,7 +1579,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getAttribute()
      * @generated
      */
-    int ATTRIBUTE = 16;
+    int ATTRIBUTE = 18;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1542,7 +1661,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getInterfaceRelation()
      * @generated
      */
-    int INTERFACE_RELATION = 18;
+    int INTERFACE_RELATION = 20;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1606,7 +1725,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getProvide()
      * @generated
      */
-    int PROVIDE = 19;
+    int PROVIDE = 21;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1679,7 +1798,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getRequire()
      * @generated
      */
-    int REQUIRE = 20;
+    int REQUIRE = 22;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1752,7 +1871,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getPort()
      * @generated
      */
-    int PORT = 21;
+    int PORT = 23;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2092,15 +2211,35 @@ public interface CmpPackage extends EPackage {
     EReference getComponent_PackagedElements();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getInterfaceRelation <em>Interface Relation</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.Class <em>Class</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Class</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.Class
+     * @generated
+     */
+    EClass getClass_();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity <em>Interface Providing Requiring Entity</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Interface Providing Requiring Entity</em>'.
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity
+     * @generated
+     */
+    EClass getInterfaceProvidingRequiringEntity();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity#getInterfaceRelation <em>Interface Relation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the containment reference list '<em>Interface Relation</em>'.
-     * @see de.cooperateproject.modeling.textual.cmp.cmp.Component#getInterfaceRelation()
-     * @see #getComponent()
+     * @see de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity#getInterfaceRelation()
+     * @see #getInterfaceProvidingRequiringEntity()
      * @generated
      */
-    EReference getComponent_InterfaceRelation();
+    EReference getInterfaceProvidingRequiringEntity_InterfaceRelation();
 
     /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cmp.cmp.Component#getPort <em>Port</em>}'.
@@ -2538,12 +2677,32 @@ public interface CmpPackage extends EPackage {
         EReference COMPONENT__PACKAGED_ELEMENTS = eINSTANCE.getComponent_PackagedElements();
 
         /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.impl.ClassImpl <em>Class</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.ClassImpl
+         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getClass_()
+         * @generated
+         */
+        EClass CLASS = eINSTANCE.getClass_();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity <em>Interface Providing Requiring Entity</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.cmp.cmp.InterfaceProvidingRequiringEntity
+         * @see de.cooperateproject.modeling.textual.cmp.cmp.impl.CmpPackageImpl#getInterfaceProvidingRequiringEntity()
+         * @generated
+         */
+        EClass INTERFACE_PROVIDING_REQUIRING_ENTITY = eINSTANCE.getInterfaceProvidingRequiringEntity();
+
+        /**
          * The meta object literal for the '<em><b>Interface Relation</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference COMPONENT__INTERFACE_RELATION = eINSTANCE.getComponent_InterfaceRelation();
+        EReference INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION = eINSTANCE.getInterfaceProvidingRequiringEntity_InterfaceRelation();
 
         /**
          * The meta object literal for the '<em><b>Port</b></em>' containment reference list feature.
