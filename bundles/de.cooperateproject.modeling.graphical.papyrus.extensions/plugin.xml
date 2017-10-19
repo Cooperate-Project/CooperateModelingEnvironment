@@ -259,7 +259,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintModelingCorrectForExtends"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Constraints on extend relations have to be nested"
                   severity="WARNING"
                   statusCode="2">
@@ -356,6 +356,25 @@
                </target>
                <description>
                   The system used in a use case diagram must be of type component.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramExtensionPointIsVisible"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.extensionPointsUsedInExtendMustBeVisible"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Extension points used in extend relations must be visible"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  {0} used in extend relationships must be visible to the user.
+               </message>
+               <target
+                     class="Connector">
+               </target>
+               <description>
+                  An extension point used in an extend realation has to be visible in the diagram.
                </description>
             </constraint>
          </constraints>
