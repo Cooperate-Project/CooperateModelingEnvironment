@@ -13,8 +13,10 @@
       <connectors xsi:type="cmp:Connector">
         <referencedElement xsi:type="uml:Connector" href="ComponentDiagramPortRelation.uml#_dJRNIJzWEeekxamVBtf-ow"/>
         <connectorEnds role="//@rootpackage/@classifiers.0/@port.0">
+        	<referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortRelation.uml#_dJhr0JzWEeekxamVBtf-ow"/>
         </connectorEnds>
         <connectorEnds role="//@rootpackage/@classifiers.0/@packagedElements.0/@port.0">
+        	<referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortRelation.uml#_dJhr0ZzWEeekxamVBtf-ow"/>
         </connectorEnds>
       </connectors>
       <port realizedClassifier="//@rootpackage/@classifiers.1">

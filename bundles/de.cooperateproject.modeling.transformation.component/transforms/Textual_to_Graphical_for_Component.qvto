@@ -196,6 +196,7 @@ when{self.oclIsKindOf(cmp::Connector)}
 }
 
 
+
 mapping cmp::Generalization::generalizationToEdge() : notation::Connector
 when{self.oclIsKindOf(cmp::Generalization)}
 {

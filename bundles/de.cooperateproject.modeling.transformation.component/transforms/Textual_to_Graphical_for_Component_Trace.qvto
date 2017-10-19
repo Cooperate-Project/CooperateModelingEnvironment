@@ -184,6 +184,19 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	var edge := self.getResult().modelElement;
 	var connector := self.getSelf().modelElement.oclAsType(cmp::Connector);
 	result += new TraceRecord("edgeToConnector", "Edge", edge, "Connector", connector.eobject());
+	
+	result += self.map traceConnectorEndToConnectorEnd();
+}
+
+mapping trace::TraceRecord::traceConnectorEndToConnectorEnd() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "connectorToEdge"}
+{
+	var umlconnector := self.getResult().modelElement.oclAsType(notation::Edge).element.oclAsType(uml::Connector);
+	var cmpConnector := self.getSelf().modelElement.oclAsType(cmp::Connector);
+	umlconnector._end->forEach(ending) {
+		var cmpEnd := cmpConnector.connectorEnds->select(role.referencedElement = ending.role)->first();
+		result += new TraceRecord("connectorEndToConnectorEnd", "ConnectorEnd", ending.eobject(), "ConnectorEnd", cmpEnd.eobject());
+	}
 }
 
 mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)

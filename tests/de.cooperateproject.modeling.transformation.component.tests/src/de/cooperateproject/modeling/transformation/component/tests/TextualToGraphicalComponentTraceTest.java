@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.component.tests;
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -101,6 +103,7 @@ public class TextualToGraphicalComponentTraceTest extends ComponentDirectionalTr
 
     @Test
     public void testPortRelation() throws Exception {
+    	setDebugSerializationDir(new File("D:"));
         testTraceTransformation("ComponentDiagramPortRelation");
     }
 
