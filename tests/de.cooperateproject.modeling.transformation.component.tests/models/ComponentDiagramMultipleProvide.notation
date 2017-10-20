@@ -71,11 +71,11 @@
   </styles>
   <element xmi:type="uml:Model" href="ComponentDiagramMultipleProvide.uml#_G0bgwJPQEee9Dd_V_0eWlA"/>
   <edges xmi:type="notation:Connector" xmi:id="_fWEqkJPQEee9Dd_V_0eWlA" type="InterfaceRealization_Edge" source="_cUkBYJPQEee9Dd_V_0eWlA" target="_eF_iwJPQEee9Dd_V_0eWlA">
-    <children xmi:type="notation:DecorationNode" xmi:id="_fWHG0JPQEee9Dd_V_0eWlA" type="InterfaceRealization_StereotypeLabel">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_fWHG0ZPQEee9Dd_V_0eWlA" y="40"/>
-    </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_fWHt4JPQEee9Dd_V_0eWlA" type="InterfaceRealization_NameLabel">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_fWHt4ZPQEee9Dd_V_0eWlA" y="60"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_fWHG0JPQEee9Dd_V_0eWlA" type="InterfaceRealization_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_fWHG0ZPQEee9Dd_V_0eWlA" y="40"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_fWEqkZPQEee9Dd_V_0eWlA"/>
     <element xmi:type="uml:InterfaceRealization" href="ComponentDiagramMultipleProvide.uml#_fVgC0JPQEee9Dd_V_0eWlA"/>
@@ -84,11 +84,11 @@
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_fYHR8ZPQEee9Dd_V_0eWlA" id="(0.2,1.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_f1z6kJPQEee9Dd_V_0eWlA" type="InterfaceRealization_Edge" source="_c59NcJPQEee9Dd_V_0eWlA" target="_eF_iwJPQEee9Dd_V_0eWlA">
-    <children xmi:type="notation:DecorationNode" xmi:id="_f10hoJPQEee9Dd_V_0eWlA" type="InterfaceRealization_StereotypeLabel">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_f10hoZPQEee9Dd_V_0eWlA" y="40"/>
-    </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_f10hopPQEee9Dd_V_0eWlA" type="InterfaceRealization_NameLabel">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_f10ho5PQEee9Dd_V_0eWlA" y="60"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_f10hoJPQEee9Dd_V_0eWlA" type="InterfaceRealization_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_f10hoZPQEee9Dd_V_0eWlA" y="40"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_f1z6kZPQEee9Dd_V_0eWlA"/>
     <element xmi:type="uml:InterfaceRealization" href="ComponentDiagramMultipleProvide.uml#_f1ejYJPQEee9Dd_V_0eWlA"/>
@@ -97,11 +97,11 @@
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_f2vusJPQEee9Dd_V_0eWlA" id="(0.0,0.6)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_gOkY0JPQEee9Dd_V_0eWlA" type="InterfaceRealization_Edge" source="_c59NcJPQEee9Dd_V_0eWlA" target="_eafzIJPQEee9Dd_V_0eWlA">
-    <children xmi:type="notation:DecorationNode" xmi:id="_gOk_4JPQEee9Dd_V_0eWlA" type="InterfaceRealization_StereotypeLabel">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_gOk_4ZPQEee9Dd_V_0eWlA" y="40"/>
-    </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_gOk_4pPQEee9Dd_V_0eWlA" type="InterfaceRealization_NameLabel">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_gOk_45PQEee9Dd_V_0eWlA" y="60"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_gOk_4JPQEee9Dd_V_0eWlA" type="InterfaceRealization_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_gOk_4ZPQEee9Dd_V_0eWlA" y="40"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_gOkY0ZPQEee9Dd_V_0eWlA"/>
     <element xmi:type="uml:InterfaceRealization" href="ComponentDiagramMultipleProvide.uml#_gOEpkJPQEee9Dd_V_0eWlA"/>
