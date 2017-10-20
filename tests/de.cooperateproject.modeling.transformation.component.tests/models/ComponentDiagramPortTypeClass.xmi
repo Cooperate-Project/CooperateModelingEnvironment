@@ -22,12 +22,30 @@
           <referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortTypeClass.uml#_YIpZIbQSEeeP2dgFazWMfA"/>
         </connectorEnds>
       </connectors>
+      <connectors>
+        <referencedElement xsi:type="uml:Connector" href="ComponentDiagramPortTypeClass.uml#_dQeOkLQSEeeP2dgFazWMfA"/>
+        <connectorEnds>
+          <referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortTypeClass.uml#_dQe1oLQSEeeP2dgFazWMfA"/>
+        </connectorEnds>
+        <connectorEnds>
+          <referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortTypeClass.uml#_dQe1obQSEeeP2dgFazWMfA"/>
+        </connectorEnds>
+      </connectors>
     </classifiers>
     <classifiers xsi:type="cmp:Component">
       <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortTypeClass.uml#_RI9ZQLQJEeeP2dgFazWMfA"/>
-      <port>
+      <port realizedClassifier="//@rootpackage/@classifiers.1/@packagedElements.0">
         <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortTypeClass.uml#_j9vG4LQJEeeP2dgFazWMfA"/>
       </port>
+      <packagedElements xsi:type="cmp:Class">
+      	<referencedElement xsi:type="uml:Class" href="ComponentDiagramPortTypeClass.uml#_7wFaYLQMEeeP2dgFazWMfA"/>
+      	<interfaceRelation xsi:type="cmp:Require" interface="//@rootpackage/@classifiers.4">
+      		<referencedElement xsi:type="uml:Usage" href="ComponentDiagramPortTypeClass.uml#_DYNCULQNEeeP2dgFazWMfA"/>
+      	</interfaceRelation>
+      	<interfaceRelation xsi:type="cmp:Provide" interface="//@rootpackage/@classifiers.3">
+      		<referencedElement xsi:type="uml:InterfaceRealization" href="ComponentDiagramPortTypeClass.uml#_CD46wLQNEeeP2dgFazWMfA"/>
+      	</interfaceRelation>
+      </packagedElements>
     </classifiers>
     <classifiers xsi:type="cmp:Component">
       <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortTypeClass.uml#_S-O40LQJEeeP2dgFazWMfA"/>

@@ -1,4 +1,5 @@
 import TransformationUtils_Component;
+import de.cooperateproject.qvtoutils.CooperateLibrary;
 
 transformation Textual_to_Graphical_for_Component(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
 
@@ -26,14 +27,20 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
   	element := rootPackage.toEObject();
  
 	children +=self.rootpackage.classifiers.map classifiersToShape();
+	//TODO can classes be nested in component shapes?
+	var classes := self.rootpackage.getAllContentsOfType(cmp::Class.oclAsType(ecore::EClass), true);
+	children += classes->oclAsType(cmp::Class).map classifiersToShape();
 	edges += self.rootpackage.relations.map classifierRelationsToEdge();
-	edges += self.rootpackage.classifiers->select(e | e.oclIsKindOf(cmp::Component)).oclAsType(cmp::Component)->flatten().connectors.map connectorToEdge();
+	
+	//also create connectors that are nested
+	var allConnectors := self.rootpackage.getAllContentsOfType(cmp::Connector.oclAsType(ecore::EClass), true);
+	edges += allConnectors->oclAsType(cmp::Connector).map connectorToEdge();
+	
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
 	edges += interfaceRelation.map interfaceRelationToEdge();
 	log("exit");
-	
 }
 
 mapping cmp::ComponentDiagram::diagramToStringValueStyle() : notation::StringValueStyle {
@@ -57,7 +64,7 @@ mapping cmp::Classifier::classifiersToShape() : notation::Shape
 disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape, cmp::Class::classToShape;
 
 mapping cmp::InterfaceRelation::interfaceRelationToEdge() : notation::Connector
-disjuncts cmp::Provide::provideToEdge, cmp::Require::requireToEdge;
+disjuncts cmp::Require::requireToEdge, cmp::Provide::provideToEdge;
 
 
 mapping cmp::Component::componentToShape() : notation::Shape
@@ -104,7 +111,7 @@ when { self.oclIsKindOf(cmp::Provide) }
 {
 	type := PAPYRUS_NOTATION_EDGE_IMPLEMENTATION;	
 	source := late resolveoneIn(
-		cmp::Component::componentToShape,
+		cmp::Classifier::classifiersToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::InterfaceRealization).implementingClassifier.toEObject()
 	);
 		target := late resolveoneIn(
@@ -112,8 +119,8 @@ when { self.oclIsKindOf(cmp::Provide) }
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::InterfaceRealization).contract.toEObject()
 	);	
 	element := self.referencedElement.toEObject();
-	children += self.map stereotypeInterfaceDecorationProvide();
 	children += self.map stereotypeInterfaceDecorationNameLabel();
+	children += self.map stereotypeInterfaceDecorationProvide();
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
@@ -126,7 +133,7 @@ when { self.oclIsKindOf(cmp::Require) }
 {
 	type := PAPYRUS_NOTATION_EDGE_USAGE;	
 	source := late resolveoneIn(
-		cmp::Component::componentToShape,
+		cmp::Classifier::classifiersToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Usage).source->any(true).toEObject()
 	);
 
@@ -204,21 +211,35 @@ mapping cmp::Connector::connectorToEdge() : notation::Connector
 when{self.oclIsKindOf(cmp::Connector)}
 {
 	type:= PAPYRUS_NOTATION_EDGE_CONNECTOR;
-	source := late resolveoneIn(
-		cmp::Port::portToShape,
-		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(1).role.toEObject()
-	);
 	
-	//TODO link to attributes that are the partWithPort
-//	target := resolveoneIn(
-//		cmp::Attribute::attributeToShape,
-//		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(2).partWithPort.toEObject()
-//	).map attributePortToShape();
+	var umlConnector := self.referencedElement.oclAsType(uml::Connector);
+	var sourcePartSet := not umlConnector._end->at(1).partWithPort.oclIsUndefined();
+	if(sourcePartSet) {
+		source := late resolveoneIn(
+			uml::Port::attributePortToShape,
+			s : notation::Shape | s.element = umlConnector._end->at(1).role.toEObject()
+		);
+	} else {
+		source := late resolveoneIn(
+			cmp::Port::portToShape,
+			s : notation::Shape | s.element = umlConnector._end->at(1).role.toEObject()
+		);
 	
-	target := late resolveoneIn(
+	};
+	
+	
+	var targetPartSet := not umlConnector._end->at(2).partWithPort.oclIsUndefined();
+	if(targetPartSet) {
+		target := late resolveoneIn(
+			uml::Port::attributePortToShape,
+			s : notation::Shape | s.element = umlConnector._end->at(2).role.toEObject()
+		);
+	} else {
+		target := late resolveoneIn(
 		cmp::Port::portToShape,
-		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(2).role.toEObject()
+		s : notation::Shape | s.element = umlConnector._end->at(2).role.toEObject()
 	);
+	};
 
 	children += self.map stereotypeConnectorDecoration();	
 	children += self.map connectorDecorationNameLabel();
@@ -580,6 +601,10 @@ query String::getNestedCmpName(isNested : Boolean) : String
 
 
 query cmp::RootPackage::findAllInterfaceRelations() : Sequence(cmp::InterfaceRelation) {
-	var interfaceRelation = self.classifiers->select(oclIsKindOf(cmp::Component))->oclAsType(cmp::Component).interfaceRelation->flatten();
+	var components = self.getAllContentsOfType(cmp::Component.oclAsType(ecore::EClass), true);
+	var classes = self.getAllContentsOfType(cmp::Class.oclAsType(ecore::EClass), true);
+	var interfaceRelation := components->oclAsType(cmp::Component).interfaceRelation->flatten();
+	interfaceRelation += classes->oclAsType(cmp::Class).interfaceRelation->flatten();
+
 	return interfaceRelation;
 }
