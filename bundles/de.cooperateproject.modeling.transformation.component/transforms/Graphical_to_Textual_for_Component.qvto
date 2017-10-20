@@ -57,7 +57,6 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 			.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY)
 			.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
 	
-	log("pots", portNodes);
 	connectors += self.diagram.edges->select(not isCommentLinkForAssociation())->select(portNodes->exists(e | e = source))->map edgeToConnector();
 }
 

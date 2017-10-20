@@ -26,7 +26,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 
   	element := rootPackage.toEObject();
  
-	children +=self.rootpackage.classifiers.map classifiersToShape();
+	children += self.rootpackage.classifiers.map classifiersToShape();
 	//TODO can classes be nested in component shapes?
 	var classes := self.rootpackage.getAllContentsOfType(cmp::Class.oclAsType(ecore::EClass), true);
 	children += classes->oclAsType(cmp::Class).map classifiersToShape();
@@ -361,9 +361,9 @@ mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
 	children += self.attributes.map attributeToShape();
 	
-	children += self.packagedElements->selectByType(cmp::Interface).map interfaceToShape();
+	children += self.packagedElements->selectByType(cmp::Interface).map classifiersToShape();
 	styles += result.toEObject().map titleStyle();
-	children += self.packagedElements->selectByType(cmp::Component).map componentToShape();
+	children += self.packagedElements->selectByType(cmp::Component).map classifiersToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
 }

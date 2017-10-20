@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.component.tests;
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
