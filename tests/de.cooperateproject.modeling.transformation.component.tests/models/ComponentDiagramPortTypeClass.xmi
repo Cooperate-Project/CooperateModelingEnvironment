@@ -39,10 +39,10 @@
       </port>
       <packagedElements xsi:type="cmp:Class">
       	<referencedElement xsi:type="uml:Class" href="ComponentDiagramPortTypeClass.uml#_7wFaYLQMEeeP2dgFazWMfA"/>
-      	<interfaceRelation xsi:type="cmp:Require" interface="//@rootpackage/@classifiers.4">
+      	<interfaceRelation xsi:type="cmp:Require">
       		<referencedElement xsi:type="uml:Usage" href="ComponentDiagramPortTypeClass.uml#_DYNCULQNEeeP2dgFazWMfA"/>
       	</interfaceRelation>
-      	<interfaceRelation xsi:type="cmp:Provide" interface="//@rootpackage/@classifiers.3">
+      	<interfaceRelation xsi:type="cmp:Provide">
       		<referencedElement xsi:type="uml:InterfaceRealization" href="ComponentDiagramPortTypeClass.uml#_CD46wLQNEeeP2dgFazWMfA"/>
       	</interfaceRelation>
       </packagedElements>
