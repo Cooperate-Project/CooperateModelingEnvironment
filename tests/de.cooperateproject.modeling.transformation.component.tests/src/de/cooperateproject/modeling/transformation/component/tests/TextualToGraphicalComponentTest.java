@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.component.tests;
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -107,5 +109,11 @@ public class TextualToGraphicalComponentTest extends ComponentDirectionalTransfo
     @Test
     public void testComponentDiagramAliasedClassifier() throws Exception {
         testRegular("ComponentDiagramAliasedClassifier");
+    }
+    
+    @Test
+    public void testComponentDiagramPortTypeClass() throws Exception {
+    	setDebugSerializationDir(new File("D:"));
+        testRegular("ComponentDiagramPortTypeClass");
     }
 }

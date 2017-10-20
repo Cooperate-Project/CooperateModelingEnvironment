@@ -71,7 +71,6 @@ public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTr
 
     @Test
     public void testRequireInterface() throws Exception {
-
         testTraceTransformation("ComponentDiagramRequire");
     }
 
@@ -97,7 +96,6 @@ public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTr
 
     @Test
     public void testPorts() throws Exception {
-
         testTraceTransformation("ComponentDiagramPorts");
     }
 

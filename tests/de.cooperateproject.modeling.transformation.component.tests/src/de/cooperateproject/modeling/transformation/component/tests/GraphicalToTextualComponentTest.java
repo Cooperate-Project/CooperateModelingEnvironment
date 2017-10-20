@@ -103,12 +103,17 @@ public class GraphicalToTextualComponentTest extends ComponentDirectionalTransfo
 
     @Test
     public void testComponentDiagramPortRelation() throws Exception {
-    	setDebugSerializationDir(new File("D:"));
         testRegular("ComponentDiagramPortRelation");
     }
 
     @Test
     public void testComponentDiagramAliasedClassifier() throws Exception {
         testRegular("ComponentDiagramAliasedClassifier");
+    }
+    
+    @Test
+    public void testComponentDiagramPortTypeClass() throws Exception {
+    	setDebugSerializationDir(new File("D:"));
+        testRegular("ComponentDiagramPortTypeClass");
     }
 }

@@ -25,6 +25,7 @@ property PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE : String = "Property_Interfa
 property PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION : String = "Operation_InterfaceOperationLabel";
 property PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT : String = "PackageImport_Edge";
 property PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY : String = "Property_Shape";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY_NAME_REGULAR : String = "Property_NameLabel";
 property PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT : String = "NamedElement_DefaultShape";
 property PAPYRUS_NOTATION_NODE_NAMED_ELEMENT_NAME_REGULAR : String = "NamedElement_NameLabel";
 

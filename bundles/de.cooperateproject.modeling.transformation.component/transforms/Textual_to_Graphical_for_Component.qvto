@@ -88,6 +88,16 @@ when { self.oclIsKindOf(cmp::Port) }
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
+mapping uml::Port::attributePortToShape() : notation::Shape
+{
+	type := PAPYRUS_NOTATION_SHAPE_PORT_REGULAR;	
+	element := self.toEObject();
+	children += self.map attributePortToNameLabel();
+	children += self.map attributePortToStereotypeLabel();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
 
 mapping cmp::Provide::provideToEdge() : notation::Connector
 when { self.oclIsKindOf(cmp::Provide) }
@@ -161,6 +171,23 @@ when {self.oclIsKindOf(cmp::Class)}
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
+mapping cmp::Attribute::attributeToShape() : notation::Shape
+when {self.oclIsKindOf(cmp::Attribute)}
+{
+	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY;
+	children += self.map attributeToNameLabel();
+	children += self.map attributeToShapeDisplay();
+	
+	var umlProperty := self.referencedElement.oclAsType(uml::Property);
+	if(umlProperty.type.oclIsKindOf(uml::Component)) {
+		var umlComponent := umlProperty.type.oclAsType(uml::Component);
+			children += umlComponent.ownedPort.map attributePortToShape();
+	};
+	
+	element := self.referencedElement.oclAsType(uml::Property).toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
 
 mapping cmp::ClassifierRelation::classifierRelationsToEdge() : notation::Edge
 disjuncts cmp::Generalization::generalizationToEdge,
@@ -181,6 +208,13 @@ when{self.oclIsKindOf(cmp::Connector)}
 		cmp::Port::portToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(1).role.toEObject()
 	);
+	
+	//TODO link to attributes that are the partWithPort
+//	target := resolveoneIn(
+//		cmp::Attribute::attributeToShape,
+//		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(2).partWithPort.toEObject()
+//	).map attributePortToShape();
+	
 	target := late resolveoneIn(
 		cmp::Port::portToShape,
 		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Connector)._end->at(2).role.toEObject()
@@ -304,6 +338,8 @@ disjuncts cmp::Classifier::classifiersToShape;
 mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 {	
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
+	children += self.attributes.map attributeToShape();
+	
 	children += self.packagedElements->selectByType(cmp::Interface).map interfaceToShape();
 	styles += result.toEObject().map titleStyle();
 	children += self.packagedElements->selectByType(cmp::Component).map componentToShape();
@@ -345,6 +381,13 @@ mapping cmp::Component::portToShapeDisplay() : notation::BasicCompartment
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
+mapping cmp::Attribute::attributeToShapeDisplay() : notation::BasicCompartment
+{
+	type := PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY;
+	styles += self.toEObject().map titleStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
 
 // Labels /Decorations /...
 
@@ -366,6 +409,18 @@ mapping cmp::Port::portToStereotypeLabel() : notation::DecorationNode
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
+mapping uml::Port::attributePortToNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping uml::Port::attributePortToStereotypeLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
 mapping cmp::Component::componentFloatingNameLabel() : notation::DecorationNode
 {
 	type := self.getNestedName(PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR);
@@ -376,6 +431,12 @@ mapping cmp::Interface::interfaceToNameLabel() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR;
 }
+
+mapping cmp::Attribute::attributeToNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY_NAME_REGULAR
+}
+
 
 mapping textualCommons::NamedElement::namedElementToNameLabel() : notation::DecorationNode
 {
