@@ -31,7 +31,8 @@ mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 mapping notation::Node::nodeToClassifier() : cmp::Classifier
 disjuncts
 	notation::Node::nodeToComponent,
-	notation::Node::nodeToInterface
+	notation::Node::nodeToInterface,
+	notation::Node::nodeToClass
 {
 
 }
@@ -44,11 +45,20 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	var packagedElementsNode := self.children;
 	attributes += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
 	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
-	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
-	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToComponent();
+	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToClassifier();
+	//collect all classes that are in the diagram and belog to the component
+	var rootShapes := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT and element.oclAsType(uml::Classifier).owner = referencedElement);
+	packagedElements += rootShapes.map nodeToClassifier();
+	
 	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
-	var edges = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
-	connectors += self.diagram.edges->select(not isCommentLinkForAssociation())->select(edges->exists(e | e = source))->map edgeToConnector();
+	var portNodes = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
+	//add ports of properties
+	portNodes += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR)
+			.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY)
+			.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
+	
+	log("pots", portNodes);
+	connectors += self.diagram.edges->select(not isCommentLinkForAssociation())->select(portNodes->exists(e | e = source))->map edgeToConnector();
 }
 
 
