@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 

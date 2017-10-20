@@ -32,7 +32,7 @@ public interface InterfaceRelation extends AliasedElement {
      * @return the value of the '<em>Interface</em>' reference.
      * @see #setInterface(Interface)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getInterfaceRelation_Interface()
-     * @model required="true"
+     * @model transient="true"
      * @generated
      */
     Interface getInterface();

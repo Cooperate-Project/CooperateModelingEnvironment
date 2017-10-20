@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -160,6 +161,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         isInited = true;
 
         // Initialize simple dependencies
+        EcorePackage.eINSTANCE.eClass();
+        TypesPackage.eINSTANCE.eClass();
         UMLPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects

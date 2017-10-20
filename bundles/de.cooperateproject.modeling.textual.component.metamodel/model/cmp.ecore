@@ -189,7 +189,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceRelation" abstract="true" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="0" transient="true"
         eType="#//Interface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Provide">

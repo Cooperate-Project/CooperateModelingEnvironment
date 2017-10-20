@@ -7,7 +7,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Provide;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 

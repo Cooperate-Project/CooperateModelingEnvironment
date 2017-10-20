@@ -32,11 +32,6 @@
     <eTypeParameters name="UMLType">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     </eTypeParameters>
-    <eOperations name="getUMLParentNamespace" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="&lt;%org.eclipse.emf.ecore.EObject%> currentElement = &lt;%java.util.Optional%>.ofNullable(getReferencedElement()).map(&lt;%org.eclipse.emf.ecore.EObject%>::eContainer).orElse(null);&#xD;&#xA;while (currentElement != null &amp;&amp; !(currentElement instanceof &lt;%org.eclipse.uml2.uml.Namespace%>)) {&#xD;&#xA;&#x9;currentElement = currentElement.eContainer();&#xD;&#xA;}&#xD;&#xA;return &lt;%java.util.Optional%>.ofNullable(currentElement).filter(&lt;%org.eclipse.uml2.uml.Namespace%>.class::isInstance).map(&lt;%org.eclipse.uml2.uml.Namespace%>.class::cast).orElse(null);"/>
-      </eAnnotations>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
       <eAnnotations source="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"/>
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
@@ -116,5 +111,4 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//VisibilityKind"
         transient="true" unsettable="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NameOptional" abstract="true" interface="true"/>
 </ecore:EPackage>
