@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ComponentAssemblyDiagram">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramPortTypeClass.uml#_IruuQLQJEeeP2dgFazWMfA"/>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortTypeClass.uml#_rZzTALQNEeeP2dgFazWMfA"/>
+      <attributes>
+        <referencedElement xsi:type="uml:Property" href="ComponentDiagramPortTypeClass.uml#_zf_-ELQNEeeP2dgFazWMfA"/>
+      </attributes>
+      <attributes>
+        <referencedElement xsi:type="uml:Property" href="ComponentDiagramPortTypeClass.uml#_4cLkMLQNEeeP2dgFazWMfA"/>
+      </attributes>
+      <port realizedClassifier="//@rootpackage/@classifiers.3">
+        <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortTypeClass.uml#_udMykLQNEeeP2dgFazWMfA"/>
+      </port>
+      <connectors>
+        <referencedElement xsi:type="uml:Connector" href="ComponentDiagramPortTypeClass.uml#_YIoyELQSEeeP2dgFazWMfA"/>
+        <connectorEnds>
+          <referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortTypeClass.uml#_YIpZILQSEeeP2dgFazWMfA"/>
+        </connectorEnds>
+        <connectorEnds>
+          <referencedElement xsi:type="uml:ConnectorEnd" href="ComponentDiagramPortTypeClass.uml#_YIpZIbQSEeeP2dgFazWMfA"/>
+        </connectorEnds>
+      </connectors>
+    </classifiers>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortTypeClass.uml#_RI9ZQLQJEeeP2dgFazWMfA"/>
+      <port>
+        <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortTypeClass.uml#_j9vG4LQJEeeP2dgFazWMfA"/>
+      </port>
+    </classifiers>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramPortTypeClass.uml#_S-O40LQJEeeP2dgFazWMfA"/>
+      <port realizedClassifier="//@rootpackage/@classifiers.4">
+        <referencedElement xsi:type="uml:Port" href="ComponentDiagramPortTypeClass.uml#_mW7y4LQJEeeP2dgFazWMfA"/>
+      </port>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramPortTypeClass.uml#_Ylli4LQJEeeP2dgFazWMfA"/>
+      <members xsi:type="cmp:Method">
+        <referencedElement xsi:type="uml:Operation" href="ComponentDiagramPortTypeClass.uml#_gJljALQNEeeP2dgFazWMfA"/>
+      </members>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramPortTypeClass.uml#_fb4FQLQJEeeP2dgFazWMfA"/>
+      <members xsi:type="cmp:Method">
+        <referencedElement xsi:type="uml:Operation" href="ComponentDiagramPortTypeClass.uml#_iFB8ALQNEeeP2dgFazWMfA"/>
+      </members>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>
