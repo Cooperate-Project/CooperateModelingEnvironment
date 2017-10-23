@@ -5,16 +5,6 @@
 -->
 
 <plugin>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated component -->
-      <package
-            uri="http://www.cooperateproject.de/modeling/textual/component/Component"
-            class="de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage"
-            genModel="model/cmp.genmodel"/>
-   </extension>
-
-null
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated cmp -->
       <package
@@ -22,5 +12,4 @@ null
             class="de.cooperateproject.modeling.textual.component.cmp.CmpPackage"
             genModel="model/cmp.genmodel"/>
    </extension>
-
 </plugin>
