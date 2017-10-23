@@ -36,6 +36,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceNodeToInterface();
 	result += self.map traceNodeToClass();
 	result += self.map traceNodeToProperty();
+	result += self.map traceNodeToAttribute();
 	result += self.map traceNodeToMethod();
 	result += self.map traceEdgeToInterfaceRelation();
 	result += self.map traceEdgeToProvide();
@@ -104,7 +105,7 @@ when {self.mappingOperation.name = "classToShape"}
 {
 	var node := self.getResult().modelElement;
 	var cla := self.getSelf().modelElement.oclAsType(cmp::Class);
-	result += new TraceRecord("nodeToClass", "Node", node, "Interface", cla.eobject());
+	result += new TraceRecord("nodeToClass", "Node", node, "Class", cla.eobject());
 }
 
 mapping trace::TraceRecord::traceNodeToProperty() : List(trace::TraceRecord)
@@ -113,6 +114,14 @@ when {self.mappingOperation.name = "interfaceAttributeToShape"}
 	var node := self.getResult().modelElement;
 	var attribute := self.getSelf().modelElement.oclAsType(cmp::Attribute);
 	result += new TraceRecord("nodeToProperty", "Node", node, "Attribute", attribute.eobject());
+}
+
+mapping trace::TraceRecord::traceNodeToAttribute() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "attributeToShape"}
+{
+	var node := self.getResult().modelElement;
+	var attribute := self.getSelf().modelElement.oclAsType(cmp::Attribute);
+	result += new TraceRecord("nodeToAttribute", "Node", node, "Attribute", attribute.eobject());
 }
 
 mapping trace::TraceRecord::traceNodeToMethod() : List(trace::TraceRecord)
