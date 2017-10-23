@@ -3,6 +3,7 @@
 rootPackage Minimal
 
 component testComp {
+	provide second second_iface
 	component first_comp {
 		require first first_iface
 	}
@@ -10,7 +11,6 @@ component testComp {
 		someName : String
 		someOperation(anObject : first_iface, aPrimitive : int) : long
 	}
-	provide second second_iface
 }
 interface second_iface {
 	someName : String

@@ -4,20 +4,20 @@
 package de.cooperateproject.modeling.textual.component.tests
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cmp.cmp.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import static org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.common.util.URI
 import org.apache.commons.io.IOUtils
 import java.util.Collections
 import de.cooperateproject.modeling.textual.component.tests.scoping.util.ComponentCustomizedInjectorProvider
-
+ 
 
 @RunWith(XtextRunner)
 @InjectWith(ComponentCustomizedInjectorProvider.DefaultProvider)
@@ -241,11 +241,12 @@ class ComponentParsingTest extends AbstractComponentTest{
 			rootPackage RootElement
 			component testA
 			component testComp {
-				component innerComp{
-					port port2 realizes testA
-					con contest (port2, port1)
-				}				
 				port port1 realizes testA
+				inner : innerComp				
+				con contest (port1, inner.port2)
+				component innerComp {
+					port port2 realizes testA
+				}
 			}
 			@end-cpd
 		'''.parse(rs)

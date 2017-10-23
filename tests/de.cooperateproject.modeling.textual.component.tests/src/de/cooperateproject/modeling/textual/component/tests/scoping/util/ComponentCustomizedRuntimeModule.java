@@ -31,7 +31,7 @@ import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLRefer
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.ComponentRuntimeModule;
-import de.cooperateproject.modeling.textual.cmp.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.services.ComponentTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.tests.ComponentInjectorProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
