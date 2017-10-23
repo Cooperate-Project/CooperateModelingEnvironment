@@ -106,10 +106,10 @@ when {self.mappingOperation.name = "nodeToComponent"}
 	result+= self.getSelfNode().map traceRecordExtended_notationBounds();
 	var portShape := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY);
 	var port := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY);
-	if(port!=null){
-	result += new TraceRecord("portToShapeDisplay", "Component", classifier, "BasicCompartment", port.eobject());
-	result += new TraceRecord("titleStyle", "EObject", classifier.eobject(), "TitleStyle", port.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
-	result += port.map traceRecordExtended_notationBounds();
+	if(port!=null) {
+		result += new TraceRecord("portToShapeDisplay", "Component", classifier, "BasicCompartment", port.eobject());
+		result += new TraceRecord("titleStyle", "EObject", classifier.eobject(), "TitleStyle", port.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+		result += port.map traceRecordExtended_notationBounds();
 	}
 	
 }
@@ -127,7 +127,7 @@ when {self.mappingOperation.name = "nodeToAttribute"}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY);
 	var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY_NAME_REGULAR);
 	result += new TraceRecord("attributeToShapeDisplay", "Attribute", classifier, "BasicCompartment", compartment.eobject());
-	result += new TraceRecord("titleStyle", "EObject", compartment.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+	result += new TraceRecord("titleStyle", "EObject", classifier.eobject(), "TitleStyle", compartment.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
 	result += new TraceRecord("attributeToNameLabel", "Attribute", classifier, "DecorationNode", decoration.eobject());
 	result += compartment.map traceRecordExtended_notationBounds();
 

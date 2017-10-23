@@ -110,4 +110,9 @@ public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTr
     public void testAliasedClassifier() throws Exception {
         testTraceTransformation("ComponentDiagramAliasedClassifier");
     }
+    
+    @Test
+    public void testComponentDiagramPortTypeClass() throws Exception {
+    	testTraceTransformation("ComponentDiagramPortTypeClass");
+    }
 }
