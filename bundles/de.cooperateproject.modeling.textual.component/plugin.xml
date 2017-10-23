@@ -8,6 +8,15 @@
       </class>
    </extension>
    <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.RequireInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.RequireCalculator">
+      </class>
+   </extension>
+   <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories">
       <factory
             class="de.cooperateproject.modeling.textual.component.issues.ComponentMissingUMLElementResolutionFactory">

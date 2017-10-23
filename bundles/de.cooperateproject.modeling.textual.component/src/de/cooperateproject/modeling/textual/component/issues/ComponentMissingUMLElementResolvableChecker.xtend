@@ -10,6 +10,8 @@ import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation
+
 
 class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -22,6 +24,10 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 	    return (UMLPackage.eINSTANCE.classifier.isSuperTypeOf(referencedType) 
 	         && UMLPackage.eINSTANCE.packageableElement.isSuperTypeOf(referencedType)
 	         && (element.hasValidParent(CmpPackage.eINSTANCE.component) || element.hasValidParent(CmpPackage.eINSTANCE.rootPackage)))
+	}
+	
+	private def dispatch resolvePossible(InterfaceRelation element) {
+		return element.interface.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
 	}
 	
 	private def dispatch resolvePossible(Method element) {
