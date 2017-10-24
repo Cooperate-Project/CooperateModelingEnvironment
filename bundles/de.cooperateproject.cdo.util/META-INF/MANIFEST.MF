@@ -14,8 +14,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.apache.commons.io;bundle-version="2.2.0",
  de.cooperateproject.util,
  org.eclipse.e4.core.di;bundle-version="1.6.1"
-Export-Package: de.cooperateproject.cdo.util.commitutils,
- de.cooperateproject.cdo.util.connection,
+Export-Package: de.cooperateproject.cdo.util.connection,
  de.cooperateproject.cdo.util.merger,
  de.cooperateproject.cdo.util.resources,
  de.cooperateproject.cdo.util.utils

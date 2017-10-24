@@ -1,10 +1,13 @@
 package de.cooperateproject.ui.wizards.reset;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
@@ -14,19 +17,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.cdo.CDOObject;
-import org.eclipse.emf.cdo.common.branch.CDOBranch;
-import org.eclipse.emf.cdo.common.commit.CDOCommitHistory;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
-import org.eclipse.emf.cdo.common.commit.CDOCommitInfoManager;
-import org.eclipse.emf.cdo.common.id.CDOID;
-import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.session.CDOSession;
-import org.eclipse.emf.cdo.util.CDOUtil;
-import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.jface.layout.PixelConverter;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -34,33 +27,38 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.cdo.util.commitutils.CommitManager;
-import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
-import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
-import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
-import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
+import de.cooperateproject.ui.Activator;
+import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
 public class ResetRepositoryComposite extends Composite {
 
-    private static TableViewer tv;
-    private static final long LOADING_TIMEOUT = 8000;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResetRepositoryComposite.class);
+    private TableViewer tv;
 
     ResetRepositoryComposite(Composite parent, int style, IResource resource, ResetRepositoryPage page) {
         super(parent, style);
         createComposite(style, page);
-        fillTable(resource.getProject(), Optional.ofNullable(resource.getAdapter(IFile.class)));
+        try {
+            fillTable(resource.getProject(), Optional.ofNullable(resource.getAdapter(IFile.class)));
+        } catch (ConcreteSyntaxTypeNotAvailableException | CoreException | IOException e) {
+            LOGGER.error("Failed to fill table with available commits.", e);
+            // TODO inform the user
+            return;
+        }
     }
 
-    private void fillTable(IProject project, Optional<IFile> file) {
-        CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
+    private void fillTable(IProject project, Optional<IFile> file)
+            throws CoreException, IOException, ConcreteSyntaxTypeNotAvailableException {
+        Collection<IFile> relevantFiles = getRelevantFiles(project, file);
         Set<CDOCommitInfo> commitInfos = new HashSet<>();
-        if (file.isPresent()) {
-            commitInfos.addAll(findAllCommitsforFile(session, file.get()));
-        } else {
-            commitInfos.addAll(findAllCommitsforProject(session, project));
+        for (IFile currentFile : relevantFiles) {
+            commitInfos.addAll(Activator.getDefault().getCommitHistoryManager().getCommitsForLauncher(currentFile));
         }
+
         DateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
         TreeMap<Long, CDOCommitInfo> map = new TreeMap<>(Collections.reverseOrder());
         for (CDOCommitInfo commit : commitInfos) {
@@ -74,7 +72,22 @@ public class ResetRepositoryComposite extends Composite {
         }
     }
 
-    public static CDOCommitInfo getSelectedCommit() {
+    private static Collection<IFile> getRelevantFiles(IProject project, Optional<IFile> file) throws CoreException {
+        if (file.isPresent()) {
+            return Arrays.asList(file.get());
+        } else {
+            Collection<IFile> relevantFiles = new ArrayList<>();
+            for (IResource r : ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName())
+                    .getFolder("models").members()) {
+                if (r.getName().endsWith(LauncherModelHelper.FILE_EXTENSION)) {
+                    relevantFiles.add((IFile) r);
+                }
+            }
+            return relevantFiles;
+        }
+    }
+
+    public CDOCommitInfo getSelectedCommit() {
         TableItem item = tv.getTable().getSelection()[0];
         return (CDOCommitInfo) item.getData();
     }
@@ -83,6 +96,7 @@ public class ResetRepositoryComposite extends Composite {
         if (tv.getTable().getSelection().length != 1) {
             page.setPageComplete(false);
         } else {
+            page.setSelectedCommit(getSelectedCommit());
             page.setPageComplete(true);
         }
     }
@@ -110,95 +124,6 @@ public class ResetRepositoryComposite extends Composite {
         tv.getControl().setLayoutData(gridData);
         setLayout(layout);
         tv.addSelectionChangedListener(event -> selectionChanged(page));
-    }
-
-    private static Set<CDOCommitInfo> findAllCommitsforFile(CDOSession session, IFile file) {
-        Set<CDOCommitInfo> commitInfos = new HashSet<>();
-        commitInfos.addAll(getCommitsFromMainBranch(session, getFirstCommitTimeStamp(session, file), file));
-        return commitInfos;
-    }
-
-    private static Set<CDOCommitInfo> findAllCommitsforProject(CDOSession session, IProject project) {
-
-        Set<CDOCommitInfo> commitInfos = new HashSet<>();
-        try {
-            for (IResource resource : ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName())
-                    .getFolder("models").members()) {
-                if (resource.toString().endsWith(LauncherModelHelper.FILE_EXTENSION)) {
-                    IFile file = (IFile) resource;
-                    commitInfos.addAll(getCommitsFromMainBranch(session, getFirstCommitTimeStamp(session, file), file));
-                }
-            }
-        } catch (CoreException e) {
-            // LOGGER.trace(e.getMessage(), e);
-        }
-        return commitInfos;
-    }
-
-    private static long getFirstCommitTimeStamp(CDOSession session, IFile file) {
-        CDOView view = null;
-        try {
-            view = session.openView();
-            CDOID resourceCDOId = getResourceCDOId(view, file);
-            return view.getRevision(resourceCDOId).getTimeStamp();
-        } finally {
-            IOUtil.closeSilent(view);
-        }
-    }
-
-    private static CDOID getResourceCDOId(ConcreteSyntaxModel textModel) {
-        CDOObject textRoot = CDOUtil.getCDOObject(textModel.getRootElement());
-        CDOResource cdoResource = textRoot.cdoResource();
-        if (cdoResource == null) {
-            return null;
-        }
-        return cdoResource.cdoID();
-    }
-
-    private static CDOID getResourceCDOId(CDOView view, IFile file) {
-        ConcreteSyntaxModel textModel = getConcreteSyntaxModel(view, file);
-        if (textModel == null) {
-            return null;
-        }
-        return getResourceCDOId(textModel);
-    }
-
-    private static CDOID getResourceCDOId(CDOSession session, IFile file) {
-        CDOView view = null;
-        try {
-            view = session.openView();
-            return getResourceCDOId(view, file);
-        } finally {
-            IOUtil.closeSilent(view);
-        }
-    }
-
-    private static List<CDOCommitInfo> getCommitsFromMainBranch(CDOSession session, long timeStamp, IFile file) {
-        CDOCommitInfoManager commitManager = session.getCommitInfoManager();
-        CDOBranch mainBranch = session.getBranchManager().getMainBranch();
-        CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
-
-        mainHistory.waitWhileLoading(LOADING_TIMEOUT);
-
-        return filterCreateDiagramCommit(CommitManager.getCommitsByTime(session, mainBranch, mainHistory, timeStamp,
-                getResourceCDOId(session, file)));
-    }
-
-    private static ConcreteSyntaxModel getConcreteSyntaxModel(CDOView view, IFile file) {
-        try {
-            Diagram launcherModel = LauncherModelHelper.loadDiagram(view.getResourceSet(), file);
-            return launcherModel.getConcreteSyntaxModel(EditorType.TEXTUAL.getSupportedSyntaxModel());
-        } catch (Exception e) {
-            // LOGGER.error(e.getMessage(), e);
-        }
-        return null;
-    }
-
-    private static List<CDOCommitInfo> filterCreateDiagramCommit(List<CDOCommitInfo> commitInfos) {
-        if (!commitInfos.isEmpty()) {
-            commitInfos.remove(commitInfos.size() - 1);
-        }
-        return commitInfos;
     }
 
 }

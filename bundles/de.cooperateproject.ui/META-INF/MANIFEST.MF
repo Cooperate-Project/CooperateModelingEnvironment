@@ -45,7 +45,8 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.xtext.ui;bundle-version="2.12.0",
  org.eclipse.osgi,
  de.cooperateproject.modeling.transformation.common,
- org.apache.commons.io
+ org.apache.commons.io,
+ de.cooperateproject.modeling.cdo;bundle-version="0.4.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -56,6 +57,5 @@ Export-Package: de.cooperateproject.ui.editors.launcher,
  de.cooperateproject.ui.properties,
  de.cooperateproject.ui.startup,
  de.cooperateproject.ui.util
-Import-Package: org.apache.commons.io.input,
- org.slf4j;version="1.7.2"
+Import-Package: org.slf4j;version="1.7.2"
 
