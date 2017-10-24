@@ -91,10 +91,10 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComponentAccess().getNameAssignment_1_1(), "rule__Component__NameAssignment_1_1");
 					put(grammarAccess.getComponentAccess().getCommentsAssignment_2_0(), "rule__Component__CommentsAssignment_2_0");
 					put(grammarAccess.getComponentAccess().getCommentsAssignment_2_1_1(), "rule__Component__CommentsAssignment_2_1_1");
-					put(grammarAccess.getComponentAccess().getPortAssignment_2_1_2(), "rule__Component__PortAssignment_2_1_2");
-					put(grammarAccess.getComponentAccess().getAttributesAssignment_2_1_3(), "rule__Component__AttributesAssignment_2_1_3");
-					put(grammarAccess.getComponentAccess().getConnectorsAssignment_2_1_4(), "rule__Component__ConnectorsAssignment_2_1_4");
-					put(grammarAccess.getComponentAccess().getInterfaceRelationAssignment_2_1_5(), "rule__Component__InterfaceRelationAssignment_2_1_5");
+					put(grammarAccess.getComponentAccess().getInterfaceRelationAssignment_2_1_2(), "rule__Component__InterfaceRelationAssignment_2_1_2");
+					put(grammarAccess.getComponentAccess().getPortAssignment_2_1_3(), "rule__Component__PortAssignment_2_1_3");
+					put(grammarAccess.getComponentAccess().getAttributesAssignment_2_1_4(), "rule__Component__AttributesAssignment_2_1_4");
+					put(grammarAccess.getComponentAccess().getConnectorsAssignment_2_1_5(), "rule__Component__ConnectorsAssignment_2_1_5");
 					put(grammarAccess.getComponentAccess().getPackagedElementsAssignment_2_1_6(), "rule__Component__PackagedElementsAssignment_2_1_6");
 					put(grammarAccess.getClassAccess().getNameAssignment_1_0_0(), "rule__Class__NameAssignment_1_0_0");
 					put(grammarAccess.getClassAccess().getAliasAssignment_1_0_2(), "rule__Class__AliasAssignment_1_0_2");

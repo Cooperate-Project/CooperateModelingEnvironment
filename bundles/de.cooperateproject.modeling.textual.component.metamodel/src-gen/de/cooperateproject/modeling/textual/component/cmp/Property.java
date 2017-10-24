@@ -64,7 +64,7 @@ public interface Property<T extends NamedElement> extends UMLReferencingElement<
      * @return the value of the '<em>Type</em>' reference.
      * @see #setType(Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getProperty_Type()
-     * @model
+     * @model transient="true"
      * @generated
      */
     Classifier getType();

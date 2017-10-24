@@ -11,7 +11,10 @@ import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation
-
+import de.cooperateproject.modeling.textual.component.cmp.Attribute
+import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.component.cmp.Member
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
 
 class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -28,6 +31,10 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 	
 	private def dispatch resolvePossible(InterfaceRelation element) {
 		return element.interface.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
+	}
+	
+	private def dispatch resolvePossible(Attribute element) {
+		return element.type !== null && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
 	}
 	
 	private def dispatch resolvePossible(Method element) {

@@ -16,10 +16,16 @@
             class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.ProvideInitializer">
       </class>
       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.AttributeInitializer">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.RequireCalculator">
       </class>
       <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.ProvideCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.AttributeCalculator">
       </class>
    </extension>
    <extension

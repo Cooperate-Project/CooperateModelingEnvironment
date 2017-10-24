@@ -242,10 +242,10 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             comments+=Comment | 
 	 *             (
 	 *                 comments+=Comment? 
+	 *                 interfaceRelation+=InterfaceRelation* 
 	 *                 port+=Port* 
 	 *                 attributes+=ComponentTypeAttribute* 
 	 *                 connectors+=Connector* 
-	 *                 interfaceRelation+=InterfaceRelation* 
 	 *                 packagedElements+=Classifier*
 	 *             )
 	 *         )?

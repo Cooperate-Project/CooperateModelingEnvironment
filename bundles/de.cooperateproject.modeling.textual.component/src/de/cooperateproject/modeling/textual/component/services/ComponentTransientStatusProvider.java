@@ -12,7 +12,8 @@ import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatu
 public class ComponentTransientStatusProvider implements ITransientStatusProvider {
 
     private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>( Arrays.asList(
-    		CmpPackage.Literals.INTERFACE_RELATION__INTERFACE
+    		CmpPackage.Literals.INTERFACE_RELATION__INTERFACE,
+    		CmpPackage.Literals.PROPERTY__TYPE
     		));
 
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();

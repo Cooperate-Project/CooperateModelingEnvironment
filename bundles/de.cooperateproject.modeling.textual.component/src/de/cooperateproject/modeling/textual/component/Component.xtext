@@ -42,10 +42,10 @@ Component returns Component:
 		 (comments+=Comment)? | 
 		 ('{'
 			(comments+=Comment)? 
+			(interfaceRelation+=InterfaceRelation)*
 			(port+=Port)*
 		 	(attributes+=ComponentTypeAttribute)*  
 			(connectors+=Connector)*
-			(interfaceRelation+=InterfaceRelation)*
 			(packagedElements+=Classifier)*
 		 '}' ))
 		

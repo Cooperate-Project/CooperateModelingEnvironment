@@ -222,14 +222,14 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cCommentsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
 		private final RuleCall cCommentsCommentParserRuleCall_2_1_1_0 = (RuleCall)cCommentsAssignment_2_1_1.eContents().get(0);
-		private final Assignment cPortAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
-		private final RuleCall cPortPortParserRuleCall_2_1_2_0 = (RuleCall)cPortAssignment_2_1_2.eContents().get(0);
-		private final Assignment cAttributesAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
-		private final RuleCall cAttributesComponentTypeAttributeParserRuleCall_2_1_3_0 = (RuleCall)cAttributesAssignment_2_1_3.eContents().get(0);
-		private final Assignment cConnectorsAssignment_2_1_4 = (Assignment)cGroup_2_1.eContents().get(4);
-		private final RuleCall cConnectorsConnectorParserRuleCall_2_1_4_0 = (RuleCall)cConnectorsAssignment_2_1_4.eContents().get(0);
-		private final Assignment cInterfaceRelationAssignment_2_1_5 = (Assignment)cGroup_2_1.eContents().get(5);
-		private final RuleCall cInterfaceRelationInterfaceRelationParserRuleCall_2_1_5_0 = (RuleCall)cInterfaceRelationAssignment_2_1_5.eContents().get(0);
+		private final Assignment cInterfaceRelationAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
+		private final RuleCall cInterfaceRelationInterfaceRelationParserRuleCall_2_1_2_0 = (RuleCall)cInterfaceRelationAssignment_2_1_2.eContents().get(0);
+		private final Assignment cPortAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
+		private final RuleCall cPortPortParserRuleCall_2_1_3_0 = (RuleCall)cPortAssignment_2_1_3.eContents().get(0);
+		private final Assignment cAttributesAssignment_2_1_4 = (Assignment)cGroup_2_1.eContents().get(4);
+		private final RuleCall cAttributesComponentTypeAttributeParserRuleCall_2_1_4_0 = (RuleCall)cAttributesAssignment_2_1_4.eContents().get(0);
+		private final Assignment cConnectorsAssignment_2_1_5 = (Assignment)cGroup_2_1.eContents().get(5);
+		private final RuleCall cConnectorsConnectorParserRuleCall_2_1_5_0 = (RuleCall)cConnectorsAssignment_2_1_5.eContents().get(0);
 		private final Assignment cPackagedElementsAssignment_2_1_6 = (Assignment)cGroup_2_1.eContents().get(6);
 		private final RuleCall cPackagedElementsClassifierParserRuleCall_2_1_6_0 = (RuleCall)cPackagedElementsAssignment_2_1_6.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2_1_7 = (Keyword)cGroup_2_1.eContents().get(7);
@@ -237,16 +237,16 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//Component:
 		//	'component' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
 		//	comments+=Comment?
+		//	interfaceRelation+=InterfaceRelation*
 		//	port+=Port*
 		//	attributes+=ComponentTypeAttribute*
 		//	connectors+=Connector*
-		//	interfaceRelation+=InterfaceRelation*
 		//	packagedElements+=Classifier*
 		//	'}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'component' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment? port+=Port*
-		//attributes+=ComponentTypeAttribute* connectors+=Connector* interfaceRelation+=InterfaceRelation*
+		//'component' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+		//interfaceRelation+=InterfaceRelation* port+=Port* attributes+=ComponentTypeAttribute* connectors+=Connector*
 		//packagedElements+=Classifier* '}')
 		public Group getGroup() { return cGroup; }
 		
@@ -280,8 +280,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_1_0() { return cNameIDTerminalRuleCall_1_1_0; }
 		
-		//comments+=Comment? | '{' comments+=Comment? port+=Port* attributes+=ComponentTypeAttribute* connectors+=Connector*
-		//interfaceRelation+=InterfaceRelation* packagedElements+=Classifier* '}'
+		//comments+=Comment? | '{' comments+=Comment? interfaceRelation+=InterfaceRelation* port+=Port*
+		//attributes+=ComponentTypeAttribute* connectors+=Connector* packagedElements+=Classifier* '}'
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//comments+=Comment?
@@ -290,8 +290,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//Comment
 		public RuleCall getCommentsCommentParserRuleCall_2_0_0() { return cCommentsCommentParserRuleCall_2_0_0; }
 		
-		//'{' comments+=Comment? port+=Port* attributes+=ComponentTypeAttribute* connectors+=Connector*
-		//interfaceRelation+=InterfaceRelation* packagedElements+=Classifier* '}'
+		//'{' comments+=Comment? interfaceRelation+=InterfaceRelation* port+=Port* attributes+=ComponentTypeAttribute*
+		//connectors+=Connector* packagedElements+=Classifier* '}'
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//'{'
@@ -303,29 +303,29 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//Comment
 		public RuleCall getCommentsCommentParserRuleCall_2_1_1_0() { return cCommentsCommentParserRuleCall_2_1_1_0; }
 		
-		//port+=Port*
-		public Assignment getPortAssignment_2_1_2() { return cPortAssignment_2_1_2; }
-		
-		//Port
-		public RuleCall getPortPortParserRuleCall_2_1_2_0() { return cPortPortParserRuleCall_2_1_2_0; }
-		
-		//attributes+=ComponentTypeAttribute*
-		public Assignment getAttributesAssignment_2_1_3() { return cAttributesAssignment_2_1_3; }
-		
-		//ComponentTypeAttribute
-		public RuleCall getAttributesComponentTypeAttributeParserRuleCall_2_1_3_0() { return cAttributesComponentTypeAttributeParserRuleCall_2_1_3_0; }
-		
-		//connectors+=Connector*
-		public Assignment getConnectorsAssignment_2_1_4() { return cConnectorsAssignment_2_1_4; }
-		
-		//Connector
-		public RuleCall getConnectorsConnectorParserRuleCall_2_1_4_0() { return cConnectorsConnectorParserRuleCall_2_1_4_0; }
-		
 		//interfaceRelation+=InterfaceRelation*
-		public Assignment getInterfaceRelationAssignment_2_1_5() { return cInterfaceRelationAssignment_2_1_5; }
+		public Assignment getInterfaceRelationAssignment_2_1_2() { return cInterfaceRelationAssignment_2_1_2; }
 		
 		//InterfaceRelation
-		public RuleCall getInterfaceRelationInterfaceRelationParserRuleCall_2_1_5_0() { return cInterfaceRelationInterfaceRelationParserRuleCall_2_1_5_0; }
+		public RuleCall getInterfaceRelationInterfaceRelationParserRuleCall_2_1_2_0() { return cInterfaceRelationInterfaceRelationParserRuleCall_2_1_2_0; }
+		
+		//port+=Port*
+		public Assignment getPortAssignment_2_1_3() { return cPortAssignment_2_1_3; }
+		
+		//Port
+		public RuleCall getPortPortParserRuleCall_2_1_3_0() { return cPortPortParserRuleCall_2_1_3_0; }
+		
+		//attributes+=ComponentTypeAttribute*
+		public Assignment getAttributesAssignment_2_1_4() { return cAttributesAssignment_2_1_4; }
+		
+		//ComponentTypeAttribute
+		public RuleCall getAttributesComponentTypeAttributeParserRuleCall_2_1_4_0() { return cAttributesComponentTypeAttributeParserRuleCall_2_1_4_0; }
+		
+		//connectors+=Connector*
+		public Assignment getConnectorsAssignment_2_1_5() { return cConnectorsAssignment_2_1_5; }
+		
+		//Connector
+		public RuleCall getConnectorsConnectorParserRuleCall_2_1_5_0() { return cConnectorsConnectorParserRuleCall_2_1_5_0; }
 		
 		//packagedElements+=Classifier*
 		public Assignment getPackagedElementsAssignment_2_1_6() { return cPackagedElementsAssignment_2_1_6; }
@@ -1620,10 +1620,10 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//Component:
 	//	'component' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
 	//	comments+=Comment?
+	//	interfaceRelation+=InterfaceRelation*
 	//	port+=Port*
 	//	attributes+=ComponentTypeAttribute*
 	//	connectors+=Connector*
-	//	interfaceRelation+=InterfaceRelation*
 	//	packagedElements+=Classifier*
 	//	'}');
 	public ComponentElements getComponentAccess() {

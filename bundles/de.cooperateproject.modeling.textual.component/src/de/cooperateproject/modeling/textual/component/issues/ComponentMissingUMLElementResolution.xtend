@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EObject
 import java.util.Optional
 import org.eclipse.uml2.uml.BehavioredClassifier
 import de.cooperateproject.modeling.textual.component.cmp.Require
+import de.cooperateproject.modeling.textual.component.cmp.Attribute
+import org.eclipse.uml2.uml.StructuredClassifier
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -41,21 +43,32 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 		}
 	}
 
+	private def dispatch fixMissingUMLElement(Attribute element) {
+		var type = element.type
+		val umlParent = element.umlParent(StructuredClassifier)
+		if (umlParent.present && type instanceof Classifier) {
+			val umlType = type as Classifier
+			val prop = umlParent.get.createOwnedAttribute(element.name, umlType);
+			element.referencedElement = prop
+		}
+	}
+
 	private def dispatch fixMissingUMLElement(Provide element) {
 		val interface = element.interface;
-		val umlParent = element.umlParent
+		val umlParent = element.umlParent(BehavioredClassifier)
 		if (umlParent.present && interface !== null) {
 			val classifier = umlParent.get
 			if (classifier instanceof BehavioredClassifier) {
-				val umlInterfaceRealization = classifier.createInterfaceRealization(element.name, interface.referencedElement)
+				val umlInterfaceRealization = classifier.createInterfaceRealization(element.name,
+					interface.referencedElement)
 				element.referencedElement = umlInterfaceRealization
 			}
 		}
 	}
-	
+
 	private def dispatch fixMissingUMLElement(Require element) {
 		val interface = element.interface;
-		val umlParent = element.umlParent
+		val umlParent = element.umlParent(Classifier)
 		if (umlParent.present && interface !== null) {
 			val classifier = umlParent.get
 			val umlInterfaceUsage = classifier.createUsage(interface.referencedElement)
@@ -63,12 +76,11 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 			element.referencedElement = umlInterfaceUsage
 		}
 	}
-	
 
-	private static def getUmlParent(EObject element) {
+	private static def <T extends Element> umlParent(EObject element, Class<T> f) {
 		val context = element.eContainer
 		if (context instanceof UMLReferencingElement<?>) {
-			return Optional.ofNullable((context as UMLReferencingElement<? extends Classifier>).referencedElement);
+			return Optional.ofNullable((context as UMLReferencingElement<T>).referencedElement);
 		}
 
 		return Optional.empty
