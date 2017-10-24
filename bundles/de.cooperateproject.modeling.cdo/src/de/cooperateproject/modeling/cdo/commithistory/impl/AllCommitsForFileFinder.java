@@ -40,7 +40,7 @@ public class AllCommitsForFileFinder implements Closeable {
 		try {
 			return session.openView();
 		} catch (Exception e) {
-			IOUtil.closeSilent(session);
+			CDOConnectionManager.getInstance().releaseSession(session);
 			throw e;
 		}
 	}
