@@ -23,7 +23,7 @@ public class CooperateCDOReadOnlyHandler extends CDOReadOnlyHandler {
     public Optional<Boolean> isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
         if (axes.contains(ReadOnlyAxis.PERMISSION)) {
             Resource resource = eObject.eResource();
-            if (isReadOnly(resource.getURI())) {
+            if (Optional.fromNullable(resource).transform(Resource::getURI).transform(this::isReadOnly).or(false)) {
                 return Optional.of(true);
             }
         }

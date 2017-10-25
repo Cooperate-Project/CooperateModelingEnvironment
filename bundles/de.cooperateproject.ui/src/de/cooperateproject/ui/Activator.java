@@ -4,6 +4,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import de.cooperateproject.modeling.cdo.commithistory.ICommitHistoryManager;
 import de.cooperateproject.modeling.transformation.common.ITransformationExecutor;
 
 /**
@@ -18,6 +19,8 @@ public class Activator extends AbstractUIPlugin {
     private static Activator plugin;
 
     private ITransformationExecutor transformationExecutor;
+
+    private ICommitHistoryManager commitHistoryManager;
 
     /**
      * The constructor
@@ -37,6 +40,9 @@ public class Activator extends AbstractUIPlugin {
 
         ServiceReference<ITransformationExecutor> transEx = context.getServiceReference(ITransformationExecutor.class);
         this.transformationExecutor = context.getService(transEx);
+
+        ServiceReference<ICommitHistoryManager> comHistMan = context.getServiceReference(ICommitHistoryManager.class);
+        this.commitHistoryManager = context.getService(comHistMan);
     }
 
     /*
@@ -64,6 +70,10 @@ public class Activator extends AbstractUIPlugin {
 
     public ITransformationExecutor getTransformationExecutor() {
         return this.transformationExecutor;
+    }
+
+    public ICommitHistoryManager getCommitHistoryManager() {
+        return this.commitHistoryManager;
     }
 
 }

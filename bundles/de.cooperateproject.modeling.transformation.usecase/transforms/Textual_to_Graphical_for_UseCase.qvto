@@ -91,7 +91,7 @@ when {self.oclIsKindOf(usecase::UseCase)}
 mapping usecase::UseCase::usecaseToExtensionPointCompartment() : notation::BasicCompartment
 {
     type := PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED;
-    //eAnnotations += result.map visibleAndTitleAnnotation();
+    eAnnotations += result.map visibleTrueAnnotation();
     children += self.extensionPoints.map extensionPointToShape();
     styles += result.toEObject().map sortingStyle();
     styles += result.toEObject().map filteringStyle();

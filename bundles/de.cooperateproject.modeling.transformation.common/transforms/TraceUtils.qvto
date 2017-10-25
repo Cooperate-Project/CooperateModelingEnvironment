@@ -47,6 +47,13 @@ mapping notation::Node::traceRecordExtended_notationBounds() : trace::TraceRecor
 	}
 }
 
+mapping notation::DecorationNode::traceRecordExtended_visibleTrueAnnotation() : List(trace::TraceRecord)
+{
+	var relevantAnnotation := self.eAnnotations->any(source = "PapyrusCSSForceValue");
+	result += new TraceRecord("visibleTrueAnnotation", "DecorationNode", self.eobject(), "EAnnotation", relevantAnnotation.eobject());
+	result += new TraceRecord("annotationToVisibleDetail", "EAnnotation", relevantAnnotation.eobject(), "EStringToStringMapEntry", relevantAnnotation.details->any(key = "visible").eobject());
+}
+
 
 /*
 =============================================

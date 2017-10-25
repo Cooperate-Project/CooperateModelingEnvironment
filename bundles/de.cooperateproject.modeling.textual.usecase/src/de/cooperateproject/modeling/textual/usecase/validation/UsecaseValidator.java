@@ -71,7 +71,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
     @Check
     private void checkConditionGivenForMultipleExtensions(RootPackage rootPackage) {
         Map<ExtensionPoint, List<Extend>> extensions = rootPackage.getRelationships().stream()
-                .filter(Extend.class::isInstance).map(Extend.class::cast)
+                .filter(Extend.class::isInstance).map(Extend.class::cast).filter(e -> e.getExtensionLocation() != null)
                 .collect(Collectors.groupingBy(Extend::getExtensionLocation));
         extensions.entrySet().stream().map(Entry::getValue).filter(collection -> collection.size() > 1)
                 .flatMap(collection -> collection.stream().filter(e -> Strings.isNullOrEmpty(e.getCondition())))
@@ -99,7 +99,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
             if (element.equals(comparableElement)) {
                 continue;
             }
-            if (element.getAlias().equals(comparableElement.getAlias())) {
+            if (!Strings.isNullOrEmpty(element.getAlias()) && element.getAlias().equals(comparableElement.getAlias())) {
                 error("\"" + element.getAlias() + "\"" + " alias taken!", feature, code);
             }
 

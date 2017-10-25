@@ -123,6 +123,7 @@ when {self.mappingOperation.name = "nodeToUsecase"}
     result += floatingNameLabel.map decorationNode("usecaseToFloatingNameLabel", "UseCase", usecase);
     
     result += new TraceRecord("usecaseToExtensionPointCompartment", "UseCase", usecase, "BasicCompartment", extensionPointCompartment.toEObject());
+    result += extensionPointCompartment.map traceRecordExtended_visibleTrueAnnotation();
     result += extensionPointCompartment.map traceRecordExtended_basicCompartment();
 }
 

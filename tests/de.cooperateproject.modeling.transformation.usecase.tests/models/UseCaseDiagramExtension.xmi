@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<usecase:UseCaseDiagram xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:usecase="http://www.cooperateproject.de/modeling/textual/usecase/Usecase"
+	xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+	title="Use Case Diagram">
+	<rootPackage>
+		<referencedElement xsi:type="uml:Model"
+			href="UseCaseDiagramExtension.uml#_kgBoULPMEeeyacw31IseIA" />
+		<systems>
+			<referencedElement xsi:type="uml:Component"
+				href="UseCaseDiagramExtension.uml#_l9x_wLPMEeeyacw31IseIA" />
+			<usecases>
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagramExtension.uml#_mtQ78LPMEeeyacw31IseIA" />
+				<extensionPoints>
+					<referencedElement xsi:type="uml:ExtensionPoint"
+						href="UseCaseDiagramExtension.uml#_tnimcLPMEeeyacw31IseIA" />
+				</extensionPoints>
+			</usecases>
+			<usecases>
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagramExtension.uml#_oCHPALPMEeeyacw31IseIA" />
+			</usecases>
+		</systems>
+		<relationships xsi:type="usecase:Extend">
+			<referencedElement xsi:type="uml:Extend"
+				href="UseCaseDiagramExtension.uml#_tngKMLPMEeeyacw31IseIA" />
+		</relationships>
+	</rootPackage>
+</usecase:UseCaseDiagram>

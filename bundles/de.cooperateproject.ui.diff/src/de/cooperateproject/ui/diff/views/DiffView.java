@@ -25,10 +25,17 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.TabFolder;
@@ -103,18 +110,27 @@ public class DiffView extends ViewPart implements IDiffView {
 
     @Override
     public void showDiffViewOfCommit(CommitCDOViewManager cdoViewManager) {
+        showDiffView(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView());
+    }
+
+    @Override
+    public void showDiffViewOfCommit(CommitCDOViewManager oldCdoViewManager, CommitCDOViewManager newCdoViewManager) {
+        showDiffView(oldCdoViewManager.getCurrentView(), newCdoViewManager.getCurrentView());
+    }
+    
+    public void showDiffView(CDOView oldView, CDOView newView) {
         SummaryViewBuilder svb = new SummaryViewBuilder();
         List<SummaryItem> summaryList = svb.buildSummaryView(
-                comparisonManager.getComparison(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
+                comparisonManager.getComparison(oldView, newView, file));
         
         fillTable(summaryViewer, summaryList);
         setTabFolder(diffViewTab);
 
-        setDiffViewerInput(cdoViewManager, summaryList);
+        setDiffViewerInput(newView, summaryList);
     }
-
-    private void setDiffViewerInput(CommitCDOViewManager cdoViewManager, List<SummaryItem> summaryList) {
-        CDOResource resource = comparisonManager.getResource(cdoViewManager.getCurrentView());
+    
+    private void setDiffViewerInput(CDOView view, List<SummaryItem> summaryList) {
+        CDOResource resource = comparisonManager.getResource(view, file);
         DiffTreeBuilder dtb = new DiffTreeBuilder(resource, summaryList);
         diffViewer.setInput(dtb.buildTree());
         diffViewer.expandAll();
@@ -146,6 +162,7 @@ public class DiffView extends ViewPart implements IDiffView {
         clickHandler = new ClickHandler(summaryViewer, diffViewer);
         hookDoubleClickAction();
         hookKeyboard();
+        createContextMenu();
     }
 
     private void hookDoubleClickAction() {
@@ -169,6 +186,21 @@ public class DiffView extends ViewPart implements IDiffView {
         diffViewer.getTree().addKeyListener(keyListener);
     }
 
+    private void createContextMenu() {
+        MenuManager manager = new MenuManager();
+        commitViewer.getControl().setMenu(manager.createContextMenu(commitViewer.getControl()));
+
+        manager.add(new Action("Compare with each other") {
+            @Override
+            public void run() {
+                IStructuredSelection selection = (IStructuredSelection) commitViewer.getSelection();
+                if (selection.size() == 2) {
+                    showDiffViewOfCommit(new CommitCDOViewManager((CDOCommitInfo) selection.toList().get(1), file), new CommitCDOViewManager((CDOCommitInfo) selection.toList().get(0), file));
+                }
+            }
+        });
+    }
+    
     private void createToolbar() {
         IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
         liveUpdateAction = new LiveToggleAction();
@@ -176,13 +208,13 @@ public class DiffView extends ViewPart implements IDiffView {
     }
 
     private void setCommits(IFile file) {
-        comparisonManager = new ComparisonManager(file);
+        comparisonManager = new ComparisonManager();
 
         if (isDisposed()) {
             return;
         }
         
-        fillTable(commitViewer, comparisonManager.getAllCommitInfos());
+        fillTable(commitViewer, comparisonManager.getAllCommitInfos(file));
     }
 
     private void setUpTabs(Composite parent) {
@@ -240,8 +272,7 @@ public class DiffView extends ViewPart implements IDiffView {
 
     private void setUpCommitHistoryTabContent() {
 
-        commitViewer = new TableViewer(commitHistoryComposite,
-                SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
+        commitViewer = new TableViewer(commitHistoryComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
         commitViewer.setContentProvider(ArrayContentProvider.getInstance());
         commitViewer.setLabelProvider(new CommitLabelProvider());
         commitViewer.getTable().setHeaderVisible(true);
@@ -275,7 +306,7 @@ public class DiffView extends ViewPart implements IDiffView {
                 instance.set(Calendar.MONTH, selectDateToFilter.getMonth());
                 instance.set(Calendar.YEAR, selectDateToFilter.getYear());
 
-                commitViewer.setInput(comparisonManager.getAllCommitInfos(instance.getTimeInMillis()));
+                commitViewer.setInput(comparisonManager.getAllCommitInfos(instance.getTimeInMillis(), file));
             }
         });
 
