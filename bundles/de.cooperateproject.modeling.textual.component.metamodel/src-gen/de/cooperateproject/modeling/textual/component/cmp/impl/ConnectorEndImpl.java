@@ -9,8 +9,6 @@ import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorEnd;
 
 /**
@@ -91,8 +89,8 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Port<Classifier> getRole() {
-        return (Port<Classifier>)eDynamicGet(CmpPackage.CONNECTOR_END__ROLE, CmpPackage.Literals.CONNECTOR_END__ROLE, true, true);
+    public Port getRole() {
+        return (Port)eDynamicGet(CmpPackage.CONNECTOR_END__ROLE, CmpPackage.Literals.CONNECTOR_END__ROLE, true, true);
     }
 
     /**
@@ -100,8 +98,8 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
      * <!-- end-user-doc -->
      * @generated
      */
-    public Port<Classifier> basicGetRole() {
-        return (Port<Classifier>)eDynamicGet(CmpPackage.CONNECTOR_END__ROLE, CmpPackage.Literals.CONNECTOR_END__ROLE, false, true);
+    public Port basicGetRole() {
+        return (Port)eDynamicGet(CmpPackage.CONNECTOR_END__ROLE, CmpPackage.Literals.CONNECTOR_END__ROLE, false, true);
     }
 
     /**
@@ -109,7 +107,7 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRole(Port<Classifier> newRole) {
+    public void setRole(Port newRole) {
         eDynamicSet(CmpPackage.CONNECTOR_END__ROLE, CmpPackage.Literals.CONNECTOR_END__ROLE, newRole);
     }
 
@@ -144,7 +142,7 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
                 setPart((Attribute)newValue);
                 return;
             case CmpPackage.CONNECTOR_END__ROLE:
-                setRole((Port<Classifier>)newValue);
+                setRole((Port)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -162,7 +160,7 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
                 setPart((Attribute)null);
                 return;
             case CmpPackage.CONNECTOR_END__ROLE:
-                setRole((Port<Classifier>)null);
+                setRole((Port)null);
                 return;
         }
         super.eUnset(featureID);

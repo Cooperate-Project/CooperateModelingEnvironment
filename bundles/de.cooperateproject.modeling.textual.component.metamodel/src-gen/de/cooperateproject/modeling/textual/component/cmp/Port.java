@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Classifier;
  * @model
  * @generated
  */
-public interface Port<realizeClassifierUMLType extends Classifier> extends NamedElement, VisibilityHavingElement, UMLReferencingElement<org.eclipse.uml2.uml.Port> {
+public interface Port extends NamedElement, VisibilityHavingElement, UMLReferencingElement<org.eclipse.uml2.uml.Port> {
     /**
      * Returns the value of the '<em><b>Realized Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
@@ -36,10 +36,10 @@ public interface Port<realizeClassifierUMLType extends Classifier> extends Named
      * @return the value of the '<em>Realized Classifier</em>' reference.
      * @see #setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getPort_RealizedClassifier()
-     * @model required="true"
+     * @model transient="true"
      * @generated
      */
-    de.cooperateproject.modeling.textual.component.cmp.Classifier<realizeClassifierUMLType> getRealizedClassifier();
+    de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> getRealizedClassifier();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Port#getRealizedClassifier <em>Realized Classifier</em>}' reference.
@@ -49,6 +49,6 @@ public interface Port<realizeClassifierUMLType extends Classifier> extends Named
      * @see #getRealizedClassifier()
      * @generated
      */
-    void setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier<realizeClassifierUMLType> value);
+    void setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> value);
 
 } // Port

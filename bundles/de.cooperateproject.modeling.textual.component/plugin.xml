@@ -19,6 +19,9 @@
             class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.AttributeInitializer">
       </class>
       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.PortInitializer">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.RequireCalculator">
       </class>
       <class
@@ -26,6 +29,9 @@
       </class>
       <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.AttributeCalculator">
+      </class>
+       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.PortCalculator">
       </class>
    </extension>
    <extension

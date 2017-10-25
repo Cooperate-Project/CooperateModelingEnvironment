@@ -4,8 +4,6 @@ package de.cooperateproject.modeling.textual.component.cmp;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import org.eclipse.uml2.uml.Classifier;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Connector End</b></em>'.
@@ -64,7 +62,7 @@ public interface ConnectorEnd extends UMLReferencingElement<org.eclipse.uml2.uml
      * @model transient="true"
      * @generated
      */
-    Port<Classifier> getRole();
+    Port getRole();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd#getRole <em>Role</em>}' reference.
@@ -74,6 +72,6 @@ public interface ConnectorEnd extends UMLReferencingElement<org.eclipse.uml2.uml
      * @see #getRole()
      * @generated
      */
-    void setRole(Port<Classifier> value);
+    void setRole(Port value);
 
 } // ConnectorEnd

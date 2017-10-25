@@ -345,7 +345,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 return result;
             }
             case CmpPackage.PORT: {
-                Port<?> port = (Port<?>)theEObject;
+                Port port = (Port)theEObject;
                 T1 result = casePort(port);
                 if (result == null) result = caseNamedElement(port);
                 if (result == null) result = caseVisibilityHavingElement(port);
@@ -714,7 +714,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public <realizeClassifierUMLType extends org.eclipse.uml2.uml.Classifier> T1 casePort(Port<realizeClassifierUMLType> object) {
+    public T1 casePort(Port object) {
         return null;
     }
 

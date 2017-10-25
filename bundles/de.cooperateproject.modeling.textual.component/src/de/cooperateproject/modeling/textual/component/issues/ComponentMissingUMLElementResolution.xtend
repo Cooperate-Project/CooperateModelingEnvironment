@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.BehavioredClassifier
 import de.cooperateproject.modeling.textual.component.cmp.Require
 import de.cooperateproject.modeling.textual.component.cmp.Attribute
 import org.eclipse.uml2.uml.StructuredClassifier
+import de.cooperateproject.modeling.textual.component.cmp.Port
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -49,6 +50,16 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 		if (umlParent.present && type instanceof Classifier) {
 			val umlType = type as Classifier
 			val prop = umlParent.get.createOwnedAttribute(element.name, umlType);
+			element.referencedElement = prop
+		}
+	}
+	
+	private def dispatch fixMissingUMLElement(Port element) {
+		var type = element.realizedClassifier
+		val umlParent = element.umlParent(org.eclipse.uml2.uml.Component)
+		if (umlParent.present) {
+			val umlType = type.referencedElement as Classifier
+			val prop = umlParent.get.createOwnedPort(element.name, umlType);
 			element.referencedElement = prop
 		}
 	}

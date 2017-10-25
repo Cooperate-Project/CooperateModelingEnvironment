@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Component;
 
 /**
@@ -88,8 +86,8 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Port<Classifier>> getPort() {
-        return (EList<Port<Classifier>>)eDynamicGet(CmpPackage.COMPONENT__PORT, CmpPackage.Literals.COMPONENT__PORT, true, true);
+    public EList<Port> getPort() {
+        return (EList<Port>)eDynamicGet(CmpPackage.COMPONENT__PORT, CmpPackage.Literals.COMPONENT__PORT, true, true);
     }
 
     /**
@@ -175,7 +173,7 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
                 return;
             case CmpPackage.COMPONENT__PORT:
                 getPort().clear();
-                getPort().addAll((Collection<? extends Port<Classifier>>)newValue);
+                getPort().addAll((Collection<? extends Port>)newValue);
                 return;
             case CmpPackage.COMPONENT__CONNECTORS:
                 getConnectors().clear();

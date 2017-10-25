@@ -832,7 +832,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         ETypeParameter classifierRelationEClass_RightUMLType = addETypeParameter(classifierRelationEClass, "RightUMLType");
         ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
         ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
-        ETypeParameter portEClass_realizeClassifierUMLType = addETypeParameter(portEClass, "realizeClassifierUMLType");
 
         // Set bounds for type parameters
         EGenericType g1 = createEGenericType(theUMLPackage.getClassifier());
@@ -843,8 +842,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         classifierEClass_T.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getNamedElement());
         propertyEClass_T.getEBounds().add(g1);
-        g1 = createEGenericType(theUMLPackage.getClassifier());
-        portEClass_realizeClassifierUMLType.getEBounds().add(g1);
 
         // Add supertypes to classes
         g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
@@ -1010,10 +1007,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         initEClass(connectorEndEClass, ConnectorEnd.class, "ConnectorEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getConnectorEnd_Part(), this.getAttribute(), null, "part", null, 0, 1, ConnectorEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        g1 = createEGenericType(this.getPort());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        initEReference(getConnectorEnd_Role(), g1, null, "role", null, 0, 1, ConnectorEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getConnectorEnd_Role(), this.getPort(), null, "role", null, 0, 1, ConnectorEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1033,10 +1027,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getComponent_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        g1 = createEGenericType(this.getPort());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        initEReference(getComponent_Port(), g1, null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_Port(), this.getPort(), null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_Connectors(), this.getConnector(), null, "connectors", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_PackagedElements(), theTextualCommonsPackage.getPackageableElement(), null, "packagedElements", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1068,9 +1059,9 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(this.getClassifier());
-        g2 = createEGenericType(portEClass_realizeClassifierUMLType);
+        g2 = createEGenericType(theUMLPackage.getClassifier());
         g1.getETypeArguments().add(g2);
-        initEReference(getPort_RealizedClassifier(), g1, null, "realizedClassifier", null, 1, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPort_RealizedClassifier(), g1, null, "realizedClassifier", null, 0, 1, Port.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

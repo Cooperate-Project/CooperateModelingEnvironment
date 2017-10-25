@@ -30,8 +30,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.uml2.uml.Classifier;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
@@ -274,8 +272,8 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public <realizeClassifierUMLType extends Classifier> Port<realizeClassifierUMLType> createPort() {
-        PortImpl<realizeClassifierUMLType> port = new PortImpl<realizeClassifierUMLType>();
+    public Port createPort() {
+        PortImpl port = new PortImpl();
         return port;
     }
 

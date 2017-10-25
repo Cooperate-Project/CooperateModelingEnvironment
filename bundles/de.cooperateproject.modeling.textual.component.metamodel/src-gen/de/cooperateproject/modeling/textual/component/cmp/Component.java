@@ -44,7 +44,7 @@ public interface Component extends Classifier<org.eclipse.uml2.uml.Component>, I
 
     /**
      * Returns the value of the '<em><b>Port</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.cmp.Port}<code>&lt;org.eclipse.uml2.uml.Classifier&gt;</code>.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.cmp.Port}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Port</em>' containment reference list isn't clear,
@@ -56,7 +56,7 @@ public interface Component extends Classifier<org.eclipse.uml2.uml.Component>, I
      * @model containment="true"
      * @generated
      */
-    EList<Port<org.eclipse.uml2.uml.Classifier>> getPort();
+    EList<Port> getPort();
 
     /**
      * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
