@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'", "'@start-ucd'", "'@end-ucd'", "'rootPackage'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'.'", "'abstract'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'", "'@start-uscd'", "'@end-uscd'", "'rootPackage'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'.'", "'abstract'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -2544,21 +2544,21 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UseCaseDiagram__Group__1__Impl"
-    // InternalUsecase.g:754:1: rule__UseCaseDiagram__Group__1__Impl : ( '@start-ucd' ) ;
+    // InternalUsecase.g:754:1: rule__UseCaseDiagram__Group__1__Impl : ( '@start-uscd' ) ;
     public final void rule__UseCaseDiagram__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUsecase.g:758:1: ( ( '@start-ucd' ) )
-            // InternalUsecase.g:759:1: ( '@start-ucd' )
+            // InternalUsecase.g:758:1: ( ( '@start-uscd' ) )
+            // InternalUsecase.g:759:1: ( '@start-uscd' )
             {
-            // InternalUsecase.g:759:1: ( '@start-ucd' )
-            // InternalUsecase.g:760:2: '@start-ucd'
+            // InternalUsecase.g:759:1: ( '@start-uscd' )
+            // InternalUsecase.g:760:2: '@start-uscd'
             {
-             before(grammarAccess.getUseCaseDiagramAccess().getStartUcdKeyword_1()); 
+             before(grammarAccess.getUseCaseDiagramAccess().getStartUscdKeyword_1()); 
             match(input,21,FOLLOW_2); 
-             after(grammarAccess.getUseCaseDiagramAccess().getStartUcdKeyword_1()); 
+             after(grammarAccess.getUseCaseDiagramAccess().getStartUscdKeyword_1()); 
 
             }
 
@@ -2784,21 +2784,21 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UseCaseDiagram__Group__4__Impl"
-    // InternalUsecase.g:834:1: rule__UseCaseDiagram__Group__4__Impl : ( '@end-ucd' ) ;
+    // InternalUsecase.g:834:1: rule__UseCaseDiagram__Group__4__Impl : ( '@end-uscd' ) ;
     public final void rule__UseCaseDiagram__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUsecase.g:838:1: ( ( '@end-ucd' ) )
-            // InternalUsecase.g:839:1: ( '@end-ucd' )
+            // InternalUsecase.g:838:1: ( ( '@end-uscd' ) )
+            // InternalUsecase.g:839:1: ( '@end-uscd' )
             {
-            // InternalUsecase.g:839:1: ( '@end-ucd' )
-            // InternalUsecase.g:840:2: '@end-ucd'
+            // InternalUsecase.g:839:1: ( '@end-uscd' )
+            // InternalUsecase.g:840:2: '@end-uscd'
             {
-             before(grammarAccess.getUseCaseDiagramAccess().getEndUcdKeyword_4()); 
+             before(grammarAccess.getUseCaseDiagramAccess().getEndUscdKeyword_4()); 
             match(input,22,FOLLOW_2); 
-             after(grammarAccess.getUseCaseDiagramAccess().getEndUcdKeyword_4()); 
+             after(grammarAccess.getUseCaseDiagramAccess().getEndUscdKeyword_4()); 
 
             }
 

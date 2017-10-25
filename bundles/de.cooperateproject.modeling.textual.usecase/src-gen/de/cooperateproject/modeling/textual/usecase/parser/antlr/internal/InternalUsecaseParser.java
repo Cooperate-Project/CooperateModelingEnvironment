@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUsecaseParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'@start-ucd'", "'@end-ucd'", "'rootPackage'", "'abstract'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'*'", "'.'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'@start-uscd'", "'@end-uscd'", "'rootPackage'", "'abstract'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'*'", "'.'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -146,7 +146,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUseCaseDiagram"
-    // InternalUsecase.g:72:1: ruleUseCaseDiagram returns [EObject current=null] : ( () otherlv_1= '@start-ucd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-ucd' ) ;
+    // InternalUsecase.g:72:1: ruleUseCaseDiagram returns [EObject current=null] : ( () otherlv_1= '@start-uscd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-uscd' ) ;
     public final EObject ruleUseCaseDiagram() throws RecognitionException {
         EObject current = null;
 
@@ -160,11 +160,11 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalUsecase.g:78:2: ( ( () otherlv_1= '@start-ucd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-ucd' ) )
-            // InternalUsecase.g:79:2: ( () otherlv_1= '@start-ucd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-ucd' )
+            // InternalUsecase.g:78:2: ( ( () otherlv_1= '@start-uscd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-uscd' ) )
+            // InternalUsecase.g:79:2: ( () otherlv_1= '@start-uscd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-uscd' )
             {
-            // InternalUsecase.g:79:2: ( () otherlv_1= '@start-ucd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-ucd' )
-            // InternalUsecase.g:80:3: () otherlv_1= '@start-ucd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-ucd'
+            // InternalUsecase.g:79:2: ( () otherlv_1= '@start-uscd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-uscd' )
+            // InternalUsecase.g:80:3: () otherlv_1= '@start-uscd' ( (lv_title_2_0= RULE_STRING ) ) ( (lv_rootPackage_3_0= ruleRootPackage ) ) otherlv_4= '@end-uscd'
             {
             // InternalUsecase.g:80:3: ()
             // InternalUsecase.g:81:4: 
@@ -179,7 +179,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
 
             otherlv_1=(Token)match(input,11,FOLLOW_3); 
 
-            			newLeafNode(otherlv_1, grammarAccess.getUseCaseDiagramAccess().getStartUcdKeyword_1());
+            			newLeafNode(otherlv_1, grammarAccess.getUseCaseDiagramAccess().getStartUscdKeyword_1());
             		
             // InternalUsecase.g:91:3: ( (lv_title_2_0= RULE_STRING ) )
             // InternalUsecase.g:92:4: (lv_title_2_0= RULE_STRING )
@@ -240,7 +240,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
 
             otherlv_4=(Token)match(input,12,FOLLOW_2); 
 
-            			newLeafNode(otherlv_4, grammarAccess.getUseCaseDiagramAccess().getEndUcdKeyword_4());
+            			newLeafNode(otherlv_4, grammarAccess.getUseCaseDiagramAccess().getEndUscdKeyword_4());
             		
 
             }

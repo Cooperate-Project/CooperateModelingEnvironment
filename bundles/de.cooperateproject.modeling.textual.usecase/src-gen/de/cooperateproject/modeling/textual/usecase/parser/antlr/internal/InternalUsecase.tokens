@@ -8,8 +8,8 @@
 '.'=38
 '..'=36
 ':'=30
-'@end-ucd'=12
-'@start-ucd'=11
+'@end-uscd'=12
+'@start-uscd'=11
 '['=18
 ']'=19
 'abstract'=14

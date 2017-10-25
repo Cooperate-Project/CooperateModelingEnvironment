@@ -30,7 +30,7 @@ class UsecaseFormatter extends AbstractFormatter2 {
 	def dispatch void format(UseCaseDiagram usecasediagram, extension IFormattableDocument document) {
 		usecasediagram.regionFor.feature(UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE).append[newLines = 2].prepend[space = " "]
 		format(usecasediagram.getRootPackage(), document);
-		usecasediagram.regionFor.keyword(useCaseDiagramAccess.endUcdKeyword_4).prepend[newLines = 2]
+		usecasediagram.regionFor.keyword(useCaseDiagramAccess.endUscdKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {

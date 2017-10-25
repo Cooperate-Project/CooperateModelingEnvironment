@@ -281,10 +281,10 @@ public class InternalUsecaseLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalUsecase.g:21:7: ( '@start-ucd' )
-            // InternalUsecase.g:21:9: '@start-ucd'
+            // InternalUsecase.g:21:7: ( '@start-uscd' )
+            // InternalUsecase.g:21:9: '@start-uscd'
             {
-            match("@start-ucd"); 
+            match("@start-uscd"); 
 
 
             }
@@ -302,10 +302,10 @@ public class InternalUsecaseLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalUsecase.g:22:7: ( '@end-ucd' )
-            // InternalUsecase.g:22:9: '@end-ucd'
+            // InternalUsecase.g:22:7: ( '@end-uscd' )
+            // InternalUsecase.g:22:9: '@end-uscd'
             {
-            match("@end-ucd"); 
+            match("@end-uscd"); 
 
 
             }
