@@ -20,6 +20,9 @@ import de.cooperateproject.modeling.textual.component.cmp.Require
 import de.cooperateproject.modeling.textual.component.cmp.Attribute
 import org.eclipse.uml2.uml.StructuredClassifier
 import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.cmp.Connector
+import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -53,6 +56,29 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 			element.referencedElement = prop
 		}
 	}
+	
+	private def dispatch fixMissingUMLElement(Connector element) {
+		
+		val umlComponent = element.umlParent(org.eclipse.uml2.uml.Component)
+		if (umlComponent.present) {
+			val umlConnector = umlComponent.get.createOwnedConnector(element.name)
+			element.referencedElement = umlConnector
+		}
+	}
+	
+	private def dispatch fixMissingUMLElement(ConnectorEnd element) {
+		
+		val umlConnector = element.umlParent(org.eclipse.uml2.uml.Connector)
+		if (umlConnector.present) {
+			val umlEnd = umlConnector.get.createEnd
+			umlEnd.role = element.role.referencedElement
+			if (element.part.hasReferencedElement)
+				umlEnd.partWithPort = element.part.referencedElement
+			
+			element.referencedElement = umlEnd
+		}
+	}
+	
 	
 	private def dispatch fixMissingUMLElement(Port element) {
 		var type = element.realizedClassifier

@@ -16,6 +16,8 @@ import de.cooperateproject.modeling.textual.component.cmp.Component
 import de.cooperateproject.modeling.textual.component.cmp.Member
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
 import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
+import de.cooperateproject.modeling.textual.component.cmp.Connector
 
 class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -40,6 +42,14 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 	
 	private def dispatch resolvePossible(Port element) {
 		return element.realizedClassifier.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.component)
+	}
+	
+	private def dispatch resolvePossible(ConnectorEnd element) {
+		return element.role.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.connector)
+	}
+	
+	private def dispatch resolvePossible(Connector element) {
+		return element.name !== null && element.hasValidParent(CmpPackage.eINSTANCE.component)
 	}
 	
 	private def dispatch resolvePossible(Method element) {

@@ -13,6 +13,9 @@ public class ComponentTransientStatusProvider implements ITransientStatusProvide
 
     private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>( Arrays.asList(
     		CmpPackage.Literals.INTERFACE_RELATION__INTERFACE,
+    		CmpPackage.Literals.PORT__REALIZED_CLASSIFIER,
+    		CmpPackage.Literals.CONNECTOR_END__PART,
+    		CmpPackage.Literals.CONNECTOR_END__ROLE,
     		CmpPackage.Literals.PROPERTY__TYPE
     		));
 
