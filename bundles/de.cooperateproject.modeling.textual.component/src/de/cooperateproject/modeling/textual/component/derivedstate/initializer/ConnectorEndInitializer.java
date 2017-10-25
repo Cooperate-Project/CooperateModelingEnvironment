@@ -20,7 +20,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 
 /**
- * Initializes the state of {@link Attribute} elements.
+ * Initializes the state of {@link ConnectorEnd} elements.
  */
 @Applicability(applicabilities = INITIALIZATION)
 public class ConnectorEndInitializer extends AtomicDerivedStateProcessorBase<ConnectorEnd> {

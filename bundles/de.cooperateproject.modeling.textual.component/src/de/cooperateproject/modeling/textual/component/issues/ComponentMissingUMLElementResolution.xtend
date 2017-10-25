@@ -23,6 +23,7 @@ import de.cooperateproject.modeling.textual.component.cmp.Port
 import de.cooperateproject.modeling.textual.component.cmp.Connector
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+import org.eclipse.uml2.uml.AggregationKind
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -85,8 +86,9 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 		val umlParent = element.umlParent(org.eclipse.uml2.uml.Component)
 		if (umlParent.present) {
 			val umlType = type.referencedElement as Classifier
-			val prop = umlParent.get.createOwnedPort(element.name, umlType);
-			element.referencedElement = prop
+			val port = umlParent.get.createOwnedPort(element.name, umlType);
+			port.aggregation = AggregationKind.COMPOSITE_LITERAL
+			element.referencedElement = port
 		}
 	}
 
