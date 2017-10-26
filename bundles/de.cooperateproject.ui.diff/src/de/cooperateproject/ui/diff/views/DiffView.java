@@ -121,6 +121,7 @@ public class DiffView extends ViewPart implements IDiffView {
                 comparisonManager.getComparison(oldView, newView, file));
         
         fillTable(summaryViewer, summaryList);
+        clickHandler.resetCopiedTableContents();
         setTabFolder(diffViewTab);
 
         setDiffViewerInput(newView, summaryList);
@@ -159,6 +160,7 @@ public class DiffView extends ViewPart implements IDiffView {
         clickHandler = new ClickHandler(summaryViewer, diffViewer);
         hookDoubleClickAction();
         hookKeyboard();
+        hookOnSelectionChangedAction();
         createContextMenu();
     }
 
@@ -168,6 +170,10 @@ public class DiffView extends ViewPart implements IDiffView {
         summaryViewer.addDoubleClickListener(event -> clickHandler.setFocusToElementInTreeViewer());
     }
 
+    private void hookOnSelectionChangedAction() {
+        diffViewer.addSelectionChangedListener(event -> clickHandler.filterSummaryTable());
+    }
+    
     private void hookKeyboard() {
         KeyListener keyListener = new KeyListener() {
             @Override
@@ -230,6 +236,7 @@ public class DiffView extends ViewPart implements IDiffView {
         diffViewComposite = new Composite(tabFolder, SWT.NULL);
         diffViewTab.setControl(diffViewComposite);
         diffViewComposite.setLayout(new FormLayout());
+
     }
 
     private void setUpDiffViewTabContent() {
@@ -264,6 +271,7 @@ public class DiffView extends ViewPart implements IDiffView {
         formData.right = new FormAttachment(100, -5);
         formData.bottom = new FormAttachment(100, -5);
         summaryViewer.getTable().setLayoutData(formData);
+
     }
 
     private void setUpCommitHistoryTabContent() {

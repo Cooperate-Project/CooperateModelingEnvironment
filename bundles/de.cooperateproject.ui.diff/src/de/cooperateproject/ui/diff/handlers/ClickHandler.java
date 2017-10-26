@@ -9,6 +9,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -17,14 +18,14 @@ import de.cooperateproject.ui.diff.content.SummaryItem;
 
 /**
  * Handles click and keyboard events in DiffView.
- * @author Jasmin, czogalik
+ * @author Jasmin, czogalik, persch
  *
  */
 public class ClickHandler {
     
     private TableViewer summaryViewer;
     private TreeViewer diffViewer;
-    
+    private List<SummaryItem> baseList = new ArrayList<>();
     /**
      * Handles click and keyboard events in DiffView.
      * @param summaryViewer TableViewer of DiffView.
@@ -184,5 +185,52 @@ public class ClickHandler {
             allItems.addAll(getAllTreeItems(child));
         }
         return allItems;
+    }
+    
+    private static List<DiffTreeItem> getAllDiffTreeItems(DiffTreeItem parent) {
+        List<DiffTreeItem> allItems = new ArrayList<>();
+        allItems.add(parent);
+        for (DiffTreeItem child : parent.getContents()) {
+            allItems.addAll(getAllDiffTreeItems(child));
+        }
+        return allItems;
+    }
+    
+    public void filterSummaryTable() {
+        ISelection selection = diffViewer.getSelection();            
+            Object obj = ((IStructuredSelection) selection).getFirstElement();
+            DiffTreeItem item = (DiffTreeItem) obj;
+            if (item != null) {
+                
+            
+            
+            List<DiffTreeItem> childElements = getAllDiffTreeItems(item);
+            List<SummaryItem> elementsToShow = new ArrayList<>();
+                
+            for (DiffTreeItem child : childElements) {
+                for (SummaryItem summaryItem : baseList) {
+                    if (summaryItem.getLeft() == child.getObject() || summaryItem.getRight() == child.getObject()) {
+                        elementsToShow.add(summaryItem);
+                    }
+                }
+            }
+            
+            summaryViewer.getTable().clearAll();
+            summaryViewer.setInput(elementsToShow);
+            for (TableColumn c : summaryViewer.getTable().getColumns()) {
+                c.pack();
+            }
+            
+            summaryViewer.getTable().update();
+            }
+    }
+    
+    public void resetCopiedTableContents() {
+        baseList.clear();
+        for (TableItem tableItem : summaryViewer.getTable().getItems()) {
+            if (tableItem.getData() instanceof SummaryItem) {
+            baseList.add((SummaryItem) tableItem.getData());
+            }
+        }
     }
 }
