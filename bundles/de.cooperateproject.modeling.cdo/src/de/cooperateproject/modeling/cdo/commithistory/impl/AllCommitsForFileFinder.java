@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.cdo.common.branch.CDOBranchPoint;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.eresource.CDOResource;
@@ -54,21 +55,31 @@ public class AllCommitsForFileFinder implements Closeable {
 
 	public Collection<CDOCommitInfo> getCommits()
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		List<Long> changedTimeStamps = getChangedTimestamps();
+		List<Long> changedTimeStamps = getChangedTimestamps(CDOBranchPoint.INVALID_DATE, CDOBranchPoint.INVALID_DATE);
         return getCommitInfo(changedTimeStamps);
 	}
 
-	protected List<Long> getChangedTimestamps()
+	public Collection<CDOCommitInfo> getCommitsInTimeRange(long from, long to)
+            throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        List<Long> changedTimeStamps = getChangedTimestamps(from, to);
+        return getCommitInfo(changedTimeStamps);
+    }
+	
+	protected List<Long> getChangedTimestamps(long from, long to)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
+	    long lower = from;
+	    long upper = to;
 		URI txtResourceURI = getTextualResourceURI();
 		CDOID resourceID = getResourceID(txtResourceURI);
 		CDOID umlID = getResourceID(ModelNamingConventions.getUMLFromTextualURI(txtResourceURI));
-		long from = getResourceCreationTime(resourceID);
-
+		if (lower < 0 || upper < 0) {
+		    lower = getResourceCreationTime(resourceID);
+		    upper = Long.MAX_VALUE;
+		}
 		List<Long> changedTimeStamps;
 		try {
 			changedTimeStamps = CDOCommitHistoryProtocolUtil.getChangedTimestamps(view.getSession(),
-					from, Long.MAX_VALUE, Arrays.asList(resourceID), Arrays.asList(umlID));
+					lower, upper, Arrays.asList(resourceID), Arrays.asList(umlID));
 		} catch (Exception e) {
 			throw new ServerCommunicationException(e);
 		}

@@ -21,4 +21,12 @@ public class CommitHistoryManagerImpl implements ICommitHistoryManager {
 		}
 	}
 
+    @Override
+    public Collection<CDOCommitInfo> getCommitsForLauncher(IFile launcherFile, long from, long to)
+            throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        try (AllCommitsForFileFinder commitFinder = new AllCommitsForFileFinder(launcherFile)) {
+            return commitFinder.getCommitsInTimeRange(from, to);
+        }
+    }
+
 }
