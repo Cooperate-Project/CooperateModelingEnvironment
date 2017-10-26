@@ -32,6 +32,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.ComponentRuntimeModule;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.derivedstate.calculator.AttributeCalculator;
+import de.cooperateproject.modeling.textual.component.derivedstate.calculator.PortCalculator;
+import de.cooperateproject.modeling.textual.component.derivedstate.initializer.AttributeInitializer;
+import de.cooperateproject.modeling.textual.component.derivedstate.initializer.PortInitializer;
 import de.cooperateproject.modeling.textual.component.services.ComponentTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.tests.ComponentInjectorProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -80,7 +84,9 @@ public class ComponentCustomizedRuntimeModule extends ComponentRuntimeModule {
 
 		private static final Class<?>[] RELEVANT_CLASSES = { IAtomicDerivedStateProcessor.class,
 				UMLReferencingElementCalculator.class, UMLReferencingElementRemover.class,
-				UMLReferencingElementInitializer.class };
+				UMLReferencingElementInitializer.class, 
+				PortCalculator.class, PortInitializer.class, 
+				AttributeCalculator.class, AttributeInitializer.class };
         @SuppressWarnings("rawtypes")
         private static final Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> PROCESSORS = getProcessors();
 

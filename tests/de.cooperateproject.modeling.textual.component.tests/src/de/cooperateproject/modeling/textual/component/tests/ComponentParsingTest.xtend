@@ -239,23 +239,25 @@ class ComponentParsingTest extends AbstractComponentTest{
 		val model = '''
 			@start-cpd "someDiagram"
 			rootPackage RootElement
-			component testA
+			interface testInf
 			component testComp {
-				port port1 realizes testA
+				port port1 realizes testInf
 				inner : innerComp				
-				con contest (port1, inner.port2)
+				con contest (port1, inner.port1)
 				component innerComp {
-					port port2 realizes testA
+					port port2 realizes testInf
 				}
 			}
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
+	
+	
 		
 	
 	private static def parse(CharSequence text, ResourceSet rs) {
-		val r = rs.createResource(URI.createFileURI("testfile.cmp"))
+		val r = rs.createResource(URI.createFileURI("testmodels/testfile.cmp"))
 		val is = IOUtils.toInputStream(text);		
 		r.load(is, Collections.emptyMap());
 		return r.contents.get(0) as ComponentDiagram
