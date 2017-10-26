@@ -32,10 +32,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.TabFolder;
@@ -56,7 +53,7 @@ import org.eclipse.swt.layout.FormLayout;
  * Represents the view of the plugin, mainly responsible for the gui and communication between user
  * and program.
  * 
- * @author Jasmin, czogalik
+ * @author Jasmin, czogalik, persch
  *
  */
 public class DiffView extends ViewPart implements IDiffView {
@@ -124,6 +121,7 @@ public class DiffView extends ViewPart implements IDiffView {
                 comparisonManager.getComparison(oldView, newView, file));
         
         fillTable(summaryViewer, summaryList);
+        clickHandler.resetCopiedTableContents();
         setTabFolder(diffViewTab);
 
         setDiffViewerInput(newView, summaryList);
@@ -162,6 +160,7 @@ public class DiffView extends ViewPart implements IDiffView {
         clickHandler = new ClickHandler(summaryViewer, diffViewer);
         hookDoubleClickAction();
         hookKeyboard();
+        hookOnSelectionChangedAction();
         createContextMenu();
     }
 
@@ -171,6 +170,10 @@ public class DiffView extends ViewPart implements IDiffView {
         summaryViewer.addDoubleClickListener(event -> clickHandler.setFocusToElementInTreeViewer());
     }
 
+    private void hookOnSelectionChangedAction() {
+        diffViewer.addSelectionChangedListener(event -> clickHandler.filterSummaryTable());
+    }
+    
     private void hookKeyboard() {
         KeyListener keyListener = new KeyListener() {
             @Override
@@ -213,8 +216,9 @@ public class DiffView extends ViewPart implements IDiffView {
         if (isDisposed()) {
             return;
         }
-        
-        fillTable(commitViewer, comparisonManager.getAllCommitInfos(file));
+        Calendar thisWeek = Calendar.getInstance();
+        Calendar previousWeek = getCalendarForPreviousWeek();
+        fillTable(commitViewer, comparisonManager.getCommitInfosInRange(previousWeek.getTimeInMillis(), thisWeek.getTimeInMillis(), file));
     }
 
     private void setUpTabs(Composite parent) {
@@ -289,24 +293,35 @@ public class DiffView extends ViewPart implements IDiffView {
         final Text filterText = new Text(commitHistoryComposite, SWT.HORIZONTAL | SWT.LEFT | SWT.WRAP | SWT.READ_ONLY);
         filterText.setText("Filter commits by time range:");
 
-        final DateTime selectDateToFilter = new DateTime(commitHistoryComposite, SWT.DATE);
-
+        final DateTime endDate = new DateTime(commitHistoryComposite, SWT.DATE | SWT.DROP_DOWN);
+        final DateTime startdate = new DateTime(commitHistoryComposite, SWT.DATE | SWT.DROP_DOWN);
+        Calendar previousWeek = getCalendarForPreviousWeek();
+        startdate.setDate(previousWeek.get(Calendar.YEAR), previousWeek.get(Calendar.MONTH), previousWeek.get(Calendar.DAY_OF_MONTH));
+        
         final Button filterButton = new Button(commitHistoryComposite, SWT.PUSH);
         filterButton.setText("filter");
         filterButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
                 // If button was pressed, filter the commits
-                Calendar instance = Calendar.getInstance();
-                instance.set(Calendar.HOUR_OF_DAY, 0);
-                instance.set(Calendar.MINUTE, 0);
-                instance.set(Calendar.SECOND, 0);
-                instance.set(Calendar.MILLISECOND, 0);
-                instance.set(Calendar.DAY_OF_MONTH, selectDateToFilter.getDay());
-                instance.set(Calendar.MONTH, selectDateToFilter.getMonth());
-                instance.set(Calendar.YEAR, selectDateToFilter.getYear());
-
-                commitViewer.setInput(comparisonManager.getAllCommitInfos(instance.getTimeInMillis(), file));
+                Calendar from = Calendar.getInstance();
+                from.set(Calendar.HOUR_OF_DAY, 0);
+                from.set(Calendar.MINUTE, 0);
+                from.set(Calendar.SECOND, 0);
+                from.set(Calendar.MILLISECOND, 0);
+                from.set(Calendar.DAY_OF_MONTH, startdate.getDay());
+                from.set(Calendar.MONTH, startdate.getMonth());
+                from.set(Calendar.YEAR, startdate.getYear());
+                
+                Calendar to = Calendar.getInstance();
+                to.set(Calendar.HOUR_OF_DAY, 23);
+                to.set(Calendar.MINUTE, 59);
+                to.set(Calendar.SECOND, 59);
+                to.set(Calendar.MILLISECOND, 999);
+                to.set(Calendar.DAY_OF_MONTH, endDate.getDay());
+                to.set(Calendar.MONTH, endDate.getMonth());
+                to.set(Calendar.YEAR, endDate.getYear());
+                commitViewer.setInput(comparisonManager.getCommitInfosInRange(from.getTimeInMillis(), to.getTimeInMillis(), file));
             }
         });
 
@@ -316,27 +331,43 @@ public class DiffView extends ViewPart implements IDiffView {
         formData.left = new FormAttachment(0, 5);
         formData.right = new FormAttachment(100, -5);
         commitViewer.getTable().setLayoutData(formData);
-
+        
         formData = new FormData();
         formData.top = new FormAttachment(commitViewer.getTable(), 5);
         formData.bottom = new FormAttachment(100, -5);
         formData.left = new FormAttachment(filterText, 5);
-        formData.right = new FormAttachment(80, -5);
-        selectDateToFilter.setLayoutData(formData);
-
+        formData.right = new FormAttachment(50, -5);
+        startdate.setLayoutData(formData);
+        
+        formData = new FormData();
+        formData.top = new FormAttachment(commitViewer.getTable(), 5);
+        formData.bottom = new FormAttachment(100, -5);
+        formData.left = new FormAttachment(startdate, 5);
+        formData.right = new FormAttachment(75, -5);
+        endDate.setLayoutData(formData);
+        
         formData = new FormData();
         formData.top = new FormAttachment(commitViewer.getTable(), 5);
         formData.bottom = new FormAttachment(100, -5);
         formData.left = new FormAttachment(0, 5);
-        formData.right = new FormAttachment(20, -5);
+        formData.right = new FormAttachment(25, -5);
         filterText.setLayoutData(formData);
 
         formData = new FormData();
         formData.top = new FormAttachment(commitViewer.getTable(), 5);
         formData.bottom = new FormAttachment(100, -5);
-        formData.left = new FormAttachment(selectDateToFilter, 5);
+        formData.left = new FormAttachment(endDate, 5);
         formData.right = new FormAttachment(100, -5);
         filterButton.setLayoutData(formData);
     }
-
+    
+    private Calendar getCalendarForPreviousWeek() {
+        Calendar previousWeek = Calendar.getInstance();
+        previousWeek.set(Calendar.HOUR_OF_DAY, 0);
+        previousWeek.set(Calendar.MINUTE, 0);
+        previousWeek.set(Calendar.SECOND, 0);
+        previousWeek.set(Calendar.MILLISECOND, 0);
+        previousWeek.add(Calendar.DAY_OF_MONTH, -7);
+        return previousWeek;
+    }
 }

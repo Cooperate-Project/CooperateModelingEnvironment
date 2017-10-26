@@ -1,6 +1,6 @@
-@start-ucd "diagram11"
+@start-uscd "diagram11"
 
-rootElement RootElement
+rootPackage RootElement
 
 # abstract act hu as "AbstractHumanUser" role[human] note "abstr human comment"
 # abstract act mu as "AbstractMachineUser" role[machine]
@@ -26,4 +26,4 @@ iac (HumanUser1, System1.UseCase1) card[1..1:0..*]
 iac (HumanUser1, System1.UseCase3)
 iac (MachineUser1, UseCase2)
 
-@end-ucd
+@end-uscd

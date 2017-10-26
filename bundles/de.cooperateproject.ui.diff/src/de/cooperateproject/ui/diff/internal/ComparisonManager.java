@@ -38,7 +38,7 @@ import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 /**
  * Provides functions for receiving information about commits from a resource.
  * 
- * @author Jasmin, czogalik
+ * @author Jasmin, czogalik, persch
  *
  */
 public class ComparisonManager {
@@ -69,6 +69,10 @@ public class ComparisonManager {
         commitInfosTemp.removeIf(info -> info.getTimeStamp() < dateMillis);
 
         return commitInfosTemp;
+    }
+    
+    public Set<CDOCommitInfo> getCommitInfosInRange(long from, long to, IFile file) {
+        return findAllCommitsinRange(file, from, to);
     }
 
     /**
@@ -160,6 +164,15 @@ public class ComparisonManager {
 			// TODO show the user
 			return Collections.emptySet();
 		}
+    }
+    
+    private Set<CDOCommitInfo> findAllCommitsinRange(IFile file, long from, long to) {
+        try {
+            return new HashSet<>(commitHistoryManager.getCommitsForLauncher(file, from, to));
+        } catch (IOException | ConcreteSyntaxTypeNotAvailableException e) {
+            // TODO show the user
+            return Collections.emptySet();
+        }
     }
 
     private static CDOID getResourceCDOId(ConcreteSyntaxModel textModel) {

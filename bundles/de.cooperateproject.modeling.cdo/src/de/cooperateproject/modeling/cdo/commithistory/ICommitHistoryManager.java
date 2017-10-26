@@ -12,4 +12,6 @@ public interface ICommitHistoryManager {
 	
 	Collection<CDOCommitInfo> getCommitsForLauncher(IFile file) throws IOException, ConcreteSyntaxTypeNotAvailableException;
 	
+	Collection<CDOCommitInfo> getCommitsForLauncher(IFile file, long from, long to) throws IOException, ConcreteSyntaxTypeNotAvailableException;
+	
 }

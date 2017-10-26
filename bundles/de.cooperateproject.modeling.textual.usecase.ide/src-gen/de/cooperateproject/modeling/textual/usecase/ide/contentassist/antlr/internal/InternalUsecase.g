@@ -757,9 +757,9 @@ rule__UseCaseDiagram__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getUseCaseDiagramAccess().getStartUcdKeyword_1()); }
-	'@start-ucd'
-	{ after(grammarAccess.getUseCaseDiagramAccess().getStartUcdKeyword_1()); }
+	{ before(grammarAccess.getUseCaseDiagramAccess().getStartUscdKeyword_1()); }
+	'@start-uscd'
+	{ after(grammarAccess.getUseCaseDiagramAccess().getStartUscdKeyword_1()); }
 )
 ;
 finally {
@@ -837,9 +837,9 @@ rule__UseCaseDiagram__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getUseCaseDiagramAccess().getEndUcdKeyword_4()); }
-	'@end-ucd'
-	{ after(grammarAccess.getUseCaseDiagramAccess().getEndUcdKeyword_4()); }
+	{ before(grammarAccess.getUseCaseDiagramAccess().getEndUscdKeyword_4()); }
+	'@end-uscd'
+	{ after(grammarAccess.getUseCaseDiagramAccess().getEndUscdKeyword_4()); }
 )
 ;
 finally {
@@ -865,9 +865,9 @@ rule__RootPackage__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRootPackageAccess().getRootElementKeyword_0()); }
-	'rootElement'
-	{ after(grammarAccess.getRootPackageAccess().getRootElementKeyword_0()); }
+	{ before(grammarAccess.getRootPackageAccess().getRootPackageKeyword_0()); }
+	'rootPackage'
+	{ after(grammarAccess.getRootPackageAccess().getRootPackageKeyword_0()); }
 )
 ;
 finally {
