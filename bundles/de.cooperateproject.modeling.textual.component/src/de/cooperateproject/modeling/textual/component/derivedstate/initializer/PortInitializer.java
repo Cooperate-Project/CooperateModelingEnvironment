@@ -5,13 +5,11 @@ import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.in
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Type;
 
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
 import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.Classifier;
-import de.cooperateproject.modeling.textual.component.cmp.Interface;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -43,5 +41,5 @@ public class PortInitializer extends AtomicDerivedStateProcessorBase<Port> {
 		}
 
 	}
-
+	
 }
