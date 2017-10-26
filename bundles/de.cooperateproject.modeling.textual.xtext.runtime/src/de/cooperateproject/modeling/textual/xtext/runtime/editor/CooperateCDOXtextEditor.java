@@ -30,6 +30,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionValidator;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -178,6 +179,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+        TextSelection actualSelection = (TextSelection) getSelectionProvider().getSelection();
         Collection<Issue> syntaxIssues = getSyntaxErrors(cooperateXtextDocument);
         if (!syntaxIssues.isEmpty()) {
             openErrorDialog("Save Error", "Can't save because of syntax errors.", syntaxIssues);
@@ -193,6 +195,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!", null);
             return;
         }
+        getSelectionProvider().setSelection(actualSelection);
     }
 
     @SuppressWarnings("rawtypes")
