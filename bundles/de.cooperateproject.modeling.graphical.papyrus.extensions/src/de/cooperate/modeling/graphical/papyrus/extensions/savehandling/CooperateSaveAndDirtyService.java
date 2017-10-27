@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
+package de.cooperate.modeling.graphical.papyrus.extensions.savehandling;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +12,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -23,7 +25,6 @@ import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.SaveAndDirtyService;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -32,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import de.cooperate.modeling.graphical.papyrus.extensions.Activator;
 import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
+import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 
 /**
  * SaveAndDirtyService for papyrus models created in cooperate projects. Provides model
@@ -47,11 +49,7 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
     @Override
     public void doSave(IProgressMonitor monitor) {
-        if (Display.getCurrent() == null) {
-            Display.getDefault().syncExec(() -> doSaveIfValid(monitor));
-        } else {
-            doSaveIfValid(monitor);
-        }
+        UIThreadActionUtil.perform(() -> doSaveIfValid(monitor));
     }
 
     private void doSaveIfValid(IProgressMonitor monitor) {
@@ -127,4 +125,17 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
                 .orElseGet(() -> Optional.ofNullable(activeDiagram.getElement()).orElse(null));
         return Optional.ofNullable(umlRootElement);
     }
+
+    @Override
+    public boolean isSaveAsAllowed() {
+        Optional<Diagram> diagram = Optional.empty();
+        try {
+            diagram = getActiveDiagram();
+        } catch (ServiceException e) {
+            LOGGER.warn("Could not determine active diagram.", e);
+        }
+        return diagram.map(EObject::eResource).map(Resource::getURI).map(URI::scheme)
+                .map(scheme -> !scheme.startsWith("cdo")).orElse(super.isSaveAsAllowed());
+    }
+
 }

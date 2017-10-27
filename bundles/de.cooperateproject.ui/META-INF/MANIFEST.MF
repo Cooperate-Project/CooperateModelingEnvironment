@@ -46,7 +46,8 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.osgi,
  de.cooperateproject.modeling.transformation.common,
  org.apache.commons.io,
- de.cooperateproject.modeling.cdo;bundle-version="0.4.2"
+ de.cooperateproject.modeling.cdo;bundle-version="0.4.2",
+ de.cooperateproject.ui.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

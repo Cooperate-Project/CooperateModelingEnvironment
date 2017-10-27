@@ -386,10 +386,22 @@
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
-            classname="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateSaveAndDirtyService"
+            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveAndDirtyService"
             id="org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService"
             priority="2"
             startKind="startup">
+      </service>
+      <service
+            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveLayoutBeforeCloseService"
+            description="Saves the sash model when closing the editor"
+            priority="2"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager">
+         </dependsOn>
       </service>
    </extension>
    <extension

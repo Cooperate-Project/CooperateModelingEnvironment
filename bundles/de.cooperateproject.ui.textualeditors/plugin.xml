@@ -7,4 +7,13 @@
             class="de.cooperateproject.ui.textualeditors.editorlauncher.TextualCDOEditorLauncherFactory">
       </provider>
    </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="de.cooperateproject.ui.CommitEditorChanges"
+            contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+C">
+      </key>
+   </extension>
 </plugin>

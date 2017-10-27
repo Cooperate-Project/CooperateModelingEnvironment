@@ -14,4 +14,13 @@
             scheme="cdo.checkout">
       </sashModelProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="de.cooperateproject.ui.CommitEditorChanges"
+            contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+C">
+      </key>
+   </extension>
 </plugin>

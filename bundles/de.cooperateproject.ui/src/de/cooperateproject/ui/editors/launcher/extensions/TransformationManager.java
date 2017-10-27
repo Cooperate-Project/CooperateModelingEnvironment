@@ -15,7 +15,6 @@ import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.protocol.CDOProtocolConstants;
 import org.eclipse.emf.cdo.common.revision.CDOIDAndVersion;
-import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOUtil;
@@ -37,7 +36,6 @@ import com.google.common.collect.Lists;
 
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
-import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
@@ -48,7 +46,7 @@ import de.cooperateproject.ui.util.EditorInputSwitch;
 public class TransformationManager implements ITransformationManager {
 
     /**
-     * Exception that occured during the transformation or merging of content.
+     * Exception that occurred during the transformation of content.
      */
     public static class TransformationException extends Exception {
         private static final long serialVersionUID = -5921359045558510687L;
@@ -66,50 +64,66 @@ public class TransformationManager implements ITransformationManager {
         }
     }
 
+    /**
+     * Listener for a post merge event.
+     */
     @FunctionalInterface
-    public interface PostCommitHandler {
-        void handlePostCommit(CDOTransaction transaction);
+    public interface IPostMergeListener {
+
+        /**
+         * Handles the post merge event.
+         * 
+         * @param transaction
+         *            The transaction that has been used for merging.
+         */
+        void handlePostMerge(CDOTransaction transaction);
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TransformationManager.class);
     private final CDOTransaction branchView;
     private final CDOTransaction maintTransaction;
-    private final PostCommitHandler postCommitHandler;
+    private final IPostMergeListener postMergeListener;
     private long lastMergeTimeBranch;
     private long lastMergeTimeMain;
 
     /**
-     * Instantiates the transformation manager.
+     * Constructs the transformation manager.
      * 
-     * @param cdoCheckout
-     *            The {@link CDOCheckout} into which the transformation and merge results shall be transferred.
+     * @param mainTransaction
+     *            The transaction for the master branch.
+     * @param branchView
+     *            The view on the working branch.
+     * @param postMergeListener
+     *            Listener for the post merge event.
      */
     public TransformationManager(CDOTransaction mainTransaction, CDOTransaction branchView,
-            PostCommitHandler postCommitHandler) {
+            IPostMergeListener postMergeListener) {
         this.maintTransaction = mainTransaction;
         this.branchView = branchView;
-        this.postCommitHandler = postCommitHandler;
+        this.postMergeListener = postMergeListener;
         CDOBranch branch = branchView.getBranch();
         lastMergeTimeBranch = getTimestampOfBranch(branchView, branch);
         lastMergeTimeMain = getTimestampOfBranch(maintTransaction, CDOBranch.MAIN_BRANCH_ID);
     }
 
-    /**
-     * Handles the editor save event by triggering according transformations and merging the changes back into the
-     * master branch.
-     * 
-     * @param editorInput
-     *            The {@link IEditorInput} that shall be saved.
-     * @throws TransformationException
-     */
     @Override
     public void handleEditorSave(IEditorInput editorInput) throws TransformationException {
         try {
             triggerTransformation(editorInput);
-            mergeChangesToMaster(getCommitMessage(editorInput));
         } catch (IOException | CommitException e) {
             throw new TransformationException("Could not transform and merge model changes.", e);
         }
+    }
+
+    @Override
+    public void handleEditorMerge(String commitMessage) throws CommitException {
+        mergeChangesToMaster(commitMessage);
+    }
+
+    @Override
+    public boolean isMergeNecessary() {
+        long mostRecentTimeStamp = getTimestampOfBranch(branchView, branchView.getBranch());
+        return lastMergeTimeBranch != mostRecentTimeStamp;
     }
 
     private void mergeChangesToMaster(String commitMessage) throws CommitException {
@@ -122,7 +136,7 @@ public class TransformationManager implements ITransformationManager {
         maintTransaction.merge(sourceToRevision, sourceFromRevision, targetFromRevision, new CustomCDOMerger());
         maintTransaction.setCommitComment(commitMessage);
         CDOCommitInfo mergeCommitInfo = maintTransaction.commit();
-        postCommitHandler.handlePostCommit(maintTransaction);
+        postMergeListener.handlePostMerge(maintTransaction);
         mergeCommitInfo.getTimeStamp();
         lastMergeTimeBranch = getTimestampOfBranch(branchView, editorBranch);
         lastMergeTimeMain = getTimestampOfBranch(maintTransaction, mainBranch);
@@ -244,12 +258,12 @@ public class TransformationManager implements ITransformationManager {
 
     }
 
-    private void triggerTransformationRegular(URI uri) throws IOException {
+    private static void triggerTransformationRegular(URI uri) throws IOException {
         ResourceSet rs = new ResourceSetImpl();
         triggerTransformation(uri, rs);
     }
 
-    private void triggerTransformation(URI changedUri, ResourceSet rs) throws IOException {
+    private static void triggerTransformation(URI changedUri, ResourceSet rs) throws IOException {
         Iterable<URI> uris = createRootElementURIs(changedUri, rs);
         for (URI uri : uris) {
             Activator.getDefault().getTransformationExecutor().transformChanged(uri, rs);
@@ -276,13 +290,6 @@ public class TransformationManager implements ITransformationManager {
 
         return processedURI;
 
-    }
-
-    private static String getCommitMessage(IEditorInput editorInput) {
-        String resource = editorInput.getAdapter(ILauncherFileEditorInput.class).getAssociatedLauncherFile().getName();
-        String editorType = editorInput.getAdapter(ILauncherFileEditorInput.class).getEditorType().toString()
-                .toLowerCase();
-        return "Diagram " + resource + " in " + editorType + " editor was edited by " + System.getProperty("user.name");
     }
 
 }

@@ -52,12 +52,20 @@
             id="de.cooperateproject.ui.ResetToPreviousStateCommand"
             name="Reset to previous state">
       </command>
+      <command
+            id="de.cooperateproject.ui.CommitEditorChanges"
+            name="Commit Editor Changes">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="de.cooperateproject.ui.commands.AddProjectNatureCommand"
             commandId="de.cooperateproject.ui.AddProjectNatureCommand">
+      </handler>
+      <handler
+            class="de.cooperateproject.ui.commands.MergeEditorChangesHandler"
+            commandId="de.cooperateproject.ui.CommitEditorChanges">
       </handler>
    </extension>
    <extension
