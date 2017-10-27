@@ -53,6 +53,7 @@ when {self.oclIsKindOf(usecase::Actor)}
     children += self.map actorToStereotypeLabel();
     children += self.map actorToQualifiedNameLabel();
     children += self.map actorToFloatingNameLabel();
+    styles += self.map actorToActorTypeCssLabel();
     layoutConstraint := result.toEObject().map notationBounds();
 }
 
@@ -343,6 +344,13 @@ mapping usecase::Actor::actorToFloatingNameLabel() : notation::DecorationNode
 {
     type := PAPYRUS_NOTATION_NODE_ACTOR_FLOATINGNAME_REGULAR;
     layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping usecase::Actor::actorToActorTypeCssLabel() : notation::StringListValueStyle
+when {self.type = usecase::ActorType::MACHINE}
+{
+	name := "cssClass";
+	stringListValue := "machine"
 }
 
 mapping usecase::UseCaseDiagram::stringValueStyle() : notation::StringValueStyle

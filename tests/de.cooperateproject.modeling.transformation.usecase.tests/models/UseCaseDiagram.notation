@@ -12,8 +12,12 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_z6fqEfpzEeaBXuZho-Bj0w" y="5"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_z6fqEvpzEeaBXuZho-Bj0w" type="UseCase_ExtensionPointCompartment_CCN">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64eWYLsyEee2qPwSzqB7ZA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_64hZsLsyEee2qPwSzqB7ZA" key="visible" value="true"/>
+          </eAnnotations>
           <styles xmi:type="notation:SortingStyle" xmi:id="_z6fqE_pzEeaBXuZho-Bj0w"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_z6fqFPpzEeaBXuZho-Bj0w"/>
+          <styles xmi:type="notation:TitleStyle" xmi:id="_3e06ALsyEee2qPwSzqB7ZA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z6fqFfpzEeaBXuZho-Bj0w"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagram.uml#_z6NWMPpzEeaBXuZho-Bj0w"/>
@@ -25,8 +29,12 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_byJxEvpzEeaBXuZho-Bj0w" y="5"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_byJxE_pzEeaBXuZho-Bj0w" type="UseCase_ExtensionPointCompartment_CCN">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64iAwLsyEee2qPwSzqB7ZA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_64iAwbsyEee2qPwSzqB7ZA" key="visible" value="true"/>
+          </eAnnotations>
           <styles xmi:type="notation:SortingStyle" xmi:id="_byJxFPpzEeaBXuZho-Bj0w"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_byJxFfpzEeaBXuZho-Bj0w"/>
+          <styles xmi:type="notation:TitleStyle" xmi:id="_3e06AbsyEee2qPwSzqB7ZA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_byJxFvpzEeaBXuZho-Bj0w"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagram.uml#_bx_ZAPpzEeaBXuZho-Bj0w"/>
@@ -60,8 +68,12 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_fdmvIvpzEeaBXuZho-Bj0w" y="5"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_fdmvI_pzEeaBXuZho-Bj0w" type="UseCase_ExtensionPointCompartment_CCN">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64in0rsyEee2qPwSzqB7ZA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_64in07syEee2qPwSzqB7ZA" key="visible" value="true"/>
+          </eAnnotations>
           <styles xmi:type="notation:SortingStyle" xmi:id="_fdmvJPpzEeaBXuZho-Bj0w"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_fdmvJfpzEeaBXuZho-Bj0w"/>
+          <styles xsi:type="notation:TitleStyle"  xmi:id="_qdmvJfpzEeaBXuZho-Bj0w"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fdmvJvpzEeaBXuZho-Bj0w"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagram.uml#_fdXekPpzEeaBXuZho-Bj0w"/>
@@ -73,8 +85,12 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_iSfRkvpzEeaBXuZho-Bj0w" y="5"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_iSfRk_pzEeaBXuZho-Bj0w" type="UseCase_ExtensionPointCompartment_CCN">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64in0LsyEee2qPwSzqB7ZA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_64in0bsyEee2qPwSzqB7ZA" key="visible" value="true"/>
+          </eAnnotations>
           <styles xmi:type="notation:SortingStyle" xmi:id="_iSfRlPpzEeaBXuZho-Bj0w"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_iSfRlfpzEeaBXuZho-Bj0w"/>
+          <styles xsi:type="notation:TitleStyle"  xmi:id="_pdmvJfpzEeaBXuZho-Bj0w"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iSfRlvpzEeaBXuZho-Bj0w"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagram.uml#_iSQBAPpzEeaBXuZho-Bj0w"/>

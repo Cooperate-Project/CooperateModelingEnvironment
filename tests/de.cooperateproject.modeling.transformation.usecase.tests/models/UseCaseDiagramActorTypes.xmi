@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<usecase:UseCaseDiagram xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:usecase="http://www.cooperateproject.de/modeling/textual/usecase/Usecase"
+	xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+	title="Use Case Diagram">
+	<rootPackage>
+		<referencedElement xsi:type="uml:Model"
+			href="UseCaseDiagramActorTypes.uml#_cd6EoLsiEeeT6J2sDG8c8w" />
+		<actors>
+			<referencedElement xsi:type="uml:Actor"
+				href="UseCaseDiagramActorTypes.uml#_fcUhELsjEeeT6J2sDG8c8w" />
+		</actors>
+		<actors type="MACHINE">
+			<referencedElement xsi:type="uml:Actor"
+				href="UseCaseDiagramActorTypes.uml#_fqkYcLsjEeeT6J2sDG8c8w" />
+		</actors>
+	</rootPackage>
+</usecase:UseCaseDiagram>

@@ -138,6 +138,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ActorType">
     <eLiterals name="UNDEFINED"/>
     <eLiterals name="HUMAN" value="1"/>
-    <eLiterals name="MACHINE" value="2" literal=""/>
+    <eLiterals name="MACHINE" value="2" literal="MACHINE"/>
   </eClassifiers>
 </ecore:EPackage>
