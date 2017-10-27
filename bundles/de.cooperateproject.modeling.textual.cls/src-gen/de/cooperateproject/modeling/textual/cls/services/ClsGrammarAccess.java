@@ -74,9 +74,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.RootPackage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRootPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Action cPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final Assignment cPackageImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cPackageImportsPackageImportParserRuleCall_2_0 = (RuleCall)cPackageImportsAssignment_2.eContents().get(0);
 		private final Assignment cClassifiersAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -87,21 +89,28 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackagesPackageParserRuleCall_5_0 = (RuleCall)cPackagesAssignment_5.eContents().get(0);
 		
 		//RootPackage Package:
-		//	'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+		//	{Package} ('rootPackage' name=FQN)? packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
 		//	packages+=Package*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*
+		//{Package} ('rootPackage' name=FQN)? packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+		//packages+=Package*
 		public Group getGroup() { return cGroup; }
 		
+		//{Package}
+		public Action getPackageAction_0() { return cPackageAction_0; }
+		
+		//('rootPackage' name=FQN)?
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//'rootPackage'
-		public Keyword getRootPackageKeyword_0() { return cRootPackageKeyword_0; }
+		public Keyword getRootPackageKeyword_1_0() { return cRootPackageKeyword_1_0; }
 		
 		//name=FQN
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
 		
 		//FQN
-		public RuleCall getNameFQNParserRuleCall_1_0() { return cNameFQNParserRuleCall_1_0; }
+		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
 		
 		//packageImports+=PackageImport*
 		public Assignment getPackageImportsAssignment_2() { return cPackageImportsAssignment_2; }
@@ -1335,7 +1344,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage Package:
-	//	'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+	//	{Package} ('rootPackage' name=FQN)? packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
 	//	packages+=Package*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;

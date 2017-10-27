@@ -21,7 +21,8 @@ ClassDiagram:
 ;
 
 RootPackage returns Package:
-	'rootPackage' name=FQN
+    {Package}
+	('rootPackage' name=FQN)?
 	packageImports+=PackageImport*
 	classifiers+=Classifier*
 	connectors+=Connector*

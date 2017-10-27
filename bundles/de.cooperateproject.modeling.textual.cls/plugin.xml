@@ -89,6 +89,12 @@
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.PropertyInitializer">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.RootPackageInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.RootPackageCalculator">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">

@@ -37,7 +37,7 @@ class ClsFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(Package pkg, extension IFormattableDocument document) {		
-		pkg.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
+		pkg.regionFor.assignment(rootPackageAccess.nameAssignment_1_1).append[newLines = 2]
 		pkg.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		interior(			
 			pkg.regionFor.keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine].prepend[space = " "],
