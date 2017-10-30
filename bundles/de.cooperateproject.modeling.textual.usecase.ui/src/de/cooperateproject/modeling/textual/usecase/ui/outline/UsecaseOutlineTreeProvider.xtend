@@ -63,5 +63,9 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
 	dispatch def createChildren(IOutlineNode parentNode, Element object) {
        createEObjectNode(parentNode, object)
     }
+    
+    dispatch def createChildren(IOutlineNode parentNode, Void object) {
+       //Do nothing for a null object
+    }
 	
 }
