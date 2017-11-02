@@ -11,6 +11,7 @@ import de.cooperateproject.modeling.textual.component.cmp.RootPackage
 import de.cooperateproject.modeling.textual.component.services.ComponentGrammarAccess
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
 import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.component.cmp.Class
 import de.cooperateproject.modeling.textual.component.cmp.Attribute
 import de.cooperateproject.modeling.textual.component.cmp.Method
 import de.cooperateproject.modeling.textual.component.cmp.Parameter
@@ -21,6 +22,7 @@ import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
 import de.cooperateproject.modeling.textual.component.cmp.Connector
+import de.cooperateproject.modeling.textual.component.cmp.Port
 
 class ComponentFormatter extends AbstractFormatter2 {
 	
@@ -54,6 +56,10 @@ class ComponentFormatter extends AbstractFormatter2 {
 			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_2_1_7).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
+		for(Port port: cmp.port) {
+			port.format();
+		}
+		
 		for(Attribute attribute: cmp.attributes) {
 			attribute.format();
 		}
@@ -63,10 +69,23 @@ class ComponentFormatter extends AbstractFormatter2 {
 		for(Connector conn: cmp.connectors){
 			conn.append[newLine]
 		}
-		for(InterfaceRelation portRel: cmp.getInterfaceRelation()){
-			portRel.append[newLine]
+		for(InterfaceRelation infRel: cmp.getInterfaceRelation()){
+			infRel.append[newLine]
 		}
 		cmp.append[newLine; priority = 2]
+	}
+	
+	def dispatch void format(Class cls, extension IFormattableDocument document) {
+		interior(			
+			cls.regionFor.keyword(classAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			cls.regionFor.keyword(classAccess.rightCurlyBracketKeyword_2_1_3).append[newLine].prepend[newLines = 1 priority = 4],
+			[indent]
+		)
+		for(InterfaceRelation infRel: cls.getInterfaceRelation()){
+			infRel.append[newLine]
+		}
+		
+		cls.append[newLine; priority = 2]
 	}
 	
 	def dispatch void format(Interface iface, extension IFormattableDocument document) {
@@ -85,6 +104,11 @@ class ComponentFormatter extends AbstractFormatter2 {
 	def dispatch void format(Attribute attribute, extension IFormattableDocument document) {
 		format(attribute.getType(), document);
 		attribute.append[newLine]
+	}
+	
+	def dispatch void format(Port port, extension IFormattableDocument document) {
+		port.regionFor.keyword(portAccess.conjugatedTildeKeyword_4_0_0).append[noSpace]
+		port.append[newLine]
 	}
 
 	def dispatch void format(Method method, extension IFormattableDocument document) {
