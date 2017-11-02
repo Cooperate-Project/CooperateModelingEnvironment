@@ -716,17 +716,21 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cRealizesKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cRealizedClassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cRealizedClassifierClassifierCrossReference_4_0 = (CrossReference)cRealizedClassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRealizedClassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRealizedClassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final Assignment cConjugatedAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cConjugatedAlternatives_4_0 = (Alternatives)cConjugatedAssignment_4.eContents().get(0);
+		private final Keyword cConjugatedTildeKeyword_4_0_0 = (Keyword)cConjugatedAlternatives_4_0.eContents().get(0);
+		private final Keyword cConjugatedConjugatedKeyword_4_0_1 = (Keyword)cConjugatedAlternatives_4_0.eContents().get(1);
+		private final Assignment cRealizedClassifierAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cRealizedClassifierClassifierCrossReference_5_0 = (CrossReference)cRealizedClassifierAssignment_5.eContents().get(0);
+		private final RuleCall cRealizedClassifierClassifierIDTerminalRuleCall_5_0_1 = (RuleCall)cRealizedClassifierClassifierCrossReference_5_0.eContents().get(1);
 		
 		//Port:
 		//	visibility=Visibility? 'port'
 		//	name=ID
-		//	'realizes' realizedClassifier=[Classifier];
+		//	'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? 'port' name=ID 'realizes' realizedClassifier=[Classifier]
+		//visibility=Visibility? 'port' name=ID 'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier]
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -747,14 +751,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'realizes'
 		public Keyword getRealizesKeyword_3() { return cRealizesKeyword_3; }
 		
+		//conjugated?=('~' | 'conjugated')?
+		public Assignment getConjugatedAssignment_4() { return cConjugatedAssignment_4; }
+		
+		//('~' | 'conjugated')
+		public Alternatives getConjugatedAlternatives_4_0() { return cConjugatedAlternatives_4_0; }
+		
+		//'~'
+		public Keyword getConjugatedTildeKeyword_4_0_0() { return cConjugatedTildeKeyword_4_0_0; }
+		
+		//'conjugated'
+		public Keyword getConjugatedConjugatedKeyword_4_0_1() { return cConjugatedConjugatedKeyword_4_0_1; }
+		
 		//realizedClassifier=[Classifier]
-		public Assignment getRealizedClassifierAssignment_4() { return cRealizedClassifierAssignment_4; }
+		public Assignment getRealizedClassifierAssignment_5() { return cRealizedClassifierAssignment_5; }
 		
 		//[Classifier]
-		public CrossReference getRealizedClassifierClassifierCrossReference_4_0() { return cRealizedClassifierClassifierCrossReference_4_0; }
+		public CrossReference getRealizedClassifierClassifierCrossReference_5_0() { return cRealizedClassifierClassifierCrossReference_5_0; }
 		
 		//ID
-		public RuleCall getRealizedClassifierClassifierIDTerminalRuleCall_4_0_1() { return cRealizedClassifierClassifierIDTerminalRuleCall_4_0_1; }
+		public RuleCall getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1() { return cRealizedClassifierClassifierIDTerminalRuleCall_5_0_1; }
 	}
 	public class InterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Interface");
@@ -1708,7 +1724,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//Port:
 	//	visibility=Visibility? 'port'
 	//	name=ID
-	//	'realizes' realizedClassifier=[Classifier];
+	//	'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier];
 	public PortElements getPortAccess() {
 		return pPort;
 	}

@@ -18,6 +18,7 @@ import org.eclipse.uml2.uml.Classifier;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.Port#getRealizedClassifier <em>Realized Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.Port#isConjugated <em>Conjugated</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getPort()
@@ -50,5 +51,58 @@ public interface Port extends NamedElement, VisibilityHavingElement, UMLReferenc
      * @generated
      */
     void setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> value);
+
+    /**
+     * Returns the value of the '<em><b>Conjugated</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Conjugated</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Conjugated</em>' attribute.
+     * @see #isSetConjugated()
+     * @see #unsetConjugated()
+     * @see #setConjugated(boolean)
+     * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getPort_Conjugated()
+     * @model unsettable="true" transient="true"
+     * @generated
+     */
+    boolean isConjugated();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Port#isConjugated <em>Conjugated</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Conjugated</em>' attribute.
+     * @see #isSetConjugated()
+     * @see #unsetConjugated()
+     * @see #isConjugated()
+     * @generated
+     */
+    void setConjugated(boolean value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Port#isConjugated <em>Conjugated</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetConjugated()
+     * @see #isConjugated()
+     * @see #setConjugated(boolean)
+     * @generated
+     */
+    void unsetConjugated();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Port#isConjugated <em>Conjugated</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Conjugated</em>' attribute is set.
+     * @see #unsetConjugated()
+     * @see #isConjugated()
+     * @see #setConjugated(boolean)
+     * @generated
+     */
+    boolean isSetConjugated();
 
 } // Port

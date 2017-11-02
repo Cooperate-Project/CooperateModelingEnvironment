@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.VisibilityKind;
  *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.PortImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.PortImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.PortImpl#getRealizedClassifier <em>Realized Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.PortImpl#isConjugated <em>Conjugated</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +52,16 @@ public class PortImpl extends NamedElementImpl implements Port {
      * @ordered
      */
     protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
+    /**
+     * The default value of the '{@link #isConjugated() <em>Conjugated</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isConjugated()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean CONJUGATED_EDEFAULT = false;
 
     /**
      * <!-- begin-user-doc -->
@@ -167,6 +178,42 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isConjugated() {
+        return (Boolean)eDynamicGet(CmpPackage.PORT__CONJUGATED, CmpPackage.Literals.PORT__CONJUGATED, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setConjugated(boolean newConjugated) {
+        eDynamicSet(CmpPackage.PORT__CONJUGATED, CmpPackage.Literals.PORT__CONJUGATED, newConjugated);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetConjugated() {
+        eDynamicUnset(CmpPackage.PORT__CONJUGATED, CmpPackage.Literals.PORT__CONJUGATED);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetConjugated() {
+        return eDynamicIsSet(CmpPackage.PORT__CONJUGATED, CmpPackage.Literals.PORT__CONJUGATED);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -178,6 +225,8 @@ public class PortImpl extends NamedElementImpl implements Port {
             case CmpPackage.PORT__REALIZED_CLASSIFIER:
                 if (resolve) return getRealizedClassifier();
                 return basicGetRealizedClassifier();
+            case CmpPackage.PORT__CONJUGATED:
+                return isConjugated();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -200,6 +249,9 @@ public class PortImpl extends NamedElementImpl implements Port {
             case CmpPackage.PORT__REALIZED_CLASSIFIER:
                 setRealizedClassifier((de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier>)newValue);
                 return;
+            case CmpPackage.PORT__CONJUGATED:
+                setConjugated((Boolean)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -221,6 +273,9 @@ public class PortImpl extends NamedElementImpl implements Port {
             case CmpPackage.PORT__REALIZED_CLASSIFIER:
                 setRealizedClassifier((de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier>)null);
                 return;
+            case CmpPackage.PORT__CONJUGATED:
+                unsetConjugated();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -239,6 +294,8 @@ public class PortImpl extends NamedElementImpl implements Port {
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case CmpPackage.PORT__REALIZED_CLASSIFIER:
                 return basicGetRealizedClassifier() != null;
+            case CmpPackage.PORT__CONJUGATED:
+                return isSetConjugated();
         }
         return super.eIsSet(featureID);
     }

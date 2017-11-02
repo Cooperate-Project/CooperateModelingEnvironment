@@ -39,6 +39,7 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComponentAccess().getAlternatives_2(), "rule__Component__Alternatives_2");
 					put(grammarAccess.getClassAccess().getAlternatives_1(), "rule__Class__Alternatives_1");
 					put(grammarAccess.getClassAccess().getAlternatives_2(), "rule__Class__Alternatives_2");
+					put(grammarAccess.getPortAccess().getConjugatedAlternatives_4_0(), "rule__Port__ConjugatedAlternatives_4_0");
 					put(grammarAccess.getInterfaceAccess().getAlternatives_1(), "rule__Interface__Alternatives_1");
 					put(grammarAccess.getInterfaceAccess().getAlternatives_2(), "rule__Interface__Alternatives_2");
 					put(grammarAccess.getConnectorAccess().getAlternatives_1(), "rule__Connector__Alternatives_1");
@@ -115,7 +116,8 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 					put(grammarAccess.getPortAccess().getVisibilityAssignment_0(), "rule__Port__VisibilityAssignment_0");
 					put(grammarAccess.getPortAccess().getNameAssignment_2(), "rule__Port__NameAssignment_2");
-					put(grammarAccess.getPortAccess().getRealizedClassifierAssignment_4(), "rule__Port__RealizedClassifierAssignment_4");
+					put(grammarAccess.getPortAccess().getConjugatedAssignment_4(), "rule__Port__ConjugatedAssignment_4");
+					put(grammarAccess.getPortAccess().getRealizedClassifierAssignment_5(), "rule__Port__RealizedClassifierAssignment_5");
 					put(grammarAccess.getInterfaceAccess().getNameAssignment_1_0_0(), "rule__Interface__NameAssignment_1_0_0");
 					put(grammarAccess.getInterfaceAccess().getAliasAssignment_1_0_2(), "rule__Interface__AliasAssignment_1_0_2");
 					put(grammarAccess.getInterfaceAccess().getNameAssignment_1_1(), "rule__Interface__NameAssignment_1_1");

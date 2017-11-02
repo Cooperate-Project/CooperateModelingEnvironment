@@ -1189,14 +1189,41 @@ rulePort returns [EObject current=null]
 		}
 		(
 			(
+				(
+					lv_conjugated_4_1='~'
+					{
+						newLeafNode(lv_conjugated_4_1, grammarAccess.getPortAccess().getConjugatedTildeKeyword_4_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getPortRule());
+						}
+						setWithLastConsumed($current, "conjugated", true, null);
+					}
+					    |
+					lv_conjugated_4_2='conjugated'
+					{
+						newLeafNode(lv_conjugated_4_2, grammarAccess.getPortAccess().getConjugatedConjugatedKeyword_4_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getPortRule());
+						}
+						setWithLastConsumed($current, "conjugated", true, null);
+					}
+				)
+			)
+		)?
+		(
+			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getPortRule());
 					}
 				}
-				otherlv_4=RULE_ID
+				otherlv_5=RULE_ID
 				{
-					newLeafNode(otherlv_4, grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_4_0());
+					newLeafNode(otherlv_5, grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0());
 				}
 			)
 		)

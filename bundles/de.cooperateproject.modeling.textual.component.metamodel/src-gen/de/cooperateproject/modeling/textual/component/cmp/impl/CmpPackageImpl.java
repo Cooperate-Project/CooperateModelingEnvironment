@@ -705,6 +705,15 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getPort_Conjugated() {
+        return (EAttribute)portEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public CmpFactory getCmpFactory() {
         return (CmpFactory)getEFactoryInstance();
     }
@@ -797,6 +806,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         portEClass = createEClass(PORT);
         createEReference(portEClass, PORT__REALIZED_CLASSIFIER);
+        createEAttribute(portEClass, PORT__CONJUGATED);
     }
 
     /**
@@ -1062,6 +1072,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g2 = createEGenericType(theUMLPackage.getClassifier());
         g1.getETypeArguments().add(g2);
         initEReference(getPort_RealizedClassifier(), g1, null, "realizedClassifier", null, 0, 1, Port.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPort_Conjugated(), theEcorePackage.getEBoolean(), "conjugated", null, 0, 1, Port.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

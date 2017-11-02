@@ -33,9 +33,13 @@ public class PortInitializer extends AtomicDerivedStateProcessorBase<Port> {
 				UMLReferencingElementFinder finder = UMLReferencingElementFinder
 						.create(EcoreUtil.getRootContainer(object));
 				Optional<Classifier> type = finder.findElement(umlType, Classifier.class);
-				if (type.isPresent())
+				if (type.isPresent()) {
 					object.setRealizedClassifier(type.get());
+				}
 			}
+			
+			if(!object.isSetConjugated())
+				object.setConjugated(umlPort.isConjugated());
 			
 			
 		}

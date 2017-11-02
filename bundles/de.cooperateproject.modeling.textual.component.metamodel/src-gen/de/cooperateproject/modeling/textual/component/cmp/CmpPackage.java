@@ -1910,13 +1910,22 @@ public interface CmpPackage extends EPackage {
     int PORT__REALIZED_CLASSIFIER = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+     * The feature id for the '<em><b>Conjugated</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT__CONJUGATED = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Port</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PORT_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+    int PORT_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2420,6 +2429,17 @@ public interface CmpPackage extends EPackage {
     EReference getPort_RealizedClassifier();
 
     /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.component.cmp.Port#isConjugated <em>Conjugated</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Conjugated</em>'.
+     * @see de.cooperateproject.modeling.textual.component.cmp.Port#isConjugated()
+     * @see #getPort()
+     * @generated
+     */
+    EAttribute getPort_Conjugated();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2857,6 +2877,14 @@ public interface CmpPackage extends EPackage {
          * @generated
          */
         EReference PORT__REALIZED_CLASSIFIER = eINSTANCE.getPort_RealizedClassifier();
+
+        /**
+         * The meta object literal for the '<em><b>Conjugated</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PORT__CONJUGATED = eINSTANCE.getPort_Conjugated();
 
     }
 

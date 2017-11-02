@@ -39,11 +39,17 @@
        <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.ConnectorEndCalculator">
       </class>
+       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.remover.PortRemover">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories">
       <factory
             class="de.cooperateproject.modeling.textual.component.issues.ComponentMissingUMLElementResolutionFactory">
+      </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.component.issues.ComponentPortConjugatedFactory">
       </factory>
    </extension>
 
