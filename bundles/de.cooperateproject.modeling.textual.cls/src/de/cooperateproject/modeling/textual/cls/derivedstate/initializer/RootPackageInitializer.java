@@ -20,16 +20,13 @@ public class RootPackageInitializer extends AtomicDerivedStateProcessorBase<Pack
     /**
      * Instantiates the initializer.
      */
-    @SuppressWarnings("unchecked")
     public RootPackageInitializer() {
         super(Package.class);
     }
 
     @Override
     protected void applyTyped(Package object) {
-        if (object instanceof NamedElement) {
-            handle((NamedElement) object);
-        }
+        handle(object);
     }
 
     @Override
