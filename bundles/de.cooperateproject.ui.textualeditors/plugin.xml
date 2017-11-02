@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
+	<extension
          point="de.cooperateproject.ui.editors.launcher.extensions.editorlauncher">
-      <provider
+		<provider
             class="de.cooperateproject.ui.textualeditors.editorlauncher.TextualCDOEditorLauncherFactory">
-      </provider>
-   </extension>
+		</provider>
+	</extension>
+	<extension
+         point="org.eclipse.ui.bindings">
+		<key
+            commandId="de.cooperateproject.ui.CommitEditorChanges"
+            contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+C">
+		</key>
+	</extension>
+	<extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command
+				 commandId="de.cooperateproject.ui.CommitEditorChanges"
+				 style="push"
+				 tooltip="Commit changes">
+				<visibleWhen
+             checkEnabled="false">
+					<with
+                variable="activeContexts">
+						<iterate
+                   operator="or">
+							<equals
+                      value="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor">
+							</equals>
+						</iterate>
+					</with>
+				</visibleWhen>
+			</command>  
+		</menuContribution>
+	</extension>
 </plugin>

@@ -14,6 +14,7 @@
         <children xmi:type="notation:BasicCompartment" xmi:id="_mtas87PMEeeyacw31IseIA" type="UseCase_ExtensionPointCompartment_CCN">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_r2kYELPMEeeyacw31IseIA" source="PapyrusCSSForceValue">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_r2kYEbPMEeeyacw31IseIA" key="visible" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jEcEALszEee2qPwSzqB7ZA" key="showTitle" value="true"/>
           </eAnnotations>
           <children xmi:type="notation:Shape" xmi:id="_sTm5YLPMEeeyacw31IseIA" type="ExtensionPoint_ExtensionPointLabel">
             <element xmi:type="uml:ExtensionPoint" href="UseCaseDiagramExtension.uml#_tnimcLPMEeeyacw31IseIA"/>
@@ -21,6 +22,7 @@
           </children>
           <styles xmi:type="notation:SortingStyle" xmi:id="_mtas9LPMEeeyacw31IseIA"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_mtas9bPMEeeyacw31IseIA"/>
+          <styles xmi:type="notation:TitleStyle" xmi:id="_jEaO0LszEee2qPwSzqB7ZA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mtas9rPMEeeyacw31IseIA"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagramExtension.uml#_mtQ78LPMEeeyacw31IseIA"/>
@@ -37,6 +39,7 @@
           </eAnnotations>
           <styles xmi:type="notation:SortingStyle" xmi:id="_oCRnFLPMEeeyacw31IseIA"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_oCRnFbPMEeeyacw31IseIA"/>
+          <styles xmi:type="notation:TitleStyle" xmi:id="_jaaO0LszEee2qPwSzqB7ZA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oCRnFrPMEeeyacw31IseIA"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagramExtension.uml#_oCHPALPMEeeyacw31IseIA"/>

@@ -46,7 +46,7 @@ public enum ActorType implements Enumerator {
      * @generated
      * @ordered
      */
-    MACHINE(2, "MACHINE", "");
+    MACHINE(2, "MACHINE", "MACHINE");
 
     /**
      * The '<em><b>UNDEFINED</b></em>' literal value.
@@ -87,7 +87,7 @@ public enum ActorType implements Enumerator {
      * </p>
      * <!-- end-user-doc -->
      * @see #MACHINE
-     * @model literal=""
+     * @model
      * @generated
      * @ordered
      */

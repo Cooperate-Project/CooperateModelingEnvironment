@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
+import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncherBase;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
@@ -50,7 +50,7 @@ import de.cooperateproject.ui.util.editor.EditorFinderUtil;
  * Editor launcher for Papyrus editors that use CDO resources.
  */
 @SuppressWarnings("restriction")
-public class PapyrusCDOLauncher extends EditorLauncher {
+public class PapyrusCDOLauncher extends EditorLauncherBase {
 
     private static final String EDITOR_ID_GRAPHICAL = PapyrusMultiDiagramEditor.EDITOR_ID;
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);

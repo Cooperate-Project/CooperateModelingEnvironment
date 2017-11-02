@@ -99,6 +99,7 @@ when {self.mappingOperation.name = "nodeToActor"}
     var stereotypeLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_STEREOTYPE_REGULAR);
     var qualifiedNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_QUALIFIEDNAME_REGULAR); 
     var floatingNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_FLOATINGNAME_REGULAR);  
+    var stringValueList := shape.styles->selectByType(notation::StringListValueStyle)->any(name = "cssClass");
     
     result += new TraceRecord("actorToShape", "Actor", actor, "Shape", shape.toEObject());
     result += shape.map traceRecordExtended_notationBounds();
@@ -106,6 +107,9 @@ when {self.mappingOperation.name = "nodeToActor"}
     result += stereotypeLabel.map decorationNode("actorToStereotypeLabel", "Actor", actor);
     result += qualifiedNameLabel.map decorationNode("actorToQualifiedNameLabel", "Actor", actor);
     result += floatingNameLabel.map decorationNode("actorToFloatingNameLabel", "Actor", actor);
+    if (not stringValueList.oclIsUndefined()) {
+    	result += new TraceRecord("actorToActorTypeCssLabel", "Actor", actor, "StringListValueStyle", stringValueList.toEObject());
+    };
 }
 
 mapping trace::TraceRecord::traceRecordUseCase() : List(trace::TraceRecord)

@@ -37,4 +37,9 @@ public class TextualToGraphicalUseCaseTraceTest extends UsecaseDirectionalTraceT
     public void testExtension() throws Exception {
         testTraceTransformation("UseCaseDiagramExtension");
     }
+    
+    @Test
+    public void testActorTypes() throws Exception {
+        testTraceTransformation("UseCaseDiagramActorTypes");
+    }
 }

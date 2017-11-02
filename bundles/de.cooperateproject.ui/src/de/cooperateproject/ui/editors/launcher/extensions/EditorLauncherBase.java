@@ -6,9 +6,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.CDOLock;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
@@ -17,20 +19,28 @@ import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckoutManager.CheckoutStateEv
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
+import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.part.WorkbenchPart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
+import de.cooperateproject.ui.commands.MergeEditorChangesHandler;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.TransformationManager.TransformationException;
 import de.cooperateproject.ui.editors.launcher.impl.CheckoutListenerManager;
@@ -39,6 +49,7 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.Launcher.TextualConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
+import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 
 /**
  * Base class for editor launchers that use CDO resources as inputs.
@@ -50,9 +61,9 @@ import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
  * <li>triggering of transformations on save events</li>
  * </ul>
  */
-public abstract class EditorLauncher implements IEditorLauncher {
+public abstract class EditorLauncherBase implements IEditorLauncher {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EditorLauncher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditorLauncherBase.class);
     private final CDOCheckout cdoCheckout;
     private final CDOView cdoView;
     private final CDOTransaction cdoMainView;
@@ -76,7 +87,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
      * @throws ConcreteSyntaxTypeNotAvailableException
      *             Thrown, if the requested editor type is not available in the launcher file.
      */
-    public EditorLauncher(IFile launcherFile, EditorType editorType)
+    public EditorLauncherBase(IFile launcherFile, EditorType editorType)
             throws IOException, ConcreteSyntaxTypeNotAvailableException {
         isReadOnly = isReadOnlyRequired(launcherFile);
         cdoCheckout = createCheckout(launcherFile.getProject(), isReadOnly);
@@ -126,6 +137,52 @@ public abstract class EditorLauncher implements IEditorLauncher {
 
         disposeListener = createDisposeListener(editorPart);
         disposeListener.ifPresent(editorPart.getSite().getPage()::addPartListener);
+
+        Optional.of(editorPart).filter(WorkbenchPart.class::isInstance).map(WorkbenchPart.class::cast)
+                .ifPresent(e -> e.addPartPropertyListener(this::propertyChanged));
+    }
+
+    private void propertyChanged(PropertyChangeEvent event) {
+        if (!MergeEditorChangesHandler.PART_PROPERTY_KEY.equals(event.getProperty())
+                || !(event.getNewValue() instanceof String)) {
+            return;
+        }
+        promptForCommit((IWorkbenchPart) event.getSource());
+    }
+
+    private void promptForCommit(IWorkbenchPart part) {
+        if (!transformationManager.isMergeNecessary()) {
+            return;
+        }
+
+        Shell shell = part.getSite().getShell();
+        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell));
+    }
+
+    private void promptForCommitInsideDisplayThread(Shell shell) {
+        InputDialog dialog = new InputDialog(shell, "Commit Message", "Please enter a commit message.", "",
+                EditorLauncherBase::isValidCommitMessage);
+        dialog.setBlockOnOpen(true);
+        if (dialog.open() != InputDialog.OK) {
+            return;
+        }
+        String commitMessage = dialog.getValue();
+        try {
+            transformationManager.handleEditorMerge(commitMessage);
+        } catch (CommitException e) {
+            LOGGER.error("Failed to merge branch into master.", e);
+            ErrorDialog.openError(shell, "Commit failed",
+                    "The requested commit failed. "
+                            + "The changes stay in the temporary branch but will not appear on the master branch.",
+                    new Status(Status.ERROR, null, "Merging of branches failed.", e));
+        }
+    }
+
+    private static String isValidCommitMessage(String string) {
+        if (StringUtils.isBlank(string)) {
+            return "The commit message must not be empty.";
+        }
+        return null;
     }
 
     protected Optional<IPartListener2> createDisposeListener(IEditorPart editorPart) {
@@ -134,6 +191,8 @@ public abstract class EditorLauncher implements IEditorLauncher {
 
     protected void editorClosed(IWorkbenchPage p) {
         Validate.notNull(p);
+
+        promptForCommit(p.getActivePart());
 
         disposeListener.ifPresent(p::removePartListener);
         disposeListener = Optional.empty();
@@ -151,8 +210,10 @@ public abstract class EditorLauncher implements IEditorLauncher {
         try {
             transformationManager.handleEditorSave(editorPart.getEditorInput());
         } catch (TransformationException e) {
-            // TODO inform user
             LOGGER.error("Failed to handle editor save event.", e);
+            UIThreadActionUtil.perform(() -> ErrorDialog.openError(editorPart.getEditorSite().getShell(), "Save failed",
+                    "The requested save failed because the transformation to other representations failed.",
+                    new Status(Status.ERROR, null, "Transformation of changes failed.", e)));
         }
     }
 
@@ -209,7 +270,8 @@ public abstract class EditorLauncher implements IEditorLauncher {
     private void displayReadOnlyWarning() {
         if (isReadOnly) {
             MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Read-only mode",
-                    "Another user is editing this model. The editor will open in read-only mode. You cannot do nor persist any changes.");
+                    "Another user is editing this model. The editor will open in read-only mode. "
+                            + "You cannot do nor persist any changes.");
         }
     }
 
@@ -267,10 +329,12 @@ public abstract class EditorLauncher implements IEditorLauncher {
         return ModelNamingConventions.getUMLFromTextualURI(textualURI);
     }
 
+    @SuppressWarnings("squid:S2222")
     private static boolean doLockRelevantModels(CDOView cdoMainView, Iterable<URI> relevantModels) {
         boolean result = true;
         for (URI modelURI : relevantModels) {
             CDOLock lock = getWriteLock(cdoMainView, modelURI);
+            // the lock will be released automatically as soon as the corresponding view is closed
             result &= !lock.isLockedByOthers() && lock.tryLock();
         }
         return result;
@@ -282,9 +346,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
             return new TransformationManager(mainView, (CDOTransaction) branchView,
                     transaction -> doLockRelevantModels(transaction, relevantURIs));
         } else {
-            return editorInput -> {
-                LOGGER.info("Transformation request received. The model is, however, read-only. Ignoring request.");
-            };
+            return new NOOPTransformationManager();
         }
     }
 
