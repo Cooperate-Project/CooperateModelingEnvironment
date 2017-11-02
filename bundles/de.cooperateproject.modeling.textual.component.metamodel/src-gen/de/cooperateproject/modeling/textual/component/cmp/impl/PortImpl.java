@@ -10,10 +10,15 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
@@ -214,6 +219,19 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
+    public Namespace getUMLParentNamespace() {
+        EObject currentElement = Optional.ofNullable(getReferencedElement()).map(EObject::eContainer).orElse(null);
+        while (currentElement != null && !(currentElement instanceof Namespace)) {
+            currentElement = currentElement.eContainer();
+        }
+        return Optional.ofNullable(currentElement).filter(Namespace.class::isInstance).map(Namespace.class::cast).orElse(null);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -342,6 +360,41 @@ public class PortImpl extends NamedElementImpl implements Port {
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return CmpPackage.PORT___GET_UML_PARENT_NAMESPACE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case CmpPackage.PORT___GET_UML_PARENT_NAMESPACE:
+                return getUMLParentNamespace();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //PortImpl

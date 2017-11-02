@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="de.cooperateproject.ui.editors.launcher.extensions.editorlauncher" name="EditorLauncher" schema="schema/de.cooperateproject.ui.editors.launcher.extensions.editorlauncher.exsd"/>
    <extension-point id="de.cooperateproject.ui.modelcreator.postprocessor" name="Model Creator Post Processor" schema="schema/de.cooperateproject.ui.modelcreator.postprocessor.exsd"/>
+   <extension-point id="de.cooperateproject.ui.startup" name="Startup Actions" schema="schema/de.cooperateproject.ui.startup.exsd"/>
    <extension
          id="CooperateProjectNature"
          point="org.eclipse.core.resources.natures">
@@ -32,21 +33,39 @@
             name="Convert to Cooperate Project">
       </command>
       <command
-            defaultHandler="de.cooperateproject.ui.nature.ResetCooperateProjectsCommand"
-            id="de.cooperateproject.ui.ResetCooperateProjectsCommand"
-            name="Reset Cooperate Projects">
+            defaultHandler="de.cooperateproject.ui.commands.ReconnectLocalProjectsCommand"
+            id="de.cooperateproject.ui.ReconnectLocalProjectsCommand"
+            name="Reconnect Local Projects">
       </command>
       <command
-            defaultHandler="de.cooperateproject.ui.nature.DeleteProjectFromRepositoryCommand"
+            defaultHandler="de.cooperateproject.ui.commands.DeleteProjectFromRepositoryCommand"
             id="de.cooperateproject.ui.DeleteProjectFromRepositoryCommand"
             name="Delete Project from Repositoy">
+      </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.commands.DeleteDiagramFromRepositoryCommand"
+            id="de.cooperateproject.ui.DeleteDiagramFromRepositoryCommand"
+            name="Delete Diagram from Repositoy">
+      </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.commands.ResetToPreviousStateCommand"
+            id="de.cooperateproject.ui.ResetToPreviousStateCommand"
+            name="Reset to previous state">
+      </command>
+      <command
+            id="de.cooperateproject.ui.CommitEditorChanges"
+            name="Commit Editor Changes">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="de.cooperateproject.ui.nature.AddProjectNatureCommand"
+            class="de.cooperateproject.ui.commands.AddProjectNatureCommand"
             commandId="de.cooperateproject.ui.AddProjectNatureCommand">
+      </handler>
+      <handler
+            class="de.cooperateproject.ui.commands.MergeEditorChangesHandler"
+            commandId="de.cooperateproject.ui.CommitEditorChanges">
       </handler>
    </extension>
    <extension
@@ -109,7 +128,7 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="de.cooperateproject.ui.nature.StartupBuilder">
+            class="de.cooperateproject.ui.startup.impl.StartupExecutor">
       </startup>
    </extension>
    <extension
@@ -251,9 +270,9 @@
          <toolbar
                id="de.cooperateproject.ui.Cooperate">
             <command
-                  commandId="de.cooperateproject.ui.ResetCooperateProjectsCommand"
+                  commandId="de.cooperateproject.ui.ReconnectLocalProjectsCommand"
                   icon="platform:/plugin/org.eclipse.jdt.doc.user/images/org.eclipse.debug.ui/elcl16/memoryreset_tsk.png"
-                  label="Reset Cooperate Projects"
+                  label="Reconnect Local Projects"
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -303,6 +322,44 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?endof=org.eclipse.ui.edit.delete">
+         <command
+               commandId="de.cooperateproject.ui.DeleteDiagramFromRepositoryCommand"
+               icon="platform:/plugin/org.eclipse.ui/icons/full/obj16/delete_obj.png"
+               label="Delete from Repository"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <and>
+                        <instanceof
+                              value="org.eclipse.core.resources.IFile">
+                        </instanceof>
+                        <test
+                              property="org.eclipse.core.resources.projectNature"
+                              value="de.cooperateproject.ui.CooperateProjectNature">
+                        </test>
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="cooperate">
+                        </test>
+                     </and>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
             locationURI="popup:common.import.menu?after=new">
          <command
                commandId="org.eclipse.ui.file.import"
@@ -322,6 +379,50 @@
                   name="importWizardId"
                   value="de.cooperateproject.ui.importCooperateProjectWizard">
             </parameter>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?endof=org.eclipse.ui.edit.delete">
+         <command
+               commandId="de.cooperateproject.ui.ResetToPreviousStateCommand"
+               label="Reset to previous state"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <or>
+                        <and>
+                           <instanceof
+                                 value="org.eclipse.core.resources.IProject">
+                           </instanceof>
+                           <test
+                                 property="org.eclipse.core.resources.projectNature"
+                                 value="de.cooperateproject.ui.CooperateProjectNature">
+                           </test>
+                        </and>
+                        <and>
+                           <instanceof
+                                 value="org.eclipse.core.resources.IFile">
+                           </instanceof>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="cooperate">
+                           </test>
+                        </and>
+                     </or>
+                  </iterate>
+               </and>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
@@ -345,5 +446,39 @@
             id="de.cooperateproject.ui.cooperate"
             name="Cooperate">
       </category>
+   </extension>
+   <extension
+         point="de.cooperateproject.ui.startup">
+      <class
+            class="de.cooperateproject.ui.startup.impl.ProjectMonitorInstaller">
+      </class>
+      <class
+            class="de.cooperateproject.ui.startup.impl.ProjectBuilderAction">
+      </class>
+      <class
+            class="de.cooperateproject.ui.editors.launcher.impl.CheckoutListenerRegistration">
+      </class>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonFilter
+            activeByDefault="true"
+            class="de.cooperateproject.ui.perspective.filter.CDOCheckoutFilter"
+            description="Omit CDO checkouts"
+            id="de.cooperateproject.ui.perspective.filter.cdocheckout"
+            name="CDO Checkout Filter"
+            visibleInUI="false">
+      </commonFilter>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding
+            viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension
+                  pattern="de.cooperateproject.ui.perspective.filter.*">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
    </extension>
 </plugin>

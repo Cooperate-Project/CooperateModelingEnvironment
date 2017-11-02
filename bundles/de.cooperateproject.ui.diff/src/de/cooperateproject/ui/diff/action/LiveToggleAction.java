@@ -19,8 +19,7 @@ public class LiveToggleAction extends Action implements IToggleAction {
     private static final String ENABLE_TOOLTIP = "Enable Live Transformation";
     private static final String DISABLE_TOOLTIP = "Disable Live Transformation";
 
-    private static final String TERMINATE = "platform:/plugin/org.eclipse.ui/icons/full/elcl16/stop.png";
-    private static final String START = "platform:/plugin/org.eclipse.ui.cheatsheets/icons/elcl16/start_task.gif";
+    private static final String IMAGE_URI = "platform:/plugin/org.eclipse.ui/icons/full/elcl16/synced.png";
     
     private boolean toggleAutoUpdate = true;
     
@@ -30,8 +29,8 @@ public class LiveToggleAction extends Action implements IToggleAction {
      * Action that allows user to decide if he wants the diff view to update if the textual diagram changes.
      */
     public LiveToggleAction() {
-        super("", IAction.AS_PUSH_BUTTON);
-        setImageDescriptor(getImage(TERMINATE));
+        super("", IAction.AS_CHECK_BOX);
+        setImageDescriptor(getImage(IMAGE_URI));
         setToolTipText(DISABLE_TOOLTIP);
         setChecked(true);
     }
@@ -40,10 +39,8 @@ public class LiveToggleAction extends Action implements IToggleAction {
     public void run() {
         toggleAutoUpdate = !toggleAutoUpdate;
         if (toggleAutoUpdate) {
-            setImageDescriptor(getImage(TERMINATE));
             setToolTipText(DISABLE_TOOLTIP);
         } else {
-            setImageDescriptor(getImage(START));
             setToolTipText(ENABLE_TOOLTIP);
         }
     }

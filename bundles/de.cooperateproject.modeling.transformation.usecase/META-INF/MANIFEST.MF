@@ -7,6 +7,7 @@ Bundle-Activator: de.cooperateproject.modeling.transformation.usecase.UsecaseAct
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,
  de.cooperateproject.modeling.transformation.common;bundle-version="0.2.0",
- de.cooperateproject.modeling.transformation.registry;bundle-version="0.2.0"
+ de.cooperateproject.modeling.transformation.registry;bundle-version="0.2.0",
+ de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.4.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

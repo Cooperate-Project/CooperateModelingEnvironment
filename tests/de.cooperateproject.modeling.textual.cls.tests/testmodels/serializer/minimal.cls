@@ -3,6 +3,6 @@
 rootPackage RootElement
 
 class Q
-class "Other Q" as QQ
+class QQ as "Other Q"
 
 @end-clsd

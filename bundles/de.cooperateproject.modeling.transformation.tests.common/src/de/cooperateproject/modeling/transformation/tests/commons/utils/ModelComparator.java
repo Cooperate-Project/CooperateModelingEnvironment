@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.HintedDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.net4j.util.collection.Pair;
 
@@ -167,7 +168,7 @@ public class ModelComparator {
             @Override
             public void referenceChange(Match match, EReference reference, EObject value, DifferenceKind kind,
                     DifferenceSource source) {
-                if (reference != NotationPackage.Literals.VIEW__STYLES && !(value instanceof BooleanValueStyle)) {
+                if (!(value instanceof BooleanValueStyle) && !(value instanceof HintedDiagramLinkStyle)) {
                     super.referenceChange(match, reference, value, kind, source);
                 }
             }

@@ -8,8 +8,8 @@ import org.eclipse.uml2.uml.PrimitiveType;
 
 public class DefaultUMLPrimitiveTypeFilter implements IUMLPrimitiveTypeFilter {
 
-    private static final Set<String> ALLOWED_TYPES = new HashSet<>(
-            Arrays.asList("EString", "EInt", "EDouble", "EBoolean", "EChar", "EByte", "EShort", "ELong", "EFloat"));
+    private static final Set<String> ALLOWED_TYPES = new HashSet<>(Arrays.asList("EString", "EInt", "EDouble",
+            "EBoolean", "EChar", "EByte", "EShort", "ELong", "EFloat", "EDate"));
 
     @Override
     public boolean isAllowed(PrimitiveType type) {

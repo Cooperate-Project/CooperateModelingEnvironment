@@ -18,7 +18,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IPostSaveListenerSupport;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
-import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
+import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncherBase;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
@@ -27,7 +27,7 @@ import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 /**
  * Editor launcher for textual editors that operate on CDO models.
  */
-public class TextualCDOEditorLauncher extends EditorLauncher {
+public class TextualCDOEditorLauncher extends EditorLauncherBase {
 
     /**
      * Instantiates the launcher.
@@ -40,7 +40,7 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
      *             Thrown if there is no textual syntax defined in the launcher file.
      */
     public TextualCDOEditorLauncher(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        super(launcherFile, EditorType.TEXTUAL, false);
+        super(launcherFile, EditorType.TEXTUAL);
     }
 
     @Override

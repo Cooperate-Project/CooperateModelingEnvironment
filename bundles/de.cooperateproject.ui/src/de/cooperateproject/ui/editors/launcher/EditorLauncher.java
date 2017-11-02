@@ -74,7 +74,9 @@ public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
             MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error in opening the editor", errorMessage);
             LOGGER.warn(errorMessage, e);
         } catch (PartInitException e) {
-            LOGGER.error("Error during initialization of editor.", e);
+            final String errorMessage = "Error during initialization of editor.";
+            LOGGER.error(errorMessage, e);
+            MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error in opening the editor", errorMessage);
         }
 
     }

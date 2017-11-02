@@ -17,7 +17,7 @@ main() {
 
 mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
     var rootPackage := self.rootPackage.referencedElement.oclAsType(uml::Package);
-    var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(referencedElement.oclAsType(uml::Extend).condition != null);
+    var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(not referencedElement.oclAsType(uml::Extend).condition.oclIsUndefined());
 
     type := "UseCase";
     name := self.title;
@@ -53,6 +53,7 @@ when {self.oclIsKindOf(usecase::Actor)}
     children += self.map actorToStereotypeLabel();
     children += self.map actorToQualifiedNameLabel();
     children += self.map actorToFloatingNameLabel();
+    styles += self.map actorToActorTypeCssLabel();
     layoutConstraint := result.toEObject().map notationBounds();
 }
 
@@ -91,7 +92,7 @@ when {self.oclIsKindOf(usecase::UseCase)}
 mapping usecase::UseCase::usecaseToExtensionPointCompartment() : notation::BasicCompartment
 {
     type := PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED;
-    //eAnnotations += result.map visibleAndTitleAnnotation();
+    eAnnotations += result.map visibleTrueAnnotation();
     children += self.extensionPoints.map extensionPointToShape();
     styles += result.toEObject().map sortingStyle();
     styles += result.toEObject().map filteringStyle();
@@ -343,6 +344,13 @@ mapping usecase::Actor::actorToFloatingNameLabel() : notation::DecorationNode
 {
     type := PAPYRUS_NOTATION_NODE_ACTOR_FLOATINGNAME_REGULAR;
     layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping usecase::Actor::actorToActorTypeCssLabel() : notation::StringListValueStyle
+when {self.type = usecase::ActorType::MACHINE}
+{
+	name := "cssClass";
+	stringListValue := "machine"
 }
 
 mapping usecase::UseCaseDiagram::stringValueStyle() : notation::StringValueStyle

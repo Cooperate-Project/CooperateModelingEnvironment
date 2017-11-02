@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.ui.feature"
       label="%featureName"
-      version="0.2.2.qualifier"
+      version="0.4.2.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -69,6 +69,13 @@
 
    <plugin
          id="de.cooperateproject.cdo.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+<plugin
+         id="de.cooperateproject.modeling.cdo"
          download-size="0"
          install-size="0"
          version="0.0.0"

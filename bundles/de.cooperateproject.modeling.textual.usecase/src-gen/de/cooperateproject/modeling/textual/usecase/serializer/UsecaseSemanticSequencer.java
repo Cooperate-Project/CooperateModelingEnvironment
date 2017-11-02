@@ -92,7 +92,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Actor returns Actor
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (name=STRING alias=ID)) type=ActorType? comments+=Comment?)
+	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (alias=ID name=STRING)) type=ActorType? comments+=Comment?)
 	 */
 	protected void sequence_Actor(ISerializationContext context, Actor semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -160,7 +160,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     ExtensionPoint returns ExtensionPoint
 	 *
 	 * Constraint:
-	 *     (name=ID | (name=STRING alias=ID))
+	 *     (name=ID | (alias=ID name=STRING))
 	 */
 	protected void sequence_ExtensionPoint(ISerializationContext context, ExtensionPoint semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -264,7 +264,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     (
 	 *         visibility=Visibility? 
 	 *         abstract?='abstract'? 
-	 *         (name=ID | (name=STRING alias=ID)) 
+	 *         (name=ID | (alias=ID name=STRING)) 
 	 *         (comments+=Comment | (comments+=Comment? extensionPoints+=ExtensionPoint*))?
 	 *     )
 	 */

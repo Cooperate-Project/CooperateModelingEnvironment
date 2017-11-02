@@ -23,11 +23,12 @@
       <paletteRules xmi:id="_Zv4D0B5XEeaKs_GrNRbBjw" element="clazz.tool.class"/>
       <paletteRules xmi:id="_Zv4D0B5XEeaKs_GrNRbBjw" element="clazz.tool.interface"/>
       <paletteRules xmi:id="_eH07gB5XEeaKs_GrNRbBjw" element="clazz.tool.property"/>
-      <paletteRules xmi:id="_ixbhIB3ZEeaWluI_M9CcJQ" element="clazz.tool.realization"/>
+      <paletteRules xmi:id="_ixbhIB3ZEeaWluI_M9CcJQ" element="clazz.tool.interfacerealization"/>
       <paletteRules xmi:id="_i2Y5oB3ZEeaWluI_M9CcJQ" element="clazz.tool.generalization"/>
       <paletteRules xmi:id="_98BhUGZLEeek84eIY1oucg" permit="false" element="clazz.tool.associationclass"/>
       <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association*"/>
       <paletteRules xmi:id="_XwNGgGZLEeek84eIY1oucg" element="clazz.tool.packageimport"/>
+      <paletteRules xmi:id="_VriI4Kt_EeeSEPUIHdH6Kg" element="clazz.tool.link"/>
       <paletteRules xmi:id="_Zu7qEB3SEeaWluI_M9CcJQ" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_JR-5AB3eEeaWluI_M9CcJQ" permit="false" element="createTimeObservation22CreationTool"/>
       <paletteRules xmi:id="_Ri5mUB3eEeaWluI_M9CcJQ" permit="false" element="createDurationObservation7CreationTool"/>
@@ -44,7 +45,7 @@
       <assistantRules xmi:id="_R4Z1kEaiEeeAXeDvGhh7sQ" elementTypeID="org.eclipse.papyrus.umldi.Interface_Shape"/>
       <assistantRules xmi:id="_UfCdFy2REeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Property_ClassAttributeLabel"/>
       <assistantRules xmi:id="_dbYQgS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.PackageImport_Edge"/>
-      <assistantRules xmi:id="_dbYQgi2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Realization_Edge"/>
+      <assistantRules xmi:id="_dbYQgi2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.InterfaceRealization_Edge"/>
       <assistantRules xmi:id="_dbYQgy2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Generalization_Edge"/>
       <assistantRules xmi:id="_dbYQhS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Association_Edge"/>
       <assistantRules xmi:id="_1LpvIC2PEeamkv8UzKSY-w" permit="false" elementTypeID="*"/>
@@ -65,7 +66,6 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </owningRules>
       <childRules xmi:id="_9UEMIp-0Eeev3P7grPQovA"/>
-      <paletteRules xmi:id="_xQcz0J-1Eeev3P7grPQovA" element="usecase.tool.package"/>
       <paletteRules xmi:id="_yTm58J-1Eeev3P7grPQovA" element="usecase.tool.subject"/>
       <paletteRules xmi:id="_0QA8QJ-1Eeev3P7grPQovA" element="usecase.tool.actor"/>
       <paletteRules xmi:id="_2OxH8J-1Eeev3P7grPQovA" element="usecase.tool.usecase"/>
@@ -75,6 +75,7 @@
       <paletteRules xmi:id="_8mkXgJ-1Eeev3P7grPQovA" element="usecase.tool.generalization"/>
       <paletteRules xmi:id="_9okAAJ-1Eeev3P7grPQovA" element="usecase.tool.include"/>
       <paletteRules xmi:id="__sjRAJ-1Eeev3P7grPQovA" element="usecase.tool.extend"/>
+      <paletteRules xmi:id="_5ZtAEKuAEeeSEPUIHdH6Kg" element="usecase.tool.commentlink"/>
       <paletteRules xmi:id="_BCrWcJ-2Eeev3P7grPQovA" permit="false" element="usecase.tool.*"/>
       <assistantRules xmi:id="_GrSIQJ-3Eeev3P7grPQovA" elementTypeID="org.eclipse.papyrus.umldi.Include_Edge"/>
       <assistantRules xmi:id="_uqrZgJ-3Eeev3P7grPQovA" elementTypeID="org.eclipse.papyrus.umldi.Extend_Edge"/>

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -28,7 +29,8 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionValidator;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -50,6 +52,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.Activator;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
@@ -176,8 +179,10 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
-        if (containsSyntaxErrors(cooperateXtextDocument)) {
-            openErrorDialog("Save Error", "Can't save because of syntax errors.");
+        TextSelection actualSelection = (TextSelection) getSelectionProvider().getSelection();
+        Collection<Issue> syntaxIssues = getSyntaxErrors(cooperateXtextDocument);
+        if (!syntaxIssues.isEmpty()) {
+            openErrorDialog("Save Error", "Can't save because of syntax errors.", syntaxIssues);
             return;
         }
         performPreSaveActions();
@@ -187,9 +192,10 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
                 return;
             }
         } else if (status.matches(IStatus.CANCEL)) {
-            openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
+            openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!", null);
             return;
         }
+        getSelectionProvider().setSelection(actualSelection);
     }
 
     @SuppressWarnings("rawtypes")
@@ -220,8 +226,10 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     }
 
     private boolean tryDocumentSave(CooperateXtextDocument cooperateXtextDocument) throws OperationCanceledError {
-        if (!getAllIssues(cooperateXtextDocument).isEmpty()) {
-            openErrorDialog("Save Error", "Can't save because of semantic errors.");
+        List<Issue> detectedIssues = getAllIssues(cooperateXtextDocument);
+        if (!detectedIssues.isEmpty()) {
+
+            openErrorDialog("Save Error", "Can't save because of semantic errors.", detectedIssues);
             return false;
         }
         Job job = getDiagramSaveJob();
@@ -255,12 +263,12 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
         };
     }
 
-    private boolean containsSyntaxErrors(CooperateXtextDocument document) {
+    private Collection<Issue> getSyntaxErrors(CooperateXtextDocument document) {
         List<Issue> detectedIssues = getAllIssues(document);
         Collection<String> syntaxErrorCodes = Sets.newHashSet(
                 org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC,
                 org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC_WITH_RANGE);
-        return detectedIssues.stream().anyMatch(i -> syntaxErrorCodes.contains(i.getCode()));
+        return detectedIssues.stream().filter(i -> syntaxErrorCodes.contains(i.getCode())).collect(Collectors.toList());
     }
 
     private List<Issue> getAllIssues(CooperateXtextDocument document) throws OperationCanceledError {
@@ -414,10 +422,19 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
         return validationJob.getResult();
     }
 
-    private static void openErrorDialog(String title, String body) {
-        MessageDialog dialog = new MessageDialog(Display.getCurrent().getActiveShell(), title, null, body,
-                MessageDialog.ERROR, new String[] { "OK" }, 0);
-        dialog.open();
+    private static void openErrorDialog(String title, String body, Collection<Issue> detectedIssues) {
+        IStatus status = null;
+        if (detectedIssues != null && !detectedIssues.isEmpty()) {
+            IStatus[] children = detectedIssues.stream()
+                    .map(i -> new Status(IStatus.ERROR, Activator.PLUGIN_ID, i.toString())).collect(Collectors.toList())
+                    .toArray(new Status[0]);
+
+            status = new MultiStatus(Activator.PLUGIN_ID, IStatus.ERROR, children, body, null);
+        } else {
+            status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, body);
+        }
+
+        ErrorDialog.openError(Display.getCurrent().getActiveShell(), title, "Error during save operation", status);
     }
 
     private void saveAllAssociated() {

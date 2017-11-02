@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Card
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
@@ -113,6 +114,13 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * @generated
      */
     private EClass visibilityHavingElementEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass nameOptionalEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -255,6 +263,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      */
     public EReference getUMLReferencingElement_ReferencedElement() {
         return (EReference)umlReferencingElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getUMLReferencingElement__GetUMLParentNamespace() {
+        return umlReferencingElementEClass.getEOperations().get(0);
     }
 
     /**
@@ -424,6 +441,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getNameOptional() {
+        return nameOptionalEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public TextualCommonsFactory getTextualCommonsFactory() {
         return (TextualCommonsFactory)getEFactoryInstance();
     }
@@ -458,6 +484,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         umlReferencingElementEClass = createEClass(UML_REFERENCING_ELEMENT);
         createEReference(umlReferencingElementEClass, UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+        createEOperation(umlReferencingElementEClass, UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE);
 
         packageBaseEClass = createEClass(PACKAGE_BASE);
         createEReference(packageBaseEClass, PACKAGE_BASE__OWNING_PACKAGE);
@@ -483,6 +510,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         visibilityHavingElementEClass = createEClass(VISIBILITY_HAVING_ELEMENT);
         createEAttribute(visibilityHavingElementEClass, VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+
+        nameOptionalEClass = createEClass(NAME_OPTIONAL);
     }
 
     /**
@@ -576,6 +605,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
         initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEOperation(getUMLReferencingElement__GetUMLParentNamespace(), theUMLPackage.getNamespace(), "getUMLParentNamespace", 0, 1, IS_UNIQUE, IS_ORDERED);
+
         initEClass(packageBaseEClass, PackageBase.class, "PackageBase", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(packageBaseEClass_PackageType);
         initEReference(getPackageBase_OwningPackage(), g1, this.getPackageBase_Packages(), "owningPackage", null, 0, 1, PackageBase.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -608,6 +639,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         initEClass(visibilityHavingElementEClass, VisibilityHavingElement.class, "VisibilityHavingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getVisibilityHavingElement_Visibility(), theUMLPackage.getVisibilityKind(), "visibility", null, 0, 1, VisibilityHavingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(nameOptionalEClass, NameOptional.class, "NameOptional", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);

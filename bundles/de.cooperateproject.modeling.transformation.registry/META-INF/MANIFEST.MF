@@ -2,12 +2,17 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate Transformation Registry
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.registry;singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.4.2.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: de.cooperateproject.modeling.transformation.common,
  com.google.guava;bundle-version="21.0.0",
  de.cooperateproject.util,
  de.cooperateproject.modeling.graphical.common,
- de.cooperateproject.modeling.common
-Service-Component: OSGI-INF/component.xml
-Bundle-ActivationPolicy: lazy
+ de.cooperateproject.modeling.common,
+ org.eclipse.m2m.qvt.oml
+Service-Component: OSGI-INF/de.cooperateproject.modeling.transformation.registry.QVTOTransformationExecutorProvider.xml,
+ OSGI-INF/de.cooperateproject.modeling.transformation.registry.QVTOResourceProvider.xml,
+ OSGI-INF/de.cooperateproject.modeling.transformation.registry.TransformationFactoryRegistry.xml
+Bundle-ActivationPolicy: lazy 
+Export-Package: de.cooperateproject.modeling.transformation.registry
+Import-Package: org.osgi.service.component.annotations;resolution:=optional

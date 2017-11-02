@@ -12,6 +12,9 @@
       <factory
             class="de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyVisibilityFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.usecase.issues.UsecaseExtendConditionFactory">
+      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">

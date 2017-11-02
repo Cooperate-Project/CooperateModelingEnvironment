@@ -3,9 +3,11 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.calculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Association;
@@ -17,6 +19,7 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.utils.AssociationMatcher;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -43,6 +46,8 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
 
     @Override
     protected void applyTyped(XtextAssociation object) {
+        setReferencedElement(object);
+
         List<Classifier<?>> types = object.collectMemberEndTypes();
         List<String> names = object.getMemberEndNames();
         List<Cardinality> cardinalities = object.getMemberEndCardinalities();
@@ -93,6 +98,20 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
         object.getMemberEnds().forEach(XtextAssociationCalculator::process);
     }
 
+    private static void setReferencedElement(XtextAssociation object) {
+        if (StringUtils.isNotEmpty(object.getName())) {
+            // UMLReferencingElementCalculator handles this case
+            return;
+        }
+
+        Collection<Association> candidates = Optional.ofNullable(object.getOwningPackage().getReferencedElement())
+                .map(umlPackage -> AssociationMatcher.findUMLElements(object, umlPackage))
+                .orElse(Collections.emptySet());
+        if (candidates.size() == 1) {
+            object.setReferencedElement((Association) candidates.iterator().next());
+        }
+    }
+
     private static void process(AssociationMemberEnd object) {
         Optional<Property> umlMemberEnd = getUmlMemberEnd(object);
         if (!umlMemberEnd.isPresent()) {
@@ -110,9 +129,7 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
         if (index == -1) {
             return Optional.empty();
         }
-        if (object.getAssociation().getMemberEnds().size() == 2) {
-            index = Math.abs(index - 1);
-        }
+        index = AssociationMatcher.mapIndexTxt2Uml(index, object.getAssociation().getMemberEnds().size());
         Association umlAssociation = object.getAssociation().getReferencedElement();
         if (umlAssociation == null || umlAssociation.getMemberEnds().size() <= index) {
             return Optional.empty();
@@ -124,4 +141,5 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
     public Collection<Class<? extends EObject>> getRequirements() {
         return Arrays.asList(UMLReferencingElement.class);
     }
+
 }

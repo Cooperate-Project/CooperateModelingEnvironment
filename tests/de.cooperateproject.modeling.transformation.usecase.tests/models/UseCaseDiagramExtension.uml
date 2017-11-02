@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kgBoULPMEeeyacw31IseIA" name="UseCaseDiagramExtension">
+  <packagedElement xmi:type="uml:Component" xmi:id="_l9x_wLPMEeeyacw31IseIA" name="System" useCase="_mtQ78LPMEeeyacw31IseIA _oCHPALPMEeeyacw31IseIA">
+    <ownedUseCase xmi:id="_mtQ78LPMEeeyacw31IseIA" name="A" subject="_l9x_wLPMEeeyacw31IseIA">
+      <extensionPoint xmi:id="_tnimcLPMEeeyacw31IseIA" name="ep1"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_oCHPALPMEeeyacw31IseIA" name="B" subject="_l9x_wLPMEeeyacw31IseIA">
+      <extend xmi:id="_tngKMLPMEeeyacw31IseIA" extendedCase="_mtQ78LPMEeeyacw31IseIA" extensionLocation="_tnimcLPMEeeyacw31IseIA">
+        <condition xmi:id="_cJGkMLPNEeeyacw31IseIA" constrainedElement="_tngKMLPMEeeyacw31IseIA">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_cJHyULPNEeeyacw31IseIA" name="constraintSpec">
+            <language>Natural language</language>
+            <body>some condition</body>
+          </specification>
+        </condition>
+      </extend>
+    </ownedUseCase>
+  </packagedElement>
+</uml:Model>

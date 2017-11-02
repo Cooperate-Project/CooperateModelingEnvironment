@@ -45,7 +45,6 @@ class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
 
     @Override
     public void setFocusedElement(EObject element) {
-
         UMLToConcreteSyntaxElementWork unit = new UMLToConcreteSyntaxElementWork();
         unit.setUmlElement(element);
         getEditorPart().getDocument().modify(unit);
@@ -57,7 +56,7 @@ class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
         }
         ITextSelection selection = new TextSelection(getEditorPart().getDocument(), node.getOffset(), 0);
         getEditorPart().getSelectionProvider().setSelection(selection);
-        getEditorPart().setFocus();
+        getEditorPart().getSite().getPage().activate(getEditorPart());
     }
 
     @Override

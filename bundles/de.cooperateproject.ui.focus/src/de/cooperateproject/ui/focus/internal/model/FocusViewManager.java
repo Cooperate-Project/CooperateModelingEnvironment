@@ -3,13 +3,14 @@ package de.cooperateproject.ui.focus.internal.model;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 import org.apache.commons.io.IOUtils;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.services.IDisposable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,21 +19,31 @@ import de.cooperateproject.ui.focus.internal.utils.EditorMonitor;
 import de.cooperateproject.ui.focus.internal.utils.IEditorListener;
 import de.cooperateproject.ui.focus.manager.IFocusManager;
 
-public class FocusViewManager implements IDisposable {
+public enum FocusViewManager {
+
+    INSTANCE;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FocusViewManager.class);
     private final Map<IEditorPart, IFocusedDiagram> focusedDiagrams = new HashMap<>();
-    private final FocusViewModel focusViewModel = new FocusViewModel();
+    private final FocusViewModel focusViewModel = createFocusViewModel();
+    private EditorMonitor editorMonitor = createEditorMonitor();
     private IEditorPart activeEditor;
-    private EditorMonitor editorMonitor;
 
-    public void init() {
-        editorMonitor = createEditorMonitor();
+    public static FocusViewManager getInstance() {
+        return INSTANCE;
+    }
+
+    private static FocusViewModel createFocusViewModel() {
+        AtomicReference<FocusViewModel> model = new AtomicReference<>();
+        Display.getDefault().syncExec(() -> model.set(new FocusViewModel()));
+        return model.get();
+    }
+
+    public void start() {
         editorMonitor.start();
     }
 
-    @Override
-    public void dispose() {
+    public void stop() {
         editorMonitor.stop();
         focusedDiagrams.values().forEach(IOUtils::closeQuietly);
     }

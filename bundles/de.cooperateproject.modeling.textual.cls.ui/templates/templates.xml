@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates><template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Attribute" deleted="false" description="inserts a new private attribute" enabled="true" id="clsattribute" name="Insert attribute">- ${attributeName} : ${type:CrossReference(Property.type)}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Class" deleted="false" description="inserts a new class" enabled="true" id="clsclass" name="Insert class">+ class ${className} {&#13;
+	&#13;
+}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Interface" deleted="false" description="inserts a new interface" enabled="true" id="clsinterface" name="Insert interface">+ interface ${interfaceName} {&#13;
+	&#13;
+}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Method" deleted="false" description="inserts a new public method with parameter and return type" enabled="true" id="clsmethod" name="Insert method">+ ${methodName} (${param}:${type:CrossReference(Property.type)}) : ${type:CrossReference(Property.type)}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.XtextAssociation" deleted="false" description="inserts a new aggregation" enabled="true" id="clsagg" name="Insert aggregation">agg ${aggName} (${typeLeft:CrossReference(XtextAssociationMemberEndReferencedType.type)}, ${typeRight:CrossReference(XtextAssociationMemberEndReferencedType.type)}) role[${roleName1}, ${roleName2}] card[0..1: 0..*]&#13;
+</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.XtextAssociation" deleted="false" description="inserts a new association" enabled="true" id="clsasc" name="Insert association">asc ${ascName} (${typeLeft:CrossReference(XtextAssociationMemberEndReferencedType.type)}, ${typeRight:CrossReference(XtextAssociationMemberEndReferencedType.type)}) role[${roleName1}, ${roleName2}] card[0..*: 0..*]&#13;
+</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.XtextAssociation" deleted="false" description="inserts a new composition" enabled="true" id="clscom" name="Insert composition">com ${comName} (${typeLeft:CrossReference(XtextAssociationMemberEndReferencedType.type)}, ${typeRight:CrossReference(XtextAssociationMemberEndReferencedType.type)}) role[${roleName1}, ${roleName2}] card[0..1: 0..*]&#13;
+</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Generalization" deleted="false" description="inserts a new generalization relation" enabled="true" id="clsimpl"  name="Insert generalization">isa (${sub:CrossReference(TypedConnector.left)}, ${super:CrossReference(TypedConnector.right)})&#13;
+</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Implementation" deleted="false" description="inserts a new interface implementation relation" enabled="true" id="clsisa" name="Insert implementation">impl (${sub:CrossReference(TypedConnector.left)}, ${super:CrossReference(TypedConnector.right)})&#13;
+</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.cls.Cls.Package" deleted="false" description="inserts a new package" enabled="true" id="clspackage" name="Insert package">package ${packageName} {&#13;
+	&#13;
+}&#13;
+</template>
+</templates>

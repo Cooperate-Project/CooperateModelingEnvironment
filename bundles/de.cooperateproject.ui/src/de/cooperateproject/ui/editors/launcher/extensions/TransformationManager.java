@@ -15,7 +15,6 @@ import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.protocol.CDOProtocolConstants;
 import org.eclipse.emf.cdo.common.revision.CDOIDAndVersion;
-import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOUtil;
@@ -37,8 +36,6 @@ import com.google.common.collect.Lists;
 
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
-import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
-import de.cooperateproject.modeling.transformation.common.ITransformationExecutor;
 import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
@@ -46,10 +43,10 @@ import de.cooperateproject.ui.util.EditorInputSwitch;
  * Handler for editor save events that transforms and merges editor changes.
  */
 // TODO this class should be located in another location and/or splitted
-public class TransformationManager {
+public class TransformationManager implements ITransformationManager {
 
     /**
-     * Exception that occured during the transformation or merging of content.
+     * Exception that occurred during the transformation of content.
      */
     public static class TransformationException extends Exception {
         private static final long serialVersionUID = -5921359045558510687L;
@@ -67,72 +64,94 @@ public class TransformationManager {
         }
     }
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransformationManager.class);
-    private final CDOCheckout cdoCheckout;
-    private long lastMergeTimeBranch;
-    private long lastMergeTimeMain;
-    private ITransformationExecutor transformationExecutor;
-
     /**
-     * Instantiates the transformation manager.
-     * 
-     * @param cdoCheckout
-     *            The {@link CDOCheckout} into which the transformation and merge results shall be transferred.
+     * Listener for a post merge event.
      */
-    public TransformationManager(CDOCheckout cdoCheckout) {
-        this.cdoCheckout = cdoCheckout;
-        CDOBranch branch = cdoCheckout.getView().getBranch();
-        lastMergeTimeBranch = getTimestampOfBranch(cdoCheckout, branch);
-        lastMergeTimeMain = getTimestampOfBranch(cdoCheckout, CDOBranch.MAIN_BRANCH_ID);
+    @FunctionalInterface
+    public interface IPostMergeListener {
+
+        /**
+         * Handles the post merge event.
+         * 
+         * @param transaction
+         *            The transaction that has been used for merging.
+         */
+        void handlePostMerge(CDOTransaction transaction);
     }
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransformationManager.class);
+    private final CDOTransaction branchView;
+    private final CDOTransaction maintTransaction;
+    private final IPostMergeListener postMergeListener;
+    private long lastMergeTimeBranch;
+    private long lastMergeTimeMain;
+
     /**
-     * Handles the editor save event by triggering according transformations and merging the changes back into the
-     * master branch.
+     * Constructs the transformation manager.
      * 
-     * @param editorInput
-     *            The {@link IEditorInput} that shall be saved.
-     * @throws TransformationException
+     * @param mainTransaction
+     *            The transaction for the master branch.
+     * @param branchView
+     *            The view on the working branch.
+     * @param postMergeListener
+     *            Listener for the post merge event.
      */
+    public TransformationManager(CDOTransaction mainTransaction, CDOTransaction branchView,
+            IPostMergeListener postMergeListener) {
+        this.maintTransaction = mainTransaction;
+        this.branchView = branchView;
+        this.postMergeListener = postMergeListener;
+        CDOBranch branch = branchView.getBranch();
+        lastMergeTimeBranch = getTimestampOfBranch(branchView, branch);
+        lastMergeTimeMain = getTimestampOfBranch(maintTransaction, CDOBranch.MAIN_BRANCH_ID);
+    }
+
+    @Override
     public void handleEditorSave(IEditorInput editorInput) throws TransformationException {
         try {
             triggerTransformation(editorInput);
-            mergeChangesToMaster(getCommitMessage(editorInput));
         } catch (IOException | CommitException e) {
             throw new TransformationException("Could not transform and merge model changes.", e);
         }
     }
 
+    @Override
+    public void handleEditorMerge(String commitMessage) throws CommitException {
+        mergeChangesToMaster(commitMessage);
+    }
+
+    @Override
+    public boolean isMergeNecessary() {
+        long mostRecentTimeStamp = getTimestampOfBranch(branchView, branchView.getBranch());
+        return lastMergeTimeBranch != mostRecentTimeStamp;
+    }
+
     private void mergeChangesToMaster(String commitMessage) throws CommitException {
-        CDOBranch editorBranch = cdoCheckout.getBranchPoint().getBranch();
+        CDOBranch editorBranch = branchView.getBranch();
         CDOBranch mainBranch = editorBranch.getBranchManager().getMainBranch();
 
-        CDOTransaction mergeTransaction = cdoCheckout.getView().getSession().openTransaction(mainBranch);
-        try {
-            CDOBranchPoint sourceFromRevision = editorBranch.getPoint(lastMergeTimeBranch);
-            CDOBranchPoint sourceToRevision = editorBranch.getHead();
-            CDOBranchPoint targetFromRevision = mainBranch.getPoint(lastMergeTimeMain);
-            mergeTransaction.merge(sourceToRevision, sourceFromRevision, targetFromRevision, new CustomCDOMerger());
-            mergeTransaction.setCommitComment(commitMessage);
-            CDOCommitInfo mergeCommitInfo = mergeTransaction.commit();
-            mergeCommitInfo.getTimeStamp();
-            lastMergeTimeBranch = getTimestampOfBranch(cdoCheckout, editorBranch);
-            lastMergeTimeMain = getTimestampOfBranch(cdoCheckout, mainBranch);
-        } finally {
-            IOUtil.closeSilent(mergeTransaction);
-        }
+        CDOBranchPoint sourceFromRevision = editorBranch.getPoint(lastMergeTimeBranch);
+        CDOBranchPoint sourceToRevision = editorBranch.getHead();
+        CDOBranchPoint targetFromRevision = mainBranch.getPoint(lastMergeTimeMain);
+        maintTransaction.merge(sourceToRevision, sourceFromRevision, targetFromRevision, new CustomCDOMerger());
+        maintTransaction.setCommitComment(commitMessage);
+        CDOCommitInfo mergeCommitInfo = maintTransaction.commit();
+        postMergeListener.handlePostMerge(maintTransaction);
+        mergeCommitInfo.getTimeStamp();
+        lastMergeTimeBranch = getTimestampOfBranch(branchView, editorBranch);
+        lastMergeTimeMain = getTimestampOfBranch(maintTransaction, mainBranch);
     }
 
-    private static long getTimestampOfBranch(CDOCheckout cdoCheckout, CDOBranch branch) {
-        return getTimestampOfBranch(cdoCheckout, branch.getID());
+    private static long getTimestampOfBranch(CDOView cdoView, CDOBranch branch) {
+        return getTimestampOfBranch(cdoView, branch.getID());
     }
 
-    private static long getTimestampOfBranch(CDOCheckout cdoCheckout, int branchId) {
-        if (cdoCheckout.getView().getBranch().getID() == branchId) {
-            CDOView view = cdoCheckout.getView();
+    private static long getTimestampOfBranch(CDOView cdoView, int branchId) {
+        if (cdoView.getBranch().getID() == branchId) {
+            CDOView view = cdoView;
             return view.getLastUpdateTime();
         } else {
-            CDOView view = cdoCheckout.getView().getSession().openView(branchId);
+            CDOView view = cdoView.getSession().openView(branchId);
             try {
                 return view.getLastUpdateTime();
             } finally {
@@ -143,7 +162,9 @@ public class TransformationManager {
 
     private void triggerTransformation(IEditorInput editorInput) throws IOException, CommitException {
         URI changedResourceURI = new EditorInputSwitch().doSwitch(editorInput);
-        URI normalizedURI = normalizeURI(changedResourceURI, cdoCheckout.getURI());
+        URI baseURI = branchView.getRootResource().getURI();
+        baseURI = URI.createHierarchicalURI(baseURI.scheme(), baseURI.authority(), null, null, null);
+        URI normalizedURI = normalizeURI(changedResourceURI, baseURI);
         triggerTransformation(normalizedURI);
     }
 
@@ -156,17 +177,11 @@ public class TransformationManager {
     }
 
     private void triggerTransformationCDO(URI uri) throws IOException, CommitException {
-        CDOTransaction transaction = cdoCheckout.openTransaction();
-        ResourceSet rs = transaction.getResourceSet();
+        ResourceSet rs = branchView.getResourceSet();
         rs.setResourceFactoryRegistry(CDOResourceHandler.createFactoryWrapper(rs.getResourceFactoryRegistry()));
-        fixStaleReferences(transaction);
-
-        try {
-            triggerTransformation(uri, rs);
-            transaction.commit();
-        } finally {
-            IOUtil.closeSilent(transaction);
-        }
+        fixStaleReferences(branchView);
+        triggerTransformation(uri, rs);
+        branchView.commit();
     }
 
     private void fixStaleReferences(CDOTransaction transaction) {
@@ -243,19 +258,19 @@ public class TransformationManager {
 
     }
 
-    private void triggerTransformationRegular(URI uri) throws IOException {
+    private static void triggerTransformationRegular(URI uri) throws IOException {
         ResourceSet rs = new ResourceSetImpl();
         triggerTransformation(uri, rs);
     }
 
-    private void triggerTransformation(URI changedUri, ResourceSet rs) throws IOException {
+    private static void triggerTransformation(URI changedUri, ResourceSet rs) throws IOException {
         Iterable<URI> uris = createRootElementURIs(changedUri, rs);
         for (URI uri : uris) {
             Activator.getDefault().getTransformationExecutor().transformChanged(uri, rs);
         }
     }
 
-    private Iterable<URI> createRootElementURIs(URI normalizedURI, ResourceSet rs) {
+    private static Iterable<URI> createRootElementURIs(URI normalizedURI, ResourceSet rs) {
         Resource r = rs.getResource(normalizedURI, true);
         return r.getContents().stream().map(r::getURIFragment).map(f -> normalizedURI.trimFragment().appendFragment(f))
                 .collect(Collectors.toSet());
@@ -275,13 +290,6 @@ public class TransformationManager {
 
         return processedURI;
 
-    }
-
-    private static String getCommitMessage(IEditorInput editorInput) {
-        String resource = editorInput.getAdapter(ILauncherFileEditorInput.class).getAssociatedLauncherFile().getName();
-        String editorType = editorInput.getAdapter(ILauncherFileEditorInput.class).getEditorType().toString()
-                .toLowerCase();
-        return "Diagram " + resource + " in " + editorType + " editor was edited by " + System.getProperty("user.name");
     }
 
 }

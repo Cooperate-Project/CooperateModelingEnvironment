@@ -83,15 +83,15 @@ public final class CDOHelper {
     }
 
     public static CDOCheckout createCheckout(CDORepository repo) {
-        return createCheckout(repo, 0);
+        return createCheckout(repo, 0, false);
     }
 
-    public static CDOCheckout createCheckout(CDORepository repo, int branchID) {
+    public static CDOCheckout createCheckout(CDORepository repo, int branchID, boolean readOnly) {
         Properties checkoutProperties = new Properties();
 
         checkoutProperties.put("repository", repo.getID());
         checkoutProperties.put("type", "online-transactional");
-        checkoutProperties.put("readOnly", "false");
+        checkoutProperties.put("readOnly", readOnly ? "true" : "false");
         checkoutProperties.put("branchID", Long.toString(branchID));
         checkoutProperties.put("label", createCheckoutLabel());
         checkoutProperties.put("timeStamp", Long.toString(CDORevision.UNSPECIFIED_VERSION));

@@ -152,7 +152,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? ((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? members+=Member*))?)
+	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (alias=ID name=STRING)) (comments+=Comment | (comments+=Comment? members+=Member*))?)
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -227,7 +227,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? ((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? members+=Member*))?)
+	 *     (visibility=Visibility? (name=ID | (alias=ID name=STRING)) (comments+=Comment | (comments+=Comment? members+=Member*))?)
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -335,7 +335,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         twoSideBidirectionality?='bi'? 
 	 *         twoSideAggregationKind=AggregationKind 
-	 *         name=ID 
+	 *         name=ID? 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType* 
 	 *         (memberEndNames+=RoleName memberEndNames+=RoleName*)? 

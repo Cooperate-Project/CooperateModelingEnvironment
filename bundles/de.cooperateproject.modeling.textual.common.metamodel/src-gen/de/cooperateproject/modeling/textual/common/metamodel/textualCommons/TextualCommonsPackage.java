@@ -235,13 +235,22 @@ public interface TextualCommonsPackage extends EPackage {
     int UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE = ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE = ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>UML Referencing Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int UML_REFERENCING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+    int UML_REFERENCING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}' class.
@@ -354,13 +363,22 @@ public interface TextualCommonsPackage extends EPackage {
     int PACKAGE_BASE___GET_NEAREST_PACKAGE = PACKAGEABLE_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE_BASE___GET_UML_PARENT_NAMESPACE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Package Base</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PACKAGE_BASE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+    int PACKAGE_BASE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl <em>Commentable</em>}' class.
@@ -407,6 +425,15 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int COMMENTABLE___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMMENTABLE___GET_UML_PARENT_NAMESPACE = UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Commentable</em>' class.
@@ -473,6 +500,15 @@ public interface TextualCommonsPackage extends EPackage {
     int COMMENT___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMMENT___GET_UML_PARENT_NAMESPACE = UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Comment</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -535,6 +571,15 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int CARDINALITY___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CARDINALITY___GET_UML_PARENT_NAMESPACE = UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Cardinality</em>' class.
@@ -601,6 +646,15 @@ public interface TextualCommonsPackage extends EPackage {
     int PACKAGE_IMPORT___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE_IMPORT___GET_UML_PARENT_NAMESPACE = UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Package Import</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -645,6 +699,35 @@ public interface TextualCommonsPackage extends EPackage {
      * @ordered
      */
     int VISIBILITY_HAVING_ELEMENT_OPERATION_COUNT = 0;
+
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getNameOptional()
+     * @generated
+     */
+    int NAME_OPTIONAL = 11;
+
+    /**
+     * The number of structural features of the '<em>Name Optional</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NAME_OPTIONAL_FEATURE_COUNT = 0;
+
+    /**
+     * The number of operations of the '<em>Name Optional</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NAME_OPTIONAL_OPERATION_COUNT = 0;
 
 
     /**
@@ -729,6 +812,16 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      */
     EReference getUMLReferencingElement_ReferencedElement();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getUMLParentNamespace() <em>Get UML Parent Namespace</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get UML Parent Namespace</em>' operation.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement#getUMLParentNamespace()
+     * @generated
+     */
+    EOperation getUMLReferencingElement__GetUMLParentNamespace();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase <em>Package Base</em>}'.
@@ -922,6 +1015,16 @@ public interface TextualCommonsPackage extends EPackage {
     EAttribute getVisibilityHavingElement_Visibility();
 
     /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Name Optional</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+     * @generated
+     */
+    EClass getNameOptional();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1015,6 +1118,14 @@ public interface TextualCommonsPackage extends EPackage {
          * @generated
          */
         EReference UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = eINSTANCE.getUMLReferencingElement_ReferencedElement();
+
+        /**
+         * The meta object literal for the '<em><b>Get UML Parent Namespace</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE = eINSTANCE.getUMLReferencingElement__GetUMLParentNamespace();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl <em>Package Base</em>}' class.
@@ -1173,6 +1284,16 @@ public interface TextualCommonsPackage extends EPackage {
          * @generated
          */
         EAttribute VISIBILITY_HAVING_ELEMENT__VISIBILITY = eINSTANCE.getVisibilityHavingElement_Visibility();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional <em>Name Optional</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getNameOptional()
+         * @generated
+         */
+        EClass NAME_OPTIONAL = eINSTANCE.getNameOptional();
 
     }
 

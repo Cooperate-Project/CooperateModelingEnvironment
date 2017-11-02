@@ -35,7 +35,11 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
 
     @Override
     public boolean isTransient(EObject owner, EStructuralFeature feature, int index) {
-        return !owner.eIsSet(feature) || isContainerReferenceInSameResource(owner, feature) || isTransient(feature);
+        return !isSet(owner, feature) || isContainerReferenceInSameResource(owner, feature) || isTransient(feature);
+    }
+
+    private static boolean isSet(EObject owner, EStructuralFeature feature) {
+        return owner.eIsSet(feature) && owner.eGet(feature, true) != null;
     }
 
     @Override

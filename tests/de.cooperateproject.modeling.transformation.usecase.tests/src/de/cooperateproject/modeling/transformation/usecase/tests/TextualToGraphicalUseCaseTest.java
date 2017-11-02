@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.usecase.tests;
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -30,12 +32,33 @@ public class TextualToGraphicalUseCaseTest extends UsecaseDirectionalTransformat
 
     @Test
     public void testNotes() throws Exception {
+    	setDebugSerializationDir(new File("D:"));
         testRegular("UseCaseDiagramNotes");
     }
 
     @Test
     public void testNotesIncremental() throws Exception {
         testIncremental("UseCaseDiagramNotes");
+    }
+    
+    @Test
+    public void testExtension() throws Exception {
+        testRegular("UseCaseDiagramExtension");
+    }
+
+    @Test
+    public void testExtensionIncremental() throws Exception {
+        testIncremental("UseCaseDiagramExtension");
+    }
+    
+    @Test
+    public void testActorTypes() throws Exception {
+        testRegular("UseCaseDiagramActorTypes");
+    }
+    
+    @Test
+    public void testActorTypesIncremental() throws Exception {
+        testIncremental("UseCaseDiagramActorTypes");
     }
 
 }

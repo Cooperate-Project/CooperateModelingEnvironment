@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates>
+<template id="ucextend" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Extend" deleted="false" description="inserts a new extend relation between two use-cases" enabled="true" name="Insert extend relation">ext  (${extension:CrossReference(Extend.extension)}, ${extendedCase:CrossReference(Extend.extendedCase)}) ep [${extensionLocation:CrossReference(Extend.extensionLocation)}] cond [${condition}]&#13;
+</template>
+<template id="ucactor" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Actor" deleted="false" description="inserts a new actor" enabled="true" name="Insert actor">act ${actorName}</template>
+<template id="ucep" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.ExtensionPoint" deleted="false" description="inserts a new extension point that allows extending a use-case" enabled="true" name="Insert extension point">ep ${epName}&#13;
+</template>
+<template id="ucinclude" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Include" deleted="false" description="inserts a new include relation between two use-cases" enabled="true" name="Insert include">inc (${includingCase:CrossReference(Include.includingCase)}, ${addition:CrossReference(Include.addition)})&#13;
+</template>
+<template id="uciac" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Association" deleted="false" description="inserts a new interaction between an actor and a use-case" enabled="true" name="Insert new interaction">iac (${actor:CrossReference(Association.actor)}, ${usecase:CrossReference(Association.usecase)})</template>
+<template id="ucsystem" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.System" deleted="false" description="inserts a new system" enabled="true" name="Insert system">sys ${systemName} {&#13;
+	&#13;
+}</template>
+<template id="ucusecase" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.UseCase" deleted="false" description="inserts a new use-case" enabled="true" name="Insert use-case">uc ${ucName}</template>
+</templates>

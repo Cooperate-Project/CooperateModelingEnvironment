@@ -51,12 +51,12 @@ public class ViewPartListener implements IPartListener2 {
         }
     }
 
-    @Override
-    public void partActivated(IWorkbenchPartReference partRef) {
-        if (isPartTextEditor(partRef)) {
-            diffView.setSelectedFile(getFile());
-        }
-    }
+	@Override
+	public void partActivated(IWorkbenchPartReference partRef) {
+		if (isPartTextEditor(partRef) && liveUpdateAction.isLiveActivated()) {
+			diffView.setSelectedFile(getFile());
+		}
+	}
 
     @Override
     public void partVisible(IWorkbenchPartReference partRef) {

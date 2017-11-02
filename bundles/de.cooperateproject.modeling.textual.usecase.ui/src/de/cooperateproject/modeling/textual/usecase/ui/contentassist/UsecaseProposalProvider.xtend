@@ -3,10 +3,60 @@
  */
 package de.cooperateproject.modeling.textual.usecase.ui.contentassist
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.eclipse.xtext.Assignment
+import org.eclipse.uml2.uml.UMLPackage
+import org.eclipse.uml2.uml.NamedElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import java.util.Optional
 
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
  */
 class UsecaseProposalProvider extends AbstractUsecaseProposalProvider {
+	
+	def addProposalsFromUML(EObject model, EClass type, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		 // compute the name proposal from scope
+ 		 if(model instanceof UMLReferencingElement<?>) {
+ 		 	var container = model
+ 		 	var umlContainer = Optional.ofNullable(container.referencedElement)
+ 		 	if(!umlContainer.present) { //TODO: dirty hack for system proposal
+ 		 		container = container.eContainer as UMLReferencingElement<?>
+ 		 		umlContainer = Optional.ofNullable(container.referencedElement) 
+ 		 	}
+ 		 	
+ 		 	
+ 		 	if(umlContainer.isPresent) {
+	 		 	for(element : umlContainer.get.allOwnedElements.filter[eClass == type].filter(NamedElement)) {
+	 		 		if(!container.eContents.filter(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement)
+	 		 		.exists[name == element.name]) {
+	 		 			acceptor.accept(createCompletionProposal(element.name, context))
+	 		 		}
+	 		 	}
+ 		 	}
+ 		 }
+ 	}
+	
+	
+	
+	override completeActor_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeActor_Name(model, assignment, context, acceptor)
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.actor, context, acceptor)
+	}
+	
+	override completeSystem_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeSystem_Name(model, assignment, context, acceptor)
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.component, context, acceptor)
+	}
+	
+	override completeUseCase_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeUseCase_Name(model, assignment, context, acceptor)
+		
+ 		addProposalsFromUML(model, UMLPackage.eINSTANCE.useCase, context, acceptor)
+	}
+	
 }

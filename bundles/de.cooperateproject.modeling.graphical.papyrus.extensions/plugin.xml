@@ -47,21 +47,21 @@
                   severity="WARNING"
                   statusCode="1">
                <message>
-                  {0} has no proper name.
+                  {0} has no proper name and the types do not identify the association unambiguously.
                </message>
                <description>
-                  An association in a class diagram needs a proper non null and non empty name.
+                  An association in a class diagram needs a proper non null and non empty name or the involved member ends have to allow distinguishing it from all other associations in the same package.
                </description>
                <target
                      class="Association">
                </target>
             </constraint>
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationConstraint"
-                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationNoNameConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationNoNameConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Use Case Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
@@ -70,6 +70,25 @@
                </message>
                <description>
                   An association in a use case diagram must have an empty name.
+               </description>
+               <target
+                     class="Association">
+               </target>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramAssociationEndpointsConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationEndpointsConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="Use Case Diagram Association Must Connect Actor and Usecase Constraint"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} is only allowed to connect an Actor with a Use Case.
+               </message>
+               <description>
+                  An association in a use case diagram must interconnect Actors with Use Cases.
                </description>
                <target
                      class="Association">
@@ -174,7 +193,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.commentOnlyAllowedForCommentableElements"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Comments can only be used on commentable elements."
                   severity="WARNING"
                   statusCode="2">
@@ -193,7 +212,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.typedElementHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Typed elements have only allowed primitive types"
                   severity="WARNING"
                   statusCode="2">
@@ -212,7 +231,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.operationHasOnlyAllowedPrimitiveType"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="Operation has only allowed primitive types"
                   severity="WARNING"
                   statusCode="2">
@@ -225,6 +244,97 @@
                <description>
                   A primitive type must be an Ecore primitive type that has a common type.
                </description>
+            </constraint>
+            <constraint
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.allowOnlyUsecasesInComponent"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Live"
+                  name="Allow only use-cases in component"
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>Use cases must not exist outside of systems modeled as components.</description>
+      		<message>Use-Cases have to be nested in components</message>
+      		<target class="UseCase"/>
+      		<![CDATA[
+         		self.owner.oclIsKindOf(Component)
+      		]]>
+   			</constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConstraintsOnExtendsHaveToBeContained"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintModelingCorrectForExtends"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="Constraints on extend relations have to be nested"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The constraint {0} must be contained by the extend relationship.
+               </message>
+               <description>
+                  Constraints on extend relationships must be contained as condition in the extend relationship itself.
+               </description>
+               <target
+                     class="Constraint">
+               </target>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConstraintsMustHaveNaturalLanguageDescription"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintOnExtendMustHaveNaturalLanguageSpecification"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Constraints on extend relations have to have a natural language specification"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The constraint {0} must have an OpaqueExpression including a &quot;Natural Language&quot; description of the constraint.
+               </message>
+               <target
+                     class="Constraint">
+               </target>
+               <description>
+                  Constraints for extend relationships must have an OpaqueSpecification that has a specification "Natural Language" that includes a non-empty body.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConditionAvailableForMultipleExtensions"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.conditionAvailableForMultipleExtensions"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Multiple extensions are distinguishable"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The extend relationship {0} is not distinguishable from other ones because of a missing condition.
+               </message>
+               <target
+                     class="Model">
+               </target>
+               <description>
+                  If more than one extend relationships are defined for a common extension location (extension point), there has to be a condition to distinguish them.
+               </description>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramExtendHasOnlyOneLocation"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.extendHasOnlyOneLocation"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Extend has exactly one location"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The extend relationship {0} has not exactly one extension location (extension point).
+               </message>
+               <description>
+                  An extend relationship must have exactly one extension location (extension point).
+               </description>
+               <target
+                     class="Extend">
+               </target>
             </constraint>
          </constraints>
          <package
@@ -240,7 +350,7 @@
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.systemMustBeAComponent"
                   isEnabledByDefault="true"
                   lang="Java"
-                  mode="Batch"
+                  mode="Live"
                   name="System must be a component"
                   severity="WARNING"
                   statusCode="2">
@@ -254,6 +364,25 @@
                   The system used in a use case diagram must be of type component.
                </description>
             </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramExtensionPointIsVisible"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.extensionPointsUsedInExtendMustBeVisible"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Extension points used in extend relations must be visible"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  {0} used in extend relationships must be visible to the user.
+               </message>
+               <target
+                     class="Connector">
+               </target>
+               <description>
+                  An extension point used in an extend realation has to be visible in the diagram.
+               </description>
+            </constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
@@ -263,14 +392,89 @@
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
-            classname="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateSaveAndDirtyService"
+            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveAndDirtyService"
             id="org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService"
             priority="2"
             startKind="startup">
       </service>
+      <service
+            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveLayoutBeforeCloseService"
+            description="Saves the sash model when closing the editor"
+            priority="2"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager">
+         </dependsOn>
+      </service>
    </extension>
    <extension
       point="org.eclipse.papyrus.infra.properties.contexts">
-   <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
+   		<context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
+	</extension>
+      <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
+      <target
+            description="Display elements in the current active editor"
+            id="de.cooperateproject.modeling.graphical.papyrus.extensions.navigation.target.activeEditor"
+            label="Show in the active editor"
+            navigationTargetProvider="de.cooperate.modeling.graphical.papyrus.extensions.navigation.FixedActiveEditorNavigationTargetProvider"
+            order="5">
+      </target>
+   </extension>
+      <extension
+            point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
+         <readOnlyHandler
+               class="de.cooperateproject.modeling.graphical.papyrus.extensions.cdo.CooperateCDOReadOnlyHandler"
+               priority="17">
+            <affinity
+                  axis="permission">
+            </affinity>
+         </readOnlyHandler>
+      </extension>
+      
+	<extension
+      point="org.eclipse.ui.commands">
+	   <command
+	         categoryId="org.eclipse.papyrus.editor.category"
+	         defaultHandler="de.cooperate.modeling.graphical.papyrus.extensions.usecase.ChangetoMachineShapeHandler"
+	         id="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorasmachine.popup"
+	         name="Display actor as machine">
+	   </command>
+	   <command
+	         categoryId="org.eclipse.papyrus.editor.category"
+	         defaultHandler="de.cooperate.modeling.graphical.papyrus.extensions.usecase.ChangetoStickyShapeHandler"
+	         id="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorassticky.popup"
+	         name="Display actor as stickyman">
+	   </command>
+	</extension>
+	<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format">
+      <command
+            commandId="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorasmachine.popup"
+            id="displayactorasmachine.popup"
+            label="Display actor as machine"
+            style="push"
+            tooltip="Display actor as machine">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      <command
+            commandId="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorassticky.popup"
+            id="displayactorassticky.popup"
+            label="Display actor as stickman"
+            style="push"
+            tooltip="Display actor as stickman">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
 </extension>
 </plugin>

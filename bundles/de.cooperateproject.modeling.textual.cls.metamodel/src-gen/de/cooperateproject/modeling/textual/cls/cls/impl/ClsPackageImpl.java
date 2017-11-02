@@ -940,11 +940,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         associationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getNameOptional());
+        associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getProperty());
         g1.getETypeArguments().add(g2);
         associationMemberEndEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+        associationMemberEndEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getNameOptional());
         associationMemberEndEClass.getEGenericSuperTypes().add(g1);
         xtextAssociationEClass.getESuperTypes().add(this.getAssociation());
 

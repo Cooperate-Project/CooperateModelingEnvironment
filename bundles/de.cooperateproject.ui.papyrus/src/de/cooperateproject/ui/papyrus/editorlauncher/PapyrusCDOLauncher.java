@@ -1,6 +1,9 @@
 package de.cooperateproject.ui.papyrus.editorlauncher;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -14,22 +17,22 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.papyrus.cdo.internal.core.resource.CDOSashModelProvider;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.ISashModelProvider;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
-import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.ui.services.EditorLifecycleEventListener;
-import org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
@@ -37,8 +40,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.ui.editors.launcher.DisposedListener;
-import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
+import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncherBase;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
@@ -47,32 +49,12 @@ import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 /**
  * Editor launcher for Papyrus editors that use CDO resources.
  */
-public class PapyrusCDOLauncher extends EditorLauncher {
+@SuppressWarnings("restriction")
+public class PapyrusCDOLauncher extends EditorLauncherBase {
 
     private static final String EDITOR_ID_GRAPHICAL = PapyrusMultiDiagramEditor.EDITOR_ID;
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
     private static final Logger LOGGER = LoggerFactory.getLogger(PapyrusCDOLauncher.class);
-
-    private final EditorLifecycleEventListener editorCloseListener = new EditorLifecycleEventListener() {
-
-        @Override
-        public void postInit(IMultiDiagramEditor arg0) {
-            // intentionally do nothing
-            return;
-        }
-
-        @Override
-        public void postDisplay(IMultiDiagramEditor arg0) {
-            // intentionally do nothing
-            return;
-        }
-
-        @Override
-        public void beforeClose(IMultiDiagramEditor arg0) {
-            handleEditorAboutToBeClosed();
-        }
-
-    };
 
     /**
      * Instantiates the launcher.
@@ -85,17 +67,59 @@ public class PapyrusCDOLauncher extends EditorLauncher {
      *             Thrown, if the requested editor type is not available in the launcher file.
      */
     public PapyrusCDOLauncher(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        super(launcherFile, EditorType.GRAPHICAL, true);
+        super(launcherFile, EditorType.GRAPHICAL);
     }
 
     @Override
     protected IEditorPart doOpenEditor() throws PartInitException {
         IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
         IEditorInput editorInput = createEditorInput();
+
+        cleanUpPapyrusSashModel((URIEditorInput) editorInput);
+
         IEditorPart editorPart = IDE.openEditor(page, editorInput, EDITOR_ID_GRAPHICAL);
         selectAppropriateModel(editorPart);
         registerPostSaveListener(editorPart);
         return editorPart;
+    }
+
+    protected void cleanUpPapyrusSashModel(URIEditorInput editorInput) {
+        // The SashModel needs to be cleaned as references to old pages contain
+        // invalid cdo checkout uris which result in cdo transactions not being closed properly
+
+        // This is very ugly code and probably likely to break in the future, unfortunately
+        // Papyrus does not provide a more elegant solution
+
+        try {
+            Class<?> sashModelProviderManagerClazz = Class
+                    .forName("org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelProviderManager");
+
+            Constructor<?> constr = sashModelProviderManagerClazz.getDeclaredConstructors()[0];
+            constr.setAccessible(true);
+            Object smpm = constr.newInstance(new Object[] { null });
+
+            Method getter = sashModelProviderManagerClazz.getDeclaredMethod("getSashModelProvider",
+                    new Class<?>[] { URI.class });
+            getter.setAccessible(true);
+            ISashModelProvider provider = (ISashModelProvider) getter.invoke(smpm,
+                    new Object[] { editorInput.getURI() });
+
+            if (provider instanceof CDOSashModelProvider) {
+                ((CDOSashModelProvider) provider).initialize(getCDOCheckout());
+            }
+
+            URI sashModelURI = provider.getSashModelURI(editorInput.getURI());
+
+            ResourceSet tempSet = new ResourceSetImpl();
+
+            Resource r = tempSet.getResource(sashModelURI, true);
+            r.getContents().clear();
+            r.save(Collections.emptyMap());
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
     }
 
     private void selectAppropriateModel(IEditorPart editorPart) throws PartInitException {
@@ -226,31 +250,10 @@ public class PapyrusCDOLauncher extends EditorLauncher {
     }
 
     @Override
-    protected void registerListener(IEditorPart editorPart) {
-        super.registerListener(editorPart);
-        try {
-            ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
-            EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
-            lifecycleManager.addEditorLifecycleEventsListener(editorCloseListener);
-        } catch (ServiceException e) {
-            LOGGER.error("Could not add editor close listener.", e);
-            // we should change the control flow based on this...
+    protected Optional<IPartListener2> createDisposeListener(IEditorPart editorPart) {
+        if (editorPart instanceof CoreMultiDiagramEditor) {
+            ((CoreMultiDiagramEditor) editorPart).onClose(() -> this.editorClosed(editorPart.getSite().getPage()));
         }
+        return Optional.empty();
     }
-
-    @Override
-    protected DisposedListener createDisposeListener(IEditorPart editorPart) {
-        return new DisposedListener(editorPart, this::editorClosed, PapyrusCDOLauncher::editorDisposed);
-    }
-
-    private void handleEditorAboutToBeClosed() {
-        // TODO we cannot deregister the listener here because of a concurrent modification exception
-        getCDOView().close();
-    }
-
-    private static boolean editorDisposed(IWorkbenchPartReference partRef) {
-        IWorkbenchPart part = partRef.getPart(false);
-        return part == null || !(part instanceof IEditorPart);
-    }
-
 }

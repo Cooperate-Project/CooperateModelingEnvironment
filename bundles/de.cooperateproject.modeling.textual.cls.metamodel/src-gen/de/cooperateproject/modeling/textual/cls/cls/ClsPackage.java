@@ -226,6 +226,15 @@ public interface ClsPackage extends EPackage {
     int PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.PACKAGE_BASE___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.PACKAGE_BASE___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Package</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -324,6 +333,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int CLASSIFIER___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Classifier</em>' class.
@@ -435,6 +453,15 @@ public interface ClsPackage extends EPackage {
     int CLASS___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS___GET_UML_PARENT_NAMESPACE = CLASSIFIER___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Class</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -535,6 +562,15 @@ public interface ClsPackage extends EPackage {
     int INTERFACE___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE___GET_UML_PARENT_NAMESPACE = CLASSIFIER___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Interface</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -606,6 +642,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PROPERTY___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Property</em>' class.
@@ -699,6 +744,15 @@ public interface ClsPackage extends EPackage {
     int MEMBER___GET_NEAREST_PACKAGE = PROPERTY___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEMBER___GET_UML_PARENT_NAMESPACE = PROPERTY___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Member</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -788,6 +842,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ATTRIBUTE___GET_NEAREST_PACKAGE = MEMBER___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATTRIBUTE___GET_UML_PARENT_NAMESPACE = MEMBER___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Attribute</em>' class.
@@ -899,6 +962,15 @@ public interface ClsPackage extends EPackage {
     int METHOD___GET_NEAREST_PACKAGE = MEMBER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int METHOD___GET_UML_PARENT_NAMESPACE = MEMBER___GET_UML_PARENT_NAMESPACE;
+
+    /**
      * The number of operations of the '<em>Method</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -979,6 +1051,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PARAMETER___GET_NEAREST_PACKAGE = PROPERTY___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER___GET_UML_PARENT_NAMESPACE = PROPERTY___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Parameter</em>' class.
@@ -1100,13 +1181,22 @@ public interface ClsPackage extends EPackage {
     int TYPED_CONNECTOR___GET_NEAREST_PACKAGE = CONNECTOR___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPED_CONNECTOR___GET_UML_PARENT_NAMESPACE = CONNECTOR_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Typed Connector</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
+    int TYPED_CONNECTOR_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.GeneralizationImpl <em>Generalization</em>}' class.
@@ -1171,6 +1261,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int GENERALIZATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION___GET_UML_PARENT_NAMESPACE = TYPED_CONNECTOR___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Generalization</em>' class.
@@ -1244,6 +1343,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int IMPLEMENTATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLEMENTATION___GET_UML_PARENT_NAMESPACE = TYPED_CONNECTOR___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Implementation</em>' class.
@@ -1326,6 +1434,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ASSOCIATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Association</em>' class.
@@ -1426,6 +1543,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ASSOCIATION_MEMBER_END___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION_MEMBER_END___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Association Member End</em>' class.
@@ -1562,6 +1688,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int XTEXT_ASSOCIATION___GET_NEAREST_PACKAGE = ASSOCIATION___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION___GET_UML_PARENT_NAMESPACE = ASSOCIATION___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The operation id for the '<em>Collect Member End Types</em>' operation.

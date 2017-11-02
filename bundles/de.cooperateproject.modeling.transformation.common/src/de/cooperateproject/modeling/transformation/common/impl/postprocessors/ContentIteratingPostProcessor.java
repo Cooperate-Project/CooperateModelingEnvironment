@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 
-public abstract class ContentIteratingPostProcessor extends PostProcessorBase {
+public class ContentIteratingPostProcessor extends PostProcessorBase {
 
     public static interface PostProcessingSwitch {
         public Boolean doSwitch(EObject content);

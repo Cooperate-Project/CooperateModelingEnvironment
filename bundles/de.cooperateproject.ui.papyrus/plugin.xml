@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
+	<extension
          point="de.cooperateproject.ui.editors.launcher.extensions.editorlauncher">
-      <provider
+		<provider
             class="de.cooperateproject.ui.papyrus.editorlauncher.PapyrusCDOLauncherFactory">
-      </provider>
-   </extension>
-   <extension
+		</provider>
+	</extension>
+	<extension
          point="org.eclipse.papyrus.infra.core.sashModelProvider">
-      <sashModelProvider
+		<sashModelProvider
             class="de.cooperateproject.ui.papyrus.editorlauncher.DummySashModelProvider"
             scheme="cdo.checkout">
-      </sashModelProvider>
-   </extension>
+		</sashModelProvider>
+	</extension>
+	<extension
+         point="org.eclipse.ui.bindings">
+		<key
+            commandId="de.cooperateproject.ui.CommitEditorChanges"
+            contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+C">
+		</key>
+	</extension>
+	<extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu">
+			<command
+				 commandId="de.cooperateproject.ui.CommitEditorChanges"
+				 style="push"
+				 tooltip="Commit changes">
+				<visibleWhen
+             checkEnabled="false">
+					<with
+                variable="activeContexts">
+						<iterate
+                   operator="or">
+							<equals
+                      value="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+							</equals>
+						</iterate>
+					</with>
+				</visibleWhen>
+			</command>  
+		</menuContribution>
+	</extension>
 </plugin>

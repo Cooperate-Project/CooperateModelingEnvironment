@@ -4,11 +4,9 @@
    <extension
          point="de.cooperateproject.modeling.transformation.registry.transformationfactories">
       <transformation>
-         <defaulttransformation
-               diagramName="UseCase"
-               graphicalFileExtension="notation"
-               textualFileExtension="uc">
-         </defaulttransformation>
+         <transformationfactory
+               class="de.cooperateproject.modeling.transformation.usecase.UsecaseTransformationFactory">
+         </transformationfactory>
          <transformationfolder
                foldername="transforms">
          </transformationfolder>

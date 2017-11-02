@@ -9,6 +9,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
@@ -461,6 +462,11 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
                 default: return -1;
             }
         }
+        if (baseClass == NameOptional.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -474,6 +480,11 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
         if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.ASSOCIATION_MEMBER_END__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == NameOptional.class) {
+            switch (baseFeatureID) {
                 default: return -1;
             }
         }

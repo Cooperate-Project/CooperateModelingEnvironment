@@ -4,78 +4,88 @@ import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.Member
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.apache.commons.lang3.StringUtils
-import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Element
-import org.eclipse.uml2.uml.Interface
-import org.eclipse.uml2.uml.OperationOwner
-import org.eclipse.uml2.uml.StructuredClassifier
+import org.eclipse.uml2.uml.UMLPackage
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.common.issues.DependingElementMissingElementResolvableCheckerBase
 
-import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-
-class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
-	
-	override isResolvable(UMLReferencingElement<Element> element) {
-		element.resolvePossible
+class ClsUMLReferencingElementMissingElementResolvableChecker extends DependingElementMissingElementResolvableCheckerBase {
+   
+    protected def dispatch localResolutionPossible(Classifier<?> element) { true }
+    protected def dispatch localResolutionPossible(AssociationMemberEnd element) { true }
+    
+	protected def dispatch localResolutionPossible(Package element) {
+		return element.owningPackage !== null
 	}
 	
-	private def dispatch resolvePossible(UMLReferencingElement element) {
-	    return false;
-	}
+	protected def dispatch localResolutionPossible(Association element) {
+        return element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
+    }
 
-	private def dispatch resolvePossible(Package element) {
-		if (element.owningPackage === null) {
-			return false
-		}
-		return element.owningPackage.hasReferencedElement
-	}
+    protected def dispatch localResolutionPossible(Generalization element) {
+        return (element.left.referencedElementHasType(UMLPackage.Literals.CLASS) &&
+            element.right.referencedElementHasType(UMLPackage.Literals.CLASS)) 
+            || (element.left.referencedElementHasType(UMLPackage.Literals.INTERFACE) &&
+            element.right.referencedElementHasType(UMLPackage.Literals.INTERFACE)) 
+    }
+    
+    protected def dispatch localResolutionPossible(Implementation element) {
+        return element.left.referencedElementHasType(UMLPackage.Literals.CLASS) &&
+            element.right.referencedElementHasType(UMLPackage.Literals.INTERFACE)
+    }
 
-	private def dispatch resolvePossible(Classifier<?> element) {
-		return element.owningPackage.hasReferencedElement
-	}
+    protected def dispatch localResolutionPossible(Attribute element) {
+        return element.owner.referencedElementHasType(UMLPackage.Literals.STRUCTURED_CLASSIFIER)
+            && element.type !== null
+    }
 
-	private def dispatch resolvePossible(Association element) {
-	    val parentCheck = element.owningPackage.hasReferencedElement
-	    val nameCheck = StringUtils.isNotBlank(element.name)
-	    val memberEndCheck = element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
-		return parentCheck && nameCheck && memberEndCheck
-	}
+    protected def dispatch localResolutionPossible(Method element) {
+        element.owner.referencedElementHasEitherType(UMLPackage.Literals.CLASS, UMLPackage.Literals.INTERFACE)
+          && !element.parameters.map[type].contains(null) && !element.parameters.map[name].contains(null)
+    }
 
-	private def dispatch resolvePossible(TypedConnector element) {
-		return element.owningPackage.hasReferencedElement && element.left.hasReferencedElement &&
-			element.right.hasReferencedElement
-	}
-
-	private def dispatch resolvePossible(Implementation element) {
-		return element.owningPackage.hasReferencedElement &&
-			element.left.hasReferencedElementOfType(Class) &&
-			element.right.hasReferencedElementOfType(Interface)
-	}
-
-	private def dispatch resolvePossible(Attribute element) {
-		return element.owner.hasReferencedElementOfType(StructuredClassifier) && element.type !== null
-	}
-
-	private def dispatch resolvePossible(Method element) {
-		return element.owner.hasReferencedElementOfType(OperationOwner) &&
-			!element.parameters.map[type].contains(null) && !element.parameters.map[name].contains(null)
-	}
-
-	private def dispatch resolvePossible(Parameter element) {
-		return element.owner.hasReferencedElement && element.type !== null && StringUtils.isNotBlank(element.name) &&
-			element.owner.referencedElement.ownedParameters.size >= element.owner.parameters.indexOf(element)
-	}
-
-	private def dispatch resolvePossible(AssociationMemberEnd element) {
-		return element.association.hasReferencedElement && element.type.hasReferencedElement
+    protected def dispatch localResolutionPossible(Parameter element) {
+        return element.type !== null && element.type.eResource !== null && StringUtils.isNotBlank(element.name)
+    }
+	
+	protected def dispatch getDependencies(Package object) {
+	    if (object.owningPackage !== null) #[object.owningPackage] else #[]
 	}
 	
+	protected def dispatch getDependencies(Classifier<?> object) {
+        #[object.owningPackage]
+    }
+    
+    protected def dispatch getDependencies(Connector object) {
+        #[object.owningPackage]
+    }
+    
+    protected def dispatch getDependencies(TypedConnector<?> object) {
+        #[object.owningPackage, object.left, object.right]
+    }
+    
+    protected def dispatch getDependencies(Member<?> object) {
+        #[object.owner as UMLReferencingElement<Element>]
+    }
+    
+    protected def dispatch getDependencies(AssociationMemberEnd object) {
+        #[object.association, object.type]
+    }
+    
+    protected def dispatch getDependencies(Parameter object) {
+        object.owner.parameters.take(object.owner.parameters.indexOf(object)).map[it as UMLReferencingElement<? extends Element>].toList => [
+            add(0, object.owner)
+        ]
+    }
+
+
 }

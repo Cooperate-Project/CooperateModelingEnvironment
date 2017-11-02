@@ -64,6 +64,7 @@ public class RenameUMLElementRefactoring extends Refactoring {
     private static final Logger LOGGER = LoggerFactory.getLogger(RenameUMLElementRefactoring.class);
     private UMLReferencingElement<NamedElement> elementToRename;
     private String newName;
+    private String newAlias;
     private IEditorPart editor;
 
     public void setElementToRename(UMLReferencingElement<NamedElement> elementToRename) {
@@ -72,6 +73,10 @@ public class RenameUMLElementRefactoring extends Refactoring {
 
     public void setNewName(String newName) {
         this.newName = newName;
+    }
+
+    public void setNewAlias(String value) {
+        this.newAlias = value;
     }
 
     public void setEditor(IEditorPart editor) {
@@ -136,22 +141,11 @@ public class RenameUMLElementRefactoring extends Refactoring {
                         getElementToRename());
             }
 
-            if (Optional.ofNullable(getNewName()).map(n -> n.equals(umlElement.getName())).orElse(true)) {
-                throw new ConditionCheckFailed(String.format("The new name %s is not valid.", getNewName()));
-            }
-
-            Package umlParentPackage = umlElement.getNearestPackage();
-            if (umlParentPackage == umlElement) {
-                umlParentPackage.getNestingPackage();
-            }
-
-            if (Optional.ofNullable(umlParentPackage)
-                    .map(p -> p.getMembers().stream().map(RenameUMLElementRefactoring::determineUnqualifiedNames)
-                            .flatMap(Collection::stream).anyMatch(getNewName()::equals))
-                    .orElse(false)) {
-                throw new ConditionCheckFailed(String.format("There is already an element with name %s.", getNewName()),
-                        umlParentPackage);
-            }
+            Package umlParentPackage = Optional.ofNullable(umlElement.getNearestPackage()).filter(p -> p != umlElement)
+                    .orElse(Optional.ofNullable(umlElement.getNearestPackage()).map(Package::getNearestPackage)
+                            .orElse(null));
+            checkIfNameConflictExists(newName, umlElement, umlParentPackage);
+            checkIfNameConflictExists(newAlias, umlElement, umlParentPackage);
 
         } catch (ConditionCheckFailed e) {
             status.addFatalError(e.getMessage(), e.getContext());
@@ -177,13 +171,25 @@ public class RenameUMLElementRefactoring extends Refactoring {
         return status;
     }
 
+    private static void checkIfNameConflictExists(String name, NamedElement renameSubject, Package pkg)
+            throws ConditionCheckFailed {
+        if (name != null && Optional.ofNullable(pkg)
+                .map(p -> p.getMembers().stream().filter(member -> !renameSubject.equals(member))
+                        .map(RenameUMLElementRefactoring::determineUnqualifiedNames).flatMap(Collection::stream)
+                        .anyMatch(name::equals))
+                .orElse(false)) {
+            throw new ConditionCheckFailed(String.format("There is already an element with name %s.", name), pkg);
+        }
+    }
+
     @Override
     public Change createChange(IProgressMonitor pm) throws CoreException {
         try {
             pm.beginTask("Generate change.", 1);
             return new CompositeChange("Rename Refactoring",
                     new Change[] { new DefaultEditorPreparationChange(getEditor().getAdapter(IReloadingEditor.class)),
-                            new UMLElementRenameChange(getElementToRename().getReferencedElement(), getNewName()),
+                            new UMLElementRenameChange(getElementToRename().getReferencedElement(), getNewName(),
+                                    newAlias),
                             new DefaultEditorFinalizingChange(getEditor().getAdapter(IReloadingEditor.class)) });
         } finally {
             pm.done();

@@ -48,11 +48,6 @@
           schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
           contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
           platform="gtk"/>
-    <key
-          sequence="F2"
-          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"/>
  </extension>
  <extension
        point="org.eclipse.core.expressions.propertyTesters">

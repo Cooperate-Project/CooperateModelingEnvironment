@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.textual.usecase.feature"
       label="%featureName"
-      version="0.2.2.qualifier"
+      version="0.4.2.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -23,7 +23,7 @@
          version="0.0.0"/>
 
    <requires>
-      <import feature="de.cooperateproject.modeling.transformation.feature" version="0.2.2.qualifier"/>
+      <import feature="de.cooperateproject.modeling.transformation.feature" version="0.4.2" match="compatible"/>
    </requires>
 
    <plugin
@@ -56,6 +56,13 @@
 
    <plugin
          id="de.cooperateproject.modeling.transformation.usecase"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.ui.diff.usecase"
          download-size="0"
          install-size="0"
          version="0.0.0"

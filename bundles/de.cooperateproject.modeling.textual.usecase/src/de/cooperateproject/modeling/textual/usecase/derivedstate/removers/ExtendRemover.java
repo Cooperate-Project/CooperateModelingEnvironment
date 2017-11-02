@@ -11,6 +11,7 @@ import org.eclipse.uml2.uml.ExtensionPoint;
 import org.eclipse.uml2.uml.OpaqueExpression;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ExtendInitializer;
@@ -58,6 +59,8 @@ public class ExtendRemover extends AtomicDerivedStateProcessorBase<Extend> {
                     .map(m -> m.getOrDefault(ExtendInitializer.CONDITION_LANGUAGE_NAME, null))
                     .map(b -> Objects.equal(b, object.getCondition())).orElse(false)) {
                 object.eUnset(UsecasePackage.Literals.EXTEND__CONDITION);
+            } else if (Strings.isNullOrEmpty(object.getCondition()) && undergoesAutomatedIssueResolution(object)) {
+                object.setCondition(null);
             }
         }
     }

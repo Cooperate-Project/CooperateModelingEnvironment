@@ -36,5 +36,11 @@
            commandId="de.cooperateproject.ui.focus.command.mute">
      </handler>
 	</extension>
+ <extension
+       point="de.cooperateproject.ui.startup">
+    <class
+          class="de.cooperateproject.ui.focus.internal.utils.ViewInitializerStartupAction">
+    </class>
+ </extension>
 
 </plugin>

@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Papyrus Extensions Tests
 Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions.tests
-Bundle-Version: 0.2.2.qualifier
-Fragment-Host: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle-version="0.2.2"
+Bundle-Version: 0.4.2.qualifier
+Fragment-Host: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle-version="0.4.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="4.12.0",
  org.eclipse.ocl.uml,

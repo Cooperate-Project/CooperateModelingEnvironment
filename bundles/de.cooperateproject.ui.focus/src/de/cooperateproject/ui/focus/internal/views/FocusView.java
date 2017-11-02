@@ -33,7 +33,7 @@ import de.cooperateproject.ui.focus.internal.utils.FocusViewLabelProvider;
 public class FocusView extends ViewPart {
     public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
 
-    private final FocusViewManager focusViewManager = new FocusViewManager();
+    private final FocusViewManager focusViewManager = FocusViewManager.getInstance();
 
     private TableViewer historyViewer; // lists all deictic gestures (element
                                        // focuses) that have been made
@@ -48,7 +48,7 @@ public class FocusView extends ViewPart {
     @Override
     public void createPartControl(Composite parent) {
         this.parent = parent;
-        focusViewManager.init();
+        focusViewManager.start();
         setUpView();
         makeActions();
         hookDoubleClickAction();
@@ -56,7 +56,7 @@ public class FocusView extends ViewPart {
 
     @Override
     public void dispose() {
-        focusViewManager.dispose();
+        focusViewManager.stop();
         super.dispose();
     }
 

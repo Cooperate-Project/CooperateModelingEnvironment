@@ -2,17 +2,20 @@ package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.con
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 
 import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 
 /**
- * Constraint ensuring that an association in a class diagram has a name.
+ * Constraint ensuring that an association in a class diagram has a name or is unambiguous.
  */
 public class ClassDiagramAssociationConstraint extends CooperateConstraintBase<Association> {
 
@@ -32,7 +35,17 @@ public class ClassDiagramAssociationConstraint extends CooperateConstraintBase<A
             return true;
         }
 
-        return !StringUtils.isBlank(target.getName());
+        if (!StringUtils.isBlank(target.getName())) {
+            return true;
+        }
+
+        Collection<Type> wantedTypes = getTypes(target);
+        return target.getNearestPackage().getMembers().stream().filter(Association.class::isInstance)
+                .map(Association.class::cast).filter(a -> a != target).allMatch(a -> !getTypes(a).equals(wantedTypes));
+    }
+
+    private static Collection<Type> getTypes(Association association) {
+        return association.getMemberEnds().stream().map(Property::getType).collect(Collectors.toList());
     }
 
 }

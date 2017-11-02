@@ -7,10 +7,15 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Provide;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Optional;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.Namespace;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,6 +85,19 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
      */
     public void setReferencedElement(InterfaceRealization newReferencedElement) {
         eDynamicSet(CmpPackage.PROVIDE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Namespace getUMLParentNamespace() {
+        EObject currentElement = Optional.ofNullable(getReferencedElement()).map(EObject::eContainer).orElse(null);
+        while (currentElement != null && !(currentElement instanceof Namespace)) {
+            currentElement = currentElement.eContainer();
+        }
+        return Optional.ofNullable(currentElement).filter(Namespace.class::isInstance).map(Namespace.class::cast).orElse(null);
     }
 
     /**
@@ -171,6 +189,36 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return CmpPackage.PROVIDE___GET_UML_PARENT_NAMESPACE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case CmpPackage.PROVIDE___GET_UML_PARENT_NAMESPACE:
+                return getUMLParentNamespace();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //ProvideImpl

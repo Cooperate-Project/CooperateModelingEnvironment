@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.2.2-SNAPSHOT</version>
+		<version>0.4.2-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>bundles</artifactId>
@@ -15,6 +15,7 @@
 
 	<modules>
 		<module>de.cooperateproject.cdo.util</module>
+		<module>de.cooperateproject.modeling.cdo</module>
 		<module>de.cooperateproject.modeling.common</module>
 		<module>de.cooperateproject.modeling.graphical.common</module>
 		<module>de.cooperateproject.modeling.textual.cls</module>
@@ -34,6 +35,7 @@
 		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.ui</module>
+		<module>de.cooperateproject.modeling.transformation.cache</module>
 		<module>de.cooperateproject.modeling.transformation.cls</module>
 		<module>de.cooperateproject.modeling.transformation.usecase</module>
 		<module>de.cooperateproject.modeling.transformation.component</module>

@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.cls.cls;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -24,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, Connector, Commentable<org.eclipse.uml2.uml.Association>, NamedElement {
+public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, Connector, Commentable<org.eclipse.uml2.uml.Association>, NamedElement, NameOptional {
     /**
      * Returns the value of the '<em><b>Member Ends</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd}.

@@ -8,8 +8,8 @@
 '.'=38
 '..'=36
 ':'=30
-'@end-ucd'=12
-'@start-ucd'=11
+'@end-uscd'=12
+'@start-uscd'=11
 '['=18
 ']'=19
 'abstract'=14
@@ -29,7 +29,7 @@
 'protected'=44
 'public'=40
 'role'=17
-'rootElement'=13
+'rootPackage'=13
 'sys'=20
 'uc'=23
 '{'=21

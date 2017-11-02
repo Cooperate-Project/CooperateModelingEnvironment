@@ -73,7 +73,7 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
             EObject element) {
         try {
             IAutomatedIssueResolution resolver = factory.create(element);
-            return Optional.of(resolver);
+            return Optional.ofNullable(resolver);
         } catch (CreationException e) {
             LOGGER.error("Error during creating issue instance", e);
             return Optional.empty();

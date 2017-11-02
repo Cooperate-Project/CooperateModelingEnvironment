@@ -67,8 +67,8 @@ public class UsecaseSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     alias=ID (ambiguity) (rule end)
 	 *     name=ID (ambiguity) (rule end)
+	 *     name=STRING (ambiguity) (rule end)
 	 */
 	protected void emit_UseCase___LeftCurlyBracketKeyword_4_1_0_RightCurlyBracketKeyword_4_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

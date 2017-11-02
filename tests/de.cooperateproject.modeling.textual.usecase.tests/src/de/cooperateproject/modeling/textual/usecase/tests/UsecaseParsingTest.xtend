@@ -32,9 +32,9 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void emptyDiagram() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
-			@end-ucd
+			@start-uscd "someDiagram"
+			rootPackage RootElement
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -42,11 +42,11 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void defineActorsAndSystems() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
+			@start-uscd "someDiagram"
+			rootPackage RootElement
 			act Alice
 			sys System1
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -54,14 +54,14 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void defineUseCases() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
+			@start-uscd "someDiagram"
+			rootPackage RootElement
 			sys System1 {
 				uc ConcreteUseCase1
 				abstract uc AbstractUseCase1
 				uc ConcreteUseCase2
 			}
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -69,14 +69,14 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void defineUseCasesWithExtensionPoints() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
+			@start-uscd "someDiagram"
+			rootPackage RootElement
 			sys System1 {
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
 				}
 			}
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -84,16 +84,16 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testAliasing() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
-			act "Employee of the month" as Bob
+			@start-uscd "someDiagram"
+			rootPackage RootElement
+			act Bob as "Employee of the month"
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				abstract uc AbstractUseCase1 {
-					ep "The real functionality" as AliasedExtensionPoint1
+					ep AliasedExtensionPoint1 as "The real functionality"
 				}	
 			}
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -101,19 +101,19 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testAssociations() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
+			@start-uscd "someDiagram"
+			rootPackage RootElement
 			act Alice
-			act "Employee of the month" as Bob
+			act Bob as "Employee of the month"
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
 				}
 			}
 			iac (Alice, ConcreteUseCase1)
 			iac (Bob, AbstractUseCase1)
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -121,19 +121,19 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testQualifiedNames() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
+			@start-uscd "someDiagram"
+			rootPackage RootElement
 			act Alice
-			act "Employee of the month" as Bob
+			act Bob as "Employee of the month"
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
 				}
 			}
 			iac (RootElement.Alice, System1.ConcreteUseCase1)
 			iac (Bob, RootElement.System1.AbstractUseCase1)
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -141,23 +141,23 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testIncludesAndExtends() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
+			@start-uscd "someDiagram"
+			rootPackage RootElement
 			sys System1 {
-				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
+				uc ConcreteUseCase1 as "Concrete and Aliased Usecase 1"
 				uc ConcreteUseCase2
 				uc IncludedUseCase1
 				uc Extension1ToAbstractUseCase1
 				uc Extension2ToAbstractUseCase1
 				abstract uc AbstractUseCase1 {
 					ep ExtensionPoint1
-					ep "The real functionality" as AliasedExtensionPoint1
+					ep AliasedExtensionPoint1 as "The real functionality"
 				}
 			}
 			inc (ConcreteUseCase2, IncludedUseCase1)
 			ext (Extension1ToAbstractUseCase1, AbstractUseCase1) ep[ExtensionPoint1]
 			ext (Extension2ToAbstractUseCase1, AbstractUseCase1) ep[AliasedExtensionPoint1] cond["Sometimes"]
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}
@@ -165,9 +165,9 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testGeneralization() {
 		val model = '''
-			@start-ucd "someDiagram"
-			rootElement RootElement
-			act "Employee of the month" as Bob
+			@start-uscd "someDiagram"
+			rootPackage RootElement
+			act Bob as "Employee of the month"
 			act BobInABadMood
 			sys System1 {
 				abstract uc AbstractUseCase1
@@ -179,7 +179,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			isa (BobInABadMood, Bob)
 			isa (ConcreteUseCase2, AbstractUseCase1)
 			inc (ConcreteUseCase2, IncludedUseCase1)
-			@end-ucd
+			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)	
 	}
@@ -187,12 +187,12 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testActorTypes() {
 		var model = '''
-		@start-ucd "someDiagram"
-		rootElement RootElement
+		@start-uscd "someDiagram"
+		rootPackage RootElement
 		act A role[human]
 		act B role[machine]
 		act C
-		@end-ucd
+		@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)	
 	}
@@ -200,15 +200,15 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 	@Test
 	def void testNotes() {
 		var model = '''
-		@start-ucd "someDiagram"
-		rootElement RootElement
+		@start-uscd "someDiagram"
+		rootPackage RootElement
 		act A note "test1"
 		sys B {
 			note "test2"
 			uc C note "test3"
 		}
 		sys D note "test4"
-		@end-ucd
+		@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
 	}

@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Connector;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NameOptional;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
@@ -342,6 +343,11 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<Associat
                 default: return -1;
             }
         }
+        if (baseClass == NameOptional.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -372,6 +378,11 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<Associat
         if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.ASSOCIATION__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == NameOptional.class) {
+            switch (baseFeatureID) {
                 default: return -1;
             }
         }

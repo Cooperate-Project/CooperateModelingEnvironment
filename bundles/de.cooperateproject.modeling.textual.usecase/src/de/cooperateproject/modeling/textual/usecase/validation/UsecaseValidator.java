@@ -4,16 +4,22 @@
 package de.cooperateproject.modeling.textual.usecase.validation;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
+import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
+import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.System;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
@@ -30,6 +36,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
 
     private static final String NAME_TAKEN = "name_taken";
     private static final String ALIAS_TAKEN = "alias_taken";
+    private static final String EXTEND_AMBIGUOUS = "extend_ambiguous";
 
     @Inject
     @SuppressWarnings("unused")
@@ -61,6 +68,18 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
         compareNamedElements(systems, system, UsecasePackage.Literals.SYSTEM__PACKAGE, NAME_TAKEN);
     }
 
+    @Check
+    private void checkConditionGivenForMultipleExtensions(RootPackage rootPackage) {
+        Map<ExtensionPoint, List<Extend>> extensions = rootPackage.getRelationships().stream()
+                .filter(Extend.class::isInstance).map(Extend.class::cast).filter(e -> e.getExtensionLocation() != null)
+                .collect(Collectors.groupingBy(Extend::getExtensionLocation));
+        extensions.entrySet().stream().map(Entry::getValue).filter(collection -> collection.size() > 1)
+                .flatMap(collection -> collection.stream().filter(e -> Strings.isNullOrEmpty(e.getCondition())))
+                .forEach(e -> error("A condition is required if more than one extension exists for an extension point.",
+                        e, UsecasePackage.Literals.EXTEND__CONDITION, EXTEND_AMBIGUOUS, new String[0]));
+
+    }
+
     private void compareNamedElements(List<? extends NamedElement> elements, NamedElement comparableElement,
             EStructuralFeature feature, String code) {
         for (NamedElement element : elements) {
@@ -80,7 +99,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
             if (element.equals(comparableElement)) {
                 continue;
             }
-            if (element.getAlias().equals(comparableElement.getAlias())) {
+            if (!Strings.isNullOrEmpty(element.getAlias()) && element.getAlias().equals(comparableElement.getAlias())) {
                 error("\"" + element.getAlias() + "\"" + " alias taken!", feature, code);
             }
 
