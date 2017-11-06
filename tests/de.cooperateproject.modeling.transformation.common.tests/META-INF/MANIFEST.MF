@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tests for Transformation Commons
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.common.tests
 Bundle-Version: 1.0.0.qualifier
-Fragment-Host: de.cooperateproject.modeling.transformation.common;bundle-version="0.4.2"
+Fragment-Host: de.cooperateproject.modeling.transformation.common;bundle-version="0.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
  de.cooperateproject.modeling.transformation.common
