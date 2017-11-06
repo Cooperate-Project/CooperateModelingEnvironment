@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmi:id="_gSawcEQjEeeHJKwWVXG5cA" name="ComponentDiagram" ecorePath="/de.cooperateproject.modeling.textual.component.metamodel/model/component.ecore">
+  <rootEClass href="http://www.cooperateproject.de/modeling/textual/component/Component#//ComponentDiagram"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_gSgQAEQjEeeHJKwWVXG5cA" name="Control title">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_gSgQAUQjEeeHJKwWVXG5cA">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.cooperateproject.de/modeling/textual/component/Component#//ComponentDiagram/title"/>
+    </domainModelReference>
+  </children>
+  <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_gSgQAkQjEeeHJKwWVXG5cA" name="Control null">
+    <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_gSgQA0QjEeeHJKwWVXG5cA">
+      <domainModelEFeature xsi:type="ecore:EAttribute" href="http://www.cooperateproject.de/modeling/textual/component/Component#//ComponentDiagram/%"/>
+    </domainModelReference>
+  </children>
+</org.eclipse.emf.ecp.view.model:View>

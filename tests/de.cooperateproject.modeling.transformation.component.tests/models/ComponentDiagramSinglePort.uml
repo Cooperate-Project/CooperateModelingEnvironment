@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_8GU08JtGEeekxamVBtf-ow" name="ComponentDiagramSinglePort">
+  <packagedElement xmi:type="uml:Component" xmi:id="_99ej0JtGEeekxamVBtf-ow" name="Component1">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_-pII4JtGEeekxamVBtf-ow" name="Port1" type="_McXdAJtMEeekxamVBtf-ow" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_McXdAJtMEeekxamVBtf-ow" name="Interface1"/>
+</uml:Model>
