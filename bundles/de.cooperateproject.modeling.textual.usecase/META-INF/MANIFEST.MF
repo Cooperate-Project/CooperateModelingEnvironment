@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Use Case Diagrams
-Bundle-Version: 0.5.0
+Bundle-Version: 0.5.1.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -12,8 +12,8 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib,
- de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.5.0";visibility:=reexport,
- de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.5.0";resolution:=optional,
+ de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.5.1";visibility:=reexport,
+ de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.5.1";resolution:=optional,
  de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport,
  net.winklerweb.cdoxtext.generator;resolution:=optional,
  de.cooperateproject.modeling.textual.common.metamodel,
