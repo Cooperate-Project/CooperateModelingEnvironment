@@ -56,6 +56,10 @@
             id="de.cooperateproject.ui.CommitEditorChanges"
             name="Commit Editor Changes">
       </command>
+      <command
+            id="de.cooperateproject.ui.ReloadEditorContent"
+            name="Reload Editor Content">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -66,6 +70,10 @@
       <handler
             class="de.cooperateproject.ui.commands.MergeEditorChangesHandler"
             commandId="de.cooperateproject.ui.CommitEditorChanges">
+      </handler>
+      <handler
+            class="de.cooperateproject.ui.commands.ReloadEditorContentHandler"
+            commandId="de.cooperateproject.ui.ReloadEditorContent">
       </handler>
    </extension>
    <extension

@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +41,7 @@ import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
-import de.cooperateproject.ui.commands.MergeEditorChangesHandler;
+import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.TransformationManager.TransformationException;
 import de.cooperateproject.ui.editors.launcher.impl.CheckoutListenerManager;
@@ -64,6 +65,7 @@ import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 public abstract class EditorLauncherBase implements IEditorLauncher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EditorLauncherBase.class);
+    private final Collection<PropertyChangeHandlerBase> propertyChangeHandlers = new HashSet<PropertyChangeHandlerBase>();
     private final CDOCheckout cdoCheckout;
     private final CDOView cdoView;
     private final CDOTransaction cdoMainView;
@@ -107,6 +109,8 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         displayReadOnlyWarning();
         IEditorPart newEditorPart = doOpenEditor();
         registerListener(newEditorPart);
+        addPropertyChangeHandler(createMergeHandler());
+        addPropertyChangeHandler(createReloadHandler());
         return newEditorPart;
     }
 
@@ -143,11 +147,40 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     }
 
     private void propertyChanged(PropertyChangeEvent event) {
-        if (!MergeEditorChangesHandler.PART_PROPERTY_KEY.equals(event.getProperty())
-                || !(event.getNewValue() instanceof String)) {
-            return;
-        }
-        promptForCommit((IWorkbenchPart) event.getSource());
+        propertyChangeHandlers.forEach(handler -> handler.propertyChange(event));
+    }
+
+    protected void addPropertyChangeHandler(PropertyChangeHandlerBase handler) {
+        propertyChangeHandlers.add(handler);
+    }
+
+    private PropertyChangeHandlerBase createMergeHandler() {
+        return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_MERGE_REQUEST) {
+            @Override
+            protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
+                if (newValue != null) {
+                    promptForCommit(source);
+                }
+            }
+        };
+    }
+
+    private PropertyChangeHandlerBase createReloadHandler() {
+        return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_RELOAD_REQUEST) {
+            @Override
+            protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
+                if (!isReadOnly()) {
+                    return;
+                }
+                cdoView.setTimeStamp(getCDOView().getBranch().getHead().getTimeStamp());
+                reloadEditorContentAfterViewChange(source);
+            }
+        };
+    }
+
+    protected void reloadEditorContentAfterViewChange(IWorkbenchPart source) {
+
+        return;
     }
 
     private void promptForCommit(IWorkbenchPart part) {
@@ -276,8 +309,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     }
 
     private static CDOCheckout createCheckout(IProject project, boolean isReadOnly) {
-        // TODO consider not creating a branch if in read-only mode
-        CDOCheckout checkout = CDOConnectionManager.getInstance().createCDOCheckout(project, true, isReadOnly);
+        CDOCheckout checkout = CDOConnectionManager.getInstance().createCDOCheckout(project, !isReadOnly, isReadOnly);
         checkout.open();
         return checkout;
     }
