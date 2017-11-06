@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_IruuQLQJEeeP2dgFazWMfA" name="ComponentTest">
+  <packagedElement xmi:type="uml:Component" xmi:id="_RI9ZQLQJEeeP2dgFazWMfA" name="ComponentA">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_j9vG4LQJEeeP2dgFazWMfA" name="Port1" type="_7wFaYLQMEeeP2dgFazWMfA" aggregation="composite"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7wFaYLQMEeeP2dgFazWMfA" name="PortTypeA">
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_CD46wLQNEeeP2dgFazWMfA" client="_7wFaYLQMEeeP2dgFazWMfA" supplier="_Ylli4LQJEeeP2dgFazWMfA" contract="_Ylli4LQJEeeP2dgFazWMfA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_DYNCULQNEeeP2dgFazWMfA" client="_7wFaYLQMEeeP2dgFazWMfA" supplier="_fb4FQLQJEeeP2dgFazWMfA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_S-O40LQJEeeP2dgFazWMfA" name="ComponentB">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_mW7y4LQJEeeP2dgFazWMfA" name="Port1" type="_fb4FQLQJEeeP2dgFazWMfA" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_Ylli4LQJEeeP2dgFazWMfA" name="InterfaceA">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_gJljALQNEeeP2dgFazWMfA" name="foo"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_fb4FQLQJEeeP2dgFazWMfA" name="InterfaceB">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_iFB8ALQNEeeP2dgFazWMfA" name="fara"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_rZzTALQNEeeP2dgFazWMfA" name="ComponentC">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_udMykLQNEeeP2dgFazWMfA" name="Port1" type="_Ylli4LQJEeeP2dgFazWMfA" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_zf_-ELQNEeeP2dgFazWMfA" name="AttributeA" type="_RI9ZQLQJEeeP2dgFazWMfA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4cLkMLQNEeeP2dgFazWMfA" name="AttributeB" type="_S-O40LQJEeeP2dgFazWMfA"/>
+    <ownedConnector xmi:type="uml:Connector" xmi:id="_YIoyELQSEeeP2dgFazWMfA" name="delegateConnector">
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_YIpZILQSEeeP2dgFazWMfA" role="_udMykLQNEeeP2dgFazWMfA"/>
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_YIpZIbQSEeeP2dgFazWMfA" partWithPort="_zf_-ELQNEeeP2dgFazWMfA" role="_j9vG4LQJEeeP2dgFazWMfA"/>
+    </ownedConnector>
+    <ownedConnector xmi:type="uml:Connector" xmi:id="_dQeOkLQSEeeP2dgFazWMfA" name="assembly">
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_dQe1oLQSEeeP2dgFazWMfA" partWithPort="_zf_-ELQNEeeP2dgFazWMfA" role="_j9vG4LQJEeeP2dgFazWMfA"/>
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_dQe1obQSEeeP2dgFazWMfA" partWithPort="_4cLkMLQNEeeP2dgFazWMfA" role="_mW7y4LQJEeeP2dgFazWMfA"/>
+    </ownedConnector>
+  </packagedElement>
+</uml:Model>

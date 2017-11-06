@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kAKHUGGMEeeNJZcnrZwm6Q" name="Minmal">
+  <packagedElement xmi:type="uml:Component" xmi:id="_lZxloGGMEeeNJZcnrZwm6Q" name="testComp">
+    <nestedClassifier xmi:type="uml:Component" xmi:id="_IQfb8HKbEee329rTkGpGTQ" name="first_comp">
+      <interfaceRealization xmi:id="_Fc0IgHKdEee329rTkGpGTQ" client="_IQfb8HKbEee329rTkGpGTQ" supplier="_nMan8GGMEeeNJZcnrZwm6Q" contract="_nMan8GGMEeeNJZcnrZwm6Q"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_rX7mIGGMEeeNJZcnrZwm6Q" client="_IQfb8HKbEee329rTkGpGTQ" supplier="_nMan8GGMEeeNJZcnrZwm6Q"/>
+    </nestedClassifier>
+    <nestedClassifier xmi:type="uml:Interface" xmi:id="_LP-r4HKbEee329rTkGpGTQ" name="first_iface">
+      <ownedAttribute xmi:id="_MfCDgHKcEee329rTkGpGTQ" name="someName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_PhfkYHKbEee329rTkGpGTQ" name="someOperation">
+        <ownedParameter xmi:id="_inlrgHKbEee329rTkGpGTQ" name="anObject" type="_nMan8GGMEeeNJZcnrZwm6Q"/>
+        <ownedParameter xmi:id="_-pyyAHKbEee329rTkGpGTQ" name="aPrimitive">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_DpPukHKcEee329rTkGpGTQ" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+        </ownedParameter>
+      </ownedOperation>
+    </nestedClassifier>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_nMan8GGMEeeNJZcnrZwm6Q" name="second_iface">
+    <ownedAttribute xmi:id="_hFOrcHKcEee329rTkGpGTQ" name="someName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_j-uBEHKcEee329rTkGpGTQ" name="someOperation">
+      <ownedParameter xmi:id="_mktL4HKcEee329rTkGpGTQ" name="anObject" type="_nMan8GGMEeeNJZcnrZwm6Q"/>
+      <ownedParameter xmi:id="_pnNTkHKcEee329rTkGpGTQ" name="aPrimitive">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_sbUZ8HKcEee329rTkGpGTQ">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Abstraction" xmi:id="_KETRAHKdEee329rTkGpGTQ" client="_lZxloGGMEeeNJZcnrZwm6Q" supplier="_nMan8GGMEeeNJZcnrZwm6Q"/>
+</uml:Model>

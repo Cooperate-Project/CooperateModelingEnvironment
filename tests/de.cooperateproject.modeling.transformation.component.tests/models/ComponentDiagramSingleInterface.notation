@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_k5-ScInUEee5hoilD_ZYog" type="PapyrusUMLComponentDiagram" name="Component Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_PBJIgInVEee5hoilD_ZYog" type="Interface_ClassifierShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_PBJIgonVEee5hoilD_ZYog" type="Interface_ClassifierNameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_PBJvkInVEee5hoilD_ZYog" type="Interface_ClassifierFloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_PBJvkYnVEee5hoilD_ZYog" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_PBJvkonVEee5hoilD_ZYog" type="Interface_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_PBJvk4nVEee5hoilD_ZYog"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_PBJvlInVEee5hoilD_ZYog"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_PBJvlYnVEee5hoilD_ZYog"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PBJvlonVEee5hoilD_ZYog"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_PBJvl4nVEee5hoilD_ZYog" type="Interface_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_PBJvmInVEee5hoilD_ZYog"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_PBJvmYnVEee5hoilD_ZYog"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_PBJvmonVEee5hoilD_ZYog"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PBJvm4nVEee5hoilD_ZYog"/>
+    </children>
+    <element xmi:type="uml:Interface" href="ComponentDiagramSingleInterface.uml#_PBH6YInVEee5hoilD_ZYog"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PBJIgYnVEee5hoilD_ZYog" x="860" y="280"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_k5-ScYnUEee5hoilD_ZYog" name="diagram_compatibility_version" stringValue="1.3.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_k5-SconUEee5hoilD_ZYog"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_k5-Sc4nUEee5hoilD_ZYog" diagramKindId="org.eclipse.papyrus.uml.diagram.component.root.package">
+    <owner xmi:type="uml:Model" href="ComponentDiagramSingleInterface.uml#_k56BAInUEee5hoilD_ZYog"/>
+  </styles>
+  <element xmi:type="uml:Model" href="ComponentDiagramSingleInterface.uml#_k56BAInUEee5hoilD_ZYog"/>
+</notation:Diagram>

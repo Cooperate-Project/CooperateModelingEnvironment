@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kAKHUGGMEeeNJZcnrZwm6Q" name="Minmal">
+  <packagedElement xmi:type="uml:Component" xmi:id="_lZxloGGMEeeNJZcnrZwm6Q" name="first_comp">
+    <packagedElement xmi:type="uml:Usage" xmi:id="_rX7mIGGMEeeNJZcnrZwm6Q" client="_lZxloGGMEeeNJZcnrZwm6Q" supplier="_nMan8GGMEeeNJZcnrZwm6Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_nMan8GGMEeeNJZcnrZwm6Q" name="first_iface"/>
+</uml:Model>

@@ -11,7 +11,9 @@ public enum NotationDiagramTypes {
     USECASE(DiagramTypes.USECASE, "UseCase", "org.eclipse.papyrus.uml.diagram.useCase"),
     ACTIVITY(DiagramTypes.ACTIVITY, "PapyrusUMLActivityDiagram", "org.eclipse.papyrus.uml.diagram.activity"),
     SEQUENCE(DiagramTypes.SEQUENCE, "PapyrusUMLSequenceDiagram", "org.eclipse.papyrus.uml.diagram.sequence"),
-    STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram", "org.eclipse.papyrus.uml.diagram.stateMachine");
+    STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram", "org.eclipse.papyrus.uml.diagram.stateMachine"),
+    COMPONENT(DiagramTypes.COMPONENT, "PapyrusUMLComponentDiagram",
+            "org.eclipse.papyrus.uml.diagram.component.root.component");
 
     private final DiagramTypes diagramType;
     private final String notationDiagramType;

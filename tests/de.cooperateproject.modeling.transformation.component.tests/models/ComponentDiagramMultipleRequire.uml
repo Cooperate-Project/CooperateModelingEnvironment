@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_MSVRQJQ7Eee9Dd_V_0eWlA" name="ComponentDiagramMultipleRequire">
+  <packagedElement xmi:type="uml:Component" xmi:id="_QzaPwJQ7Eee9Dd_V_0eWlA" name="Component1">
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XKgUsJQ7Eee9Dd_V_0eWlA" client="_QzaPwJQ7Eee9Dd_V_0eWlA" supplier="_RSBeYJQ7Eee9Dd_V_0eWlA"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_X0lMcJQ7Eee9Dd_V_0eWlA" client="_QzaPwJQ7Eee9Dd_V_0eWlA" supplier="_RfG4IJQ7Eee9Dd_V_0eWlA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_RDZzkJQ7Eee9Dd_V_0eWlA" name="Component2">
+    <packagedElement xmi:type="uml:Usage" xmi:id="_YKcuwJQ7Eee9Dd_V_0eWlA" client="_RDZzkJQ7Eee9Dd_V_0eWlA" supplier="_RfG4IJQ7Eee9Dd_V_0eWlA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_RSBeYJQ7Eee9Dd_V_0eWlA" name="Interface1"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_RfG4IJQ7Eee9Dd_V_0eWlA" name="Interface2"/>
+</uml:Model>

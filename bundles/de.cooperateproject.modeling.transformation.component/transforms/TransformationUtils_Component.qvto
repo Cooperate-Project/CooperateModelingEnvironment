@@ -1,0 +1,67 @@
+library TransformationUtils_Component;
+
+import TransformationUtils;
+
+property PAPYRUS_NOTATION_EDGE_CONSTRAINT : String = "Constraint_ConstrainedElementEdge";
+
+property PAPYRUS_NOTATION_EDGE_COMMENTLINK : String = "Comment_AnnotatedElementEdge";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR = "Component_PackagedElementShape";
+property PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR : String = "Comment_Shape";
+property PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR : String = "Component_NameLabel";
+property PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR : String = "Component_FloatingNameLabel";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR : String = "Component_StructureCompartment";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE = "Component_PackagedElementShape_CCN";
+property PAPYRUS_NOTATION_NODE_COMPONENT_NAME_INPACKAGE : String = "Component_NameLabel_CCN";
+property PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_INPACKAGE : String = "Component_FloatingNameLabel_CCN";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_INPACKAGE : String = "Component_StructureCompartment_CCN";
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR = "Interface_ClassifierShape";
+property PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR : String = "Interface_ClassifierNameLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR : String = "Interface_ClassifierFloatingNameLabel";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR : String = "Interface_AttributeCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_INPACKAGE : String = "Interface_AttributeCompartment_CN";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR : String = "Interface_OperationCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_INPACKAGE : String = "Interface_OperationCompartment_CN";
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE : String = "Property_InterfaceAttributeLabel";
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION : String = "Operation_InterfaceOperationLabel";
+property PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT : String = "PackageImport_Edge";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY : String = "Property_Shape";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY_NAME_REGULAR : String = "Property_NameLabel";
+property PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT : String = "NamedElement_DefaultShape";
+property PAPYRUS_NOTATION_NODE_NAMED_ELEMENT_NAME_REGULAR : String = "NamedElement_NameLabel";
+
+property PAPYRUS_NOTATION_EDGE_IMPLEMENTATION : String = "InterfaceRealization_Edge";
+property PAPYRUS_NOTATION_EDGE_USAGE : String = "Usage_Edge";
+property PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_STEREOTYPE : String = "InterfaceRealization_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_NAME_REGULAR ="InterfaceRealization_NameLabel";
+property PAPYRUS_NOTATION_EDGE_REQUIRE : String = "InterfaceRealization_Edge";
+property PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE : String = "Usage_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR ="Usage_NameLabel";
+
+property PAPYRUS_NOTATION_EDGE_MANIFESTATION : String = "Manifestation_Edge";
+property PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR ="Manifestation_NameLabel";
+property PAPYRUS_NOTATION_EDGE_MANIFESTATION_STEREOTYPE : String = "Manifestation_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION : String = "Generalization_Edge";
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION_NAME_REGULAR ="Generalization_NameLabel";
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION_STEREOTYPE : String = "Generalization_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_ABSTRACTION : String = "Abstraction_Edge";
+property PAPYRUS_NOTATION_EDGE_ABSTRACTION_NAME_REGULAR ="Abstraction_NameLabel";
+property PAPYRUS_NOTATION_EDGE_ABSTRACTION_STEREOTYPE : String = "Abstraction_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_SUBSTITUTION : String = "Substitution_Edge";
+property PAPYRUS_NOTATION_EDGE_SUBSTITUTION_NAME_REGULAR ="Substitution_NameLabel";
+property PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE : String = "Substitution_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_DEPENDENCY : String = "Dependency_Edge";
+property PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR ="Dependency_NameLabel";
+property PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE : String = "Dependency_StereotypeLabel";
+
+property PAPYRUS_NOTATION_SHAPE_PORT_REGULAR = "Port_Shape";
+property PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_REGULAR : String = "Port_NameLabel";
+property PAPYRUS_NOTATION_NODE_PORT_FLOATINGNAME_STEREOTYPE : String = "Port_StereotypeLabel";
+property PAPYRUS_NOTATION_COMPARTMENT_PORT_SHAPE_DISPLAY : String = "compartment_shape_display";
+
+property PAPYRUS_NOTATION_EDGE_CONNECTOR : String = "Connector_Edge";
+property PAPYRUS_NOTATION_EDGE_CONNECTOR_NAME_REGULAR ="Connector_NameLabel";
+property PAPYRUS_NOTATION_EDGE_CONNECTOR_STEREOTYPE : String = "Connector_StereotypeLabel";

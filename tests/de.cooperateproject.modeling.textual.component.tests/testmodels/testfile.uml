@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_yMrTsFZEEeeQxPI_fH2lAg" name="RootElement">
+  <packagedElement xmi:type="uml:Component" xmi:id="_y5CS8LonEeeum5brrKxlaA" name="testComp">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_zOmTcLpMEeeOkZ1dh7mBmQ" name="port1" type="_tA73ULpMEeeOkZ1dh7mBmQ" aggregation="composite"/>
+    <ownedAttribute xmi:id="_-d4PULpMEeeOkZ1dh7mBmQ" name="inner" type="_4-KeILonEeeum5brrKxlaA"/>
+    <ownedConnector xmi:id="_FDkJ4LpNEeeOkZ1dh7mBmQ" name="contest">
+      <end xmi:id="_HiV5cLpNEeeOkZ1dh7mBmQ" role="_zOmTcLpMEeeOkZ1dh7mBmQ"/>
+      <end xmi:id="_Kq17cLpNEeeOkZ1dh7mBmQ" partWithPort="_-d4PULpMEeeOkZ1dh7mBmQ" role="_O_ACoLopEeeum5brrKxlaA"/>
+    </ownedConnector>
+    <packagedElement xmi:type="uml:Component" xmi:id="_4-KeILonEeeum5brrKxlaA" name="innerComp">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_O_ACoLopEeeum5brrKxlaA" name="port2" type="_tA73ULpMEeeOkZ1dh7mBmQ" aggregation="composite"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_kDxvELpMEeeOkZ1dh7mBmQ" name="testA"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_tA73ULpMEeeOkZ1dh7mBmQ" name="testInf"/>
+</uml:Model>
