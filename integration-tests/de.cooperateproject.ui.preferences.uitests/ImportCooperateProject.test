@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _m-JLMEq-EeezU6ANDCaT5A
-Runtime-Version: 2.2.0.201705230341
-Save-Time: 8/16/17 10:40 AM
+Runtime-Version: 2.3.0.201711070014
+Save-Time: 11/7/17 6:44 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -35,6 +35,8 @@ try {
         get-button Finish | click
     }
     get-view "Project Explorer" | get-tree {
+        wait -ms 500
+    	select "testCooperateProject" | get-menu -path Refresh | click
         get-item "testCooperateProject/model-gen/myDiagram" | get-property caption | equals myDiagram | verify-true
         get-item "testCooperateProject/model-gen/myDiagram - myDiagram.cls" | get-property caption | equals "myDiagram - myDiagram.cls" | verify-true
         get-item "testCooperateProject/models" | get-property childCount | equals 1 | verify-true
