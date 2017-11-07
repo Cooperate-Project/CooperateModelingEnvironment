@@ -6,7 +6,7 @@ Element-Type: context
 Element-Version: 2.0
 Id: _w_YSQEtQEeePyPASar5nSw
 Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/7/17 6:43 PM
+Save-Time: 11/7/17 7:26 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -28,7 +28,7 @@ proc "create-cooperate-project" [val name] {
     }
     
     with [get-view "Project Explorer" | get-tree] {
-    	wait -ms 500
+    	wait -ms 1000
     	select $name | get-menu -path Refresh | click
         get-item [concat $name "/model-gen"] | get-property caption | equals "model-gen" | verify-true
         get-item [concat $name "/models"] | get-property caption | equals models | verify-true
