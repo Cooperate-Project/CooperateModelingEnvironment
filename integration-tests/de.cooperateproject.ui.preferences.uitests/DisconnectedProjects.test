@@ -1,0 +1,39 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _0NrRIEXoEee35MGQu_izMg,_w_YSQEtQEeePyPASar5nSw,_uLJboOctEeaaasogs7q0-A
+Element-Name: DisconnectedProjects
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _D2zHoEq2EeejFreiVB32jw
+Runtime-Version: 2.3.0.201711070014
+Save-Time: 11/7/17 1:24 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+start-cooperate-repository
+try {
+    create-cooperate-project testCooperateProject
+    get-view "Project Explorer" | get-tree | get-item testCooperateProject | get-property caption 
+        | equals testCooperateProject | verify-true
+    
+} -finally {
+    stop-cooperate-repository
+}
+get-button "Reconnect Local Projects" | click
+get-view "Project Explorer" | get-tree | get-item "testCooperateProject \\[Disconnected\\]" | get-property caption 
+    | equals "testCooperateProject [Disconnected]" | verify-true
+start-cooperate-repository
+
+try {
+    get-view "Project Explorer" | get-tree | select "testCooperateProject [Disconnected]" | get-menu "Open Project" | click
+    get-view "Project Explorer" | get-tree | get-item testCooperateProject | get-property caption 
+        | equals testCooperateProject | verify-true
+} -finally {
+    stop-cooperate-repository
+}
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
