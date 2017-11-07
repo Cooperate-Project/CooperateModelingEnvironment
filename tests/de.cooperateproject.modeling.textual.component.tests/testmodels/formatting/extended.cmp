@@ -1,0 +1,21 @@
+@start-cpd "Minimal"
+
+rootPackage Minimal
+
+component testComp {
+	provide second second_iface
+	component first_comp {
+		require first first_iface
+	}
+	interface first_iface {
+		someName : String
+		someOperation(anObject : first_iface, aPrimitive : int) : long
+	}
+}
+interface second_iface {
+	someName : String
+	someOperation(anObject : second_iface, aPrimitive : int) : long
+}
+abs (testComp, second_iface)
+
+@end-cpd

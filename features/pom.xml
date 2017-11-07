@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.4.2-SNAPSHOT</version>
+		<version>0.5.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>features</artifactId>
@@ -20,6 +20,7 @@
 		<module>de.cooperateproject.modeling.textual.feature</module>
 		<module>de.cooperateproject.modeling.textual.class.feature</module>
 		<module>de.cooperateproject.modeling.textual.commons.feature</module>
+		<module>de.cooperateproject.modeling.textual.component.feature</module>
 		<module>de.cooperateproject.modeling.textual.metamodels.feature</module>
 		<module>de.cooperateproject.modeling.textual.usecase.feature</module>
 		<module>de.cooperateproject.modeling.transformation.feature</module>

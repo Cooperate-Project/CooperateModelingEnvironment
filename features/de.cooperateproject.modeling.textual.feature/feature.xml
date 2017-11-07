@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.textual.feature"
       label="%featureName"
-      version="0.4.2.qualifier"
+      version="0.5.1.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -24,6 +24,10 @@
 
    <includes
          id="de.cooperateproject.modeling.textual.usecase.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="de.cooperateproject.modeling.textual.component.feature"
          version="0.0.0"/>
 
    <includes

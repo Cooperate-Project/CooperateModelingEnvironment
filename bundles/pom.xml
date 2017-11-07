@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.4.2-SNAPSHOT</version>
+		<version>0.5.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>bundles</artifactId>
@@ -24,6 +24,10 @@
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
 		<module>de.cooperateproject.modeling.textual.common</module>
 		<module>de.cooperateproject.modeling.textual.common.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.component</module>
+		<module>de.cooperateproject.modeling.textual.component.ide</module>
+		<module>de.cooperateproject.modeling.textual.component.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.component.ui</module>
 		<module>de.cooperateproject.modeling.textual.usecase</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ide</module>
 		<module>de.cooperateproject.modeling.textual.usecase.metamodel</module>
@@ -34,6 +38,7 @@
 		<module>de.cooperateproject.modeling.transformation.cache</module>
 		<module>de.cooperateproject.modeling.transformation.cls</module>
 		<module>de.cooperateproject.modeling.transformation.usecase</module>
+		<module>de.cooperateproject.modeling.transformation.component</module>
 		<module>de.cooperateproject.modeling.transformation.engine</module>
 		<module>de.cooperateproject.modeling.transformation.common</module>
 		<module>de.cooperateproject.modeling.transformation.tests.common</module>
@@ -55,5 +60,4 @@
 		<module>de.cooperateproject.util</module>
 		<module>de.cooperateproject.modeling.graphical.papyrus.extensions</module>
 	</modules>
-
 </project>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kAKHUGGMEeeNJZcnrZwm6Q" name="Minmal_Classifiers">
+  <packagedElement xmi:type="uml:Component" xmi:id="_lZxloGGMEeeNJZcnrZwm6Q" name="testComp"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_mvUNkKx9EeesTZeg3EN-tg" name="testComp2"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_spyA4Kx9EeesTZeg3EN-tg" name="first_iface"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_tzbJgKx9EeesTZeg3EN-tg" name="second_iface"/>
+</uml:Model>

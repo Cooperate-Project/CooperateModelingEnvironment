@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_BBoNAJzWEeekxamVBtf-ow" name="ComponentDiagramPortRelation">
+  <packagedElement xmi:type="uml:Component" xmi:id="_RVhSQJzWEeekxamVBtf-ow" name="outerComp">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_X8FWkJzWEeekxamVBtf-ow" name="Port1" type="_W1h-MJzWEeekxamVBtf-ow" aggregation="composite"/>
+    <ownedConnector xmi:id="_dJRNIJzWEeekxamVBtf-ow" name="Connector1">
+      <end xmi:id="_dJhr0JzWEeekxamVBtf-ow" role="_X8FWkJzWEeekxamVBtf-ow"/>
+      <end xmi:id="_dJhr0ZzWEeekxamVBtf-ow" role="_XftjoJzWEeekxamVBtf-ow"/>
+    </ownedConnector>
+    <packagedElement xmi:type="uml:Component" xmi:id="_R-qV4JzWEeekxamVBtf-ow" name="innerComp">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_XftjoJzWEeekxamVBtf-ow" name="Port1" type="_W1h-MJzWEeekxamVBtf-ow" aggregation="composite"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_W1h-MJzWEeekxamVBtf-ow" name="Interface1"/>
+</uml:Model>

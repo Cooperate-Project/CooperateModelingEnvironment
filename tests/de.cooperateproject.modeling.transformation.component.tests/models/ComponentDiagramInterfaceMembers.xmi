@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Component Diagram">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramInterfaceMembers.uml#_P68WkJNSEeeMpe1US1HoTw"/>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramInterfaceMembers.uml#_jwrGsJNZEeeMpe1US1HoTw"/>
+      <members xsi:type="cmp:Attribute">
+        <referencedElement xsi:type="uml:Property" href="ComponentDiagramInterfaceMembers.uml#_ZB3lMJNaEeeMpe1US1HoTw"/>
+      </members>
+      <members xsi:type="cmp:Attribute">
+        <referencedElement xsi:type="uml:Property" href="ComponentDiagramInterfaceMembers.uml#_-TIioJNiEeeMpe1US1HoTw"/>
+      </members>
+      <members xsi:type="cmp:Method">
+        <referencedElement xsi:type="uml:Operation" href="ComponentDiagramInterfaceMembers.uml#_A6hboJNjEeeMpe1US1HoTw"/>
+        <parameters>
+          <referencedElement xsi:type="uml:Parameter" href="ComponentDiagramInterfaceMembers.uml#_FOZroJNjEeeMpe1US1HoTw"/>
+        </parameters>
+        <parameters>
+          <referencedElement xsi:type="uml:Parameter" href="ComponentDiagramInterfaceMembers.uml#_H7oG4JNjEeeMpe1US1HoTw"/>
+        </parameters>
+        <parameters>
+          <referencedElement xsi:type="uml:Parameter" href="ComponentDiagramInterfaceMembers.uml#_K1IDkJNjEeeMpe1US1HoTw"/>
+        </parameters>
+      </members>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>

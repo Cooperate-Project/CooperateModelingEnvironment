@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_mm8iQJtGEeekxamVBtf-ow" type="PapyrusUMLComponentDiagram" name="Component Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_o-kg8JtGEeekxamVBtf-ow" type="Component_PackagedElementShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_o-scwJtGEeekxamVBtf-ow" type="Component_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_o-tD0JtGEeekxamVBtf-ow" type="Component_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_o-tD0ZtGEeekxamVBtf-ow" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_o-tq4JtGEeekxamVBtf-ow" type="Component_StructureCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_o-uR8JtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o-uR8ZtGEeekxamVBtf-ow"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_pAnvYJtGEeekxamVBtf-ow" type="compartment_shape_display">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_pAnvYZtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pAnvYptGEeekxamVBtf-ow"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_rLIfIJtGEeekxamVBtf-ow" type="Port_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rLJGMJtGEeekxamVBtf-ow" type="Port_NameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rLJGMZtGEeekxamVBtf-ow" x="25" y="3"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_rLJGMptGEeekxamVBtf-ow" type="Port_StereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rLJGM5tGEeekxamVBtf-ow" x="25" y="-10"/>
+      </children>
+      <element xmi:type="uml:Port" href="ComponentDiagramPorts.uml#_rLBKYJtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rLIfIZtGEeekxamVBtf-ow" x="-10" y="50" width="20" height="20"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_sImM8JtGEeekxamVBtf-ow" type="Port_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_sImM8ptGEeekxamVBtf-ow" type="Port_NameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sImM85tGEeekxamVBtf-ow" x="25" y="3"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_sImM9JtGEeekxamVBtf-ow" type="Port_StereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sIm0AJtGEeekxamVBtf-ow" x="25" y="-10"/>
+      </children>
+      <element xmi:type="uml:Port" href="ComponentDiagramPorts.uml#_sIgGUJtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sImM8ZtGEeekxamVBtf-ow" x="140" y="50" width="20" height="20"/>
+    </children>
+    <element xmi:type="uml:Component" href="ComponentDiagramPorts.uml#_o-clIJtGEeekxamVBtf-ow"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o-kg8ZtGEeekxamVBtf-ow" x="460" y="260"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_pYgq8JtGEeekxamVBtf-ow" type="Component_PackagedElementShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_pYhSAJtGEeekxamVBtf-ow" type="Component_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_pYhSAZtGEeekxamVBtf-ow" type="Component_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_pYhSAptGEeekxamVBtf-ow" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_pYhSA5tGEeekxamVBtf-ow" type="Component_StructureCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_pYhSBJtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYhSBZtGEeekxamVBtf-ow"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_pYmxkJtGEeekxamVBtf-ow" type="compartment_shape_display">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_pYmxkZtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYmxkptGEeekxamVBtf-ow"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_rnbZkJtGEeekxamVBtf-ow" type="Port_Shape">
+      <children xmi:type="notation:DecorationNode" xmi:id="_rnbZkptGEeekxamVBtf-ow" type="Port_NameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rnbZk5tGEeekxamVBtf-ow" x="25" y="3"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_rnbZlJtGEeekxamVBtf-ow" type="Port_StereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_rnbZlZtGEeekxamVBtf-ow" x="25" y="-10"/>
+      </children>
+      <element xmi:type="uml:Port" href="ComponentDiagramPorts.uml#_rnVS8JtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rnbZkZtGEeekxamVBtf-ow" x="-10" y="60" width="20" height="20"/>
+    </children>
+    <element xmi:type="uml:Component" href="ComponentDiagramPorts.uml#_pYe1wJtGEeekxamVBtf-ow"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYgq8ZtGEeekxamVBtf-ow" x="720" y="420"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_qI4_AJtGEeekxamVBtf-ow" type="Interface_ClassifierShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_qI5mEJtGEeekxamVBtf-ow" type="Interface_ClassifierNameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_qI5mEZtGEeekxamVBtf-ow" type="Interface_ClassifierFloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qI5mEptGEeekxamVBtf-ow" y="15"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_qI60MJtGEeekxamVBtf-ow" type="Interface_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_qI60MZtGEeekxamVBtf-ow"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_qI60MptGEeekxamVBtf-ow"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_qI60M5tGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qI60NJtGEeekxamVBtf-ow"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_qI60NZtGEeekxamVBtf-ow" type="Interface_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_qI60NptGEeekxamVBtf-ow"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_qI60N5tGEeekxamVBtf-ow"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_qI60OJtGEeekxamVBtf-ow"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qI60OZtGEeekxamVBtf-ow"/>
+    </children>
+    <element xmi:type="uml:Interface" href="ComponentDiagramPorts.uml#_qI3w4JtGEeekxamVBtf-ow"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qI4_AZtGEeekxamVBtf-ow" x="940" y="260"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_mm8iQZtGEeekxamVBtf-ow" name="diagram_compatibility_version" stringValue="1.3.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_mm8iQptGEeekxamVBtf-ow"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_mm8iQ5tGEeekxamVBtf-ow" diagramKindId="org.eclipse.papyrus.uml.diagram.component.root.package">
+    <owner xmi:type="uml:Model" href="ComponentDiagramPorts.uml#_mm10kJtGEeekxamVBtf-ow"/>
+  </styles>
+  <element xmi:type="uml:Model" href="ComponentDiagramPorts.uml#_mm10kJtGEeekxamVBtf-ow"/>
+</notation:Diagram>

@@ -11,12 +11,14 @@ import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IPostSaveListenerSupport;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncherBase;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
@@ -89,6 +91,12 @@ public class TextualCDOEditorLauncher extends EditorLauncherBase {
                 .map(TextualCDOEditorIDs::getId).collect(Collectors.toSet());
         return editorCandidates.stream().filter(e -> availableEditorIds.contains(e.getEditorSite().getId()))
                 .findFirst();
+    }
+
+    @Override
+    protected void reloadEditorContentAfterViewChange(IWorkbenchPart source) {
+        Optional.ofNullable(source).filter(IReloadingEditor.class::isInstance).map(IReloadingEditor.class::cast)
+                .ifPresent(IReloadingEditor::reloadDocumentContent);
     }
 
 }

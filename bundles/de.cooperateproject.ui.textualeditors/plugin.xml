@@ -15,6 +15,12 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="CTRL+ALT+C">
 		</key>
+  <key
+        commandId="de.cooperateproject.ui.ReloadEditorContent"
+        contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
+        schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+        sequence="F5">
+  </key>
 	</extension>
 	<extension
          point="org.eclipse.ui.menus">
@@ -36,7 +42,24 @@
 						</iterate>
 					</with>
 				</visibleWhen>
-			</command>  
+			</command>
+   <command
+         commandId="de.cooperateproject.ui.ReloadEditorContent"
+         style="push"
+         tooltip="Reload Editor Content">
+      <visibleWhen
+            checkEnabled="false">
+         <with
+               variable="activeContexts">
+            <iterate
+                  operator="or">
+               <equals
+                     value="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor">
+               </equals>
+            </iterate>
+         </with>
+      </visibleWhen>
+   </command>  
 		</menuContribution>
 	</extension>
 </plugin>

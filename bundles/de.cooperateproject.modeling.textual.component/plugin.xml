@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.component.services.ComponentTransientStatusProvider">
+      </class>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.RequireInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.ProvideInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.AttributeInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.PortInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.ConnectorEndInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.RequireCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.ProvideCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.AttributeCalculator">
+      </class>
+       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.PortCalculator">
+      </class>
+       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.ConnectorEndCalculator">
+      </class>
+       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.remover.PortRemover">
+      </class>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories">
+      <factory
+            class="de.cooperateproject.modeling.textual.component.issues.ComponentMissingUMLElementResolutionFactory">
+      </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.component.issues.ComponentPortConjugatedFactory">
+      </factory>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+@start-cpd "Minimal_Classifiers"
+
+rootPackage Minimal_Classifiers
+
+component testComp
+component testComp2
+interface first_iface
+interface second_iface
+@end-cpd

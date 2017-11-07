@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_6NEOEJsWEeeCCa0sq3MV6g" name="ComponentDiagramEntireClassifierRelations">
+  <packagedElement xmi:type="uml:Component" xmi:id="_MuoEwJsXEeeCCa0sq3MV6g" name="Component1">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_lKmEYJsXEeeCCa0sq3MV6g" client="_MuoEwJsXEeeCCa0sq3MV6g" supplier="_NaGqsJsXEeeCCa0sq3MV6g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_m7ahwJsXEeeCCa0sq3MV6g" client="_MuoEwJsXEeeCCa0sq3MV6g" supplier="_NreukJsXEeeCCa0sq3MV6g"/>
+    <packagedElement xmi:type="uml:Manifestation" xmi:id="_oVAK4JsXEeeCCa0sq3MV6g" client="_MuoEwJsXEeeCCa0sq3MV6g" supplier="_NreukJsXEeeCCa0sq3MV6g" utilizedElement="_NreukJsXEeeCCa0sq3MV6g"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_NE5PsJsXEeeCCa0sq3MV6g" name="Component2"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_NaGqsJsXEeeCCa0sq3MV6g" name="Interface1">
+    <generalization xmi:id="_5lpzUJsXEeeCCa0sq3MV6g" general="_NreukJsXEeeCCa0sq3MV6g"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_NreukJsXEeeCCa0sq3MV6g" name="Interface2"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_Ig_xQJsYEeeCCa0sq3MV6g" name="Interface3">
+    <substitution xmi:id="_JoI_gJsYEeeCCa0sq3MV6g" client="_Ig_xQJsYEeeCCa0sq3MV6g" supplier="_NreukJsXEeeCCa0sq3MV6g" contract="_NreukJsXEeeCCa0sq3MV6g"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_PFA34JsYEeeCCa0sq3MV6g" name="Interface4"/>
+  <packagedElement xmi:type="uml:Abstraction" xmi:id="_PubBQJsYEeeCCa0sq3MV6g" client="_NreukJsXEeeCCa0sq3MV6g" supplier="_PFA34JsYEeeCCa0sq3MV6g"/>
+</uml:Model>

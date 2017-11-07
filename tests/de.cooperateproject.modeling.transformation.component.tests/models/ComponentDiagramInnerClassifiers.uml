@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_7Y-2EIqYEeeQ_5Oe0XR2MQ" name="ComponentDiagramInnerClassifiers">
+  <packagedElement xmi:type="uml:Component" xmi:id="_HQAucIqZEeeQ_5Oe0XR2MQ" name="Component1">
+    <nestedClassifier xmi:type="uml:Interface" xmi:id="_IkTn4IqZEeeQ_5Oe0XR2MQ" name="innerInterface"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_3yHAkIqZEeeQ_5Oe0XR2MQ" name="innerComponent"/>
+  </packagedElement>
+</uml:Model>
