@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelListener;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.xtext.serializer.ISerializer;
 
 import com.google.common.collect.Maps;
@@ -56,7 +57,6 @@ public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
         resourceStateHandler.initState(rootElement);
         resourceStateHandler.calculateState(rootElement);
         document.set(serializer.serialize(rootElement));
-
     }
 
     @Override
@@ -100,6 +100,17 @@ public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
             return listener;
         };
 
+    }
+
+    @Override
+    public boolean setNotDirty(IEditorInput editorInput) {
+        ElementInfo info = getElementInfo(editorInput);
+        if (info != null) {
+            info.fCanBeSaved = false;
+            fireElementDirtyStateChanged(info.fElement, info.fCanBeSaved);
+            return true;
+        }
+        return false;
     }
 
 }

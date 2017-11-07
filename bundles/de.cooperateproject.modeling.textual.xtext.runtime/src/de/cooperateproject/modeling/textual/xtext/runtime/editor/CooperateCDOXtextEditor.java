@@ -154,6 +154,7 @@ public class CooperateCDOXtextEditor extends XtextEditor implements IReloadingEd
                 currentDocument.getResource().getContents().get(0));
         waitForReconcileToStartAndFinish();
         getSelectionProvider().setSelection(actualSelection);
+        documentProvider.setNotDirty(getEditorInput());
     }
 
     @Override
