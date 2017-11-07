@@ -6,7 +6,7 @@ Element-Type: context
 Element-Version: 2.0
 Id: _xN4PAEtVEee-xdp8J34vfQ
 Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/7/17 6:43 PM
+Save-Time: 11/7/17 7:20 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -16,7 +16,7 @@ proc "create-class-diagram" [val project] [val name] {
     get-menu "File/New/Class Diagram" | click
         
     with [get-window -class WizardDialog] {
-        get-tree | select testCooperateProject
+        get-tree | select $project
         get-editbox -after [get-label "Enter or select the model:"] | set-text [concat [concat $project "/"] $name]
         get-editbox -after [get-label "Diagram Name:"] | set-text $name
         get-button Finish | click
