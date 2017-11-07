@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.QualifiedName;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.DynamicTextualCommonsSwitch;
 
@@ -31,7 +32,8 @@ public class QualifiedNameGenerator extends DynamicTextualCommonsSwitch<String> 
     }
 
     private String getName(NamedElement object) {
-        if (object.eContainer() == null && StringUtils.isBlank(object.getName())) {
+        if (object instanceof PackageBase && ((PackageBase) object).getOwningPackage() == null
+                && StringUtils.isBlank(object.getName())) {
             return ((UMLReferencingElement<org.eclipse.uml2.uml.NamedElement>) object).getReferencedElement().getName();
         }
         return object.getName();
