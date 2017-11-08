@@ -14,6 +14,11 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
+/**
+ * Initializer for the RootPackage.
+ * 
+ * @author czogalik
+ */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.INITIALIZATION)
 public class RootPackageInitializer extends AtomicDerivedStateProcessorBase<Package> {
 

@@ -22,7 +22,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 /**
- * State calculation for {@link UMLReferencingElement}.
+ * State calculation for the Root{@link Package}.
  */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
 public class RootPackageCalculator extends AtomicDerivedStateProcessorBase<Package> {

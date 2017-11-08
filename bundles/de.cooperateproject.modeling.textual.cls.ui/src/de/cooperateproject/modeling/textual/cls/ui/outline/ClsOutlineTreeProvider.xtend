@@ -48,6 +48,13 @@ class ClsOutlineTreeProvider extends CooperateOutlineTreeProvider {
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
 		createConnectorNode(parentNode, c)
 	}
+	protected def dispatch createNode(IOutlineNode parentNode, Package element) {
+	    if (element.owningPackage === null) {
+	       createEObjectNode(parentNode, element.referencedElement)
+	    } else {
+	       createEObjectNode(parentNode, element)
+	    }
+	}
 
 	def createConnectorNode(EStructuralFeatureNode node, Connector connector) {
 		createEObjectNode(node, connector)

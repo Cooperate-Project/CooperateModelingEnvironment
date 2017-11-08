@@ -15,9 +15,9 @@ public class ClsDerivedStateElementComparator implements IDerivedStateComputerSo
 
     @Override
     public int compare(EObject o1, EObject o2) {
-        if (isRoot(o1)) {
+        if (isElementRoot(o1)) {
             return -1;
-        } else if (isRoot(o2)) {
+        } else if (isElementRoot(o2)) {
             return 1;
         }
         int prio1 = o1 instanceof Classifier ? 1 : 0;
@@ -25,7 +25,7 @@ public class ClsDerivedStateElementComparator implements IDerivedStateComputerSo
         return prio2 - prio1;
     }
 
-    private boolean isRoot(EObject element) {
+    private static boolean isElementRoot(EObject element) {
         return element instanceof Package && ((Package) element).getOwningPackage() == null;
     }
 }
