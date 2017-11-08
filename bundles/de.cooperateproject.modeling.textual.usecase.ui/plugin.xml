@@ -270,7 +270,7 @@
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
-		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
+		<menuContribution locationURI="popup:#TextEditorContext?after=group.edit">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
 				id="de.cooperateproject.modeling.textual.usecase.Usecase.OpenGeneratedCode"
@@ -279,6 +279,22 @@
 					<reference definitionId="de.cooperateproject.modeling.textual.usecase.Usecase.Editor.opened" />
 				</visibleWhen>
 			</command>
+   <command
+         commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
+         style="push">
+      <visibleWhen
+            checkEnabled="false">
+         <reference
+               definitionId="de.cooperateproject.modeling.textual.usecase.Usecase.Editor.opened">
+         </reference>
+      </visibleWhen>
+      <visibleWhen
+            checkEnabled="false">
+         <reference
+               definitionId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename">
+         </reference>
+      </visibleWhen>
+   </command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
