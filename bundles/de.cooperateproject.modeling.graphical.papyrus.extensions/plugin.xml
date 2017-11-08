@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+	<extension
+         point="org.eclipse.papyrus.infra.gmfdiag.css.userAgentStyleSheet">
+      <stylesheet
+            stylesheetPath="theme/cooperate.css">
+      </stylesheet>
+   </extension>
    <extension
          point="org.eclipse.papyrus.infra.ui.papyrusContentOutline">
       <contentoutline
@@ -386,16 +392,28 @@
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
-            classname="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateSaveAndDirtyService"
+            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveAndDirtyService"
             id="org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService"
             priority="2"
             startKind="startup">
       </service>
+      <service
+            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveLayoutBeforeCloseService"
+            description="Saves the sash model when closing the editor"
+            priority="2"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager">
+         </dependsOn>
+      </service>
    </extension>
    <extension
       point="org.eclipse.papyrus.infra.properties.contexts">
-   <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
-</extension>
+   		<context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
+	</extension>
       <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
       <target
@@ -416,4 +434,47 @@
             </affinity>
          </readOnlyHandler>
       </extension>
+      
+	<extension
+      point="org.eclipse.ui.commands">
+	   <command
+	         categoryId="org.eclipse.papyrus.editor.category"
+	         defaultHandler="de.cooperate.modeling.graphical.papyrus.extensions.usecase.ChangetoMachineShapeHandler"
+	         id="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorasmachine.popup"
+	         name="Display actor as machine">
+	   </command>
+	   <command
+	         categoryId="org.eclipse.papyrus.editor.category"
+	         defaultHandler="de.cooperate.modeling.graphical.papyrus.extensions.usecase.ChangetoStickyShapeHandler"
+	         id="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorassticky.popup"
+	         name="Display actor as stickyman">
+	   </command>
+	</extension>
+	<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.uml.diagram.ui.popupmenu.format">
+      <command
+            commandId="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorasmachine.popup"
+            id="displayactorasmachine.popup"
+            label="Display actor as machine"
+            style="push"
+            tooltip="Display actor as machine">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      <command
+            commandId="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorassticky.popup"
+            id="displayactorassticky.popup"
+            label="Display actor as stickman"
+            style="push"
+            tooltip="Display actor as stickman">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
 </plugin>

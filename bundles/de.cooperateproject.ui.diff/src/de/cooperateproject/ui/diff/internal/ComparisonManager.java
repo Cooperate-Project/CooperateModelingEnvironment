@@ -1,20 +1,16 @@
 package de.cooperateproject.ui.diff.internal;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.CDOObject;
-import org.eclipse.emf.cdo.common.branch.CDOBranch;
-import org.eclipse.emf.cdo.common.commit.CDOCommitHistory;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
-import org.eclipse.emf.cdo.common.commit.CDOCommitInfoManager;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.util.InvalidURIException;
@@ -27,32 +23,30 @@ import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.net4j.util.io.IOUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.cdo.util.commitutils.CommitManager;
-import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.modeling.cdo.commithistory.ICommitHistoryManager;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateProcessor;
+import de.cooperateproject.ui.diff.Activator;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
+import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
 /**
  * Provides functions for receiving information about commits from a resource.
  * 
- * @author Jasmin, czogalik
+ * @author Jasmin, czogalik, persch
  *
  */
 public class ComparisonManager {
 
-    /**
-     * Timeout in milliseconds for the waiting time while loading the CDOCommitHistory.
-     */
-    private static final long LOADING_TIMEOUT = 8000;
     private static final Logger LOGGER = LoggerFactory.getLogger(ComparisonManager.class);
 
+    private ICommitHistoryManager commitHistoryManager = Activator.getDefault().getCommitHistoryManager();
+    
     /**
      * Returns all commits found in CDO Repository from the current file.
      * 
@@ -75,6 +69,10 @@ public class ComparisonManager {
         commitInfosTemp.removeIf(info -> info.getTimeStamp() < dateMillis);
 
         return commitInfosTemp;
+    }
+    
+    public Set<CDOCommitInfo> getCommitInfosInRange(long from, long to, IFile file) {
+        return findAllCommitsinRange(file, from, to);
     }
 
     /**
@@ -153,16 +151,6 @@ public class ComparisonManager {
         return getResourceCDOId(textModel);
     }
 
-    private CDOID getResourceCDOId(CDOSession session, IFile file) {
-        CDOView view = null;
-        try {
-            view = session.openView();
-            return getResourceCDOId(view, file);
-        } finally {
-            IOUtil.closeSilent(view);
-        }
-    }
-
     /**
      * Finds all commits on the selected .cooperate-file and stores all cdoIds of the changed
      * objects in the Map cdoIds.
@@ -170,25 +158,20 @@ public class ComparisonManager {
      * @return all commits on the selected .cooperate-file.
      */
     private Set<CDOCommitInfo> findAllCommits(IFile file) {
-        IProject project = file.getProject();
-        CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
-
-        Set<CDOCommitInfo> commitInfos = new HashSet<>();
-
-        commitInfos.addAll(getCommitsFromMainBranch(session, getFirstCommitTimeStamp(session, file), file));
-
-        CDOConnectionManager.getInstance().releaseSession(session);
-        return commitInfos;
+    	try {
+			return new HashSet<>(commitHistoryManager.getCommitsForLauncher(file));
+		} catch (IOException | ConcreteSyntaxTypeNotAvailableException e) {
+			// TODO show the user
+			return Collections.emptySet();
+		}
     }
-
-    private long getFirstCommitTimeStamp(CDOSession session, IFile file) {
-        CDOView view = null;
+    
+    private Set<CDOCommitInfo> findAllCommitsinRange(IFile file, long from, long to) {
         try {
-            view = session.openView();
-            CDOID resourceCDOId = getResourceCDOId(view, file);
-            return view.getRevision(resourceCDOId).getTimeStamp();
-        } finally {
-            IOUtil.closeSilent(view);
+            return new HashSet<>(commitHistoryManager.getCommitsForLauncher(file, from, to));
+        } catch (IOException | ConcreteSyntaxTypeNotAvailableException e) {
+            // TODO show the user
+            return Collections.emptySet();
         }
     }
 
@@ -200,18 +183,8 @@ public class ComparisonManager {
         }
         return cdoResource.cdoID();
     }
-
-    private List<CDOCommitInfo> getCommitsFromMainBranch(CDOSession session, long timeStamp, IFile file) {
-        CDOCommitInfoManager commitManager = session.getCommitInfoManager();
-        CDOBranch mainBranch = session.getBranchManager().getMainBranch();
-        CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
-
-        mainHistory.waitWhileLoading(LOADING_TIMEOUT);
-
-        return filterCreateDiagramCommit(CommitManager.getCommitsByTime(session, mainBranch, mainHistory, timeStamp, getResourceCDOId(session, file)));
-    }
     
-    private ConcreteSyntaxModel getConcreteSyntaxModel(CDOView view, IFile file) {
+    private static ConcreteSyntaxModel getConcreteSyntaxModel(CDOView view, IFile file) {
         try {
             Diagram launcherModel = LauncherModelHelper.loadDiagram(view.getResourceSet(), file);
             return launcherModel.getConcreteSyntaxModel(EditorType.TEXTUAL.getSupportedSyntaxModel());
@@ -221,11 +194,5 @@ public class ComparisonManager {
         return null;
     }
 
-    private static List<CDOCommitInfo> filterCreateDiagramCommit(List<CDOCommitInfo> commitInfos) {
-        if (!commitInfos.isEmpty()) {
-            commitInfos.remove(commitInfos.size() - 1);
-        }
-        return commitInfos;
-    }
     
 }

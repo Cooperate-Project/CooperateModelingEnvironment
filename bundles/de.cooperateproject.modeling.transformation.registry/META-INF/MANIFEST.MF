@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate Transformation Registry
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.registry;singleton:=true
-Bundle-Version: 0.4.2.qualifier
+Bundle-Version: 0.5.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: de.cooperateproject.modeling.transformation.common,
  com.google.guava;bundle-version="21.0.0",
@@ -15,4 +15,4 @@ Service-Component: OSGI-INF/de.cooperateproject.modeling.transformation.registry
  OSGI-INF/de.cooperateproject.modeling.transformation.registry.TransformationFactoryRegistry.xml
 Bundle-ActivationPolicy: lazy 
 Export-Package: de.cooperateproject.modeling.transformation.registry
-Import-Package: org.osgi.service.component.annotations
+Import-Package: org.osgi.service.component.annotations;resolution:=optional

@@ -173,7 +173,7 @@ public class RenameUMLElementRefactoring extends Refactoring {
 
     private static void checkIfNameConflictExists(String name, NamedElement renameSubject, Package pkg)
             throws ConditionCheckFailed {
-        if (Optional.ofNullable(pkg)
+        if (name != null && Optional.ofNullable(pkg)
                 .map(p -> p.getMembers().stream().filter(member -> !renameSubject.equals(member))
                         .map(RenameUMLElementRefactoring::determineUnqualifiedNames).flatMap(Collection::stream)
                         .anyMatch(name::equals))

@@ -30,6 +30,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionValidator;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -39,6 +40,7 @@ import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.resource.IDerivedStateComputer;
 import org.eclipse.xtext.resource.ResourceSetReferencingResourceSet;
 import org.eclipse.xtext.service.OperationCanceledError;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.reconciler.XtextReconciler;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -57,11 +59,10 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
-import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
 /**
- * Customized version of {@link CDOXtextEditor} that provides necessary integration points for the Cooperate modeling
+ * Customized version of {@link XtextEditor} that provides necessary integration points for the Cooperate modeling
  * environment.
  * 
  * This editor handles
@@ -72,7 +73,7 @@ import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
  * <li>reloading of document contents</li>
  * </ul>
  */
-public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadingEditor {
+public class CooperateCDOXtextEditor extends XtextEditor implements IReloadingEditor {
 
     private static class PostProcessorHandler implements IPostSaveListenerSupport {
 
@@ -146,11 +147,14 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
                     IReinitializingDocumentProvider.class));
         }
 
+        TextSelection actualSelection = (TextSelection) getSelectionProvider().getSelection();
         CooperateXtextDocument currentDocument = (CooperateXtextDocument) getDocument();
         IReinitializingDocumentProvider documentProvider = (IReinitializingDocumentProvider) getDocumentProvider();
         documentProvider.reinitializeDocumentContent(currentDocument,
                 currentDocument.getResource().getContents().get(0));
         waitForReconcileToStartAndFinish();
+        getSelectionProvider().setSelection(actualSelection);
+        documentProvider.setNotDirty(getEditorInput());
     }
 
     @Override
@@ -178,6 +182,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+        TextSelection actualSelection = (TextSelection) getSelectionProvider().getSelection();
         Collection<Issue> syntaxIssues = getSyntaxErrors(cooperateXtextDocument);
         if (!syntaxIssues.isEmpty()) {
             openErrorDialog("Save Error", "Can't save because of syntax errors.", syntaxIssues);
@@ -193,6 +198,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!", null);
             return;
         }
+        getSelectionProvider().setSelection(actualSelection);
     }
 
     @SuppressWarnings("rawtypes")

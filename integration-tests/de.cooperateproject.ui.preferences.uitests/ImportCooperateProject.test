@@ -1,0 +1,47 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _0NrRIEXoEee35MGQu_izMg,_xN4PAEtVEee-xdp8J34vfQ,_w_YSQEtQEeePyPASar5nSw,_uLJboOctEeaaasogs7q0-A
+Element-Name: ImportCooperateProject
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _m-JLMEq-EeezU6ANDCaT5A
+Runtime-Version: 2.3.0.201711070014
+Save-Time: 11/7/17 6:44 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+start-cooperate-repository
+try {
+    create-cooperate-project testCooperateProject
+    create-class-diagram testCooperateProject myDiagram
+    get-view "Project Explorer" | get-tree | select testCooperateProject | get-menu Delete | click
+    with [get-window "Delete Resources"] {
+        get-button "Delete project contents on disk (cannot be undone)" | check
+        get-button OK | click
+    }
+    get-view "Project Explorer" | get-tree | get-menu "Import..." | click
+    with [get-window Import] {
+        get-tree | select "Cooperate/Import Cooperate Project"
+        get-button "Next >" | click
+    }
+    with [get-window "Import Cooperate Project"] {
+        get-group CDO | get-editbox -after [get-label "Repository:"] | set-text "ui-tests-repo"
+        get-button "Next >" | click
+        get-table | get-item testCooperateProject | check
+        get-button Finish | click
+    }
+    get-view "Project Explorer" | get-tree {
+        wait -ms 500
+    	select "testCooperateProject" | get-menu -path Refresh | click
+        get-item "testCooperateProject/model-gen/myDiagram" | get-property caption | equals myDiagram | verify-true
+        get-item "testCooperateProject/model-gen/myDiagram - myDiagram.cls" | get-property caption | equals "myDiagram - myDiagram.cls" | verify-true
+        get-item "testCooperateProject/models" | get-property childCount | equals 1 | verify-true
+    }
+} -finally {
+    stop-cooperate-repository
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

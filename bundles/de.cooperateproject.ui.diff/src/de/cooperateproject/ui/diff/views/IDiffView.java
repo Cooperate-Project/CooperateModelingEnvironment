@@ -1,7 +1,6 @@
 package de.cooperateproject.ui.diff.views;
 
 import org.eclipse.core.resources.IFile;
-
 import de.cooperateproject.ui.diff.internal.CommitCDOViewManager;
 
 /**
@@ -22,4 +21,6 @@ public interface IDiffView {
      * @param cdoViewManager the given commit view manager.
      */
     void showDiffViewOfCommit(CommitCDOViewManager cdoViewManager);
+
+    void showDiffViewOfCommit(CommitCDOViewManager cdoViewManager1, CommitCDOViewManager cdoViewManager2);
 }

@@ -47,5 +47,15 @@ public class GraphicalToTextualUseCaseTest extends UsecaseDirectionalTransformat
     public void testExtensionIncremental() throws Exception {
         testIncremental("UseCaseDiagramExtension");
     }
+    
+    @Test
+    public void testActorTypes() throws Exception {
+        testRegular("UseCaseDiagramActorTypes");
+    }
+
+    @Test
+    public void testActorTypesIncremental() throws Exception {
+        testIncremental("UseCaseDiagramActorTypes");
+    }
 
 }

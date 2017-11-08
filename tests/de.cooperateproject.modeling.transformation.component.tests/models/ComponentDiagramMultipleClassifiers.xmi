@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Component Diagram">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramMultipleClassifiers.uml#_rGDKoJPOEee9Dd_V_0eWlA"/>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramMultipleClassifiers.uml#_tnvrUJPOEee9Dd_V_0eWlA"/>
+    </classifiers>
+    <classifiers xsi:type="cmp:Component">
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramMultipleClassifiers.uml#_t_cZoJPOEee9Dd_V_0eWlA"/>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramMultipleClassifiers.uml#_uMSi0JPOEee9Dd_V_0eWlA"/>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramMultipleClassifiers.uml#_ua4YcJPOEee9Dd_V_0eWlA"/>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>

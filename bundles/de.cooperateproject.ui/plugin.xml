@@ -52,12 +52,28 @@
             id="de.cooperateproject.ui.ResetToPreviousStateCommand"
             name="Reset to previous state">
       </command>
+      <command
+            id="de.cooperateproject.ui.CommitEditorChanges"
+            name="Commit Editor Changes">
+      </command>
+      <command
+            id="de.cooperateproject.ui.ReloadEditorContent"
+            name="Reload Editor Content">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="de.cooperateproject.ui.commands.AddProjectNatureCommand"
             commandId="de.cooperateproject.ui.AddProjectNatureCommand">
+      </handler>
+      <handler
+            class="de.cooperateproject.ui.commands.MergeEditorChangesHandler"
+            commandId="de.cooperateproject.ui.CommitEditorChanges">
+      </handler>
+      <handler
+            class="de.cooperateproject.ui.commands.ReloadEditorContentHandler"
+            commandId="de.cooperateproject.ui.ReloadEditorContent">
       </handler>
    </extension>
    <extension
@@ -153,6 +169,14 @@
             icon="icons/16/cooperate_16.png"
             id="de.cooperateproject.ui.wizards.newUsecaseDiagram"
             name="Usecase Diagram">
+      </wizard>
+      <wizard
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.modelnew.NewComponentDiagramWizard"
+            finalPerspective="de.cooperateproject.ui.perspective"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.wizards.newComponentDiagram"
+            name="Component Diagram">
       </wizard>
    </extension>
    <extension

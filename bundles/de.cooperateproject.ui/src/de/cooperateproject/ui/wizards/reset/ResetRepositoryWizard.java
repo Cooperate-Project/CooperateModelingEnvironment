@@ -39,9 +39,10 @@ public class ResetRepositoryWizard extends Wizard {
         if (!canFinish()) {
             return false;
         }
+
         CDOSession session = CDOConnectionManager.getInstance().acquireSession(resourceToReset.getProject());
         try {
-            ResetToPreviousStateCommand.reset(session, ResetRepositoryComposite.getSelectedCommit(), resourceToReset);
+            ResetToPreviousStateCommand.reset(session, resetPage.getSelectedCommit(), resourceToReset);
         } finally {
             CDOConnectionManager.getInstance().releaseSession(session);
         }

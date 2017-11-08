@@ -1,6 +1,6 @@
-@start-ucd "diagram11"
+@start-uscd "diagram11"
 
-rootElement RootElement
+rootPackage RootElement
 
 act User1
 
@@ -10,4 +10,4 @@ sys System1 {
 
 iac (User1, System1.UseCase1)
 
-@end-ucd
+@end-uscd

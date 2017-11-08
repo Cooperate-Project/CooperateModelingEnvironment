@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_N2VYgFtBEeePL9Bh2-2JIA" type="UseCase" name="UseCaseDiagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_N2VYgFtBEeePL9Bh2-2JIA" type="UseCase" name="UseCaseDiagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_P4SpMFtBEeePL9Bh2-2JIA" type="Classifier_SubjectShape">
     <children xmi:type="notation:DecorationNode" xmi:id="_P4T3UFtBEeePL9Bh2-2JIA" type="Classifier_NameLabel"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_P4T3UVtBEeePL9Bh2-2JIA" type="Classifier_FloatingNameLabel">
@@ -12,8 +12,12 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_TmO6kltBEeePL9Bh2-2JIA" y="5"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_TmTzEFtBEeePL9Bh2-2JIA" type="UseCase_ExtensionPointCompartment_CCN">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TrHJkLszEee2qPwSzqB7ZA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TrI-wLszEee2qPwSzqB7ZA" key="visible" value="true"/>
+          </eAnnotations>
           <styles xmi:type="notation:SortingStyle" xmi:id="_TmTzEVtBEeePL9Bh2-2JIA"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_TmTzEltBEeePL9Bh2-2JIA"/>
+          <styles xmi:type="notation:TitleStyle" xmi:id="_TmTzEltBEeePL9Bh2-2JIb"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TmTzE1tBEeePL9Bh2-2JIA"/>
         </children>
         <element xmi:type="uml:UseCase" href="UseCaseDiagramNotes.uml#_TmBfMFtBEeePL9Bh2-2JIA"/>

@@ -1,0 +1,36 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _0NrRIEXoEee35MGQu_izMg,_w_YSQEtQEeePyPASar5nSw,_xN4PAEtVEee-xdp8J34vfQ,_uLJboOctEeaaasogs7q0-A
+Element-Name: ResetCooperateProjects
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _ScjBUEq8EeezU6ANDCaT5A
+Runtime-Version: 2.3.0.201711070014
+Save-Time: 11/7/17 1:59 PM
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+start-cooperate-repository
+try {
+    create-cooperate-project testCooperateProject
+    create-class-diagram testCooperateProject myDiagram
+
+    get-view "Project Explorer" | get-tree | select "testCooperateProject/models/myDiagram - myDiagram.cooperate" 
+        | get-menu Delete | click
+    get-window "Delete Resources" | get-button OK | click
+    get-view "Project Explorer" | get-tree | select "testCooperateProject/model-gen/myDiagram" | get-menu Delete | click
+    get-window "Delete Resources" | get-button OK | click
+    get-button "Reconnect Local Projects" | click
+    with [get-view "Project Explorer" | get-tree] {
+        get-item "testCooperateProject/model-gen/myDiagram" | get-property caption | equals myDiagram | verify-true
+        get-item "testCooperateProject/models/myDiagram - myDiagram.cooperate" | get-property caption 
+            | equals "myDiagram - myDiagram.cooperate" | verify-true
+    }
+} -finally {
+    stop-cooperate-repository
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

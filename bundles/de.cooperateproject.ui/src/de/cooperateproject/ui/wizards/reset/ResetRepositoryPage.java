@@ -1,6 +1,7 @@
 package de.cooperateproject.ui.wizards.reset;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -10,6 +11,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class ResetRepositoryPage extends WizardPage {
 
+    private CDOCommitInfo selectedCommit;
     private IResource resource;
 
     protected ResetRepositoryPage(IResource resource) {
@@ -25,6 +27,14 @@ public class ResetRepositoryPage extends WizardPage {
         ResetRepositoryComposite composite;
         composite = new ResetRepositoryComposite(parent, SWT.FILL, resource, this);
         setControl(composite);
+    }
+
+    public CDOCommitInfo getSelectedCommit() {
+        return selectedCommit;
+    }
+
+    public void setSelectedCommit(CDOCommitInfo selectedCommit) {
+        this.selectedCommit = selectedCommit;
     }
 
 }

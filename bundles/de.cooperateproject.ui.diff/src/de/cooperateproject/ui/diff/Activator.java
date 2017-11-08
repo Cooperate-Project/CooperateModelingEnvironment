@@ -3,6 +3,9 @@ package de.cooperateproject.ui.diff;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+
+import de.cooperateproject.modeling.cdo.commithistory.ICommitHistoryManager;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -15,6 +18,8 @@ public class Activator extends AbstractUIPlugin {
     // The shared instance
     private static Activator plugin;
 
+    private ICommitHistoryManager commitHistoryManager;
+    
     /*
      * (non-Javadoc)
      * 
@@ -24,6 +29,9 @@ public class Activator extends AbstractUIPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         setActivator(this);
+        
+        ServiceReference<ICommitHistoryManager> comHistMan = context.getServiceReference(ICommitHistoryManager.class);
+        this.commitHistoryManager = context.getService(comHistMan);
     }
 
     /*
@@ -59,5 +67,9 @@ public class Activator extends AbstractUIPlugin {
     
     private static void setActivator(Activator context) {
         plugin = context;
+    }
+    
+    public ICommitHistoryManager getCommitHistoryManager() {
+        return this.commitHistoryManager;
     }
 }

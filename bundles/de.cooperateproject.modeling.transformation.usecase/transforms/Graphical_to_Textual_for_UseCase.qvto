@@ -63,6 +63,16 @@ when {self.element.oclIsKindOf(uml::Actor)}
     var umlActor := self.element.oclAsType(uml::Actor);
     referencedElement := self.element.toElement();
     comments := self.getCommentShape().map commentToComment();
+    type := 
+    if self.styles->selectByType(notation::StringListValueStyle)->select(name = "cssClass").stringListValue->includes("machine") then
+    	usecase::ActorType::MACHINE
+    else
+    	if result.type = usecase::ActorType::MACHINE then
+    		usecase::ActorType::UNDEFINED
+    	else
+    		result.type
+    	endif
+    endif;
 }
 
 mapping notation::View::commentToComment() : textualCommons::Comment
