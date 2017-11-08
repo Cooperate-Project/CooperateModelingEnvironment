@@ -6,7 +6,7 @@ Element-Type: context
 Element-Version: 2.0
 Id: _bAKSgMRdEeeLz4GT_on4mA
 Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/8/17 9:52 AM
+Save-Time: 11/8/17 6:04 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -15,7 +15,9 @@ Entry-Name: .ecl.context
 proc "log-error" [val errorObject] {
 	with [$errorObject] {
 		throw-error [
-			format "Error: %s (line %d, column %d)" 
+			format "Debug dump: %s%n%s%n%nError: %s (line %d, column %d)"
+			[$errorObject]
+			[get children]
 			[get children | get message]
 			[get line]
 			[get column]
