@@ -1,13 +1,13 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _0NrRIEXoEee35MGQu_izMg,_w_YSQEtQEeePyPASar5nSw,_xN4PAEtVEee-xdp8J34vfQ,_uLJboOctEeaaasogs7q0-A
+Contexts: _0NrRIEXoEee35MGQu_izMg,_w_YSQEtQEeePyPASar5nSw,_xN4PAEtVEee-xdp8J34vfQ,_uLJboOctEeaaasogs7q0-A,_bAKSgMRdEeeLz4GT_on4mA
 Element-Name: ResetCooperateProjects
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _ScjBUEq8EeezU6ANDCaT5A
 Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/7/17 1:59 PM
+Save-Time: 11/8/17 9:54 AM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -30,6 +30,8 @@ try {
         get-item "testCooperateProject/models/myDiagram - myDiagram.cooperate" | get-property caption 
             | equals "myDiagram - myDiagram.cooperate" | verify-true
     }
+} -error [val errorObj] -catch{
+	log-error $errorObj
 } -finally {
     stop-cooperate-repository
 }
