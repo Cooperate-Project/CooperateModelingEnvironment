@@ -54,11 +54,11 @@ import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.Activator;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.AreaErrorIndicator;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.LineErrorIndicator;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
-import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
 /**
@@ -118,7 +118,8 @@ public class CooperateCDOXtextEditor extends XtextEditor implements IReloadingEd
 
     public static final String CONTEXT_ID = "de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor";
     private final PostProcessorHandler postProcessorHandler = new PostProcessorHandler();
-    private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
+    private AreaErrorIndicator areaErrorIndicator = new AreaErrorIndicator();
+    private LineErrorIndicator lineErrorIndicator = new LineErrorIndicator();
     private IContextActivation contextActivation;
     private static final Logger LOGGER = LoggerFactory.getLogger(CooperateCDOXtextEditor.class);
     private static final int MAX_AUTOMATED_FIX_ATTEMPTS = 20;
@@ -173,10 +174,14 @@ public class CooperateCDOXtextEditor extends XtextEditor implements IReloadingEd
         if (cooperateXtextDocument.getResource() == null) {
             return;
         }
-        ErrorIndicatorSettings signalType = ErrorIndicatorPreferenceHandler.INSTANCE.getErrorIndicatorSetting();
         EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
 
-        errorSignalContext.createSignal(errors, getCursorPosition(), signalType);
+        if (ErrorIndicatorPreferenceHandler.INSTANCE.getErrorAreaIndicatorSetting()) {
+            areaErrorIndicator.doSignal(errors, getCursorPosition());
+        }
+        if (ErrorIndicatorPreferenceHandler.INSTANCE.getErrorLineIndicatorSetting()) {
+            lineErrorIndicator.doSignal(errors, getCursorPosition());
+        }
     }
 
     @Override

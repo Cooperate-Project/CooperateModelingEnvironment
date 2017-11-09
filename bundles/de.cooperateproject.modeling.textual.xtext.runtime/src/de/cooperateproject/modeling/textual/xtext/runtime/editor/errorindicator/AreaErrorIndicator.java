@@ -12,9 +12,11 @@ import org.eclipse.xtext.diagnostics.AbstractDiagnostic;
  *
  */
 public class AreaErrorIndicator extends AbstractErrorIndicator {
+    private int oldColumn = 0;
+    private int oldLine = 0;
 
     @Override
-    public void doSignal(List<Diagnostic> errors, int cursorColumn, int cursorLine, int oldLine, int oldColumn) {
+    public void doSignal(List<Diagnostic> errors, int cursorColumn, int cursorLine) {
         for (Diagnostic e : errors) {
             if (e instanceof AbstractDiagnostic) {
                 AbstractDiagnostic error = (AbstractDiagnostic) e;
@@ -26,13 +28,14 @@ public class AreaErrorIndicator extends AbstractErrorIndicator {
                 if (errorLine != cursorLine) {
                     return;
                 }
-                doSignal(cursorColumn, cursorLine, oldLine, oldColumn, errorBegin, errorLength);
+                doSignal(cursorColumn, cursorLine, errorBegin, errorLength);
             }
         }
+        oldColumn = cursorColumn;
+        oldLine = cursorLine;
     }
 
-    private void doSignal(int cursorColumn, int cursorLine, int oldLine, int oldColumn, int errorBegin,
-            int errorLength) {
+    private void doSignal(int cursorColumn, int cursorLine, int errorBegin, int errorLength) {
 
         boolean cursorIsInErrorArea = cursorColumn >= errorBegin && cursorColumn <= errorBegin + errorLength;
         boolean cursorWasInAreaBefore = oldColumn >= errorBegin && oldColumn <= errorBegin + errorLength;

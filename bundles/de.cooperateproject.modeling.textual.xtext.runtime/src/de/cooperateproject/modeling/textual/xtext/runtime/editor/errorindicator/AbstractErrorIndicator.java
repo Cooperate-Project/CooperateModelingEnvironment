@@ -13,6 +13,22 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
  */
 public abstract class AbstractErrorIndicator {
 
+    public void doSignal(List<Diagnostic> errors, String cursorPosition) {
+        String[] parts = cursorPosition.split(" : ");
+
+        int cursorLine = 0;
+        int cursorColumn = 0;
+        if (parts.length == 2) {
+            try {
+                cursorLine = Integer.parseInt(parts[0]);
+                cursorColumn = Integer.parseInt(parts[1]);
+            } catch (NumberFormatException e) {
+                return;
+            }
+        }
+        doSignal(errors, cursorColumn, cursorLine);
+    }
+
     /**
      * Does a signal for the given error in the given line and column.
      * 
@@ -27,7 +43,7 @@ public abstract class AbstractErrorIndicator {
      * @param oldColumn
      *            old cursor column
      */
-    public abstract void doSignal(List<Diagnostic> errors, int column, int line, int oldLine, int oldColumn);
+    protected abstract void doSignal(List<Diagnostic> errors, int column, int line);
 
     protected void startBeep() {
         Runnable runnable = () -> Toolkit.getDefaultToolkit().beep();

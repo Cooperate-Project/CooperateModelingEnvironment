@@ -12,8 +12,10 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
  */
 public class LineErrorIndicator extends AbstractErrorIndicator {
 
+    private int oldLine = 0;
+
     @Override
-    public void doSignal(List<Diagnostic> errors, int x, int line, int oldLine, int oldColumn) {
+    public void doSignal(List<Diagnostic> errors, int x, int line) {
         for (Diagnostic error : errors) {
             int errorLine = error.getLine();
 
@@ -24,6 +26,7 @@ public class LineErrorIndicator extends AbstractErrorIndicator {
                 startBeep();
             }
         }
+        oldLine = line;
     }
 
 }
