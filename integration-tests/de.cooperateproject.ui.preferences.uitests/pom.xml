@@ -16,18 +16,23 @@
 		<pluginRepository>
 			<id>rcptt-releases</id>
 			<name>RCPTT Maven repository</name>
-			<url>https://repo.eclipse.org/content/repositories/rcptt-releases/</url>
+			<url>https://repo.eclipse.org/content/repositories/rcptt/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<!-- update weekly -->
+				<updatePolicy>interval:10080</updatePolicy>
+			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
 
 	<properties>
-		<rcptt-maven-version>2.2.0</rcptt-maven-version>
+		<rcptt-maven-version>2.3.0-SNAPSHOT</rcptt-maven-version>
 	</properties>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
-			
+
 				<plugin>
 					<groupId>org.eclipse.rcptt</groupId>
 					<artifactId>rcptt-maven-plugin</artifactId>
@@ -51,7 +56,8 @@
 						<aut>
 							<explicit>${project.basedir}/../../products/de.cooperateproject.modeling.product/target/products/de.cooperateproject.modeling.product-[classifier].zip</explicit>
 							<injections>
-								<!-- features are optional - when omitted, all features from given site will be installed -->
+								<!-- features are optional - when omitted, all features from given 
+									site will be installed -->
 								<injection>
 									<site>https://dl.bintray.com/cooperate-project/RCPTTUtilities/updatesite/1.4.0/</site>
 									<features>

@@ -1,13 +1,13 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _0NrRIEXoEee35MGQu_izMg,_xN4PAEtVEee-xdp8J34vfQ,_w_YSQEtQEeePyPASar5nSw,_uLJboOctEeaaasogs7q0-A
+Contexts: _0NrRIEXoEee35MGQu_izMg,_xN4PAEtVEee-xdp8J34vfQ,_w_YSQEtQEeePyPASar5nSw,_uLJboOctEeaaasogs7q0-A,_bAKSgMRdEeeLz4GT_on4mA
 Element-Name: ImportMultipleProjects
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _566wQEtYEee-xdp8J34vfQ
 Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/7/17 6:44 PM
+Save-Time: 11/8/17 9:53 AM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
@@ -34,6 +34,7 @@ try {
     get-window Import | get-button "Next >" | click
     with [get-window "Import Cooperate Project"] {
         get-group CDO | get-editbox -after [get-label "Repository:"] | set-text "ui-tests-repo"
+        wait -ms 1100
         get-button "Next >" | click
         with [get-table] {
             get-item testCooperateProject | check
@@ -41,17 +42,20 @@ try {
         }
         get-button Finish | click
     }
-    get-view "Project Explorer" | get-tree {
+    with [get-view "Project Explorer" | get-tree] {
         wait -ms 500
     	select "testCooperateProject" | get-menu -path Refresh | click
         get-item "testCooperateProject/model-gen/myDiagram" | get-property caption | equals myDiagram | verify-true
         get-item "testCooperateProject/model-gen/myDiagram - myDiagram.cls" | get-property caption | equals "myDiagram - myDiagram.cls" | verify-true
         get-item "testCooperateProject/models" | get-property childCount | equals 1 | verify-true
         
+        select "secondCooperateProject" | get-menu -path Refresh | click
         get-item "secondCooperateProject/model-gen/myDiagram" | get-property caption | equals myDiagram | verify-true
         get-item "secondCooperateProject/model-gen/myDiagram - myDiagram.cls" | get-property caption | equals "myDiagram - myDiagram.cls" | verify-true
         get-item "secondCooperateProject/models" | get-property childCount | equals 1 | verify-true
     }
+} -error [val errorObj] -catch{
+	log-error $errorObj
 } -finally {
     stop-cooperate-repository
 }
