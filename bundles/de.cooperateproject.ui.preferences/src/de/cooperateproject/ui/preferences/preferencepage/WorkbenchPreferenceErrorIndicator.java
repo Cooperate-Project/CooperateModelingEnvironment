@@ -3,7 +3,7 @@ package de.cooperateproject.ui.preferences.preferencepage;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.preference.ComboFieldEditor;
+import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
@@ -15,9 +15,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
-import de.cooperateproject.ui.preferences.PreferenceActivator;
 import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
+import de.cooperateproject.ui.preferences.PreferenceActivator;
 
 /**
  * Preference page for error indicator.
@@ -28,10 +27,14 @@ import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 public class WorkbenchPreferenceErrorIndicator extends PreferencePage implements IWorkbenchPreferencePage {
 
     private List<FieldEditor> fields;
+    private static final String PREFERENCE_PAGE_TITLE = "Preference Page for Cooperate";
+    private static final String AUDIO_ERROR_INDICATOR_TITLE = "Audio Error Indicator";
+    private static final String LINE_INDICATOR_LABEL = "Line Audio Indicator";
+    private static final String AREA_INDICATOR_LABEL = "Area Audio Indicator";
 
     @Override
     public void init(IWorkbench workbench) {
-        setDescription("Preference Page for the Cooperate Plug In");
+        setDescription(PREFERENCE_PAGE_TITLE);
         fields = new ArrayList<>();
     }
 
@@ -42,8 +45,7 @@ public class WorkbenchPreferenceErrorIndicator extends PreferencePage implements
         top.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         top.setLayout(new GridLayout());
 
-        fields.add(createErrorIndicatorComboField(top));
-
+        fields.addAll(createErrorIndicatorBooleanFields(top));
         for (FieldEditor field : fields) {
             initPreferenceStore(field);
         }
@@ -51,23 +53,25 @@ public class WorkbenchPreferenceErrorIndicator extends PreferencePage implements
         return top;
     }
 
-    private static FieldEditor createErrorIndicatorComboField(Composite parent) {
+    private static List<? extends FieldEditor> createErrorIndicatorBooleanFields(Composite parent) {
         Group group = new Group(parent, SWT.FILL);
 
-        group.setText("Audio Error Indicator");
+        group.setText(AUDIO_ERROR_INDICATOR_TITLE);
         group.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         group.setLayout(new GridLayout());
 
-        return getErrorIndicatorComboField(group);
+        return getErrorIndicatorBooleanFields(group);
     }
 
-    private static ComboFieldEditor getErrorIndicatorComboField(Group group) {
-        return new ComboFieldEditor(ErrorIndicatorPreferenceHandler.INSTANCE.getErrorIndicatorPreferenceStore(),
-                "Choose An Audio Error Indicator",
-                new String[][] { { "No Audio Indicator", ErrorIndicatorSettings.NONE.toString() },
-                        { "Line Audio Indicator", ErrorIndicatorSettings.LINE.toString() },
-                        { "Area Audio Indicator", ErrorIndicatorSettings.AREA.toString() } },
-                group);
+    private static List<BooleanFieldEditor> getErrorIndicatorBooleanFields(Group group) {
+        List<BooleanFieldEditor> booleanFields = new ArrayList<>();
+        booleanFields.add(
+                new BooleanFieldEditor(ErrorIndicatorPreferenceHandler.INSTANCE.getLineErrorIndicatorPreferenceStore(),
+                        LINE_INDICATOR_LABEL, group));
+        booleanFields.add(
+                new BooleanFieldEditor(ErrorIndicatorPreferenceHandler.INSTANCE.getAreaErrorIndicatorPreferenceStore(),
+                        AREA_INDICATOR_LABEL, group));
+        return booleanFields;
     }
 
     private static void initPreferenceStore(FieldEditor field) {

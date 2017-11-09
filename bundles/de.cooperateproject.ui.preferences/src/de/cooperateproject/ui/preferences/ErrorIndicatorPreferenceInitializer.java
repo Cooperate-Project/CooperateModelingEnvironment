@@ -15,8 +15,8 @@ public class ErrorIndicatorPreferenceInitializer extends AbstractPreferenceIniti
     public void initializeDefaultPreferences() {
         IPreferenceStore store = PreferenceActivator.getDefault().getPreferenceStore();
 
-        store.setDefault(ErrorIndicatorPreferenceHandler.INSTANCE.getErrorIndicatorPreferenceStore(),
-                ErrorIndicatorSettings.NONE.toString());
+        store.setDefault(ErrorIndicatorPreferenceHandler.INSTANCE.getAreaErrorIndicatorPreferenceStore(), false);
+        store.setDefault(ErrorIndicatorPreferenceHandler.INSTANCE.getLineErrorIndicatorPreferenceStore(), false);
     }
 
 }
