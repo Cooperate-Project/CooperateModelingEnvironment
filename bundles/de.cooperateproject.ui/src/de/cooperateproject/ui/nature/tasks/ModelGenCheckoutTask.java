@@ -30,7 +30,7 @@ import de.cooperateproject.ui.util.PathmapFilteringTransferSystem;
 public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ModelGenCheckoutTask.class);
-    private static final String WORKSPACE_FOLDER_NAME = "model-gen";
+    public static final String WORKSPACE_FOLDER_NAME = "model-gen";
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
     private IFolder workspaceFolder;
 

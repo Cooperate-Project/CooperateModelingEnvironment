@@ -489,4 +489,17 @@
          </includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="de.cooperateproject.ui.cooperateExportWizards"
+            name="Cooperate">
+      </category>
+      <wizard
+            category="de.cooperateproject.ui.cooperateExportWizards"
+            class="de.cooperateproject.ui.wizards.model.export.ModelExportWizard"
+            id="de.cooperateproject.ui.wizards.model.export"
+            name="Export Model">
+      </wizard>
+   </extension>
 </plugin>
