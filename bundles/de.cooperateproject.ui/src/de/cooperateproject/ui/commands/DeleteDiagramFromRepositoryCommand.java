@@ -37,6 +37,7 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.Launcher.TextualConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
+import de.cooperateproject.ui.util.LockStateInfo;
 
 /**
  * Command for deleting a diagram from a repository. This deletes all resources associated with the diagram except for
@@ -49,7 +50,14 @@ public class DeleteDiagramFromRepositoryCommand extends AbstractHandler {
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
         Collection<IFile> selectedLaunchers = getSelectedLaunchers();
-        if (!getSelectedLaunchers().isEmpty()) {
+        if (!selectedLaunchers.isEmpty()) {
+
+            if (!checkIfNotLocked(selectedLaunchers)) {
+                MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                        "Resources currently in use.",
+                        "One of the resources to be deleted is currently used by another user.");
+                return null;
+            }
 
             if (!confirmDelete()) {
                 return null;
@@ -151,6 +159,19 @@ public class DeleteDiagramFromRepositoryCommand extends AbstractHandler {
                 .map(l -> (Collection<IFile>) l).orElse(Collections.emptyList());
     }
 
+    private static boolean checkIfNotLocked(Collection<IFile> selectedLaunchers) {
+        for (IFile file : selectedLaunchers) {
+            try {
+                if (LockStateInfo.isReadOnlyRequired(file)) {
+                    return false;
+                }
+            } catch (IOException | ConcreteSyntaxTypeNotAvailableException e) {
+                LOGGER.warn("Error while checking preconditions.", e);
+            }
+        }
+        return true;
+    }
+
     private static boolean confirmDelete() {
         AtomicReference<Boolean> reference = new AtomicReference<>(false);
         PlatformUI.getWorkbench().getDisplay()
@@ -160,4 +181,5 @@ public class DeleteDiagramFromRepositoryCommand extends AbstractHandler {
                                 + " This cannot be undone.")));
         return reference.get();
     }
+
 }

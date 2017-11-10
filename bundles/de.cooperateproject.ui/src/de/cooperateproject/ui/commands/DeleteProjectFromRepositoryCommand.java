@@ -1,12 +1,16 @@
 package de.cooperateproject.ui.commands;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -23,7 +27,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.nature.CooperateProjectNature;
+import de.cooperateproject.ui.util.LockStateInfo;
 
 /**
  * Handler which provides logic for deleting all selected projects with CooperateProjectNature from the workspace and
@@ -35,17 +41,21 @@ import de.cooperateproject.ui.nature.CooperateProjectNature;
 public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteProjectFromRepositoryCommand.class);
-    private boolean confirmation = false;
 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
-        if (!getSelectedProjects().isEmpty()) {
-
-            showDialog();
-            if (!confirmation) {
+        List<IProject> selectedProjects = getSelectedProjects();
+        if (!selectedProjects.isEmpty()) {
+            if (!checkIfNotLocked(selectedProjects)) {
+                MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                        "Resources currently in use.",
+                        "One of the resources to be deleted is currently used by another user.");
                 return null;
             }
-            for (IProject project : getSelectedProjects()) {
+            if (!confirmDelete()) {
+                return null;
+            }
+            for (IProject project : selectedProjects) {
                 if (!deleteProject(project)) {
                     LOGGER.error("Could not delete project {}.", project.getName());
                 }
@@ -113,12 +123,30 @@ public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
         return projectList;
     }
 
-    private void showDialog() {
+    private static boolean checkIfNotLocked(List<IProject> selectedProjects) {
+        for (IProject project : selectedProjects) {
+            try {
+                for (IResource file : project.getFolder("models").members()) {
+                    if (file instanceof IFile && LockStateInfo.isReadOnlyRequired((IFile) file)) {
+                        return false;
+                    }
+                }
+            } catch (CoreException | IOException | ConcreteSyntaxTypeNotAvailableException e) {
+                LOGGER.warn("Error while checking preconditions.", e);
+            }
+
+        }
+        return true;
+    }
+
+    private static boolean confirmDelete() {
+        AtomicReference<Boolean> reference = new AtomicReference<>(false);
         PlatformUI.getWorkbench().getDisplay()
-                .syncExec(() -> confirmation = MessageDialog.openConfirm(
+                .syncExec(() -> reference.set(MessageDialog.openConfirm(
                         PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Delete Resources",
                         "Are you sure you want to remove the selected resources from the workspace and repository?"
-                                + " This cannot be undone."));
+                                + " This cannot be undone.")));
+        return reference.get();
     }
 
 }
