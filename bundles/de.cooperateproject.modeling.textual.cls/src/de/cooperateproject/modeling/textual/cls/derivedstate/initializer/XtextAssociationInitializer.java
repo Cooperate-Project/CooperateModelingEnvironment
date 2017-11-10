@@ -68,11 +68,13 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
             object.getMemberEndNames().clear();
         }
 
-        object.setTwoSideAggregationKind(AggregationKind.NONE);
-        if (object.getMemberEnds().size() == 2) {
-            object.setTwoSideBidirectionality(
-                    object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
-            object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
+        if (!object.isSetTwoSideAggregationKind()) {
+            object.setTwoSideAggregationKind(AggregationKind.NONE);
+            if (object.getMemberEnds().size() == 2) {
+                object.setTwoSideBidirectionality(
+                        object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
+                object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
+            }
         }
     }
 
