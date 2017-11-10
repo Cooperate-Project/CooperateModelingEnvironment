@@ -31,7 +31,14 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 
     @Override
     public String casePackage(Package object) {
-        return "package" + " " + object.getName();
+        return "package" + " " + getPackageName(object);
+    }
+    
+    private static String getPackageName(Package object) {
+        if (object.getOwningPackage() == null) {
+            return object.getReferencedElement().getName();
+        } 
+        return object.getName();
     }
 
     @Override
