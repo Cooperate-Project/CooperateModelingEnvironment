@@ -41,7 +41,7 @@ public class RootPackageCalculator extends AtomicDerivedStateProcessorBase<Packa
     }
 
     @Override
-    public Collection<Class<? extends EObject>> getReplacements() {
+    public Collection<Class<? extends EObject>> getRequirements() {
         return Arrays.asList(UMLReferencingElement.class);
     }
 

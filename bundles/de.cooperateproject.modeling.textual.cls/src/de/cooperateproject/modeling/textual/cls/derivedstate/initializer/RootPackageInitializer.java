@@ -2,9 +2,9 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.initializer;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 
 import de.cooperateproject.modeling.textual.cls.cls.Package;
@@ -35,22 +35,14 @@ public class RootPackageInitializer extends AtomicDerivedStateProcessorBase<Pack
     }
 
     @Override
-    public Collection<Class<? extends EObject>> getReplacements() {
+    public Collection<Class<? extends EObject>> getRequirements() {
         return Arrays.asList(UMLReferencingElement.class);
     }
 
     private static void handle(NamedElement object) {
-        if (object instanceof UMLReferencingElement) {
-            UMLReferencingElement<?> typedObject = (UMLReferencingElement<?>) object;
-            Element referencedElement = typedObject.getReferencedElement();
-            if (referencedElement == null) {
-                return;
-            }
-            EObject eContainer = referencedElement.eContainer();
-            if (referencedElement instanceof Model && eContainer != null) {
-                object.setName(((org.eclipse.uml2.uml.NamedElement) typedObject.getReferencedElement()).getName());
-            }
-        }
+        Optional.of(object).filter(UMLReferencingElement.class::isInstance).map(UMLReferencingElement.class::cast)
+                .map(UMLReferencingElement::getReferencedElement).filter(Model.class::isInstance)
+                .filter(o -> o.eContainer() == null).ifPresent(o -> object.unsetName());
     }
 
 }
