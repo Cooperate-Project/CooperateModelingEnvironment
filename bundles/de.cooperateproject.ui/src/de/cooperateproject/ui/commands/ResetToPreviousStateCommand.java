@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
@@ -31,6 +32,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.net4j.util.io.IOUtil;
@@ -48,6 +50,7 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.Launcher.GraphicalConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
+import de.cooperateproject.ui.util.LockStateInfo;
 import de.cooperateproject.ui.wizards.reset.ResetRepositoryWizard;
 
 public class ResetToPreviousStateCommand extends AbstractHandler {
@@ -59,11 +62,23 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
     public Object execute(ExecutionEvent event) throws ExecutionException {
         Optional<IProject> project = getSelectedProject();
         if (project.isPresent()) {
+            if (!checkIfProjectNotLocked(project.get())) {
+                MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                        "Resources currently in use.",
+                        "One of the resources to be reset is currently used by another user.");
+                return null;
+            }
             WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                     new ResetRepositoryWizard(project.get()));
             dialog.open();
         } else if (getSelectedDiagram().isPresent()) {
             IFile file = getSelectedDiagram().get();
+            if (!checkIfDiagramNotLocked(file)) {
+                MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                        "Resources currently in use.",
+                        "One of the resources to be reset is currently used by another user.");
+                return null;
+            }
             WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                     new ResetRepositoryWizard(file));
             dialog.open();
@@ -276,6 +291,33 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
             }
         }
         return Optional.ofNullable(file);
+    }
+
+    private static boolean checkIfProjectNotLocked(IProject project) {
+        try {
+            for (IResource file : project.getFolder("models").members()) {
+                if (file instanceof IFile && LockStateInfo.isReadOnlyRequired((IFile) file)) {
+                    return false;
+                }
+            }
+        } catch (CoreException | IOException | ConcreteSyntaxTypeNotAvailableException e) {
+            LOGGER.warn("Error while checking preconditions.", e);
+        }
+
+        return true;
+    }
+
+    private static boolean checkIfDiagramNotLocked(IFile file) {
+        try {
+            if (LockStateInfo.isReadOnlyRequired((IFile) file)) {
+                return false;
+            }
+
+        } catch (IOException | ConcreteSyntaxTypeNotAvailableException e) {
+            LOGGER.warn("Error while checking preconditions.", e);
+        }
+
+        return true;
     }
 
 }

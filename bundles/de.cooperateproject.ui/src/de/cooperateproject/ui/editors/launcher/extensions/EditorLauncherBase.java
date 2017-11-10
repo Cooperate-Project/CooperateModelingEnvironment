@@ -13,13 +13,11 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.CDOLock;
-import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout.State;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckoutManager.CheckoutStateEvent;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
@@ -40,16 +38,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
-import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.TransformationManager.TransformationException;
 import de.cooperateproject.ui.editors.launcher.impl.CheckoutListenerManager;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
-import de.cooperateproject.ui.launchermodel.Launcher.TextualConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
-import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
+import de.cooperateproject.ui.util.LockStateInfo;
 import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 
 /**
@@ -91,14 +87,14 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
      */
     public EditorLauncherBase(IFile launcherFile, EditorType editorType)
             throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        isReadOnly = isReadOnlyRequired(launcherFile);
+        isReadOnly = LockStateInfo.isReadOnlyRequired(launcherFile);
         cdoCheckout = createCheckout(launcherFile.getProject(), isReadOnly);
         cdoView = cdoCheckout.openView(isReadOnly);
         cdoMainView = cdoView.getSession().openTransaction(cdoView.getBranch().getBranchManager().getMainBranch());
         ensureViewClosingOnCheckoutDelete(cdoCheckout, Arrays.asList(cdoView, cdoMainView));
-        Diagram launcherModel = loadDiagram(cdoView, launcherFile);
+        Diagram launcherModel = LockStateInfo.loadDiagram(cdoView, launcherFile);
         concreteSyntaxModel = launcherModel.getConcreteSyntaxModel(editorType.getSupportedSyntaxModel());
-        Collection<URI> relevantURIs = Arrays.asList(determineUMLURI(launcherModel));
+        Collection<URI> relevantURIs = Arrays.asList(LockStateInfo.determineUMLURI(launcherModel));
         doLockRelevantModels(cdoMainView, relevantURIs);
         transformationManager = createTransformationManager(cdoMainView, cdoView, relevantURIs);
         this.launcherFile = launcherFile;
@@ -266,7 +262,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         public LauncherModelWrapper(IFile launcherFile) throws IOException {
             cdoView = openCDOView(launcherFile.getProject());
             try {
-                launcherDiagram = loadDiagram(cdoView, launcherFile);
+                launcherDiagram = LockStateInfo.loadDiagram(cdoView, launcherFile);
             } catch (Exception e) {
                 closeCDOView(cdoView);
                 throw e;
@@ -314,23 +310,6 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         return checkout;
     }
 
-    private static boolean isReadOnlyRequired(IFile launcherFile)
-            throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        CDOSession session = CDOConnectionManager.getInstance().acquireSession(launcherFile.getProject());
-        try {
-            CDOView temporaryView = session.openView();
-            try {
-                Diagram launcherModel = loadDiagram(temporaryView, launcherFile);
-                URI umlURI = determineUMLURI(launcherModel);
-                return getWriteLock(temporaryView, umlURI).isLockedByOthers();
-            } finally {
-                IOUtil.closeSilent(temporaryView);
-            }
-        } finally {
-            CDOConnectionManager.getInstance().releaseSession(session);
-        }
-    }
-
     private static void ensureViewClosingOnCheckoutDelete(CDOCheckout checkout, Collection<CDOView> views) {
         registerOneTimeAction(() -> views.stream().forEach(IOUtil::closeSilent), checkout);
     }
@@ -349,23 +328,11 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         });
     }
 
-    private static Diagram loadDiagram(CDOView cdoView, IFile launcherFile) throws IOException {
-        Validate.notNull(cdoView);
-        return LauncherModelHelper.loadDiagram(cdoView.getResourceSet(), launcherFile);
-    }
-
-    private static URI determineUMLURI(Diagram launcherModel) throws ConcreteSyntaxTypeNotAvailableException {
-        TextualConcreteSyntaxModel textualConcreteSyntaxModel = launcherModel
-                .getConcreteSyntaxModel(TextualConcreteSyntaxModel.class);
-        URI textualURI = textualConcreteSyntaxModel.getRootElement().eResource().getURI();
-        return ModelNamingConventions.getUMLFromTextualURI(textualURI);
-    }
-
     @SuppressWarnings("squid:S2222")
     private static boolean doLockRelevantModels(CDOView cdoMainView, Iterable<URI> relevantModels) {
         boolean result = true;
         for (URI modelURI : relevantModels) {
-            CDOLock lock = getWriteLock(cdoMainView, modelURI);
+            CDOLock lock = LockStateInfo.getWriteLock(cdoMainView, modelURI);
             // the lock will be released automatically as soon as the corresponding view is closed
             result &= !lock.isLockedByOthers() && lock.tryLock();
         }
@@ -380,11 +347,6 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         } else {
             return new NOOPTransformationManager();
         }
-    }
-
-    private static CDOLock getWriteLock(CDOView view, URI uri) {
-        CDOResource resource = view.getResource(CDOURIUtil.extractResourcePath(uri), true);
-        return resource.cdoWriteLock();
     }
 
 }
