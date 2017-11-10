@@ -20,6 +20,8 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import de.cooperateproject.modeling.textual.cls.provider.ClsQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -59,6 +61,10 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule implements DerivedStateM
 
     def Class<? extends IDerivedStateComputerSorter> bindIDerivedStateComputerSorter() {
         return ClsDerivedStateElementComparator
+    }
+    
+    override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+        return ClsQualifiedNameProvider
     }
 
 }
