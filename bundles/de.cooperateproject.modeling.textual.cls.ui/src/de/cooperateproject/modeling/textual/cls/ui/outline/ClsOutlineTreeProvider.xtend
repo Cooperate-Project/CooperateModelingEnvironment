@@ -14,6 +14,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 
 /**
  * Customization of the default outline structure.
@@ -43,6 +44,11 @@ class ClsOutlineTreeProvider extends CooperateOutlineTreeProvider {
 	dispatch def createChildren(IOutlineNode parentNode, XtextAssociation asc) {
 		asc.memberEndTypes.forEach[t|createEObjectNode(parentNode, t)];
 		_createChildren(parentNode, asc as Commentable<?>)
+	}
+	
+	dispatch def createChildren(IOutlineNode parentNode, Classifier classifier) {
+		classifier.members.forEach[t|createEObjectNode(parentNode, t)];
+		_createChildren(parentNode, classifier as Commentable<?>)
 	}
 	
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
