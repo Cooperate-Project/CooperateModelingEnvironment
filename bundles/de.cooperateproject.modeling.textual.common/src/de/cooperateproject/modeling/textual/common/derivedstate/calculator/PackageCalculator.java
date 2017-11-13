@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.derivedstate.calculator;
+package de.cooperateproject.modeling.textual.common.derivedstate.calculator;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import org.eclipse.xtext.scoping.IScope;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.cls.cls.Package;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -25,7 +25,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTy
  * State calculation for the Root{@link Package}.
  */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
-public class RootPackageCalculator extends AtomicDerivedStateProcessorBase<Package> {
+public class PackageCalculator extends AtomicDerivedStateProcessorBase<PackageBase<PackageBase<?>>> {
 
     @Inject
     private IQualifiedNameProvider qualifiedNameProvider;
@@ -36,8 +36,8 @@ public class RootPackageCalculator extends AtomicDerivedStateProcessorBase<Packa
     /**
      * Constructs the calculator.
      */
-    public RootPackageCalculator() {
-        super(Package.class);
+    public PackageCalculator() {
+        super((Class<PackageBase<PackageBase<?>>>) (Class<?>) PackageBase.class);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RootPackageCalculator extends AtomicDerivedStateProcessorBase<Packa
     }
 
     @Override
-    protected void applyTyped(Package object) {
+    protected void applyTyped(PackageBase<PackageBase<?>> object) {
         QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
         if (qn == null) {
             IScope queryScope = globalScopeProvider.queryScope(object.eResource(), true, (UMLPackage.Literals.MODEL),

@@ -186,7 +186,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+    int ROOT_PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -195,7 +195,34 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int ROOT_PACKAGE__NAME = TextualCommonsPackage.PACKAGE_BASE__NAME;
+
+    /**
+     * The feature id for the '<em><b>Owning Package</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE__OWNING_PACKAGE = TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE;
+
+    /**
+     * The feature id for the '<em><b>Packages</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE__PACKAGES = TextualCommonsPackage.PACKAGE_BASE__PACKAGES;
+
+    /**
+     * The feature id for the '<em><b>Package Imports</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE__PACKAGE_IMPORTS = TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS;
 
     /**
      * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -204,7 +231,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__ACTORS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int ROOT_PACKAGE__ACTORS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Systems</b></em>' containment reference list.
@@ -213,7 +240,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__SYSTEMS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int ROOT_PACKAGE__SYSTEMS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Relationships</b></em>' containment reference list.
@@ -222,7 +249,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__RELATIONSHIPS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int ROOT_PACKAGE__RELATIONSHIPS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Diagram</b></em>' container reference.
@@ -231,7 +258,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__DIAGRAM = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int ROOT_PACKAGE__DIAGRAM = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Root Package</em>' class.
@@ -240,7 +267,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
+    int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -249,7 +276,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+    int ROOT_PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.PACKAGE_BASE___GET_NEAREST_PACKAGE;
 
     /**
      * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -258,7 +285,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
+    int ROOT_PACKAGE___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.PACKAGE_BASE___GET_UML_PARENT_NAMESPACE;
 
     /**
      * The number of operations of the '<em>Root Package</em>' class.
@@ -267,7 +294,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.PACKAGE_BASE_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ActorImpl <em>Actor</em>}' class.

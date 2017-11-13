@@ -34,7 +34,7 @@ class UsecaseFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
-		rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2] 
+		rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1_1).append[newLines = 2] 
 		rootpackage.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		
 		for (Actor actor : rootpackage.getActors()) {

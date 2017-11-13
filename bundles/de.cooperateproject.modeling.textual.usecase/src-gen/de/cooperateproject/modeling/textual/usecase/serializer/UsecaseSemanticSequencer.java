@@ -216,7 +216,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN actors+=Actor* systems+=System* relationships+=Relationship*)
+	 *     (name=FQN? actors+=Actor* systems+=System* relationships+=Relationship*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

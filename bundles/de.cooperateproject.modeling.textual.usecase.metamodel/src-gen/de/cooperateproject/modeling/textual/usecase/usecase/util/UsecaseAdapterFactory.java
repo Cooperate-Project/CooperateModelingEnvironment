@@ -6,6 +6,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
@@ -147,8 +149,16 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
                 return createCommentableAdapter();
             }
             @Override
+            public Adapter casePackageableElement(PackageableElement object) {
+                return createPackageableElementAdapter();
+            }
+            @Override
             public Adapter caseNamedElement(NamedElement object) {
                 return createNamedElementAdapter();
+            }
+            @Override
+            public <PackageType extends PackageBase<?>> Adapter casePackageBase(PackageBase<PackageType> object) {
+                return createPackageBaseAdapter();
             }
             @Override
             public Adapter caseAliasedElement(AliasedElement object) {
@@ -389,6 +399,20 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
+     * @generated
+     */
+    public Adapter createPackageableElementAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement <em>Named Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -399,6 +423,20 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createNamedElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase <em>Package Base</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
+     * @generated
+     */
+    public Adapter createPackageBaseAdapter() {
         return null;
     }
 

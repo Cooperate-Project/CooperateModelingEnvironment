@@ -42,6 +42,7 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getActorTypeAccess().getAlternatives(), "rule__ActorType__Alternatives");
 					put(grammarAccess.getUseCaseDiagramAccess().getGroup(), "rule__UseCaseDiagram__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
+					put(grammarAccess.getRootPackageAccess().getGroup_1(), "rule__RootPackage__Group_1__0");
 					put(grammarAccess.getActorAccess().getGroup(), "rule__Actor__Group__0");
 					put(grammarAccess.getActorAccess().getGroup_3_1(), "rule__Actor__Group_3_1__0");
 					put(grammarAccess.getActorAccess().getGroup_4(), "rule__Actor__Group_4__0");
@@ -66,7 +67,7 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 					put(grammarAccess.getUseCaseDiagramAccess().getTitleAssignment_2(), "rule__UseCaseDiagram__TitleAssignment_2");
 					put(grammarAccess.getUseCaseDiagramAccess().getRootPackageAssignment_3(), "rule__UseCaseDiagram__RootPackageAssignment_3");
-					put(grammarAccess.getRootPackageAccess().getNameAssignment_1(), "rule__RootPackage__NameAssignment_1");
+					put(grammarAccess.getRootPackageAccess().getNameAssignment_1_1(), "rule__RootPackage__NameAssignment_1_1");
 					put(grammarAccess.getRootPackageAccess().getActorsAssignment_2(), "rule__RootPackage__ActorsAssignment_2");
 					put(grammarAccess.getRootPackageAccess().getSystemsAssignment_3(), "rule__RootPackage__SystemsAssignment_3");
 					put(grammarAccess.getRootPackageAccess().getRelationshipsAssignment_4(), "rule__RootPackage__RelationshipsAssignment_4");

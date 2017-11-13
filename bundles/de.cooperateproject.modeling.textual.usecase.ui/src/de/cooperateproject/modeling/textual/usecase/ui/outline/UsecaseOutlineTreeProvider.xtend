@@ -13,6 +13,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
 
 /**
  * Customization of the default outline structure.
@@ -35,6 +36,14 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
         createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, UMLImage.PACKAGE.image,
             getStyledString("Relationships", pkg.relationships.size), false)
     }
+    
+	protected def dispatch createNode(IOutlineNode parentNode, RootPackage element) {
+	    if (element.owningPackage === null) {
+	       createEObjectNode(parentNode, element.referencedElement)
+	    } else {
+	       createEObjectNode(parentNode, element)
+	    }
+	}
    
     dispatch def createChildren(IOutlineNode parentNode, System system) {
         createChild(parentNode, system)

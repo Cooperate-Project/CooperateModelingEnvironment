@@ -17,6 +17,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import java.util.Optional
 
 /**
  * Provides labels for Usecase EObjects.
@@ -64,6 +65,10 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
 	
     def image(Generalization element) {
         return UMLImage.GENERALIZATION.image
+    }
+    
+    def text(RootPackage element) {
+    	return Optional.ofNullable(element.name).orElseGet([element.referencedElement.name])
     }
     
     def text(Actor element) {

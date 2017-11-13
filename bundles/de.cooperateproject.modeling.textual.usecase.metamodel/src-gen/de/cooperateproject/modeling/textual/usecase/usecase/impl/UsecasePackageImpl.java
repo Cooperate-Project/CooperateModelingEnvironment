@@ -674,11 +674,9 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(behavioredClassifierEClass_T);
         g1.getETypeArguments().add(g2);
         behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getPackage());
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
+        g2 = createEGenericType(this.getRootPackage());
         g1.getETypeArguments().add(g2);
-        rootPackageEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
         g2 = createEGenericType(theUMLPackage.getActor());

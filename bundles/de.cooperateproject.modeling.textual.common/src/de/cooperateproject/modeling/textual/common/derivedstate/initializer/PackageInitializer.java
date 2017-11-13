@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.derivedstate.initializer;
+package de.cooperateproject.modeling.textual.common.derivedstate.initializer;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,30 +7,25 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Model;
 
-import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
- * Initializer for the RootPackage.
- * 
- * @author czogalik
+ * Initializer for root packages.
  */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.INITIALIZATION)
-public class RootPackageInitializer extends AtomicDerivedStateProcessorBase<Package> {
+public class PackageInitializer extends AtomicDerivedStateProcessorBase<PackageBase<PackageBase<?>>> {
 
-    /**
-     * Instantiates the initializer.
-     */
-    public RootPackageInitializer() {
-        super(Package.class);
+    public PackageInitializer() {
+        super((Class<PackageBase<PackageBase<?>>>) (Class<?>) PackageBase.class);
     }
 
     @Override
-    protected void applyTyped(Package object) {
+    protected void applyTyped(PackageBase<PackageBase<?>> object) {
         handle(object);
     }
 

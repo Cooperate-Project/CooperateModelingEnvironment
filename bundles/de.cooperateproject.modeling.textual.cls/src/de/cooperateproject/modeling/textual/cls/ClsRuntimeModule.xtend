@@ -8,6 +8,7 @@ import com.google.inject.name.Names
 import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.ClsDerivedStateElementComparator
 import de.cooperateproject.modeling.textual.cls.services.ClsLazyLinker
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter
+import de.cooperateproject.modeling.textual.common.naming.CommonQualifiedNameProvider
 import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateModuleMixin
@@ -16,12 +17,11 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.TransientStatusProviderModuleMixin
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import de.cooperateproject.modeling.textual.cls.provider.ClsQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -64,7 +64,7 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule implements DerivedStateM
     }
     
     override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-        return ClsQualifiedNameProvider
+        return CommonQualifiedNameProvider
     }
 
 }

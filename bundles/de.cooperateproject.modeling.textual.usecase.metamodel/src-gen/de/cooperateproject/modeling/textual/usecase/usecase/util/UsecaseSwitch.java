@@ -6,6 +6,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
@@ -102,6 +104,8 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
             case UsecasePackage.ROOT_PACKAGE: {
                 RootPackage rootPackage = (RootPackage)theEObject;
                 T1 result = caseRootPackage(rootPackage);
+                if (result == null) result = casePackageBase(rootPackage);
+                if (result == null) result = casePackageableElement(rootPackage);
                 if (result == null) result = caseUMLReferencingElement(rootPackage);
                 if (result == null) result = caseNamedElement(rootPackage);
                 if (result == null) result = caseElement(rootPackage);
@@ -427,6 +431,21 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Packageable Element</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Packageable Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 casePackageableElement(PackageableElement object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -438,6 +457,21 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseNamedElement(NamedElement object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Package Base</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Package Base</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public <PackageType extends PackageBase<?>> T1 casePackageBase(PackageBase<PackageType> object) {
         return null;
     }
 

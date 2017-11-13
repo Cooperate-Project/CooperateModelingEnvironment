@@ -69,9 +69,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.RootPackage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRootPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Action cRootPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final Assignment cActorsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cActorsActorParserRuleCall_2_0 = (RuleCall)cActorsAssignment_2.eContents().get(0);
 		private final Assignment cSystemsAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -80,20 +82,26 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationshipsRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
 		
 		//RootPackage:
-		//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+		//	{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=Relationship*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*
+		//{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=Relationship*
 		public Group getGroup() { return cGroup; }
 		
+		//{RootPackage}
+		public Action getRootPackageAction_0() { return cRootPackageAction_0; }
+		
+		//('rootPackage' name=FQN)?
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//'rootPackage'
-		public Keyword getRootPackageKeyword_0() { return cRootPackageKeyword_0; }
+		public Keyword getRootPackageKeyword_1_0() { return cRootPackageKeyword_1_0; }
 		
 		//name=FQN
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
 		
 		//FQN
-		public RuleCall getNameFQNParserRuleCall_1_0() { return cNameFQNParserRuleCall_1_0; }
+		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
 		
 		//actors+=Actor*
 		public Assignment getActorsAssignment_2() { return cActorsAssignment_2; }
@@ -1057,7 +1065,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+	//	{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=Relationship*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}
