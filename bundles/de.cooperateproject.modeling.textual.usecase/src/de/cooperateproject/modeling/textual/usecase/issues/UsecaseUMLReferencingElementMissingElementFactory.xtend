@@ -1,7 +1,6 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import org.eclipse.uml2.uml.Element
@@ -15,11 +14,6 @@ class UsecaseUMLReferencingElementMissingElementFactory extends UsecaseAutomated
 	}
 	
 	override protected hasIssueInternal(UMLReferencingElement<Element> element) {
-		if (element instanceof PackageBase) {
-			if (element.owningPackage === null) {
-				return false;
-			}
-		}
         return element.referencedElement === null;
 	}
 	
