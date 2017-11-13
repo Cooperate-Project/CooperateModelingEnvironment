@@ -1,8 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.cooperateproject.modeling.textual.component.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: Textual Component Diagrams UI
+Bundle-Version: 0.5.1.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.component.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.component,
