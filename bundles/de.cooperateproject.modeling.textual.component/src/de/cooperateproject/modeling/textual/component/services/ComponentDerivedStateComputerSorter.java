@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.component.cmp.Classifier;
 import de.cooperateproject.modeling.textual.component.cmp.Connector;
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
+import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter;
 
 public class ComponentDerivedStateComputerSorter implements IDerivedStateComputerSorter {
@@ -14,6 +15,12 @@ public class ComponentDerivedStateComputerSorter implements IDerivedStateCompute
 	
 	@Override
 	public int compare(EObject o1, EObject o2) {
+        if (isRoot(o1)) {
+            return -1;
+        } else if (isRoot(o2)) {
+            return 1;
+        }
+		
 		int prio1 = o1 instanceof Classifier ? 3 : 0;
 		prio1 = o1 instanceof Port? 2: prio1;
 		prio1 = o1 instanceof Attribute? 2: prio1;
@@ -29,4 +36,8 @@ public class ComponentDerivedStateComputerSorter implements IDerivedStateCompute
         return prio2 - prio1;
 	}
 
+    private static boolean isRoot(EObject element) {
+        return element instanceof RootPackage && ((RootPackage) element).getOwningPackage() == null;
+    }
+	
 }

@@ -434,7 +434,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN classifiers+=Classifier* relations+=ClassifierRelation*)
+	 *     (name=FQN? classifiers+=Classifier* relations+=ClassifierRelation*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
