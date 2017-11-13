@@ -32,7 +32,6 @@ public class TextualToGraphicalUseCaseTest extends UsecaseDirectionalTransformat
 
     @Test
     public void testNotes() throws Exception {
-    	setDebugSerializationDir(new File("D:"));
         testRegular("UseCaseDiagramNotes");
     }
 
