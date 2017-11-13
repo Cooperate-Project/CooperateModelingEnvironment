@@ -2,6 +2,8 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.remover;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.CLEANING;
 
+import java.util.Optional;
+
 import org.eclipse.uml2.uml.Feature;
 
 import de.cooperateproject.modeling.textual.cls.cls.Member;
@@ -24,8 +26,11 @@ public class MemberRemover extends AtomicDerivedStateProcessorBase<Member<Featur
 
     @Override
     protected void applyTyped(Member<Feature> object) {
-        if (object.getReferencedElement() != null) {
+        Optional<org.eclipse.uml2.uml.Feature> umlmember = Optional.ofNullable(object.getReferencedElement());
+        if (umlmember.map(member -> member.isStatic() == object.isStatic()).orElse(false)) {
             object.unsetStatic();
+        } else if (!object.isSetStatic() && undergoesAutomatedIssueResolution(object)) {
+            object.setStatic(false);
         }
     }
 
