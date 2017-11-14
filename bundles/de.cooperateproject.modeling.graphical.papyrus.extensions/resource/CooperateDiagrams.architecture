@@ -84,6 +84,32 @@
       <assistantRules xmi:id="_ySd_kJ-3Eeev3P7grPQovA" elementTypeID="org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"/>
       <assistantRules xmi:id="_zwbyYJ-3Eeev3P7grPQovA" permit="false" elementTypeID=""/>
     </representationKinds>
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_0J2MMMkdEeeBNpqZKhMZag" id="org.eclipse.papyrus.uml.diagram.component.root.package" name="Cooperate Component Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.component/icons/obj16/ComponentDiagram.gif" implementationID="PapyrusUMLComponentDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand">
+      <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf48SYEeaKZJ_pGfaSiA"/>
+      <parent xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_fa4kBHDuEeWh-MssWmCB_A"/>
+      <modelRules xmi:id="_yO2psMkeEeeBNpqZKhMZag">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules xmi:id="_7vEbsMkeEeeBNpqZKhMZag">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules xmi:id="_Bf9cQMkfEeeBNpqZKhMZag"/>
+      <paletteRules xmi:id="_YQ5dcMkfEeeBNpqZKhMZag" element="component.tool.component"/>
+      <paletteRules xmi:id="_e7Y_gMkfEeeBNpqZKhMZag" element="component.tool.interface"/>
+      <paletteRules xmi:id="_kAjigMkfEeeBNpqZKhMZag" element="component.tool.port"/>
+      <paletteRules xmi:id="_6_m4MMkfEeeBNpqZKhMZag" element="component.tool.comment"/>
+      <paletteRules xmi:id="__GNhMMkfEeeBNpqZKhMZag" element="component.tool.property"/>
+      <paletteRules xmi:id="_BGZQQMkgEeeBNpqZKhMZag" element="component.tool.operation"/>
+      <paletteRules xmi:id="_Gd3rQMkgEeeBNpqZKhMZag" element="component.tool.connector"/>
+      <paletteRules xmi:id="_KlUBwMkgEeeBNpqZKhMZag" element="component.tool.generalization"/>
+      <paletteRules xmi:id="_M4kd0MkgEeeBNpqZKhMZag" element="component.tool.manifestation"/>
+      <paletteRules xmi:id="_S8rVUMkgEeeBNpqZKhMZag" element="component.tool.usage"/>
+      <paletteRules xmi:id="_VgjnUMkgEeeBNpqZKhMZag" element="component.tool.substitution"/>
+      <paletteRules xmi:id="_YiRE0MkgEeeBNpqZKhMZag" element="component.tool.interfaceRealization"/>
+      <paletteRules xmi:id="_d16IsMkgEeeBNpqZKhMZag" element="component.tool.abstraction"/>
+      <paletteRules xmi:id="_jKV2wMkgEeeBNpqZKhMZag" element="component.tool.dependency"/>
+      <paletteRules xmi:id="_iU0ZcMkfEeeBNpqZKhMZag" permit="false" element="component.tool.*"/>
+    </representationKinds>
     <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>
 </architecture:ArchitectureDomain>
