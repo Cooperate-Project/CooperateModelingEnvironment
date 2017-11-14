@@ -28,7 +28,7 @@ public class SummaryViewBuilder {
      */
     public List<SummaryItem> buildSummaryView(Comparison comparison) {
         Comparison comparisonResult = comparison;
-        EList<Diff> resultList = comparisonResult.getDifferences();
+        EList<Diff> resultList = comparisonResult.getDifferences();        
         List<SummaryItem> sumList = createSummaryItemList(comparisonResult, resultList);
         return PostProcessorManager.postProcessSummaryList(sumList);
     }
@@ -78,7 +78,8 @@ public class SummaryViewBuilder {
 			oldValue = diff.getValue();
 			newValue = diff.getValue();
 		}
-		return new SummaryItem(diff, oldValue, newValue, diff.getKind(), newChangedObject, diff.getReference());
+		return new SummaryItem(diff, oldValue, newValue, diff.getKind(),
+				Optional.ofNullable(newChangedObject).orElse(oldChangedObject), diff.getReference());
 	}
 
 }

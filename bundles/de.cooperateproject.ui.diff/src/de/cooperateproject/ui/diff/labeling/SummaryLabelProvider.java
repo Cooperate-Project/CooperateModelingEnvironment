@@ -51,7 +51,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	private static String getKindText(Collection<LabelHandler> labelHandlers, SummaryItem diffItem) {
 		EStructuralFeature changedFeature = diffItem.getChangedFeature();
 		if (changedFeature instanceof EAttribute) {
-			return String.format("set %s", getClassLabel(labelHandlers, (EAttribute)changedFeature));
+			return String.format("set %s", getClassLabel(labelHandlers, diffItem.getChangedObject(), (EAttribute)changedFeature));
 		} else if (changedFeature instanceof EReference) {
 			boolean isContainment = ((EReference) changedFeature).isContainment();
 			DifferenceKind changeKind = diffItem.getDifferenceKind();
@@ -118,8 +118,8 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 				.orElseGet(() -> object == null ? null : object.toString()));
 	}
 	
-	private static String getClassLabel(Collection<LabelHandler> labelHandlers, EAttribute object) {
-		return execute(object, o -> labelHandlers.stream().map(lh -> lh.getClassText(o)).filter(Objects::nonNull)
+	private static String getClassLabel(Collection<LabelHandler> labelHandlers, EObject context, EAttribute object) {
+		return execute(object, o -> labelHandlers.stream().map(lh -> lh.getClassText(o, context)).filter(Objects::nonNull)
 				.findFirst().orElseGet(() -> object == null ? null : object.getName()));
 	}
 

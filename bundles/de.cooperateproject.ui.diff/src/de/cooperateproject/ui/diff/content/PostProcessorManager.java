@@ -65,9 +65,10 @@ public final class PostProcessorManager {
 			return summaryList;
 		}
 
-		List<SummaryItem> result = filterTransitivelyContainedChanges(summaryList);
-		return determineRelevantPackageName(summaryList).map(PostProcessorManager::findPostProcessor)
-				.map(processor -> processor.postProcessSummaryViewBuilder(result)).orElse(result);
+		List<SummaryItem> result = determineRelevantPackageName(summaryList).map(PostProcessorManager::findPostProcessor)
+                .map(processor -> processor.postProcessSummaryViewBuilder(summaryList)).orElse(summaryList);
+		
+		return filterTransitivelyContainedChanges(result);
 	}
 
 	private static Optional<String> determineRelevantPackageName(Collection<SummaryItem> items) {

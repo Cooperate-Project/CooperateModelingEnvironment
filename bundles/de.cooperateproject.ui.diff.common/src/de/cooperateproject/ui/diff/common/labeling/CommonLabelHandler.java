@@ -25,7 +25,7 @@ public class CommonLabelHandler implements LabelHandler {
     }
 
     @Override
-    public String getClassText(EObject item) {
+    public String getClassText(EObject item, Object context) {
         if (item == null) {
             return null;
         }

@@ -1,12 +1,15 @@
 package de.cooperateproject.ui.diff.cls.postprocessing;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
@@ -50,7 +53,14 @@ public class ClsPostProcessor implements IPostProcessor {
 
     @Override
     public List<SummaryItem> postProcessSummaryViewBuilder(List<SummaryItem> summaryList) {	
-    	return summaryList;
+    	return summaryList.stream().filter(item -> !filterSummaryItem(item)).collect(Collectors.toList());
     }
+
+	private static boolean filterSummaryItem(SummaryItem item) {
+		return Arrays.asList(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES,
+				ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
+				ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAVIGABILITIES,
+				ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES).contains(item.getChangedFeature());
+	}
 
 }

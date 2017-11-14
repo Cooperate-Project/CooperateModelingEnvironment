@@ -147,8 +147,15 @@ public class DiffTreeBuilder {
 
     private void addAddChangeMoveChange(SummaryItem item, DifferenceKind differenceKind) {
 		if (differenceKind == DifferenceKind.ADD) {
-			Optional.ofNullable(item.getNewValue()).filter(tree::containsKey).map(tree::get)
-					.ifPresent(i -> i.addAssociatedDiff(item));
+			Optional<EObject> newValueEObject = Optional.ofNullable(item.getNewValue())
+					.filter(EObject.class::isInstance).map(EObject.class::cast);
+			if (newValueEObject.isPresent()) {
+				associateWithNextPossibleParent(newValueEObject.get(), item);
+			} else {
+				Optional.ofNullable(item.getNewValue()).filter(tree::containsKey).map(tree::get)
+						.ifPresent(i -> i.addAssociatedDiff(item));
+
+			}
 		}
 		
 		if (differenceKind == DifferenceKind.CHANGE)  {

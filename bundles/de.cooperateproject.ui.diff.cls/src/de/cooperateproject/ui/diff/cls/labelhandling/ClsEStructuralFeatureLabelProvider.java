@@ -8,7 +8,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
 /**
@@ -51,20 +53,31 @@ public class ClsEStructuralFeatureLabelProvider implements LabelHandler {
 	}
 
 	@Override
-	public String getText(EObject item) {
-		return null;
-	}
+	public String getClassText(EObject item, Object context) {
+		Optional<EStructuralFeature> feature = Optional.of(item).filter(EStructuralFeature.class::isInstance)
+				.map(EStructuralFeature.class::cast);
+		if (!feature.isPresent()) {
+			return null;
+		}
 
-	@Override
-	public String getClassText(EObject item) {
-		return Optional.of(item).filter(EStructuralFeature.class::isInstance).map(EStructuralFeature.class::cast)
-				.map(LABELS::get).orElse(null);
+		Optional<String> result = feature.filter(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME::equals)
+				.filter(f -> context instanceof AssociationMemberEnd).map(f -> "roleName");
+		if (result.isPresent()) {
+			return result.get();
+		}
+
+		return feature.map(LABELS::get).orElse(null);
 	}
 
 	private static Map<EStructuralFeature, String> createLabelMap() {
 		Map<EStructuralFeature, String> result = new HashMap<>();
 		result.put(ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND, "aggregationKind");
 		return result;
+	}
+
+	@Override
+	public String getText(EObject item) {
+		return null;
 	}
 
 }

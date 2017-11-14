@@ -24,12 +24,12 @@ public class ClsLabelHandler implements LabelHandler {
         return labelSwitch.doSwitch(item);
     }
 
-    @Override
-    public String getClassText(EObject item) {
+	@Override
+	public String getClassText(EObject item, Object context) {
         if (item == null) {
             return null;
         }
         return classTextSwitch.doSwitch(item);
-    }
+	}
 
 }
