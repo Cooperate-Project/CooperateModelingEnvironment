@@ -38,7 +38,8 @@ public class CooperateQualifiedNameProvider extends DefaultDeclarativeQualifiedN
      * @return The qualified name.
      */
     protected QualifiedName qualifiedName(NamedElement element) {
-        return QualifiedName.create(element.getQualifiedName().split(element.separator()));
+        return java.util.Optional.ofNullable(element.getQualifiedName()).map(s -> s.split(element.separator()))
+                .map(QualifiedName::create).orElse(null);
     }
 
     /**
