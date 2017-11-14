@@ -1,20 +1,24 @@
 package de.cooperateproject.ui.diff.cls.labelhandling;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.uml2.uml.PrimitiveType;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
-import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
-import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
-import de.cooperateproject.modeling.textual.cls.cls.Class;
-import de.cooperateproject.modeling.textual.cls.cls.Package;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
 /**
  * Switch to invoke description method for each cls model class.
@@ -24,130 +28,114 @@ import de.cooperateproject.modeling.textual.cls.cls.Package;
  */
 public class ClsLabelSwitch extends ClsSwitch<String> {
 
-    @Override
-    public String caseClassDiagram(ClassDiagram object) {
-        return object.getTitle();
-    }
+	private static final Switch<String> TYPE_LABEL_SWITCH = new ClsClassTextSwitch();
+	private static final LabelHandler ESTRUCUTRAL_FEATURE_LABEL_SWITCH = new ClsEStructuralFeatureLabelProvider();
 
-    @Override
-    public String casePackage(Package object) {
-        return "package" + " " + getPackageName(object);
-    }
-    
-    private static String getPackageName(Package object) {
-        if (object.getOwningPackage() == null) {
-            return object.getReferencedElement().getName();
-        } 
-        return object.getName();
-    }
+	@Override
+	public String caseClassDiagram(ClassDiagram object) {
+		return object.getTitle();
+	}
 
-    @Override
-    public String caseClass(Class object) {
-        String isAbstract = "";
-        if (object.isAbstract()) {
-            isAbstract = "abstract ";
-        }
+	@Override
+	public String caseNamedElement(NamedElement object) {
+		return String.format("%s %s", TYPE_LABEL_SWITCH.doSwitch(object), object.getName());
+	}
 
-        String visibText = handleNonEObject(object.getVisibility());
+	@Override
+	public String casePackage(Package object) {
+		return String.format("%s %s", TYPE_LABEL_SWITCH.doSwitch(object), getPackageName(object));
+	}
 
-        return visibText + isAbstract + "class " + object.getName();
-    }
+	private static String getPackageName(Package object) {
+		if (object.getOwningPackage() == null) {
+			return object.getReferencedElement().getName();
+		}
+		return object.getName();
+	}
 
-    @Override
-    public String caseInterface(Interface object) {
-        String alias = "";
-        if (object.getAlias() != null) {
-            alias = " as " + object.getAlias();
-        }
+	@Override
+	public String caseMethod(Method object) {
+		String type = ": ";
+		if (object.getType() != null) {
+			type = type + object.getType().getName();
+		} else {
+			type = type + "void";
+		}
+		EList<Parameter> params = object.getParameters();
+		String isAbstract = "";
+		if (object.isAbstract()) {
+			isAbstract = "abstract ";
+		}
 
-        String visibText = handleNonEObject(object.getVisibility());
+		String visibText = handleNonEObject(object.getVisibility());
 
-        return visibText + "interface" + " " + object.getName() + alias;
-    }
+		StringBuilder paramText = new StringBuilder();
+		for (Parameter param : params) {
+			paramText.append(caseParameter(param));
+			if (params.indexOf(param) < params.size() - 1) {
+				paramText.append(", ");
+			}
+		}
 
-    @Override
-    public String caseAttribute(Attribute object) {
-        String type = "";
-        type = ": " + object.getType().getName();
+		return visibText + isAbstract + object.getName() + "(" + paramText + ")" + type;
+	}
 
-        String visibText = handleNonEObject(object.getVisibility());
+	@Override
+	public String caseGeneralization(Generalization object) {
+		String left = object.getLeft().getName();
+		String right = object.getRight().getName();
+		return left + " isA " + right;
+	}
 
-        return visibText + object.getName() + type;
-    }
+	@Override
+	public String caseXtextAssociation(XtextAssociation object) {
+		return ESTRUCUTRAL_FEATURE_LABEL_SWITCH.getText(object.getTwoSideAggregationKind()) + " "
+				+ Optional.ofNullable(object.getName())
+						.orElseGet(() -> object.getMemberEndTypes().stream()
+								.map(XtextAssociationMemberEndReferencedType::getType).map(NamedElement::getName)
+								.collect(Collectors.joining(", ", "(", ")")));
+	}
 
-    @Override
-    public String caseMethod(Method object) {
-        String type = ": ";
-        if (object.getType() != null) {
-            type = type + object.getType().getName();
-        } else {
-            type = type + "void";
-        }
-        EList<Parameter> params = object.getParameters();
-        String isAbstract = "";
-        if (object.isAbstract()) {
-            isAbstract = "abstract ";
-        }
+	@Override
+	public String caseXtextAssociationMemberEndReferencedType(XtextAssociationMemberEndReferencedType object) {
+		Optional<XtextAssociation> association = Optional.ofNullable(object.eContainer())
+				.filter(XtextAssociation.class::isInstance).map(XtextAssociation.class::cast);
+		Optional<Integer> index = association.map(XtextAssociation::getMemberEndTypes)
+				.map(types -> types.indexOf(object));
+		if (index.isPresent()) {
+			return "memberEnd " + association.filter(asc -> asc.getMemberEndNames().size() > index.get())
+					.map(asc -> asc.getMemberEndNames().get(index.get()))
+					.orElse(index.map(i -> i + 1).get().toString());
+		}
 
-        String visibText = handleNonEObject(object.getVisibility());
+		return "memberEnd";
+	}
 
-        StringBuilder paramText = new StringBuilder();
-        for (Parameter param : params) {
-            paramText.append(caseParameter(param));
-            if (params.indexOf(param) < params.size() - 1) {
-                paramText.append(", ");
-            }
-        }
+	@Override
+	public String caseAssociationMemberEnd(AssociationMemberEnd object) {
+		return object.getType().getName();
+	}
 
-        return visibText + isAbstract + object.getName() + "(" + paramText + ")" + type;
-    }
+	@Override
+	public String caseImplementation(Implementation object) {
+		String left = object.getLeft().getName();
+		String right = object.getRight().getName();
+		return left + " impl " + right;
+	}
 
-    @Override
-    public String caseParameter(Parameter object) {
-        String type = ": " + object.getType().getName();
+	private static String handleNonEObject(Object object) {
+		String ret = "";
+		if (object instanceof Integer) {
+			if ((Integer) object == -1) {
+				ret = "*";
+			} else {
+				ret = ((Integer) object).toString();
+			}
 
-        String visibText = handleNonEObject(object.getVisibility());
+		} else if (object instanceof PrimitiveType) {
+			ret = ((PrimitiveType) object).getName();
+		}
 
-        return visibText + object.getName() + type;
-    }
-
-    @Override
-    public String caseGeneralization(Generalization object) {
-        String left = object.getLeft().getName();
-        String right = object.getRight().getName();
-        return left + " isA " + right;
-    }
-
-    @Override
-    public String caseXtextAssociation(XtextAssociation object) {
-        return "asc " + object.getName();
-    }
-
-    @Override
-    public String caseAssociationMemberEnd(AssociationMemberEnd object) {
-        return object.getType().getName();
-    }
-
-    @Override
-    public String caseImplementation(Implementation object) {
-        String left = object.getLeft().getName();
-        String right = object.getRight().getName();
-        return left + " impl " + right;
-    }
-
-    private static String handleNonEObject(Object object) {
-        String ret = "";
-        if (object instanceof Integer) {
-            if ((Integer) object == -1) {
-                ret = "*";
-            } else {
-                ret = ((Integer) object).toString();
-            }
-
-        } else if (object instanceof PrimitiveType) {
-            ret = ((PrimitiveType) object).getName();
-        }
-
-        return ret;
-    }
+		return ret;
+	}
 }

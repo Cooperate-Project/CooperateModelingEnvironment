@@ -1,5 +1,6 @@
 package de.cooperateproject.ui.diff.cls.postprocessing;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -28,23 +29,28 @@ public class ClsPostProcessor implements IPostProcessor {
     }
 
     private static void removeUnnecessaryChildren(Map<EObject, DiffTreeItem> tree) {
-        for (Entry<EObject, DiffTreeItem> obj : tree.entrySet()) {
-            if (!(obj.getValue().getObject() instanceof EObject)) {
+    	for (Iterator<Entry<EObject, DiffTreeItem>> iter = tree.entrySet().iterator(); iter.hasNext(); ) {
+    		Entry<EObject, DiffTreeItem> entry = iter.next();
+    		
+    		if (!(entry.getValue().getObject() instanceof EObject)) {
                 continue;
             }
-            EObject eObject = (EObject) obj.getValue().getObject();
+            EObject eObject = (EObject) entry.getValue().getObject();
             if (eObject instanceof XtextAssociationMemberEndReferencedType || eObject instanceof Cardinality) {
-                Object parent = tree.get(eObject.eContainer()).getObject();
+            	DiffTreeItem containerItem = tree.get(eObject.eContainer());
+                Object parent = containerItem.getObject();
                 if (parent instanceof XtextAssociation) {
-                    tree.get(eObject.eContainer()).removeChild(tree.get(eObject));
+                	DiffTreeItem toRemove = tree.get(eObject);
+					containerItem.removeChild(toRemove);
+					iter.remove();
                 }
             }
-        }
+    	}
     }
 
     @Override
-    public List<SummaryItem> postProcessSummaryViewBuilder(List<SummaryItem> summaryList) {
-        return summaryList;
+    public List<SummaryItem> postProcessSummaryViewBuilder(List<SummaryItem> summaryList) {	
+    	return summaryList;
     }
 
 }
