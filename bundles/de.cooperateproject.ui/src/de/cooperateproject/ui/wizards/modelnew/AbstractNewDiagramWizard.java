@@ -36,8 +36,8 @@ public class AbstractNewDiagramWizard extends Wizard implements INewWizard {
 
     @Override
     public boolean performFinish() {
-        IProject project = selectedNames.getSelectedModelName().getProject();
-        String modelName = selectedNames.getSelectedModelName().getModelName();
+        IProject project = selectedNames.getSelectedProjectName().getProject();
+        String modelName = selectedNames.getSelectedModelName();
         String diagramName = selectedNames.getSelectedDiagramName();
 
         IStatus status = ModelCreator.createDiagram(project, modelName, diagramName, diagramType);
