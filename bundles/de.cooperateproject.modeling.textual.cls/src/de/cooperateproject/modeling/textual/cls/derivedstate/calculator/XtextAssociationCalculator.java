@@ -51,7 +51,6 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
         List<Classifier<?>> types = object.collectMemberEndTypes();
         List<String> names = object.getMemberEndNames();
         List<Cardinality> cardinalities = object.getMemberEndCardinalities();
-        List<Boolean> navigabilities = object.getMemberEndNavigabilities();
 
         if (object.getMemberEnds().size() > types.size()) {
             Collection<AssociationMemberEnd> memberEndToBeDeleted = new ArrayList<>(
@@ -83,9 +82,7 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
             if (names.size() > i) {
                 memberEnd.setName(names.get(i));
             }
-            if (navigabilities.size() > i) {
-                memberEnd.setNavigable(navigabilities.get(i));
-            }
+            memberEnd.setNavigable(false);
         }
         if (types.size() == 2) {
             AssociationMemberEnd firstMemberEnd = object.getMemberEnds().get(0);
