@@ -7,6 +7,7 @@
 <template id="ucinclude" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Include" deleted="false" description="inserts a new include relation between two use-cases" enabled="true" name="Insert include">inc (${includingCase:CrossReference(Include.includingCase)}, ${addition:CrossReference(Include.addition)})&#13;
 </template>
 <template id="uciac" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Association" deleted="false" description="inserts a new interaction between an actor and a use-case" enabled="true" name="Insert new interaction">iac (${actor:CrossReference(Association.actor)}, ${usecase:CrossReference(Association.usecase)})</template>
+<template id="ucisa" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.Generalization" deleted="false" description="inserts a new generalization between two actors" enabled="true" name="Insert new generalization">isa (${actor:CrossReference(Association.actor)}, ${actor2:CrossReference(Association.actor)})</template>
 <template id="ucsystem" autoinsert="true" context="de.cooperateproject.modeling.textual.usecase.Usecase.System" deleted="false" description="inserts a new system" enabled="true" name="Insert system">sys ${systemName} {&#13;
 	&#13;
 }</template>
