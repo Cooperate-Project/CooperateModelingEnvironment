@@ -11,6 +11,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import java.util.Collection;
@@ -38,6 +39,7 @@ import org.eclipse.uml2.uml.Classifier;
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getUsecases <em>Usecases</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getRelationships <em>Relationships</em>}</li>
  * </ul>
  *
  * @generated
@@ -173,6 +175,16 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
      * @generated
      */
     @SuppressWarnings("unchecked")
+    public EList<UseCaseRelationship> getRelationships() {
+        return (EList<UseCaseRelationship>)eDynamicGet(UsecasePackage.SYSTEM__RELATIONSHIPS, UsecasePackage.Literals.SYSTEM__RELATIONSHIPS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -202,6 +214,8 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
                 return ((InternalEList<?>)getUsecases()).basicRemove(otherEnd, msgs);
             case UsecasePackage.SYSTEM__PACKAGE:
                 return basicSetPackage(null, msgs);
+            case UsecasePackage.SYSTEM__RELATIONSHIPS:
+                return ((InternalEList<?>)getRelationships()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -236,6 +250,8 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
                 return getUsecases();
             case UsecasePackage.SYSTEM__PACKAGE:
                 return getPackage();
+            case UsecasePackage.SYSTEM__RELATIONSHIPS:
+                return getRelationships();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -263,6 +279,10 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
             case UsecasePackage.SYSTEM__PACKAGE:
                 setPackage((RootPackage)newValue);
                 return;
+            case UsecasePackage.SYSTEM__RELATIONSHIPS:
+                getRelationships().clear();
+                getRelationships().addAll((Collection<? extends UseCaseRelationship>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -287,6 +307,9 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
             case UsecasePackage.SYSTEM__PACKAGE:
                 setPackage((RootPackage)null);
                 return;
+            case UsecasePackage.SYSTEM__RELATIONSHIPS:
+                getRelationships().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -307,6 +330,8 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
                 return !getUsecases().isEmpty();
             case UsecasePackage.SYSTEM__PACKAGE:
                 return getPackage() != null;
+            case UsecasePackage.SYSTEM__RELATIONSHIPS:
+                return !getRelationships().isEmpty();
         }
         return super.eIsSet(featureID);
     }

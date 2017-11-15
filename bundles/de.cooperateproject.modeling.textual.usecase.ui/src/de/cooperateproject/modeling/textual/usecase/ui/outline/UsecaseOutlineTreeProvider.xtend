@@ -50,6 +50,8 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
         for (usecase : system.usecases) {
             createEObjectNode(parentNode, usecase)
         }
+        createFeatureNode(parentNode, system, UsecasePackage.Literals.SYSTEM__RELATIONSHIPS, UMLImage.COMPONENT.image,
+            getStyledString("Relationships", system.relationships.size), false)
     }
     
     dispatch def createChildren(IOutlineNode parentNode, Generalization generalization) {

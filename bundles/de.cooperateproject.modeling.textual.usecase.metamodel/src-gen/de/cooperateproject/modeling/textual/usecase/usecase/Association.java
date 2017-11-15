@@ -24,7 +24,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, Relationship {
+public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, UseCaseRelationship, ActorUsecaseRelationship {
     /**
      * Returns the value of the '<em><b>Actor</b></em>' reference.
      * <!-- begin-user-doc -->

@@ -21,7 +21,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Include extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Include> {
+public interface Include extends UseCaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Include> {
     /**
      * Returns the value of the '<em><b>Addition</b></em>' reference.
      * <!-- begin-user-doc -->

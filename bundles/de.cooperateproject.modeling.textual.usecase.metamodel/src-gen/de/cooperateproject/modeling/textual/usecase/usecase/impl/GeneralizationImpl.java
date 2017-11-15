@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl;
 
+import de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
@@ -249,6 +250,11 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == ActorUsecaseRelationship.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
@@ -265,6 +271,11 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == ActorUsecaseRelationship.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT;
@@ -281,6 +292,11 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == ActorUsecaseRelationship.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseOperationID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return UsecasePackage.GENERALIZATION___GET_UML_PARENT_NAMESPACE;

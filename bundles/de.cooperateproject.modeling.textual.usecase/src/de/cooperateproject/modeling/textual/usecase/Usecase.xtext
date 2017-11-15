@@ -18,8 +18,18 @@ RootPackage:
 	('rootPackage' name = FQN)?
 	actors += Actor*
 	systems += System*
-	relationships += Relationship*
+	relationships += ActorUsecaseRelationship*
 ;
+
+UseCaseRelationship:
+	Generalization | Extend | Include
+;
+
+ActorUsecaseRelationship:
+	Generalization | Association
+;
+
+
 
 Actor:
 	visibility=Visibility? (abstract?='abstract')? 'act' (name = ID | alias = ID 'as' name = STRING) ('role' '['type=ActorType']')? comments+=Comment? 
@@ -27,8 +37,14 @@ Actor:
 
 System:
 	'sys' name = FQN 
-		((comments+=Comment?) |
-		('{' comments+=Comment? usecases += UseCase* '}'))
+		(
+			(comments+=Comment?) |
+			('{'
+				comments += Comment?
+				usecases += UseCase*
+				relationships += UseCaseRelationship*
+			'}')
+		)
 ;
 
 UseCase:

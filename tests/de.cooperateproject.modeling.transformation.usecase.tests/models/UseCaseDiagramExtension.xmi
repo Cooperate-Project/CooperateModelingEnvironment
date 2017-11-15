@@ -22,10 +22,10 @@
 				<referencedElement xsi:type="uml:UseCase"
 					href="UseCaseDiagramExtension.uml#_oCHPALPMEeeyacw31IseIA" />
 			</usecases>
+			<relationships xsi:type="usecase:Extend">
+				<referencedElement xsi:type="uml:Extend"
+					href="UseCaseDiagramExtension.uml#_tngKMLPMEeeyacw31IseIA" />
+			</relationships>
 		</systems>
-		<relationships xsi:type="usecase:Extend">
-			<referencedElement xsi:type="uml:Extend"
-				href="UseCaseDiagramExtension.uml#_tngKMLPMEeeyacw31IseIA" />
-		</relationships>
 	</rootPackage>
 </usecase:UseCaseDiagram>

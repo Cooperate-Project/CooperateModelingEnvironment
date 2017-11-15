@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.Classifier;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.System#getUsecases <em>Usecases</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.System#getPackage <em>Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.System#getRelationships <em>Relationships</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getSystem()
@@ -73,5 +74,21 @@ public interface System extends UMLReferencingElement<Classifier>, NamedElement,
      * @generated
      */
     void setPackage(RootPackage value);
+
+    /**
+     * Returns the value of the '<em><b>Relationships</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Relationships</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Relationships</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getSystem_Relationships()
+     * @model containment="true"
+     * @generated
+     */
+    EList<UseCaseRelationship> getRelationships();
 
 } // System

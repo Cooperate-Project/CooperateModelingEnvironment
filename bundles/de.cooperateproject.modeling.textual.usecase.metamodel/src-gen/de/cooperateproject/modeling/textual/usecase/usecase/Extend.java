@@ -23,7 +23,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Extend> {
+public interface Extend extends UseCaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Extend> {
     /**
      * Returns the value of the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->

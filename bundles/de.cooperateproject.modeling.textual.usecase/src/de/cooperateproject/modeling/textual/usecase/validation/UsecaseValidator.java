@@ -6,9 +6,12 @@ package de.cooperateproject.modeling.textual.usecase.validation;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 
@@ -20,6 +23,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
+import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.System;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
@@ -78,6 +82,40 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
                 .forEach(e -> error("A condition is required if more than one extension exists for an extension point.",
                         e, UsecasePackage.Literals.EXTEND__CONDITION, EXTEND_AMBIGUOUS, new String[0]));
 
+    }
+
+    @Check
+    private void checkNoGeneralizationBetweenActorsAndUseCases(Generalization generalization) {
+        Optional<EClass> generalClass = Optional.ofNullable(generalization.getGeneral()).map(EObject::eClass);
+        Optional<EClass> specificClass = Optional.ofNullable(generalization.getSpecific()).map(EObject::eClass);
+        if (generalClass.isPresent() && specificClass.isPresent() && !generalClass.equals(specificClass)) {
+            error("Generalizations have to be defined between same types.", generalization,
+                    UsecasePackage.Literals.GENERALIZATION__SPECIFIC);
+        }
+    }
+
+    @Check
+    private void checkNoGeneralizationBetweenActorsInsideSystem(Generalization generalization) {
+        if (!(generalization.eContainer() instanceof System)) {
+            return;
+        }
+        if (Optional.ofNullable(generalization).map(Generalization::getGeneral).map(Actor.class::isInstance)
+                .orElse(false)) {
+            error("Generalizations between actors have to be located outside of the system.", generalization,
+                    UsecasePackage.Literals.GENERALIZATION__SPECIFIC);
+        }
+    }
+
+    @Check
+    private void checkNoGeneralizationBetweenUsecasesOutsideOfSystem(Generalization generalization) {
+        if (!(generalization.eContainer() instanceof RootPackage)) {
+            return;
+        }
+        if (Optional.ofNullable(generalization).map(Generalization::getGeneral).map(UseCase.class::isInstance)
+                .orElse(false)) {
+            error("Generalizations between usecases have to be located inside the system.", generalization,
+                    UsecasePackage.Literals.GENERALIZATION__SPECIFIC);
+        }
     }
 
     private void compareNamedElements(List<? extends NamedElement> elements, NamedElement comparableElement,

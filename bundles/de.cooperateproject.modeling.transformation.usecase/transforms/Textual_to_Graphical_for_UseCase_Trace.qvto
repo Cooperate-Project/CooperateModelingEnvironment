@@ -113,7 +113,14 @@ when {self.mappingOperation.name = "relationshipToEdge"}
     var edge := self.getResult().modelElement;
     var relationship := self.getSelf().modelElement.oclAsType(usecase::Relationship);
     
-    result += new TraceRecord("edgeToRelationship", "Edge", edge, "Relationship", relationship.eobject());
+    var isActorUseCaseRelationship := relationship.oclIsKindOf(usecase::ActorUsecaseRelationship) and (
+    		not relationship.oclIsKindOf(usecase::Generalization) or
+    		edge.oclAsType(notation::Edge).element.oclAsType(uml::Generalization).general.oclIsKindOf(uml::Actor));
+    
+    var mappingName = if isActorUseCaseRelationship then "edgeToActorUsecaseRelationship" else "edgeToUsecaseRelationship" endif;
+	var typeName = if isActorUseCaseRelationship then "ActorUsecaseRelationship" else "UseCaseRelationship" endif;
+
+    result += new TraceRecord(mappingName, "Edge", edge, typeName, relationship.eobject());
 }
 
 mapping trace::TraceRecord::traceRecordGeneralization() : List(trace::TraceRecord)
