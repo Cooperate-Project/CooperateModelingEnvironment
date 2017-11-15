@@ -108,7 +108,11 @@
       <paletteRules xmi:id="_YiRE0MkgEeeBNpqZKhMZag" element="component.tool.interfaceRealization"/>
       <paletteRules xmi:id="_d16IsMkgEeeBNpqZKhMZag" element="component.tool.abstraction"/>
       <paletteRules xmi:id="_jKV2wMkgEeeBNpqZKhMZag" element="component.tool.dependency"/>
+      <paletteRules xmi:id="_FF3RcMobEee7xY_zpd67gg" element="component.tool.link"/>
       <paletteRules xmi:id="_iU0ZcMkfEeeBNpqZKhMZag" permit="false" element="component.tool.*"/>
+      <assistantRules xmi:id="_ysW1cMoYEee7xY_zpd67gg" elementTypeID="org.eclipse.papyrus.umldi.Operation_InterfaceOperationLabel"/>
+      <assistantRules xmi:id="_go4McMoZEee7xY_zpd67gg" elementTypeID="org.eclipse.papyrus.umldi.Property_InterfaceAttributeLabel"/>
+      <assistantRules xmi:id="_Sw1ekMoZEee7xY_zpd67gg" permit="false" elementTypeID="*"/>
     </representationKinds>
     <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>
