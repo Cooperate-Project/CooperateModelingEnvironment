@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Modeling Commons
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.common;singleton:=true
-Bundle-Version: 0.6.0
+Bundle-Version: 0.6.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
  org.apache.commons.lang3;bundle-version="3.1.0",
@@ -17,7 +17,7 @@ Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro,
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.6.0"
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.6.1"
 Export-Package: de.cooperateproject.modeling.textual.common,
  de.cooperateproject.modeling.textual.common.conventions,
  de.cooperateproject.modeling.textual.common.derivedstate.calculator,

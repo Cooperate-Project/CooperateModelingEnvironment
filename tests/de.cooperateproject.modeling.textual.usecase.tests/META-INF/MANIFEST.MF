@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Use Case Diagrams Tests
-Bundle-Version: 0.6.0
+Bundle-Version: 0.6.1.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.usecase,
@@ -13,7 +13,7 @@ Require-Bundle: de.cooperateproject.modeling.textual.usecase,
  org.eclipse.xtext.xbase.testing,
  org.eclipse.uml2.uml.resources;bundle-version="5.2.0",
  org.apache.commons.io;bundle-version="2.2.0",
- de.cooperateproject.modeling.textual.common;bundle-version="0.6.0",
+ de.cooperateproject.modeling.textual.common;bundle-version="0.6.1",
  org.reflections;bundle-version="0.9.10",
  javassist;bundle-version="3.19.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
