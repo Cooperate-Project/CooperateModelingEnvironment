@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.derivedstate.utils.TypeFeatureFinderSwitch;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -34,7 +33,7 @@ public class PropertyInitializer extends AtomicDerivedStateProcessorBase<Propert
 
     @Override
     protected void applyTyped(Property<NamedElement> object) {
-        if (!object.eIsSet(ClsPackage.eINSTANCE.getProperty_Type())) {
+        if (!object.isSetType()) {
             Optional<EReference> feature = TypeFeatureFinderSwitch.doSwitch(object.getReferencedElement());
             feature.map(f -> object.getReferencedElement().eGet(f, true)).filter(Classifier.class::isInstance)
                     .map(Classifier.class::cast).ifPresent(object::setType);
