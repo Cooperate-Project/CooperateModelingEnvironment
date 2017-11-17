@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate Focus Transfer Papyrus
 Bundle-SymbolicName: de.cooperateproject.ui.focus.papyrus;singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.6.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: de.cooperateproject.ui.focus;bundle-version="0.5.1",
+Require-Bundle: de.cooperateproject.ui.focus;bundle-version="0.6.0",
  de.cooperateproject.modeling.common,
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
