@@ -46,6 +46,24 @@
 				<referencedElement xsi:type="uml:UseCase"
 					href="UseCaseDiagram.uml#_iSQBAPpzEeaBXuZho-Bj0w" />
 			</usecases>
+			<relationships xsi:type="usecase:Generalization">
+				<referencedElement xsi:type="uml:Generalization"
+					href="UseCaseDiagram.uml#_18hMMPpzEeaBXuZho-Bj0w" />
+			</relationships>					
+					
+			<relationships xsi:type="usecase:Include">
+				<referencedElement xsi:type="uml:Include"
+					href="UseCaseDiagram.uml#_e0zpwPpzEeaBXuZho-Bj0w" />
+			</relationships>
+
+			<relationships xsi:type="usecase:Extend">
+				<referencedElement xsi:type="uml:Extend"
+					href="UseCaseDiagram.uml#_qddu8PpzEeaBXuZho-Bj0w" />
+			</relationships>
+			<relationships xsi:type="usecase:Extend">
+				<referencedElement xsi:type="uml:Extend"
+					href="UseCaseDiagram.uml#_q_jIUPpzEeaBXuZho-Bj0w" />
+			</relationships>
 		</systems>
 		<relationships xsi:type="usecase:Generalization">
 			<referencedElement xsi:type="uml:Generalization"
@@ -55,25 +73,9 @@
 			<referencedElement xsi:type="uml:Association"
 				href="UseCaseDiagram.uml#_wkafEPpzEeaBXuZho-Bj0w" />
 		</relationships>
-		<relationships xsi:type="usecase:Generalization">
-			<referencedElement xsi:type="uml:Generalization"
-				href="UseCaseDiagram.uml#_18hMMPpzEeaBXuZho-Bj0w" />
-		</relationships>
-		<relationships xsi:type="usecase:Include">
-			<referencedElement xsi:type="uml:Include"
-				href="UseCaseDiagram.uml#_e0zpwPpzEeaBXuZho-Bj0w" />
-		</relationships>
 		<relationships xsi:type="usecase:Association">
 			<referencedElement xsi:type="uml:Association"
 				href="UseCaseDiagram.uml#_xPwiIPpzEeaBXuZho-Bj0w" />
-		</relationships>
-		<relationships xsi:type="usecase:Extend">
-			<referencedElement xsi:type="uml:Extend"
-				href="UseCaseDiagram.uml#_qddu8PpzEeaBXuZho-Bj0w" />
-		</relationships>
-		<relationships xsi:type="usecase:Extend">
-			<referencedElement xsi:type="uml:Extend"
-				href="UseCaseDiagram.uml#_q_jIUPpzEeaBXuZho-Bj0w" />
 		</relationships>
 	</rootPackage>
 </usecase:UseCaseDiagram>

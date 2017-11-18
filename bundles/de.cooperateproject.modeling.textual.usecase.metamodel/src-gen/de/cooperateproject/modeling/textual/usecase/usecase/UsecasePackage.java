@@ -461,13 +461,22 @@ public interface UsecasePackage extends EPackage {
     int SYSTEM__PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Relationships</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM__RELATIONSHIPS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>System</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SYSTEM_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int SYSTEM_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -825,6 +834,43 @@ public interface UsecasePackage extends EPackage {
     int ASSOCIATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship <em>Use Case Relationship</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getUseCaseRelationship()
+     * @generated
+     */
+    int USE_CASE_RELATIONSHIP = 12;
+
+    /**
+     * The number of structural features of the '<em>Use Case Relationship</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USE_CASE_RELATIONSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USE_CASE_RELATIONSHIP___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Use Case Relationship</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USE_CASE_RELATIONSHIP_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl <em>Generalization</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -841,7 +887,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
+    int GENERALIZATION__REFERENCED_ELEMENT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Specific</b></em>' reference.
@@ -850,7 +896,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__SPECIFIC = RELATIONSHIP_FEATURE_COUNT + 1;
+    int GENERALIZATION__SPECIFIC = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>General</b></em>' reference.
@@ -859,7 +905,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__GENERAL = RELATIONSHIP_FEATURE_COUNT + 2;
+    int GENERALIZATION__GENERAL = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -868,7 +914,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
+    int GENERALIZATION_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -877,7 +923,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
+    int GENERALIZATION___GET_NEAREST_PACKAGE = USE_CASE_RELATIONSHIP___GET_NEAREST_PACKAGE;
 
     /**
      * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -886,7 +932,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION___GET_UML_PARENT_NAMESPACE = RELATIONSHIP_OPERATION_COUNT + 0;
+    int GENERALIZATION___GET_UML_PARENT_NAMESPACE = USE_CASE_RELATIONSHIP_OPERATION_COUNT + 0;
 
     /**
      * The number of operations of the '<em>Generalization</em>' class.
@@ -895,7 +941,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 1;
+    int GENERALIZATION_OPERATION_COUNT = USE_CASE_RELATIONSHIP_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl <em>Include</em>}' class.
@@ -914,7 +960,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
+    int INCLUDE__REFERENCED_ELEMENT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Addition</b></em>' reference.
@@ -923,7 +969,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE__ADDITION = RELATIONSHIP_FEATURE_COUNT + 1;
+    int INCLUDE__ADDITION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Including Case</b></em>' reference.
@@ -932,7 +978,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE__INCLUDING_CASE = RELATIONSHIP_FEATURE_COUNT + 2;
+    int INCLUDE__INCLUDING_CASE = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Include</em>' class.
@@ -941,7 +987,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 3;
+    int INCLUDE_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -950,7 +996,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
+    int INCLUDE___GET_NEAREST_PACKAGE = USE_CASE_RELATIONSHIP___GET_NEAREST_PACKAGE;
 
     /**
      * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -959,7 +1005,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE___GET_UML_PARENT_NAMESPACE = RELATIONSHIP_OPERATION_COUNT + 0;
+    int INCLUDE___GET_UML_PARENT_NAMESPACE = USE_CASE_RELATIONSHIP_OPERATION_COUNT + 0;
 
     /**
      * The number of operations of the '<em>Include</em>' class.
@@ -968,7 +1014,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 1;
+    int INCLUDE_OPERATION_COUNT = USE_CASE_RELATIONSHIP_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl <em>Extend</em>}' class.
@@ -987,7 +1033,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
+    int EXTEND__REFERENCED_ELEMENT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Extension</b></em>' reference.
@@ -996,7 +1042,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENSION = RELATIONSHIP_FEATURE_COUNT + 1;
+    int EXTEND__EXTENSION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Extended Case</b></em>' reference.
@@ -1005,7 +1051,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENDED_CASE = RELATIONSHIP_FEATURE_COUNT + 2;
+    int EXTEND__EXTENDED_CASE = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Extension Location</b></em>' reference.
@@ -1014,7 +1060,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENSION_LOCATION = RELATIONSHIP_FEATURE_COUNT + 3;
+    int EXTEND__EXTENSION_LOCATION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -1023,7 +1069,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__CONDITION = RELATIONSHIP_FEATURE_COUNT + 4;
+    int EXTEND__CONDITION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Extend</em>' class.
@@ -1032,7 +1078,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 5;
+    int EXTEND_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1041,7 +1087,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
+    int EXTEND___GET_NEAREST_PACKAGE = USE_CASE_RELATIONSHIP___GET_NEAREST_PACKAGE;
 
     /**
      * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -1050,7 +1096,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND___GET_UML_PARENT_NAMESPACE = RELATIONSHIP_OPERATION_COUNT + 0;
+    int EXTEND___GET_UML_PARENT_NAMESPACE = USE_CASE_RELATIONSHIP_OPERATION_COUNT + 0;
 
     /**
      * The number of operations of the '<em>Extend</em>' class.
@@ -1059,7 +1105,44 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 1;
+    int EXTEND_OPERATION_COUNT = USE_CASE_RELATIONSHIP_OPERATION_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship <em>Actor Usecase Relationship</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getActorUsecaseRelationship()
+     * @generated
+     */
+    int ACTOR_USECASE_RELATIONSHIP = 13;
+
+    /**
+     * The number of structural features of the '<em>Actor Usecase Relationship</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_USECASE_RELATIONSHIP_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_USECASE_RELATIONSHIP___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Actor Usecase Relationship</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_USECASE_RELATIONSHIP_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}' enum.
@@ -1069,7 +1152,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getActorType()
      * @generated
      */
-    int ACTOR_TYPE = 12;
+    int ACTOR_TYPE = 14;
 
 
     /**
@@ -1231,6 +1314,17 @@ public interface UsecasePackage extends EPackage {
      * @generated
      */
     EReference getSystem_Package();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.usecase.usecase.System#getRelationships <em>Relationships</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Relationships</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.System#getRelationships()
+     * @see #getSystem()
+     * @generated
+     */
+    EReference getSystem_Relationships();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase <em>Use Case</em>}'.
@@ -1479,6 +1573,26 @@ public interface UsecasePackage extends EPackage {
     EAttribute getExtend_Condition();
 
     /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship <em>Use Case Relationship</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Use Case Relationship</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship
+     * @generated
+     */
+    EClass getUseCaseRelationship();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship <em>Actor Usecase Relationship</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Actor Usecase Relationship</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship
+     * @generated
+     */
+    EClass getActorUsecaseRelationship();
+
+    /**
      * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1640,6 +1754,14 @@ public interface UsecasePackage extends EPackage {
          * @generated
          */
         EReference SYSTEM__PACKAGE = eINSTANCE.getSystem_Package();
+
+        /**
+         * The meta object literal for the '<em><b>Relationships</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SYSTEM__RELATIONSHIPS = eINSTANCE.getSystem_Relationships();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl <em>Use Case</em>}' class.
@@ -1838,6 +1960,26 @@ public interface UsecasePackage extends EPackage {
          * @generated
          */
         EAttribute EXTEND__CONDITION = eINSTANCE.getExtend_Condition();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship <em>Use Case Relationship</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getUseCaseRelationship()
+         * @generated
+         */
+        EClass USE_CASE_RELATIONSHIP = eINSTANCE.getUseCaseRelationship();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship <em>Actor Usecase Relationship</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getActorUsecaseRelationship()
+         * @generated
+         */
+        EClass ACTOR_USECASE_RELATIONSHIP = eINSTANCE.getActorUsecaseRelationship();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}' enum.

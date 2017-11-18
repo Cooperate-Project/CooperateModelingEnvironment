@@ -4,7 +4,7 @@ package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
-import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
+import de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
@@ -93,8 +93,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Relationship> getRelationships() {
-        return (EList<Relationship>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, true, true);
+    public EList<ActorUsecaseRelationship> getRelationships() {
+        return (EList<ActorUsecaseRelationship>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, true, true);
     }
 
     /**
@@ -217,7 +217,7 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
                 return;
             case UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS:
                 getRelationships().clear();
-                getRelationships().addAll((Collection<? extends Relationship>)newValue);
+                getRelationships().addAll((Collection<? extends ActorUsecaseRelationship>)newValue);
                 return;
             case UsecasePackage.ROOT_PACKAGE__DIAGRAM:
                 setDiagram((UseCaseDiagram)newValue);

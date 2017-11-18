@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI Utilities
 Bundle-SymbolicName: de.cooperateproject.ui.util
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.6.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.ui;bundle-version="3.108.1"
 Export-Package: de.cooperateproject.ui.util.editor

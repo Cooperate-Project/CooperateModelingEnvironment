@@ -28,7 +28,7 @@ mapping notation::Diagram::diagramToRootPackage() : usecase::RootPackage
     referencedElement := self.element.toElement();
     systems := self.children->select(type = PAPYRUS_NOTATION_SHAPE_SUBJECT_REGULAR).map nodeToSystem();
     actors := self.children->select(type = PAPYRUS_NOTATION_SHAPE_ACTOR_REGULAR).map nodeToBehavioredClassifier().oclAsType(usecase::Actor);
-    relationships := self.edges.map edgeToRelationship();
+    relationships := self.edges->onlyActorUsecaseEdges().map edgeToActorUsecaseRelationship();
 }
 
 mapping notation::Node::nodeToBehavioredClassifier() : usecase::BehavioredClassifier
@@ -41,6 +41,7 @@ mapping notation::Node::nodeToSystem() : usecase::System
     referencedElement := self.element.toElement();
     usecases := self.children->any(type = PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR).children->select(type = PAPYRUS_NOTATION_SHAPE_USECASE_NESTED).map nodeToBehavioredClassifier().oclAsType(usecase::UseCase);
     comments := self.getCommentShape().map commentToComment();
+    relationships := self.diagram.edges->onlyUsecaseEdges().map edgeToUsecaseRelationship();
 }
 
 mapping notation::Node::nodeToUsecase() : usecase::UseCase
@@ -81,9 +82,15 @@ when {not self.oclIsInvalid() and not self.oclIsUndefined()}
     referencedElement := self.element.oclAsType(uml::Comment);
 }
 
-mapping notation::Edge::edgeToRelationship() : usecase::Relationship
+mapping notation::Edge::edgeToActorUsecaseRelationship() : usecase::ActorUsecaseRelationship
 disjuncts
     notation::Edge::edgeToAssociation,
+    notation::Edge::edgeToGeneralization
+{
+}
+
+mapping notation::Edge::edgeToUsecaseRelationship() : usecase::UseCaseRelationship
+disjuncts
     notation::Edge::edgeToGeneralization,
     notation::Edge::edgeToExtend,
     notation::Edge::edgeToInclude
@@ -125,6 +132,14 @@ mapping uml::MultiplicityElement::multiplicityElementToCardinality() : Cardinali
 when {self.hasCardinality()}
 {
     referencedElement := self;
+}
+
+query OrderedSet(notation::Edge)::onlyActorUsecaseEdges() : OrderedSet(notation::Edge) {
+	return self->select(not element.oclIsKindOf(uml::Generalization) or element.oclAsType(uml::Generalization).general.oclIsKindOf(uml::Actor));
+}
+
+query OrderedSet(notation::Edge)::onlyUsecaseEdges() : OrderedSet(notation::Edge) {
+	return self->select(not element.oclIsKindOf(uml::Generalization) or element.oclAsType(uml::Generalization).general.oclIsKindOf(uml::UseCase));
 }
 
 query notation::View::getCommentShape() : notation::View

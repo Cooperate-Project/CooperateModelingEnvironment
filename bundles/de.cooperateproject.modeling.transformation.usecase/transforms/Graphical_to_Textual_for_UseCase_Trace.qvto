@@ -36,7 +36,6 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
     result += self.map traceRecordActor();
     result += self.map traceRecordUseCase();
     result += self.map traceRecordExtensionPoint();
-    result += self.map traceRecordRelationship();
     result += self.map traceRecordAssociation();
     result += self.map traceRecordGeneralization();
     result += self.map traceRecordExtend();
@@ -156,13 +155,21 @@ when {self.mappingOperation.name = "commentToComment"}
     result += edgeComment.map edge();
 }
 
+/*
 mapping trace::TraceRecord::traceRecordRelationship() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToRelationship"}
+when {
+	(self.mappingOperation.name = "edgeToActorUsecaseRelationship" or
+	self.mappingOperation.name = "edgeToUsecaseRelationship"}
 {
     var connector := self.getSelf().modelElement;
     var relationship := self.getResult().modelElement;
     
     result += new TraceRecord("relationshipToEdge", "Relationship", relationship, "Connector", connector);
+}
+*/
+
+helper notation::Edge::createEdgeToRelationshipRecord(relationship : ecore::EObject) : trace::TraceRecord {
+	return new TraceRecord("relationshipToEdge", "Relationship", relationship, "Connector", self.toEObject());
 }
 
 mapping trace::TraceRecord::traceRecordAssociation() : List(trace::TraceRecord)
@@ -177,6 +184,7 @@ when {self.mappingOperation.name = "edgeToAssociation"}
     var sourceMultiLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY);
     var targetMultiLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY);
     
+    result += edge.createEdgeToRelationshipRecord(association);
     result += new TraceRecord("associationToEdge", "Association", association, "Connector", edge.toEObject());
     result += edge.map edge();
     result += nameLabel.map decorationNode("nameDecorationAssociation", "Association", association);
@@ -194,6 +202,7 @@ when {self.mappingOperation.name = "edgeToGeneralization"}
     var generalization := self.getResult().modelElement;
     var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_GENERALIZATION_STEREOTYPE);
     
+    result += edge.createEdgeToRelationshipRecord(generalization);
     result += new TraceRecord("generalizationToEdge", "Generalization", generalization, "Connector", edge.toEObject());
     result += edge.map edge();
     result += stereotypeLabel.map decorationNode("generalizationToSteoretypeLabel", "Generalization", generalization);
@@ -207,6 +216,7 @@ when {self.mappingOperation.name = "edgeToExtend"}
     var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_EXTEND_STEREOTYPE);
     var keywordLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_EXTEND_KEYWORD);
     
+    result += edge.createEdgeToRelationshipRecord(extend);
     result += new TraceRecord("extendToEdge", "Extend", extend, "Connector", edge.toEObject());
     result += edge.map edge();
     result += stereotypeLabel.map decorationNode("extendToStereotypeLabel", "Extend", extend);
@@ -222,6 +232,7 @@ when {self.mappingOperation.name = "edgeToInclude"}
     var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_EDGE_INCLUDE_STEREOTYPE);
     var keywordLabel := edge.children->any(type = PAPYRUS_NOTATION_EDGE_INCLUDE_KEYWORD);
     
+    result += edge.createEdgeToRelationshipRecord(include);
     result += new TraceRecord("includeToEdge", "Include", include, "Connector", edge.toEObject());
     result += edge.map edge();
     result += stereotypeLabel.map decorationNode("includeToStereotypeLabel", "Include", include);

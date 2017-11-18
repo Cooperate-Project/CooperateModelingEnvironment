@@ -153,10 +153,10 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 					ep ExtensionPoint1
 					ep AliasedExtensionPoint1 as "The real functionality"
 				}
+				inc (ConcreteUseCase2, IncludedUseCase1)
+				ext (Extension1ToAbstractUseCase1, AbstractUseCase1) ep[ExtensionPoint1]
+				ext (Extension2ToAbstractUseCase1, AbstractUseCase1) ep[AliasedExtensionPoint1] cond["Sometimes"]
 			}
-			inc (ConcreteUseCase2, IncludedUseCase1)
-			ext (Extension1ToAbstractUseCase1, AbstractUseCase1) ep[ExtensionPoint1]
-			ext (Extension2ToAbstractUseCase1, AbstractUseCase1) ep[AliasedExtensionPoint1] cond["Sometimes"]
 			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)
@@ -173,12 +173,12 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 				abstract uc AbstractUseCase1
 				uc IncludedUseCase1
 				uc ConcreteUseCase2
+				inc (ConcreteUseCase2, IncludedUseCase1)
+				isa (ConcreteUseCase2, AbstractUseCase1)
 			}
 			iac (Bob, AbstractUseCase1)
 			iac (BobInABadMood, ConcreteUseCase2)
 			isa (BobInABadMood, Bob)
-			isa (ConcreteUseCase2, AbstractUseCase1)
-			inc (ConcreteUseCase2, IncludedUseCase1)
 			@end-uscd
 		'''.parse(rs)
 		assertNoIssues(model)	

@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
+import de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
@@ -21,6 +22,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -135,6 +137,14 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseExtend(Extend object) {
                 return createExtendAdapter();
+            }
+            @Override
+            public Adapter caseUseCaseRelationship(UseCaseRelationship object) {
+                return createUseCaseRelationshipAdapter();
+            }
+            @Override
+            public Adapter caseActorUsecaseRelationship(ActorUsecaseRelationship object) {
+                return createActorUsecaseRelationshipAdapter();
             }
             @Override
             public Adapter caseElement(Element object) {
@@ -353,6 +363,34 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createExtendAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship <em>Use Case Relationship</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship
+     * @generated
+     */
+    public Adapter createUseCaseRelationshipAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship <em>Actor Usecase Relationship</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship
+     * @generated
+     */
+    public Adapter createActorUsecaseRelationshipAdapter() {
         return null;
     }
 

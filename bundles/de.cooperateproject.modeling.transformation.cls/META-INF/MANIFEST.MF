@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Class Diagram Transformation Plug-in
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.cls;singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.6.1.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,
- de.cooperateproject.modeling.transformation.common;bundle-version="0.5.1",
+ de.cooperateproject.modeling.transformation.common;bundle-version="0.6.1",
  de.cooperateproject.modeling.textual.cls.metamodel,
- de.cooperateproject.modeling.graphical.common;bundle-version="0.5.1",
+ de.cooperateproject.modeling.graphical.common;bundle-version="0.6.1",
  de.cooperateproject.modeling.transformation.registry
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

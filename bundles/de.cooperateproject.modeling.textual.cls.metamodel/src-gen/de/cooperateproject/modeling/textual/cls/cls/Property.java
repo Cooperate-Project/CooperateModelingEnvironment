@@ -34,9 +34,11 @@ public interface Property<T extends NamedElement> extends UMLReferencingElement<
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' reference.
+     * @see #isSetType()
+     * @see #unsetType()
      * @see #setType(Classifier)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getProperty_Type()
-     * @model transient="true"
+     * @model unsettable="true" transient="true"
      * @generated
      */
     Classifier getType();
@@ -46,9 +48,34 @@ public interface Property<T extends NamedElement> extends UMLReferencingElement<
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Type</em>' reference.
+     * @see #isSetType()
+     * @see #unsetType()
      * @see #getType()
      * @generated
      */
     void setType(Classifier value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetType()
+     * @see #getType()
+     * @see #setType(Classifier)
+     * @generated
+     */
+    void unsetType();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}' reference is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Type</em>' reference is set.
+     * @see #unsetType()
+     * @see #getType()
+     * @see #setType(Classifier)
+     * @generated
+     */
+    boolean isSetType();
 
 } // Property

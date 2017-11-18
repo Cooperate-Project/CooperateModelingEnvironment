@@ -221,9 +221,9 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationshipsRelationshipParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationshipsActorUsecaseRelationshipParserRuleCall_4_0());
 				}
-				lv_relationships_5_0=ruleRelationship
+				lv_relationships_5_0=ruleActorUsecaseRelationship
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
@@ -232,11 +232,92 @@ ruleRootPackage returns [EObject current=null]
 						$current,
 						"relationships",
 						lv_relationships_5_0,
-						"de.cooperateproject.modeling.textual.usecase.Usecase.Relationship");
+						"de.cooperateproject.modeling.textual.usecase.Usecase.ActorUsecaseRelationship");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleUseCaseRelationship
+entryRuleUseCaseRelationship returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUseCaseRelationshipRule()); }
+	iv_ruleUseCaseRelationship=ruleUseCaseRelationship
+	{ $current=$iv_ruleUseCaseRelationship.current; }
+	EOF;
+
+// Rule UseCaseRelationship
+ruleUseCaseRelationship returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getUseCaseRelationshipAccess().getGeneralizationParserRuleCall_0());
+		}
+		this_Generalization_0=ruleGeneralization
+		{
+			$current = $this_Generalization_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getUseCaseRelationshipAccess().getExtendParserRuleCall_1());
+		}
+		this_Extend_1=ruleExtend
+		{
+			$current = $this_Extend_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getUseCaseRelationshipAccess().getIncludeParserRuleCall_2());
+		}
+		this_Include_2=ruleInclude
+		{
+			$current = $this_Include_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleActorUsecaseRelationship
+entryRuleActorUsecaseRelationship returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getActorUsecaseRelationshipRule()); }
+	iv_ruleActorUsecaseRelationship=ruleActorUsecaseRelationship
+	{ $current=$iv_ruleActorUsecaseRelationship.current; }
+	EOF;
+
+// Rule ActorUsecaseRelationship
+ruleActorUsecaseRelationship returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getActorUsecaseRelationshipAccess().getGeneralizationParserRuleCall_0());
+		}
+		this_Generalization_0=ruleGeneralization
+		{
+			$current = $this_Generalization_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getActorUsecaseRelationshipAccess().getAssociationParserRuleCall_1());
+		}
+		this_Association_1=ruleAssociation
+		{
+			$current = $this_Association_1.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -514,9 +595,28 @@ ruleSystem returns [EObject current=null]
 						}
 					)
 				)*
-				otherlv_6='}'
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSystemAccess().getRelationshipsUseCaseRelationshipParserRuleCall_2_1_3_0());
+						}
+						lv_relationships_6_0=ruleUseCaseRelationship
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSystemRule());
+							}
+							add(
+								$current,
+								"relationships",
+								lv_relationships_6_0,
+								"de.cooperateproject.modeling.textual.usecase.Usecase.UseCaseRelationship");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)*
+				otherlv_7='}'
 				{
-					newLeafNode(otherlv_6, grammarAccess.getSystemAccess().getRightCurlyBracketKeyword_2_1_3());
+					newLeafNode(otherlv_7, grammarAccess.getSystemAccess().getRightCurlyBracketKeyword_2_1_4());
 				}
 			)
 		)
@@ -795,60 +895,6 @@ ruleExtensionPoint returns [EObject current=null]
 				)
 			)
 		)
-	)
-;
-
-// Entry rule entryRuleRelationship
-entryRuleRelationship returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRelationshipRule()); }
-	iv_ruleRelationship=ruleRelationship
-	{ $current=$iv_ruleRelationship.current; }
-	EOF;
-
-// Rule Relationship
-ruleRelationship returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getRelationshipAccess().getAssociationParserRuleCall_0());
-		}
-		this_Association_0=ruleAssociation
-		{
-			$current = $this_Association_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getRelationshipAccess().getGeneralizationParserRuleCall_1());
-		}
-		this_Generalization_1=ruleGeneralization
-		{
-			$current = $this_Generalization_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getRelationshipAccess().getIncludeParserRuleCall_2());
-		}
-		this_Include_2=ruleInclude
-		{
-			$current = $this_Include_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getRelationshipAccess().getExtendParserRuleCall_3());
-		}
-		this_Extend_3=ruleExtend
-		{
-			$current = $this_Extend_3.current;
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 

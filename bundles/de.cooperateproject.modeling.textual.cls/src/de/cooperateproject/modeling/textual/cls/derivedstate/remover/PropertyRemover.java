@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.uml2.uml.NamedElement;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.derivedstate.utils.TypeFeatureFinderSwitch;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -29,10 +28,14 @@ public class PropertyRemover extends AtomicDerivedStateProcessorBase<Property<Na
 
     @Override
     protected void applyTyped(Property<NamedElement> object) {
-        Optional<EReference> feature = TypeFeatureFinderSwitch.doSwitch(object.getReferencedElement());
-        if (object.getReferencedElement() != null && feature.map(f -> object.getReferencedElement().eGet(f, true))
+        Optional<NamedElement> referencedElement = Optional.ofNullable(object.getReferencedElement());
+        Optional<EReference> feature = referencedElement.flatMap(TypeFeatureFinderSwitch::doSwitch);
+
+        if (feature.flatMap(f -> referencedElement.map(e -> e.eGet(f, true)))
                 .map(umlValue -> umlValue == object.getType()).orElse(false)) {
-            object.eUnset(ClsPackage.Literals.PROPERTY__TYPE);
+            object.unsetType();
+        } else if (object.getType() == null && undergoesAutomatedIssueResolution(object)) {
+            object.setType(null);
         }
     }
 

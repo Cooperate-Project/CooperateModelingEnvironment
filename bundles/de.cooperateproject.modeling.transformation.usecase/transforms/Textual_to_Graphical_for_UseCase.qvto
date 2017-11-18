@@ -17,7 +17,7 @@ main() {
 
 mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
     var rootPackage := self.rootPackage.referencedElement.oclAsType(uml::Package);
-    var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(not referencedElement.oclAsType(uml::Extend).condition.oclIsUndefined());
+    var conditionedExtends := self.rootPackage.systems.relationships->selectByKind(usecase::Extend)->select(not referencedElement.oclAsType(uml::Extend).condition.oclIsUndefined());
 
     type := "UseCase";
     name := self.title;
@@ -30,6 +30,7 @@ mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
     children += self.rootPackage.findAllComments().map commentToShape();
 
     edges += self.rootPackage.relationships.map relationshipToEdge();
+	edges += self.rootPackage.systems.relationships.map relationshipToEdge();
     edges += conditionedExtends.map extendToConstraintEdge();
     edges += self.rootPackage.findAllComments().map commentToEdge(); 
     
