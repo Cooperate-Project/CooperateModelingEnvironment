@@ -1,6 +1,7 @@
 package de.cooperateproject.ui.diff.labeling;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -51,7 +52,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	private static String getKindText(Collection<LabelHandler> labelHandlers, SummaryItem diffItem) {
 		EStructuralFeature changedFeature = diffItem.getChangedFeature();
 		if (changedFeature instanceof EAttribute) {
-			return String.format("set %s", getClassLabel(labelHandlers, diffItem.getChangedObject(), (EAttribute)changedFeature));
+			return String.format("set %s", getClassLabel(labelHandlers, diffItem.getChangedObject(), (EAttribute) changedFeature));
 		} else if (changedFeature instanceof EReference) {
 			boolean isContainment = ((EReference) changedFeature).isContainment();
 			DifferenceKind changeKind = diffItem.getDifferenceKind();
@@ -127,9 +128,19 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		return Optional.ofNullable(object).map(objectFn::apply).orElse(null);
 	}
 
+	/**
+	 * Get label handlers for the new and changed value.
+	 * @param item the summary item containing the changes.
+	 * @return label handlers for the new and changed value.
+	 */
 	private static Collection<LabelHandler> findLabelHandlers(SummaryItem item) {
-		String packageName = item.getChangedObject().getClass().getPackage().getName();
-		return LabelHandlerRegistry.getInstance().getLabelHandlers(packageName);
+		String packageName = item.getNewValue().getClass().getPackage().getName();
+		String changedObjectPackageName = item.getChangedObject().getClass().getPackage().getName();
+		
+		HashSet<LabelHandler> labelHandlers = new HashSet<>(LabelHandlerRegistry.getInstance().getLabelHandlers(packageName));
+		labelHandlers.addAll(LabelHandlerRegistry.getInstance().getLabelHandlers(changedObjectPackageName));
+		
+        return labelHandlers;
 	}
 
 }
