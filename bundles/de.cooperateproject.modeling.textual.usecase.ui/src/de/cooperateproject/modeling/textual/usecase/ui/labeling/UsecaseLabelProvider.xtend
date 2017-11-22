@@ -18,6 +18,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
 import java.util.Optional
+import de.cooperateproject.modeling.textual.usecase.usecase.Relationship
 
 /**
  * Provides labels for Usecase EObjects.
@@ -29,6 +30,10 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
+	}
+	
+	def image(UseCaseDiagram element) {
+	    UMLImage.MODEL.image
 	}
 
 	def image(Actor element) {
@@ -75,8 +80,23 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
     	element.name
     }
     
+    def text (Relationship element) {
+    	element.toString
+    }
     def text (Association element) {
-    	element.actor.doGetText + " interacts with " + element.usecase.doGetText
+    	String.format("%s interacts with %s %s", element.actor.name, element.usecase.name, getCardinality(element))
+    }
+    
+    private def getCardinality(Association association) {
+        val actor = association.actorCardinality 
+        val uc = association.useCaseCardinality 
+        if (actor !== null) {
+            if (uc === null) {
+                return String.format("[%s]", actor.getText)
+            }
+            return String.format("[%s : %s]", actor.getText, uc.getText)
+        } 
+        return ""
     }
     
     def text(UseCaseDiagram element) {
