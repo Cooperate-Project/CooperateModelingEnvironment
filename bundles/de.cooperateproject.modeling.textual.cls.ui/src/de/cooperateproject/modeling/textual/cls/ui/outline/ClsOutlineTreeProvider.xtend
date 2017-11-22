@@ -24,13 +24,11 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier
 class ClsOutlineTreeProvider extends CooperateOutlineTreeProvider {
 
 	dispatch def createChildren(IOutlineNode parentNode, ClassDiagram root) {
-		if (root.rootPackage === null) {
-			return
-		}
-		createNode(parentNode, root.rootPackage)
-	}
-
-	dispatch def createChildren(IOutlineNode parentNode, Package pkg) {
+	    if (root.rootPackage === null) {
+            return
+        }
+        
+        val pkg = root.rootPackage
 		createFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image,
 			getStyledString("Packages", pkg.packages.size), false)
 		createFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS,
@@ -54,6 +52,7 @@ class ClsOutlineTreeProvider extends CooperateOutlineTreeProvider {
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
 		createConnectorNode(parentNode, c)
 	}
+	
 	protected def dispatch createNode(IOutlineNode parentNode, Package element) {
 	    if (element.owningPackage === null) {
 	       createEObjectNode(parentNode, element.referencedElement)

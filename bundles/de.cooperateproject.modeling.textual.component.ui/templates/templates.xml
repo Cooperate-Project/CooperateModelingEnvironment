@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates><template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Attribute" 
+ deleted="false" description="inserts a new private attribute" enabled="true" id="cmpattribute" name="Insert attribute">
+ ${attributeName} : ${type:CrossReference(Property.type)}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Class" deleted="false" 
+description="inserts a new class" enabled="true" id="cmpclass" name="Insert class">class ${className} {&#13;
+	&#13;
+}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Component" deleted="false" 
+description="inserts a new component" 
+enabled="true" id="cmpcomponent" name="Insert component">component ${componentName} {&#13;
+	&#13;
+}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Interface" deleted="false" 
+description="inserts a new interface" enabled="true" id="cmpinterface" name="Insert interface">interface ${interfaceName} {&#13;
+	&#13;
+}</template>
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Method" deleted="false" 
+description="inserts a new method with parameter and return type" enabled="true" id="cmpmethod" name="Insert method">
+${methodName} (${param}:${type:CrossReference(Property.type)}) : ${type2:CrossReference(Property.type)}</template>
+
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Port" deleted="false" 
+description="inserts a new port" enabled="true" id="cmpport" name="Insert port">
+- port ${portName} realizes ${type:CrossReference(Port.realizedClassifier)}</template>
+
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Provide" deleted="false" 
+description="inserts a new provided interface relation" enabled="true" id="cmpprovide" name="Insert provided interface relation">
+provide ${relationName} ${providedInterface:CrossReference(InterfaceRelation.interface)}&#13;
+</template>
+
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Require" deleted="false" 
+description="inserts a new required interface relation 2" enabled="true" id="cmprequire" name="Insert required interface relation">
+require ${relationName} ${requiredInterface:CrossReference(InterfaceRelation.interface)}&#13;
+</template>
+
+<template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Connector" deleted="false" 
+description="inserts a new connector" enabled="true" id="cmpcon" name="Insert connector">
+con ${conName} (${con1:CrossReference(ConnectorEnd.role)},${con2:CrossReference(ConnectorEnd.role)})&#13;
+</template>
+
+
+
+
+</templates>

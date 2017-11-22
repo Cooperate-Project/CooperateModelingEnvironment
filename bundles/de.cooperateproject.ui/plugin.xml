@@ -271,6 +271,25 @@
                   value="de.cooperateproject.ui.wizards.newUsecaseDiagram">
             </parameter>
          </command>
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               icon="icons/16/cooperate_16.png"
+               label="Component Diagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="newWizardId"
+                  value="de.cooperateproject.ui.wizards.newComponentDiagram">
+            </parameter>
+         </command>
       </menuContribution>
       <menuContribution
             allPopups="false"

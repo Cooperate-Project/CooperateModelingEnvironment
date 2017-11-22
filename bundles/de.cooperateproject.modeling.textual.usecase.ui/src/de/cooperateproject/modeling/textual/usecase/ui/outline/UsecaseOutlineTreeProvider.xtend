@@ -4,16 +4,16 @@
 package de.cooperateproject.modeling.textual.usecase.ui.outline
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
-import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
 import de.cooperateproject.modeling.textual.usecase.usecase.System
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
-import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
-import de.cooperateproject.modeling.textual.common.outline.UMLImage
-import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
+import de.cooperateproject.modeling.textual.usecase.usecase.Relationship
 
 /**
  * Customization of the default outline structure.
@@ -21,7 +21,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
 class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
-
+    
 	dispatch def createChildren(IOutlineNode parentNode, UseCaseDiagram root) {
         if (root.rootPackage === null) {
             return
@@ -29,12 +29,13 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
         
         val pkg = root.rootPackage
         
-        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, UMLImage.PACKAGE.image,
+        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, UMLImage.ACTOR.image,
             getStyledString("Actors", pkg.actors.size), false)
-        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__SYSTEMS, UMLImage.PACKAGE.image,
+        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__SYSTEMS, UMLImage.COMPONENT.image,
             getStyledString("Systems", pkg.systems.size), false)
-        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, UMLImage.PACKAGE.image,
-            getStyledString("Relationships", pkg.relationships.size), false)
+        val size = pkg.relationships.size
+        createFeatureNode(parentNode, pkg, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, UMLImage.ASSOCIATION.image,
+            getStyledString("Relationships", size), false)
     }
     
 	protected def dispatch createNode(IOutlineNode parentNode, RootPackage element) {
@@ -51,13 +52,9 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
             createEObjectNode(parentNode, usecase)
         }
         createFeatureNode(parentNode, system, UsecasePackage.Literals.SYSTEM__RELATIONSHIPS, UMLImage.COMPONENT.image,
-            getStyledString("Relationships", system.relationships.size), false)
+           getStyledString("Relationships", system.relationships.size), false)
     }
-    
-    dispatch def createChildren(IOutlineNode parentNode, Generalization generalization) {
-       createEObjectNode(parentNode, generalization)
-    }
-    
+        
     dispatch def createChildren(IOutlineNode parentNode, UseCase uc) {
     	createChild(parentNode, uc)
     	for (ep : uc.extensionPoints) {
@@ -74,7 +71,9 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
 	dispatch def createChildren(IOutlineNode parentNode, Element object) {
        createEObjectNode(parentNode, object)
     }
-    
+    dispatch def createChildren(IOutlineNode parentNode, Relationship relationship) {
+       //Fall back for Relationships
+    }
     dispatch def createChildren(IOutlineNode parentNode, Void object) {
        //Do nothing for a null object
     }
