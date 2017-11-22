@@ -3,13 +3,73 @@
  */
 package de.cooperateproject.modeling.textual.component.ui.outline
 
-import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.cmp.RootPackage
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
+import de.cooperateproject.modeling.textual.component.cmp.Connector
+import de.cooperateproject.modeling.textual.component.cmp.Interface
+import de.cooperateproject.modeling.textual.component.cmp.Class
 
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
-class ComponentOutlineTreeProvider extends DefaultOutlineTreeProvider {
+class ComponentOutlineTreeProvider extends CooperateOutlineTreeProvider {
+    
+    protected def dispatch createNode(IOutlineNode parentNode, RootPackage element) {
+        if (element.owningPackage === null) {
+           createEObjectNode(parentNode, element.referencedElement)
+        } else {
+           createEObjectNode(parentNode, element)
+        }
+    }
 
+    dispatch def createChildren(IOutlineNode parentNode, ComponentDiagram root) {
+        if (root.rootpackage === null) {
+            return
+        }
+        val pkg = root.rootpackage
+
+        createFeatureNode(parentNode, pkg, CmpPackage.Literals.ROOT_PACKAGE__CLASSIFIERS,
+            UMLImage.COMPONENT.image, getStyledString("Classifiers", pkg.classifiers.size), false)
+        createFeatureNode(parentNode, pkg, CmpPackage.Literals.ROOT_PACKAGE__RELATIONS,
+            UMLImage.ASSOCIATION.image, getStyledString("Relations", pkg.relations.size), false)
+    }
+    
+    dispatch def createChildren(IOutlineNode parentNode, Component component) {
+        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__PACKAGED_ELEMENTS,
+            UMLImage.COMPONENT.image, getStyledString("Packaged Elements", component.packagedElements.size), false)
+        createFeatureNode(parentNode, component, CmpPackage.Literals.INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION,
+            UMLImage.ASSOCIATION.image, getStyledString("Interface Relations", component.interfaceRelation.size), false)
+        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__PORT, UMLImage.PORT.image, 
+            getStyledString("Ports", component.port.size), false)
+        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__ATTRIBUTES,
+            UMLImage.PROPERTY.image, getStyledString("Attributes", component.attributes.size), false)
+        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__CONNECTORS,
+            UMLImage.CONNECTOR.image, getStyledString("Connectors", component.connectors.size), false)
+        _createChildren(parentNode, component as Commentable<?>)
+    }
+    
+    dispatch def createChildren(IOutlineNode parentNode, Interface object) {
+       object.members.forEach[x|createEObjectNode(parentNode, x)]
+       _createChildren(parentNode, object as Commentable<?>)
+    }
+    dispatch def createChildren(IOutlineNode parentNode, Class object) {
+       object.interfaceRelation.forEach[x|_createChildren(parentNode, x)]
+       _createChildren(parentNode, object as Commentable<?>)
+    }
+    
+    dispatch def createChildren(IOutlineNode parentNode, Connector object) {
+       object.connectorEnds.forEach[x|_createChildren(parentNode, x)]
+    }      
+       
+    dispatch def createChildren(IOutlineNode parentNode, Void object) {
+       //Do nothing for a null object
+    }
 }
