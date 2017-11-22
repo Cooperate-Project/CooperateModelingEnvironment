@@ -18,10 +18,12 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
-import java.util.Collection
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import java.util.Collection
+import java.util.Optional
+import java.util.function.Function
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 
 /**
  * Provides labels for Cls Objects.
@@ -129,14 +131,7 @@ class ClsLabelProvider extends CooperateOutlineLabelProvider {
     def text(Association ele) {
         var out = "asc "
         if (ele.name === null) {
-            out += "("
-            for (AssociationMemberEnd end : ele.memberEnds) {
-                out += end.name
-                if (ele.memberEnds.indexOf(end) != ele.memberEnds.length - 1) {
-                    out += ", "
-                }
-            }
-            out += ")"
+        	out += ele.memberEnds.map[e | Optional.ofNullable(e.name).orElse(e.type?.name)].join("(", ", ", ")", Function.identity)
         } else {
             out += ele.name
         }        

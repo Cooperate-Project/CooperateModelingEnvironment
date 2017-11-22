@@ -78,30 +78,15 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
     }
     
     def text(Actor element) {
-        if (element.alias !== null) {
-           "act " + element.alias
-        }
-    	"act " + element.name
+    	"act " + Optional.ofNullable(element.alias).orElse(element.name)
     }
     
     def text (Relationship element) {
     	element.toString
     }
-    def text (Association element) {
-    	"iac (" + element.actor.name + ", " + element.usecase.name + ") " + getCardinality(element)
-    }
     
-    private def getCardinality(Association association) {
-        val actor = association.actorCardinality 
-        val uc = association.useCaseCardinality 
-        val card = "card"
-        if (actor !== null) {
-            if (uc === null) {
-                return card + String.format("[%s]", actor.getText)
-            }
-            return card + String.format("[%s : %s]", actor.getText, uc.getText)
-        } 
-        return ""
+    def text (Association element) {
+    	"iac (" + element.actor.name + ", " + element.usecase.name + ") "
     }
     
     def text(UseCaseDiagram element) {
