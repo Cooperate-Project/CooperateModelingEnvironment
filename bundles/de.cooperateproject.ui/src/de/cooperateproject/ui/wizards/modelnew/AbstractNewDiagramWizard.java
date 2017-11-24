@@ -19,6 +19,7 @@ public class AbstractNewDiagramWizard extends Wizard implements INewWizard {
     public AbstractNewDiagramWizard(DiagramTypes diagramType) {
         super();
         this.diagramType = diagramType;
+        setWindowTitle("New " + diagramType.getName() + " Diagram");
     }
 
     @Override

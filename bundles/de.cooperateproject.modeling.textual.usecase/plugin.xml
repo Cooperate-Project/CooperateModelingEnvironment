@@ -15,6 +15,9 @@
       <factory
             class="de.cooperateproject.modeling.textual.usecase.issues.UsecaseExtendConditionFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.usecase.issues.UsecaseInteractionCardinalityFactory">
+      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">

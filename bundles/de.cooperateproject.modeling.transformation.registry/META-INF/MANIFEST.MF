@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate Transformation Registry
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.registry;singleton:=true
-Bundle-Version: 0.6.1.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: de.cooperateproject.modeling.transformation.common,
  com.google.guava;bundle-version="21.0.0",
