@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Usecase
+Bundle-Name: Accessible Diff UI for Use Case Diagrams
 Bundle-SymbolicName: de.cooperateproject.ui.diff.usecase;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: de.cooperateproject.ui.diff.usecase.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
