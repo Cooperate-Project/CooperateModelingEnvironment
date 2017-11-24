@@ -97,40 +97,40 @@ class ComponentLabelProvider extends CooperateOutlineLabelProvider {
     }
 	
 	def text(Component element) {
-	    element.name
+	    "component " + element.name
 	}
 	def text(Class element) {
-        element.name	
+       "class " + element.name	
     }
 	def text(Interface element) {
-        element.name	
+        "interface " + element.name	
     }
 	def text(Generalization element) {
-        element.leftClassifier.doGetText + " is a " + element.rightClassifier.doGetText
+	    String.format("isa(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
     }
 	def text(Abstraction element) {
-        element.leftClassifier.doGetText + " abstracts " + element.rightClassifier.doGetText
+	    String.format("abs(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
     }
 	def text(Manifestation element) {
-        element.leftClassifier.doGetText + " manifests " + element.rightClassifier.doGetText
+	    String.format("man(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
     }
 	def text(Substitution element) {
-        element.leftClassifier.doGetText + " substitutes " + element.rightClassifier.doGetText
+	    String.format("sub(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
     }
 	def text(Dependency element) {
-        element.leftClassifier.doGetText + " depends on " + element.rightClassifier.doGetText
+	    String.format("dep(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
     }
 	def text(Connector element) {
-        element.name + " connects"
+        "con " + element.name
     }
 	def text(ConnectorEnd element) {
         element.part.name + "." + element.role.name
     }
     def text(Provide element) {
-        "provides " + element.name
+        "provide " + element.name
     }
     def text(Require element) {
-        "requires " + element.name
+        "require " + element.name
     }
     def text(Port element) {
         "port " + element.name + " realizes " + element.realizedClassifier.name

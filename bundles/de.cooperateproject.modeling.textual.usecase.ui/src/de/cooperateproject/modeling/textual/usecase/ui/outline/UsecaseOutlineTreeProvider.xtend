@@ -47,27 +47,16 @@ class UsecaseOutlineTreeProvider extends CooperateOutlineTreeProvider {
 	}
    
     dispatch def createChildren(IOutlineNode parentNode, System system) {
-        createChild(parentNode, system)
-        for (usecase : system.usecases) {
-            createEObjectNode(parentNode, usecase)
-        }
-        createFeatureNode(parentNode, system, UsecasePackage.Literals.SYSTEM__RELATIONSHIPS, UMLImage.COMPONENT.image,
-           getStyledString("Relationships", system.relationships.size), false)
+        system.usecases.forEach[x|createEObjectNode(parentNode, x)]
+        system.relationships.forEach[x|createEObjectNode(parentNode, x)]
+        _createChildren(parentNode, system as Commentable<?>)
     }
         
     dispatch def createChildren(IOutlineNode parentNode, UseCase uc) {
-    	createChild(parentNode, uc)
-    	for (ep : uc.extensionPoints) {
-    		createEObjectNode(parentNode, ep)
-    	}
+        uc.extensionPoints.forEach[x|createEObjectNode(parentNode, x)]
+        _createChildren(parentNode, uc as Commentable<?>)
     }
 				
-	protected def createChild(IOutlineNode parentNode, Commentable<?> commentable) {
-		if (!commentable.comments.isEmpty) {
-			createEObjectNode(parentNode, commentable.comments.findFirst[true])
-		}
-	}
-	
 	dispatch def createChildren(IOutlineNode parentNode, Element object) {
        createEObjectNode(parentNode, object)
     }

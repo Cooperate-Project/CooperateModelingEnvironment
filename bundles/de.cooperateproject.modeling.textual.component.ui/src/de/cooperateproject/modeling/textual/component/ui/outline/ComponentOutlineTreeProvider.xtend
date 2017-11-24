@@ -43,16 +43,11 @@ class ComponentOutlineTreeProvider extends CooperateOutlineTreeProvider {
     }
     
     dispatch def createChildren(IOutlineNode parentNode, Component component) {
-        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__PACKAGED_ELEMENTS,
-            UMLImage.COMPONENT.image, getStyledString("Packaged Elements", component.packagedElements.size), false)
-        createFeatureNode(parentNode, component, CmpPackage.Literals.INTERFACE_PROVIDING_REQUIRING_ENTITY__INTERFACE_RELATION,
-            UMLImage.ASSOCIATION.image, getStyledString("Interface Relations", component.interfaceRelation.size), false)
-        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__PORT, UMLImage.PORT.image, 
-            getStyledString("Ports", component.port.size), false)
-        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__ATTRIBUTES,
-            UMLImage.PROPERTY.image, getStyledString("Attributes", component.attributes.size), false)
-        createFeatureNode(parentNode, component, CmpPackage.Literals.COMPONENT__CONNECTORS,
-            UMLImage.CONNECTOR.image, getStyledString("Connectors", component.connectors.size), false)
+        component.port.forEach[x|createEObjectNode(parentNode, x)]
+        component.packagedElements.forEach[x|createEObjectNode(parentNode, x)]
+        component.interfaceRelation.forEach[x|createEObjectNode(parentNode, x)]
+        component.attributes.forEach[x|createEObjectNode(parentNode, x)]
+        component.connectors.forEach[x|createEObjectNode(parentNode, x)]
         _createChildren(parentNode, component as Commentable<?>)
     }
     
@@ -61,7 +56,7 @@ class ComponentOutlineTreeProvider extends CooperateOutlineTreeProvider {
        _createChildren(parentNode, object as Commentable<?>)
     }
     dispatch def createChildren(IOutlineNode parentNode, Class object) {
-       object.interfaceRelation.forEach[x|_createChildren(parentNode, x)]
+       object.interfaceRelation.forEach[x|createEObjectNode(parentNode, x)]
        _createChildren(parentNode, object as Commentable<?>)
     }
     
