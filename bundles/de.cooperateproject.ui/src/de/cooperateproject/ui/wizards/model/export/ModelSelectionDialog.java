@@ -10,6 +10,9 @@ import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
 
 import de.cooperateproject.ui.nature.tasks.ModelGenCheckoutTask;
 
+/**
+ * Dialog that allows selecting a UML file from a local project.
+ */
 public class ModelSelectionDialog extends FilteredResourcesSelectionDialog {
 
     private class ModelFilter extends ItemsFilter {
@@ -38,6 +41,14 @@ public class ModelSelectionDialog extends FilteredResourcesSelectionDialog {
 
     }
 
+    /**
+     * Constructs the dialog.
+     * 
+     * @param shell
+     *            The shell to use for opening the window.
+     * @param multi
+     *            True if multi selection shall be possible. False, otherwise.
+     */
     public ModelSelectionDialog(Shell shell, boolean multi) {
         super(shell, multi, ResourcesPlugin.getWorkspace().getRoot(), IResource.FILE);
     }

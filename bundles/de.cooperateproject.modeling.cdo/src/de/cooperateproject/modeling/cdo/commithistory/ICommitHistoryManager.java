@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
+import org.eclipse.emf.common.util.URI;
 
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 
@@ -14,4 +15,5 @@ public interface ICommitHistoryManager {
 	
 	Collection<CDOCommitInfo> getCommitsForLauncher(IFile file, long from, long to) throws IOException, ConcreteSyntaxTypeNotAvailableException;
 	
+	Collection<CDOCommitInfo> getCommitsForUMLModel(URI umlModelURI) throws IOException;
 }

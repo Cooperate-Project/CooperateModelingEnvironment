@@ -517,6 +517,7 @@
       <wizard
             category="de.cooperateproject.ui.cooperateExportWizards"
             class="de.cooperateproject.ui.wizards.model.export.ModelExportWizard"
+            icon="icons/16/cooperate_16.png"
             id="de.cooperateproject.ui.wizards.model.export"
             name="Export Model">
       </wizard>
