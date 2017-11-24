@@ -1,193 +1,146 @@
 package de.cooperateproject.ui.diff.labeling;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.compare.DifferenceKind;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import de.cooperateproject.ui.diff.LabelHandlerRegistry;
 import de.cooperateproject.ui.diff.content.SummaryItem;
 
 /**
- * Label provider for a table viewer which lists all changes in a commit. Delegates the labeling to
- * the meta-model-specific label handler.
+ * Label provider for a table viewer which lists all changes in a commit.
+ * Delegates the labeling to the meta-model-specific label handler.
  * 
  * @author Jasmin, czogalik
  *
  */
 public class SummaryLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-    private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
-    private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
-    private static final String CLASS_ATTRIBUTE_ID = "class";
-    private static final Logger LOGGER = LoggerFactory.getLogger(SummaryLabelProvider.class);
+	@Override
+	public Image getColumnImage(Object element, int columnIndex) {
+		return null;
+	}
 
-    @Override
-    public Image getColumnImage(Object element, int columnIndex) {
-        return null;
-    }
+	@Override
+	public String getColumnText(Object element, int columnIndex) {
+		if (!(element instanceof SummaryItem)) {
+			return null;
+		}
 
-    @Override
-    public String getColumnText(Object element, int columnIndex) {
+		SummaryItem item = (SummaryItem) element;
 
-        if (!(element instanceof SummaryItem)) {
-            return null;
-        }
+		Collection<LabelHandler> labelHandlers = findLabelHandlers(item);
+		if (labelHandlers.isEmpty()) {
+			return null;
+		}
 
-        SummaryItem item = (SummaryItem) element;
+		return getColumnText(columnIndex, item, labelHandlers);
+	}
 
-        List<LabelHandler> labelHandlers = findLabelHandlers(item);
-        if (labelHandlers.isEmpty()) {
-            return null;
-        }
+	private static String getKindText(Collection<LabelHandler> labelHandlers, SummaryItem diffItem) {
+		EStructuralFeature changedFeature = diffItem.getChangedFeature();
+		if (changedFeature instanceof EAttribute) {
+			return String.format("set %s", getClassLabel(labelHandlers, diffItem.getChangedObject(), (EAttribute) changedFeature));
+		} else if (changedFeature instanceof EReference) {
+			boolean isContainment = ((EReference) changedFeature).isContainment();
+			DifferenceKind changeKind = diffItem.getDifferenceKind();
 
-        
-        return getColumnText(columnIndex, item, labelHandlers);
-    }
+			if (isContainment && changeKind == DifferenceKind.ADD) {
+				EObject newValue = (EObject) diffItem.getNewValue();
+				return String.format("add %s", getTextLabel(labelHandlers, newValue));
+			} else if (isContainment && changeKind == DifferenceKind.DELETE) {
+				EObject oldValue = (EObject) diffItem.getOldValue();
+				return String.format("del %s", getTextLabel(labelHandlers, oldValue));
+			} else if (!isContainment && changeKind != DifferenceKind.MOVE) {
+				return String.format("set %s", changedFeature.getName());
+			} else if (changeKind == DifferenceKind.MOVE) {
+				EObject newValue = (EObject) diffItem.getNewValue();
+				return String.format("mov %s", getTextLabel(labelHandlers, newValue));
+			} else {
+				// error
+			}
 
-    private static String getColumnText(int columnIndex, SummaryItem item, List<LabelHandler> labelHandlers) {
-        if (item.getDifferenceKind() == DifferenceKind.MOVE) {
-            for (LabelHandler labelHandler : labelHandlers) {
-                String columnTextForMoveModification = getColumnTextForMoveModification(columnIndex, item,
-                        labelHandler);
-                if (columnTextForMoveModification != null) {
-                    return columnTextForMoveModification;
-                }
-            }
-        } else {
-            for (LabelHandler labelHandler : labelHandlers) {
-                String columnTextForModification = getColumnTextForModification(columnIndex, item, labelHandler);
-                if (columnTextForModification != null) {
-                    return columnTextForModification;
-                }
-            }
-        }
-        return null;
-    }
+		}
 
-    private static EObject getEObjectOrNull(Object object) {
-        if (object instanceof EObject) {
-            return (EObject) object;
-        }
-        return null;
-    }
+		return null;
+	}
 
-    private static String getColumnTextForModification(int columnIndex, SummaryItem item, LabelHandler labelHandler) {
-        EObject left = getEObjectOrNull(item.getLeft());
-        EObject right = getEObjectOrNull(item.getRight());
+	private static String getColumnText(int columnIndex, SummaryItem item, Collection<LabelHandler> labelHandlers) {
+		switch (columnIndex) {
+		case 0:
+			return getKindText(labelHandlers, item);
+		case 1:
+			return getTextLabel(labelHandlers, item.getChangedObject());
+		case 2:
+			return getOldLabel(labelHandlers, item);
+		case 3:
+			return getNewLabel(labelHandlers, item);
+		default:
+			return null;
+		}
+	}
 
-        switch (columnIndex) {
-        case 0:
-            return getChangeKindColum(item, labelHandler, left, right);
-        case 1:
-            return labelHandler.getText(item.getCommonParent());
-        case 2:
-            return labelHandler.getText(right);
-        case 3:
-            return labelHandler.getText(left);
-        default:
-            return null;
-        }
-    }
+	private static String getNewLabel(Collection<LabelHandler> labelHandlers, SummaryItem item) {
+		return getValueLabel(labelHandlers, item, item::getNewValue);
+	}
 
-    private static String getChangeKindColum(SummaryItem item, LabelHandler labelHandler, EObject left, EObject right) {
-        String changeKindColumn = getChangeKindColumn(item, labelHandler, left);
-        if (changeKindColumn == null) {
-            return getChangeKindColumn(item, labelHandler, right);
-        }
-        return changeKindColumn;
-    }
+	private static String getOldLabel(Collection<LabelHandler> labelHandlers, SummaryItem item) {
+		return getValueLabel(labelHandlers, item, item::getOldValue);
+	}
 
-    private static String getChangeKindColumn(SummaryItem item, LabelHandler labelHandler, EObject value) {
-        String appendix = DifferenceKindHelper.convertToToken(item.getDifferenceKind()) + " ";
-        if (value != null) {
-            String classTextLeft = labelHandler.getClassText(value);
-            if (classTextLeft == null) {
-                return null;
-            }
-            return appendix + classTextLeft;
-        }
-        return null;
-    }
+	private static String getValueLabel(Collection<LabelHandler> labelHandlers, SummaryItem item,
+			Supplier<Object> valueGetter) {
+		if (item.getDifferenceKind() == DifferenceKind.MOVE) {
+			return null;
+		}
+		boolean isContainment = Optional.ofNullable(item.getChangedFeature()).filter(EReference.class::isInstance)
+				.map(EReference.class::cast).map(EReference::isContainment).orElse(false);
+		if (isContainment && (item.getDifferenceKind() == DifferenceKind.ADD
+				|| item.getDifferenceKind() == DifferenceKind.DELETE)) {
+			return null;
+		}
+		return getTextLabel(labelHandlers, valueGetter.get());
+	}
 
-    private static String getColumnTextForMoveModification(int columnIndex, SummaryItem item,
-            LabelHandler labelHandler) {
-        EObject left = getEObjectOrNull(item.getLeft());
-        EObject right = getEObjectOrNull(item.getRight());
-        switch (columnIndex) {
-        case 0:
-            return DifferenceKindHelper.convertToToken(item.getDifferenceKind()) + " "
-                    + labelHandler.getClassText(left);
-        case 1:
-            return labelHandler.getText(left);
-        case 2:
-            return labelHandler.getText(right);
-        case 3:
-            return labelHandler.getText(item.getCommonParent());
-        default:
-            return null;
-        }
-    }
+	private static String getTextLabel(Collection<LabelHandler> labelHandlers, Object object) {
+		return execute(object, o -> labelHandlers.stream().map(lh -> lh.getText(o)).filter(Objects::nonNull).findFirst()
+				.orElseGet(() -> object == null ? null : object.toString()));
+	}
+	
+	private static String getClassLabel(Collection<LabelHandler> labelHandlers, EObject context, EAttribute object) {
+		return execute(object, o -> labelHandlers.stream().map(lh -> lh.getClassText(o, context)).filter(Objects::nonNull)
+				.findFirst().orElseGet(() -> object == null ? null : object.getName()));
+	}
 
-    /**
-     * Get all LabelHandlers associated with the SummaryItem.
-     * 
-     * @param item
-     *            the SummaryItem to find LabelHandlers for.
-     * @return all LabelHandlers associated with the SummaryItem.
-     */
-    private static List<LabelHandler> findLabelHandlers(SummaryItem item) {
-        IExtensionRegistry reg = Platform.getExtensionRegistry();
-        IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
-        IExtension[] extensions = ep.getExtensions();
+	private static <R> R execute(Object object, Function<Object, R> objectFn) {
+		return Optional.ofNullable(object).map(objectFn::apply).orElse(null);
+	}
 
-        String left = "";
-        String right = "";
-        String parent = "";
-
-        if (item.getLeft() != null) {
-            left = item.getLeft().getClass().getPackage().getName();
-        }
-        if (item.getRight() != null) {
-            right = item.getRight().getClass().getPackage().getName();
-        }
-        if (item.getCommonParent() != null) {
-            parent = item.getCommonParent().getClass().getPackage().getName();
-        }
-
-        return getListOfLabelHandlers(extensions, left, right, parent);
-    }
-
-    private static List<LabelHandler> getListOfLabelHandlers(IExtension[] extensions, String left, String right,
-            String parent) {
-        List<LabelHandler> labelHandlers = new ArrayList<>();
-        for (IExtension extension : extensions) {
-            IConfigurationElement[] configurationElements = extension.getConfigurationElements();
-            for (IConfigurationElement element : configurationElements) {
-                String attribute = element.getAttribute(METAMODEL_ATTRIBUTE_ID);
-                if (!(attribute.contains(left) || attribute.contains(right) || attribute.contains(parent))) {
-                    continue;
-                }
-                try {
-                    labelHandlers.add((LabelHandler) element.createExecutableExtension(CLASS_ATTRIBUTE_ID));
-                } catch (CoreException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-
-            }
-        }
+	/**
+	 * Get label handlers for the new and changed value.
+	 * @param item the summary item containing the changes.
+	 * @return label handlers for the new and changed value.
+	 */
+	private static Collection<LabelHandler> findLabelHandlers(SummaryItem item) {
+		String packageName = item.getNewValue().getClass().getPackage().getName();
+		String changedObjectPackageName = item.getChangedObject().getClass().getPackage().getName();
+		
+		HashSet<LabelHandler> labelHandlers = new HashSet<>(LabelHandlerRegistry.getInstance().getLabelHandlers(packageName));
+		labelHandlers.addAll(LabelHandlerRegistry.getInstance().getLabelHandlers(changedObjectPackageName));
+		
         return labelHandlers;
-    }
+	}
 
 }

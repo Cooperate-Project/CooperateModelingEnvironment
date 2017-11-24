@@ -38,7 +38,6 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Deriv
 		return CommonQualifiedNameProvider;
 	}
 	
-	
 	override bindITransientValueService() {
 		BasicCooperateTransientValueService
 	}
@@ -59,7 +58,7 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Deriv
 		return CooperateGlobalScopeProvider
 	}
 	
-	 override bindIValueConverterService() {
+	override bindIValueConverterService() {
         return UsecaseValueConverter
     }
     

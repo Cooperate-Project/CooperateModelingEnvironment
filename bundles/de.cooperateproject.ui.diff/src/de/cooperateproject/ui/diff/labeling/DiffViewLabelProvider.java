@@ -1,21 +1,17 @@
 package de.cooperateproject.ui.diff.labeling;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.compare.DifferenceKind;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import de.cooperateproject.ui.diff.LabelHandlerRegistry;
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
 
 /**
@@ -26,68 +22,41 @@ import de.cooperateproject.ui.diff.content.DiffTreeItem;
  */
 public class DiffViewLabelProvider extends LabelProvider implements IColorProvider {
 
-    private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
-    private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
-    private static final String CLASS_ATTRIBUTE_ID = "class";
-    private static final Logger LOGGER = LoggerFactory.getLogger(DiffViewLabelProvider.class);
-
     @Override
     public String getText(Object element) {
-        StringBuilder result = new StringBuilder();
-        if (!(element instanceof DiffTreeItem)) {
-            return null;
-        }
-        DiffTreeItem item = (DiffTreeItem) element;
-        Object object = item.getObject();
-        LabelHandler labelHandler = findLabelHandler(object.getClass().getPackage().getName());
+		Optional<DiffTreeItem> item = Optional.ofNullable(element).filter(DiffTreeItem.class::isInstance)
+				.map(DiffTreeItem.class::cast);
+		Optional<EObject> containedObject = item.map(DiffTreeItem::getObject).filter(EObject.class::isInstance)
+				.map(EObject.class::cast);
 
-        if (labelHandler == null) {
-            return null;
-        }
+		if (!item.isPresent() || !containedObject.isPresent()) {
+			return null;
+		}
 
-        if (item.getDiffKind() != null) {
-            result.append(DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ");
-        }
+		Collection<LabelHandler> labelHandler = item.map(DiffViewLabelProvider::findLabelHandler)
+				.orElse(Collections.emptyList());
+		Optional<String> elementName = labelHandler.stream().map(lh -> lh.getText(containedObject.get()))
+				.filter(Objects::nonNull).findFirst();
+		Optional<String> diffKind = item.get().getDiffKinds().stream().findFirst().map(DifferenceKindHelper::convertToToken);
 
-        if (object instanceof EObject) {
-            return result.append(labelHandler.getText((EObject) object)).toString();
-        }
-        return null;
+		return elementName.map(name -> diffKind.map(dk -> dk + " - ").orElse("") + name).orElse(null);
     }
+    
+    private static Collection<LabelHandler> findLabelHandler(DiffTreeItem item) {
+    	String packageName = item.getObject().getClass().getPackage().getName();
+    	return LabelHandlerRegistry.getInstance().getLabelHandlers(packageName);
+	}
 
-    private static LabelHandler findLabelHandler(String objectType) {
-        LabelHandler labelHandler = null;
-        IExtensionRegistry reg = Platform.getExtensionRegistry();
-        IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
-        IExtension[] extensions = ep.getExtensions();
-
-        for (IExtension ext : extensions) {
-            IConfigurationElement[] configurationElements = ext.getConfigurationElements();
-            for (IConfigurationElement configurationElement : configurationElements) {
-                if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
-                    continue;
-                }
-                try {
-                    labelHandler = (LabelHandler) configurationElement.createExecutableExtension(CLASS_ATTRIBUTE_ID);
-
-                } catch (CoreException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-
-            }
-        }
-        return labelHandler;
-    }
-
-    @Override
+	@Override
     public Color getForeground(Object element) {
         DiffTreeItem item = (DiffTreeItem) element;
-        if (item.getDiffKind() == null) {
+        if (item.getDiffKinds().isEmpty()) {
             return null;
         }
-        switch (item.getDiffKind()) {
+        switch (item.getDiffKinds().iterator().next()) {
             case ADD:
                 return new Color(Display.getDefault(), 0, 100, 0);
+            case MOVE:
             case CHANGE:
                 return new Color(Display.getDefault(), 255, 69, 0);
             case DELETE:

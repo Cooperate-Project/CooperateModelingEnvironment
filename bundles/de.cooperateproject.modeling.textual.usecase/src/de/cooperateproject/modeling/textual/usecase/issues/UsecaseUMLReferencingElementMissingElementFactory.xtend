@@ -14,7 +14,6 @@ class UsecaseUMLReferencingElementMissingElementFactory extends UsecaseAutomated
 	}
 	
 	override protected hasIssueInternal(UMLReferencingElement<Element> element) {
-		// TODO add exception here after implementing #55
         return element.referencedElement === null;
 	}
 	

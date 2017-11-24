@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.component
 
 import com.google.inject.Binder
 import com.google.inject.name.Names
+import de.cooperateproject.modeling.textual.common.naming.CommonQualifiedNameProvider
 import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService
 import de.cooperateproject.modeling.textual.component.services.ComponentDerivedStateComputerSorter
@@ -15,6 +16,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.TransientStatusProviderModuleMixin
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
@@ -55,4 +57,9 @@ class ComponentRuntimeModule extends AbstractComponentRuntimeModule implements D
 	def Class<? extends IDerivedStateComputerSorter> bindIDerivedStateComputerSorter() {
 		return ComponentDerivedStateComputerSorter
 	}
+	
+	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return CommonQualifiedNameProvider;
+	}
+	
 }

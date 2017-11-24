@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Accessible Diff UI
 Bundle-SymbolicName: de.cooperateproject.ui.diff;singleton:=true
-Bundle-Version: 0.1.5.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: de.cooperateproject.ui.diff.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

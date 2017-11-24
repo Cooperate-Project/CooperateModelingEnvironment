@@ -7,6 +7,7 @@ import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
+import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 
 /**
  * Default change that finalizes the editor after previous change operations.
@@ -51,10 +52,12 @@ public class DefaultEditorFinalizingChange extends Change {
     public Change perform(IProgressMonitor pm) throws CoreException {
         SubMonitor spm = SubMonitor.convert(pm, getName(), 2);
         try {
-            spm.split(1);
-            editor.getEditorSite().getShell().getDisplay().syncExec(editor::reloadDocumentContent);
-            SubMonitor childMonitor = spm.split(1);
-            editor.doSave(childMonitor);
+            UIThreadActionUtil.perform(() -> {
+                spm.split(1);
+                editor.reloadDocumentContent();
+                SubMonitor childMonitor = spm.split(1);
+                editor.doSave(childMonitor);
+            });
             return null;
         } finally {
             spm.done();

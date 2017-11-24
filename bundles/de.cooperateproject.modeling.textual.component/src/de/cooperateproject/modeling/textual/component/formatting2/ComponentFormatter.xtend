@@ -41,7 +41,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 		for (Classifier elementContent : rootPackage.getClassifiers()) {
 			elementContent.format;
 		}
-		rootPackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
+		rootPackage.regionFor.assignment(rootPackageAccess.nameAssignment_1_1).append[newLines = 2]
 
 	}
 		 

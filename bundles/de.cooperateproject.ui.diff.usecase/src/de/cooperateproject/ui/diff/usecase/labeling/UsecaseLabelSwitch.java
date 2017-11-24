@@ -22,6 +22,9 @@ public class UsecaseLabelSwitch extends UsecaseSwitch<String> {
 
     @Override
     public String caseRootPackage(RootPackage object) {
+        if (object.getOwningPackage() == null) {
+            return "rootpackage " + object.getReferencedElement().getName();
+        }
         return "rootpackage " + object.getName();
     }
 

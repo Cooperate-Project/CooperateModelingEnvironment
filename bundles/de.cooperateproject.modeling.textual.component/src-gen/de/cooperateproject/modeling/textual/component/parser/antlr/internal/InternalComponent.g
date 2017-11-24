@@ -328,35 +328,44 @@ ruleRootPackage returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='rootPackage'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootPackageKeyword_0());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getNameFQNParserRuleCall_1_0());
-				}
-				lv_name_1_0=ruleFQN
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_1_0,
-						"de.cooperateproject.modeling.textual.component.Component.FQN");
-					afterParserOrEnumRuleCall();
-				}
-			)
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRootPackageAccess().getRootPackageAction_0(),
+					$current);
+			}
 		)
+		(
+			otherlv_1='rootPackage'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getRootPackageAccess().getRootPackageKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRootPackageAccess().getNameFQNParserRuleCall_1_1_0());
+					}
+					lv_name_2_0=ruleFQN
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+						}
+						set(
+							$current,
+							"name",
+							lv_name_2_0,
+							"de.cooperateproject.modeling.textual.component.Component.FQN");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getRootPackageAccess().getClassifiersClassifierParserRuleCall_2_0());
 				}
-				lv_classifiers_2_0=ruleClassifier
+				lv_classifiers_3_0=ruleClassifier
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
@@ -364,7 +373,7 @@ ruleRootPackage returns [EObject current=null]
 					add(
 						$current,
 						"classifiers",
-						lv_classifiers_2_0,
+						lv_classifiers_3_0,
 						"de.cooperateproject.modeling.textual.component.Component.Classifier");
 					afterParserOrEnumRuleCall();
 				}
@@ -375,7 +384,7 @@ ruleRootPackage returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationsClassifierRelationParserRuleCall_3_0());
 				}
-				lv_relations_3_0=ruleClassifierRelation
+				lv_relations_4_0=ruleClassifierRelation
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
@@ -383,7 +392,7 @@ ruleRootPackage returns [EObject current=null]
 					add(
 						$current,
 						"relations",
-						lv_relations_3_0,
+						lv_relations_4_0,
 						"de.cooperateproject.modeling.textual.component.Component.ClassifierRelation");
 					afterParserOrEnumRuleCall();
 				}

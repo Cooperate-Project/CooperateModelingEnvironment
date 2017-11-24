@@ -10,8 +10,13 @@ import org.osgi.framework.Bundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Enum holding information about uml icons.
+ *
+ */
 public enum UMLImage {
 
+    ABSTRACTION("obj16/Abstraction.gif"),
     ACTOR("obj16/Actor.gif"),
     ASSOCIATION("obj16/Association.gif"),
     ASSOCIATION_COMPOSITE("obj16/Association_composite.gif"),
@@ -19,18 +24,25 @@ public enum UMLImage {
     CLASS("obj16/Class.gif"),
     COMPONENT("obj16/Component.gif"),
     COMMENT("obj16/Comment.gif"),
+    CONNECTOR("obj16/Connector.gif"),
+    CONNECTOR_END("obj16/ConnectorEnd.gif"),
+    DEPENDENCY("obj16/Dependency.gif"),
     EXTEND("obj16/Extend.gif"),
     EXTENSIONPOINT("obj16/ExtensionPoint.gif"),
     GENERALIZATION("obj16/Generalization.gif"),
     INCLUDE("obj16/Include.gif"),
     INTERFACE("obj16/Interface.gif"),
     INTERFACE_REALIZATION("obj16/InterfaceRealization.gif"),
+    MANIFESTATION("obj16/Manifestation.gif"),
     MODEL("obj16/Model.gif"),
     OPERATION("obj16/Operation.gif"),
     PACKAGE("obj16/Package.gif"),
     PACKAGE_IMPORT("obj16/PackageImport.gif"),
     PARAMETER("obj16/Parameter.gif"),
+    PORT("obj16/Port.gif"),
     PROPERTY("obj16/Property.gif"),
+    SUBSTITUTION("obj16/Substitution.gif"),
+    USAGE("obj16/Usage.gif"),
     USECASE("obj16/UseCase.gif"),
     VISIBILITY_PACKAGE("ovr16/VisibilityKind_package.gif"),
     VISIBILITY_PRIVATE("ovr16/VisibilityKind_private.gif"),
@@ -54,8 +66,7 @@ public enum UMLImage {
         try {
             URL resolvedFileURL = FileLocator.toFileURL(fileURL);
             URI resolvedURI = new URI(resolvedFileURL.getProtocol(), resolvedFileURL.getPath(), null);
-            Image image = new Image(null, resolvedURI.getPath());
-            return image;
+            return new Image(null, resolvedURI.getPath());
         } catch (Exception e) {
             LOGGER.error("Could not load the requested UML icon \"{}\".", imageName, e);
         }

@@ -101,6 +101,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     ActorUsecaseRelationship returns Association
 	 *     Relationship returns Association
 	 *     Association returns Association
 	 *
@@ -144,6 +145,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     UseCaseRelationship returns Extend
 	 *     Relationship returns Extend
 	 *     Extend returns Extend
 	 *
@@ -169,6 +171,8 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     UseCaseRelationship returns Generalization
+	 *     ActorUsecaseRelationship returns Generalization
 	 *     Relationship returns Generalization
 	 *     Generalization returns Generalization
 	 *
@@ -191,6 +195,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     UseCaseRelationship returns Include
 	 *     Relationship returns Include
 	 *     Include returns Include
 	 *
@@ -216,7 +221,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN actors+=Actor* systems+=System* relationships+=Relationship*)
+	 *     (name=FQN? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -228,7 +233,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     System returns System
 	 *
 	 * Constraint:
-	 *     (name=FQN (comments+=Comment | (comments+=Comment? usecases+=UseCase*))?)
+	 *     (name=FQN (comments+=Comment | (comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship*))?)
 	 */
 	protected void sequence_System(ISerializationContext context, de.cooperateproject.modeling.textual.usecase.usecase.System semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

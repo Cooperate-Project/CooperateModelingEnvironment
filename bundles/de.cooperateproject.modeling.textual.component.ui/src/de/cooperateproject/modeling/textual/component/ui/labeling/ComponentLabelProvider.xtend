@@ -5,27 +5,155 @@ package de.cooperateproject.modeling.textual.component.ui.labeling
 
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
+import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.component.cmp.Class
+import de.cooperateproject.modeling.textual.component.cmp.Interface
+import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import de.cooperateproject.modeling.textual.component.cmp.Generalization
+import de.cooperateproject.modeling.textual.component.cmp.Abstraction
+import de.cooperateproject.modeling.textual.component.cmp.Manifestation
+import de.cooperateproject.modeling.textual.component.cmp.Substitution
+import de.cooperateproject.modeling.textual.component.cmp.Dependency
+import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation
+import de.cooperateproject.modeling.textual.component.cmp.Provide
+import de.cooperateproject.modeling.textual.component.cmp.Require
+import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.cmp.Attribute
+import de.cooperateproject.modeling.textual.component.cmp.Connector
+import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
+import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.cmp.Method
+import de.cooperateproject.modeling.textual.component.cmp.Property
+import de.cooperateproject.modeling.textual.component.cmp.Parameter
 
 /**
  * Provides labels for EObjects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class ComponentLabelProvider extends DefaultEObjectLabelProvider {
+class ComponentLabelProvider extends CooperateOutlineLabelProvider {
 
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-	// Labels and icons can be computed like this:
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def image(ComponentDiagram element) {
+        UMLImage.MODEL.image
+    }
+
+	def image(Component element) {
+	    UMLImage.COMPONENT.getImage
+	}
+	def image(Class element) {
+	    UMLImage.CLASS.getImage
+	}
+	def image(Interface element) {
+	    UMLImage.INTERFACE.getImage
+	}
+	def image(Generalization element) {
+	    UMLImage.GENERALIZATION.image
+	}
+	def image(Abstraction element) {
+	    UMLImage.ABSTRACTION.image
+	}
+	def image(Manifestation element) {
+	    UMLImage.MANIFESTATION.image
+    }
+    def image(Substitution element) {
+        UMLImage.SUBSTITUTION.image  
+    }
+    def image(Dependency element) {
+        UMLImage.DEPENDENCY.image
+    }
+    def image(Connector element) {
+        UMLImage.CONNECTOR.image
+    }
+    def image(ConnectorEnd element) {
+        UMLImage.CONNECTOR_END.image
+    }
+	def image(ClassifierRelation element) {
+	    UMLImage.ASSOCIATION.image
+	}
+	def image(Provide element) {
+	    UMLImage.ASSOCIATION.image
+	}
+	def image(Require element) {
+	    UMLImage.ASSOCIATION.image
+	}
+	def image(Port element) {
+	    UMLImage.PORT.image
+	}
+	def image(Attribute element) {
+	    UMLImage.PROPERTY.image.decorate(element.visibility)
+	}
+	def image(Method element) {
+	    UMLImage.OPERATION.image.decorate(element.visibility)
+	}
+	
+	def image(Parameter ele) {
+        UMLImage.PARAMETER.image.decorate(ele.visibility)
+    }
+	
+	def text(Component element) {
+	    "component " + element.name
+	}
+	def text(Class element) {
+       "class " + element.name	
+    }
+	def text(Interface element) {
+        "interface " + element.name	
+    }
+	def text(Generalization element) {
+	    String.format("isa(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
+    }
+	def text(Abstraction element) {
+	    String.format("abs(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
+    }
+	def text(Manifestation element) {
+	    String.format("man(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
+    }
+	def text(Substitution element) {
+	    String.format("sub(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
+    }
+	def text(Dependency element) {
+	    String.format("dep(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
+    }
+	def text(Connector element) {
+        "con " + element.name
+    }
+	def text(ConnectorEnd element) {
+        element.part.name + "." + element.role.name
+    }
+    def text(Provide element) {
+        "provide " + element.name
+    }
+    def text(Require element) {
+        "require " + element.name
+    }
+    def text(Port element) {
+        "port " + element.name + " realizes " + element.realizedClassifier.name
+    }
+    def text(Attribute element) {
+        element.name + " : " + element.type.name
+    }
+    
+    def text(Method ele) {
+        var text = text(ele as Property)
+        if (text.contains(":")) {
+            text = text.replaceAll(":", "():")
+        } else {
+            text += "()"
+        }
+        return text
+    }
+    def text(Property ele) {
+        val typeRef = ele.type
+        var type = ""
+        if (typeRef !== null) {
+            type = ": " + typeRef.doGetText
+        }
+        ele.name + type
+    }
 }

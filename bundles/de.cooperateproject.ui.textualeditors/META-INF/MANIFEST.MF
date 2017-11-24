@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI Textual Editors
 Bundle-SymbolicName: de.cooperateproject.ui.textualeditors;singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: de.cooperateproject.ui;bundle-version="0.5.1",
+Require-Bundle: de.cooperateproject.ui;bundle-version="0.7.1",
  org.eclipse.core.resources,
  org.eclipse.emf.cdo.ui,
  de.cooperateproject.modeling.textual.xtext.runtime,
  org.apache.commons.lang3,
  de.cooperateproject.ui.util,
- de.cooperateproject.modeling.common;bundle-version="0.5.1"
+ de.cooperateproject.modeling.common;bundle-version="0.7.1"

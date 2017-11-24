@@ -1,8 +1,10 @@
 package de.cooperateproject.modeling.textual.cls.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.uml2.uml.Association;
@@ -47,21 +49,35 @@ public final class AssociationMatcher {
      * @return True if all types match. False otherwise.
      */
     public static boolean match(XtextAssociation txtAssociation, Association umlAssociation) {
-        List<org.eclipse.uml2.uml.Classifier> txtUMLTypes = txtAssociation.getMemberEndTypes().stream()
-                .map(XtextAssociationMemberEndReferencedType::getType).map(Classifier::getReferencedElement)
-                .collect(Collectors.toList());
+        Optional<List<org.eclipse.uml2.uml.Classifier>> txtUMLTypes = findUMLTypes(txtAssociation);
+        if (!txtUMLTypes.isPresent()) {
+            return false;
+        }
         List<Type> umlUMLTypes = umlAssociation.getMemberEnds().stream().map(Property::getType)
                 .collect(Collectors.toList());
-        if (txtUMLTypes.size() != umlUMLTypes.size() || txtUMLTypes.stream().anyMatch(Objects::isNull)) {
+        if (txtUMLTypes.get().size() != umlUMLTypes.size() || txtUMLTypes.get().stream().anyMatch(Objects::isNull)) {
             return false;
         }
 
-        for (int i = 0; i < txtUMLTypes.size(); ++i) {
-            if (txtUMLTypes.get(i) != umlUMLTypes.get(mapIndexTxt2Uml(i, txtUMLTypes.size()))) {
+        for (int i = 0; i < txtUMLTypes.get().size(); ++i) {
+            if (txtUMLTypes.get().get(i) != umlUMLTypes.get(mapIndexTxt2Uml(i, txtUMLTypes.get().size()))) {
                 return false;
             }
         }
         return true;
+    }
+
+    private static Optional<List<org.eclipse.uml2.uml.Classifier>> findUMLTypes(XtextAssociation association) {
+        List<org.eclipse.uml2.uml.Classifier> results = new ArrayList<>();
+        for (XtextAssociationMemberEndReferencedType type : association.getMemberEndTypes()) {
+            Optional<org.eclipse.uml2.uml.Classifier> foundUMLType = Optional.ofNullable(type.getType())
+                    .map(Classifier::getReferencedElement);
+            if (!foundUMLType.isPresent()) {
+                return Optional.empty();
+            }
+            foundUMLType.ifPresent(results::add);
+        }
+        return Optional.of(results);
     }
 
     /**

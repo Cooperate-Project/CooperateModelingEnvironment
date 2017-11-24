@@ -44,6 +44,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAggregationKindAccess().getAlternatives(), "rule__AggregationKind__Alternatives");
 					put(grammarAccess.getClassDiagramAccess().getGroup(), "rule__ClassDiagram__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
+					put(grammarAccess.getRootPackageAccess().getGroup_1(), "rule__RootPackage__Group_1__0");
 					put(grammarAccess.getPackageAccess().getGroup(), "rule__Package__Group__0");
 					put(grammarAccess.getPackageImportAccess().getGroup(), "rule__PackageImport__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
@@ -73,7 +74,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCardinalityAccess().getGroup_1(), "rule__Cardinality__Group_1__0");
 					put(grammarAccess.getClassDiagramAccess().getTitleAssignment_2(), "rule__ClassDiagram__TitleAssignment_2");
 					put(grammarAccess.getClassDiagramAccess().getRootPackageAssignment_3(), "rule__ClassDiagram__RootPackageAssignment_3");
-					put(grammarAccess.getRootPackageAccess().getNameAssignment_1(), "rule__RootPackage__NameAssignment_1");
+					put(grammarAccess.getRootPackageAccess().getNameAssignment_1_1(), "rule__RootPackage__NameAssignment_1_1");
 					put(grammarAccess.getRootPackageAccess().getPackageImportsAssignment_2(), "rule__RootPackage__PackageImportsAssignment_2");
 					put(grammarAccess.getRootPackageAccess().getClassifiersAssignment_3(), "rule__RootPackage__ClassifiersAssignment_3");
 					put(grammarAccess.getRootPackageAccess().getConnectorsAssignment_4(), "rule__RootPackage__ConnectorsAssignment_4");

@@ -69,31 +69,39 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.RootPackage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRootPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Action cRootPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final Assignment cActorsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cActorsActorParserRuleCall_2_0 = (RuleCall)cActorsAssignment_2.eContents().get(0);
 		private final Assignment cSystemsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cSystemsSystemParserRuleCall_3_0 = (RuleCall)cSystemsAssignment_3.eContents().get(0);
 		private final Assignment cRelationshipsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRelationshipsRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
+		private final RuleCall cRelationshipsActorUsecaseRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
 		
 		//RootPackage:
-		//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+		//	{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*
+		//{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*
 		public Group getGroup() { return cGroup; }
 		
+		//{RootPackage}
+		public Action getRootPackageAction_0() { return cRootPackageAction_0; }
+		
+		//('rootPackage' name=FQN)?
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//'rootPackage'
-		public Keyword getRootPackageKeyword_0() { return cRootPackageKeyword_0; }
+		public Keyword getRootPackageKeyword_1_0() { return cRootPackageKeyword_1_0; }
 		
 		//name=FQN
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
 		
 		//FQN
-		public RuleCall getNameFQNParserRuleCall_1_0() { return cNameFQNParserRuleCall_1_0; }
+		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
 		
 		//actors+=Actor*
 		public Assignment getActorsAssignment_2() { return cActorsAssignment_2; }
@@ -107,11 +115,53 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//System
 		public RuleCall getSystemsSystemParserRuleCall_3_0() { return cSystemsSystemParserRuleCall_3_0; }
 		
-		//relationships+=Relationship*
+		//relationships+=ActorUsecaseRelationship*
 		public Assignment getRelationshipsAssignment_4() { return cRelationshipsAssignment_4; }
 		
-		//Relationship
-		public RuleCall getRelationshipsRelationshipParserRuleCall_4_0() { return cRelationshipsRelationshipParserRuleCall_4_0; }
+		//ActorUsecaseRelationship
+		public RuleCall getRelationshipsActorUsecaseRelationshipParserRuleCall_4_0() { return cRelationshipsActorUsecaseRelationshipParserRuleCall_4_0; }
+	}
+	public class UseCaseRelationshipElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.UseCaseRelationship");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cGeneralizationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExtendParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIncludeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//UseCaseRelationship:
+		//	Generalization | Extend | Include;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Generalization | Extend | Include
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Generalization
+		public RuleCall getGeneralizationParserRuleCall_0() { return cGeneralizationParserRuleCall_0; }
+		
+		//Extend
+		public RuleCall getExtendParserRuleCall_1() { return cExtendParserRuleCall_1; }
+		
+		//Include
+		public RuleCall getIncludeParserRuleCall_2() { return cIncludeParserRuleCall_2; }
+	}
+	public class ActorUsecaseRelationshipElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.ActorUsecaseRelationship");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cGeneralizationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAssociationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ActorUsecaseRelationship:
+		//	Generalization | Association;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Generalization | Association
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Generalization
+		public RuleCall getGeneralizationParserRuleCall_0() { return cGeneralizationParserRuleCall_0; }
+		
+		//Association
+		public RuleCall getAssociationParserRuleCall_1() { return cAssociationParserRuleCall_1; }
 	}
 	public class ActorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Actor");
@@ -229,13 +279,16 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommentsCommentParserRuleCall_2_1_1_0 = (RuleCall)cCommentsAssignment_2_1_1.eContents().get(0);
 		private final Assignment cUsecasesAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
 		private final RuleCall cUsecasesUseCaseParserRuleCall_2_1_2_0 = (RuleCall)cUsecasesAssignment_2_1_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_2_1_3 = (Keyword)cGroup_2_1.eContents().get(3);
+		private final Assignment cRelationshipsAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
+		private final RuleCall cRelationshipsUseCaseRelationshipParserRuleCall_2_1_3_0 = (RuleCall)cRelationshipsAssignment_2_1_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_1_4 = (Keyword)cGroup_2_1.eContents().get(4);
 		
 		//System:
-		//	'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* '}');
+		//	'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship*
+		//	'}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* '}')
+		//'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship* '}')
 		public Group getGroup() { return cGroup; }
 		
 		//'sys'
@@ -247,7 +300,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_1_0() { return cNameFQNParserRuleCall_1_0; }
 		
-		//comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* '}'
+		//comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship* '}'
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//comments+=Comment?
@@ -256,7 +309,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//Comment
 		public RuleCall getCommentsCommentParserRuleCall_2_0_0() { return cCommentsCommentParserRuleCall_2_0_0; }
 		
-		//'{' comments+=Comment? usecases+=UseCase* '}'
+		//'{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship* '}'
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//'{'
@@ -274,8 +327,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//UseCase
 		public RuleCall getUsecasesUseCaseParserRuleCall_2_1_2_0() { return cUsecasesUseCaseParserRuleCall_2_1_2_0; }
 		
+		//relationships+=UseCaseRelationship*
+		public Assignment getRelationshipsAssignment_2_1_3() { return cRelationshipsAssignment_2_1_3; }
+		
+		//UseCaseRelationship
+		public RuleCall getRelationshipsUseCaseRelationshipParserRuleCall_2_1_3_0() { return cRelationshipsUseCaseRelationshipParserRuleCall_2_1_3_0; }
+		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_2_1_3() { return cRightCurlyBracketKeyword_2_1_3; }
+		public Keyword getRightCurlyBracketKeyword_2_1_4() { return cRightCurlyBracketKeyword_2_1_4; }
 	}
 	public class UseCaseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.UseCase");
@@ -973,6 +1032,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final UseCaseDiagramElements pUseCaseDiagram;
 	private final RootPackageElements pRootPackage;
+	private final UseCaseRelationshipElements pUseCaseRelationship;
+	private final ActorUsecaseRelationshipElements pActorUsecaseRelationship;
 	private final ActorElements pActor;
 	private final SystemElements pSystem;
 	private final UseCaseElements pUseCase;
@@ -1001,6 +1062,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pUseCaseDiagram = new UseCaseDiagramElements();
 		this.pRootPackage = new RootPackageElements();
+		this.pUseCaseRelationship = new UseCaseRelationshipElements();
+		this.pActorUsecaseRelationship = new ActorUsecaseRelationshipElements();
 		this.pActor = new ActorElements();
 		this.pSystem = new SystemElements();
 		this.pUseCase = new UseCaseElements();
@@ -1057,13 +1120,33 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	'rootPackage' name=FQN actors+=Actor* systems+=System* relationships+=Relationship*;
+	//	{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}
 	
 	public ParserRule getRootPackageRule() {
 		return getRootPackageAccess().getRule();
+	}
+	
+	//UseCaseRelationship:
+	//	Generalization | Extend | Include;
+	public UseCaseRelationshipElements getUseCaseRelationshipAccess() {
+		return pUseCaseRelationship;
+	}
+	
+	public ParserRule getUseCaseRelationshipRule() {
+		return getUseCaseRelationshipAccess().getRule();
+	}
+	
+	//ActorUsecaseRelationship:
+	//	Generalization | Association;
+	public ActorUsecaseRelationshipElements getActorUsecaseRelationshipAccess() {
+		return pActorUsecaseRelationship;
+	}
+	
+	public ParserRule getActorUsecaseRelationshipRule() {
+		return getActorUsecaseRelationshipAccess().getRule();
 	}
 	
 	//Actor:
@@ -1078,7 +1161,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//System:
-	//	'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* '}');
+	//	'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship*
+	//	'}');
 	public SystemElements getSystemAccess() {
 		return pSystem;
 	}

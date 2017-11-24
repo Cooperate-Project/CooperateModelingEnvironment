@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.ActorType;
+import de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
@@ -16,6 +17,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecaseFactory;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
@@ -123,6 +125,20 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * @generated
      */
     private EClass extendEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass useCaseRelationshipEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass actorUsecaseRelationshipEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -338,6 +354,15 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getSystem_Relationships() {
+        return (EReference)systemEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getUseCase() {
         return useCaseEClass;
     }
@@ -545,6 +570,24 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getUseCaseRelationship() {
+        return useCaseRelationshipEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getActorUsecaseRelationship() {
+        return actorUsecaseRelationshipEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getActorType() {
         return actorTypeEEnum;
     }
@@ -596,6 +639,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         systemEClass = createEClass(SYSTEM);
         createEReference(systemEClass, SYSTEM__USECASES);
         createEReference(systemEClass, SYSTEM__PACKAGE);
+        createEReference(systemEClass, SYSTEM__RELATIONSHIPS);
 
         useCaseEClass = createEClass(USE_CASE);
         createEAttribute(useCaseEClass, USE_CASE__ABSTRACT);
@@ -626,6 +670,10 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         createEReference(extendEClass, EXTEND__EXTENDED_CASE);
         createEReference(extendEClass, EXTEND__EXTENSION_LOCATION);
         createEAttribute(extendEClass, EXTEND__CONDITION);
+
+        useCaseRelationshipEClass = createEClass(USE_CASE_RELATIONSHIP);
+
+        actorUsecaseRelationshipEClass = createEClass(ACTOR_USECASE_RELATIONSHIP);
 
         // Create enums
         actorTypeEEnum = createEEnum(ACTOR_TYPE);
@@ -674,11 +722,9 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(behavioredClassifierEClass_T);
         g1.getETypeArguments().add(g2);
         behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getPackage());
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
+        g2 = createEGenericType(this.getRootPackage());
         g1.getETypeArguments().add(g2);
-        rootPackageEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
         g2 = createEGenericType(theUMLPackage.getActor());
@@ -717,26 +763,32 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getAssociation());
         g1.getETypeArguments().add(g2);
         associationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getRelationship());
+        g1 = createEGenericType(this.getUseCaseRelationship());
         associationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getRelationship());
+        g1 = createEGenericType(this.getActorUsecaseRelationship());
+        associationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getUseCaseRelationship());
+        generalizationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getActorUsecaseRelationship());
         generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getGeneralization());
         g1.getETypeArguments().add(g2);
         generalizationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getRelationship());
+        g1 = createEGenericType(this.getUseCaseRelationship());
         includeEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getInclude());
         g1.getETypeArguments().add(g2);
         includeEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getRelationship());
+        g1 = createEGenericType(this.getUseCaseRelationship());
         extendEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getExtend());
         g1.getETypeArguments().add(g2);
         extendEClass.getEGenericSuperTypes().add(g1);
+        useCaseRelationshipEClass.getESuperTypes().add(this.getRelationship());
+        actorUsecaseRelationshipEClass.getESuperTypes().add(this.getRelationship());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(useCaseDiagramEClass, UseCaseDiagram.class, "UseCaseDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -748,7 +800,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getRootPackage_Actors(), this.getActor(), null, "actors", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRootPackage_Systems(), this.getSystem(), this.getSystem_Package(), "systems", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRootPackage_Relationships(), this.getRelationship(), null, "relationships", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRootPackage_Relationships(), this.getActorUsecaseRelationship(), null, "relationships", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRootPackage_Diagram(), this.getUseCaseDiagram(), this.getUseCaseDiagram_RootPackage(), "diagram", null, 1, 1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -758,6 +810,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEClass(systemEClass, de.cooperateproject.modeling.textual.usecase.usecase.System.class, "System", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSystem_Usecases(), this.getUseCase(), this.getUseCase_System(), "usecases", null, 0, -1, de.cooperateproject.modeling.textual.usecase.usecase.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSystem_Package(), this.getRootPackage(), this.getRootPackage_Systems(), "package", null, 1, 1, de.cooperateproject.modeling.textual.usecase.usecase.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSystem_Relationships(), this.getUseCaseRelationship(), null, "relationships", null, 0, -1, de.cooperateproject.modeling.textual.usecase.usecase.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getUseCase_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, UseCase.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -794,6 +847,10 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEReference(getExtend_ExtendedCase(), this.getUseCase(), null, "extendedCase", null, 1, 1, Extend.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getExtend_ExtensionLocation(), this.getExtensionPoint(), null, "extensionLocation", null, 1, 1, Extend.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getExtend_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Extend.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(useCaseRelationshipEClass, UseCaseRelationship.class, "UseCaseRelationship", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(actorUsecaseRelationshipEClass, ActorUsecaseRelationship.class, "ActorUsecaseRelationship", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Initialize enums and add enum literals
         initEEnum(actorTypeEEnum, ActorType.class, "ActorType");

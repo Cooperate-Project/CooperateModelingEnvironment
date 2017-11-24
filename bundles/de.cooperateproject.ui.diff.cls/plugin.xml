@@ -7,6 +7,10 @@
             class="de.cooperateproject.ui.diff.cls.labelhandling.ClsLabelHandler"
             metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
       </labelHandler>
+      <labelHandler
+            class="de.cooperateproject.ui.diff.cls.labelhandling.ClsEStructuralFeatureLabelProvider"
+            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
+      </labelHandler>
    </extension>
    <extension
          point="de.cooperateproject.ui.diff.derivedcalculator">

@@ -2,6 +2,8 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.remover;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.CLEANING;
 
+import java.util.Optional;
+
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -21,8 +23,11 @@ public class MethodRemover extends AtomicDerivedStateProcessorBase<Method> {
 
     @Override
     protected void applyTyped(Method object) {
-        if (object.getReferencedElement() != null) {
+        Optional<org.eclipse.uml2.uml.Operation> umlClassifier = Optional.ofNullable(object.getReferencedElement());
+        if (umlClassifier.map(operation -> operation.isAbstract() == object.isAbstract()).orElse(false)) {
             object.unsetAbstract();
+        } else if (!object.isSetAbstract() && undergoesAutomatedIssueResolution(object)) {
+            object.setAbstract(false);
         }
     }
 

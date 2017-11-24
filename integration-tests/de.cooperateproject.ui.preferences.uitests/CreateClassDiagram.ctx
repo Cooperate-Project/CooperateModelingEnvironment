@@ -6,7 +6,7 @@ Element-Type: context
 Element-Version: 2.0
 Id: _xN4PAEtVEee-xdp8J34vfQ
 Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/8/17 8:31 AM
+Save-Time: 11/10/17 6:37 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
@@ -17,18 +17,18 @@ proc "create-class-diagram" [val project] [val name] {
         
     with [get-window -class WizardDialog] {
         get-tree | select $project
-        get-editbox -after [get-label "Enter or select the model:"] | set-text [concat [concat $project "/"] $name]
+        get-editbox -after [get-label "Enter or select the model:"] | set-text [concat $project "/" $name]
         get-editbox -after [get-label "Diagram Name:"] | set-text $name
         wait -ms 100
         get-button Finish | click
     }
     
     with [get-view "Project Explorer" | get-tree] {
-    	wait -ms 500
+    	wait -ms 2000
     	select $project | get-menu -path Refresh | click
-        get-item [concat [concat $project "/model-gen/"] $name] | get-property caption | equals $name | verify-true
-        get-item [concat [concat [concat [concat [concat $project "/model-gen/"] $name] " - "] $name] ".cls"] | get-property caption | equals [concat [concat [concat $name " - "] $name] ".cls"] | verify-true
         get-item [concat $project "/models"] | get-property childCount | equals 1 | verify-true
+        get-item [concat $project "/model-gen/" $name] | get-property caption | equals $name | verify-true
+        get-item [concat $project "/model-gen/" $name " - " $name ".cls"] | get-property caption | equals [concat $name " - " $name ".cls"] | verify-true
     }
 }
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

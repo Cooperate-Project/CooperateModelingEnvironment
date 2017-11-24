@@ -31,8 +31,9 @@ Member returns Member:
 	
 	
 
-RootPackage returns RootPackage: 
-	'rootPackage' name=FQN
+RootPackage:
+	{RootPackage} 
+	('rootPackage' name=FQN)?
 			classifiers+=Classifier*
 			relations+=ClassifierRelation*
 	;

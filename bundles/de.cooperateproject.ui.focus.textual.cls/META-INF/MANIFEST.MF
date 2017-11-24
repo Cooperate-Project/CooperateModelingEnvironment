@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate Focus Transfer Textual Class Diagram
 Bundle-SymbolicName: de.cooperateproject.ui.focus.textual.cls;singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: de.cooperateproject.ui.focus,
  org.eclipse.uml2.uml,

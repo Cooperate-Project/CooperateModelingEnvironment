@@ -17,15 +17,16 @@ import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.NatureUtils;
 import de.cooperateproject.ui.util.IValidateable;
-import de.cooperateproject.ui.wizards.modelnew.AtomicModelNameProcessor.ModelName;
+import de.cooperateproject.ui.wizards.modelnew.AtomicProjectNameProcessor.ProjectName;
 
 public class SelectedNamesDTO implements IValidateable {
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private final ObservableList<IProject> availableProjects = createProjectList();
 
-    private ModelName selectedModelName;
+    private String selectedModelName;
     private String selectedDiagramName;
+    private ProjectName selectedProjectName;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SelectedNamesDTO.class);
 
@@ -35,12 +36,12 @@ public class SelectedNamesDTO implements IValidateable {
         return new WritableList<>(tmp, IProject.class);
     }
 
-    public ModelName getSelectedModelName() {
+    public String getSelectedModelName() {
         return selectedModelName;
     }
 
-    public void setSelectedModelName(ModelName modelName) {
-        ModelName oldValue = this.selectedModelName;
+    public void setSelectedModelName(String modelName) {
+        String oldValue = this.selectedModelName;
         this.selectedModelName = modelName;
         this.pcs.firePropertyChange("selectedModelName", oldValue, selectedModelName);
     }
@@ -53,6 +54,17 @@ public class SelectedNamesDTO implements IValidateable {
         String oldValue = this.selectedDiagramName;
         this.selectedDiagramName = diagramName;
         this.pcs.firePropertyChange("selectedDiagramName", oldValue, selectedDiagramName);
+    }
+
+    public ProjectName getSelectedProjectName() {
+
+        return selectedProjectName;
+    }
+
+    public void setSelectedProjectName(ProjectName projectName) {
+        ProjectName oldValue = this.getSelectedProjectName();
+        this.selectedProjectName = projectName;
+        this.pcs.firePropertyChange("selectedProjectName", oldValue, selectedProjectName);
     }
 
     public Collection<IProject> getAvailableProjects() {

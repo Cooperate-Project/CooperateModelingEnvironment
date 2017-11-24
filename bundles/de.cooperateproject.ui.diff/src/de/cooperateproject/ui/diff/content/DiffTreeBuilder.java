@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Map.Entry;
 
 /**
@@ -145,24 +146,36 @@ public class DiffTreeBuilder {
     }
 
     private void addAddChangeMoveChange(SummaryItem item, DifferenceKind differenceKind) {
-        if (differenceKind == DifferenceKind.ADD || differenceKind == DifferenceKind.CHANGE
-                || differenceKind == DifferenceKind.MOVE) {
-            if (tree.containsKey(item.getLeft())) {
-                tree.get(item.getLeft()).setDiffKind(differenceKind);
-            } else if (tree.containsKey(item.getRight())) {
-                tree.get(item.getRight()).setDiffKind(differenceKind);
-            } else if (tree.containsKey(item.getCommonParent())) {
-                setParentDiffKind(item, differenceKind);
-            }
-        }
+		if (differenceKind == DifferenceKind.ADD) {
+			Optional<EObject> newValueEObject = Optional.ofNullable(item.getNewValue())
+					.filter(EObject.class::isInstance).map(EObject.class::cast);
+			if (newValueEObject.isPresent()) {
+				associateWithNextPossibleParent(newValueEObject.get(), item);
+			} else {
+				Optional.ofNullable(item.getNewValue()).filter(tree::containsKey).map(tree::get)
+						.ifPresent(i -> i.addAssociatedDiff(item));
+
+			}
+		}
+		
+		if (differenceKind == DifferenceKind.CHANGE)  {
+			associateWithNextPossibleParent(item.getChangedObject(), item);
+		}
+		
+		if (differenceKind == DifferenceKind.MOVE) {
+			associateWithNextPossibleParent((EObject)item.getNewValue(), item);
+		}
     }
 
-    private void setParentDiffKind(SummaryItem item, DifferenceKind differenceKind) {
-        DiffTreeItem temp = tree.get(item.getCommonParent());
-        if (temp.getDiffKind() == null) {
-            temp.setDiffKind(differenceKind);
-        }
-    }
+	private void associateWithNextPossibleParent(EObject startObject, SummaryItem item) {
+		for (EObject currentObject = startObject; currentObject != null; currentObject = currentObject
+				.eContainer()) {
+			if (tree.containsKey(currentObject)) {
+				tree.get(currentObject).addAssociatedDiff(item);
+				break;
+			}
+		}
+	}
 
     /**
      * Add deleted items into diff tree.
@@ -171,14 +184,14 @@ public class DiffTreeBuilder {
      *            containing all diff information.
      */
     private void addDeleteChange(SummaryItem item) {
-        Object deletedItem = item.getRight();
-        if (tree.containsKey(item.getCommonParent())) {
-            DiffTreeItem affectedParent = tree.get(item.getCommonParent());
+        Object deletedItem = item.getOldValue();
+        if (tree.containsKey(item.getChangedObject())) {
+            DiffTreeItem affectedParent = tree.get(item.getChangedObject());
             DiffTreeItem newChild = new DiffTreeItem(deletedItem);
             affectedParent.addChild(newChild);
             newChild.setParent(affectedParent);
             addDeletedChildren(newChild);
-            newChild.setDiffKind(DifferenceKind.DELETE);
+            newChild.addAssociatedDiff(item);
         }
     }
 
@@ -203,7 +216,7 @@ public class DiffTreeBuilder {
 
     private static void createDeleteDiffKindItem(DiffTreeItem parent, EObject obj) {
         DiffTreeItem diffItem = new DiffTreeItem(obj);
-        diffItem.setDiffKind(DifferenceKind.DELETE);
+        diffItem.setDifferenceKindsManually(DifferenceKind.DELETE);
         parent.addChild(diffItem);
         diffItem.setParent(parent);
     }

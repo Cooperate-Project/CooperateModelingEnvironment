@@ -185,6 +185,24 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetType() {
+        eDynamicUnset(ClsPackage.PROPERTY__TYPE, ClsPackage.Literals.PROPERTY__TYPE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetType() {
+        return eDynamicIsSet(ClsPackage.PROPERTY__TYPE, ClsPackage.Literals.PROPERTY__TYPE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -235,7 +253,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 unsetVisibility();
                 return;
             case ClsPackage.PROPERTY__TYPE:
-                setType((Classifier)null);
+                unsetType();
                 return;
         }
         super.eUnset(featureID);
@@ -254,7 +272,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
             case ClsPackage.PROPERTY__VISIBILITY:
                 return isSetVisibility();
             case ClsPackage.PROPERTY__TYPE:
-                return basicGetType() != null;
+                return isSetType();
         }
         return super.eIsSet(featureID);
     }

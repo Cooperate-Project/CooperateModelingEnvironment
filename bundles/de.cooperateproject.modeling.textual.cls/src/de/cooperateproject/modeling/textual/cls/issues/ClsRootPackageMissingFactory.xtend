@@ -28,7 +28,7 @@ class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBas
 			if (preconditionHoldsFor(element)) {
 				val fqn = qualifiedNameProvider.getFullyQualifiedName(element)
 				val umlRootPackage = ClsRootPackageMissingResolution.findUMLRootPackage(typeQueryProvider, element)
-				if (umlRootPackage !== null && fqn.firstSegment == umlRootPackage.name) {
+				if (umlRootPackage !== null && fqn !== null && fqn.firstSegment == umlRootPackage.name) {
 					var currentPackage = umlRootPackage
 					for (segment : fqn.segments.subList(1, fqn.segments.size)) {
 						val candidates = currentPackage.nestedPackages.filter[name == segment]

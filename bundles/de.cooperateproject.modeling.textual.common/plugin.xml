@@ -63,6 +63,12 @@
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.PackageImportCalculator">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.PackageInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.PackageCalculator">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">

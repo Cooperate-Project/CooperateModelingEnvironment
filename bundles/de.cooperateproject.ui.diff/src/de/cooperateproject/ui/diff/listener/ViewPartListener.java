@@ -1,5 +1,7 @@
 package de.cooperateproject.ui.diff.listener;
 
+import java.util.Optional;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -101,8 +103,10 @@ public class ViewPartListener implements IPartListener2 {
         return null;
     }
     
-    private static boolean isPartTextEditor(IWorkbenchPartReference partRef) {
-        return partRef.getId().contains(COOPERATE_EDITOR_ID);
-    }
+	private static boolean isPartTextEditor(IWorkbenchPartReference partRef) {
+		return partRef.getId().contains(COOPERATE_EDITOR_ID) && Optional.ofNullable(partRef.getPart(false))
+				.filter(IEditorPart.class::isInstance).map(IEditorPart.class::cast).map(IEditorPart::getEditorInput)
+				.filter(ILauncherFileEditorInput.class::isInstance).isPresent();
+	}
 
 }

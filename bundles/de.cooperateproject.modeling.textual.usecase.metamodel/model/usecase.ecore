@@ -25,13 +25,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="systems" upperBound="-1"
         eType="#//System" containment="true" eOpposite="#//System/package"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relationships" upperBound="-1"
-        eType="#//Relationship" containment="true"/>
+        eType="#//ActorUsecaseRelationship" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" lowerBound="1"
         eType="#//UseCaseDiagram" eOpposite="#//UseCaseDiagram/rootPackage"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//PackageBase">
+      <eTypeArguments eClassifier="#//RootPackage"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -48,6 +47,8 @@
         eType="#//UseCase" containment="true" eOpposite="#//UseCase/system"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
         eType="#//RootPackage" eOpposite="#//RootPackage/systems"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relationships" upperBound="-1"
+        eType="#//UseCaseRelationship" containment="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </eGenericSuperTypes>
@@ -91,7 +92,8 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
+    <eGenericSuperTypes eClassifier="#//UseCaseRelationship"/>
+    <eGenericSuperTypes eClassifier="#//ActorUsecaseRelationship"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="specific" lowerBound="1"
@@ -106,7 +108,8 @@
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
+    <eGenericSuperTypes eClassifier="#//UseCaseRelationship"/>
+    <eGenericSuperTypes eClassifier="#//ActorUsecaseRelationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </eGenericSuperTypes>
@@ -116,7 +119,7 @@
         eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includingCase" lowerBound="1"
         eType="#//UseCase" transient="true"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
+    <eGenericSuperTypes eClassifier="#//UseCaseRelationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
     </eGenericSuperTypes>
@@ -130,7 +133,7 @@
         eType="#//ExtensionPoint" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true" unsettable="true"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
+    <eGenericSuperTypes eClassifier="#//UseCaseRelationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
     </eGenericSuperTypes>
@@ -140,4 +143,8 @@
     <eLiterals name="HUMAN" value="1"/>
     <eLiterals name="MACHINE" value="2" literal="MACHINE"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UseCaseRelationship" abstract="true"
+      interface="true" eSuperTypes="#//Relationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActorUsecaseRelationship" abstract="true"
+      interface="true" eSuperTypes="#//Relationship"/>
 </ecore:EPackage>

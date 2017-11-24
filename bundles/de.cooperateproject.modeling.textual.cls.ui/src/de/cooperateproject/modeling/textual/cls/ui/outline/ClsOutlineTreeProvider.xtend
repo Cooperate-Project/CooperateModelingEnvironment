@@ -14,6 +14,7 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 
 /**
  * Customization of the default outline structure.
@@ -23,13 +24,11 @@ import de.cooperateproject.modeling.textual.common.outline.UMLImage
 class ClsOutlineTreeProvider extends CooperateOutlineTreeProvider {
 
 	dispatch def createChildren(IOutlineNode parentNode, ClassDiagram root) {
-		if (root.rootPackage === null) {
-			return
-		}
-		createNode(parentNode, root.rootPackage)
-	}
-
-	dispatch def createChildren(IOutlineNode parentNode, Package pkg) {
+	    if (root.rootPackage === null) {
+            return
+        }
+        
+        val pkg = root.rootPackage
 		createFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image,
 			getStyledString("Packages", pkg.packages.size), false)
 		createFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS,
@@ -45,8 +44,21 @@ class ClsOutlineTreeProvider extends CooperateOutlineTreeProvider {
 		_createChildren(parentNode, asc as Commentable<?>)
 	}
 	
+	dispatch def createChildren(IOutlineNode parentNode, Classifier classifier) {
+		classifier.members.forEach[t|createEObjectNode(parentNode, t)];
+		_createChildren(parentNode, classifier as Commentable<?>)
+	}
+	
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
 		createConnectorNode(parentNode, c)
+	}
+	
+	protected def dispatch createNode(IOutlineNode parentNode, Package element) {
+	    if (element.owningPackage === null) {
+	       createEObjectNode(parentNode, element.referencedElement)
+	    } else {
+	       createEObjectNode(parentNode, element)
+	    }
 	}
 
 	def createConnectorNode(EStructuralFeatureNode node, Connector connector) {

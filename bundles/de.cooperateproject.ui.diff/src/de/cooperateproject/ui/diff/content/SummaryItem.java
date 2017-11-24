@@ -1,7 +1,11 @@
 package de.cooperateproject.ui.diff.content;
 
+import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.DifferenceKind;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * Represents an item of the differences' summary table.
@@ -11,71 +15,89 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class SummaryItem {
 
-    /**
-     * The object in the "new version" of the diagram.
-     */
-    private Object left;
-    /**
-     * The object in the "old version" of the diagram.
-     */
-    private Object right;
-    private DifferenceKind kind;
-    private EObject commonParent;
-    /**
-     * The object on which the actual difference was detected.
-     */
-    private Object value;
+	private Diff originalDiff;
 
-    /**
-     * Constructs a new SummaryItem.
-     * 
-     * @param commonParent
-     *            the common parent of both
-     * @param kind
-     *            the DifferenceKind
-     * @param value
-     *            the object on which the actual difference was detected
-     */
-    public SummaryItem(EObject commonParent, DifferenceKind kind, Object value) {
-        this.kind = kind;
-        this.commonParent = commonParent;
-        this.value = value;
-    }
+	private final Object oldValue;
+	private final Object newValue;
+	private final DifferenceKind differenceKind;
+	private final EObject changedObject;
+	private final EStructuralFeature changedFeature;
 
-    public void setCommonParent(EObject parent) {
-        commonParent = parent;
-    }
+	/**
+	 * Constructs a new {@link SummaryItem} instance.
+	 * 
+	 * @param originalDiff
+	 *            The original diff that is represented by this instance.
+	 * @param oldValue
+	 *            The old value of the change.
+	 * @param newValue
+	 *            The new value of the change.
+	 * @param differenceKind
+	 *            The kind of difference.
+	 * @param changedObject
+	 *            The objects that has been changed.
+	 * @param changedFeature
+	 *            The feature that is affected by the change.
+	 */
+	public SummaryItem(Diff originalDiff, Object oldValue, Object newValue, DifferenceKind differenceKind,
+			EObject changedObject, EAttribute changedFeature) {
+		this(originalDiff, oldValue, newValue, differenceKind, changedObject, (EStructuralFeature) changedFeature);
+	}
 
-    public void setLeft(Object left) {
-        this.left = left;
-    }
+	/**
+	 * Constructs a new {@link SummaryItem} instance.
+	 * 
+	 * @param originalDiff
+	 *            The original diff that is represented by this instance.
+	 * @param oldValue
+	 *            The old value of the change.
+	 * @param newValue
+	 *            The new value of the change.
+	 * @param differenceKind
+	 *            The kind of difference.
+	 * @param changedObject
+	 *            The objects that has been changed.
+	 * @param changedFeature
+	 *            The feature that is affected by the change.
+	 */
+	public SummaryItem(Diff originalDiff, EObject oldValue, EObject newValue, DifferenceKind differenceKind,
+			EObject changedObject, EReference changedFeature) {
+		this(originalDiff, oldValue, newValue, differenceKind, changedObject, (EStructuralFeature) changedFeature);
+	}
 
-    public void setRight(Object right) {
-        this.right = right;
-    }
+	private SummaryItem(Diff originalDiff, Object oldValue, Object newValue, DifferenceKind differenceKind,
+			EObject changedObject, EStructuralFeature changedFeature) {
+		super();
+		this.originalDiff = originalDiff;
+		this.oldValue = oldValue;
+		this.newValue = newValue;
+		this.differenceKind = differenceKind;
+		this.changedObject = changedObject;
+		this.changedFeature = changedFeature;
+	}
 
-    public void setDifferenceKind(DifferenceKind kind) {
-        this.kind = kind;
-    }
+	public Diff getOriginalDiff() {
+		return originalDiff;
+	}
 
-    public Object getLeft() {
-        return left;
-    }
+	public Object getOldValue() {
+		return oldValue;
+	}
 
-    public Object getRight() {
-        return right;
-    }
+	public Object getNewValue() {
+		return newValue;
+	}
 
-    public EObject getCommonParent() {
-        return commonParent;
-    }
+	public DifferenceKind getDifferenceKind() {
+		return differenceKind;
+	}
 
-    public DifferenceKind getDifferenceKind() {
-        return kind;
-    }
+	public EObject getChangedObject() {
+		return changedObject;
+	}
 
-    public Object getValue() {
-        return value;
-    }
+	public EStructuralFeature getChangedFeature() {
+		return changedFeature;
+	}
 
 }

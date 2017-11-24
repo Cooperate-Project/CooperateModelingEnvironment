@@ -2,13 +2,9 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
-import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
+import de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
@@ -32,7 +28,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getActors <em>Actors</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getSystems <em>Systems</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getRelationships <em>Relationships</em>}</li>
@@ -41,17 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.uml.Package> implements RootPackage {
-    /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected static final String NAME_EDEFAULT = null;
-
+public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements RootPackage {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -78,44 +63,8 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * @generated
      */
     @Override
-    public void setReferencedElement(org.eclipse.uml2.uml.Package newReferencedElement) {
-        super.setReferencedElement(newReferencedElement);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName() {
-        return (String)eDynamicGet(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setName(String newName) {
-        eDynamicSet(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetName() {
-        eDynamicUnset(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetName() {
-        return eDynamicIsSet(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    public NotificationChain basicSetOwningPackage(RootPackage newOwningPackage, NotificationChain msgs) {
+        return super.basicSetOwningPackage(newOwningPackage, msgs);
     }
 
     /**
@@ -144,8 +93,8 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Relationship> getRelationships() {
-        return (EList<Relationship>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, true, true);
+    public EList<ActorUsecaseRelationship> getRelationships() {
+        return (EList<ActorUsecaseRelationship>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, true, true);
     }
 
     /**
@@ -237,8 +186,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__NAME:
-                return getName();
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 return getActors();
             case UsecasePackage.ROOT_PACKAGE__SYSTEMS:
@@ -260,9 +207,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__NAME:
-                setName((String)newValue);
-                return;
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 getActors().clear();
                 getActors().addAll((Collection<? extends Actor>)newValue);
@@ -273,7 +217,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
                 return;
             case UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS:
                 getRelationships().clear();
-                getRelationships().addAll((Collection<? extends Relationship>)newValue);
+                getRelationships().addAll((Collection<? extends ActorUsecaseRelationship>)newValue);
                 return;
             case UsecasePackage.ROOT_PACKAGE__DIAGRAM:
                 setDiagram((UseCaseDiagram)newValue);
@@ -290,9 +234,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__NAME:
-                unsetName();
-                return;
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 getActors().clear();
                 return;
@@ -317,8 +258,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__NAME:
-                return isSetName();
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 return !getActors().isEmpty();
             case UsecasePackage.ROOT_PACKAGE__SYSTEMS:
@@ -329,38 +268,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
                 return getDiagram() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == NamedElement.class) {
-            switch (derivedFeatureID) {
-                case UsecasePackage.ROOT_PACKAGE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == NamedElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return UsecasePackage.ROOT_PACKAGE__NAME;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //RootPackageImpl

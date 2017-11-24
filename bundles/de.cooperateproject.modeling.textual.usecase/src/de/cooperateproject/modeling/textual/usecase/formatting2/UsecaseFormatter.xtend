@@ -34,7 +34,7 @@ class UsecaseFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
-		rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2] 
+		rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1_1).append[newLines = 2] 
 		rootpackage.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		
 		for (Actor actor : rootpackage.getActors()) {
@@ -75,7 +75,7 @@ class UsecaseFormatter extends AbstractFormatter2 {
 		system.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		interior(
 			system.regionFor.keyword(systemAccess.leftCurlyBracketKeyword_2_1_0).append[newLine].prepend[space = " "],
-			system.regionFor.keyword(systemAccess.rightCurlyBracketKeyword_2_1_3),
+			system.regionFor.keyword(systemAccess.rightCurlyBracketKeyword_2_1_4),
 			[indent]
 		)
 		for (comment : system.comments) {
@@ -83,9 +83,16 @@ class UsecaseFormatter extends AbstractFormatter2 {
 			comment.append[newLine]
 		}
 		for (UseCase usecases : system.getUsecases()) {
-			format(usecases, document);
+			format(usecases, document)
 		}
-		if (system.usecases.isEmpty) {
+		if (!system.relationships.isEmpty) {
+			system.usecases.last?.append[newLines = 2; priority = 3]			
+		}
+		for (Relationship relationship : system.relationships) {
+			format(relationship, document)
+			relationship.append[newLine]
+		}
+		if (system.usecases.isEmpty && system.relationships.isEmpty) {
 			system.append[newLine; priority = 2]
 		} else {
 			system.append[newLines = 2; priority = 2]

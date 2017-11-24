@@ -48,6 +48,7 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVisibilityAccess().getAlternatives(), "rule__Visibility__Alternatives");
 					put(grammarAccess.getComponentDiagramAccess().getGroup(), "rule__ComponentDiagram__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
+					put(grammarAccess.getRootPackageAccess().getGroup_1(), "rule__RootPackage__Group_1__0");
 					put(grammarAccess.getComponentAccess().getGroup(), "rule__Component__Group__0");
 					put(grammarAccess.getComponentAccess().getGroup_1_0(), "rule__Component__Group_1_0__0");
 					put(grammarAccess.getComponentAccess().getGroup_2_1(), "rule__Component__Group_2_1__0");
@@ -84,7 +85,7 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 					put(grammarAccess.getComponentDiagramAccess().getTitleAssignment_2(), "rule__ComponentDiagram__TitleAssignment_2");
 					put(grammarAccess.getComponentDiagramAccess().getRootpackageAssignment_3(), "rule__ComponentDiagram__RootpackageAssignment_3");
-					put(grammarAccess.getRootPackageAccess().getNameAssignment_1(), "rule__RootPackage__NameAssignment_1");
+					put(grammarAccess.getRootPackageAccess().getNameAssignment_1_1(), "rule__RootPackage__NameAssignment_1_1");
 					put(grammarAccess.getRootPackageAccess().getClassifiersAssignment_2(), "rule__RootPackage__ClassifiersAssignment_2");
 					put(grammarAccess.getRootPackageAccess().getRelationsAssignment_3(), "rule__RootPackage__RelationsAssignment_3");
 					put(grammarAccess.getComponentAccess().getNameAssignment_1_0_0(), "rule__Component__NameAssignment_1_0_0");

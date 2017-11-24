@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.usecase.tests;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -32,7 +30,6 @@ public class TextualToGraphicalUseCaseTest extends UsecaseDirectionalTransformat
 
     @Test
     public void testNotes() throws Exception {
-    	setDebugSerializationDir(new File("D:"));
         testRegular("UseCaseDiagramNotes");
     }
 

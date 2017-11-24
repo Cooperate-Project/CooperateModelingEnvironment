@@ -2,6 +2,8 @@ package de.cooperateproject.ui.diff.content;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.AttributeChange;
@@ -25,93 +27,59 @@ public class SummaryViewBuilder {
      * @return A list containing all SummaryItems
      */
     public List<SummaryItem> buildSummaryView(Comparison comparison) {
-
         Comparison comparisonResult = comparison;
-        EList<Diff> resultList = comparisonResult.getDifferences();
+        EList<Diff> resultList = comparisonResult.getDifferences();        
         List<SummaryItem> sumList = createSummaryItemList(comparisonResult, resultList);
-        
-        PostProcessorManager.postProcessSummaryList(sumList);
-
-        return sumList;
+        return PostProcessorManager.postProcessSummaryList(sumList);
     }
 
     private static List<SummaryItem> createSummaryItemList(Comparison comparisonResult, EList<Diff> resultList) {
         List<SummaryItem> sumList = new ArrayList<>();
         for (Diff diff : resultList) {
-            Object value = getValue(diff);
-            EObject parent = diff.getMatch().getLeft();
-
-            if (value != null && parent != null) {
-                sumList.add(createSummaryItem(diff, parent, value, comparisonResult));
-            }
+        	sumList.add(createSummaryItem(diff));
         }
+        sumList.removeIf(Objects::isNull);
         return sumList;
     }
 
-    private static SummaryItem createSummaryItem(Diff diff, EObject parent, Object value, Comparison comparisonResult) {
-        DifferenceKind kind = diff.getKind();
-        SummaryItem summaryItem = new SummaryItem(parent, kind, value);
-
-        if (kind == DifferenceKind.DELETE) {
-            summaryItem.setRight(value);
-        } else if (kind == DifferenceKind.ADD) {
-            summaryItem.setLeft(value);
-        } else {
-            summaryItem.setLeft(value);
-            if (diff.getMatch().getRight() != null) {
-                summaryItem.setRight(getOldValue(diff, comparisonResult, value));
-            }
-        }
-
-        return summaryItem;
+    private static SummaryItem createSummaryItem(Diff diff) {
+    	if (diff instanceof AttributeChange) {
+    		return createSummaryItem((AttributeChange)diff);
+    	} else if (diff instanceof ReferenceChange) {
+    		return createSummaryItem((ReferenceChange)diff);
+    	}
+    	return null;
     }
-
-    /**
-     * Makes out, of which type the Diff was and returns the item, on which the actual difference
-     * was detected.
-     * 
-     * @param diff
-     *            the Diff to be examined.
-     * @return the value on which the difference was detected
-     */
-    private static Object getValue(Diff diff) {
-
-        if (diff instanceof ReferenceChange) {
-            return ((ReferenceChange) diff).getValue();
-        } else if (diff instanceof AttributeChange) {
-            return ((AttributeChange) diff).getValue();
-        }
-        return null;
+    
+    private static SummaryItem createSummaryItem(AttributeChange diff) {
+    	// TODO What about changes of multi valued elements?
+    	EObject newChangedObject = diff.getMatch().getLeft();
+    	EObject oldChangedObject = diff.getMatch().getRight();
+    	Object newValue = Optional.ofNullable(newChangedObject.eGet(diff.getAttribute())).orElse(null);
+    	Object oldValue = Optional.ofNullable(oldChangedObject.eGet(diff.getAttribute())).orElse(null);
+    	return new SummaryItem(diff, oldValue, newValue, diff.getKind(), newChangedObject, diff.getAttribute());
     }
+    
+	private static SummaryItem createSummaryItem(ReferenceChange diff) {
+		EObject newChangedObject = diff.getMatch().getLeft();
+		EObject oldChangedObject = diff.getMatch().getRight();
+		EObject newValue = diff.getKind() == DifferenceKind.ADD ? diff.getValue() : null;
+		EObject oldValue = diff.getKind() == DifferenceKind.DELETE ? diff.getValue() : null;
+		if (diff.getKind() == DifferenceKind.CHANGE) {
+			newValue = diff.getValue();
+			if (diff.getReference().isMany()) {
+				// TODO does this need special treatment?
+			} else {
+				oldValue = Optional.ofNullable(oldChangedObject).filter(EObject.class::isInstance)
+						.map(EObject.class::cast).map(o -> (EObject) o.eGet(diff.getReference())).orElse(null);
+			}
+		}
+		if (diff.getKind() == DifferenceKind.MOVE) {
+			oldValue = diff.getValue();
+			newValue = diff.getValue();
+		}
+		return new SummaryItem(diff, oldValue, newValue, diff.getKind(),
+				Optional.ofNullable(newChangedObject).orElse(oldChangedObject), diff.getReference());
+	}
 
-    @SuppressWarnings("rawtypes")
-    /**
-     * Finds and returns the old value, the "old version" of the given value, on which a difference
-     * has been detected.
-     * 
-     * @param diff
-     *            the Diff, in which the given EObject has experienced a difference
-     * @param comparisonResult
-     *            the whole Comparison, in which the diff is contained.
-     * @param value
-     *            the value, for which we look for its old/before version
-     * @return the old value
-     */
-    private static Object getOldValue(Diff diff, Comparison comparisonResult, Object value) {
-        Object oldValue = null;
-        if (diff instanceof AttributeChange) {
-            oldValue = diff.getMatch().getRight().eGet(((AttributeChange) diff).getAttribute());
-        } else if (diff instanceof ReferenceChange) {
-            if (diff.getKind() == DifferenceKind.MOVE) {
-                oldValue = comparisonResult.getMatch((EObject) value).getRight().eContainer();
-            } else {
-                oldValue = diff.getMatch().getRight().eGet(((ReferenceChange) diff).getReference());
-            }
-        }
-        if (oldValue instanceof org.eclipse.emf.ecore.util.DelegatingEcoreEList) {
-            oldValue = ((org.eclipse.emf.ecore.util.DelegatingEcoreEList) oldValue).getEObject();
-        }
-
-        return oldValue;
-    }
 }

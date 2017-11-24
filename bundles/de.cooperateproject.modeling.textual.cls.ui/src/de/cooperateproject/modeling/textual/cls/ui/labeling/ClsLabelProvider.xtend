@@ -18,10 +18,12 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
-import java.util.Collection
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
+import java.util.Collection
+import java.util.Optional
+import java.util.function.Function
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 
 /**
  * Provides labels for Cls Objects.
@@ -37,29 +39,6 @@ class ClsLabelProvider extends CooperateOutlineLabelProvider {
 
     def image(ClassDiagram ele) {
         return UMLImage.MODEL.image
-    }
-
-    def text(Class ele) {
-        return ele.name
-    }
-
-    def text(Method ele) {
-        var text = text(ele as Property)
-        if (text.contains(":")) {
-            text = text.replaceAll(":", "():")
-        } else {
-            text += "()"
-        }
-        return text
-    }
-
-    def text(Property ele) {
-        val typeRef = ele.type
-        var type = ""
-        if (typeRef !== null) {
-            type = ": " + typeRef.doGetText
-        }
-        ele.name + type
     }
 
     def image(Class ele) {
@@ -82,15 +61,6 @@ class ClsLabelProvider extends CooperateOutlineLabelProvider {
         UMLImage.OPERATION.image.decorate(ele.visibility)
     }
 
-    def text(Association ele) {
-        if (ele.memberEnds.size == 2) {
-            val left = ele.memberEnds.get(0).text
-            val right = ele.memberEnds.get(1).text
-            return left + " " + ele.name + " " + right
-        }
-        return ele.name
-    }
-
     def image(Association ele) {
         var img = UMLImage.ASSOCIATION.image
         if (ele.memberEnds.size == 2) {
@@ -103,29 +73,13 @@ class ClsLabelProvider extends CooperateOutlineLabelProvider {
         }
         return img
     }
-
-    def text(AssociationMemberEnd ele) {
-        return ele.name ?: ele.type.name
-    }
-
+    
     def image(AssociationMemberEnd ele) {
         UMLImage.PROPERTY.image
     }
 
-    def text(Generalization ele) {
-        val leftChild = ele.left;
-        val rightChild = ele.right;
-        leftChild.doGetText + " is a " + rightChild.doGetText
-    }
-
     def image(Generalization ele) {
         return UMLImage.GENERALIZATION.image
-    }
-
-    def text(Implementation ele) {
-        val leftChild = ele.left;
-        val rightChild = ele.right;
-        leftChild.doGetText + " implements " + rightChild.doGetText
     }
 
     def image(Implementation ele) {
@@ -136,21 +90,86 @@ class ClsLabelProvider extends CooperateOutlineLabelProvider {
         return UMLImage.PACKAGE.image
     }
 
+    def image(XtextAssociationMemberEndReferencedType typeReference) {
+        return UMLImage.PROPERTY
+    }
+    
+    def text(Package ele) {
+        "package " + ele.name
+    }
+    
+    def text(Class ele) {
+        if (ele.alias !== null) {
+            return "class " + ele.alias
+        }
+        return "class " + ele.name
+    }
+
+    def text(Method ele) {
+        var text = text(ele as Property)
+        if (text.contains(":")) {
+            text = text.replaceAll(":", "():")
+        } else {
+            text += "()"
+        }
+        return text
+    }
+
+    def text(Property ele) {
+        val typeRef = ele.type
+        var type = ""
+        if (typeRef !== null) {
+            type = ": " + typeRef.doGetText
+        }
+        ele.name + type
+    }
+
+    def text(Interface ele) {
+        return "interface " + ele.name
+    }
+    
+    def text(Association ele) {
+        var out = "asc "
+        if (ele.name === null) {
+        	out += ele.memberEnds.map[e | Optional.ofNullable(e.name).orElse(e.type?.name)].join("(", ", ", ")", Function.identity)
+        } else {
+            out += ele.name
+        }        
+        return out
+    }
+
+    def text(AssociationMemberEnd ele) {
+        return ele.name ?: ele.type.name
+    }
+
+    def text(Generalization ele) {
+        val leftChild = ele.left;
+        val rightChild = ele.right;
+        "isa (" + leftChild.name + ", " + rightChild.name + ")"
+    }
+
+    def text(Implementation ele) {
+        val leftChild = ele.left;
+        val rightChild = ele.right;
+        "impl (" + leftChild.name + ", " + rightChild.name + ")"
+    }
     def text(XtextAssociationMemberEndReferencedType typeReference) {
         val association = typeReference.eContainer as XtextAssociation
         val index = association.memberEndTypes.indexOf(typeReference)
         val name = association.memberEndNames.tryGet(index)
-        val typeName = association.memberEndTypes.tryGet(index)?.type?.getText
+        var typeName = "";
+        if (association.memberEndTypes.tryGet(index)?.type?.alias !== null) {
+            typeName = association.memberEndTypes.tryGet(index)?.type?.alias
+        } else {
+            typeName = association.memberEndTypes.tryGet(index)?.type?.name
+        }
+        
         val cardinality = association.memberEndCardinalities.tryGet(index)
         var txt = String.format("%s : %s", name ?: "unnamed", typeName)
         if (cardinality !== null) {
             txt += String.format(" [%s]", cardinality.getText)
         }
         return txt
-    }
-
-    def image(XtextAssociationMemberEndReferencedType typeReference) {
-        return UMLImage.PROPERTY
     }
 
     private static def <T> T tryGet(Collection<T> collection, int i) {

@@ -2,6 +2,9 @@ package de.cooperateproject.modeling.textual.component.derivedstate.remover;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.CLEANING;
 
+import java.util.Optional;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -11,20 +14,26 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
  * State remover for {@link Port} elements.
  */
 @Applicability(applicabilities = CLEANING)
-public class PortRemover extends AtomicDerivedStateProcessorBase<Port>{
-	
-	/**
-     * Instantiates the remover.
-     */
-    public PortRemover() {
-        super(Port.class);
-    }
+public class PortRemover extends AtomicDerivedStateProcessorBase<Port> {
 
-    @Override
-    protected void applyTyped(Port object) {
-        if (object.getReferencedElement() != null) {
-//        		object.eUnset(CmpPackage.Literals.PORT__CONJUGATED);
+	/**
+	 * Instantiates the remover.
+	 */
+	public PortRemover() {
+		super(Port.class);
+	}
+
+	@Override
+	protected void applyTyped(Port object) {
+		
+		Optional<org.eclipse.uml2.uml.Port> umlPort = Optional.ofNullable(object.getReferencedElement());
+		
+		if (umlPort.map(port -> port.isConjugated() == object.isConjugated()).orElse(false)) {
+            object.eUnset(CmpPackage.Literals.PORT__CONJUGATED);
+        } else if (!object.isSetConjugated() && undergoesAutomatedIssueResolution(object)) {
+            object.setConjugated(false);
         }
-    }
+		
+	}
 
 }

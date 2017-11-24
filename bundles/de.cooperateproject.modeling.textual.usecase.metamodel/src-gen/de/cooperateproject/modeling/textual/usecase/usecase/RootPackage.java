@@ -2,9 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -26,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RootPackage extends UMLReferencingElement<org.eclipse.uml2.uml.Package>, NamedElement {
+public interface RootPackage extends PackageBase<RootPackage> {
     /**
      * Returns the value of the '<em><b>Actors</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.Actor}.
@@ -63,7 +61,7 @@ public interface RootPackage extends UMLReferencingElement<org.eclipse.uml2.uml.
 
     /**
      * Returns the value of the '<em><b>Relationships</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.Relationship}.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.ActorUsecaseRelationship}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Relationships</em>' containment reference list isn't clear,
@@ -75,7 +73,7 @@ public interface RootPackage extends UMLReferencingElement<org.eclipse.uml2.uml.
      * @model containment="true"
      * @generated
      */
-    EList<Relationship> getRelationships();
+    EList<ActorUsecaseRelationship> getRelationships();
 
     /**
      * Returns the value of the '<em><b>Diagram</b></em>' container reference.

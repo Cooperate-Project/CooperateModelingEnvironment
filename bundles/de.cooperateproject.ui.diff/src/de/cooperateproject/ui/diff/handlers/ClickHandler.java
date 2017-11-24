@@ -1,8 +1,14 @@
 package de.cooperateproject.ui.diff.handlers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -15,6 +21,7 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.content.SummaryItem;
+import de.cooperateproject.ui.diff.internal.IsTransitiveChildPredicate;
 
 /**
  * Handles click and keyboard events in DiffView.
@@ -73,7 +80,7 @@ public class ClickHandler {
             return;
         }
         DiffTreeItem item = (DiffTreeItem) obj;
-        if (item.getDiffKind() != null) {
+        if (!item.getDiffKinds().isEmpty()) {
             setElementFocus(item);
         }
     }
@@ -86,18 +93,20 @@ public class ClickHandler {
      */
     private void setElementFocus(DiffTreeItem item) {
         TableItem backupParent = null;
-        for (TableItem tableItem : summaryViewer.getTable().getItems()) {
-
-            if (!(tableItem.getData() instanceof SummaryItem)) {
-                break;
-            }
-
-            SummaryItem summaryItem = (SummaryItem) tableItem.getData();
-            if (summaryItem.getLeft() == item.getObject() || summaryItem.getRight() == item.getObject()) {
+        
+		Map<TableItem, SummaryItem> relevantItems = Arrays.asList(summaryViewer.getTable().getItems()).stream()
+				.filter(i -> i.getData() instanceof SummaryItem)
+				.collect(Collectors.toMap(Function.identity(), i -> (SummaryItem) i.getData()));
+		
+		for (Map.Entry<TableItem, SummaryItem> relevantItem : relevantItems.entrySet()) {
+            SummaryItem summaryItem = relevantItem.getValue();
+            TableItem tableItem = relevantItem.getKey();
+            
+            if (item.getAssociatedDiffs().contains(summaryItem)) {
                 summaryViewer.getTable().setSelection(tableItem);
                 summaryViewer.getControl().setFocus();
                 return;
-            } else if (item.getObject() == summaryItem.getCommonParent()) {
+            } else if (item.getObject() == summaryItem.getChangedObject()) {
                 backupParent = tableItem;
             }
         }
@@ -137,11 +146,11 @@ public class ClickHandler {
                     break;
                 }
                 DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
-                if (diffTreeItem.getObject() == item.getLeft() || diffTreeItem.getObject() == item.getRight()) {
+                if (diffTreeItem.getAssociatedDiffs().contains(item)) {
                     diffViewer.getTree().setSelection(child);
                     diffViewer.getControl().setFocus();
                     return null;
-                } else if (item.getCommonParent() == diffTreeItem.getObject()) {
+                } else if (item.getChangedObject() == diffTreeItem.getObject()) {
                     resultParent = child;
                 }
             }
@@ -196,34 +205,38 @@ public class ClickHandler {
         return allItems;
     }
     
-    public void filterSummaryTable() {
-        ISelection selection = diffViewer.getSelection();            
-            Object obj = ((IStructuredSelection) selection).getFirstElement();
-            DiffTreeItem item = (DiffTreeItem) obj;
-            if (item != null) {
-                
-            
-            
-            List<DiffTreeItem> childElements = getAllDiffTreeItems(item);
-            List<SummaryItem> elementsToShow = new ArrayList<>();
-                
-            for (DiffTreeItem child : childElements) {
-                for (SummaryItem summaryItem : baseList) {
-                    if (summaryItem.getLeft() == child.getObject() || summaryItem.getRight() == child.getObject()) {
-                        elementsToShow.add(summaryItem);
-                    }
-                }
-            }
-            
-            summaryViewer.getTable().clearAll();
-            summaryViewer.setInput(elementsToShow);
-            for (TableColumn c : summaryViewer.getTable().getColumns()) {
-                c.pack();
-            }
-            
-            summaryViewer.getTable().update();
-            }
-    }
+	public void filterSummaryTable() {
+		ISelection selection = diffViewer.getSelection();
+		Object obj = ((IStructuredSelection) selection).getFirstElement();
+		DiffTreeItem item = (DiffTreeItem) obj;
+		if (item == null) {
+			return;
+		}
+
+		Collection<DiffTreeItem> childElements = getAllDiffTreeItems(item);
+		Collection<SummaryItem> elementsToShow = new ArrayList<>();
+
+		Collection<EObject> relevantObjects = childElements.stream().map(DiffTreeItem::getObject)
+				.filter(EObject.class::isInstance).map(EObject.class::cast).collect(Collectors.toSet());
+
+		for (SummaryItem summaryItem : baseList) {
+
+			if (relevantObjects.stream().anyMatch(
+					parent -> new IsTransitiveChildPredicate(parent, false).test(summaryItem.getChangedObject()))
+					|| Arrays.asList(summaryItem.getChangedObject(), summaryItem.getOldValue(),
+							summaryItem.getNewValue()).contains(item.getObject())) {
+				elementsToShow.add(summaryItem);
+			}
+		}
+
+		summaryViewer.getTable().clearAll();
+		summaryViewer.setInput(elementsToShow);
+		for (TableColumn c : summaryViewer.getTable().getColumns()) {
+			c.pack();
+		}
+
+		summaryViewer.getTable().update();
+	}
     
     public void resetCopiedTableContents() {
         baseList.clear();

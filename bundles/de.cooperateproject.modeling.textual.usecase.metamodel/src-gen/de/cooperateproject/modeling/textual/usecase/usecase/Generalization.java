@@ -21,7 +21,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Generalization extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Generalization> {
+public interface Generalization extends UseCaseRelationship, ActorUsecaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Generalization> {
     /**
      * Returns the value of the '<em><b>Specific</b></em>' reference.
      * <!-- begin-user-doc -->
