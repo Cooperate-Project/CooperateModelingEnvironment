@@ -20,10 +20,8 @@
 		<module>bundles</module>
 		<module>features</module>
 		<module>tests</module>
-		<!-- Disable UI tests
 		<module>products</module>
 		<module>integration-tests</module>
-		-->
 		<module>releng</module>
 	</modules>
 
