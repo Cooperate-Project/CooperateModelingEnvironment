@@ -46,6 +46,7 @@
 		<module>de.cooperateproject.ui</module>
 		<module>de.cooperateproject.ui.diff</module>
 		<module>de.cooperateproject.ui.diff.cls</module>
+		<module>de.cooperateproject.ui.diff.component</module>
 		<module>de.cooperateproject.ui.diff.common</module>
 		<module>de.cooperateproject.ui.diff.usecase</module>
 		<module>de.cooperateproject.ui.focus</module>
