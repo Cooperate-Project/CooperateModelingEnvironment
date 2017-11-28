@@ -18,6 +18,8 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
 import java.util.Optional
+import de.cooperateproject.modeling.textual.usecase.usecase.Relationship
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
 
 /**
  * Provides labels for Usecase EObjects.
@@ -29,6 +31,10 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
+	}
+	
+	def image(UseCaseDiagram element) {
+	    UMLImage.MODEL.image
 	}
 
 	def image(Actor element) {
@@ -64,19 +70,23 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
 	}
 	
     def image(Generalization element) {
-        return UMLImage.GENERALIZATION.image
+        UMLImage.GENERALIZATION.image
     }
     
     def text(RootPackage element) {
-    	return Optional.ofNullable(element.name).orElseGet([element.referencedElement.name])
+    	Optional.ofNullable(element.name).orElseGet([element.referencedElement.name])
     }
     
     def text(Actor element) {
-    	element.name
+    	"act " + Optional.ofNullable(element.alias).orElse(element.name)
+    }
+    
+    def text (Relationship element) {
+    	element.toString
     }
     
     def text (Association element) {
-    	element.actor.doGetText + " interacts with " + element.usecase.doGetText
+    	"iac (" + element.actor.name + ", " + element.usecase.name + ") "
     }
     
     def text(UseCaseDiagram element) {
@@ -84,29 +94,29 @@ class UsecaseLabelProvider extends CooperateOutlineLabelProvider {
     }
 
 	def text(ExtensionPoint element) {
-		element.name
+		"ep " + element.name
 	}
 
 	def text(Generalization element) {
-        val general = element.general;
-        val specific = element.specific;
-        specific.doGetText + " is a " + general.doGetText
+        val general = element.general as NamedElement;
+        val specific = element.specific as NamedElement;
+        "isa (" + specific.name + ", " + general.name + ")"
     }
     
     def text(Extend element) {
-    	element.extension.doGetText + " extends " + element.extendedCase.doGetText + " via " + element.extensionLocation.doGetText
+        "ext (" + element.extension.name + ", " + element.extendedCase.name + ") ep[" + element.extensionLocation.name + "]"
     }
     
     def text(Include element) {
-    	element.includingCase.doGetText + " includes " + element.addition.doGetText
+    	"inc (" + element.includingCase.name + ", " + element.addition.name + ")"
     }
     
     def text(System element) {
-    	element.name
+    	"sys " + element.name
     }
     
     def text(UseCase element) {
-    	element.name
+    	"uc " + element.name
     }   
 
 }

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Class Diagrams
-Bundle-Version: 0.6.1.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;resolution:=optional,
@@ -20,15 +20,15 @@ Require-Bundle: org.eclipse.xtext;resolution:=optional,
  org.eclipse.xtext.generator;bundle-version="2.9.1";resolution:=optional,
  org.eclipse.xtext.common.types;resolution:=optional,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.6.1";visibility:=reexport,
- de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.6.1";visibility:=reexport,
- de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.6.1";resolution:=optional,
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.7.1";visibility:=reexport,
+ de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.7.1";visibility:=reexport,
+ de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.7.1";resolution:=optional,
  org.apache.commons.lang3,
  org.eclipse.ui;bundle-version="3.108.0",
- de.cooperateproject.util;bundle-version="0.6.1",
+ de.cooperateproject.util;bundle-version="0.7.1",
  org.eclipse.xtext.ecore;bundle-version="2.10.0",
  de.cooperateproject.modeling.textual.common.metamodel,
- de.cooperateproject.modeling.textual.common;bundle-version="0.6.1";visibility:=reexport,
+ de.cooperateproject.modeling.textual.common;bundle-version="0.7.1";visibility:=reexport,
  net.winklerweb.cdoxtext.runtime;visibility:=reexport,
  de.cooperateproject.modeling.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
