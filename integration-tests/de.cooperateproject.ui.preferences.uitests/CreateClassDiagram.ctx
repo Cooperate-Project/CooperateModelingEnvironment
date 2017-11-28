@@ -5,20 +5,21 @@ Element-Name: CreateClassDiagram
 Element-Type: context
 Element-Version: 2.0
 Id: _xN4PAEtVEee-xdp8J34vfQ
-Runtime-Version: 2.3.0.201711070014
-Save-Time: 11/10/17 6:37 PM
+Runtime-Version: 2.2.0.201705230341
+Save-Time: 11/22/17 9:40 AM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
 Entry-Name: .ecl.context
 
-proc "create-class-diagram" [val project] [val name] {
+proc "create-class-diagram" [val project] [val model] [val diagram]{
     get-menu "File/New/Class Diagram" | click
         
     with [get-window -class WizardDialog] {
         get-tree | select $project
-        get-editbox -after [get-label "Enter or select the model:"] | set-text [concat $project "/" $name]
-        get-editbox -after [get-label "Diagram Name:"] | set-text $name
+        get-editbox -after [get-label "Project:"] | set-text $project
+        get-editbox -after [get-label "Model Name"] | set-text $model
+        get-editbox -after [get-label "Diagram Name:"] | set-text $diagram
         wait -ms 100
         get-button Finish | click
     }
@@ -27,8 +28,8 @@ proc "create-class-diagram" [val project] [val name] {
     	wait -ms 2000
     	select $project | get-menu -path Refresh | click
         get-item [concat $project "/models"] | get-property childCount | equals 1 | verify-true
-        get-item [concat $project "/model-gen/" $name] | get-property caption | equals $name | verify-true
-        get-item [concat $project "/model-gen/" $name " - " $name ".cls"] | get-property caption | equals [concat $name " - " $name ".cls"] | verify-true
+        get-item [concat $project "/model-gen/" $model] | get-property caption | equals $model | verify-true
+        get-item [concat $project "/model-gen/" $model " - " $diagram ".cls"] | get-property caption | equals [concat $model " - " $diagram ".cls"] | verify-true
     }
 }
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--
