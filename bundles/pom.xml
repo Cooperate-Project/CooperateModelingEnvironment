@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.6.1-SNAPSHOT</version>
+		<version>0.7.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>bundles</artifactId>
@@ -46,6 +46,7 @@
 		<module>de.cooperateproject.ui</module>
 		<module>de.cooperateproject.ui.diff</module>
 		<module>de.cooperateproject.ui.diff.cls</module>
+		<module>de.cooperateproject.ui.diff.component</module>
 		<module>de.cooperateproject.ui.diff.common</module>
 		<module>de.cooperateproject.ui.diff.usecase</module>
 		<module>de.cooperateproject.ui.focus</module>

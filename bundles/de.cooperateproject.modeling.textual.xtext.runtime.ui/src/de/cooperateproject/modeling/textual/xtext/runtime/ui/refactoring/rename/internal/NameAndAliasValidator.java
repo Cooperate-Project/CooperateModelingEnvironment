@@ -39,11 +39,7 @@ public class NameAndAliasValidator extends MultiValidator {
             if (isID(name)) {
                 return Optional.empty();
             } else {
-                if (isID(alias)) {
-                    return Optional.empty();
-                } else {
-                    return Optional.of("The alias has to be an ID if the name is no ID");
-                }
+                return Optional.of("The name has always to be an ID.");
             }
         } else {
             if (nameIsOptional) {

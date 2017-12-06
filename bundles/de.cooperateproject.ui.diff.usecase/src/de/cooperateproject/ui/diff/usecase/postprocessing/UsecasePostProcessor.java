@@ -1,13 +1,16 @@
 package de.cooperateproject.ui.diff.usecase.postprocessing;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.content.IPostProcessor;
 import de.cooperateproject.ui.diff.content.SummaryItem;
@@ -39,7 +42,7 @@ public class UsecasePostProcessor implements IPostProcessor {
 
     @Override
     public List<SummaryItem> postProcessSummaryViewBuilder(List<SummaryItem> summaryList) {
-        return summaryList;
+        return summaryList.stream().filter(item -> !filterSummaryItem(item)).collect(Collectors.toList());
     }
 
     private static void addMemberEndToAssociation(Map<EObject, DiffTreeItem> tree, Entry<EObject, DiffTreeItem> obj,
@@ -51,6 +54,12 @@ public class UsecasePostProcessor implements IPostProcessor {
             tree.get(cardinality.eContainer()).removeChild(tree.get(cardinality));
         }
         obj.getValue().addChild(diffTreeItem);
+    }
+    
+
+    private static boolean filterSummaryItem(SummaryItem item) {
+        return Arrays.asList(UsecasePackage.Literals.ASSOCIATION__ACTOR_CARDINALITY,
+                UsecasePackage.Literals.ASSOCIATION__USE_CASE_CARDINALITY).contains(item.getChangedFeature());
     }
 
 }

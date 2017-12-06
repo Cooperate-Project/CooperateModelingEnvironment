@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.transformation.feature"
       label="%featureName"
-      version="0.6.1.qualifier"
+      version="0.7.1.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
