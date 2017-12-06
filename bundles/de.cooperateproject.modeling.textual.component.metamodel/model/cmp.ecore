@@ -2,6 +2,16 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cmp" nsURI="http://www.cooperateproject.de/modeling/textual/component/Component"
     nsPrefix="cmp">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+    <details key="txtCmn" value="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#/"/>
+    <details key="uml" value="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentDiagram">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootpackage" lowerBound="1"
@@ -45,6 +55,14 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connector">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="PortInConnectorOnlyOnce" value="self.connectorEnds.role->forAll(x | self.connectorEnds.role->excluding(x)->includes(x) = false)"/>
+      <details key="PortsOfConnectorsShallHaveCompatibleTypes" value="self.connectorEnds.role.realizedClassifier->forAll(x | x = self.connectorEnds.role.realizedClassifier->first())"/>
+      <details key="DummySize" value="self.connectorEnds->size() &lt;> 2"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="PortInConnectorOnlyOnce PortsOfConnectorsShallHaveCompatibleTypes DummySize"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectorEnds" upperBound="-1"
         eType="#//ConnectorEnd" containment="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
@@ -55,7 +73,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConnectorEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="part" eType="#//Attribute"
         transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="role" transient="true" eType="#//Port"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" eType="#//Port" transient="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectorEnd"/>
     </eGenericSuperTypes>
@@ -121,7 +139,8 @@
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" transient="true" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"
+        transient="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eTypeParameter="#//Property/T"/>
     </eGenericSuperTypes>
@@ -132,8 +151,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="port" upperBound="-1"  
-    	eType="#//Port" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="port" upperBound="-1" eType="#//Port"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
         eType="#//Connector" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packagedElements" upperBound="-1"
@@ -182,8 +201,8 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceRelation" abstract="true" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="0" transient="true"
-        eType="#//Interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" eType="#//Interface"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Provide">
     <eGenericSuperTypes eClassifier="#//InterfaceRelation"/>
@@ -198,15 +217,12 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Port">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="realizedClassifier" upperBound="1" transient="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="realizedClassifier" transient="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures
-        xsi:type="ecore:EAttribute"
-        name="conjugated"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conjugated" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         transient="true" unsettable="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
