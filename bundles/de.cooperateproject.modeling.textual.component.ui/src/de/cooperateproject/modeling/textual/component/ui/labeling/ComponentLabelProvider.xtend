@@ -133,7 +133,7 @@ class ComponentLabelProvider extends CooperateOutlineLabelProvider {
         "require " + element.name
     }
     def text(Port element) {
-        "port " + element.name + " realizes " + element.realizedClassifier.name
+        String.format("port %s realizes %s", element.name, element.realizedClassifier.name)
     }
     def text(Attribute element) {
         element.name + " : " + element.type.name
