@@ -12,4 +12,69 @@
             class="de.cooperateproject.modeling.textual.component.cmp.CmpPackage"
             genModel="model/cmp.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="de.cooperateproject.modeling.textual.component.metamodel.cooperateConstraints"
+            name="Cooperate Textual Editor Constraints">
+      </category>
+      <constraintProvider
+            cache="true">
+         <constraints
+               categories="de.cooperateproject.modeling.textual.component.metamodel.cooperateConstraints">
+   <constraint
+                  id="de.cooperateproject.modeling.textual.component.metamodel.PortInConnectorOnlyOnce"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Live"
+                  name="A port should appear in a connector only once."
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>A port should be in a connector only once</description>
+      		<message>A port should be in a connector only once</message>
+      		<target class="Connector"/>
+      		<![CDATA[
+         		self.connectorEnds.role->forAll(x | self.connectorEnds.role->excluding(x)->includes(x) = false)
+      		]]>
+   			</constraint>
+   			
+   			<constraint
+                  id="de.cooperateproject.modeling.textual.component.metamodel.PortsOfConnectorsShallHaveCompatibleTypes"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Live"
+                  name="Ports of connectors shall have compatible types"
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>The ports of a connector should have compatible types</description>
+      		<message>The ports of a connector should have compatible types</message>
+      		<target class="Connector"/>
+      		<![CDATA[
+         		self.connectorEnds.role.realizedClassifier->forAll(x | x = self.connectorEnds.role.realizedClassifier->first())
+      		]]>
+   			</constraint>
+   
+   <constraint
+                  id="de.cooperateproject.modeling.textual.component.metamodel.DummySize"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Live"
+                  name="DummySize"
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>Dummy</description>
+      		<message>Size of connector ends must not be 2</message>
+      		<target class="Connector"/>
+      		<![CDATA[
+         		self.connectorEnds->size() <> 2
+      		]]>
+   			</constraint>
+   
+   			
+   			</constraints>
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </package>
+      </constraintProvider>
+      </extension>
 </plugin>
