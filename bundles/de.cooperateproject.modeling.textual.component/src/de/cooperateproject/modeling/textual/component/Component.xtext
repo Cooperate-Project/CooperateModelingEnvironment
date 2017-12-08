@@ -39,7 +39,7 @@ RootPackage:
 	;
 
 Component returns Component: 
-	'component'	((name=STRING 'as' alias = ID)|name = ID) (
+	'component'	(name = ID | alias = ID 'as' name = STRING) (
 		 (comments+=Comment)? | 
 		 ('{'
 			(comments+=Comment)? 
@@ -53,7 +53,7 @@ Component returns Component:
 		;
 
 Class returns Class:
-	'class' ((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? |
+	'class' (name = ID | alias = ID 'as' name = STRING) ( (comments+=Comment)? |
 		(('{' (comments+=Comment)? (interfaceRelation+=InterfaceRelation)* '}')))
 	
 ;
@@ -91,13 +91,13 @@ Port returns Port:
 
 Interface returns Interface: 
 	'interface'
-	((name=STRING 'as' alias = ID)|name = ID)( (comments+=Comment)? |
+	(name = ID | alias = ID 'as' name = STRING)( (comments+=Comment)? |
 		(('{' (comments+=Comment)? (members += Member)* '}')))
 ;
 
 
 Connector returns Connector: 
-	'con' ((name=STRING 'as' alias = ID)|name = ID) 
+	'con' (name = ID | alias = ID 'as' name = STRING)
 	'('
 		connectorEnds+=ConnectorEnd (',' connectorEnds+=ConnectorEnd)* 
 	')';
@@ -108,12 +108,12 @@ ConnectorEnd returns ConnectorEnd:
 
 Provide returns Provide: 
 	{Provide}
-		'provide' ((name=STRING 'as' alias = ID)|name = ID) interface=[Interface|FQN]
+		'provide' (name = ID | alias = ID 'as' name = STRING) interface=[Interface|FQN]
 ;
 
 Require returns Require: 
 	{Require}
-		'require' ((name=STRING 'as' alias = ID)|name = ID) interface=[Interface|FQN]
+		'require' (name = ID | alias = ID 'as' name = STRING) interface=[Interface|FQN]
 ;
 
 enum Visibility returns uml::VisibilityKind: 

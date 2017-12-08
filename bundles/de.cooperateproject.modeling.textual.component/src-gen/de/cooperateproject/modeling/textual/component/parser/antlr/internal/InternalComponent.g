@@ -424,52 +424,9 @@ ruleComponent returns [EObject current=null]
 		(
 			(
 				(
-					(
-						lv_name_1_0=RULE_STRING
-						{
-							newLeafNode(lv_name_1_0, grammarAccess.getComponentAccess().getNameSTRINGTerminalRuleCall_1_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getComponentRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"name",
-								lv_name_1_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
-						}
-					)
-				)
-				otherlv_2='as'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getComponentAccess().getAsKeyword_1_0_1());
-				}
-				(
-					(
-						lv_alias_3_0=RULE_ID
-						{
-							newLeafNode(lv_alias_3_0, grammarAccess.getComponentAccess().getAliasIDTerminalRuleCall_1_0_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getComponentRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"alias",
-								lv_alias_3_0,
-								"de.cooperateproject.modeling.textual.component.Component.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					lv_name_4_0=RULE_ID
+					lv_name_1_0=RULE_ID
 					{
-						newLeafNode(lv_name_4_0, grammarAccess.getComponentAccess().getNameIDTerminalRuleCall_1_1_0());
+						newLeafNode(lv_name_1_0, grammarAccess.getComponentAccess().getNameIDTerminalRuleCall_1_0_0());
 					}
 					{
 						if ($current==null) {
@@ -478,9 +435,52 @@ ruleComponent returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"name",
-							lv_name_4_0,
+							lv_name_1_0,
 							"de.cooperateproject.modeling.textual.component.Component.ID");
 					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						lv_alias_2_0=RULE_ID
+						{
+							newLeafNode(lv_alias_2_0, grammarAccess.getComponentAccess().getAliasIDTerminalRuleCall_1_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getComponentRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_2_0,
+								"de.cooperateproject.modeling.textual.component.Component.ID");
+						}
+					)
+				)
+				otherlv_3='as'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getComponentAccess().getAsKeyword_1_1_1());
+				}
+				(
+					(
+						lv_name_4_0=RULE_STRING
+						{
+							newLeafNode(lv_name_4_0, grammarAccess.getComponentAccess().getNameSTRINGTerminalRuleCall_1_1_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getComponentRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"name",
+								lv_name_4_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
+						}
+					)
 				)
 			)
 		)
@@ -656,52 +656,9 @@ ruleClass returns [EObject current=null]
 		(
 			(
 				(
-					(
-						lv_name_1_0=RULE_STRING
-						{
-							newLeafNode(lv_name_1_0, grammarAccess.getClassAccess().getNameSTRINGTerminalRuleCall_1_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getClassRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"name",
-								lv_name_1_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
-						}
-					)
-				)
-				otherlv_2='as'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getClassAccess().getAsKeyword_1_0_1());
-				}
-				(
-					(
-						lv_alias_3_0=RULE_ID
-						{
-							newLeafNode(lv_alias_3_0, grammarAccess.getClassAccess().getAliasIDTerminalRuleCall_1_0_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getClassRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"alias",
-								lv_alias_3_0,
-								"de.cooperateproject.modeling.textual.component.Component.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					lv_name_4_0=RULE_ID
+					lv_name_1_0=RULE_ID
 					{
-						newLeafNode(lv_name_4_0, grammarAccess.getClassAccess().getNameIDTerminalRuleCall_1_1_0());
+						newLeafNode(lv_name_1_0, grammarAccess.getClassAccess().getNameIDTerminalRuleCall_1_0_0());
 					}
 					{
 						if ($current==null) {
@@ -710,9 +667,52 @@ ruleClass returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"name",
-							lv_name_4_0,
+							lv_name_1_0,
 							"de.cooperateproject.modeling.textual.component.Component.ID");
 					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						lv_alias_2_0=RULE_ID
+						{
+							newLeafNode(lv_alias_2_0, grammarAccess.getClassAccess().getAliasIDTerminalRuleCall_1_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getClassRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_2_0,
+								"de.cooperateproject.modeling.textual.component.Component.ID");
+						}
+					)
+				)
+				otherlv_3='as'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getClassAccess().getAsKeyword_1_1_1());
+				}
+				(
+					(
+						lv_name_4_0=RULE_STRING
+						{
+							newLeafNode(lv_name_4_0, grammarAccess.getClassAccess().getNameSTRINGTerminalRuleCall_1_1_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getClassRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"name",
+								lv_name_4_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
+						}
+					)
 				)
 			)
 		)
@@ -1262,52 +1262,9 @@ ruleInterface returns [EObject current=null]
 		(
 			(
 				(
-					(
-						lv_name_1_0=RULE_STRING
-						{
-							newLeafNode(lv_name_1_0, grammarAccess.getInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getInterfaceRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"name",
-								lv_name_1_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
-						}
-					)
-				)
-				otherlv_2='as'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getInterfaceAccess().getAsKeyword_1_0_1());
-				}
-				(
-					(
-						lv_alias_3_0=RULE_ID
-						{
-							newLeafNode(lv_alias_3_0, grammarAccess.getInterfaceAccess().getAliasIDTerminalRuleCall_1_0_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getInterfaceRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"alias",
-								lv_alias_3_0,
-								"de.cooperateproject.modeling.textual.component.Component.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					lv_name_4_0=RULE_ID
+					lv_name_1_0=RULE_ID
 					{
-						newLeafNode(lv_name_4_0, grammarAccess.getInterfaceAccess().getNameIDTerminalRuleCall_1_1_0());
+						newLeafNode(lv_name_1_0, grammarAccess.getInterfaceAccess().getNameIDTerminalRuleCall_1_0_0());
 					}
 					{
 						if ($current==null) {
@@ -1316,9 +1273,52 @@ ruleInterface returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"name",
-							lv_name_4_0,
+							lv_name_1_0,
 							"de.cooperateproject.modeling.textual.component.Component.ID");
 					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						lv_alias_2_0=RULE_ID
+						{
+							newLeafNode(lv_alias_2_0, grammarAccess.getInterfaceAccess().getAliasIDTerminalRuleCall_1_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getInterfaceRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_2_0,
+								"de.cooperateproject.modeling.textual.component.Component.ID");
+						}
+					)
+				)
+				otherlv_3='as'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getInterfaceAccess().getAsKeyword_1_1_1());
+				}
+				(
+					(
+						lv_name_4_0=RULE_STRING
+						{
+							newLeafNode(lv_name_4_0, grammarAccess.getInterfaceAccess().getNameSTRINGTerminalRuleCall_1_1_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getInterfaceRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"name",
+								lv_name_4_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
+						}
+					)
 				)
 			)
 		)
@@ -1418,52 +1418,9 @@ ruleConnector returns [EObject current=null]
 		(
 			(
 				(
-					(
-						lv_name_1_0=RULE_STRING
-						{
-							newLeafNode(lv_name_1_0, grammarAccess.getConnectorAccess().getNameSTRINGTerminalRuleCall_1_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getConnectorRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"name",
-								lv_name_1_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
-						}
-					)
-				)
-				otherlv_2='as'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getConnectorAccess().getAsKeyword_1_0_1());
-				}
-				(
-					(
-						lv_alias_3_0=RULE_ID
-						{
-							newLeafNode(lv_alias_3_0, grammarAccess.getConnectorAccess().getAliasIDTerminalRuleCall_1_0_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getConnectorRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"alias",
-								lv_alias_3_0,
-								"de.cooperateproject.modeling.textual.component.Component.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					lv_name_4_0=RULE_ID
+					lv_name_1_0=RULE_ID
 					{
-						newLeafNode(lv_name_4_0, grammarAccess.getConnectorAccess().getNameIDTerminalRuleCall_1_1_0());
+						newLeafNode(lv_name_1_0, grammarAccess.getConnectorAccess().getNameIDTerminalRuleCall_1_0_0());
 					}
 					{
 						if ($current==null) {
@@ -1472,9 +1429,52 @@ ruleConnector returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"name",
-							lv_name_4_0,
+							lv_name_1_0,
 							"de.cooperateproject.modeling.textual.component.Component.ID");
 					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						lv_alias_2_0=RULE_ID
+						{
+							newLeafNode(lv_alias_2_0, grammarAccess.getConnectorAccess().getAliasIDTerminalRuleCall_1_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConnectorRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_2_0,
+								"de.cooperateproject.modeling.textual.component.Component.ID");
+						}
+					)
+				)
+				otherlv_3='as'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getConnectorAccess().getAsKeyword_1_1_1());
+				}
+				(
+					(
+						lv_name_4_0=RULE_STRING
+						{
+							newLeafNode(lv_name_4_0, grammarAccess.getConnectorAccess().getNameSTRINGTerminalRuleCall_1_1_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getConnectorRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"name",
+								lv_name_4_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
+						}
+					)
 				)
 			)
 		)
@@ -1614,52 +1614,9 @@ ruleProvide returns [EObject current=null]
 		(
 			(
 				(
-					(
-						lv_name_2_0=RULE_STRING
-						{
-							newLeafNode(lv_name_2_0, grammarAccess.getProvideAccess().getNameSTRINGTerminalRuleCall_2_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getProvideRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"name",
-								lv_name_2_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
-						}
-					)
-				)
-				otherlv_3='as'
-				{
-					newLeafNode(otherlv_3, grammarAccess.getProvideAccess().getAsKeyword_2_0_1());
-				}
-				(
-					(
-						lv_alias_4_0=RULE_ID
-						{
-							newLeafNode(lv_alias_4_0, grammarAccess.getProvideAccess().getAliasIDTerminalRuleCall_2_0_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getProvideRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"alias",
-								lv_alias_4_0,
-								"de.cooperateproject.modeling.textual.component.Component.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					lv_name_5_0=RULE_ID
+					lv_name_2_0=RULE_ID
 					{
-						newLeafNode(lv_name_5_0, grammarAccess.getProvideAccess().getNameIDTerminalRuleCall_2_1_0());
+						newLeafNode(lv_name_2_0, grammarAccess.getProvideAccess().getNameIDTerminalRuleCall_2_0_0());
 					}
 					{
 						if ($current==null) {
@@ -1668,9 +1625,52 @@ ruleProvide returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"name",
-							lv_name_5_0,
+							lv_name_2_0,
 							"de.cooperateproject.modeling.textual.component.Component.ID");
 					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						lv_alias_3_0=RULE_ID
+						{
+							newLeafNode(lv_alias_3_0, grammarAccess.getProvideAccess().getAliasIDTerminalRuleCall_2_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getProvideRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_3_0,
+								"de.cooperateproject.modeling.textual.component.Component.ID");
+						}
+					)
+				)
+				otherlv_4='as'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getProvideAccess().getAsKeyword_2_1_1());
+				}
+				(
+					(
+						lv_name_5_0=RULE_STRING
+						{
+							newLeafNode(lv_name_5_0, grammarAccess.getProvideAccess().getNameSTRINGTerminalRuleCall_2_1_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getProvideRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"name",
+								lv_name_5_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
+						}
+					)
 				)
 			)
 		)
@@ -1723,52 +1723,9 @@ ruleRequire returns [EObject current=null]
 		(
 			(
 				(
-					(
-						lv_name_2_0=RULE_STRING
-						{
-							newLeafNode(lv_name_2_0, grammarAccess.getRequireAccess().getNameSTRINGTerminalRuleCall_2_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRequireRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"name",
-								lv_name_2_0,
-								"org.eclipse.xtext.common.Terminals.STRING");
-						}
-					)
-				)
-				otherlv_3='as'
-				{
-					newLeafNode(otherlv_3, grammarAccess.getRequireAccess().getAsKeyword_2_0_1());
-				}
-				(
-					(
-						lv_alias_4_0=RULE_ID
-						{
-							newLeafNode(lv_alias_4_0, grammarAccess.getRequireAccess().getAliasIDTerminalRuleCall_2_0_2_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getRequireRule());
-							}
-							setWithLastConsumed(
-								$current,
-								"alias",
-								lv_alias_4_0,
-								"de.cooperateproject.modeling.textual.component.Component.ID");
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					lv_name_5_0=RULE_ID
+					lv_name_2_0=RULE_ID
 					{
-						newLeafNode(lv_name_5_0, grammarAccess.getRequireAccess().getNameIDTerminalRuleCall_2_1_0());
+						newLeafNode(lv_name_2_0, grammarAccess.getRequireAccess().getNameIDTerminalRuleCall_2_0_0());
 					}
 					{
 						if ($current==null) {
@@ -1777,9 +1734,52 @@ ruleRequire returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"name",
-							lv_name_5_0,
+							lv_name_2_0,
 							"de.cooperateproject.modeling.textual.component.Component.ID");
 					}
+				)
+			)
+			    |
+			(
+				(
+					(
+						lv_alias_3_0=RULE_ID
+						{
+							newLeafNode(lv_alias_3_0, grammarAccess.getRequireAccess().getAliasIDTerminalRuleCall_2_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getRequireRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_3_0,
+								"de.cooperateproject.modeling.textual.component.Component.ID");
+						}
+					)
+				)
+				otherlv_4='as'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getRequireAccess().getAsKeyword_2_1_1());
+				}
+				(
+					(
+						lv_name_5_0=RULE_STRING
+						{
+							newLeafNode(lv_name_5_0, grammarAccess.getRequireAccess().getNameSTRINGTerminalRuleCall_2_1_2_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getRequireRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"name",
+								lv_name_5_0,
+								"org.eclipse.xtext.common.Terminals.STRING");
+						}
+					)
 				)
 			)
 		)
