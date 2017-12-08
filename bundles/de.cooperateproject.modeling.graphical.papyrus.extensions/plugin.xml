@@ -276,39 +276,6 @@
          		self.name <> null
       		]]>
    			</constraint>
-   			
-   			<constraint
-                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.componentsMustNotBeAbstract"
-                  isEnabledByDefault="true"
-                  lang="OCL"
-                  mode="Live"
-                  name="Components must not be abstract"
-                  severity="WARNING"
-                  statusCode="2">
-      		<description>Components must not be abstract</description>
-      		<message>Components must not be abstract.</message>
-      		<target class="Component"/>
-      		<![CDATA[
-         		self.isAbstract = false
-      		]]>
-   			</constraint>
-   			
-   			<constraint
-                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.Dummy"
-                  isEnabledByDefault="true"
-                  lang="OCL"
-                  mode="Live"
-                  name="Dummy"
-                  severity="WARNING"
-                  statusCode="2">
-      		<description>Dummy constraint</description>
-      		<message>dummy just for testing.</message>
-      		<target class="PapyrusUMLComponentDiagram"/>
-      		<![CDATA[
-         		self.children->size()
-      		]]>
-   			</constraint>
-   			
             <constraint
                   class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram.UseCaseDiagramConstraintsOnExtendsHaveToBeContained"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintModelingCorrectForExtends"
@@ -432,6 +399,21 @@
                   An extension point used in an extend realation has to be visible in the diagram.
                </description>
             </constraint>
+            <constraint
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.ClassifierOfPortInDiagram"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Batch"
+                  name="Classifiers of ports should reside in the same diagram"
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>Classifiers of ports should reside in the same diagram as the port</description>
+      		<message>Classifiers of ports should reside in the same diagram</message>
+      		<target class="Shape"/>
+      		<![CDATA[
+         		if self.element.oclIsTypeOf(uml::Port) then self.diagram.children->closure(children)->exists(v | v.element.oclAsType(uml::Classifier) = self.element.oclAsType(uml::Port).type) else self.diagram = self.diagram endif
+      		]]>
+   			</constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
