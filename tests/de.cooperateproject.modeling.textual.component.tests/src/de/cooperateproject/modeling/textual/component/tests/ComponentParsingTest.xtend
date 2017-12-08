@@ -152,7 +152,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 			rootPackage RootElement
 			component testComp { 
 				provide firstRelation testiface
-				require second testiface2 as "second Relation"
+				require second as "second Relation" testiface2
 			}
 			interface testiface { }
 			interface testiface2 { }			
