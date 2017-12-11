@@ -116,12 +116,11 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 		}
 	}
 
-	private static def <T extends Element> umlParent(EObject element, Class<T> f) {
+	private static def <T> umlParent(EObject element, Class<T> f) {
 		val context = element.eContainer
 		if (context instanceof UMLReferencingElement<?>) {
-			return Optional.ofNullable((context as UMLReferencingElement<T>).referencedElement);
+			return Optional.ofNullable((context as UMLReferencingElement<?>).referencedElement).filter(e | f.isInstance(e)).map(e | f.cast(e));
 		}
-
 		return Optional.empty
 	}
 
