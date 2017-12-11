@@ -62,7 +62,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 			@start-cpd "someDiagram"
 			rootPackage RootElement
 			interface iface
-			interface "iface 2" as iface
+			interface iface as "iface 2"
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -74,7 +74,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 			@start-cpd "someDiagram"
 			rootPackage RootElement
 			component testComp { }
-			component "Test Comp" as testComp { }
+			component testComp as "Test Comp" { }
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -86,7 +86,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 			@start-cpd "someDiagram"
 			rootPackage RootElement
 			component testComp {
-				component "Test Comp" as testComp { }
+				component testComp as "Test Comp" { }
 			}
 
 			@end-cpd
@@ -152,7 +152,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 			rootPackage RootElement
 			component testComp { 
 				provide firstRelation testiface
-				require "second Relation" as second testiface2
+				require second as "second Relation" testiface2
 			}
 			interface testiface { }
 			interface testiface2 { }			
@@ -207,8 +207,8 @@ class ComponentParsingTest extends AbstractComponentTest{
 			@start-cpd "someDiagram"
 			rootPackage RootElement
 			component testComp { }
-			component "testComp2 test" as testComp2 { }
-			interface "iface test" as iface { }
+			component testComp2 as "testComp2 test" { }
+			interface iface as "iface test" { }
 			isa ( testComp, testComp2)
 			isa ( testComp, iface)
 			@end-cpd
