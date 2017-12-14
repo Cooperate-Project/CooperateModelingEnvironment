@@ -7,7 +7,7 @@ import de.cooperateproject.modeling.textual.component.cmp.Member;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +16,7 @@ import org.eclipse.uml2.uml.Property;
  *
  * @generated
  */
-public abstract class MemberImpl extends PropertyImpl<Property> implements Member {
+public abstract class MemberImpl<T extends Feature> extends PropertyImpl<T> implements Member<T> {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

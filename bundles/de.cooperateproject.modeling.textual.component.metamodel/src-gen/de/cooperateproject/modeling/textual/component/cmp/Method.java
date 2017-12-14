@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.component.cmp;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.uml2.uml.Operation;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Method extends Member {
+public interface Method extends Member<Operation> {
     /**
      * Returns the value of the '<em><b>Abstract</b></em>' attribute.
      * <!-- begin-user-doc -->

@@ -18,6 +18,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.component.cmp.Port
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
 import de.cooperateproject.modeling.textual.component.cmp.Connector
+import de.cooperateproject.modeling.textual.component.cmp.Parameter
 
 class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -55,6 +56,10 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 	private def dispatch resolvePossible(Method element) {
 		return !element.parameters.map[type].contains(null) && !element.parameters.map[name].contains(null)
 	}
+	
+    private def dispatch resolvePossible(Parameter element) {
+        return element.type !== null && element.type.eResource !== null// && StringUtils.isNotBlank(element.name)
+    }
 	
 	
 	

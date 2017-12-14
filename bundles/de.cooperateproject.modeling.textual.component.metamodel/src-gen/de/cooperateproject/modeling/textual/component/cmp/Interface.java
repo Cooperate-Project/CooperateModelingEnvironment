@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.component.cmp;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Interface extends Classifier<org.eclipse.uml2.uml.Interface> {
     /**
      * Returns the value of the '<em><b>Members</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.cmp.Member}.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.cmp.Member}<code>&lt;? extends org.eclipse.uml2.uml.Feature&gt;</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Members</em>' containment reference list isn't clear,
@@ -35,6 +36,6 @@ public interface Interface extends Classifier<org.eclipse.uml2.uml.Interface> {
      * @model containment="true"
      * @generated
      */
-    EList<Member> getMembers();
+    EList<Member<? extends Feature>> getMembers();
 
 } // Interface

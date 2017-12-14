@@ -24,6 +24,14 @@ import de.cooperateproject.modeling.textual.component.cmp.Connector
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 import org.eclipse.uml2.uml.AggregationKind
+import org.eclipse.uml2.uml.AttributeOwner
+import de.cooperateproject.modeling.textual.component.cmp.Parameter
+import org.eclipse.uml2.uml.BehavioralFeature
+import de.cooperateproject.modeling.textual.component.cmp.Method
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.uml2.uml.Type
+import org.eclipse.uml2.uml.OperationOwner
+import org.eclipse.uml2.uml.Interface
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -50,13 +58,60 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 
 	private def dispatch fixMissingUMLElement(Attribute element) {
 		var type = element.type
-		val umlParent = element.umlParent(StructuredClassifier)
+		val umlParent = element.umlParent(AttributeOwner)
 		if (umlParent.present && type instanceof Classifier) {
 			val umlType = type as Classifier
-			val prop = umlParent.get.createOwnedAttribute(element.name, umlType);
+			val prop = umlParent.get.createOwnedAttribute(element.name, umlType)
 			element.referencedElement = prop
 		}
 	}
+	
+	private def dispatch fixMissingUMLElement(Method element) {
+		if(!resolvePossible) return Void
+		val umlClassifier = element.umlParent(OperationOwner)
+		val parameterNames = new BasicEList(element.parameters.map[name])
+		val parameterTypes = new BasicEList(element.parameters.map[type].map[type|type as Type])
+		val umlOperation = umlClassifier.get.createOwnedOperation(element.name, parameterNames, parameterTypes,
+			element.type)
+		umlOperation.visibility = element.visibility
+		umlOperation.isStatic = element.static
+		umlOperation.isAbstract = element.abstract
+		element.referencedElement = umlOperation
+	}
+	/* method in cls:
+	 * if(!resolvePossible) return Void
+		val umlClassifier = element.owner.referencedElement as OperationOwner
+		val parameterNames = new BasicEList(element.parameters.map[name])
+		val parameterTypes = new BasicEList(element.parameters.map[type].map[type|type as Type])
+		val umlOperation = umlClassifier.createOwnedOperation(element.name, parameterNames, parameterTypes,
+			element.type)
+		umlOperation.visibility = element.visibility
+		umlOperation.isStatic = element.static
+		umlOperation.isAbstract = element.abstract
+		element.referencedElement = umlOperation
+	 */
+	 
+	private def dispatch fixMissingUMLElement(Parameter element) {
+		if(!resolvePossible) return Void
+		val umlMethod = element.umlParent(BehavioralFeature)
+		if (umlMethod.present) {
+			val parameterIndex = element.owner.parameters.indexOf(element)
+			val umlParameter = umlMethod.get.createOwnedParameter(element.name, element.type)
+			umlMethod.get.ownedParameters.move(parameterIndex, umlParameter)
+			element.referencedElement = umlParameter
+		}
+		/*
+		 * method in cls:
+		if(!resolvePossible) return Void
+		val method = element.owner
+		val umlMethod = method.referencedElement
+		val parameterIndex = method.parameters.indexOf(element)
+		val umlParameter = umlMethod.createOwnedParameter(element.name, element.type)
+		umlMethod.ownedParameters.move(parameterIndex, umlParameter)
+		element.referencedElement = umlParameter
+		*/
+	}
+	
 	
 	private def dispatch fixMissingUMLElement(Connector element) {
 		
@@ -78,8 +133,7 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 			
 			element.referencedElement = umlEnd
 		}
-	}
-	
+	}	
 	
 	private def dispatch fixMissingUMLElement(Port element) {
 		var type = element.realizedClassifier

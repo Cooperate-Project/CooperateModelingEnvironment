@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
+import org.eclipse.uml2.uml.Property;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +15,5 @@ package de.cooperateproject.modeling.textual.component.cmp;
  * @model
  * @generated
  */
-public interface Attribute extends Member {
+public interface Attribute extends Member<Property> {
 } // Attribute

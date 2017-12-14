@@ -842,6 +842,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         ETypeParameter classifierRelationEClass_RightUMLType = addETypeParameter(classifierRelationEClass, "RightUMLType");
         ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
         ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
+        ETypeParameter memberEClass_T = addETypeParameter(memberEClass, "T");
 
         // Set bounds for type parameters
         EGenericType g1 = createEGenericType(theUMLPackage.getClassifier());
@@ -852,6 +853,8 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         classifierEClass_T.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getNamedElement());
         propertyEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getFeature());
+        memberEClass_T.getEBounds().add(g1);
 
         // Add supertypes to classes
         g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
@@ -953,14 +956,20 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g2 = createEGenericType(theUMLPackage.getInterface());
         g1.getETypeArguments().add(g2);
         interfaceEClass.getEGenericSuperTypes().add(g1);
-        methodEClass.getESuperTypes().add(this.getMember());
+        g1 = createEGenericType(this.getMember());
+        g2 = createEGenericType(theUMLPackage.getOperation());
+        g1.getETypeArguments().add(g2);
+        methodEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getProperty());
         g2 = createEGenericType(theUMLPackage.getParameter());
         g1.getETypeArguments().add(g2);
         parameterEClass.getEGenericSuperTypes().add(g1);
-        attributeEClass.getESuperTypes().add(this.getMember());
-        g1 = createEGenericType(this.getProperty());
+        g1 = createEGenericType(this.getMember());
         g2 = createEGenericType(theUMLPackage.getProperty());
+        g1.getETypeArguments().add(g2);
+        attributeEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getProperty());
+        g2 = createEGenericType(memberEClass_T);
         g1.getETypeArguments().add(g2);
         memberEClass.getEGenericSuperTypes().add(g1);
         interfaceRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
@@ -1033,7 +1042,7 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getComponent_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1047,7 +1056,12 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         initEReference(getInterfaceProvidingRequiringEntity_InterfaceRelation(), this.getInterfaceRelation(), null, "interfaceRelation", null, 0, -1, InterfaceProvidingRequiringEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInterface_Members(), this.getMember(), null, "members", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getMember());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        EGenericType g3 = createEGenericType(theUMLPackage.getFeature());
+        g2.setEUpperBound(g3);
+        initEReference(getInterface_Members(), g1, null, "members", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMethod_Abstract(), theEcorePackage.getEBoolean(), "abstract", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

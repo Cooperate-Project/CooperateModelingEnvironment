@@ -6,7 +6,7 @@
     editorPluginClass="de.cooperateproject.modeling.textual.component.metamodel.presentation.ComponentEditorPlugin"
     rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
     testSuiteClass="de.cooperateproject.modeling.textual.component.metamodel.tests.ComponentAllTests"
-    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Dynamic" complianceLevel="8.0"
+    importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic" complianceLevel="8.0"
     copyrightFields="false" providerRootExtendsClass="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <foreignModel>cmp.ecore</foreignModel>
@@ -68,15 +68,17 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cmp.ecore#//Parameter/owner"/>
     </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Attribute"/>
-    <genClasses image="false" ecoreClass="cmp.ecore#//Member"/>
+    <genClasses image="false" ecoreClass="cmp.ecore#//Member">
+      <genTypeParameters ecoreTypeParameter="cmp.ecore#//Member/T"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="cmp.ecore#//InterfaceRelation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//InterfaceRelation/interface"/>
     </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Provide"/>
     <genClasses ecoreClass="cmp.ecore#//Require"/>
     <genClasses ecoreClass="cmp.ecore#//Port">
-      <genTypeParameters ecoreTypeParameter="cmp.ecore#//Port/realizeClassifierUMLType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//Port/realizedClassifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cmp.ecore#//Port/conjugated"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

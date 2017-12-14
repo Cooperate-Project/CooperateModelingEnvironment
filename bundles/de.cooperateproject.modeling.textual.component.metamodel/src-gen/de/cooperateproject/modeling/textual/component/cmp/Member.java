@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
+import org.eclipse.uml2.uml.Feature;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +15,5 @@ package de.cooperateproject.modeling.textual.component.cmp;
  * @model abstract="true"
  * @generated
  */
-public interface Member extends Property<org.eclipse.uml2.uml.Property> {
+public interface Member<T extends Feature> extends Property<T> {
 } // Member

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Interface;
 
 /**
@@ -57,8 +58,8 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Member> getMembers() {
-        return (EList<Member>)eDynamicGet(CmpPackage.INTERFACE__MEMBERS, CmpPackage.Literals.INTERFACE__MEMBERS, true, true);
+    public EList<Member<? extends Feature>> getMembers() {
+        return (EList<Member<? extends Feature>>)eDynamicGet(CmpPackage.INTERFACE__MEMBERS, CmpPackage.Literals.INTERFACE__MEMBERS, true, true);
     }
 
     /**
@@ -100,7 +101,7 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
         switch (featureID) {
             case CmpPackage.INTERFACE__MEMBERS:
                 getMembers().clear();
-                getMembers().addAll((Collection<? extends Member>)newValue);
+                getMembers().addAll((Collection<? extends Member<? extends Feature>>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

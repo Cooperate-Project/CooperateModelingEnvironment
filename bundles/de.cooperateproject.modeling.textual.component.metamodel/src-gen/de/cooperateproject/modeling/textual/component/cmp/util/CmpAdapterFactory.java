@@ -42,6 +42,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -177,7 +178,7 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
                 return createAttributeAdapter();
             }
             @Override
-            public Adapter caseMember(Member object) {
+            public <T extends Feature> Adapter caseMember(Member<T> object) {
                 return createMemberAdapter();
             }
             @Override
