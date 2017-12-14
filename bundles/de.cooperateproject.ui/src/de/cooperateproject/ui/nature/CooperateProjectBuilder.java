@@ -79,7 +79,8 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 
     private static CDOConnectionSettings convert(ProjectPropertiesDTO properties) {
         return CDOConnectionSettings.builder().setHost(properties.getCdoHost()).setPort(properties.getCdoPort())
-                .setRepo(properties.getCdoRepo()).build();
+                .setRepo(properties.getCdoRepo()).setUser(properties.getCdoUser())
+                .setPassword(properties.getCdoPassword()).build();
     }
 
     private static void deregisterOrphanProjects() {

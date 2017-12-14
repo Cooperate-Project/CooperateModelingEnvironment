@@ -12,6 +12,8 @@ public enum CDOServerPreferenceHandler {
     private static final String CDO_SERVER_HOSTNAME_PREFERENCE = "cdo_server_hostname_pref";
     private static final String CDO_SERVER_PORT_PREFERENCE = "cdo_server_port_pref";
     private static final String CDO_SERVER_REPOSITORY_PREFERENCE = "cdo_server_repository_pref";
+    private static final String CDO_SERVER_USERNAME_PREFERENCE = "cdo_server_username_pref";
+    private static final String CDO_SERVER_PASSWORD_PREFERENCE = "cdo_server_password_pref";
     private static final String CDO_SERVER_MESSAGE_BROKER_PREFERENCE = "cdo_server_msg_broker_pref";
 
     public String getCDOServerHostnamePreference() {
@@ -24,6 +26,14 @@ public enum CDOServerPreferenceHandler {
 
     public String getCdoServerRepositoryPreference() {
         return CDO_SERVER_REPOSITORY_PREFERENCE;
+    }
+
+    public static String getCdoServerPasswordPreference() {
+        return CDO_SERVER_PASSWORD_PREFERENCE;
+    }
+
+    public static String getCdoServerUsernamePreference() {
+        return CDO_SERVER_USERNAME_PREFERENCE;
     }
 
     public String getCdoServerMessageBrokerPreference() {
@@ -55,7 +65,28 @@ public enum CDOServerPreferenceHandler {
         return preferenceValue;
     }
 
+    public String getCDOServerUsernameSetting() {
+        String preferenceValue = PreferenceActivator.getDefault().getPreferenceStore()
+                .getString(CDO_SERVER_USERNAME_PREFERENCE);
+
+        if (preferenceValue == null || "".equals(preferenceValue)) {
+            return "";
+        }
+        return preferenceValue;
+    }
+
+    public String getCDOServerPasswordSetting() {
+        String preferenceValue = PreferenceActivator.getDefault().getPreferenceStore()
+                .getString(CDO_SERVER_PASSWORD_PREFERENCE);
+
+        if (preferenceValue == null || "".equals(preferenceValue)) {
+            return "";
+        }
+        return preferenceValue;
+    }
+
     public int getCDOServerMessageBrokerSetting() {
         return PreferenceActivator.getDefault().getPreferenceStore().getInt(CDO_SERVER_MESSAGE_BROKER_PREFERENCE);
     }
+
 }

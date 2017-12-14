@@ -8,6 +8,7 @@ import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.explorer.repositories.CDORepository;
 import org.eclipse.emf.cdo.session.CDOSession;
+import org.eclipse.emf.internal.cdo.session.CDOSessionImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +28,10 @@ public enum CDOConnectionManager {
         synchronized (sessions) {
             LOGGER.trace("Acquirering session for {}", project.getName());
             CDORepository repository = getRepository(project);
-            CDOSession session = repository.acquireSession();
+            CDOSessionImpl session = (CDOSessionImpl) repository.acquireSession();
+            // TODO Fix: Throws NPE if credential is not set. Might be because PasswordCredentials is not correctly
+            // instanciated if user or password is null or ""
+            session.setUserID(repository.getCredentials().getUserID());
             sessions.put(repository, session);
             return session;
         }

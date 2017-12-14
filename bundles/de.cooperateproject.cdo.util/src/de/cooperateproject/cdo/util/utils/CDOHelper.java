@@ -25,6 +25,7 @@ import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.net4j.util.security.PasswordCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -111,7 +112,9 @@ public final class CDOHelper {
     public static CDORepository createRepositoryFor(String repositoryLabel, CDOConnectionSettings settings) {
         CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
         Properties repositoryProperties = createProperties(repositoryLabel, settings);
-        return repositoryManager.addRepository(repositoryProperties);
+        // TODO Fix: Sometimes PasswordCredentials is not created correctly
+        return repositoryManager.addRepository(repositoryProperties,
+                new PasswordCredentials(settings.getUser(), settings.getPassword()));
     }
 
     public static void delete(CDOCheckout checkout) {

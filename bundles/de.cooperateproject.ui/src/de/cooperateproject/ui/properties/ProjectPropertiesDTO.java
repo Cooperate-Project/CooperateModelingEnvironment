@@ -14,6 +14,8 @@ public class ProjectPropertiesDTO implements IValidateable {
     private String cdoHost;
     private Integer cdoPort;
     private String cdoRepo;
+    private String cdoUser;
+    private String cdoPassword;
     private Integer msgPort;
 
     public String getCdoHost() {
@@ -44,6 +46,26 @@ public class ProjectPropertiesDTO implements IValidateable {
         String oldValue = this.cdoRepo;
         this.cdoRepo = cdoRepo;
         firePropertyChange("cdoRepo", oldValue, cdoRepo);
+    }
+
+    public String getCdoUser() {
+        return cdoUser;
+    }
+
+    public void setCdoUser(String cdoUser) {
+        String oldValue = this.cdoUser;
+        this.cdoUser = cdoUser;
+        firePropertyChange("cdoUser", oldValue, cdoUser);
+    }
+
+    public String getCdoPassword() {
+        return cdoPassword;
+    }
+
+    public void setCdoPassword(String cdoPassword) {
+        String oldValue = this.cdoPassword;
+        this.cdoPassword = cdoPassword;
+        firePropertyChange("cdoPassword", oldValue, cdoPassword);
     }
 
     public Integer getMsgPort() {

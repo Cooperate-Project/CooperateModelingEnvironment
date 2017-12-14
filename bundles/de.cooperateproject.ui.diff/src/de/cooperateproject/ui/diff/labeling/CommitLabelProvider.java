@@ -44,6 +44,8 @@ public class CommitLabelProvider extends LabelProvider implements ITableLabelPro
             return formatterTime.format(date);
         case 2:
             return element.getComment();
+        case 3:
+            return element.getUserID();
         default:
             return "";
         }

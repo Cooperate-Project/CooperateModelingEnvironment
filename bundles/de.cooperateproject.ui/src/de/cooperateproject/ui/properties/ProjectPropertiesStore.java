@@ -16,6 +16,8 @@ public class ProjectPropertiesStore {
     private static final StoreAwareStringProperty CDO_HOST = new StoreAwareStringProperty("cdo.host", "localhost");
     private static final StoreAwareIntegerProperty CDO_PORT = new StoreAwareIntegerProperty("cdo.port", 2036);
     private static final StoreAwareStringProperty CDO_REPO = new StoreAwareStringProperty("cdo.repo", "repo1");
+    private static final StoreAwareStringProperty CDO_USER = new StoreAwareStringProperty("cdo.user", "");
+    private static final StoreAwareStringProperty CDO_PASSWORD = new StoreAwareStringProperty("cdo.password", "");
     private static final StoreAwareIntegerProperty MSG_PORT = new StoreAwareIntegerProperty("msg.port", 61616);
 
     private final IPersistentPreferenceStore preferencesStore;
@@ -46,6 +48,8 @@ public class ProjectPropertiesStore {
         preferences.setCdoHost(CDO_HOST.getValue(preferencesStore));
         preferences.setCdoPort(CDO_PORT.getValue(preferencesStore));
         preferences.setCdoRepo(CDO_REPO.getValue(preferencesStore));
+        preferences.setCdoUser(CDO_USER.getValue(preferencesStore));
+        preferences.setCdoPassword(CDO_PASSWORD.getValue(preferencesStore));
         preferences.setMsgPort(MSG_PORT.getValue(preferencesStore));
     }
 
@@ -53,6 +57,8 @@ public class ProjectPropertiesStore {
         CDO_HOST.setValue(preferencesStore, preferences.getCdoHost());
         CDO_PORT.setValue(preferencesStore, preferences.getCdoPort());
         CDO_REPO.setValue(preferencesStore, preferences.getCdoRepo());
+        CDO_USER.setValue(preferencesStore, preferences.getCdoUser());
+        CDO_PASSWORD.setValue(preferencesStore, preferences.getCdoPassword());
         MSG_PORT.setValue(preferencesStore, preferences.getMsgPort());
         preferencesStore.save();
     }
@@ -61,6 +67,8 @@ public class ProjectPropertiesStore {
         dto.setCdoHost(CDO_HOST.getDefault());
         dto.setCdoPort(CDO_PORT.getDefault());
         dto.setCdoRepo(CDO_REPO.getDefault());
+        dto.setCdoUser(CDO_USER.getDefault());
+        dto.setCdoPassword(CDO_PASSWORD.getDefault());
         dto.setMsgPort(MSG_PORT.getDefault());
     }
 
@@ -70,6 +78,8 @@ public class ProjectPropertiesStore {
         CDO_HOST.init(store);
         CDO_PORT.init(store);
         CDO_REPO.init(store);
+        CDO_USER.init(store);
+        CDO_PASSWORD.init(store);
         MSG_PORT.init(store);
         return store;
     }
@@ -90,6 +100,8 @@ public class ProjectPropertiesStore {
         dto.setCdoHost(CDOServerPreferenceHandler.INSTANCE.getCDOServerHostnameSetting());
         dto.setCdoPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerPortSetting());
         dto.setCdoRepo(CDOServerPreferenceHandler.INSTANCE.getCDOServerRepositorySetting());
+        dto.setCdoUser(CDOServerPreferenceHandler.INSTANCE.getCDOServerUsernameSetting());
+        dto.setCdoPassword(CDOServerPreferenceHandler.INSTANCE.getCDOServerPasswordSetting());
         dto.setMsgPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerMessageBrokerSetting());
 
     }

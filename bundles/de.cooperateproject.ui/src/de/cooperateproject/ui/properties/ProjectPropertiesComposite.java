@@ -162,6 +162,15 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> atomicValidatedRepository = new WritableValue<>(null, String.class);
         bindingContext.bindValue(observeTextTxtCDORepositoryObserveWidget, atomicValidatedRepository,
                 strategyAtomicStringToModel, strategyAtomicStringToTarget);
+
+        // atomic user
+        IObservableValue<String> observeUsername = WidgetProperties.text(SWT.Modify)
+                .observeDelayed(UPDATE_DELAY, txtCDOUsername);
+
+        // atomic password
+        IObservableValue<String> observePassword = WidgetProperties.text(SWT.Modify)
+                .observeDelayed(UPDATE_DELAY, txtCDOPassword);
+
         // atomic message port
         IObservableValue<String> observeTextTxtMsgPortObserveWidget = WidgetProperties.text(SWT.Modify)
                 .observeDelayed(UPDATE_DELAY, txtMsgPort);
@@ -191,6 +200,12 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> cdoRepoPreferencesDTOObserveValue = BeanProperties.value("cdoRepo")
                 .observe(preferencesDTO);
         bindingContext.bindValue(validatedRepo, cdoRepoPreferencesDTOObserveValue);
+        IObservableValue<String> cdoUserPreferencesDTOObserveValue = BeanProperties.value("cdoUser")
+                .observe(preferencesDTO);
+        bindingContext.bindValue(observeUsername, cdoUserPreferencesDTOObserveValue);
+        IObservableValue<String> cdoPasswordPreferencesDTOObserveValue = BeanProperties.value("cdoPassword")
+                .observe(preferencesDTO);
+        bindingContext.bindValue(observePassword, cdoPasswordPreferencesDTOObserveValue);
         IObservableValue<Integer> msgPortPreferencesDTOObserveValue = BeanProperties.value("msgPort")
                 .observe(preferencesDTO);
         bindingContext.bindValue(validatedMsgPort, msgPortPreferencesDTOObserveValue);
