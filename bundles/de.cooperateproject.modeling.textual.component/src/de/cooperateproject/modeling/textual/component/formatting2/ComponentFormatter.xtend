@@ -95,8 +95,8 @@ class ComponentFormatter extends AbstractFormatter2 {
 			[indent] 
 		)
 		
-		for (Member members : iface.getMembers()) {
-			format(members, document);
+		for (member : iface.getMembers()) {
+			format(member, document);
 		}
 		iface.append[newLine; priority = 2]
 	}
