@@ -10,6 +10,15 @@
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.MemberInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.MethodInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.PropertyInitializer">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.RequireInitializer">
       </class>
       <class
@@ -50,6 +59,15 @@
       </factory>
       <factory
             class="de.cooperateproject.modeling.textual.component.issues.ComponentPortConjugatedFactory">
+      </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.component.issues.ComponentMethodAbstractQualifierFactory">
+      </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.component.issues.ComponentMemberStaticQualifierFactory">
+      </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.component.issues.ComponentPropertyTypeMismatchFactory">
       </factory>
    </extension>
 

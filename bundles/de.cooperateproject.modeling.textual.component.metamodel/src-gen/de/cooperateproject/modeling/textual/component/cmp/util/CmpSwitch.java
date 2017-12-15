@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -303,7 +304,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 return result;
             }
             case CmpPackage.MEMBER: {
-                Member member = (Member)theEObject;
+                Member<?> member = (Member<?>)theEObject;
                 T1 result = caseMember(member);
                 if (result == null) result = caseProperty(member);
                 if (result == null) result = caseUMLReferencingElement(member);
@@ -654,7 +655,7 @@ public class CmpSwitch<T1> extends Switch<T1> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T1 caseMember(Member object) {
+    public <T extends Feature> T1 caseMember(Member<T> object) {
         return null;
     }
 

@@ -16,8 +16,8 @@ description="inserts a new interface" enabled="true" id="cmpinterface" name="Ins
 	&#13;
 }</template>
 <template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Method" deleted="false" 
-description="inserts a new method with parameter and return type" enabled="true" id="cmpmethod" name="Insert method">
-${methodName} (${param}:${type:CrossReference(Property.type)}) : ${type2:CrossReference(Property.type)}</template>
+description="inserts a new public method with parameter and return type" enabled="true" id="cmpmethod" name="Insert method">
++ ${methodName} (${param}:${type:CrossReference(Property.type)}) : ${type2:CrossReference(Property.type)}</template>
 
 <template autoinsert="true" context="de.cooperateproject.modeling.textual.component.Component.Port" deleted="false" 
 description="inserts a new port" enabled="true" id="cmpport" name="Insert port">

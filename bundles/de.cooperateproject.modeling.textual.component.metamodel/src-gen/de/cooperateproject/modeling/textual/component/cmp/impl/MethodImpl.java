@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.uml.Operation;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class MethodImpl extends MemberImpl implements Method {
+public class MethodImpl extends MemberImpl<Operation> implements Method {
     /**
      * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
      * <!-- begin-user-doc -->

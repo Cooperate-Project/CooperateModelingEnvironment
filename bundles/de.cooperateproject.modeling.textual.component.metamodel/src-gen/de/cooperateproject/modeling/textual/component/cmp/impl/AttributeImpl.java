@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class AttributeImpl extends MemberImpl implements Attribute {
+public class AttributeImpl extends MemberImpl<Property> implements Attribute {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
