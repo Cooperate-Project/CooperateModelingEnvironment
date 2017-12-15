@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='33'>
+  <ius size='32'>
     <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
       <repositories size='1'>
         <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
@@ -162,11 +162,6 @@
     <iu id='org.eclipse.papyrus.extra.cdo.feature.feature.group' name='Papyrus CDO Integration (Incubation)' version='1.2.0.201707111423'>
       <repositories size='1'>
         <repository location='https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/latest/'/>
-      </repositories>
-    </iu>
-    <iu id='org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group' name='CBI Aggregator Editor' version='1.0.100.20170727-1424'>
-      <repositories size='1'>
-        <repository location='http://download.eclipse.org/cbi/updates/aggregator/ide/4.7/?d'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group' name='CBI Aggregator Editor' version='1.0.100.20170727-1424'>
