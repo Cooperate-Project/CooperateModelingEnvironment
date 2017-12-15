@@ -8,6 +8,7 @@ import com.google.inject.Provider;
 import com.google.inject.name.Names;
 import de.cooperateproject.modeling.common.primitivetypes.DefaultUMLPrimitiveTypeFilter;
 import de.cooperateproject.modeling.common.primitivetypes.IUMLPrimitiveTypeFilter;
+import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.ClsDerivedStateElementComparator;
 import de.cooperateproject.modeling.textual.cls.formatting2.ClsFormatter;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.cls.parser.antlr.ClsAntlrTokenFileProvider;
@@ -17,7 +18,18 @@ import de.cooperateproject.modeling.textual.cls.scoping.ClsScopeProvider;
 import de.cooperateproject.modeling.textual.cls.serializer.ClsSemanticSequencer;
 import de.cooperateproject.modeling.textual.cls.serializer.ClsSyntacticSequencer;
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
+import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter;
 import de.cooperateproject.modeling.textual.cls.validation.ClsValidator;
+import de.cooperateproject.modeling.textual.common.naming.CommonQualifiedNameProvider;
+import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider;
+import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DefaultDerivedStateComputer;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessorRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.InitializingStateAwareResource;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionFactoryRegistry;
@@ -26,16 +38,18 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNameProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.DelegatingTransientStatusProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.CooperateAutomatedValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 import java.util.Properties;
 import net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder;
+import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
-import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.formatting2.IFormatter2;
 import org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder;
@@ -49,8 +63,13 @@ import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.parser.antlr.LexerProvider;
+import org.eclipse.xtext.parsetree.reconstr.ITransientValueService;
+import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager;
 import org.eclipse.xtext.resource.IContainer;
+import org.eclipse.xtext.resource.IDerivedStateComputer;
+import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.resource.containers.ResourceSetBasedAllContainersStateProvider;
@@ -61,7 +80,6 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.IgnoreCaseLinking;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.serializer.impl.Serializer;
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
@@ -180,11 +198,6 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 		binder.bind(IResourceDescriptions.class).annotatedWith(Names.named(ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(ResourceSetBasedResourceDescriptions.class);
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.ecore2xtext.Ecore2XtextValueConverterServiceFragment2
-	public Class<? extends IValueConverterService> bindIValueConverterService() {
-		return Ecore2XtextTerminalConverters.class;
-	}
-	
 	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
 	public Class<? extends IFormatter2> bindIFormatter2() {
 		return ClsFormatter.class;
@@ -198,11 +211,6 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
 	public Class<? extends IScopeProvider> bindIScopeProvider() {
 		return ClsScopeProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-	public void configureIScopeProviderDelegate(Binder binder) {
-		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(ImportedNamespaceAwareLocalScopeProvider.class);
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
@@ -226,6 +234,11 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IGlobalScopeTypeQueryProvider> bindIGlobalScopeTypeQueryProvider() {
+		return CooperateGlobalScopeProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IUMLUriFinder> bindIUMLUriFinder() {
 		return ConventionalUMLUriFinder.class;
 	}
@@ -235,34 +248,94 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 		return DefaultUMLPrimitiveTypeFilter.class;
 	}
 	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.issueresolution.AutomatedIssueResolutionFragment2
 	public Class<? extends IAutomatedIssueResolutionProvider> bindIAutomatedIssueResolutionProvider() {
 		return ClsAutomatedIssueResolutionProvider.class;
 	}
 	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.issueresolution.AutomatedIssueResolutionFragment2
 	public Class<? extends IIssueCodeRegistry> bindIIssueCodeRegistry() {
 		return IssueCodeRegistry.class;
 	}
 	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.issueresolution.AutomatedIssueResolutionFragment2
 	public Class<? extends ICooperateAutomatedValidator> bindICooperateAutomatedValidator() {
 		return CooperateAutomatedValidator.class;
 	}
 	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.issueresolution.AutomatedIssueResolutionFragment2
 	public Class<? extends IAutomatedIssueResolutionFactoryRegistry> bindIAutomatedIssueResolutionFactoryRegistry() {
 		return AutomatedIssueResolutionFactoryRegistry.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return CooperateQualifiedNameProvider.class;
+		return CommonQualifiedNameProvider.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2
 	public Class<? extends IAlternativeNameProvider> bindIAlternativeNameProvider() {
-		return CooperateQualifiedNameProvider.class;
+		return CommonQualifiedNameProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2
+	public void configureIScopeProviderDelegate(Binder binder) {
+		binder.bind(IScopeProvider.class).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(CooperateImportedNamespaceAwareLocalScopeProvider.class);
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends IAtomicDerivedStateProcessorRegistry> bindIAtomicDerivedStateProcessorRegistry() {
+		return AtomicDerivedStateProcessorRegistry.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends IDerivedStateProcessor> bindIDerivedStateProcessor() {
+		return DerivedStateProcessor.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends ICDOResourceStateHandler> bindICDOResourceStateHandler() {
+		return DerivedStateProcessor.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
+		return DefaultDerivedStateComputer.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends IDerivedStateComputerSorter> bindIDerivedStateComputerSorter() {
+		return ClsDerivedStateElementComparator.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends ITransientStatusProvider> bindITransientStatusProvider() {
+		return DelegatingTransientStatusProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends ITransientValueService> bindITransientValueService() {
+		return BasicCooperateTransientValueService.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public void configureITransientValueService(Binder binder) {
+		binder.bind(org.eclipse.xtext.serializer.sequencer.ITransientValueService.class).to(de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService.class);
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends XtextResource> bindXtextResource() {
+		return InitializingStateAwareResource.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.derivedstate.DerivedStateCalculationFragment2
+	public Class<? extends IResourceDescription.Manager> bindIResourceDescription$Manager() {
+		return DerivedStateAwareResourceDescriptionManager.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.services.ValueConverterFragment2
+	public Class<? extends IValueConverterService> bindIValueConverterService() {
+		return ClsValueConverter.class;
 	}
 	
 }

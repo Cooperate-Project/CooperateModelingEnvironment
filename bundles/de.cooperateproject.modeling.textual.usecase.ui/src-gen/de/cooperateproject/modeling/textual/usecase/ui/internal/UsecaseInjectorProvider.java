@@ -7,7 +7,6 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.IInjectorProvider;
-import org.eclipse.emf.ecore.EPackage;
 
 /**
  * Language-specific injector provider.
@@ -18,7 +17,7 @@ public class UsecaseInjectorProvider implements IInjectorProvider {
     private Injector injector;
 
     @Override
-    public EPackage getEPackage() {
+    public UsecasePackage getEPackage() {
         return UsecasePackage.eINSTANCE;
     }
 

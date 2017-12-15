@@ -1,12 +1,11 @@
-package de.cooperateproject.modeling.textual.xtext.generator.resources
+package de.cooperateproject.modeling.textual.xtext.generator.issueresolution
 
 import org.eclipse.xtext.Grammar
+import org.eclipse.xtext.GrammarUtil
 import org.eclipse.xtext.xtext.generator.XtextGeneratorNaming
 import org.eclipse.xtext.xtext.generator.model.JavaFileAccess
 
-
-import static extension de.cooperateproject.modeling.textual.xtext.generator.resources.GrammarPackageHandlingUtilities.*
-import org.eclipse.xtext.GrammarUtil
+import static extension de.cooperateproject.modeling.textual.xtext.generator.util.GrammarPackageHandlingUtilities.*
 
 class AutomatedIssueResolutionProviderGenerator {
 	

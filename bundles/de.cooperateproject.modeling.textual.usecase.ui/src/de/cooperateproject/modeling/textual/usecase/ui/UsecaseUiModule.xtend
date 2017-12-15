@@ -4,33 +4,11 @@
 package de.cooperateproject.modeling.textual.usecase.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
-import com.google.inject.name.Names
-import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
-import com.google.inject.Binder
-import org.eclipse.xtext.ui.editor.templates.DefaultTemplateProposalProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider
-import de.cooperateproject.modeling.textual.common.outline.FlatOutlineViewContribution
-import de.cooperateproject.modeling.textual.common.outline.OutlineFlattenFilterAndSorter
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class UsecaseUiModule extends AbstractUsecaseUiModule {
-	
-	def Class<? extends DefaultTemplateProposalProvider> bindDefaultTemplateProposalProvider(){
-			return CooperateTemplateProposalProvider
-	}
-	
-    
-    def configureToggleOutlineViewContribution(Binder binder) {
-        binder.bind(IOutlineContribution).annotatedWith(Names.named("ToggleOutlineView")).to(
-            FlatOutlineViewContribution);
-    }
-    
-    def Class<? extends OutlineFilterAndSorter> bindOutlineFilterAndSorter() {
-        return OutlineFlattenFilterAndSorter
-    }
 
 }

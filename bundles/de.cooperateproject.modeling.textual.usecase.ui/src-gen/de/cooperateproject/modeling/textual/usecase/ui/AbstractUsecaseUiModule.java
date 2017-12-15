@@ -6,6 +6,8 @@ package de.cooperateproject.modeling.textual.usecase.ui;
 import com.google.inject.Binder;
 import com.google.inject.Provider;
 import com.google.inject.name.Names;
+import de.cooperateproject.modeling.textual.common.outline.FlatOutlineViewContribution;
+import de.cooperateproject.modeling.textual.common.outline.OutlineFlattenFilterAndSorter;
 import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.PartialUsecaseContentAssistParser;
 import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.UsecaseParser;
 import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.internal.InternalUsecaseLexer;
@@ -20,6 +22,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXte
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
 import org.eclipse.compare.IViewerCreator;
@@ -78,10 +81,13 @@ import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider;
+import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution;
 import org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider;
+import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
 import org.eclipse.xtext.ui.editor.quickfix.ILanguageResourceHelper;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider;
+import org.eclipse.xtext.ui.editor.templates.DefaultTemplateProposalProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
 import org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator;
@@ -213,7 +219,7 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 		return UsecaseQuickfixProvider.class;
 	}
 	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateQuickfixProviderFragment2
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.fragments.CooperateQuickfixProviderFragment2
 	public Class<? extends ILanguageResourceHelper> bindILanguageResourceHelper() {
 		return CooperateLanguageResourceHelper.class;
 	}
@@ -320,6 +326,21 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.ui.CooperateEditorFragment
 	public Class<? extends XtextEditor> bindXtextEditor() {
 		return CooperateCDOXtextEditor.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.templates.TemplateFragment2
+	public Class<? extends DefaultTemplateProposalProvider> bindDefaultTemplateProposalProvider() {
+		return CooperateTemplateProposalProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.outline.OutlineFragment2
+	public Class<? extends OutlineFilterAndSorter> bindOutlineFilterAndSorter() {
+		return OutlineFlattenFilterAndSorter.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.outline.OutlineFragment2
+	public void configureToggleOutlineViewContribution(Binder binder) {
+		binder.bind(IOutlineContribution.class).annotatedWith(Names.named("ToogleOutlineView")).to(FlatOutlineViewContribution.class);
 	}
 	
 }

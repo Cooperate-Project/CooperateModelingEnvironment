@@ -4,6 +4,10 @@ import org.eclipse.xtext.resource.IDerivedStateComputer;
 
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
+/**
+ * @deprecated Use new Cooperate generator fragments instead
+ */
+@Deprecated
 public interface DerivedStateModuleMixin {
 
     default Class<? extends IAtomicDerivedStateProcessorRegistry> bindIAtomicDerivedStateProcessorRegistry() {

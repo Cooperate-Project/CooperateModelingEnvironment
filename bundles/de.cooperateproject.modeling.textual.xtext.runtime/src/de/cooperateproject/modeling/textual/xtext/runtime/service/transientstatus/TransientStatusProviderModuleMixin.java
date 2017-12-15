@@ -3,7 +3,10 @@ package de.cooperateproject.modeling.textual.xtext.runtime.service.transientstat
 /**
  * Mixin for guice dependency injection modules that adds the default implementation of
  * {@link ITransientStatusProvider}.
+ * 
+ * @deprecated Use new Cooperate generator fragments instead
  */
+@Deprecated
 public interface TransientStatusProviderModuleMixin {
 
     /**

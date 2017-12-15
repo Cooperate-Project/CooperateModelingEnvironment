@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.generator.resources
+package de.cooperateproject.modeling.textual.xtext.generator.fragments
 
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQuickfixProvider
@@ -14,7 +14,7 @@ import org.eclipse.xtext.xtext.generator.model.FileAccessFactory
 import org.eclipse.xtext.xtext.generator.model.GuiceModuleAccess
 import org.eclipse.xtext.xtext.generator.ui.quickfix.QuickfixProviderFragment2
 
-import static extension de.cooperateproject.modeling.textual.xtext.generator.resources.GrammarPackageHandlingUtilities.*
+import static extension de.cooperateproject.modeling.textual.xtext.generator.util.GrammarPackageHandlingUtilities.*
 import static extension org.eclipse.xtext.GrammarUtil.*
 import static extension org.eclipse.xtext.xtext.generator.model.TypeReference.*
 
@@ -56,7 +56,7 @@ class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
 				new() {
 					super(#[«GrammarUtil.allEPackagesToValidate(grammar).toInstanceString»])
 				}
-
+			
 			}
 		''').writeTo(projectConfig.eclipsePlugin.src)
 	}

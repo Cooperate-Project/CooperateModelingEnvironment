@@ -3,7 +3,7 @@ module de.cooperateproject.modeling.textual.cls.GenerateCls
 import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
 import de.cooperateproject.modeling.textual.xtext.generator.*
-import net.winklerweb.cdoxtext.generator.*
+//import net.winklerweb.cdoxtext.generator.*
 
 var rootPath = ".."
 var basename = "de.cooperateproject.modeling.textual.cls"
@@ -93,7 +93,7 @@ Workflow {
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
 			
-			renameRefactoring = refactoring.CooperateRenameGeneratorFragment2 auto-inject {}
+			renameRefactoring = fragments.CooperateRenameGeneratorFragment2 auto-inject {}
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 
@@ -106,7 +106,7 @@ Workflow {
 			fragment = scoping.ImportNamespacesScopingFragment2 auto-inject {}
 			fragment = exporting.QualifiedNamesFragment2 auto-inject {}
 
-			quickFixProvider = resources.CooperateQuickfixProviderFragment2 auto-inject {}
+			quickFixProvider = fragments.CooperateQuickfixProviderFragment2 auto-inject {}
 
 			generator = {
 				generateStub = false
@@ -116,7 +116,7 @@ Workflow {
 				generateStub = false
 			}
 			
-			validator = resources.CooperateValidatorFragment2 auto-inject {
+			validator = fragments.CooperateValidatorFragment2 auto-inject {
 				generateXtendStub = false
 			}
 				
@@ -125,11 +125,7 @@ Workflow {
                 generateXtendStub = false
             }
             					
-			fragment = AddCDOXtextBindingsFragment2 auto-inject {}
-			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
-			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
-			fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
-			fragment = ui.CooperateEditorFragment auto-inject {}
+            fragment = fragments.CooperateCDOXtextFragment2 auto-inject {}
 		}
 	}
 }

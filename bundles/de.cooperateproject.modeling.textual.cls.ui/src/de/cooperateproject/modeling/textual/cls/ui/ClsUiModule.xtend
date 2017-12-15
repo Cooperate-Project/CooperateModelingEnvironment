@@ -3,46 +3,26 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui
 
-import com.google.inject.Binder
-import com.google.inject.name.Names
 import de.cooperateproject.modeling.textual.cls.ui.inFile.ClsLocationInFileProvider
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.resource.ILocationInFileProvider
 import org.eclipse.xtext.resource.SaveOptions
 import org.eclipse.xtext.ui.editor.model.edit.DefaultTextEditComposer
 import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer
-import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
-import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
-import org.eclipse.xtext.ui.editor.templates.DefaultTemplateProposalProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider
-import de.cooperateproject.modeling.textual.common.outline.FlatOutlineViewContribution
-import de.cooperateproject.modeling.textual.common.outline.OutlineFlattenFilterAndSorter
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class ClsUiModule extends AbstractClsUiModule {
-
-	def Class<? extends DefaultTemplateProposalProvider> bindDefaultTemplateProposalProvider(){
-			return CooperateTemplateProposalProvider
-	}
 	
 	def Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return ClsLocationInFileProvider;
 	}
 
+	//TODO Most probably, this is not necessary. However, we should ensure this before deletion. 
 	def Class<? extends ITextEditComposer> bindITextEditComposer() {
 		return ClsTextEditComposer
-	}
-
-	def configureToggleOutlineViewContribution(Binder binder) {
-		binder.bind(IOutlineContribution).annotatedWith(Names.named("ToggleOutlineView")).to(
-			FlatOutlineViewContribution);
-	}
-	
-	def Class<? extends OutlineFilterAndSorter> bindOutlineFilterAndSorter() {
-		return OutlineFlattenFilterAndSorter
 	}
 	
 	public static class ClsTextEditComposer extends DefaultTextEditComposer {

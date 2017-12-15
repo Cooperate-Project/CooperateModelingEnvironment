@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.generator.resources
+package de.cooperateproject.modeling.textual.xtext.generator.fragments
 
 import com.google.inject.Inject
 import org.eclipse.xtext.Grammar
@@ -17,37 +17,37 @@ class CooperateValidatorFragment2 extends ValidatorFragment2 {
 	protected override generateXtendValidatorStub() {
 		
 		fileAccessFactory.createXtendFile(grammar.validatorClass, '''
-			import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
-			import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
-			import com.google.inject.Inject;
-		
-			/**
-			 * This class contains custom validation rules. 
-			 *
-			 * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
-			 */
-			class «grammar.validatorClass.simpleName» extends «grammar.abstractValidatorClass» {
-				
-				@Inject
-				@SuppressWarnings("unused")
-				var ICooperateAutomatedValidator automatedValidator;
-				
-				@Inject
-				@SuppressWarnings("unused")
-				var IIssueCodeRegistry issueCodeRegistry;
-				
-			//	public static val INVALID_NAME = 'invalidName'
-			//
-			//	@Check
-			//	def checkGreetingStartsWithCapital(Greeting greeting) {
-			//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-			//			warning('Name should start with a capital', 
-			//					«grammar.simpleName»Package.Literals.GREETING__NAME,
-			//					INVALID_NAME)
-			//		}
-			//	}
-				
-			}
+				import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
+				import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
+				import com.google.inject.Inject;
+			
+				/**
+				 * This class contains custom validation rules. 
+				 *
+				 * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
+				 */
+				class «grammar.validatorClass.simpleName» extends «grammar.abstractValidatorClass» {
+					
+					@Inject
+					@SuppressWarnings("unused")
+					var ICooperateAutomatedValidator automatedValidator;
+					
+					@Inject
+					@SuppressWarnings("unused")
+					var IIssueCodeRegistry issueCodeRegistry;
+					
+				//	public static val INVALID_NAME = 'invalidName'
+				//
+				//	@Check
+				//	def checkGreetingStartsWithCapital(Greeting greeting) {
+				//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
+				//			warning('Name should start with a capital', 
+				//					«grammar.simpleName»Package.Literals.GREETING__NAME,
+				//					INVALID_NAME)
+				//		}
+				//	}
+					
+				}
 		''').writeTo(projectConfig.runtime.src)
 	}
 	

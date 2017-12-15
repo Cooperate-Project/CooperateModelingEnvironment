@@ -4,24 +4,11 @@
 package de.cooperateproject.modeling.textual.component.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
-import com.google.inject.Binder
-import de.cooperateproject.modeling.textual.common.outline.FlatOutlineViewContribution
-import com.google.inject.name.Names
-import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
-import de.cooperateproject.modeling.textual.common.outline.OutlineFlattenFilterAndSorter
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class ComponentUiModule extends AbstractComponentUiModule {
-    def configureToggleOutlineViewContribution(Binder binder) {
-        binder.bind(IOutlineContribution).annotatedWith(Names.named("ToggleOutlineView")).to(
-            FlatOutlineViewContribution);
-    }
-    
-    def Class<? extends OutlineFilterAndSorter> bindOutlineFilterAndSorter() {
-        return OutlineFlattenFilterAndSorter
-    }
+
 }

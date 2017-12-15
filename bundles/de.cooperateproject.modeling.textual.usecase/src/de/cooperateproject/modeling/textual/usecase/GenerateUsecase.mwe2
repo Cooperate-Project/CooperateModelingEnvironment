@@ -93,7 +93,7 @@ Workflow {
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
 			
-			renameRefactoring = refactoring.CooperateRenameGeneratorFragment2 auto-inject {}
+			renameRefactoring = fragments.CooperateRenameGeneratorFragment2 auto-inject {}
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 
@@ -108,16 +108,13 @@ Workflow {
 				generateStub = false
 			}
 			
-			validator = resources.CooperateValidatorFragment2 auto-inject {
+			validator = fragments.CooperateValidatorFragment2 auto-inject {
 				generateXtendStub = false
 			}
 			
-			quickFixProvider = resources.CooperateQuickfixProviderFragment2 auto-inject {}			
-			fragment = AddCDOXtextBindingsFragment2 auto-inject {}
-			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
-			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
-			fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
-			fragment = ui.CooperateEditorFragment auto-inject {}
+			quickFixProvider = fragments.CooperateQuickfixProviderFragment2 auto-inject {}	
+					
+			fragment = fragments.CooperateCDOXtextFragment2 auto-inject {}
 		}
 	}
 }

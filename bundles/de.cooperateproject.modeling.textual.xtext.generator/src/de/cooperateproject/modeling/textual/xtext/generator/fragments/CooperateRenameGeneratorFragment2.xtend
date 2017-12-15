@@ -1,26 +1,24 @@
-package de.cooperateproject.modeling.textual.xtext.generator.refactoring
+package de.cooperateproject.modeling.textual.xtext.generator.fragments
 
 import com.google.inject.Inject
-import org.eclipse.xtext.xtext.generator.AbstractXtextGeneratorFragment
+import com.google.inject.Injector
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.IInjectorProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.IRenameUMLElementRefactoringFilter
+import java.util.Collection
+import java.util.Collections
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.xtend2.lib.StringConcatenationClient
+import org.eclipse.xtext.Grammar
 import org.eclipse.xtext.xtext.generator.CodeConfig
 import org.eclipse.xtext.xtext.generator.XtextGeneratorNaming
 import org.eclipse.xtext.xtext.generator.model.FileAccessFactory
-import static extension org.eclipse.xtext.xtext.generator.model.TypeReference.*
-import org.eclipse.xtext.Grammar
-import org.eclipse.xtend2.lib.StringConcatenationClient
-import de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.IInjectorProvider
-import org.eclipse.xtext.GeneratedMetamodel
-import com.google.inject.Injector
-import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.IRenameUMLElementRefactoringFilter
 import org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
+
+import static de.cooperateproject.modeling.textual.xtext.generator.util.GrammarPackageHandlingUtilities.*
+
 import static extension org.eclipse.xtext.GrammarUtil.*
-import static extension org.eclipse.xtext.xtext.generator.util.GrammarUtil2.*
-import org.eclipse.emf.ecore.EPackage
-import java.util.Collection
-import org.eclipse.emf.ecore.EClass
-import java.util.Collections
-import org.eclipse.emf.ecore.plugin.EcorePlugin
-import static extension  de.cooperateproject.modeling.textual.xtext.generator.resources.GrammarPackageHandlingUtilities.*
+import static extension org.eclipse.xtext.xtext.generator.model.TypeReference.*
 
 class CooperateRenameGeneratorFragment2 extends RefactorElementNameFragment2 {
 
@@ -78,7 +76,7 @@ class CooperateRenameGeneratorFragment2 extends RefactorElementNameFragment2 {
 		    private «Injector» injector;
 		
 		    @Override
-		    public «org.eclipse.emf.ecore.EPackage» getEPackage() {
+		    public «EPackage» getEPackage() {
 		        return «EPackage».eINSTANCE;
 		    }
 		
