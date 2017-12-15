@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='32'>
+  <ius size='33'>
     <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
       <repositories size='1'>
         <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
@@ -183,6 +183,11 @@
       <repositories size='2'>
         <repository location='http://download.eclipse.org/eclipse/updates/4.7'/>
         <repository location='http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository'/>
+      </repositories>
+    </iu>
+    <iu id='de.cooperateproject.cdoxtext.feature.feature.group' name='CDO-Xtext Integration' version='0.3.3.201711061717'>
+      <repositories size='1'>
+        <repository location='https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/latest/'/>
       </repositories>
     </iu>
   </ius>
