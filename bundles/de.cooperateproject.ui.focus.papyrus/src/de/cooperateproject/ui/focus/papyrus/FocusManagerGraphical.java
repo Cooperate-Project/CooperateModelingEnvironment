@@ -27,8 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
-import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
 
 /**
@@ -106,13 +106,13 @@ class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramEditor> 
     }
 
     @Override
-    public Optional<DiagramTypes> getDiagramType() {
+    public Optional<IDiagramType> getDiagramType() {
         try {
             IPageManager pageManager = getEditorPart().getServicesRegistry().getService(IPageManager.class);
-            Collection<DiagramTypes> diagramTypes = pageManager.allPages().stream().filter(pageManager::isOpen)
+            Collection<IDiagramType> diagramTypes = pageManager.allPages().stream().filter(pageManager::isOpen)
                     .filter(Diagram.class::isInstance).map(Diagram.class::cast).map(Diagram::getType).distinct()
-                    .map(NotationDiagramTypes::getByNotationDiagramType).filter(Optional::isPresent).map(Optional::get)
-                    .map(NotationDiagramTypes::getDiagramType).collect(Collectors.toSet());
+                    .map(DiagramTypeRegistry.getInstance()::getByNotationDiagramType).filter(Optional::isPresent)
+                    .map(Optional::get).collect(Collectors.toSet());
             if (diagramTypes.size() == 1) {
                 return Optional.of(diagramTypes.iterator().next());
             }

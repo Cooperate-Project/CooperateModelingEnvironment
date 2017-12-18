@@ -1,6 +1,6 @@
 package de.cooperateproject.modeling.transformation.registry;
 
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.transformation.common.ITransformationContext;
 import de.cooperateproject.modeling.transformation.common.ITransformationContextProvider;
 import de.cooperateproject.modeling.transformation.common.impl.BidirectionalTransformationFactoryBase;
@@ -23,9 +23,10 @@ public class BidirectionalTransformationFactoryWithInjectedContext extends Bidir
 
     }
 
-    public BidirectionalTransformationFactoryWithInjectedContext(NotationDiagramTypes diagramType,
-            String graphicalFileExtension, String textualFileExtension) {
-        super(diagramType, graphicalFileExtension, textualFileExtension, new InjectedTransformationContextProvider());
+    public BidirectionalTransformationFactoryWithInjectedContext(IDiagramType diagramType,
+            String graphicalFileExtension) {
+        super(diagramType, graphicalFileExtension, diagramType.getTextualFileExtension(),
+                new InjectedTransformationContextProvider());
     }
 
     @Override

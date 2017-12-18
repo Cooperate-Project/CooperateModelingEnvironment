@@ -1,6 +1,8 @@
 package de.cooperateproject.ui.focus.papyrus;
 
-import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.DiagramTypesDeprecated;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.focus.filter.IElementFilterWithSubject;
 
 /**
@@ -12,8 +14,8 @@ import de.cooperateproject.ui.focus.filter.IElementFilterWithSubject;
 public class ClassDiagramElementFilter implements IElementFilterWithSubject {
 
     @Override
-    public DiagramTypes getCoveredDiagramType() {
-        return DiagramTypes.CLASS;
+    public IDiagramType getCoveredDiagramType() {
+        return DiagramTypeRegistry.getInstance().getByDiagramTypeDeprecated(DiagramTypesDeprecated.CLASS).get();
     }
 
 }

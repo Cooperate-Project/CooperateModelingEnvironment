@@ -1,5 +1,7 @@
 package de.cooperateproject.ui.preferences;
 
+import de.cooperateproject.ui.preferences.impl.PreferenceActivator;
+
 /**
  * Preference Handler for the CDO Server Credentials Preference Page.
  * 

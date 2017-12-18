@@ -18,8 +18,8 @@ import org.osgi.service.component.annotations.ServiceScope;
 
 import com.google.common.base.Strings;
 
-import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.transformation.common.IQVTOResourceProvider;
 import de.cooperateproject.modeling.transformation.common.IQVTOTransformationExecutorProvider;
 import de.cooperateproject.modeling.transformation.common.ITransformationContext;
@@ -120,13 +120,11 @@ public class TransformationFactoryRegistry implements ITransformationFactoryRegi
         String graphicalExtension = e.getAttribute(ATTRIBUTE_GRAPHICAL_EXTENSION);
         String textualExtension = e.getAttribute(ATTRIBUTE_TEXTUAL_EXTENSION);
 
-        Optional<NotationDiagramTypes> diagType = DiagramTypes.getByName(diagramName)
-                .flatMap(NotationDiagramTypes::getByDiagramType);
+        Optional<IDiagramType> diagramType = DiagramTypeRegistry.getInstance().getByName(diagramName);
 
-        if (diagType.isPresent()
+        if (diagramType.isPresent()
                 && !(Strings.isNullOrEmpty(graphicalExtension) || Strings.isNullOrEmpty(textualExtension))) {
-            return new BidirectionalTransformationFactoryWithInjectedContext(diagType.get(), graphicalExtension,
-                    textualExtension);
+            return new BidirectionalTransformationFactoryWithInjectedContext(diagramType.get(), graphicalExtension);
         }
         return null;
     }

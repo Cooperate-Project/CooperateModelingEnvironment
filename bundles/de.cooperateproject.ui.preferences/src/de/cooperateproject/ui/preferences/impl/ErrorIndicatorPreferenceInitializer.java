@@ -1,7 +1,9 @@
-package de.cooperateproject.ui.preferences;
+package de.cooperateproject.ui.preferences.impl;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
+
+import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 
 /**
  * Preference Initializer for the Error Indicator Preference Page.

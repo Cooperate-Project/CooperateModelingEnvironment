@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.focus.internal.history.HistoryElement;
 import de.cooperateproject.ui.focus.internal.history.IHistoryChangedListener;
 import de.cooperateproject.ui.focus.internal.messaging.MessageHandler;
@@ -98,7 +98,7 @@ class FocusedDiagram implements IFocusedDiagram {
             return;
         }
 
-        Optional<DiagramTypes> currentDiagramType = focusManager.getDiagramType();
+        Optional<IDiagramType> currentDiagramType = focusManager.getDiagramType();
         if (!currentDiagramType.isPresent()) {
             LOGGER.info("Diagram type could not be detected.");
             return;

@@ -78,15 +78,37 @@ public final class ExtensionPointHelper {
                 .filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
+    /**
+     * Reads an extension point that is only made of attributes.
+     * 
+     * @param extensionPointId
+     *            The extension point id of the extension.
+     * @param relevantAttributeIds
+     *            The IDs of all attributes that shall be gathered.
+     * @return The attributes of the extensions or an empty collection in case of an error.
+     */
+    public static <T> Collection<Map<String, String>> getExtensions(String extensionPointId,
+            String... relevantAttributeIds) {
+        IExtensionRegistry registry = Platform.getExtensionRegistry();
+        if (registry == null) {
+            return Collections.emptyList();
+        }
+        IConfigurationElement[] config = registry.getConfigurationElementsFor(extensionPointId);
+        return Arrays.stream(config).map(c -> convert(c, relevantAttributeIds)).collect(Collectors.toList());
+    }
+
     private static <T> Pair<T, Map<String, String>> convert(IConfigurationElement c, String extensionAttributeName,
             Class<T> extensionType, String[] relevantAttributeIds) {
         Optional<T> extensionObject = convert(c, extensionAttributeName, extensionType);
-        Map<String, String> attributes = Arrays.stream(relevantAttributeIds)
-                .collect(Collectors.toMap(a -> a, c::getAttribute));
+        Map<String, String> attributes = convert(c, relevantAttributeIds);
         if (!extensionObject.isPresent()) {
             return null;
         }
         return Pair.of(extensionObject.get(), attributes);
+    }
+
+    private static Map<String, String> convert(IConfigurationElement c, String[] relevantAttributeIds) {
+        return Arrays.stream(relevantAttributeIds).collect(Collectors.toMap(a -> a, c::getAttribute));
     }
 
     @SuppressWarnings("unchecked")

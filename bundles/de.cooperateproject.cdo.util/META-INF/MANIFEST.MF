@@ -9,11 +9,9 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.resources,
  org.eclipse.emf.cdo.explorer;visibility:=reexport,
  com.google.guava;bundle-version="15.0.0",
- org.apache.commons.lang3;bundle-version="3.1.0",
  org.eclipse.net4j.tcp,
- org.apache.commons.io;bundle-version="2.2.0",
- de.cooperateproject.util,
- org.eclipse.e4.core.di;bundle-version="1.6.1"
+ de.cooperateproject.util;visibility:=reexport,
+ org.apache.commons.io;bundle-version="2.2.0"
 Export-Package: de.cooperateproject.cdo.util.connection,
  de.cooperateproject.cdo.util.merger,
  de.cooperateproject.cdo.util.resources,

@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Element;
 
-import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 
 /**
  * Manages focus transfer.
@@ -59,5 +59,5 @@ public interface IFocusManager {
      * 
      * @return actual diagram type.
      */
-    Optional<DiagramTypes> getDiagramType();
+    Optional<IDiagramType> getDiagramType();
 }

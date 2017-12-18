@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="de.cooperateproject.modeling.common.types" name="Diagram Type" schema="schema/de.cooperateproject.modeling.common.types.exsd"/>
+   <extension
+         point="de.cooperateproject.modeling.common.types">
+      <type
+            name="Class"
+            papyrusDiagramKind="PapyrusUMLClassDiagram"
+            papyrusDiagramType="org.eclipse.papyrus.uml.diagram.class"
+            textualFileExtension="cls">
+      </type>
+      <type
+            name="UseCase"
+            papyrusDiagramKind="org.eclipse.papyrus.uml.diagram.useCase"
+            papyrusDiagramType="UseCase"
+            textualFileExtension="uc">
+      </type>
+      <type
+            name="Component"
+            papyrusDiagramKind="org.eclipse.papyrus.uml.diagram.component.root.component"
+            papyrusDiagramType="PapyrusUMLComponentDiagram"
+            textualFileExtension="cmp">
+      </type>
+   </extension>
+
+</plugin>

@@ -24,8 +24,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
-import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.LauncherFactory;
 import de.cooperateproject.ui.launchermodel.Launcher.util.LauncherResourceImpl;
@@ -90,24 +90,18 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 
     private static de.cooperateproject.ui.launchermodel.Launcher.Diagram createLauncher(Diagram papyrusDiagram,
             CDOResourceFolder repositoryFolder) {
-        Optional<NotationDiagramTypes> notationDiagramType = NotationDiagramTypes
+
+        Optional<IDiagramType> diagramTypeQueryResult = DiagramTypeRegistry.getInstance()
                 .getByNotationDiagramType(papyrusDiagram.getType());
-        if (!notationDiagramType.isPresent()) {
+        if (!diagramTypeQueryResult.isPresent()) {
             LOGGER.warn(String.format("Unknown papyrus diagram type \"%s\".", papyrusDiagram.getType()));
             return null;
-
         }
-        Optional<FileExtensions> textualModelType = FileExtensions
-                .getByDiagramType(notationDiagramType.get().getDiagramType());
-        if (!textualModelType.isPresent()) {
-            LOGGER.warn(String.format("There is no textual model type associated with the papyrus diagram type \"%s\".",
-                    papyrusDiagram.getType()));
-            return null;
-        }
+        String textualFileExtension = diagramTypeQueryResult.get().getTextualFileExtension();
 
         URI graphicalModelURI = papyrusDiagram.eResource().getURI();
         URI textualModelURI = ModelNamingConventions.getTextualFromGraphicalURI(graphicalModelURI,
-                papyrusDiagram.getName(), textualModelType.get().getFileExtension());
+                papyrusDiagram.getName(), textualFileExtension);
 
         String launcherFileName = URI.decode(textualModelURI.trimFileExtension().lastSegment());
         de.cooperateproject.ui.launchermodel.Launcher.Diagram launcherDiagram = LauncherFactory.eINSTANCE
@@ -137,7 +131,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
         }
 
         ConcreteSyntaxModel textualModel = LauncherFactory.eINSTANCE.createTextualConcreteSyntaxModel();
-        textualModel.setExtension(textualModelType.get().getFileExtension());
+        textualModel.setExtension(textualFileExtension);
         textualModel.setRootElement(textualModelResource.getContents().get(0));
         launcherDiagram.getConcreteSyntaxModels().add(textualModel);
 

@@ -1,10 +1,11 @@
 package de.cooperateproject.ui.wizards.modelnew;
 
-import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.DiagramTypesDeprecated;
 
 public class NewComponentDiagramWizard extends AbstractNewDiagramWizard {
 
     public NewComponentDiagramWizard() {
-        super(DiagramTypes.COMPONENT);
+        super(DiagramTypeRegistry.getInstance().getByDiagramTypeDeprecated(DiagramTypesDeprecated.COMPONENT).get());
     }
 }

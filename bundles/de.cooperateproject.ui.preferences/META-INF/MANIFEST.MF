@@ -3,10 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI Preferences
 Bundle-SymbolicName: de.cooperateproject.ui.preferences;singleton:=true
 Bundle-Version: 0.7.1.qualifier
-Bundle-Activator: de.cooperateproject.ui.preferences.PreferenceActivator
+Bundle-Activator: de.cooperateproject.ui.preferences.impl.PreferenceActivator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui;bundle-version="3.108.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: de.cooperateproject.ui.preferences,
- de.cooperateproject.ui.preferences.preferencepage
+Export-Package: de.cooperateproject.ui.preferences

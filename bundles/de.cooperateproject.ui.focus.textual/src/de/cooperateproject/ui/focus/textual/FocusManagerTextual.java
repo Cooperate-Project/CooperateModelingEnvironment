@@ -18,8 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
-import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
 
@@ -90,15 +90,12 @@ class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
 
     @SuppressWarnings("restriction")
     @Override
-    public Optional<DiagramTypes> getDiagramType() {
+    public Optional<IDiagramType> getDiagramType() {
         IEditorInput editorInput = getEditorPart().getEditorInput();
         if (editorInput instanceof CDOLobEditorInput) {
             CDOResourceLeaf resource = ((CDOLobEditorInput) editorInput).getResource();
             String actualExtension = resource.getURI().fileExtension();
-            Optional<FileExtensions> fileExtension = FileExtensions.getByFileExtension(actualExtension);
-            if (fileExtension.isPresent()) {
-                return Optional.of(fileExtension.get().getDiagramType());
-            }
+            return DiagramTypeRegistry.getInstance().getByFileExtension(actualExtension);
         }
         return Optional.empty();
     }

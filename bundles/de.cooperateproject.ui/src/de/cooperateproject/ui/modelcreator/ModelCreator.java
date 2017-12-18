@@ -1,7 +1,6 @@
 package de.cooperateproject.ui.modelcreator;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
@@ -32,9 +31,7 @@ import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.cdo.util.utils.CDOHelper;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
-import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
-import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.Activator;
 
 public class ModelCreator {
@@ -55,7 +52,7 @@ public class ModelCreator {
     }
 
     public static IStatus createDiagram(IProject project, String modelName, String diagramName,
-            DiagramTypes diagramType) {
+            IDiagramType diagramType) {
         CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
         try {
             CDOBranch tmpBranch = CDOHelper.createRandomBranchFromMain(session);
@@ -95,7 +92,7 @@ public class ModelCreator {
     }
 
     private static void createModel(CDOTransaction transaction, CDOResourceFolder folder, String modelName,
-            String diagramName, DiagramTypes diagramType) throws ModelCreatorException {
+            String diagramName, IDiagramType diagramType) throws ModelCreatorException {
         CDOResource umlResource = createUMLModel(transaction, folder, modelName);
         CDOResource papyrusResource = createGraphicalModel(transaction, folder, modelName, diagramName, diagramType,
                 umlResource);
@@ -133,21 +130,15 @@ public class ModelCreator {
 
     @SuppressWarnings("unchecked")
     private static CDOResource createGraphicalModel(CDOTransaction transaction, CDOResourceFolder folder,
-            String modelName, String diagramName, DiagramTypes diagramType, CDOResource umlResource)
-            throws ModelCreatorException {
+            String modelName, String diagramName, IDiagramType diagramType, CDOResource umlResource) {
         getOrCreate(transaction, folder, modelName + ".di");
 
         CDOResource notationResource = getOrCreate(transaction, folder, modelName + ".notation");
 
-        Optional<NotationDiagramTypes> notationType = NotationDiagramTypes.getByDiagramType(diagramType);
-        if (!notationType.isPresent()) {
-            throw new ModelCreatorException("Could not determine graphical model type.");
-        }
-
         EObject umlRoot = umlResource.getContents().get(0);
 
         Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
-        diagram.setType(notationType.get().getNotationDiagramType());
+        diagram.setType(diagramType.getPapyrusDiagramType());
         diagram.setName(diagramName);
         diagram.setElement(umlRoot);
 
@@ -160,7 +151,7 @@ public class ModelCreator {
 
         PapyrusDiagramStyle papyrusDiagramStyle = StyleFactory.eINSTANCE.createPapyrusDiagramStyle();
         papyrusDiagramStyle.setOwner(umlRoot);
-        papyrusDiagramStyle.setDiagramKindId(notationType.get().getPapyrusDiagramKindId());
+        papyrusDiagramStyle.setDiagramKindId(diagramType.getPapyrusDiagramKindId());
         diagram.getStyles().add(papyrusDiagramStyle);
 
         notationResource.getContents().add(diagram);
@@ -172,15 +163,9 @@ public class ModelCreator {
     }
 
     private static CDOResource createTextualModel(CDOTransaction transaction, CDOResourceFolder folder,
-            CDOResource papyrusResource, String diagramName, DiagramTypes diagramType) throws ModelCreatorException {
-
-        Optional<FileExtensions> textualFileExtension = FileExtensions.getByDiagramType(diagramType);
-        if (!textualFileExtension.isPresent()) {
-            throw new ModelCreatorException("Could not determine textual file extension.");
-        }
-
+            CDOResource papyrusResource, String diagramName, IDiagramType diagramType) {
         URI textualURI = ModelNamingConventions.getTextualFromGraphicalURI(papyrusResource.getURI(), diagramName,
-                textualFileExtension.get().getFileExtension());
+                diagramType.getTextualFileExtension());
         return getOrCreate(transaction, folder, textualURI.lastSegment());
     }
 

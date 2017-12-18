@@ -6,7 +6,8 @@ import org.apache.commons.lang3.Validate;
 import org.eclipse.emf.common.util.URI;
 
 import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
-import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.transformation.common.TransformationCharacteristic;
 import de.cooperateproject.util.conventions.Constants;
 
@@ -29,7 +30,7 @@ public class TransformationNameUtilsOld {
         String diagramType = segments[2];
         // boolean trace = segments.length == 4 && segments[3].equals("Trace");
 
-        Optional<DiagramTypes> foundDiagramType = DiagramTypes.getByName(name);
+        Optional<IDiagramType> foundDiagramType = DiagramTypeRegistry.getInstance().getByName(name);
         Optional<ConcreteSyntaxTypes> foundFromSyntax = ConcreteSyntaxTypes.getByName(from);
         Optional<ConcreteSyntaxTypes> foundToSyntax = ConcreteSyntaxTypes.getByName(to);
         Validate.isTrue(foundDiagramType.isPresent(), "The diagram type %s is invalid.", diagramType);

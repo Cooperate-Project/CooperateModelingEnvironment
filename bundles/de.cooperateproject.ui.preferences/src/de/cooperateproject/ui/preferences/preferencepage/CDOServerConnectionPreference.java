@@ -17,7 +17,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import de.cooperateproject.ui.preferences.CDOServerPreferenceHandler;
-import de.cooperateproject.ui.preferences.PreferenceActivator;
+import de.cooperateproject.ui.preferences.impl.PreferenceActivator;
 
 /**
  * Preference Page for the CDO Server Credentials.

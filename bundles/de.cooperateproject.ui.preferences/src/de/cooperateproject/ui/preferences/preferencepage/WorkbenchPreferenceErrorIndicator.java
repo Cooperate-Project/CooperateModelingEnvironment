@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
-import de.cooperateproject.ui.preferences.PreferenceActivator;
+import de.cooperateproject.ui.preferences.impl.PreferenceActivator;
 
 /**
  * Preference page for error indicator.

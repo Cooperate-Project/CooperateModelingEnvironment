@@ -44,8 +44,8 @@ import org.slf4j.LoggerFactory;
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
-import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.Launcher.GraphicalConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
@@ -188,9 +188,9 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
             URI graphicalURI = graphicalDiagram.eResource().getURI()
                     .appendFragment(graphicalDiagram.eResource().getURIFragment(graphicalDiagram));
             String diagramName = graphicalDiagram.getName();
-            Optional<String> textualFileExtension = NotationDiagramTypes
-                    .getByNotationDiagramType(graphicalDiagram.getType()).map(NotationDiagramTypes::getDiagramType)
-                    .flatMap(FileExtensions::getByDiagramType).map(FileExtensions::getFileExtension);
+
+            Optional<String> textualFileExtension = DiagramTypeRegistry.getInstance()
+                    .getByNotationDiagramType(graphicalDiagram.getType()).map(IDiagramType::getTextualFileExtension);
             if (!textualFileExtension.isPresent()) {
                 continue;
             }

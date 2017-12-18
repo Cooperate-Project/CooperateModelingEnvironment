@@ -7,16 +7,16 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.modelcreator.ModelCreator;
 
 public class AbstractNewDiagramWizard extends Wizard implements INewWizard {
 
     private IStructuredSelection selection;
     private SelectedNamesDTO selectedNames;
-    private DiagramTypes diagramType;
+    private IDiagramType diagramType;
 
-    public AbstractNewDiagramWizard(DiagramTypes diagramType) {
+    public AbstractNewDiagramWizard(IDiagramType diagramType) {
         super();
         this.diagramType = diagramType;
         setWindowTitle("New " + diagramType.getName() + " Diagram");

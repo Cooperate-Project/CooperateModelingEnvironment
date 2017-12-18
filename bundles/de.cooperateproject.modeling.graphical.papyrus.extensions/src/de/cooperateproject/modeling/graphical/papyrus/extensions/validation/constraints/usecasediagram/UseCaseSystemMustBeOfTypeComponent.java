@@ -8,7 +8,9 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.uml2.uml.Component;
 
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.DiagramTypesDeprecated;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 
 /**
@@ -27,7 +29,9 @@ public class UseCaseSystemMustBeOfTypeComponent extends CooperateConstraintBase<
 
     @Override
     protected boolean validateCooperateModel(IValidationContext ctx, Shape target) {
-        if (!NotationDiagramTypes.USECASE.getNotationDiagramType().equals(target.getDiagram().getType())) {
+        IDiagramType diagramType = DiagramTypeRegistry.getInstance()
+                .getByDiagramTypeDeprecated(DiagramTypesDeprecated.USECASE).get();
+        if (!diagramType.getPapyrusDiagramType().equals(target.getDiagram().getType())) {
             return true;
         }
 

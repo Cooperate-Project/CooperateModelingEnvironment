@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.DiagramTypesDeprecated;
 import de.cooperateproject.modeling.transformation.common.impl.PostProcessor;
 import de.cooperateproject.modeling.transformation.common.impl.postprocessors.ContentIteratingPostProcessor;
 import de.cooperateproject.modeling.transformation.common.impl.postprocessors.switches.NotationPostProcessingSwitch;
@@ -15,7 +16,7 @@ public class UsecaseTransformationFactory extends BidirectionalTransformationFac
 	private Collection<PostProcessor> t2gProcessors;
 
 	public UsecaseTransformationFactory() {
-		super(NotationDiagramTypes.USECASE, "notation", "uc");
+		super(DiagramTypeRegistry.getInstance().getByDiagramTypeDeprecated(DiagramTypesDeprecated.USECASE).get(), "notation");
 	}
 
 	@Override

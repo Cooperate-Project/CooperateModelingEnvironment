@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.preferences;
+package de.cooperateproject.ui.preferences.impl;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

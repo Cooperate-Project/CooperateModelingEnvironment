@@ -4,10 +4,10 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceInitializer">
+            class="de.cooperateproject.ui.preferences.impl.ErrorIndicatorPreferenceInitializer">
       </initializer>
       <initializer
-            class="de.cooperateproject.ui.preferences.CDOServerPreferenceInitializer">
+            class="de.cooperateproject.ui.preferences.impl.CDOServerPreferenceInitializer">
       </initializer>
    </extension>
    <extension

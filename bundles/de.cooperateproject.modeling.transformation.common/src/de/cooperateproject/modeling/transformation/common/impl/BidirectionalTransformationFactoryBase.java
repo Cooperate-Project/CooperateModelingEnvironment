@@ -16,18 +16,18 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.util.NotationSwitch;
 
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
-import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.transformation.common.ITransformationContextProvider;
 import de.cooperateproject.modeling.transformation.common.ITransformationFactory;
 import de.cooperateproject.modeling.transformation.common.registry.Transformation;
 
 public abstract class BidirectionalTransformationFactoryBase implements ITransformationFactory {
-    private final NotationDiagramTypes diagramType;
+    private final IDiagramType diagramType;
     private final String graphicalFileExtension;
     private final String textualFileExtension;
     protected final ITransformationContextProvider transformationContextProvider;
 
-    public BidirectionalTransformationFactoryBase(NotationDiagramTypes diagramType, String graphicalFileExtension,
+    public BidirectionalTransformationFactoryBase(IDiagramType diagramType, String graphicalFileExtension,
             String textualFileExtension, ITransformationContextProvider transformationContextProvider) {
 
         notNull(transformationContextProvider);
@@ -66,7 +66,7 @@ public abstract class BidirectionalTransformationFactoryBase implements ITransfo
         return (Optional<Transformation>) new NotationSwitch() {
             @Override
             public Object caseDiagram(Diagram diagram) {
-                if (diagramType.getNotationDiagramType().equals(diagram.getType())) {
+                if (diagramType.getPapyrusDiagramType().equals(diagram.getType())) {
                     URI targetURI = ModelNamingConventions.getTextualFromGraphicalURI(changedModelURI,
                             diagram.getName(), textualFileExtension);
                     return Optional.of(createG2TInternal(diagramType, changedModelURI, rs, targetURI));
@@ -81,11 +81,10 @@ public abstract class BidirectionalTransformationFactoryBase implements ITransfo
         }.doSwitch(changedEObject);
     }
 
-    protected Transformation createG2TInternal(NotationDiagramTypes diagramType, URI changedModelURI, ResourceSet rs,
+    protected Transformation createG2TInternal(IDiagramType diagramType, URI changedModelURI, ResourceSet rs,
             URI targetURI) {
-        return new GraphicsToTextTransformation(diagramType.getDiagramType(),
-                transformationContextProvider.getTransformationContext(), rs, changedModelURI, targetURI,
-                getGraphicalToTextualPostProcessors());
+        return new GraphicsToTextTransformation(diagramType, transformationContextProvider.getTransformationContext(),
+                rs, changedModelURI, targetURI, getGraphicalToTextualPostProcessors());
     }
 
     protected Optional<Transformation> createT2G(URI changedModelURI, ResourceSet rs) {
@@ -105,9 +104,9 @@ public abstract class BidirectionalTransformationFactoryBase implements ITransfo
         return Optional.of(createT2GInternal(diagramType, changedModelURI, rs, targetResourceURI));
     }
 
-    protected Transformation createT2GInternal(NotationDiagramTypes diagramType, URI changedModelURI, ResourceSet rs,
+    protected Transformation createT2GInternal(IDiagramType diagramType, URI changedModelURI, ResourceSet rs,
             URI targetURI) {
-        return new TextToGraphicsTransformation(diagramType.getDiagramType(), changedModelURI.fileExtension(),
+        return new TextToGraphicsTransformation(diagramType, changedModelURI.fileExtension(),
                 transformationContextProvider.getTransformationContext(), rs, changedModelURI, targetURI,
                 getTextualToGraphicalPostProcessors());
     }

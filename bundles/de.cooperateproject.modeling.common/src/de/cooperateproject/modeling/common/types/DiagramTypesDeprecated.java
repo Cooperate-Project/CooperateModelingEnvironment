@@ -3,7 +3,8 @@ package de.cooperateproject.modeling.common.types;
 import java.util.Arrays;
 import java.util.Optional;
 
-public enum DiagramTypes {
+@Deprecated
+public enum DiagramTypesDeprecated {
 
     CLASS("Class"),
     USECASE("UseCase"),
@@ -14,7 +15,7 @@ public enum DiagramTypes {
 
     private String name;
 
-    private DiagramTypes(String name) {
+    private DiagramTypesDeprecated(String name) {
         this.name = name;
     }
 
@@ -22,7 +23,7 @@ public enum DiagramTypes {
         return name;
     }
 
-    public static Optional<DiagramTypes> getByName(String name) {
+    public static Optional<DiagramTypesDeprecated> getByName(String name) {
         return Arrays.stream(values()).filter(t -> t.getName().equals(name)).findFirst();
     }
 }
