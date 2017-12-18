@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.labeling;
+package de.cooperateproject.ui.diff.labeling.impl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 
 import de.cooperateproject.ui.diff.LabelHandlerRegistry;
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
+import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
 /**
  * Label Provider for the diff viewer's items of the diagram.

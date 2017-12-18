@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.labeling;
+package de.cooperateproject.ui.diff.labeling.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 
 import de.cooperateproject.ui.diff.LabelHandlerRegistry;
 import de.cooperateproject.ui.diff.content.SummaryItem;
+import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
 /**
  * Label provider for a table viewer which lists all changes in a commit.

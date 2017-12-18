@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.content;
+package de.cooperateproject.ui.diff.content.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,8 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
+
+import de.cooperateproject.ui.diff.content.SummaryItem;
 
 /**
  * This class builds the content for the summary view table.

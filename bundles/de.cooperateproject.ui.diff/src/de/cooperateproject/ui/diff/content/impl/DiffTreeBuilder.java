@@ -1,10 +1,13 @@
-package de.cooperateproject.ui.diff.content;
+package de.cooperateproject.ui.diff.content.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+
+import de.cooperateproject.ui.diff.content.DiffTreeItem;
+import de.cooperateproject.ui.diff.content.SummaryItem;
 
 import java.util.LinkedHashMap;
 import java.util.List;

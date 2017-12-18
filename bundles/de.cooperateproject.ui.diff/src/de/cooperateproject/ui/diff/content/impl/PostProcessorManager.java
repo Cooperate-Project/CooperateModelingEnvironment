@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.content;
+package de.cooperateproject.ui.diff.content.impl;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +21,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.cooperateproject.ui.diff.content.DiffTreeItem;
+import de.cooperateproject.ui.diff.content.IPostProcessor;
+import de.cooperateproject.ui.diff.content.SummaryItem;
 import de.cooperateproject.ui.diff.internal.IsTransitiveChildPredicate;
 
 /**

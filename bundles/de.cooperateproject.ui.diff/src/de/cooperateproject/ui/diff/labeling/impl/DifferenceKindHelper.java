@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.labeling;
+package de.cooperateproject.ui.diff.labeling.impl;
 
 import org.eclipse.emf.compare.DifferenceKind;
 

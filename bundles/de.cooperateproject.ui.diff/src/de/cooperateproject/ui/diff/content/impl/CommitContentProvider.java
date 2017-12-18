@@ -1,7 +1,9 @@
-package de.cooperateproject.ui.diff.content;
+package de.cooperateproject.ui.diff.content.impl;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+
+import de.cooperateproject.ui.diff.content.DiffTreeItem;
 
 /**
  * Content Provider for a tree viewer which lists the content of a diagram

@@ -6,20 +6,17 @@ Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: de.cooperateproject.ui.diff.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- de.cooperateproject.cdo.util,
  org.eclipse.emf.cdo,
  com.google.guava;bundle-version="15.0.0",
  org.eclipse.emf.compare,
  org.apache.commons.lang3,
  org.eclipse.core.resources;bundle-version="3.11.0",
- de.cooperateproject.ui.launchermodel,
  org.eclipse.uml2.uml;bundle-version="5.2.1",
- de.cooperateproject.modeling.textual.common.metamodel;bundle-version="0.2.0",
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.2.0",
+ de.cooperateproject.cdo.util,
+ de.cooperateproject.modeling.cdo,
  de.cooperateproject.modeling.textual.common;bundle-version="0.2.0",
- de.cooperateproject.modeling.common,
- de.cooperateproject.ui,
- de.cooperateproject.modeling.cdo
+ de.cooperateproject.ui.launchermodel,
+ de.cooperateproject.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.ui.diff.content,
