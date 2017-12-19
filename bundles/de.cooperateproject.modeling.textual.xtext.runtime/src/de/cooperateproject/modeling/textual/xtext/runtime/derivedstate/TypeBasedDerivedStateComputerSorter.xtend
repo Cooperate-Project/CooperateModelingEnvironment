@@ -13,7 +13,7 @@ class TypeBasedDerivedStateComputerSorter implements de.cooperateproject.modelin
 	}
 
 	protected def getPrioIndex(EObject arg) {
-		priorityOrder.fold((null as EClass) -> Integer.MIN_VALUE -> 0, [ msc, e |
+		priorityOrder.fold((null as EClass) -> Integer.MAX_VALUE -> 0, [ msc, e |
 			if (e.isInstance(arg) && (msc.key.key === null || msc.key.key.isSuperTypeOf(e))) {
 				e -> msc.value -> (msc.value + 1)
 			} else

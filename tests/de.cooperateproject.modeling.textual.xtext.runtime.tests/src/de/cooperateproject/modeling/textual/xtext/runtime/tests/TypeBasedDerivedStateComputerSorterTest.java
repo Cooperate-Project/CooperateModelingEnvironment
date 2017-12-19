@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.TypeBasedDerivedStateComputerSorter;
@@ -53,7 +52,6 @@ public class TypeBasedDerivedStateComputerSorterTest {
     }
 
     @Test
-    @Ignore
     public void testPrioritizedTypesBeforeOthers() {
         List<EClass> typeOrder = Arrays.asList(EcorePackage.Literals.ECLASS);
         IDerivedStateComputerSorter subject = new TypeBasedDerivedStateComputerSorter(typeOrder);
