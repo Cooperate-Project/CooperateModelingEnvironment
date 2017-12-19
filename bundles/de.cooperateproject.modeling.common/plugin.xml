@@ -6,8 +6,8 @@
          point="de.cooperateproject.modeling.common.types">
       <type
             name="Class"
-            papyrusDiagramKind="PapyrusUMLClassDiagram"
-            papyrusDiagramType="org.eclipse.papyrus.uml.diagram.class"
+            papyrusDiagramKind="org.eclipse.papyrus.uml.diagram.class"
+            papyrusDiagramType="PapyrusUMLClassDiagram"
             textualFileExtension="cls">
       </type>
       <type

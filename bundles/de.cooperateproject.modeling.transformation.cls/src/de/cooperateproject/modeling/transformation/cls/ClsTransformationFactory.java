@@ -18,7 +18,7 @@ public class ClsTransformationFactory extends BidirectionalTransformationFactory
 
 	public ClsTransformationFactory() {
 		super(DiagramTypeRegistry.getInstance()
-                .getByDiagramTypeDeprecated(DiagramTypesDeprecated.USECASE).get(), "notation");
+                .getByDiagramTypeDeprecated(DiagramTypesDeprecated.CLASS).get(), "notation");
 	}
 
 	@Override
