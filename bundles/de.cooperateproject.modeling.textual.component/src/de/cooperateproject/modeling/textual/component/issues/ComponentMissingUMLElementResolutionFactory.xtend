@@ -29,7 +29,7 @@ class ComponentMissingUMLElementResolutionFactory extends ComponentAutomatedIssu
 	}
 	
 	override protected getIssueDescriptionInternal(UMLReferencingElement<Element> element) {
-		'''The UML element («element.eClass.name») does not exist yet.'''
+		'''The UML element (Â«element.eClass.nameÂ») does not exist yet.'''
 	}
 	
 	override protected getIssueFeatureInternal(UMLReferencingElement<Element> element) {
