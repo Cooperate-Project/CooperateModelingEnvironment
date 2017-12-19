@@ -30,9 +30,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.WorkbenchPart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +70,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     private final CDOTransaction cdoMainView;
     private final ConcreteSyntaxModel concreteSyntaxModel;
     private final IFile launcherFile;
-    private final ITransformationManager transformationManager;
+    private static ITransformationManager transformationManager;
     private final boolean isReadOnly;
     private Optional<IPartListener2> disposeListener = Optional.empty();
 
@@ -107,6 +110,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         registerListener(newEditorPart);
         addPropertyChangeHandler(createMergeHandler());
         addPropertyChangeHandler(createReloadHandler());
+        addShutdownListener();
         return newEditorPart;
     }
 
@@ -142,76 +146,13 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
                 .ifPresent(e -> e.addPartPropertyListener(this::propertyChanged));
     }
 
-    private void propertyChanged(PropertyChangeEvent event) {
-        propertyChangeHandlers.forEach(handler -> handler.propertyChange(event));
-    }
-
     protected void addPropertyChangeHandler(PropertyChangeHandlerBase handler) {
         propertyChangeHandlers.add(handler);
     }
 
-    private PropertyChangeHandlerBase createMergeHandler() {
-        return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_MERGE_REQUEST) {
-            @Override
-            protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
-                if (newValue != null) {
-                    promptForCommit(source);
-                }
-            }
-        };
-    }
-
-    private PropertyChangeHandlerBase createReloadHandler() {
-        return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_RELOAD_REQUEST) {
-            @Override
-            protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
-                if (!isReadOnly()) {
-                    return;
-                }
-                cdoView.setTimeStamp(getCDOView().getBranch().getHead().getTimeStamp());
-                reloadEditorContentAfterViewChange(source);
-            }
-        };
-    }
-
     protected void reloadEditorContentAfterViewChange(IWorkbenchPart source) {
-
+    
         return;
-    }
-
-    private void promptForCommit(IWorkbenchPart part) {
-        if (!transformationManager.isMergeNecessary()) {
-            return;
-        }
-
-        Shell shell = part.getSite().getShell();
-        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell));
-    }
-
-    private void promptForCommitInsideDisplayThread(Shell shell) {
-        InputDialog dialog = new InputDialog(shell, "Commit Message", "Please enter a commit message.", "",
-                EditorLauncherBase::isValidCommitMessage);
-        dialog.setBlockOnOpen(true);
-        if (dialog.open() != InputDialog.OK) {
-            return;
-        }
-        String commitMessage = dialog.getValue();
-        try {
-            transformationManager.handleEditorMerge(commitMessage);
-        } catch (CommitException e) {
-            LOGGER.error("Failed to merge branch into master.", e);
-            ErrorDialog.openError(shell, "Commit failed",
-                    "The requested commit failed. "
-                            + "The changes stay in the temporary branch but will not appear on the master branch.",
-                    new Status(Status.ERROR, null, "Merging of branches failed.", e));
-        }
-    }
-
-    private static String isValidCommitMessage(String string) {
-        if (StringUtils.isBlank(string)) {
-            return "The commit message must not be empty.";
-        }
-        return null;
     }
 
     protected Optional<IPartListener2> createDisposeListener(IEditorPart editorPart) {
@@ -252,6 +193,86 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
 
     protected void ensureActionOnEditorDestruction(Runnable runnable) {
         registerOneTimeAction(runnable, getCDOCheckout());
+    }
+
+    private void propertyChanged(PropertyChangeEvent event) {
+        propertyChangeHandlers.forEach(handler -> handler.propertyChange(event));
+    }
+
+    private PropertyChangeHandlerBase createReloadHandler() {
+        return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_RELOAD_REQUEST) {
+            @Override
+            protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
+                if (!isReadOnly()) {
+                    return;
+                }
+                cdoView.setTimeStamp(getCDOView().getBranch().getHead().getTimeStamp());
+                reloadEditorContentAfterViewChange(source);
+            }
+        };
+    }
+
+    private static void addShutdownListener() {
+        IWorkbench workbench = PlatformUI.getWorkbench();
+        workbench.addWorkbenchListener(new IWorkbenchListener() {
+            @Override
+            public boolean preShutdown(IWorkbench workbench, boolean forced) {
+                IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
+                EditorLauncherBase.promptForCommit(activePage.getActivePart());
+                return true;
+            }
+    
+            @Override
+            public void postShutdown(IWorkbench workbench) {
+                // Nothing to do here
+            }
+        });
+    }
+
+    private static PropertyChangeHandlerBase createMergeHandler() {
+        return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_MERGE_REQUEST) {
+            @Override
+            protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
+                if (newValue != null) {
+                    promptForCommit(source);
+                }
+            }
+        };
+    }
+
+    private static void promptForCommit(IWorkbenchPart part) {
+        if (!transformationManager.isMergeNecessary()) {
+            return;
+        }
+    
+        Shell shell = part.getSite().getShell();
+        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell));
+    }
+
+    private static void promptForCommitInsideDisplayThread(Shell shell) {
+        InputDialog dialog = new InputDialog(shell, "Commit Message", "Please enter a commit message.", "",
+                EditorLauncherBase::isValidCommitMessage);
+        dialog.setBlockOnOpen(true);
+        if (dialog.open() != InputDialog.OK) {
+            return;
+        }
+        String commitMessage = dialog.getValue();
+        try {
+            transformationManager.handleEditorMerge(commitMessage);
+        } catch (CommitException e) {
+            LOGGER.error("Failed to merge branch into master.", e);
+            ErrorDialog.openError(shell, "Commit failed",
+                    "The requested commit failed. "
+                            + "The changes stay in the temporary branch but will not appear on the master branch.",
+                    new Status(Status.ERROR, null, "Merging of branches failed.", e));
+        }
+    }
+
+    private static String isValidCommitMessage(String string) {
+        if (StringUtils.isBlank(string)) {
+            return "The commit message must not be empty.";
+        }
+        return null;
     }
 
     protected static class LauncherModelWrapper implements Closeable {
