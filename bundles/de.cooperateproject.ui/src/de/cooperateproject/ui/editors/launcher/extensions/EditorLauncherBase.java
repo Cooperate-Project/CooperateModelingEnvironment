@@ -41,6 +41,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.TransformationManager.TransformationException;
@@ -151,7 +153,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     }
 
     protected void reloadEditorContentAfterViewChange(IWorkbenchPart source) {
-    
+
         return;
     }
 
@@ -221,7 +223,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
                 EditorLauncherBase.promptForCommit(activePage.getActivePart());
                 return true;
             }
-    
+
             @Override
             public void postShutdown(IWorkbench workbench) {
                 // Nothing to do here
@@ -241,16 +243,20 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     }
 
     private static void promptForCommit(IWorkbenchPart part) {
+        CooperateCDOXtextEditor a = (CooperateCDOXtextEditor) part;
+        CooperateCDOLobEditorInput editorInput = (CooperateCDOLobEditorInput) a.getEditorInput();
+        String name = editorInput.getName();
         if (!transformationManager.isMergeNecessary()) {
             return;
         }
-    
+
         Shell shell = part.getSite().getShell();
-        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell));
+        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell, name));
     }
 
-    private static void promptForCommitInsideDisplayThread(Shell shell) {
-        InputDialog dialog = new InputDialog(shell, "Commit Message", "Please enter a commit message.", "",
+    private static void promptForCommitInsideDisplayThread(Shell shell, String name) {
+        InputDialog dialog = new InputDialog(shell, "Commit Message",
+                "Please enter a commit message for the diagram: " + name + ".", "",
                 EditorLauncherBase::isValidCommitMessage);
         dialog.setBlockOnOpen(true);
         if (dialog.open() != InputDialog.OK) {
