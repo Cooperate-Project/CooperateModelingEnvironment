@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor;
 
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IReusableEditor;

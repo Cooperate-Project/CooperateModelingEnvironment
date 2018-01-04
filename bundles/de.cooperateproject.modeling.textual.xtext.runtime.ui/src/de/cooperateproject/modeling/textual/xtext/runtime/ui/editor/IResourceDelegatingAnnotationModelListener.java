@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor;
 
 import org.eclipse.jface.text.source.IAnnotationModelListener;
 

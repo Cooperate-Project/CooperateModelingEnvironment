@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.errorindicator;
 
 import java.awt.Toolkit;
 import java.util.List;

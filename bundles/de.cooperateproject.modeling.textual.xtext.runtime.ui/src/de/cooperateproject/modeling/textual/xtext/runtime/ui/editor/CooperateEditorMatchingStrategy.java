@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor;
 
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
@@ -8,7 +8,7 @@ import org.eclipse.ui.PartInitException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.input.CooperateCDOLobEditorInput;
 
 public class CooperateEditorMatchingStrategy implements IEditorMatchingStrategy {
     private static final Logger LOGGER = LoggerFactory.getLogger(CooperateEditorMatchingStrategy.class);

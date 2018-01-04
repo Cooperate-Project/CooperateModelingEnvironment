@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IReloadingEditor;
 import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 
 /**

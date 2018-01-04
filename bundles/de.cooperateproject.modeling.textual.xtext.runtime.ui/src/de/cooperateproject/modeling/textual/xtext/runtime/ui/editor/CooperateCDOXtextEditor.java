@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,17 +53,18 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.Activator;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.AreaErrorIndicator;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.LineErrorIndicator;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AutomatedIssueResolutionOngoingAdapter;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.Activator;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.errorindicator.AreaErrorIndicator;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.errorindicator.LineErrorIndicator;
 import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
 /**
- * Customized version of {@link XtextEditor} that provides necessary integration points for the Cooperate modeling
- * environment.
+ * Customized version of {@link XtextEditor} that provides necessary integration points for the
+ * Cooperate modeling environment.
  * 
  * This editor handles
  * <ul>
@@ -434,12 +435,12 @@ public class CooperateCDOXtextEditor extends XtextEditor implements IReloadingEd
         IStatus status = null;
         if (detectedIssues != null && !detectedIssues.isEmpty()) {
             IStatus[] children = detectedIssues.stream()
-                    .map(i -> new Status(IStatus.ERROR, Activator.PLUGIN_ID, i.toString())).collect(Collectors.toList())
-                    .toArray(new Status[0]);
+                    .map(i -> new Status(IStatus.ERROR, Activator.getPluginID(), i.toString()))
+                    .collect(Collectors.toList()).toArray(new Status[0]);
 
-            status = new MultiStatus(Activator.PLUGIN_ID, IStatus.ERROR, children, body, null);
+            status = new MultiStatus(Activator.getPluginID(), IStatus.ERROR, children, body, null);
         } else {
-            status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, body);
+            status = new Status(IStatus.ERROR, Activator.getPluginID(), body);
         }
 
         ErrorDialog.openError(Display.getCurrent().getActiveShell(), title, "Error during save operation", status);

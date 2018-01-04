@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor.input;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.input;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;

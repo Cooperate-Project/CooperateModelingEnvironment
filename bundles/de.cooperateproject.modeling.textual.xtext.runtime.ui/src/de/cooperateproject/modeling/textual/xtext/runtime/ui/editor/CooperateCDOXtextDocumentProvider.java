@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.input.CooperateCDOLobEditorInput;
 import net.winklerweb.cdoxtext.runtime.CDOXtextDocumentProvider;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 

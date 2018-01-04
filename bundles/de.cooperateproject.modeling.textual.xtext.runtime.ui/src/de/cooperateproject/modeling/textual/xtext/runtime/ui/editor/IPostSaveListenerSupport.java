@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.editor;
 
 /**
  * Interface for elements that support, i.e. notify {@link IPostSaveListener} elements.

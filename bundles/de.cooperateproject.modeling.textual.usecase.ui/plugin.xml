@@ -9,7 +9,7 @@
         default="true"
         extensions="uc"
         id="de.cooperateproject.modeling.textual.usecase.Usecase"
-        matchingStrategy="de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateEditorMatchingStrategy"
+        matchingStrategy="de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateEditorMatchingStrategy"
         name="Usecase Editor">
 		</editor>
 	</extension>

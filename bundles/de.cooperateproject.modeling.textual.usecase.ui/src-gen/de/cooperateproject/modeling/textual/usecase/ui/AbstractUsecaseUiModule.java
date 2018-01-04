@@ -18,9 +18,9 @@ import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseDescripti
 import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseLabelProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.outline.UsecaseOutlineTreeProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.quickfix.UsecaseQuickfixProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateCDOXtextDocumentProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateCDOXtextEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
