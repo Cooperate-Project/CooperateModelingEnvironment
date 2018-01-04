@@ -75,7 +75,7 @@ public class CooperateProjectImportComposite extends Composite {
      *            Stores the connection information for the CDO server which stores the cooperate projects.
      */
     public static void fillTable(ProjectPropertiesDTO projectProperties) {
-        CDOSession session = CDOHelper.getSessionFromConnectionInfo(projectProperties.getCdoHost(),
+        CDOSession session = CDOHelper.createCDOSession(projectProperties.getCdoHost(),
                 projectProperties.getCdoPort(), projectProperties.getCdoRepo());
         try {
             tv.getTable().removeAll();

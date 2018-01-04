@@ -9,6 +9,7 @@ import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.util.CDOException;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
@@ -29,7 +30,6 @@ import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
-import de.cooperateproject.cdo.util.utils.CDOHelper;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.Activator;
@@ -42,10 +42,6 @@ public class ModelCreator {
 
         private static final long serialVersionUID = -6483202457818490926L;
 
-        public ModelCreatorException(String msg) {
-            super(msg);
-        }
-
         public ModelCreatorException(String msg, Throwable exception) {
             super(msg, exception);
         }
@@ -53,10 +49,11 @@ public class ModelCreator {
 
     public static IStatus createDiagram(IProject project, String modelName, String diagramName,
             IDiagramType diagramType) {
-        CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
+        CDOCheckout checkout = CDOConnectionManager.getInstance().createCDOCheckout(project, true, true);
+        CDOSession session = checkout.getView().getSession();
         try {
-            CDOBranch tmpBranch = CDOHelper.createRandomBranchFromMain(session);
-            CDOTransaction mainTransaction = session.openTransaction();
+            CDOBranch tmpBranch = checkout.getView().getBranch();
+            CDOTransaction mainTransaction = session.openTransaction(session.getBranchManager().getMainBranch());
             CDOTransaction branchTransaction = session.openTransaction(tmpBranch);
             try {
                 CDOResourceFolder folder = branchTransaction.getResourceFolder(project.getName());
@@ -81,7 +78,7 @@ public class ModelCreator {
                 IOUtil.closeSilent(mainTransaction);
             }
         } finally {
-            CDOConnectionManager.getInstance().releaseSession(session);
+            CDOConnectionManager.getInstance().deleteCDOCheckout(checkout);
         }
     }
 
