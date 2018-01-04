@@ -41,6 +41,7 @@ public class PapyrusContentProvider implements ITreeContentProvider {
 
     }
 
+    private static final Object[] EMPTY = new Object[0];
     private static final Comparator<Element> COMPARATOR = new ElementComparator();
     private Collection<EObject> relevantUMLElements = Collections.emptySet();
 
@@ -52,23 +53,14 @@ public class PapyrusContentProvider implements ITreeContentProvider {
         relevantUMLElements = diagram.map(PapyrusContentProvider::getTransitiveViews)
                 .map(c -> c.stream().map(View::getElement).collect(Collectors.toSet())).orElse(Collections.emptySet());
 
-        Optional<Element> diagramRoot = diagram.map(Diagram::getElement).filter(Element.class::isInstance)
-                .map(Element.class::cast);
-
-        if (!diagramRoot.isPresent()) {
-            return new Object[0];
-        }
-        return diagramRoot.get().getOwnedElements().stream().filter(relevantUMLElements::contains).sorted(COMPARATOR)
-                .collect(Collectors.toList()).toArray();
+        return diagram.map(Diagram::getElement).filter(Element.class::isInstance).map(Element.class::cast)
+                .map(r -> filterChildren(r.getOwnedElements())).orElse(EMPTY);
     }
 
     @Override
     public Object[] getChildren(Object parentElement) {
-        if (parentElement instanceof Element) {
-            return ((Element) parentElement).getOwnedElements().stream().filter(relevantUMLElements::contains)
-                    .sorted(COMPARATOR).toArray();
-        }
-        return new Object[0];
+        return Optional.ofNullable(parentElement).filter(Element.class::isInstance).map(Element.class::cast)
+                .map(element -> filterChildren(element.getOwnedElements())).orElse(EMPTY);
     }
 
     @Override
@@ -85,6 +77,10 @@ public class PapyrusContentProvider implements ITreeContentProvider {
             return ((EObject) element).eContents().stream().filter(relevantUMLElements::contains).findAny().isPresent();
         }
         return false;
+    }
+
+    private Object[] filterChildren(Collection<Element> elements) {
+        return elements.stream().filter(relevantUMLElements::contains).sorted(COMPARATOR).toArray();
     }
 
     private static Collection<View> getTransitiveViews(Diagram diagram) {
