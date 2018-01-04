@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_b058YKByEeefzfy8OH_WgA" name="test">
+  <packagedElement xmi:type="uml:Association" xmi:id="_ep6aoKByEeefzfy8OH_WgA" name="test" memberEnd="_gGiwsKByEeefzfy8OH_WgA _jnl1kKByEeefzfy8OH_WgA">
+    <ownedEnd xmi:id="_gGiwsKByEeefzfy8OH_WgA" name="a" type="_JmBAAO_EEeeiqND8kJQR8A" association="_ep6aoKByEeefzfy8OH_WgA"/>
+    <ownedEnd xmi:id="_jnl1kKByEeefzfy8OH_WgA" name="uc" type="_JmBAAO_EEeeiqND8kJQR8A" association="_ep6aoKByEeefzfy8OH_WgA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_JmBAAO_EEeeiqND8kJQR8A" name="actor"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_M6oLYO_EEeeiqND8kJQR8A" name="usecase"/>
+</uml:Model>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_G18G8PE2EeeFT65L_bKQTg" name="RootElement">
+  <packagedElement xmi:type="uml:Component" xmi:id="_G18G8fE2EeeFT65L_bKQTg" name="test" useCase="_G18G8vE2EeeFT65L_bKQTg">
+    <ownedUseCase xmi:id="_G18G8vE2EeeFT65L_bKQTg" name="test" subject="_G18G8fE2EeeFT65L_bKQTg">
+      <ownedRule xmi:id="_EKLKoPE-EeeQb_kE67ftlw" name="constraint" constrainedElement="_G18G8_E2EeeFT65L_bKQTg"/>
+      <extend xmi:id="_G18G8_E2EeeFT65L_bKQTg" name="test" extendedCase="_G18G8vE2EeeFT65L_bKQTg" extensionLocation="_G18G9PE2EeeFT65L_bKQTg"/>
+      <extensionPoint xmi:id="_G18G9PE2EeeFT65L_bKQTg" name="test"/>
+    </ownedUseCase>
+  </packagedElement>
+</uml:Model>

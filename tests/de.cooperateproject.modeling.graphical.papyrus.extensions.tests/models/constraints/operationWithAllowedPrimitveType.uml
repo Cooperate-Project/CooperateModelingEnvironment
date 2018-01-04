@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_DafU4O-jEeeF8J6AgIaxhQ" name="RootElement">
+  <packagedElement xmi:type="uml:Class" xmi:id="_DafU4e-jEeeF8J6AgIaxhQ" name="test">
+    <ownedOperation xmi:id="_DafU4u-jEeeF8J6AgIaxhQ" name="test" visibility="public">
+      <ownedParameter xmi:id="_DafU4--jEeeF8J6AgIaxhQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>
