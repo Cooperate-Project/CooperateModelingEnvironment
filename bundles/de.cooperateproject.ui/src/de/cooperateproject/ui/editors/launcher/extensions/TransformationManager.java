@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
-import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
+import de.cooperateproject.cdo.util.merger.NilFixingCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.util.EditorInputSwitch;
@@ -133,7 +133,7 @@ public class TransformationManager implements ITransformationManager {
         CDOBranchPoint sourceFromRevision = editorBranch.getPoint(lastMergeTimeBranch);
         CDOBranchPoint sourceToRevision = editorBranch.getHead();
         CDOBranchPoint targetFromRevision = mainBranch.getPoint(lastMergeTimeMain);
-        maintTransaction.merge(sourceToRevision, sourceFromRevision, targetFromRevision, new CustomCDOMerger());
+        maintTransaction.merge(sourceToRevision, sourceFromRevision, targetFromRevision, new NilFixingCDOMerger());
         maintTransaction.setCommitComment(commitMessage);
         CDOCommitInfo mergeCommitInfo = maintTransaction.commit();
         postMergeListener.handlePostMerge(maintTransaction);

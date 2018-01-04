@@ -41,7 +41,7 @@ import org.eclipse.ui.PlatformUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
+import de.cooperateproject.cdo.util.merger.NilFixingCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
@@ -98,7 +98,7 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
                 String commitComment = String.format("Reset of %s to previous commit (%s) by %s.", changedObjectLabel,
                         df.format(new Date(commit.getTimeStamp())), System.getProperty("user.name"));
                 mergeTransaction.setCommitComment(commitComment);
-                mergeTransaction.merge(branch, new CustomCDOMerger());
+                mergeTransaction.merge(branch, new NilFixingCDOMerger());
                 try {
                     mergeTransaction.commit();
                 } catch (CommitException e) {
