@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.wizards.modelnew.impl;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.MultiValidator;
@@ -15,7 +15,7 @@ import com.google.common.base.Strings;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.Activator;
-import de.cooperateproject.ui.wizards.modelnew.AtomicProjectNameProcessor.ProjectName;
+import de.cooperateproject.ui.wizards.modelnew.impl.AtomicProjectNameProcessor.ProjectName;
 
 public class CompoundNameValidator extends MultiValidator {
 

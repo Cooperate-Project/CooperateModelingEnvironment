@@ -1,8 +1,17 @@
 package de.cooperateproject.ui.perspective;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.wizards.IWizardCategory;
+import org.eclipse.ui.wizards.IWizardDescriptor;
 
 /**
  * Special perspective which should be used when working with Cooperate projects.
@@ -12,19 +21,21 @@ import org.eclipse.ui.IPerspectiveFactory;
  */
 public class CooperatePerspective implements IPerspectiveFactory {
 
+    private static final String WIZARD_CATEGORY_ID = "de.cooperateproject.ui.wizards.cooperateWizards";
     public static final String PERSPECTIVE_ID = "de.cooperateproject.ui.perspective";
 
     @Override
     public void createInitialLayout(IPageLayout layout) {
-        defineActions(layout);
+        addNewWizards(layout);
         defineLayout(layout);
     }
 
-    private static void defineActions(IPageLayout layout) {
-        layout.addNewWizardShortcut("de.cooperateproject.ui.newCooperateProjectWizard");
-        layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newClassDiagram");
-        layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newUsecaseDiagram");
-        layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newComponentDiagram");
+    private static void addNewWizards(IPageLayout layout) {
+        Collection<String> cooperateWizardIds = Optional
+                .ofNullable(PlatformUI.getWorkbench().getNewWizardRegistry().findCategory(WIZARD_CATEGORY_ID))
+                .map(IWizardCategory::getWizards).map(Arrays::asList).map(Collection::stream)
+                .map(s -> s.map(IWizardDescriptor::getId).collect(Collectors.toList())).orElse(Collections.emptyList());
+        cooperateWizardIds.forEach(layout::addNewWizardShortcut);
     }
 
     private static void defineLayout(IPageLayout layout) {

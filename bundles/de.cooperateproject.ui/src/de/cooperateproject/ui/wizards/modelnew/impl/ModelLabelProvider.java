@@ -1,9 +1,9 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.wizards.modelnew.impl;
 
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import de.cooperateproject.ui.wizards.modelnew.ModelContentProvider.ContentNode;
+import de.cooperateproject.ui.wizards.modelnew.impl.ModelContentProvider.ContentNode;
 
 public class ModelLabelProvider extends LabelProvider {
 

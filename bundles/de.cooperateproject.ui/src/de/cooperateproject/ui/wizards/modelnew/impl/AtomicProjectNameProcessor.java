@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.wizards.modelnew.impl;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.eclipse.core.databinding.conversion.IConverter;

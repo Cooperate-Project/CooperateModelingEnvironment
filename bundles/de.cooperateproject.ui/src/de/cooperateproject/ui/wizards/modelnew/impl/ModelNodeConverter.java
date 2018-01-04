@@ -1,9 +1,9 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.wizards.modelnew.impl;
 
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
-import de.cooperateproject.ui.wizards.modelnew.ModelContentProvider.ContentNode;
+import de.cooperateproject.ui.wizards.modelnew.impl.ModelContentProvider.ContentNode;
 
 public class ModelNodeConverter implements IConverter {
 

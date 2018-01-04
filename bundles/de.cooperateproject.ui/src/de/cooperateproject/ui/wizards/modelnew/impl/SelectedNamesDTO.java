@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.wizards.modelnew.impl;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.NatureUtils;
 import de.cooperateproject.ui.util.IValidateable;
-import de.cooperateproject.ui.wizards.modelnew.AtomicProjectNameProcessor.ProjectName;
+import de.cooperateproject.ui.wizards.modelnew.impl.AtomicProjectNameProcessor.ProjectName;
 
 public class SelectedNamesDTO implements IValidateable {
 

@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.wizards.modelnew.impl;
 
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.DataBindingContext;
@@ -32,9 +32,9 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.ui.wizards.modelnew.AtomicProjectNameProcessor.ProjectName;
-import de.cooperateproject.ui.wizards.modelnew.ModelContentProvider.ModelNode;
-import de.cooperateproject.ui.wizards.modelnew.ModelContentProvider.ProjectNode;
+import de.cooperateproject.ui.wizards.modelnew.impl.AtomicProjectNameProcessor.ProjectName;
+import de.cooperateproject.ui.wizards.modelnew.impl.ModelContentProvider.ModelNode;
+import de.cooperateproject.ui.wizards.modelnew.impl.ModelContentProvider.ProjectNode;
 
 /**
  * Reusable composite that allows defining a model and diagram name based on a selection of available projects.
