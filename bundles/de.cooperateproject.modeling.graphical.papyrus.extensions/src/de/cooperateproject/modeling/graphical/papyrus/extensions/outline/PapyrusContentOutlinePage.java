@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.outline;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.outline;
 
 import java.util.Optional;
 import java.util.concurrent.Executors;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperate.modeling.graphical.papyrus.extensions.outline.util.NOPPageLifeCycleEventsListener2;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.outline.util.NOPPageLifeCycleEventsListener2;
 
 /**
  * Customized outline page that extends the existing abilities of the default outline of the Papyrus editor.

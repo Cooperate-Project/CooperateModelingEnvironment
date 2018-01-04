@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions;
+package de.cooperateproject.modeling.graphical.papyrus.extensions;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;

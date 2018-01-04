@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.usecase;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.usecase;
 
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -6,7 +6,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorEditPartTN;
 import org.eclipse.uml2.uml.Actor;
 
-import de.cooperate.modeling.graphical.papyrus.extensions.ChangeStyleHandler;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.ChangeStyleHandler;
 
 public class ChangetoMachineShapeHandler extends ChangeStyleHandler implements IHandler {
 

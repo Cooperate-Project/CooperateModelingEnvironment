@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.outline.util;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.outline.util;
 
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;

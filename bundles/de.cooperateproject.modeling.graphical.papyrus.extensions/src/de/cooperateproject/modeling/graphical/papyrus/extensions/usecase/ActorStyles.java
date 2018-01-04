@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.usecase;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.usecase;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.NamedStyle;

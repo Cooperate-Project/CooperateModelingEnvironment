@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.savehandling;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.savehandling;
 
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;

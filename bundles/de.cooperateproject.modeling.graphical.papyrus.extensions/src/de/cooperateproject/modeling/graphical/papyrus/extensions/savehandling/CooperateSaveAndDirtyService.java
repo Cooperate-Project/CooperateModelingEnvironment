@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.savehandling;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.savehandling;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +31,7 @@ import org.eclipse.ui.PlatformUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperate.modeling.graphical.papyrus.extensions.Activator;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.Activator;
 import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.CooperateConstraintBase;
 import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
 

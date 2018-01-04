@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.outline;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.outline;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.navigation;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.navigation;
 
 import java.util.ArrayList;
 import java.util.Collection;
