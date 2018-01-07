@@ -51,6 +51,15 @@
        <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.remover.PortRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.remover.MemberRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.remover.MethodRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.remover.PropertyRemover">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories">

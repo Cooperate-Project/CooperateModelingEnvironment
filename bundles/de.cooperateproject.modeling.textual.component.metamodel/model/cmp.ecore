@@ -237,7 +237,9 @@
         xsi:type="ecore:EAttribute"
         name="static"
         unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true"
+        unsettable="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="type"
@@ -343,7 +345,9 @@
         xsi:type="ecore:EAttribute"
         name="abstract"
         unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        transient="true"
+        unsettable="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="parameters"

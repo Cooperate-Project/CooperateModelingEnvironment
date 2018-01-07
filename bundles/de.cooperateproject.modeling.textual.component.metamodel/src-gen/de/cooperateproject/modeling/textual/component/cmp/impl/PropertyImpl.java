@@ -188,6 +188,24 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetStatic() {
+        eDynamicUnset(CmpPackage.PROPERTY__STATIC, CmpPackage.Literals.PROPERTY__STATIC);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetStatic() {
+        return eDynamicIsSet(CmpPackage.PROPERTY__STATIC, CmpPackage.Literals.PROPERTY__STATIC);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public Classifier getType() {
         return (Classifier)eDynamicGet(CmpPackage.PROPERTY__TYPE, CmpPackage.Literals.PROPERTY__TYPE, true, true);
     }
@@ -288,7 +306,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 unsetVisibility();
                 return;
             case CmpPackage.PROPERTY__STATIC:
-                setStatic(STATIC_EDEFAULT);
+                unsetStatic();
                 return;
             case CmpPackage.PROPERTY__TYPE:
                 unsetType();
@@ -310,7 +328,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
             case CmpPackage.PROPERTY__VISIBILITY:
                 return isSetVisibility();
             case CmpPackage.PROPERTY__STATIC:
-                return isStatic() != STATIC_EDEFAULT;
+                return isSetStatic();
             case CmpPackage.PROPERTY__TYPE:
                 return isSetType();
         }
