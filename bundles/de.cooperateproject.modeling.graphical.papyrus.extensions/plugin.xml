@@ -10,7 +10,7 @@
    <extension
          point="org.eclipse.papyrus.infra.ui.papyrusContentOutline">
       <contentoutline
-            class="de.cooperate.modeling.graphical.papyrus.extensions.outline.PapyrusContentOutlinePage"
+            class="de.cooperateproject.modeling.graphical.papyrus.extensions.outline.PapyrusContentOutlinePage"
             priority="100">
       </contentoutline>
    </extension>
@@ -392,13 +392,13 @@
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
-            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveAndDirtyService"
+            classname="de.cooperateproject.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveAndDirtyService"
             id="org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService"
             priority="2"
             startKind="startup">
       </service>
       <service
-            classname="de.cooperate.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveLayoutBeforeCloseService"
+            classname="de.cooperateproject.modeling.graphical.papyrus.extensions.savehandling.CooperateSaveLayoutBeforeCloseService"
             description="Saves the sash model when closing the editor"
             priority="2"
             startKind="startup">
@@ -439,13 +439,13 @@
       point="org.eclipse.ui.commands">
 	   <command
 	         categoryId="org.eclipse.papyrus.editor.category"
-	         defaultHandler="de.cooperate.modeling.graphical.papyrus.extensions.usecase.ChangetoMachineShapeHandler"
+	         defaultHandler="de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.ChangetoMachineShapeHandler"
 	         id="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorasmachine.popup"
 	         name="Display actor as machine">
 	   </command>
 	   <command
 	         categoryId="org.eclipse.papyrus.editor.category"
-	         defaultHandler="de.cooperate.modeling.graphical.papyrus.extensions.usecase.ChangetoStickyShapeHandler"
+	         defaultHandler="de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.ChangetoStickyShapeHandler"
 	         id="de.cooperate.modeling.graphical.papyrus.extensions.usecase.displayactorassticky.popup"
 	         name="Display actor as stickyman">
 	   </command>

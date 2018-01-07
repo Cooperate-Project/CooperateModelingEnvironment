@@ -17,9 +17,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IPostSaveListenerSupport;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IPostSaveListenerSupport;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IReloadingEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.input.CooperateCDOLobEditorInput;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncherBase;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;

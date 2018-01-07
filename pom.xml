@@ -164,6 +164,9 @@
 							<filesets>
 								<fileset>
 									<directory>xtend-gen</directory>
+									<excludes>
+										<exclude>.gitkeep</exclude>
+									</excludes>
 								</fileset>
 							</filesets>
 						</configuration>

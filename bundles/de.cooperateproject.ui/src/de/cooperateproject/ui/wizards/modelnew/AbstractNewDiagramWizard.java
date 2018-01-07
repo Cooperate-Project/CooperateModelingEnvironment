@@ -9,8 +9,10 @@ import org.eclipse.ui.IWorkbench;
 
 import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.modelcreator.ModelCreator;
+import de.cooperateproject.ui.wizards.modelnew.impl.ModelAndDiagramSelectionPage;
+import de.cooperateproject.ui.wizards.modelnew.impl.SelectedNamesDTO;
 
-public class AbstractNewDiagramWizard extends Wizard implements INewWizard {
+public abstract class AbstractNewDiagramWizard extends Wizard implements INewWizard {
 
     private IStructuredSelection selection;
     private SelectedNamesDTO selectedNames;

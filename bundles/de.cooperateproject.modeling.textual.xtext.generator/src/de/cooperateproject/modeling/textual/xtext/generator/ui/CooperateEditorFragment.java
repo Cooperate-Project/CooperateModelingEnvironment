@@ -5,7 +5,7 @@ import org.eclipse.xtext.xtext.generator.AbstractXtextGeneratorFragment;
 import org.eclipse.xtext.xtext.generator.model.GuiceModuleAccess;
 import org.eclipse.xtext.xtext.generator.model.TypeReference;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateCDOXtextEditor;
 
 /**
  * Fragment for editor-related bindings and code generation with respect to the needs of Cooperate.

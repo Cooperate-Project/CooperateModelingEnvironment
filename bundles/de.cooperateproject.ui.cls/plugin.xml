@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
+            class="de.cooperateproject.ui.cls.wizards.modelnew.NewClassDiagramWizard"
+            finalPerspective="de.cooperateproject.ui.perspective"
+            icon="platform:/plugin/de.cooperateproject.ui/icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.cls.wizards.newClassDiagram"
+            name="Class Diagram">
+      </wizard>
+  </extension>
+</plugin>

@@ -9,7 +9,7 @@
         default="true"
         extensions="cls"
         id="de.cooperateproject.modeling.textual.cls.Cls"
-        matchingStrategy="de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateEditorMatchingStrategy"
+        matchingStrategy="de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateEditorMatchingStrategy"
         name="Cls Editor">
 		</editor>
 	</extension>

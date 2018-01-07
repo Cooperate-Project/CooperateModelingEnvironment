@@ -28,6 +28,7 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IWorkbench;
@@ -151,7 +152,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     }
 
     protected void reloadEditorContentAfterViewChange(IWorkbenchPart source) {
-    
+
         return;
     }
 
@@ -221,7 +222,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
                 EditorLauncherBase.promptForCommit(activePage.getActivePart());
                 return true;
             }
-    
+
             @Override
             public void postShutdown(IWorkbench workbench) {
                 // Nothing to do here
@@ -244,14 +245,18 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         if (!transformationManager.isMergeNecessary()) {
             return;
         }
-    
+
+        Optional<String> editorInputName = Optional.of(part).filter(IEditorPart.class::isInstance)
+                .map(IEditorPart.class::cast).map(IEditorPart::getEditorInput).map(IEditorInput::getName);
         Shell shell = part.getSite().getShell();
-        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell));
+        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell, editorInputName));
     }
 
-    private static void promptForCommitInsideDisplayThread(Shell shell) {
-        InputDialog dialog = new InputDialog(shell, "Commit Message", "Please enter a commit message.", "",
-                EditorLauncherBase::isValidCommitMessage);
+    private static void promptForCommitInsideDisplayThread(Shell shell, Optional<String> name) {
+        InputDialog dialog = new InputDialog(
+                shell, "Commit Message", "Please enter a commit message"
+                        + name.map(n -> " for the diagram: " + n).orElse(StringUtils.EMPTY) + ".",
+                StringUtils.EMPTY, EditorLauncherBase::isValidCommitMessage);
         dialog.setBlockOnOpen(true);
         if (dialog.open() != InputDialog.OK) {
             return;
