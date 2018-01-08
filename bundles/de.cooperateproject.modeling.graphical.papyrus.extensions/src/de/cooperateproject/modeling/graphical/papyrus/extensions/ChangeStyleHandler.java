@@ -57,22 +57,14 @@ public abstract class ChangeStyleHandler extends AbstractHandler {
             UMLDiagramEditorPlugin.getInstance().logError("Impossible to get the Transactional Editing Domain.", e);
         }
         try {
-            editPart.getEditingDomain().runExclusive(new Runnable() {
-
-                @Override
-                public void run() {
-                    Display.getCurrent().asyncExec(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            AbstractTransactionalCommand command = getChangeStyleCommand(editPart);
-                            editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
-                        }
-                    });
-                }
+            editPart.getEditingDomain().runExclusive(() -> {
+                Display.getCurrent().asyncExec(() -> {
+                    AbstractTransactionalCommand command = getChangeStyleCommand(editPart);
+                    editPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+                });
             });
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            UMLDiagramEditorPlugin.getInstance().logError("Error in ChangeStyleHandler.", e);
         }
         return null;
     }

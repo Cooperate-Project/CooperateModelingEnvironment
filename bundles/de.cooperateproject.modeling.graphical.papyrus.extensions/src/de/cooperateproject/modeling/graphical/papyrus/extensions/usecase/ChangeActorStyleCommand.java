@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.View;
  *
  */
 public class ChangeActorStyleCommand extends AbstractTransactionalCommand {
-    ActorKind changeTo;
+    private ActorKind changeTo;
     protected GraphicalEditPart elementEditPart;
 
     public ChangeActorStyleCommand(ActorKind changeTo, TransactionalEditingDomain domain, GraphicalEditPart classView) {
