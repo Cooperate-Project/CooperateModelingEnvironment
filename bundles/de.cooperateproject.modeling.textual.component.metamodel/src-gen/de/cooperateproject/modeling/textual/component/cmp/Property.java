@@ -36,9 +36,11 @@ public interface Property<T extends NamedElement> extends UMLReferencingElement<
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Static</em>' attribute.
+     * @see #isSetStatic()
+     * @see #unsetStatic()
      * @see #setStatic(boolean)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getProperty_Static()
-     * @model unique="false"
+     * @model unique="false" unsettable="true" transient="true"
      * @generated
      */
     boolean isStatic();
@@ -48,10 +50,35 @@ public interface Property<T extends NamedElement> extends UMLReferencingElement<
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Static</em>' attribute.
+     * @see #isSetStatic()
+     * @see #unsetStatic()
      * @see #isStatic()
      * @generated
      */
     void setStatic(boolean value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Property#isStatic <em>Static</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetStatic()
+     * @see #isStatic()
+     * @see #setStatic(boolean)
+     * @generated
+     */
+    void unsetStatic();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Property#isStatic <em>Static</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Static</em>' attribute is set.
+     * @see #unsetStatic()
+     * @see #isStatic()
+     * @see #setStatic(boolean)
+     * @generated
+     */
+    boolean isSetStatic();
 
     /**
      * Returns the value of the '<em><b>Type</b></em>' reference.

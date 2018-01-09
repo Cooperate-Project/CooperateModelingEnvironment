@@ -18,9 +18,9 @@ import de.cooperateproject.modeling.textual.cls.ui.outline.ClsOutlineTreeProvide
 import de.cooperateproject.modeling.textual.cls.ui.quickfix.ClsQuickfixProvider;
 import de.cooperateproject.modeling.textual.common.outline.FlatOutlineViewContribution;
 import de.cooperateproject.modeling.textual.common.outline.OutlineFlattenFilterAndSorter;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateCDOXtextDocumentProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateCDOXtextEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.templates.CooperateTemplateProposalProvider;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;

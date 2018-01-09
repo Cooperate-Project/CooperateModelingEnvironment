@@ -1,4 +1,5 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.ui;
+
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
@@ -38,6 +39,13 @@ public class Activator extends Plugin {
      */
     public static Plugin getInstance() {
         return Activator.instance;
+    }
+
+    /**
+     * @return The ID of the plugin.
+     */
+    public static String getPluginID() {
+        return Activator.instance.getBundle().getSymbolicName();
     }
 
 }

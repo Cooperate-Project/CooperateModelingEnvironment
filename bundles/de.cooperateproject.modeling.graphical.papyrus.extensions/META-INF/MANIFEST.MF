@@ -20,6 +20,6 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common,
  de.cooperateproject.ui.util,
  org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="2.2.0",
  org.eclipse.papyrus.uml.diagram.usecase;bundle-version="3.0.0"
-Bundle-Activator: de.cooperate.modeling.graphical.papyrus.extensions.Activator
+Bundle-Activator: de.cooperateproject.modeling.graphical.papyrus.extensions.Activator
 Bundle-ActivationPolicy: lazy
 Import-Package: org.slf4j

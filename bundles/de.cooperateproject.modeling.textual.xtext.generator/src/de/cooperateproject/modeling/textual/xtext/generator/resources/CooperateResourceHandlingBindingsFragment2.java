@@ -12,13 +12,13 @@ import org.eclipse.xtext.xtext.generator.model.GuiceModuleAccess;
 import de.cooperateproject.modeling.common.primitivetypes.DefaultUMLPrimitiveTypeFilter;
 import de.cooperateproject.modeling.common.primitivetypes.IUMLPrimitiveTypeFilter;
 import de.cooperateproject.modeling.textual.xtext.generator.util.TypeReferenceMixin;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateCDOXtextDocumentProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateXtextDocument;
 
 /**
  * Generator fragment that initializes the resource-related tooling for Cooperate Xtext editors.

@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IReloadingEditor;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes.DefaultEditorFinalizingChange;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes.DefaultEditorPreparationChange;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes.UMLElementRenameChange;

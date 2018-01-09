@@ -5,7 +5,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IReloadingEditor;
 
 /**
  * Default change that prepares the editor for following change operations.

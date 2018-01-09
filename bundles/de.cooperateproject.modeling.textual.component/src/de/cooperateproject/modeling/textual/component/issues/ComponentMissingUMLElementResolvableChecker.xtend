@@ -19,6 +19,8 @@ import de.cooperateproject.modeling.textual.component.cmp.Port
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
 import de.cooperateproject.modeling.textual.component.cmp.Connector
 import de.cooperateproject.modeling.textual.component.cmp.Parameter
+import org.apache.commons.lang3.StringUtils
+import de.cooperateproject.modeling.textual.common.issues.DependingElementMissingElementResolvableCheckerBase
 
 class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -35,7 +37,7 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 	
 	private def dispatch resolvePossible(InterfaceRelation element) {
 		return element.interface.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
-	}
+		}
 	
 	private def dispatch resolvePossible(Attribute element) {
 		return element.type !== null && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
@@ -58,7 +60,7 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 	}
 	
     private def dispatch resolvePossible(Parameter element) {
-        return element.type !== null && element.type.eResource !== null// && StringUtils.isNotBlank(element.name)
+        return element.type !== null && element.type.eResource !== null && StringUtils.isNotBlank(element.name)
     }
 	
 	

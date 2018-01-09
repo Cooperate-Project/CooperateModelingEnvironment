@@ -2,7 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="de.cooperateproject.ui.focus.manager.factory" name="FocusManagerFactory" schema="schema/de.cooperateproject.ui.focus.manager.factory.exsd"/>
-   <extension-point id="de.cooperateproject.ui.focus.filter.elementfilter" name="ElementFilter" schema="schema/de.cooperateproject.ui.focus.filter.elementfilter.exsd"/>
 
    <extension
          point="org.eclipse.ui.views">

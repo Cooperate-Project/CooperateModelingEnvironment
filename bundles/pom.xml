@@ -43,6 +43,8 @@
 		<module>de.cooperateproject.modeling.transformation.tests.common</module>
 		<module>de.cooperateproject.modeling.transformation.registry</module>
 		<module>de.cooperateproject.ui</module>
+		<module>de.cooperateproject.ui.cls</module>
+		<module>de.cooperateproject.ui.component</module>
 		<module>de.cooperateproject.ui.diff</module>
 		<module>de.cooperateproject.ui.diff.cls</module>
 		<module>de.cooperateproject.ui.diff.component</module>
@@ -51,11 +53,11 @@
 		<module>de.cooperateproject.ui.focus</module>
 		<module>de.cooperateproject.ui.focus.papyrus</module>
 		<module>de.cooperateproject.ui.focus.textual</module>
-		<module>de.cooperateproject.ui.focus.textual.cls</module>
 		<module>de.cooperateproject.ui.launchermodel</module>
 		<module>de.cooperateproject.ui.papyrus</module>
 		<module>de.cooperateproject.ui.textualeditors</module>
 		<module>de.cooperateproject.ui.preferences</module>
+		<module>de.cooperateproject.ui.usecase</module>
 		<module>de.cooperateproject.ui.util</module>
 		<module>de.cooperateproject.util</module>
 		<module>de.cooperateproject.modeling.graphical.papyrus.extensions</module>

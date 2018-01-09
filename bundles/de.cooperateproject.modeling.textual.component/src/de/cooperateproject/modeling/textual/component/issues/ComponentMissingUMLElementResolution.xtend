@@ -78,18 +78,6 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 		umlOperation.isAbstract = element.abstract
 		element.referencedElement = umlOperation
 	}
-	/* method in cls:
-	 * if(!resolvePossible) return Void
-		val umlClassifier = element.owner.referencedElement as OperationOwner
-		val parameterNames = new BasicEList(element.parameters.map[name])
-		val parameterTypes = new BasicEList(element.parameters.map[type].map[type|type as Type])
-		val umlOperation = umlClassifier.createOwnedOperation(element.name, parameterNames, parameterTypes,
-			element.type)
-		umlOperation.visibility = element.visibility
-		umlOperation.isStatic = element.static
-		umlOperation.isAbstract = element.abstract
-		element.referencedElement = umlOperation
-	 */
 	 
 	private def dispatch fixMissingUMLElement(Parameter element) {
 		if(!resolvePossible) return Void
@@ -100,16 +88,6 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 			umlMethod.get.ownedParameters.move(parameterIndex, umlParameter)
 			element.referencedElement = umlParameter
 		}
-		/*
-		 * method in cls:
-		if(!resolvePossible) return Void
-		val method = element.owner
-		val umlMethod = method.referencedElement
-		val parameterIndex = method.parameters.indexOf(element)
-		val umlParameter = umlMethod.createOwnedParameter(element.name, element.type)
-		umlMethod.ownedParameters.move(parameterIndex, umlParameter)
-		element.referencedElement = umlParameter
-		*/
 	}
 	
 	

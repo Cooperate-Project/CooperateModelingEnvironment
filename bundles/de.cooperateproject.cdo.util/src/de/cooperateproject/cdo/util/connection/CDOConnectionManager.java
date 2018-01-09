@@ -1,12 +1,18 @@
 package de.cooperateproject.cdo.util.connection;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
+import org.eclipse.emf.cdo.common.revision.CDORevision;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.explorer.repositories.CDORepository;
+import org.eclipse.emf.cdo.explorer.repositories.CDORepositoryManager;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +20,8 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
-import de.cooperateproject.cdo.util.utils.CDOHelper;
+import de.cooperateproject.cdo.util.connection.impl.CDOCheckoutPropertyConstants;
+import de.cooperateproject.cdo.util.connection.impl.CDORepositoryPropertyConstants;
 
 public enum CDOConnectionManager {
 
@@ -39,10 +46,10 @@ public enum CDOConnectionManager {
         try {
             int branchId = 0;
             if (createBranch) {
-                CDOBranch newBranch = CDOHelper.createRandomBranchFromMain(session);
+                CDOBranch newBranch = createRandomBranchFromMain(session);
                 branchId = newBranch.getID();
             }
-            return CDOHelper.createCheckout(repository, branchId, readOnly);
+            return createCheckout(repository, branchId, readOnly);
         } finally {
             releaseSession(session);
         }
@@ -50,7 +57,7 @@ public enum CDOConnectionManager {
 
     public void deleteCDOCheckout(CDOCheckout checkout) {
         if (checkout.getRepository() != null) {
-            CDOHelper.delete(checkout);
+            delete(checkout);
         }
     }
 
@@ -65,8 +72,8 @@ public enum CDOConnectionManager {
     public void register(IProject project, CDOConnectionSettings settings) {
         synchronized (repositories) {
             if (!repositories.inverse().containsKey(project)) {
-                CDOHelper.deleteRepositoryFor(project);
-                CDORepository repo = CDOHelper.createRepositoryFor(project, settings);
+                deleteRepositoryFor(project);
+                CDORepository repo = createRepositoryFor(project, settings);
                 repo.connect();
                 repositories.put(repo, project);
             }
@@ -92,7 +99,7 @@ public enum CDOConnectionManager {
                 if (repository == null) {
                     return;
                 }
-                CDOHelper.delete(repository);
+                delete(repository);
                 sessions.remove(repository);
                 repositories.remove(repository);
             }
@@ -109,4 +116,77 @@ public enum CDOConnectionManager {
         }
     }
 
+    private static CDOCheckout createCheckout(CDORepository repo, int branchID, boolean readOnly) {
+        Properties checkoutProperties = new Properties();
+
+        checkoutProperties.put(CDOCheckoutPropertyConstants.REPOSITORY, repo.getID());
+        checkoutProperties.put(CDOCheckoutPropertyConstants.TYPE,
+                CDOCheckoutPropertyConstants.TYPE_ONLINE_TRANSACTIONAL);
+        checkoutProperties.put(CDOCheckoutPropertyConstants.READ_ONLY,
+                readOnly ? Boolean.TRUE.toString() : Boolean.FALSE.toString());
+        checkoutProperties.put(CDOCheckoutPropertyConstants.BRANCH_ID, Long.toString(branchID));
+        checkoutProperties.put(CDOCheckoutPropertyConstants.LABEL, createCheckoutLabel());
+        checkoutProperties.put(CDOCheckoutPropertyConstants.TIMESTAMP, Long.toString(CDORevision.UNSPECIFIED_VERSION));
+
+        return CDOExplorerUtil.getCheckoutManager().addCheckout(checkoutProperties);
+    }
+
+    private static String createCheckoutLabel() {
+        return String.format("tmp_cooperate_%d", System.currentTimeMillis());
+    }
+
+    private static CDORepository createRepositoryFor(IProject project, CDOConnectionSettings settings) {
+        String repositoryLabel = createRepositoryLabel(project);
+        return createRepositoryFor(repositoryLabel, settings);
+    }
+
+    private static CDORepository createRepositoryFor(String repositoryLabel, CDOConnectionSettings settings) {
+        CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
+        Properties repositoryProperties = createProperties(repositoryLabel, settings);
+        return repositoryManager.addRepository(repositoryProperties);
+    }
+
+    private static Properties createProperties(String repositoryLabel, CDOConnectionSettings settings) {
+        Properties repositoryProperties = new Properties();
+        repositoryProperties.put(CDORepositoryPropertyConstants.TYPE, CDORepositoryPropertyConstants.TYPE_REMOTE);
+        repositoryProperties.put(CDORepositoryPropertyConstants.NAME, settings.getRepo());
+        repositoryProperties.put(CDORepositoryPropertyConstants.VERSIONING_MODE,
+                CDORepositoryPropertyConstants.VERSIONING_MODE_BRANCHING);
+        repositoryProperties.put(CDORepositoryPropertyConstants.LABEL, repositoryLabel);
+        repositoryProperties.put(CDORepositoryPropertyConstants.CONNECTOR_DESCRIPTION,
+                settings.getHost() + ":" + settings.getPort());
+        repositoryProperties.put(CDORepositoryPropertyConstants.CONNECTOR_TYPE,
+                CDORepositoryPropertyConstants.CONNECTOR_TYPE_TCP);
+        return repositoryProperties;
+    }
+
+    private static void deleteRepositoryFor(IProject project) {
+        String repositoryLabel = createRepositoryLabel(project);
+        CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
+        Arrays.asList(repositoryManager.getRepositories()).stream().filter(r -> repositoryLabel.equals(r.getLabel()))
+                .forEach(CDOConnectionManager::delete);
+    }
+
+    private static void delete(CDOCheckout checkout) {
+        checkout.close();
+        checkout.delete(true);
+    }
+
+    private static void delete(CDORepository repository) {
+        Arrays.asList(repository.getCheckouts()).stream().forEach(CDOConnectionManager::delete);
+        repository.disconnect();
+        repository.delete(true);
+    }
+
+    private static String createRepositoryLabel(IProject project) {
+        return String.format("%s - CooperateRepository", project.getName());
+    }
+
+    private static CDOBranch createRandomBranchFromMain(CDOSession session) {
+        return session.getBranchManager().getMainBranch().createBranch(createRandomBranchName());
+    }
+
+    private static String createRandomBranchName() {
+        return String.format("z_cooperate_%s_%s", System.currentTimeMillis(), RandomStringUtils.randomAlphanumeric(2));
+    }
 }

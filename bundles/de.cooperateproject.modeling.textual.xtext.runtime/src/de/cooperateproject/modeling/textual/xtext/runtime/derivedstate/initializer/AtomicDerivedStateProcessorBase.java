@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.AutomatedIssueResolutionOngoingAdapter;
-
 /**
  * Base class for {@link IAtomicDerivedStateProcessor} implementations.
  * 

@@ -2,12 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="de.cooperateproject.ui.focus.filter.elementfilter">
-      <class
-            class="de.cooperateproject.ui.focus.papyrus.ClassDiagramElementFilter">
-      </class>
-   </extension>
-   <extension
          point="de.cooperateproject.ui.focus.manager.factory">
       <factory
             factory="de.cooperateproject.ui.focus.papyrus.FocusManagerGraphicalFactory">
