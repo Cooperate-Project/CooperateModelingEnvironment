@@ -3,6 +3,7 @@ package de.cooperateproject.modeling.textual.common.scoping;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -29,11 +30,26 @@ public class CooperateImportedNamespaceAwareLocalScopeProvider extends ImportedN
     protected List<ImportNormalizer> getImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
         List<ImportNormalizer> resolvers = new ArrayList<>(super.getImportedNamespaceResolvers(context, ignoreCase));
         if (context instanceof NamedElement) {
-            QualifiedName qualifiedName = QualifiedNameGenerator.getQualifiedName((NamedElement) context);
-            String importString = String.format("%s.*", qualifiedName.toString());
-            resolvers.add(createImportedNamespaceResolver(importString, ignoreCase));
+            Optional<QualifiedName> qualifiedName = getNearestQualifiedName(context);
+            qualifiedName.map(qn -> String.format("%s.*", qn.toString()))
+                    .ifPresent(is -> resolvers.add(createImportedNamespaceResolver(is, ignoreCase)));
         }
         return resolvers;
+    }
+
+    protected static Optional<QualifiedName> getNearestQualifiedName(EObject object) {
+        EObject currentObject = object;
+        while (currentObject != null) {
+            if (currentObject instanceof NamedElement) {
+                Optional<QualifiedName> qualifiedName = Optional
+                        .ofNullable(QualifiedNameGenerator.getQualifiedName((NamedElement) currentObject));
+                if (qualifiedName.isPresent()) {
+                    return qualifiedName;
+                }
+            }
+            currentObject = currentObject.eContainer();
+        }
+        return Optional.empty();
     }
 
     @Override

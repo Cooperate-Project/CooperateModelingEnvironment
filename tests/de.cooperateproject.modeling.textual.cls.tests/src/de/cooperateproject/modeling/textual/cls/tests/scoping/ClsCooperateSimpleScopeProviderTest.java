@@ -59,6 +59,22 @@ public class ClsCooperateSimpleScopeProviderTest extends AbstractClsTest {
         assertThat(actualPrefixes, is(equalTo(expectedPrefixes)));
     }
 
+    @Test
+    public void testNamelessNormalizing() throws Exception {
+        ClassDiagram cd = loadClassDiagram(rs, "complex.cls");
+
+        IScope scope = subject.getScope(cd.getRootPackage().getConnectors().get(0),
+                TextualCommonsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
+
+        List<ImportNormalizer> normalizers = getNormalizers(scope);
+
+        Set<String> expectedPrefixes = Sets.newHashSet("RootElement");
+        Set<String> actualPrefixes = normalizers.stream().map(n -> n.getImportedNamespacePrefix().toString())
+                .collect(Collectors.toSet());
+
+        assertThat(actualPrefixes, is(equalTo(expectedPrefixes)));
+    }
+
     @SuppressWarnings("unchecked")
     private static List<ImportNormalizer> getNormalizers(IScope scope)
             throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
