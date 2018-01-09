@@ -8,15 +8,19 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class ChangeStyleHandler extends AbstractHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChangeStyleHandler.class);
 
     protected TransactionalEditingDomain transactionalEditingDomain = null;
 
@@ -53,8 +57,8 @@ public abstract class ChangeStyleHandler extends AbstractHandler {
         ServiceUtilsForEditPart util = ServiceUtilsForEditPart.getInstance();
         try {
             transactionalEditingDomain = util.getTransactionalEditingDomain(editPart);
-        } catch (Exception e) {
-            UMLDiagramEditorPlugin.getInstance().logError("Impossible to get the Transactional Editing Domain.", e);
+        } catch (ServiceException e) {
+            LOGGER.error("Impossible to get the Transactional Editing Domain.", e);
         }
         try {
             editPart.getEditingDomain().runExclusive(() -> {
@@ -64,7 +68,7 @@ public abstract class ChangeStyleHandler extends AbstractHandler {
                 });
             });
         } catch (InterruptedException e) {
-            UMLDiagramEditorPlugin.getInstance().logError("Error in ChangeStyleHandler.", e);
+            LOGGER.error("Error in ChangeStyleHandler.", e);
         }
         return null;
     }

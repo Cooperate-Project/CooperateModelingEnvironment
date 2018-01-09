@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.validation.constraints;
 
 import java.util.Arrays;
 import java.util.Collection;
