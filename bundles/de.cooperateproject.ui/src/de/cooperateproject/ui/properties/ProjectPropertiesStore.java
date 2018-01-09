@@ -46,14 +46,12 @@ public class ProjectPropertiesStore {
         preferences.setCdoHost(CDO_HOST.getValue(preferencesStore));
         preferences.setCdoPort(CDO_PORT.getValue(preferencesStore));
         preferences.setCdoRepo(CDO_REPO.getValue(preferencesStore));
-        preferences.setMsgPort(MSG_PORT.getValue(preferencesStore));
     }
 
     public void saveToStore() throws IOException {
         CDO_HOST.setValue(preferencesStore, preferences.getCdoHost());
         CDO_PORT.setValue(preferencesStore, preferences.getCdoPort());
         CDO_REPO.setValue(preferencesStore, preferences.getCdoRepo());
-        MSG_PORT.setValue(preferencesStore, preferences.getMsgPort());
         preferencesStore.save();
     }
 
@@ -61,7 +59,6 @@ public class ProjectPropertiesStore {
         dto.setCdoHost(CDO_HOST.getDefault());
         dto.setCdoPort(CDO_PORT.getDefault());
         dto.setCdoRepo(CDO_REPO.getDefault());
-        dto.setMsgPort(MSG_PORT.getDefault());
     }
 
     private static IPersistentPreferenceStore createStore(IProject project) {
@@ -90,8 +87,6 @@ public class ProjectPropertiesStore {
         dto.setCdoHost(CDOServerPreferenceHandler.INSTANCE.getCDOServerHostnameSetting());
         dto.setCdoPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerPortSetting());
         dto.setCdoRepo(CDOServerPreferenceHandler.INSTANCE.getCDOServerRepositorySetting());
-        dto.setMsgPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerMessageBrokerSetting());
-
     }
 
 }
