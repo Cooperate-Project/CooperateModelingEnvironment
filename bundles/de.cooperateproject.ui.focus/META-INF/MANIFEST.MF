@@ -19,10 +19,8 @@ Require-Bundle: de.cooperateproject.cdo.util,
  org.eclipse.jface.databinding,
  org.eclipse.core.databinding.property;bundle-version="1.6.0",
  org.eclipse.uml2.uml;bundle-version="5.2.3",
- org.apache.activemq.activemq-client;bundle-version="5.14.3",
  de.cooperateproject.modeling.cdo
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.ui.focus.manager
-Import-Package: javax.jms;version="1.1.0",
- org.slf4j;version="1.7.2"
+Import-Package: org.slf4j;version="1.7.2"

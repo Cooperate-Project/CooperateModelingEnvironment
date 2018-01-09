@@ -34,6 +34,7 @@ import de.cooperateproject.modeling.cdo.util.ConnectorExtractorMixin;
 public class FocusTransferManager implements IFocusTransferManager, ConnectorExtractorMixin {
 
 	private static final Request ERROR_REQUEST = new ExceptionThrowingRequest();
+	private static final long ASYNC_SEND_WAIT_MS = 500;
 	private final Map<IFocusTransferHandler, Collection<String>> handlers = new HashMap<>();
 	private final Map<IFocusTransferHandler, IChannel> openConnections = new HashMap<>();
 
@@ -94,7 +95,8 @@ public class FocusTransferManager implements IFocusTransferManager, ConnectorExt
 		Request request = getProtocol(handler).map(requestFactory::apply).map(Request.class::cast)
 				.orElse(ERROR_REQUEST);
 		try {
-			request.sendAsync();			
+			request.sendAsync();
+			Thread.sleep(ASYNC_SEND_WAIT_MS);
 		} catch (Exception e) {
 			throw new IOException(e);
 		}

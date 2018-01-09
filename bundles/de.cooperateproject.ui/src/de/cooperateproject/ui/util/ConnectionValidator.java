@@ -26,7 +26,7 @@ public final class ConnectionValidator {
     }
 
     /**
-     * Checks whether a connection to the message broker and CDO server can be established with the given connection
+     * Checks whether a connection to the CDO server can be established with the given connection
      * information.
      * 
      * @param host
@@ -35,15 +35,12 @@ public final class ConnectionValidator {
      *            port number of the server
      * @param repository
      *            name of the repository
-     * @param msgPort
-     *            port number of the message broker
      * @param timeout
      *            timeout value used in milliseconds.
      * @return
      */
-    public static boolean connectionInfoIsValid(String host, int port, String repository, int msgPort, int timeout) {
-        return ConnectionUtils.msgBrokerConnectionInfoIsValid(host, msgPort)
-                && cdoConnectionInfoIsValid(host, port, repository, timeout);
+    public static boolean connectionInfoIsValid(String host, int port, String repository, int timeout) {
+        return cdoConnectionInfoIsValid(host, port, repository, timeout);
     }
 
     private static boolean cdoConnectionInfoIsValid(String host, int port, String repository, int timeout) {

@@ -60,7 +60,7 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
         ProjectPropertiesDTO currentProperties = propertiesStore.getPreferences();
 
         if (ConnectionValidator.connectionInfoIsValid(currentProperties.getCdoHost(), currentProperties.getCdoPort(),
-                currentProperties.getCdoRepo(), currentProperties.getMsgPort(), 1000)) {
+                currentProperties.getCdoRepo(), 1000)) {
             if (treatAsNew || !currentProperties.equals(oldProperties.get(project))) {
                 deregisterProject(project);
             }
