@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="de.cooperateproject.modeling.cdo.focustransfer.impl.FocusTransferManager">
+   <service scope="singleton">
+      <provide interface="de.cooperateproject.modeling.cdo.focustransfer.IFocusTransferManager"/>
+      <provide interface="de.cooperateproject.modeling.cdo.util.ConnectorExtractorMixin"/>
+   </service>
+   <implementation class="de.cooperateproject.modeling.cdo.focustransfer.impl.FocusTransferManager"/>
+</scr:component>
