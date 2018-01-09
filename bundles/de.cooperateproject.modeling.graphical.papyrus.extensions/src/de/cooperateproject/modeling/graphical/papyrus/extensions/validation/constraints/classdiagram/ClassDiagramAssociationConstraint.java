@@ -35,12 +35,10 @@ public class ClassDiagramAssociationConstraint extends CooperateConstraintBase<A
             return true;
         }
 
-        // if isblank -> return false
-        if (StringUtils.isBlank(target.getName())) {
-            return false;
+        if (!StringUtils.isBlank(target.getName())) {
+            return true;
         }
 
-        // tpyes of properties class or interface
         Collection<Type> wantedTypes = getTypes(target);
         return target.getNearestPackage().getMembers().stream().filter(Association.class::isInstance)
                 .map(Association.class::cast).filter(a -> a != target).allMatch(a -> !getTypes(a).equals(wantedTypes));
