@@ -117,17 +117,30 @@ class CooperateRenameGeneratorFragment2 extends RefactorElementNameFragment2 {
 			projectConfig.eclipsePlugin.pluginXml.entries += '''
 				<!-- Cooperate Refactoring -->
 				<extension
-				       point="de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers">
-				    <class
-				          class="«grammar.eclipsePluginExecutableExtensionFactory»:«injectorProviderName»">
-				    </class>
-				 </extension>
-				 <extension
-				       point="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter">
-				    <class
-				          class="«grammar.eclipsePluginExecutableExtensionFactory»:«renameFilterName»">
-				    </class>
-				 </extension>
+					point="de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers">
+					<class
+						class="«grammar.eclipsePluginExecutableExtensionFactory»:«injectorProviderName»">
+					</class>
+				</extension>
+				<extension
+					point="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter">
+					<class
+						class="«grammar.eclipsePluginExecutableExtensionFactory»:«renameFilterName»">
+					</class>
+				</extension>
+				<extension point="org.eclipse.ui.menus">
+					<menuContribution
+						locationURI="popup:#TextEditorContext?after=group.edit">
+						<command commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
+							style="push">
+							<visibleWhen checkEnabled="false">
+								<reference
+									definitionId="«grammar.name».Editor.opened">
+								</reference>
+							</visibleWhen>
+						</command>
+					</menuContribution>
+				</extension>
 			'''
 		}
 	}

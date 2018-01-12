@@ -5,10 +5,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import javax.jms.Connection;
-import javax.jms.JMSException;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,36 +41,6 @@ public final class ConnectionUtils {
             return false;
         } finally {
             IOUtil.closeSilent(socket);
-        }
-        return true;
-    }
-
-    /**
-     * Checks whether a connection to the message broker can be established with the given connection information.
-     * 
-     * @param host
-     *            IP address of the server
-     * @param msgPort
-     *            port number of the message broker
-     * @return true if connection can be established, false otherwise.
-     */
-    public static boolean msgBrokerConnectionInfoIsValid(String host, int msgPort) {
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://" + host + ":" + msgPort);
-        Connection connection = null;
-        try {
-            connection = connectionFactory.createConnection();
-            connection.start();
-        } catch (JMSException e) {
-            LOGGER.trace("Could not connect to message broker.", e);
-            return false;
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (JMSException e) {
-                LOGGER.trace("Could not close ActiveMQConnection.", e);
-            }
         }
         return true;
     }

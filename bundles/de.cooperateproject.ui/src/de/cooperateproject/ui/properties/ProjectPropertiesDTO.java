@@ -14,7 +14,6 @@ public class ProjectPropertiesDTO implements IValidateable {
     private String cdoHost;
     private Integer cdoPort;
     private String cdoRepo;
-    private Integer msgPort;
 
     public String getCdoHost() {
         return cdoHost;
@@ -46,16 +45,6 @@ public class ProjectPropertiesDTO implements IValidateable {
         firePropertyChange("cdoRepo", oldValue, cdoRepo);
     }
 
-    public Integer getMsgPort() {
-        return msgPort;
-    }
-
-    public void setMsgPort(Integer msgPort) {
-        Integer oldValue = this.msgPort;
-        this.msgPort = msgPort;
-        firePropertyChange("msgPort", oldValue, msgPort);
-    }
-
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.addPropertyChangeListener(listener);
     }
@@ -75,7 +64,6 @@ public class ProjectPropertiesDTO implements IValidateable {
         result = prime * result + ((cdoHost == null) ? 0 : cdoHost.hashCode());
         result = prime * result + ((cdoPort == null) ? 0 : cdoPort.hashCode());
         result = prime * result + ((cdoRepo == null) ? 0 : cdoRepo.hashCode());
-        result = prime * result + ((msgPort == null) ? 0 : msgPort.hashCode());
         return result;
     }
 
@@ -112,19 +100,12 @@ public class ProjectPropertiesDTO implements IValidateable {
         } else if (!cdoRepo.equals(other.cdoRepo)) {
             return false;
         }
-        if (msgPort == null) {
-            if (other.msgPort != null) {
-                return false;
-            }
-        } else if (!msgPort.equals(other.msgPort)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public boolean isValid() {
-        IStatus result = CDOCredentialsValidator.validate(getCdoHost(), getCdoPort(), getCdoRepo(), getMsgPort());
+        IStatus result = CDOCredentialsValidator.validate(getCdoHost(), getCdoPort(), getCdoRepo());
         return result.isOK();
     }
 

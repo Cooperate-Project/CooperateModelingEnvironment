@@ -11,8 +11,10 @@ import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.net4j.util.io.ExtendedDataInputStream;
 import org.eclipse.net4j.util.io.ExtendedDataOutputStream;
 
+import de.cooperateproject.modeling.cdo.protocolutils.CDOIDWriter;
+
 public class CDOCommitHistoryProtocolGetChangedTimestamps
-        extends CDOCommitHistoryProtocolRequestWithConfirmation<List<Long>> {
+        extends CDOCommitHistoryProtocolRequestWithConfirmation<List<Long>> implements CDOIDWriter {
 
     public static final short SIGNAL_ID = 1;
     private final Collection<CDOID> requestedResources = new HashSet<>();
@@ -51,11 +53,11 @@ public class CDOCommitHistoryProtocolGetChangedTimestamps
     protected void requestingWithoutContext(ExtendedDataOutputStream out) throws IOException {
         out.writeInt(requestedResources.size());
         for (CDOID requestedResource : requestedResources) {
-            write(out, requestedResource);
+            writeCDOID(out, requestedResource);
         }
         out.writeInt(crossReferencedResources.size());
         for (CDOID crossReferencedResource : crossReferencedResources) {
-            write(out, crossReferencedResource);
+        	writeCDOID(out, crossReferencedResource);
         }
         if (timeRange != null) {
             out.writeBoolean(true);

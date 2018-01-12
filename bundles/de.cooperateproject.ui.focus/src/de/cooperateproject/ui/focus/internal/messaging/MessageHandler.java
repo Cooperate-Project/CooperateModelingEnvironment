@@ -2,22 +2,21 @@ package de.cooperateproject.ui.focus.internal.messaging;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Optional;
 
 import javax.inject.Provider;
-import javax.jms.JMSException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
-import de.cooperateproject.ui.properties.ProjectPropertiesStore;
+import de.cooperateproject.modeling.cdo.focustransfer.IFocusTransferHandlerConcrete;
+import de.cooperateproject.ui.focus.Activator;
 
-public class MessageHandler implements Closeable {
+public class MessageHandler implements Closeable, IFocusTransferHandlerConcrete {
 
     @FunctionalInterface
     public interface FocusRequestHandler {
@@ -25,43 +24,45 @@ public class MessageHandler implements Closeable {
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MessageHandler.class);
-    private JMSIO jmsIO;
     private FocusRequestHandler focusRequestHandler;
+    private Provider<Optional<CDOView>> viewProvider;
+    private String diagramIdentifier;
 
     public void init(IFile launcherFile, Provider<Optional<CDOView>> viewProvider, FocusRequestHandler requestHandler)
             throws IOException {
-        ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(launcherFile.getProject());
-        propertiesStore.initFromStore();
-        ProjectPropertiesDTO properties = propertiesStore.getPreferences();
-
-        focusRequestHandler = requestHandler;
-        jmsIO = new JMSIO(properties.getCdoHost(), properties.getMsgPort(), launcherFile.getName());
-        try {
-            jmsIO.init(m -> handleMessage(m, viewProvider));
-        } catch (JMSException | URISyntaxException e) {
-            throw new IOException("Could not initialize connection to message broker.", e);
-        }
+        this.viewProvider = viewProvider;
+        this.diagramIdentifier = launcherFile.getName();
+        this.focusRequestHandler = requestHandler;
+        Activator.getDefault().getFocusTransferManager().registerHandler(this, diagramIdentifier);
     }
 
     @Override
     public void close() {
-        if (jmsIO != null) {
-            jmsIO.close();
+        try {
+            Activator.getDefault().getFocusTransferManager().unregisterHandler(this, diagramIdentifier);
+        } catch (IOException e) {
+            LOGGER.warn("Could not unregister.", e);
         }
     }
 
-    public void sendFocus(CDOObject object) throws JMSException {
-        jmsIO.sendMessage(object.cdoID());
+    public void sendFocus(CDOObject object) throws IOException {
+        Activator.getDefault().getFocusTransferManager().sendFocusRequest(this, diagramIdentifier, object.cdoID());
     }
 
-    private void handleMessage(IFocusMessage message, Provider<Optional<CDOView>> viewProvider) {
+    @Override
+    public void handleFocusRequest(String diagramIdentifier, CDOID elementID) {
         Optional<CDOView> cdoView = viewProvider.get();
         if (!cdoView.isPresent()) {
             LOGGER.warn("Could not recover object by ID because of missing CDO view.");
             return;
         }
-        CDOObject object = cdoView.get().getObject(message.getCDOID());
-        focusRequestHandler.handleFocusRequest(object, message.getTimestamp());
+        CDOObject object = cdoView.get().getObject(elementID);
+        focusRequestHandler.handleFocusRequest(object, System.currentTimeMillis());
+    }
+
+    @Override
+    public CDOView getAssociatedCDOView() {
+        return viewProvider.get().orElse(null);
     }
 
 }

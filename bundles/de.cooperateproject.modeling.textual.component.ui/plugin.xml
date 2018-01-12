@@ -4,13 +4,13 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-        class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-        contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-        default="true"
-        extensions="cmp"
-        id="de.cooperateproject.modeling.textual.component.Component"
-        matchingStrategy="de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateEditorMatchingStrategy"
-        name="Component Editor">
+			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+			default="true"
+			extensions="cmp"
+			id="de.cooperateproject.modeling.textual.component.Component"
+			matchingStrategy="de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.CooperateEditorMatchingStrategy"
+			name="Component Editor">
 		</editor>
 	</extension>
 	<extension
@@ -79,9 +79,10 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
+			category="de.cooperateproject.ui.preferences.cooperate"
 			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
 			id="de.cooperateproject.modeling.textual.component.Component"
-			name="Component">
+			name="Component Diagram">
 			<keywordReference id="de.cooperateproject.modeling.textual.component.ui.keyword_Component"/>
 		</page>
 		<page
@@ -326,7 +327,7 @@
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.component.ui.component.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -334,7 +335,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.component.ui.component.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -342,7 +343,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.component.ui.component.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
@@ -352,17 +353,30 @@
 	</extension>
 	<!-- Cooperate Refactoring -->
 	<extension
-	       point="de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers">
-	    <class
-	          class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.component.ui.internal.ComponentInjectorProvider">
-	    </class>
-	 </extension>
-	 <extension
-	       point="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter">
-	    <class
-	          class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.component.ui.refactoring.rename.ComponentRenameUMLElementRefactoringFilter">
-	    </class>
-	 </extension>
+		point="de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers">
+		<class
+			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.component.ui.internal.ComponentInjectorProvider">
+		</class>
+	</extension>
+	<extension
+		point="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter">
+		<class
+			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:de.cooperateproject.modeling.textual.component.ui.refactoring.rename.ComponentRenameUMLElementRefactoringFilter">
+		</class>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="de.cooperateproject.modeling.textual.component.Component.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="de.cooperateproject.modeling.textual.component.Component.compare.contentViewers"
 			class="de.cooperateproject.modeling.textual.component.ui.ComponentExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"

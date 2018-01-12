@@ -95,8 +95,6 @@ public class CDOServerConnectionPreference extends PreferencePage implements IWo
                 group));
         fields.add(new StringFieldEditor(CDOServerPreferenceHandler.INSTANCE.getCdoServerRepositoryPreference(),
                 "Repository:", group));
-        fields.add(new IntegerFieldEditor(CDOServerPreferenceHandler.INSTANCE.getCdoServerMessageBrokerPreference(),
-                "Message Server Port:", group));
     }
 
     private static void initPreferenceStore(FieldEditor field) {

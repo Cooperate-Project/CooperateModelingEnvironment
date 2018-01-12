@@ -2,13 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="de.cooperateproject.ui.diff.postProcessor">
-      <postProcessor
-            class="de.cooperateproject.ui.diff.component.postprocessing.ComponentPostProcessor"
-            metamodel="de.cooperateproject.modeling.textual.component.cmp.impl">
-      </postProcessor>
-   </extension>
-   <extension
          point="de.cooperateproject.ui.diff.labelHandlers">
       <labelHandler
             class="de.cooperateproject.ui.diff.component.labelhandling.ComponentLabelHandler"
