@@ -384,7 +384,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
+	 *     (visibility=Visibility? name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.component.cmp.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

@@ -4751,7 +4751,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                 int alt39=2;
                 int LA39_0 = input.LA(1);
 
-                if ( (LA39_0==RULE_ID||LA39_0==30||LA39_0==38||(LA39_0>=40 && LA39_0<=45)) ) {
+                if ( (LA39_0==RULE_ID||LA39_0==30||(LA39_0>=40 && LA39_0<=45)) ) {
                     alt39=1;
                 }
 
@@ -5317,13 +5317,12 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleParameter"
-    // InternalComponent.g:2127:1: ruleParameter returns [EObject current=null] : ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_static_1_0= 'static' ) )? ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( ruleFQN ) ) ) ;
+    // InternalComponent.g:2127:1: ruleParameter returns [EObject current=null] : ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( ruleFQN ) ) ) ;
     public final EObject ruleParameter() throws RecognitionException {
         EObject current = null;
 
-        Token lv_static_1_0=null;
-        Token lv_name_2_0=null;
-        Token otherlv_3=null;
+        Token lv_name_1_0=null;
+        Token otherlv_2=null;
         Enumerator lv_visibility_0_0 = null;
 
 
@@ -5331,11 +5330,11 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalComponent.g:2133:2: ( ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_static_1_0= 'static' ) )? ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( ruleFQN ) ) ) )
-            // InternalComponent.g:2134:2: ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_static_1_0= 'static' ) )? ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( ruleFQN ) ) )
+            // InternalComponent.g:2133:2: ( ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( ruleFQN ) ) ) )
+            // InternalComponent.g:2134:2: ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( ruleFQN ) ) )
             {
-            // InternalComponent.g:2134:2: ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_static_1_0= 'static' ) )? ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( ruleFQN ) ) )
-            // InternalComponent.g:2135:3: ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_static_1_0= 'static' ) )? ( (lv_name_2_0= RULE_ID ) ) otherlv_3= ':' ( ( ruleFQN ) )
+            // InternalComponent.g:2134:2: ( ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( ruleFQN ) ) )
+            // InternalComponent.g:2135:3: ( (lv_visibility_0_0= ruleVisibility ) )? ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( ruleFQN ) )
             {
             // InternalComponent.g:2135:3: ( (lv_visibility_0_0= ruleVisibility ) )?
             int alt43=2;
@@ -5354,7 +5353,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
                     					newCompositeNode(grammarAccess.getParameterAccess().getVisibilityVisibilityEnumRuleCall_0_0());
                     				
-                    pushFollow(FOLLOW_30);
+                    pushFollow(FOLLOW_6);
                     lv_visibility_0_0=ruleVisibility();
 
                     state._fsp--;
@@ -5379,48 +5378,15 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalComponent.g:2154:3: ( (lv_static_1_0= 'static' ) )?
-            int alt44=2;
-            int LA44_0 = input.LA(1);
-
-            if ( (LA44_0==38) ) {
-                alt44=1;
-            }
-            switch (alt44) {
-                case 1 :
-                    // InternalComponent.g:2155:4: (lv_static_1_0= 'static' )
-                    {
-                    // InternalComponent.g:2155:4: (lv_static_1_0= 'static' )
-                    // InternalComponent.g:2156:5: lv_static_1_0= 'static'
-                    {
-                    lv_static_1_0=(Token)match(input,38,FOLLOW_6); 
-
-                    					newLeafNode(lv_static_1_0, grammarAccess.getParameterAccess().getStaticStaticKeyword_1_0());
-                    				
-
-                    					if (current==null) {
-                    						current = createModelElement(grammarAccess.getParameterRule());
-                    					}
-                    					setWithLastConsumed(current, "static", true, "static");
-                    				
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-            // InternalComponent.g:2168:3: ( (lv_name_2_0= RULE_ID ) )
-            // InternalComponent.g:2169:4: (lv_name_2_0= RULE_ID )
+            // InternalComponent.g:2154:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalComponent.g:2155:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalComponent.g:2169:4: (lv_name_2_0= RULE_ID )
-            // InternalComponent.g:2170:5: lv_name_2_0= RULE_ID
+            // InternalComponent.g:2155:4: (lv_name_1_0= RULE_ID )
+            // InternalComponent.g:2156:5: lv_name_1_0= RULE_ID
             {
-            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_35); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_35); 
 
-            					newLeafNode(lv_name_2_0, grammarAccess.getParameterAccess().getNameIDTerminalRuleCall_2_0());
+            					newLeafNode(lv_name_1_0, grammarAccess.getParameterAccess().getNameIDTerminalRuleCall_1_0());
             				
 
             					if (current==null) {
@@ -5429,7 +5395,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					setWithLastConsumed(
             						current,
             						"name",
-            						lv_name_2_0,
+            						lv_name_1_0,
             						"de.cooperateproject.modeling.textual.component.Component.ID");
             				
 
@@ -5438,15 +5404,15 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,39,FOLLOW_6); 
+            otherlv_2=(Token)match(input,39,FOLLOW_6); 
 
-            			newLeafNode(otherlv_3, grammarAccess.getParameterAccess().getColonKeyword_3());
+            			newLeafNode(otherlv_2, grammarAccess.getParameterAccess().getColonKeyword_2());
             		
-            // InternalComponent.g:2190:3: ( ( ruleFQN ) )
-            // InternalComponent.g:2191:4: ( ruleFQN )
+            // InternalComponent.g:2176:3: ( ( ruleFQN ) )
+            // InternalComponent.g:2177:4: ( ruleFQN )
             {
-            // InternalComponent.g:2191:4: ( ruleFQN )
-            // InternalComponent.g:2192:5: ruleFQN
+            // InternalComponent.g:2177:4: ( ruleFQN )
+            // InternalComponent.g:2178:5: ruleFQN
             {
 
             					if (current==null) {
@@ -5454,7 +5420,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getParameterAccess().getTypeClassifierCrossReference_4_0());
+            					newCompositeNode(grammarAccess.getParameterAccess().getTypeClassifierCrossReference_3_0());
             				
             pushFollow(FOLLOW_2);
             ruleFQN();
@@ -5493,7 +5459,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFQN"
-    // InternalComponent.g:2210:1: entryRuleFQN returns [String current=null] : iv_ruleFQN= ruleFQN EOF ;
+    // InternalComponent.g:2196:1: entryRuleFQN returns [String current=null] : iv_ruleFQN= ruleFQN EOF ;
     public final String entryRuleFQN() throws RecognitionException {
         String current = null;
 
@@ -5501,8 +5467,8 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalComponent.g:2210:43: (iv_ruleFQN= ruleFQN EOF )
-            // InternalComponent.g:2211:2: iv_ruleFQN= ruleFQN EOF
+            // InternalComponent.g:2196:43: (iv_ruleFQN= ruleFQN EOF )
+            // InternalComponent.g:2197:2: iv_ruleFQN= ruleFQN EOF
             {
              newCompositeNode(grammarAccess.getFQNRule()); 
             pushFollow(FOLLOW_1);
@@ -5529,7 +5495,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFQN"
-    // InternalComponent.g:2217:1: ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
+    // InternalComponent.g:2203:1: ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
     public final AntlrDatatypeRuleToken ruleFQN() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -5541,11 +5507,11 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalComponent.g:2223:2: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
-            // InternalComponent.g:2224:2: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // InternalComponent.g:2209:2: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
+            // InternalComponent.g:2210:2: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             {
-            // InternalComponent.g:2224:2: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
-            // InternalComponent.g:2225:3: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
+            // InternalComponent.g:2210:2: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // InternalComponent.g:2211:3: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
             this_ID_0=(Token)match(input,RULE_ID,FOLLOW_36); 
 
@@ -5554,20 +5520,20 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(this_ID_0, grammarAccess.getFQNAccess().getIDTerminalRuleCall_0());
             		
-            // InternalComponent.g:2232:3: (kw= '.' this_ID_2= RULE_ID )*
-            loop45:
+            // InternalComponent.g:2218:3: (kw= '.' this_ID_2= RULE_ID )*
+            loop44:
             do {
-                int alt45=2;
-                int LA45_0 = input.LA(1);
+                int alt44=2;
+                int LA44_0 = input.LA(1);
 
-                if ( (LA45_0==34) ) {
-                    alt45=1;
+                if ( (LA44_0==34) ) {
+                    alt44=1;
                 }
 
 
-                switch (alt45) {
+                switch (alt44) {
             	case 1 :
-            	    // InternalComponent.g:2233:4: kw= '.' this_ID_2= RULE_ID
+            	    // InternalComponent.g:2219:4: kw= '.' this_ID_2= RULE_ID
             	    {
             	    kw=(Token)match(input,34,FOLLOW_6); 
 
@@ -5586,7 +5552,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop45;
+            	    break loop44;
                 }
             } while (true);
 
@@ -5613,7 +5579,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVisibility"
-    // InternalComponent.g:2250:1: ruleVisibility returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) ) ;
+    // InternalComponent.g:2236:1: ruleVisibility returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) ) ;
     public final Enumerator ruleVisibility() throws RecognitionException {
         Enumerator current = null;
 
@@ -5629,60 +5595,60 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalComponent.g:2256:2: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) ) )
-            // InternalComponent.g:2257:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) )
+            // InternalComponent.g:2242:2: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) ) )
+            // InternalComponent.g:2243:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) )
             {
-            // InternalComponent.g:2257:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) )
-            int alt46=7;
+            // InternalComponent.g:2243:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= 'public' ) | (enumLiteral_2= '-' ) | (enumLiteral_3= 'private' ) | (enumLiteral_4= '#' ) | (enumLiteral_5= 'protected' ) | (enumLiteral_6= '~' ) )
+            int alt45=7;
             switch ( input.LA(1) ) {
             case 40:
                 {
-                alt46=1;
+                alt45=1;
                 }
                 break;
             case 41:
                 {
-                alt46=2;
+                alt45=2;
                 }
                 break;
             case 42:
                 {
-                alt46=3;
+                alt45=3;
                 }
                 break;
             case 43:
                 {
-                alt46=4;
+                alt45=4;
                 }
                 break;
             case 44:
                 {
-                alt46=5;
+                alt45=5;
                 }
                 break;
             case 45:
                 {
-                alt46=6;
+                alt45=6;
                 }
                 break;
             case 30:
                 {
-                alt46=7;
+                alt45=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 46, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt46) {
+            switch (alt45) {
                 case 1 :
-                    // InternalComponent.g:2258:3: (enumLiteral_0= '+' )
+                    // InternalComponent.g:2244:3: (enumLiteral_0= '+' )
                     {
-                    // InternalComponent.g:2258:3: (enumLiteral_0= '+' )
-                    // InternalComponent.g:2259:4: enumLiteral_0= '+'
+                    // InternalComponent.g:2244:3: (enumLiteral_0= '+' )
+                    // InternalComponent.g:2245:4: enumLiteral_0= '+'
                     {
                     enumLiteral_0=(Token)match(input,40,FOLLOW_2); 
 
@@ -5696,10 +5662,10 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalComponent.g:2266:3: (enumLiteral_1= 'public' )
+                    // InternalComponent.g:2252:3: (enumLiteral_1= 'public' )
                     {
-                    // InternalComponent.g:2266:3: (enumLiteral_1= 'public' )
-                    // InternalComponent.g:2267:4: enumLiteral_1= 'public'
+                    // InternalComponent.g:2252:3: (enumLiteral_1= 'public' )
+                    // InternalComponent.g:2253:4: enumLiteral_1= 'public'
                     {
                     enumLiteral_1=(Token)match(input,41,FOLLOW_2); 
 
@@ -5713,10 +5679,10 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalComponent.g:2274:3: (enumLiteral_2= '-' )
+                    // InternalComponent.g:2260:3: (enumLiteral_2= '-' )
                     {
-                    // InternalComponent.g:2274:3: (enumLiteral_2= '-' )
-                    // InternalComponent.g:2275:4: enumLiteral_2= '-'
+                    // InternalComponent.g:2260:3: (enumLiteral_2= '-' )
+                    // InternalComponent.g:2261:4: enumLiteral_2= '-'
                     {
                     enumLiteral_2=(Token)match(input,42,FOLLOW_2); 
 
@@ -5730,10 +5696,10 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalComponent.g:2282:3: (enumLiteral_3= 'private' )
+                    // InternalComponent.g:2268:3: (enumLiteral_3= 'private' )
                     {
-                    // InternalComponent.g:2282:3: (enumLiteral_3= 'private' )
-                    // InternalComponent.g:2283:4: enumLiteral_3= 'private'
+                    // InternalComponent.g:2268:3: (enumLiteral_3= 'private' )
+                    // InternalComponent.g:2269:4: enumLiteral_3= 'private'
                     {
                     enumLiteral_3=(Token)match(input,43,FOLLOW_2); 
 
@@ -5747,10 +5713,10 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalComponent.g:2290:3: (enumLiteral_4= '#' )
+                    // InternalComponent.g:2276:3: (enumLiteral_4= '#' )
                     {
-                    // InternalComponent.g:2290:3: (enumLiteral_4= '#' )
-                    // InternalComponent.g:2291:4: enumLiteral_4= '#'
+                    // InternalComponent.g:2276:3: (enumLiteral_4= '#' )
+                    // InternalComponent.g:2277:4: enumLiteral_4= '#'
                     {
                     enumLiteral_4=(Token)match(input,44,FOLLOW_2); 
 
@@ -5764,10 +5730,10 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalComponent.g:2298:3: (enumLiteral_5= 'protected' )
+                    // InternalComponent.g:2284:3: (enumLiteral_5= 'protected' )
                     {
-                    // InternalComponent.g:2298:3: (enumLiteral_5= 'protected' )
-                    // InternalComponent.g:2299:4: enumLiteral_5= 'protected'
+                    // InternalComponent.g:2284:3: (enumLiteral_5= 'protected' )
+                    // InternalComponent.g:2285:4: enumLiteral_5= 'protected'
                     {
                     enumLiteral_5=(Token)match(input,45,FOLLOW_2); 
 
@@ -5781,10 +5747,10 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalComponent.g:2306:3: (enumLiteral_6= '~' )
+                    // InternalComponent.g:2292:3: (enumLiteral_6= '~' )
                     {
-                    // InternalComponent.g:2306:3: (enumLiteral_6= '~' )
-                    // InternalComponent.g:2307:4: enumLiteral_6= '~'
+                    // InternalComponent.g:2292:3: (enumLiteral_6= '~' )
+                    // InternalComponent.g:2293:4: enumLiteral_6= '~'
                     {
                     enumLiteral_6=(Token)match(input,30,FOLLOW_2); 
 
@@ -5898,9 +5864,9 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000006000000020L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000004000000020L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x00003F4040400020L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x00003F4040600020L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x00003F4040000020L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x00003F0040400020L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x00003F0040600020L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x00003F0040000020L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000008000000002L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000008000000000L});
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000400000002L});

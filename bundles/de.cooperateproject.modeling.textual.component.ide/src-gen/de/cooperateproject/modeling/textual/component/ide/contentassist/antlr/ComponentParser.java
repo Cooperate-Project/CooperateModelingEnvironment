@@ -154,9 +154,8 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComponentTypeAttributeAccess().getNameAssignment_0(), "rule__ComponentTypeAttribute__NameAssignment_0");
 					put(grammarAccess.getComponentTypeAttributeAccess().getTypeAssignment_2(), "rule__ComponentTypeAttribute__TypeAssignment_2");
 					put(grammarAccess.getParameterAccess().getVisibilityAssignment_0(), "rule__Parameter__VisibilityAssignment_0");
-					put(grammarAccess.getParameterAccess().getStaticAssignment_1(), "rule__Parameter__StaticAssignment_1");
-					put(grammarAccess.getParameterAccess().getNameAssignment_2(), "rule__Parameter__NameAssignment_2");
-					put(grammarAccess.getParameterAccess().getTypeAssignment_4(), "rule__Parameter__TypeAssignment_4");
+					put(grammarAccess.getParameterAccess().getNameAssignment_1(), "rule__Parameter__NameAssignment_1");
+					put(grammarAccess.getParameterAccess().getTypeAssignment_3(), "rule__Parameter__TypeAssignment_3");
 				}
 			};
 		}
