@@ -16,6 +16,7 @@ public enum DiagramTypeRegistry {
     private static final String EP_ID = "de.cooperateproject.modeling.common.types";
     private static final String EP_ATTR_NAME = "name";
     private static final String EP_ATTR_TXT_EXT = "textualFileExtension";
+    private static final String EP_ATTR_TXT_ID = "textualEditorId";
     private static final String EP_ATTR_PAP_KIND = "papyrusDiagramKind";
     private static final String EP_ATTR_PAP_TYPE = "papyrusDiagramType";
 
@@ -41,6 +42,10 @@ public enum DiagramTypeRegistry {
         return types.stream().filter(x -> x.getPapyrusDiagramType().equals(notationDiagramType)).findFirst();
     }
 
+    public Optional<IDiagramType> getByTextualEditorId(String textualEditorId) {
+        return types.stream().filter(x -> x.getTextualEditorId().equals(textualEditorId)).findFirst();
+    }
+
     @Deprecated
     public Optional<IDiagramType> getByDiagramTypeDeprecated(DiagramTypesDeprecated diagramType) {
         return getByName(diagramType.getName());
@@ -55,8 +60,9 @@ public enum DiagramTypeRegistry {
     private static IDiagramType create(Map<String, String> attributes) {
         String name = attributes.get(EP_ATTR_NAME);
         String textualFileExtension = attributes.get(EP_ATTR_TXT_EXT);
+        String textualEditorId = attributes.get(EP_ATTR_TXT_ID);
         String papyrusDiagramKind = attributes.get(EP_ATTR_PAP_KIND);
         String papyrusDiagramType = attributes.get(EP_ATTR_PAP_TYPE);
-        return new DiagramTypeImpl(name, textualFileExtension, papyrusDiagramKind, papyrusDiagramType);
+        return new DiagramTypeImpl(name, textualFileExtension, textualEditorId, papyrusDiagramKind, papyrusDiagramType);
     }
 }

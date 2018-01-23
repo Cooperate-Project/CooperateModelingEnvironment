@@ -1,10 +1,8 @@
 package de.cooperateproject.ui.textualeditors.editorlauncher;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
@@ -17,6 +15,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 
+import de.cooperateproject.modeling.common.types.DiagramTypeRegistry;
+import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IPostSaveListenerSupport;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.IReloadingEditor;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.editor.input.CooperateCDOLobEditorInput;
@@ -50,13 +50,13 @@ public class TextualCDOEditorLauncher extends EditorLauncherBase {
         CDOResourceLeaf cdoResource = (CDOResourceLeaf) getConcreteSyntaxModel().getRootElement().eResource();
         IEditorInput editorInput = new CooperateCDOLobEditorInput(cdoResource, getLauncherFile());
         IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-        TextualCDOEditorIDs editorId;
+        IDiagramType editorId;
         try {
             editorId = getEditorId(getConcreteSyntaxModel());
         } catch (ConcreteSyntaxTypeNotAvailableException e) {
             throw new PartInitException("Error in loading the editor.", e);
         }
-        IEditorPart editor = IDE.openEditor(page, editorInput, editorId.getId());
+        IEditorPart editor = IDE.openEditor(page, editorInput, editorId.getTextualEditorId());
 
         IPostSaveListenerSupport postProcessingSupport = editor.getAdapter(IPostSaveListenerSupport.class);
         if (postProcessingSupport != null) {
@@ -66,10 +66,10 @@ public class TextualCDOEditorLauncher extends EditorLauncherBase {
         return editor;
     }
 
-    private static TextualCDOEditorIDs getEditorId(ConcreteSyntaxModel concreteSyntaxModel)
+    private static IDiagramType getEditorId(ConcreteSyntaxModel concreteSyntaxModel)
             throws ConcreteSyntaxTypeNotAvailableException {
-        Optional<TextualCDOEditorIDs> editorId = TextualCDOEditorIDs
-                .findByExtension(concreteSyntaxModel.getExtension());
+        Optional<IDiagramType> editorId = DiagramTypeRegistry.INSTANCE
+                .getByFileExtension(concreteSyntaxModel.getExtension());
         if (!editorId.isPresent()) {
             throw new ConcreteSyntaxTypeNotAvailableException("Could not find appropriate editor.");
         }
@@ -87,9 +87,9 @@ public class TextualCDOEditorLauncher extends EditorLauncherBase {
     public static Optional<IEditorPart> findExistingEditor(IFile launcherFile) {
         IEditorInput editorInput = new FileEditorInput(launcherFile);
         Collection<IEditorPart> editorCandidates = EditorFinderUtil.findEditor(editorInput);
-        Collection<String> availableEditorIds = Arrays.asList(TextualCDOEditorIDs.values()).stream()
-                .map(TextualCDOEditorIDs::getId).collect(Collectors.toSet());
-        return editorCandidates.stream().filter(e -> availableEditorIds.contains(e.getEditorSite().getId()))
+
+        return editorCandidates.stream()
+                .filter(ec -> DiagramTypeRegistry.INSTANCE.getByTextualEditorId(ec.getEditorSite().getId()).isPresent())
                 .findFirst();
     }
 

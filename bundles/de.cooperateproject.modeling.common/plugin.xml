@@ -8,18 +8,21 @@
             name="Class"
             papyrusDiagramKind="org.eclipse.papyrus.uml.diagram.class"
             papyrusDiagramType="PapyrusUMLClassDiagram"
+            textualEditorID="de.cooperateproject.modeling.textual.cls.Cls"
             textualFileExtension="cls">
       </type>
       <type
             name="UseCase"
             papyrusDiagramKind="org.eclipse.papyrus.uml.diagram.useCase"
             papyrusDiagramType="UseCase"
+            textualEditorID="de.cooperateproject.modeling.textual.usecase.Usecase"
             textualFileExtension="uc">
       </type>
       <type
             name="Component"
             papyrusDiagramKind="org.eclipse.papyrus.uml.diagram.component.root.component"
             papyrusDiagramType="PapyrusUMLComponentDiagram"
+            textualEditorID="de.cooperateproject.modeling.textual.component.Component"
             textualFileExtension="cmp">
       </type>
    </extension>

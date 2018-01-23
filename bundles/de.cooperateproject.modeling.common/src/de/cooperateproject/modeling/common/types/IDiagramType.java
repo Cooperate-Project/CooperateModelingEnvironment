@@ -6,6 +6,8 @@ public interface IDiagramType {
 
     String getTextualFileExtension();
 
+    String getTextualEditorId();
+
     String getPapyrusDiagramKindId();
 
     String getPapyrusDiagramType();
