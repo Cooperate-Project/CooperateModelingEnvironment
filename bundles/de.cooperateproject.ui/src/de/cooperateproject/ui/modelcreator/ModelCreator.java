@@ -50,6 +50,7 @@ public class ModelCreator {
     public static IStatus createDiagram(IProject project, String modelName, String diagramName,
             IDiagramType diagramType) {
         CDOCheckout checkout = CDOConnectionManager.getInstance().createCDOCheckout(project, true, true);
+        checkout.open();
         CDOSession session = checkout.getView().getSession();
         try {
             CDOBranch tmpBranch = checkout.getView().getBranch();
