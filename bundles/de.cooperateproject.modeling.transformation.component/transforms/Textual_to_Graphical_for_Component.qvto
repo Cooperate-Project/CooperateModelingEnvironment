@@ -25,16 +25,16 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	measurementUnit := notation::MeasurementUnit::Pixel;
 
   	element := rootPackage.toEObject();
- 
+  	children += self.rootpackage.classifiers.map commentableToShape();
+    children += self.rootpackage.findAllComments().map commentToShape();
+
 	children += self.rootpackage.classifiers.map classifiersToShape();
-	//TODO can classes be nested in component shapes?
-	var classes := self.rootpackage.getAllContentsOfType(cmp::Class.oclAsType(ecore::EClass), true);
-	children += classes->oclAsType(cmp::Class).map classifiersToShape();
 	edges += self.rootpackage.relations.map classifierRelationsToEdge();
 	
 	//also create connectors that are nested
 	var allConnectors := self.rootpackage.getAllContentsOfType(cmp::Connector.oclAsType(ecore::EClass), true);
 	edges += allConnectors->oclAsType(cmp::Connector).map connectorToEdge();
+	edges += self.rootpackage.findAllComments().map commentToEdge(); 
 	
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
@@ -105,6 +105,13 @@ mapping uml::Port::attributePortToShape() : notation::Shape
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
+mapping textualCommons::Comment::commentToShape() : notation::Shape
+{
+    type := PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR;
+    element := self.referencedElement.toEObject();
+    children += self.map commentLabelBodyHintDecoration();
+    layoutConstraint := result.toEObject().map notationBounds();
+}
 
 mapping cmp::Provide::provideToEdge() : notation::Connector
 when { self.oclIsKindOf(cmp::Provide) }
@@ -147,6 +154,20 @@ when { self.oclIsKindOf(cmp::Require) }
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
+
+
+mapping textualCommons::Comment::commentToEdge() : notation::Connector
+{
+    type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
+
+    source := self.resolveoneIn(textualCommons::Comment::commentToShape);
+    target := self.commentedElement.resolveoneIn(textualCommons::Commentable::commentableToShape);
+    result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
+    
+    bendpoints := result.map connectorToBendpoint();
+    styles += result.toEObject().map fontStyle();
+}
+
 
 mapping cmp::Interface::interfaceToShape() : notation::Shape
 when {self.oclIsKindOf(cmp::Interface)}
@@ -352,18 +373,21 @@ when{self.oclIsKindOf(cmp::Abstraction)}
 }
 
 
-//TODO insert any commentable elements here
 mapping textualCommons::Commentable::commentableToShape() : notation::Shape
 disjuncts cmp::Classifier::classifiersToShape;
 
 mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 {	
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR);
-	children += self.attributes.map attributeToShape();
+	children := self.attributes.map attributeToShape();
 	
 	children += self.packagedElements->selectByType(cmp::Interface).map classifiersToShape();
 	styles += result.toEObject().map titleStyle();
 	children += self.packagedElements->selectByType(cmp::Component).map classifiersToShape();
+	children += self.packagedElements->selectByType(cmp::Class).map classifiersToShape();
+	children += self.packagedElements->selectByType(cmp::Interface).map commentableToShape();
+	children += self.packagedElements->selectByType(cmp::Component).map commentableToShape();
+	children += self.packagedElements->selectByType(cmp::Class).map commentableToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
 }
@@ -371,7 +395,8 @@ mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompartment
 {
 	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR;
-	children += self.members->select(oclIsKindOf(cmp::Attribute))->oclAsType(cmp::Attribute)->map interfaceAttributeToShape();
+	children := self.members->select(oclIsKindOf(cmp::Attribute))->oclAsType(cmp::Attribute)->map interfaceAttributeToShape();
+	
 	styles += result.toEObject().map titleStyle();
 	styles += result.toEObject().map sortingStyle();
 	styles += result.toEObject().map filteringStyle();
@@ -412,6 +437,10 @@ mapping cmp::Attribute::attributeToShapeDisplay() : notation::BasicCompartment
 
 // Labels /Decorations /...
 
+mapping textualCommons::Comment::commentLabelBodyHintDecoration() : notation::DecorationNode
+{
+    type := PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR;
+}
 
 mapping cmp::Component::componentToNameLabel() : notation::DecorationNode
 {
@@ -608,3 +637,9 @@ query cmp::RootPackage::findAllInterfaceRelations() : Sequence(cmp::InterfaceRel
 
 	return interfaceRelation;
 }
+
+query cmp::RootPackage::findAllComments() : Sequence(textualCommons::Comment) {
+    var classifierComments := self.classifiers.comments->flatten();
+    return classifierComments;
+}
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ComponentDiagramSingleClass">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramSingleClass.uml#_QhuPIAKiEeitl8_60e4uqg"/>
+    <classifiers xsi:type="cmp:Class">
+      <referencedElement xsi:type="uml:Class" href="ComponentDiagramSingleClass.uml#_Xtbn4AKiEeitl8_60e4uqg"/>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>

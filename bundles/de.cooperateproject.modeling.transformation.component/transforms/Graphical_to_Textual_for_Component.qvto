@@ -24,7 +24,7 @@ mapping notation::Diagram::diagramToDiagram() : cmp::ComponentDiagram
 mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 {
 	referencedElement := self.element.oclAsType(uml::Package);
-	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToClassifier();
+	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
 	relations += self.edges.map edgeToClassifierRelation();
 }
 
@@ -36,19 +36,19 @@ disjuncts
 {
 
 }
-
-	
 	
 mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement := self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
 	attributes += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
-	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
-	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToClassifier();
+	comments := self.getCommentShape().map commentToComment();
+	
+	interfaceRelation := self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
+	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
 	//collect all classes that are in the diagram and belog to the component
-	var rootShapes := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT and element.oclAsType(uml::Classifier).owner = referencedElement);
-	packagedElements += rootShapes.map nodeToClassifier();
+	//var rootShapes := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT and element.oclAsType(uml::Classifier).owner = referencedElement);
+	//packagedElements += rootShapes.map nodeToClassifier();
 	
 	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
 	var portNodes = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
@@ -65,6 +65,7 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
 	referencedElement := self.element.oclAsType(uml::Interface);
+	comments := self.getCommentShape().map commentToComment();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
@@ -72,6 +73,7 @@ mapping notation::Node::nodeToInterface() : cmp::Interface
 mapping notation::Node::nodeToClass() : cmp::Class
 	when {		self.element.oclIsKindOf(uml::Class)	}{
 	referencedElement := self.element.oclAsType(uml::Class);
+	comments := self.getCommentShape().map commentToComment();
 	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
 }
 //	
@@ -238,12 +240,15 @@ when {not self.oclIsInvalid() and not self.oclIsUndefined()}
 	referencedElement := self.element.oclAsType(uml::Comment);
 }
 
+mapping notation::View::commentViewToComment() : textualCommons::Comment
+{
+	var umlComment = self.element.oclAsType(uml::Comment);
+	referencedElement := umlComment;
+}
 query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
 {
 	return self.findRelevantEdgesByContainment();
 }
-
-
 
 mapping notation::Edge::edgeToInterfaceRelation() : cmp::InterfaceRelation
 disjuncts
@@ -336,12 +341,6 @@ query notation::Edge::findOwningPackage() : uml::Package
 	return if self.oclIsKindOf(notation::Connector) then self.oclAsType(notation::Connector).findOwningPackage() else null endif;
 }
 
-
-mapping notation::View::commentViewToComment() : textualCommons::Comment
-{
-	var umlComment = self.element.oclAsType(uml::Comment);
-	referencedElement := umlComment;
-}
 
 query notation::View::getCommentShape() : notation::View
 {

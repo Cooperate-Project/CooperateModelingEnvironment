@@ -115,4 +115,20 @@ public class TextualToGraphicalComponentTest extends ComponentDirectionalTransfo
     public void testComponentDiagramPortTypeClass() throws Exception {
         testRegular("ComponentDiagramPortTypeClass");
     }
+    
+    @Test
+    public void testComponentDiagramNestedClass() throws Exception {
+        testRegular("ComponentDiagramNestedClass");
+    }
+    
+    @Test
+    public void testComponentDiagramSingleClass() throws Exception {
+        testRegular("ComponentDiagramSingleClass");
+    }
+    
+    @Test
+    public void testComponentDiagramComponentNote() throws Exception {
+        testRegular("ComponentDiagramComponentNote");
+    }
+    
 }

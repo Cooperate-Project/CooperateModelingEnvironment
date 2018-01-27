@@ -36,6 +36,7 @@ property PAPYRUS_NOTATION_NODE_INTERFACE_REALIZATION_NAME_REGULAR ="InterfaceRea
 property PAPYRUS_NOTATION_EDGE_REQUIRE : String = "InterfaceRealization_Edge";
 property PAPYRUS_NOTATION_NODE_INTERFACE_REQUIRE_STEREOTYPE : String = "Usage_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR ="Usage_NameLabel";
+property PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR : String = "Comment_BodyLabel";
 
 property PAPYRUS_NOTATION_EDGE_MANIFESTATION : String = "Manifestation_Edge";
 property PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR ="Manifestation_NameLabel";

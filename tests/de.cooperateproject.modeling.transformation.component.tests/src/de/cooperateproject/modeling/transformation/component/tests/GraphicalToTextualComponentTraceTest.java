@@ -115,4 +115,25 @@ public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTr
     public void testComponentDiagramPortTypeClass() throws Exception {
     	testTraceTransformation("ComponentDiagramPortTypeClass");
     }
+    
+    @Test
+    public void testComponentDiagramNestedClass() throws Exception {
+    	testTraceTransformation("ComponentDiagramNestedClass");
+    }
+    
+    @Test
+    public void testComponentDiagramSingleClass() throws Exception {
+    	testTraceTransformation("ComponentDiagramSingleClass");
+    }
+    
+    @Test
+    public void testComponentDiagramComponentNote() throws Exception {
+    	testTraceTransformation("ComponentDiagramComponentNote");
+    }
+    
+    @Test
+    public void testComponentDiagramClassNote() throws Exception {
+    	testTraceTransformation("ComponentDiagramClassNote");
+    }
+    
 }

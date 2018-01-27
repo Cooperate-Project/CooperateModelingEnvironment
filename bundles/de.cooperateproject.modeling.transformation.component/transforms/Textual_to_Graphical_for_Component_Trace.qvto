@@ -48,6 +48,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToDependency();
 	result += self.map traceEdgeToConnector();
 	result += self.map traceNodeToPort();
+	result += self.map traceRecordComment();
 }
 
 
@@ -73,6 +74,14 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	
 	result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram, "ComponentDiagram", componentDiagram.eobject());
 	result += new TraceRecord("diagramToRootPackage", "Diagram", notationDiagram, "RootPackage", componentDiagram.rootpackage.eobject());
+}
+mapping trace::TraceRecord::traceRecordComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToShape"}
+{
+    var node := self.getResult().modelElement;
+    var comment := self.getSelf().modelElement.oclAsType(textualCommons::Comment);
+    
+    result += new TraceRecord("commentToComment", "View", node, "Comment", comment.eobject());
 }
 
 mapping trace::TraceRecord::traceNodeToComponent() : List(trace::TraceRecord)
