@@ -25,7 +25,7 @@ mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 {
 	referencedElement := self.element.oclAsType(uml::Package);
 	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
-	relations += self.edges.map edgeToClassifierRelation();
+	relations := self.edges.map edgeToClassifierRelation();
 }
 
 mapping notation::Node::nodeToClassifier() : cmp::Classifier
@@ -41,23 +41,24 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement := self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
-	attributes += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
+	attributes := packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
 	comments := self.getCommentShape().map commentToComment();
 	
 	interfaceRelation := self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
-	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
+	
+	packagedElements := packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
 	//collect all classes that are in the diagram and belog to the component
 	//var rootShapes := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT and element.oclAsType(uml::Classifier).owner = referencedElement);
 	//packagedElements += rootShapes.map nodeToClassifier();
 	
-	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
+	port := self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
 	var portNodes = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
 	//add ports of properties
 	portNodes += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR)
 			.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY)
 			.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
 	
-	connectors += self.diagram.edges->select(not isCommentLinkForAssociation())->select(portNodes->exists(e | e = source))->map edgeToConnector();
+	connectors := self.diagram.edges->select(not isCommentLinkForAssociation())->select(portNodes->exists(e | e = source))->map edgeToConnector();
 }
 
 
@@ -66,7 +67,7 @@ mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
 	referencedElement := self.element.oclAsType(uml::Interface);
 	comments := self.getCommentShape().map commentToComment();
-	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
+	members := self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
 
@@ -74,9 +75,8 @@ mapping notation::Node::nodeToClass() : cmp::Class
 	when {		self.element.oclIsKindOf(uml::Class)	}{
 	referencedElement := self.element.oclAsType(uml::Class);
 	comments := self.getCommentShape().map commentToComment();
-	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
+	interfaceRelation := self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
 }
-//	
 
 mapping notation::Node::nodeToAttribute() : cmp::Attribute
 	when {		self.element.oclIsKindOf(uml::Property)	}{

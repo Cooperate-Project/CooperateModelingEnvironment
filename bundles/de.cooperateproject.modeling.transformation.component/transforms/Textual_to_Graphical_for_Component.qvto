@@ -25,11 +25,11 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	measurementUnit := notation::MeasurementUnit::Pixel;
 
   	element := rootPackage.toEObject();
-  	children += self.rootpackage.classifiers.map commentableToShape();
+  	children := self.rootpackage.classifiers.map commentableToShape();
     children += self.rootpackage.findAllComments().map commentToShape();
 
 	children += self.rootpackage.classifiers.map classifiersToShape();
-	edges += self.rootpackage.relations.map classifierRelationsToEdge();
+	edges := self.rootpackage.relations.map classifierRelationsToEdge();
 	
 	//also create connectors that are nested
 	var allConnectors := self.rootpackage.getAllContentsOfType(cmp::Connector.oclAsType(ecore::EClass), true);
@@ -72,7 +72,7 @@ when {self.oclIsKindOf(cmp::Component)}
 {
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR);
 	element := self.referencedElement.toEObject();
-	children += self.map componentToNameLabel();
+	children := self.map componentToNameLabel();
 	children += self.map componentFloatingNameLabel();
 	children += self.map componentToCompartment();
 	if(self.port->first()!=null) {
@@ -405,7 +405,7 @@ mapping cmp::Interface::interfaceToAttributeCompartment() : notation::BasicCompa
 mapping cmp::Interface::interfaceToOperationCompartment() : notation::BasicCompartment
 {
 	type := PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR;
-	children += self.members->select(oclIsKindOf(cmp::Method))->oclAsType(cmp::Method)->map interfaceMethodToShape();
+	children := self.members->select(oclIsKindOf(cmp::Method))->oclAsType(cmp::Method)->map interfaceMethodToShape();
 	styles += result.toEObject().map titleStyle();
 	styles += result.toEObject().map sortingStyle();
 	styles += result.toEObject().map filteringStyle();
