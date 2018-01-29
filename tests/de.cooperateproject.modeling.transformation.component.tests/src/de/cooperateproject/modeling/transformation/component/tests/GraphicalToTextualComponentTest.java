@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.component.tests;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -79,16 +77,6 @@ public class GraphicalToTextualComponentTest extends ComponentDirectionalTransfo
     @Test
     public void testMultipleRequire() throws Exception {
         testRegular("ComponentDiagramMultipleRequire");
-    }
-
-    @Test
-    public void testManifestation() throws Exception {
-        testRegular("ComponentDiagramManifestation");
-    }
-
-    @Test
-    public void testComponentDiagramEntireClassifierRelations() throws Exception {
-        testRegular("ComponentDiagramEntireClassifierRelations");
     }
 
     @Test
