@@ -8,16 +8,20 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visi
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
 
+import de.cooperateproject.modeling.textual.component.cmp.Classifier;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
+
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Optional;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.VisibilityKind;
 
@@ -156,8 +160,8 @@ public class PortImpl extends NamedElementImpl implements Port {
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> getRealizedClassifier() {
-        return (de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier>)eDynamicGet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, true, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> getRealizedClassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, true, true);
     }
 
     /**
@@ -165,8 +169,8 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
-    public de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> basicGetRealizedClassifier() {
-        return (de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier>)eDynamicGet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, false, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetRealizedClassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, false, true);
     }
 
     /**
@@ -174,7 +178,7 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> newRealizedClassifier) {
+    public void setRealizedClassifier(Classifier<org.eclipse.uml2.uml.Classifier> newRealizedClassifier) {
         eDynamicSet(CmpPackage.PORT__REALIZED_CLASSIFIER, CmpPackage.Literals.PORT__REALIZED_CLASSIFIER, newRealizedClassifier);
     }
 
@@ -265,7 +269,7 @@ public class PortImpl extends NamedElementImpl implements Port {
                 setReferencedElement((org.eclipse.uml2.uml.Port)newValue);
                 return;
             case CmpPackage.PORT__REALIZED_CLASSIFIER:
-                setRealizedClassifier((de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier>)newValue);
+                setRealizedClassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
             case CmpPackage.PORT__CONJUGATED:
                 setConjugated((Boolean)newValue);
@@ -289,7 +293,7 @@ public class PortImpl extends NamedElementImpl implements Port {
                 setReferencedElement((org.eclipse.uml2.uml.Port)null);
                 return;
             case CmpPackage.PORT__REALIZED_CLASSIFIER:
-                setRealizedClassifier((de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier>)null);
+                setRealizedClassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
                 return;
             case CmpPackage.PORT__CONJUGATED:
                 unsetConjugated();

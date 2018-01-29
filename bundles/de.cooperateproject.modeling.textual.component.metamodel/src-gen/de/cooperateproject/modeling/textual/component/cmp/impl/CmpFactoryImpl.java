@@ -2,7 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp.impl;
 
-import de.cooperateproject.modeling.textual.component.cmp.Abstraction;
 import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.CmpFactory;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
@@ -10,17 +9,14 @@ import de.cooperateproject.modeling.textual.component.cmp.Component;
 import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram;
 import de.cooperateproject.modeling.textual.component.cmp.Connector;
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd;
-import de.cooperateproject.modeling.textual.component.cmp.Dependency;
 import de.cooperateproject.modeling.textual.component.cmp.Generalization;
 import de.cooperateproject.modeling.textual.component.cmp.Interface;
-import de.cooperateproject.modeling.textual.component.cmp.Manifestation;
 import de.cooperateproject.modeling.textual.component.cmp.Method;
 import de.cooperateproject.modeling.textual.component.cmp.Parameter;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
 import de.cooperateproject.modeling.textual.component.cmp.Provide;
 import de.cooperateproject.modeling.textual.component.cmp.Require;
 import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
-import de.cooperateproject.modeling.textual.component.cmp.Substitution;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -79,10 +75,6 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
             case CmpPackage.CONNECTOR: return (EObject)createConnector();
             case CmpPackage.CONNECTOR_END: return (EObject)createConnectorEnd();
             case CmpPackage.GENERALIZATION: return (EObject)createGeneralization();
-            case CmpPackage.ABSTRACTION: return (EObject)createAbstraction();
-            case CmpPackage.MANIFESTATION: return (EObject)createManifestation();
-            case CmpPackage.SUBSTITUTION: return (EObject)createSubstitution();
-            case CmpPackage.DEPENDENCY: return (EObject)createDependency();
             case CmpPackage.COMPONENT: return (EObject)createComponent();
             case CmpPackage.CLASS: return (EObject)createClass();
             case CmpPackage.INTERFACE: return (EObject)createInterface();
@@ -145,46 +137,6 @@ public class CmpFactoryImpl extends EFactoryImpl implements CmpFactory {
     public Generalization createGeneralization() {
         GeneralizationImpl generalization = new GeneralizationImpl();
         return generalization;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Abstraction createAbstraction() {
-        AbstractionImpl abstraction = new AbstractionImpl();
-        return abstraction;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Manifestation createManifestation() {
-        ManifestationImpl manifestation = new ManifestationImpl();
-        return manifestation;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Substitution createSubstitution() {
-        SubstitutionImpl substitution = new SubstitutionImpl();
-        return substitution;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Dependency createDependency() {
-        DependencyImpl dependency = new DependencyImpl();
-        return dependency;
     }
 
     /**

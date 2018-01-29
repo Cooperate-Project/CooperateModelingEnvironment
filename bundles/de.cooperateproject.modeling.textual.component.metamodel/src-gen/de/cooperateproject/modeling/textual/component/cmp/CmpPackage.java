@@ -533,370 +533,6 @@ public interface CmpPackage extends EPackage {
     int GENERALIZATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.AbstractionImpl <em>Abstraction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.AbstractionImpl
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getAbstraction()
-     * @generated
-     */
-    int ABSTRACTION = 6;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Left Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION__LEFT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Right Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION__RIGHT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Abstraction</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
-
-    /**
-     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
-
-    /**
-     * The number of operations of the '<em>Abstraction</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACTION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.ManifestationImpl <em>Manifestation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.ManifestationImpl
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getManifestation()
-     * @generated
-     */
-    int MANIFESTATION = 7;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Left Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION__LEFT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Right Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION__RIGHT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Manifestation</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
-
-    /**
-     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
-
-    /**
-     * The number of operations of the '<em>Manifestation</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFESTATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.SubstitutionImpl <em>Substitution</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.SubstitutionImpl
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getSubstitution()
-     * @generated
-     */
-    int SUBSTITUTION = 8;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Left Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION__LEFT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Right Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION__RIGHT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Substitution</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
-
-    /**
-     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
-
-    /**
-     * The number of operations of the '<em>Substitution</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SUBSTITUTION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.DependencyImpl <em>Dependency</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.DependencyImpl
-     * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getDependency()
-     * @generated
-     */
-    int DEPENDENCY = 9;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Left Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY__LEFT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Right Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY__RIGHT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Dependency</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
-
-    /**
-     * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
-
-    /**
-     * The number of operations of the '<em>Dependency</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DEPENDENCY_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.ClassifierImpl <em>Classifier</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -904,7 +540,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getClassifier()
      * @generated
      */
-    int CLASSIFIER = 10;
+    int CLASSIFIER = 6;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -986,7 +622,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getProperty()
      * @generated
      */
-    int PROPERTY = 11;
+    int PROPERTY = 7;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1077,7 +713,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getComponent()
      * @generated
      */
-    int COMPONENT = 12;
+    int COMPONENT = 8;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1204,7 +840,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getClass_()
      * @generated
      */
-    int CLASS = 13;
+    int CLASS = 9;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1295,7 +931,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getInterfaceProvidingRequiringEntity()
      * @generated
      */
-    int INTERFACE_PROVIDING_REQUIRING_ENTITY = 14;
+    int INTERFACE_PROVIDING_REQUIRING_ENTITY = 10;
 
     /**
      * The feature id for the '<em><b>Interface Relation</b></em>' containment reference list.
@@ -1332,7 +968,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getInterface()
      * @generated
      */
-    int INTERFACE = 15;
+    int INTERFACE = 11;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1423,7 +1059,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getMember()
      * @generated
      */
-    int MEMBER = 19;
+    int MEMBER = 15;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1514,7 +1150,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getMethod()
      * @generated
      */
-    int METHOD = 16;
+    int METHOD = 12;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1623,7 +1259,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getParameter()
      * @generated
      */
-    int PARAMETER = 17;
+    int PARAMETER = 13;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1723,7 +1359,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getAttribute()
      * @generated
      */
-    int ATTRIBUTE = 18;
+    int ATTRIBUTE = 14;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1814,7 +1450,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getInterfaceRelation()
      * @generated
      */
-    int INTERFACE_RELATION = 20;
+    int INTERFACE_RELATION = 16;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1878,7 +1514,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getProvide()
      * @generated
      */
-    int PROVIDE = 21;
+    int PROVIDE = 17;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1960,7 +1596,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getRequire()
      * @generated
      */
-    int REQUIRE = 22;
+    int REQUIRE = 18;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2042,7 +1678,7 @@ public interface CmpPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getPort()
      * @generated
      */
-    int PORT = 23;
+    int PORT = 19;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2284,46 +1920,6 @@ public interface CmpPackage extends EPackage {
      * @generated
      */
     EClass getGeneralization();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.cmp.Abstraction <em>Abstraction</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Abstraction</em>'.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Abstraction
-     * @generated
-     */
-    EClass getAbstraction();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.cmp.Manifestation <em>Manifestation</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Manifestation</em>'.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Manifestation
-     * @generated
-     */
-    EClass getManifestation();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.cmp.Substitution <em>Substitution</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Substitution</em>'.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Substitution
-     * @generated
-     */
-    EClass getSubstitution();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.cmp.Dependency <em>Dependency</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Dependency</em>'.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Dependency
-     * @generated
-     */
-    EClass getDependency();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.cmp.Classifier <em>Classifier</em>}'.
@@ -2773,46 +2369,6 @@ public interface CmpPackage extends EPackage {
          * @generated
          */
         EClass GENERALIZATION = eINSTANCE.getGeneralization();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.AbstractionImpl <em>Abstraction</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.AbstractionImpl
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getAbstraction()
-         * @generated
-         */
-        EClass ABSTRACTION = eINSTANCE.getAbstraction();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.ManifestationImpl <em>Manifestation</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.ManifestationImpl
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getManifestation()
-         * @generated
-         */
-        EClass MANIFESTATION = eINSTANCE.getManifestation();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.SubstitutionImpl <em>Substitution</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.SubstitutionImpl
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getSubstitution()
-         * @generated
-         */
-        EClass SUBSTITUTION = eINSTANCE.getSubstitution();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.DependencyImpl <em>Dependency</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.DependencyImpl
-         * @see de.cooperateproject.modeling.textual.component.cmp.impl.CmpPackageImpl#getDependency()
-         * @generated
-         */
-        EClass DEPENDENCY = eINSTANCE.getDependency();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.ClassifierImpl <em>Classifier</em>}' class.

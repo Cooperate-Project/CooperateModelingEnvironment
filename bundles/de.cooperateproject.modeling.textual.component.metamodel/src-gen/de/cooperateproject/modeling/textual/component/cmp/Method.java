@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.component.cmp;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.uml2.uml.Operation;
 
 /**

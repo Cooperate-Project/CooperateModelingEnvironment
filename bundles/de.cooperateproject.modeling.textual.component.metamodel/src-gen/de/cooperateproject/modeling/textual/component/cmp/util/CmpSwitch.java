@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 
-import de.cooperateproject.modeling.textual.component.cmp.Abstraction;
 import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.Classifier;
 import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation;
@@ -19,12 +18,10 @@ import de.cooperateproject.modeling.textual.component.cmp.Component;
 import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram;
 import de.cooperateproject.modeling.textual.component.cmp.Connector;
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd;
-import de.cooperateproject.modeling.textual.component.cmp.Dependency;
 import de.cooperateproject.modeling.textual.component.cmp.Generalization;
 import de.cooperateproject.modeling.textual.component.cmp.Interface;
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceProvidingRequiringEntity;
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation;
-import de.cooperateproject.modeling.textual.component.cmp.Manifestation;
 import de.cooperateproject.modeling.textual.component.cmp.Member;
 import de.cooperateproject.modeling.textual.component.cmp.Method;
 import de.cooperateproject.modeling.textual.component.cmp.Parameter;
@@ -33,7 +30,6 @@ import de.cooperateproject.modeling.textual.component.cmp.Property;
 import de.cooperateproject.modeling.textual.component.cmp.Provide;
 import de.cooperateproject.modeling.textual.component.cmp.Require;
 import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
-import de.cooperateproject.modeling.textual.component.cmp.Substitution;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -152,50 +148,6 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseAliasedElement(generalization);
                 if (result == null) result = caseNamedElement(generalization);
                 if (result == null) result = caseElement(generalization);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CmpPackage.ABSTRACTION: {
-                Abstraction abstraction = (Abstraction)theEObject;
-                T1 result = caseAbstraction(abstraction);
-                if (result == null) result = caseUMLReferencingElement(abstraction);
-                if (result == null) result = caseClassifierRelation(abstraction);
-                if (result == null) result = caseAliasedElement(abstraction);
-                if (result == null) result = caseNamedElement(abstraction);
-                if (result == null) result = caseElement(abstraction);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CmpPackage.MANIFESTATION: {
-                Manifestation manifestation = (Manifestation)theEObject;
-                T1 result = caseManifestation(manifestation);
-                if (result == null) result = caseUMLReferencingElement(manifestation);
-                if (result == null) result = caseClassifierRelation(manifestation);
-                if (result == null) result = caseAliasedElement(manifestation);
-                if (result == null) result = caseNamedElement(manifestation);
-                if (result == null) result = caseElement(manifestation);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CmpPackage.SUBSTITUTION: {
-                Substitution substitution = (Substitution)theEObject;
-                T1 result = caseSubstitution(substitution);
-                if (result == null) result = caseUMLReferencingElement(substitution);
-                if (result == null) result = caseClassifierRelation(substitution);
-                if (result == null) result = caseAliasedElement(substitution);
-                if (result == null) result = caseNamedElement(substitution);
-                if (result == null) result = caseElement(substitution);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CmpPackage.DEPENDENCY: {
-                Dependency dependency = (Dependency)theEObject;
-                T1 result = caseDependency(dependency);
-                if (result == null) result = caseUMLReferencingElement(dependency);
-                if (result == null) result = caseClassifierRelation(dependency);
-                if (result == null) result = caseAliasedElement(dependency);
-                if (result == null) result = caseNamedElement(dependency);
-                if (result == null) result = caseElement(dependency);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -446,66 +398,6 @@ public class CmpSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseGeneralization(Generalization object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Abstraction</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Abstraction</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseAbstraction(Abstraction object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Manifestation</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Manifestation</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseManifestation(Manifestation object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Substitution</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Substitution</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseSubstitution(Substitution object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Dependency</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Dependency</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseDependency(Dependency object) {
         return null;
     }
 

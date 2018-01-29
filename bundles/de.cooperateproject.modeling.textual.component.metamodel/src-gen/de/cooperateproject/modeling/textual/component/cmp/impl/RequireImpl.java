@@ -7,12 +7,17 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Require;
+
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Optional;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Usage;
 

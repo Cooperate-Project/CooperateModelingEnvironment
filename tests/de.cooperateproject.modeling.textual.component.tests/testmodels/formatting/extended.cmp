@@ -16,6 +16,4 @@ interface second_iface {
 	someName : String
 	someOperation(anObject : second_iface, aPrimitive : int) : long
 }
-abs (testComp, second_iface)
-
 @end-cpd

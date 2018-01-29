@@ -4,28 +4,24 @@
 package de.cooperateproject.modeling.textual.component.ui.labeling
 
 import com.google.inject.Inject
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
-import de.cooperateproject.modeling.textual.component.cmp.Component
-import de.cooperateproject.modeling.textual.component.cmp.Class
-import de.cooperateproject.modeling.textual.component.cmp.Interface
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
-import de.cooperateproject.modeling.textual.component.cmp.Generalization
-import de.cooperateproject.modeling.textual.component.cmp.Abstraction
-import de.cooperateproject.modeling.textual.component.cmp.Manifestation
-import de.cooperateproject.modeling.textual.component.cmp.Substitution
-import de.cooperateproject.modeling.textual.component.cmp.Dependency
-import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation
-import de.cooperateproject.modeling.textual.component.cmp.Provide
-import de.cooperateproject.modeling.textual.component.cmp.Require
-import de.cooperateproject.modeling.textual.component.cmp.Port
 import de.cooperateproject.modeling.textual.component.cmp.Attribute
+import de.cooperateproject.modeling.textual.component.cmp.Class
+import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation
+import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
 import de.cooperateproject.modeling.textual.component.cmp.Connector
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
-import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.cmp.Generalization
+import de.cooperateproject.modeling.textual.component.cmp.Interface
 import de.cooperateproject.modeling.textual.component.cmp.Method
-import de.cooperateproject.modeling.textual.component.cmp.Property
 import de.cooperateproject.modeling.textual.component.cmp.Parameter
+import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.cmp.Property
+import de.cooperateproject.modeling.textual.component.cmp.Provide
+import de.cooperateproject.modeling.textual.component.cmp.Require
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 
 /**
  * Provides labels for EObjects.
@@ -55,18 +51,6 @@ class ComponentLabelProvider extends CooperateOutlineLabelProvider {
 	def image(Generalization element) {
 	    UMLImage.GENERALIZATION.image
 	}
-	def image(Abstraction element) {
-	    UMLImage.ABSTRACTION.image
-	}
-	def image(Manifestation element) {
-	    UMLImage.MANIFESTATION.image
-    }
-    def image(Substitution element) {
-        UMLImage.SUBSTITUTION.image  
-    }
-    def image(Dependency element) {
-        UMLImage.DEPENDENCY.image
-    }
     def image(Connector element) {
         UMLImage.CONNECTOR.image
     }
@@ -107,18 +91,6 @@ class ComponentLabelProvider extends CooperateOutlineLabelProvider {
     }
 	def text(Generalization element) {
 	    String.format("isa(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
-    }
-	def text(Abstraction element) {
-	    String.format("abs(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
-    }
-	def text(Manifestation element) {
-	    String.format("man(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
-    }
-	def text(Substitution element) {
-	    String.format("sub(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
-    }
-	def text(Dependency element) {
-	    String.format("dep(%s, %s)", element.leftClassifier.doGetText, element.rightClassifier.doGetText)
     }
 	def text(Connector element) {
         "con " + element.name

@@ -31,7 +31,6 @@ public class ComponentParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getClassifierRelationAccess().getAlternatives(), "rule__ClassifierRelation__Alternatives");
 					put(grammarAccess.getClassifierAccess().getAlternatives(), "rule__Classifier__Alternatives");
 					put(grammarAccess.getInterfaceRelationAccess().getAlternatives(), "rule__InterfaceRelation__Alternatives");
 					put(grammarAccess.getMemberAccess().getAlternatives(), "rule__Member__Alternatives");
@@ -56,10 +55,6 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassAccess().getGroup_1_1(), "rule__Class__Group_1_1__0");
 					put(grammarAccess.getClassAccess().getGroup_2_1(), "rule__Class__Group_2_1__0");
 					put(grammarAccess.getGeneralizationAccess().getGroup(), "rule__Generalization__Group__0");
-					put(grammarAccess.getAbstractionAccess().getGroup(), "rule__Abstraction__Group__0");
-					put(grammarAccess.getManifestationAccess().getGroup(), "rule__Manifestation__Group__0");
-					put(grammarAccess.getSubstitutionAccess().getGroup(), "rule__Substitution__Group__0");
-					put(grammarAccess.getDependencyAccess().getGroup(), "rule__Dependency__Group__0");
 					put(grammarAccess.getCommentAccess().getGroup(), "rule__Comment__Group__0");
 					put(grammarAccess.getPortAccess().getGroup(), "rule__Port__Group__0");
 					put(grammarAccess.getInterfaceAccess().getGroup(), "rule__Interface__Group__0");
@@ -106,14 +101,6 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassAccess().getInterfaceRelationAssignment_2_1_2(), "rule__Class__InterfaceRelationAssignment_2_1_2");
 					put(grammarAccess.getGeneralizationAccess().getLeftClassifierAssignment_2(), "rule__Generalization__LeftClassifierAssignment_2");
 					put(grammarAccess.getGeneralizationAccess().getRightClassifierAssignment_4(), "rule__Generalization__RightClassifierAssignment_4");
-					put(grammarAccess.getAbstractionAccess().getLeftClassifierAssignment_2(), "rule__Abstraction__LeftClassifierAssignment_2");
-					put(grammarAccess.getAbstractionAccess().getRightClassifierAssignment_4(), "rule__Abstraction__RightClassifierAssignment_4");
-					put(grammarAccess.getManifestationAccess().getLeftClassifierAssignment_2(), "rule__Manifestation__LeftClassifierAssignment_2");
-					put(grammarAccess.getManifestationAccess().getRightClassifierAssignment_4(), "rule__Manifestation__RightClassifierAssignment_4");
-					put(grammarAccess.getSubstitutionAccess().getLeftClassifierAssignment_2(), "rule__Substitution__LeftClassifierAssignment_2");
-					put(grammarAccess.getSubstitutionAccess().getRightClassifierAssignment_4(), "rule__Substitution__RightClassifierAssignment_4");
-					put(grammarAccess.getDependencyAccess().getLeftClassifierAssignment_2(), "rule__Dependency__LeftClassifierAssignment_2");
-					put(grammarAccess.getDependencyAccess().getRightClassifierAssignment_4(), "rule__Dependency__RightClassifierAssignment_4");
 					put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 					put(grammarAccess.getPortAccess().getVisibilityAssignment_0(), "rule__Port__VisibilityAssignment_0");
 					put(grammarAccess.getPortAccess().getNameAssignment_2(), "rule__Port__NameAssignment_2");

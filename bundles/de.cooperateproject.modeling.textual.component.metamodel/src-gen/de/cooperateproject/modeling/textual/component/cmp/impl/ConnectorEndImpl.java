@@ -9,6 +9,7 @@ import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 import de.cooperateproject.modeling.textual.component.cmp.Port;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.ConnectorEnd;
 
 /**
@@ -88,7 +89,6 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     public Port getRole() {
         return (Port)eDynamicGet(CmpPackage.CONNECTOR_END__ROLE, CmpPackage.Literals.CONNECTOR_END__ROLE, true, true);
     }
@@ -134,7 +134,6 @@ public class ConnectorEndImpl extends UMLReferencingElementImpl<ConnectorEnd> im
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
