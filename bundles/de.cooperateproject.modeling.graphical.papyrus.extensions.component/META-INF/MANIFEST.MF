@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus Component Diagram Extensions
+Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions.component;singleton:=true
+Bundle-Version: 0.7.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle-version="0.7.1",
+ de.cooperateproject.modeling.graphical.papyrus.extensions,
+ org.eclipse.papyrus.infra.gmfdiag.representation

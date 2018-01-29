@@ -61,6 +61,7 @@
 		<module>de.cooperateproject.ui.util</module>
 		<module>de.cooperateproject.util</module>
 		<module>de.cooperateproject.modeling.graphical.papyrus.extensions</module>
+		<module>de.cooperateproject.modeling.graphical.papyrus.extensions.component</module>
 		<module>de.cooperateproject.modeling.graphical.papyrus.extensions.usecase</module>
 	</modules>
 </project>
