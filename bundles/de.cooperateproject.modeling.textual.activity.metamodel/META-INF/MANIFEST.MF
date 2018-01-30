@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Metamodel
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.activity.metamodel
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: de.cooperateproject.modeling.textual.common.metamodel;bundle-version="0.7.1"
