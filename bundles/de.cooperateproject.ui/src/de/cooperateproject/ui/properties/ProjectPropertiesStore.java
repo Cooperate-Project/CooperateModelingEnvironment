@@ -16,7 +16,7 @@ public class ProjectPropertiesStore {
     private static final StoreAwareStringProperty CDO_HOST = new StoreAwareStringProperty("cdo.host", "localhost");
     private static final StoreAwareIntegerProperty CDO_PORT = new StoreAwareIntegerProperty("cdo.port", 2036);
     private static final StoreAwareStringProperty CDO_REPO = new StoreAwareStringProperty("cdo.repo", "repo1");
-    private static final StoreAwareIntegerProperty MSG_PORT = new StoreAwareIntegerProperty("msg.port", 61616);
+    private static final StoreAwareStringProperty CDO_USER = new StoreAwareStringProperty("cdo.user", "");
 
     private final IPersistentPreferenceStore preferencesStore;
     private ProjectPropertiesDTO preferences;
@@ -46,12 +46,17 @@ public class ProjectPropertiesStore {
         preferences.setCdoHost(CDO_HOST.getValue(preferencesStore));
         preferences.setCdoPort(CDO_PORT.getValue(preferencesStore));
         preferences.setCdoRepo(CDO_REPO.getValue(preferencesStore));
+        preferences.setCdoUser(CDO_USER.getValue(preferencesStore));
     }
 
     public void saveToStore() throws IOException {
         CDO_HOST.setValue(preferencesStore, preferences.getCdoHost());
         CDO_PORT.setValue(preferencesStore, preferences.getCdoPort());
         CDO_REPO.setValue(preferencesStore, preferences.getCdoRepo());
+        if (preferences.getCdoUser() == null) {
+            preferences.setCdoUser("");
+        }
+        CDO_USER.setValue(preferencesStore, preferences.getCdoUser());
         preferencesStore.save();
     }
 
@@ -59,6 +64,7 @@ public class ProjectPropertiesStore {
         dto.setCdoHost(CDO_HOST.getDefault());
         dto.setCdoPort(CDO_PORT.getDefault());
         dto.setCdoRepo(CDO_REPO.getDefault());
+        dto.setCdoUser(CDO_USER.getDefault());
     }
 
     private static IPersistentPreferenceStore createStore(IProject project) {
@@ -67,7 +73,7 @@ public class ProjectPropertiesStore {
         CDO_HOST.init(store);
         CDO_PORT.init(store);
         CDO_REPO.init(store);
-        MSG_PORT.init(store);
+        CDO_USER.init(store);
         return store;
     }
 

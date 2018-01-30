@@ -152,6 +152,9 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> atomicValidatedRepository = new WritableValue<>(null, String.class);
         bindingContext.bindValue(observeTextTxtCDORepositoryObserveWidget, atomicValidatedRepository,
                 strategyAtomicStringToModel, strategyAtomicStringToTarget);
+        // atomic user
+        IObservableValue<String> observeUsername = WidgetProperties.text(SWT.Modify).observeDelayed(UPDATE_DELAY,
+                txtCDOUsername);
         // connection validation
         MultiValidator connectionValidator = new CDOCredentialsValidator(atomicValidatedHostname, atomicValidatedPort,
                 atomicValidatedRepository);
@@ -169,6 +172,9 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> cdoRepoPreferencesDTOObserveValue = BeanProperties.value("cdoRepo")
                 .observe(preferencesDTO);
         bindingContext.bindValue(validatedRepo, cdoRepoPreferencesDTOObserveValue);
+        IObservableValue<String> cdoUserPreferencesDTOObserveValue = BeanProperties.value("cdoUser")
+                .observe(preferencesDTO);
+        bindingContext.bindValue(observeUsername, cdoUserPreferencesDTOObserveValue);
         // validation status notifier
         aggregatedStatus = new AggregateValidationStatus(bindingContext, AggregateValidationStatus.MAX_SEVERITY);
         aggregatedStatus.addChangeListener(validatorStatusListener);

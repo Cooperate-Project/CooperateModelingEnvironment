@@ -10,6 +10,8 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
+import de.cooperateproject.util.conventions.Constants;
+
 /**
  * Label Provider for a table view which lists all found commits to one diagram.
  * 
@@ -43,8 +45,26 @@ public class CommitLabelProvider extends LabelProvider implements ITableLabelPro
         case 1:
             return formatterTime.format(date);
         case 2:
-            return element.getComment();
+            return getComment(element);
+        case 3:
+            return getAuthor(element);
         default:
+            return "";
+        }
+    }
+    
+    private String getComment(CDOCommitInfo element) {
+        if (element.getComment().contains(Constants.AUTHOR_PARSE_STRING)) {
+            return element.getComment().substring(0, element.getComment().indexOf(Constants.AUTHOR_PARSE_STRING));
+        } else {
+            return element.getComment();
+        }
+    }
+    
+    private String getAuthor(CDOCommitInfo element) {
+        if (element.getComment().contains(Constants.AUTHOR_PARSE_STRING)) {
+            return element.getComment().substring(element.getComment().indexOf(Constants.AUTHOR_PARSE_STRING), element.getComment().length());
+        } else {
             return "";
         }
     }

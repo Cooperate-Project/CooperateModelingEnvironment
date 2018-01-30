@@ -50,8 +50,10 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.Launcher.GraphicalConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
+import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 import de.cooperateproject.ui.util.LockStateInfo;
 import de.cooperateproject.ui.wizards.reset.ResetRepositoryWizard;
+import de.cooperateproject.util.conventions.Constants;
 
 public class ResetToPreviousStateCommand extends AbstractHandler {
 
@@ -95,8 +97,15 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
             try {
                 String changedObjectLabel = getLabelFor(resource);
                 DateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
-                String commitComment = String.format("Reset of %s to previous commit (%s) by %s.", changedObjectLabel,
-                        df.format(new Date(commit.getTimeStamp())), System.getProperty("user.name"));
+
+                ProjectPropertiesStore store = new ProjectPropertiesStore(resource.getProject());
+                store.initFromStore();
+                String cdoUser = store.getPreferences().getCdoUser();
+                String commitComment = String.format("Reset of %s to previous commit (%s).", changedObjectLabel,
+                        df.format(new Date(commit.getTimeStamp())));
+                if (!(cdoUser.isEmpty() || cdoUser.contentEquals(""))) {
+                    commitComment += Constants.AUTHOR_PARSE_STRING + cdoUser;
+                }
                 mergeTransaction.setCommitComment(commitComment);
                 mergeTransaction.merge(branch, new NilFixingCDOMerger());
                 try {

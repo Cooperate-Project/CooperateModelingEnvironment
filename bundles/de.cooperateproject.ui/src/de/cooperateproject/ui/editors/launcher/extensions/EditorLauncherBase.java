@@ -49,8 +49,10 @@ import de.cooperateproject.ui.editors.launcher.impl.CheckoutListenerManager;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
+import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 import de.cooperateproject.ui.util.LockStateInfo;
 import de.cooperateproject.ui.util.editor.UIThreadActionUtil;
+import de.cooperateproject.util.conventions.Constants;
 
 /**
  * Base class for editor launchers that use CDO resources as inputs.
@@ -109,9 +111,9 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         displayReadOnlyWarning();
         IEditorPart newEditorPart = doOpenEditor();
         registerListener(newEditorPart);
-        addPropertyChangeHandler(createMergeHandler());
+        addPropertyChangeHandler(createMergeHandler(launcherFile.getProject()));
         addPropertyChangeHandler(createReloadHandler());
-        addShutdownListener();
+        addShutdownListener(launcherFile.getProject());
         return newEditorPart;
     }
 
@@ -163,7 +165,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     protected void editorClosed(IWorkbenchPage p) {
         Validate.notNull(p);
 
-        promptForCommit(p.getActivePart());
+        promptForCommit(p.getActivePart(), launcherFile.getProject());
 
         disposeListener.ifPresent(p::removePartListener);
         disposeListener = Optional.empty();
@@ -213,13 +215,13 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         };
     }
 
-    private static void addShutdownListener() {
+    private static void addShutdownListener(IProject project) {
         IWorkbench workbench = PlatformUI.getWorkbench();
         workbench.addWorkbenchListener(new IWorkbenchListener() {
             @Override
             public boolean preShutdown(IWorkbench workbench, boolean forced) {
                 IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
-                EditorLauncherBase.promptForCommit(activePage.getActivePart());
+                EditorLauncherBase.promptForCommit(activePage.getActivePart(), project);
                 return true;
             }
 
@@ -230,18 +232,18 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         });
     }
 
-    private static PropertyChangeHandlerBase createMergeHandler() {
+    private static PropertyChangeHandlerBase createMergeHandler(IProject project) {
         return new PropertyChangeHandlerBase(UIConstants.PART_PROPERTY_KEY_MERGE_REQUEST) {
             @Override
             protected void handleChange(IWorkbenchPart source, String oldValue, String newValue) {
                 if (newValue != null) {
-                    promptForCommit(source);
+                    promptForCommit(source, project);
                 }
             }
         };
     }
 
-    private static void promptForCommit(IWorkbenchPart part) {
+    private static void promptForCommit(IWorkbenchPart part, IProject project) {
         if (!transformationManager.isMergeNecessary()) {
             return;
         }
@@ -249,10 +251,10 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         Optional<String> editorInputName = Optional.of(part).filter(IEditorPart.class::isInstance)
                 .map(IEditorPart.class::cast).map(IEditorPart::getEditorInput).map(IEditorInput::getName);
         Shell shell = part.getSite().getShell();
-        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell, editorInputName));
+        UIThreadActionUtil.perform(() -> promptForCommitInsideDisplayThread(shell, editorInputName, project));
     }
 
-    private static void promptForCommitInsideDisplayThread(Shell shell, Optional<String> name) {
+    private static void promptForCommitInsideDisplayThread(Shell shell, Optional<String> name, IProject project) {
         InputDialog dialog = new InputDialog(
                 shell, "Commit Message", "Please enter a commit message"
                         + name.map(n -> " for the diagram: " + n).orElse(StringUtils.EMPTY) + ".",
@@ -262,6 +264,13 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
             return;
         }
         String commitMessage = dialog.getValue();
+        ProjectPropertiesStore store = new ProjectPropertiesStore(project);
+        store.initFromStore();
+        String cdoUser = store.getPreferences().getCdoUser();
+        if (!(cdoUser.isEmpty() || cdoUser.contentEquals(""))) {
+            commitMessage += (Constants.AUTHOR_PARSE_STRING + cdoUser);
+        }
+
         try {
             transformationManager.handleEditorMerge(commitMessage);
         } catch (CommitException e) {
