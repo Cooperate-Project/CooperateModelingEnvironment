@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated act -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.cooperateproject.modeling.textual.activity.act.presentation.ActModelWizardID"
+            name="%_UI_ActModelWizard_label"
+            class="de.cooperateproject.modeling.textual.activity.act.presentation.ActModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ActModelFile.gif">
+         <description>%_UI_ActModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated act -->
+      <editor
+            id="de.cooperateproject.modeling.textual.activity.act.presentation.ActEditorID"
+            name="%_UI_ActEditor_label"
+            icon="icons/full/obj16/ActModelFile.gif"
+            extensions="act"
+            class="de.cooperateproject.modeling.textual.activity.act.presentation.ActEditor"
+            contributorClass="de.cooperateproject.modeling.textual.activity.act.presentation.ActActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

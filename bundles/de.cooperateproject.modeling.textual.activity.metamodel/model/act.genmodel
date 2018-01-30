@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.modeling.textual.activity.metamodel/src-gen"
+    modelPluginID="de.cooperateproject.modeling.textual.activity.metamodel" modelName="Act"
+    rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Dynamic" complianceLevel="8.0"
+    copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>act.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <genPackages prefix="Act" basePackage="de.cooperateproject.modeling.textual.activity"
+      disposableProviderFactory="true" ecorePackage="act.ecore#/">
+    <genClasses ecoreClass="act.ecore#//ActivityDiagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute act.ecore#//ActivityDiagram/title"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference act.ecore#//ActivityDiagram/rootPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="act.ecore#//RootPackage"/>
+  </genPackages>
+</genmodel:GenModel>
