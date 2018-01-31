@@ -12,13 +12,9 @@ import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
@@ -32,12 +28,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,41 +43,12 @@ import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailabl
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 import de.cooperateproject.ui.util.LockStateInfo;
-import de.cooperateproject.ui.wizards.reset.ResetRepositoryWizard;
 import de.cooperateproject.util.conventions.Constants;
 
-public class ResetToPreviousStateCommand extends AbstractHandler {
+public class ResetToPreviousStateCommand {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResetToPreviousStateCommand.class);
     protected static final String DEFAULT_CHARSET_NAME = "UTF-8";
-
-    @Override
-    public Object execute(ExecutionEvent event) throws ExecutionException {
-        Optional<IProject> project = getSelectedProject();
-        if (project.isPresent()) {
-            if (!checkIfProjectNotLocked(project.get())) {
-                MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-                        "Resources currently in use.",
-                        "One of the resources to be reset is currently used by another user.");
-                return null;
-            }
-            WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-                    new ResetRepositoryWizard(project.get()));
-            dialog.open();
-        } else if (getSelectedDiagram().isPresent()) {
-            IFile file = getSelectedDiagram().get();
-            if (!checkIfDiagramNotLocked(file)) {
-                MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-                        "Resources currently in use.",
-                        "One of the resources to be reset is currently used by another user.");
-                return null;
-            }
-            WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-                    new ResetRepositoryWizard(file));
-            dialog.open();
-        }
-        return null;
-    }
 
     public static boolean reset(CDOSession session, CDOCommitInfo commit, IResource resource) {
         CDOBranch mainBranch = session.getBranchManager().getMainBranch();
@@ -278,45 +240,7 @@ public class ResetToPreviousStateCommand extends AbstractHandler {
         return copier;
     }
 
-    private static Optional<IProject> getSelectedProject() {
-        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-        IProject project = null;
-        if (window != null) {
-            IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
-            if (selection.size() == 1 && selection.toList().get(0) instanceof IProject) {
-                project = (IProject) selection.toList().get(0);
-            }
-        }
-        return Optional.ofNullable(project);
-    }
-
-    private static Optional<IFile> getSelectedDiagram() {
-        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-        IFile file = null;
-        if (window != null) {
-            IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
-            if (selection.size() == 1 && selection.toList().get(0) instanceof IFile) {
-                file = (IFile) selection.toList().get(0);
-            }
-        }
-        return Optional.ofNullable(file);
-    }
-
-    private static boolean checkIfProjectNotLocked(IProject project) {
-        try {
-            for (IResource file : project.getFolder("models").members()) {
-                if (file instanceof IFile && LockStateInfo.isReadOnlyRequired((IFile) file)) {
-                    return false;
-                }
-            }
-        } catch (CoreException | IOException | ConcreteSyntaxTypeNotAvailableException e) {
-            LOGGER.warn("Error while checking preconditions.", e);
-        }
-
-        return true;
-    }
-
-    private static boolean checkIfDiagramNotLocked(IFile file) {
+    public static boolean checkIfDiagramNotLocked(IFile file) {
         try {
             if (LockStateInfo.isReadOnlyRequired((IFile) file)) {
                 return false;
