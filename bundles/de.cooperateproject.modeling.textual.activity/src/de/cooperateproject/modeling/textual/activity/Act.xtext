@@ -1,0 +1,12 @@
+grammar de.cooperateproject.modeling.textual.activity.Act with org.eclipse.xtext.common.Terminals
+
+import "platform:/resource/de.cooperateproject.modeling.textual.activity.metamodel/model/act.ecore" 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore" as uml
+import "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore" as textualCommons
+
+ActivityDiagram returns ActivityDiagram:
+	{ActivityDiagram}
+		'@start-actd' title=STRING
+		'@end-actd'
+;
