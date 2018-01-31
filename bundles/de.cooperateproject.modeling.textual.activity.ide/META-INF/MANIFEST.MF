@@ -8,5 +8,9 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.activity,
  de.cooperateproject.modeling.textual.activity.metamodel,
  org.eclipse.xtext.ide,
- org.eclipse.xtext.xbase.ide
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.cooperateproject.modeling.textual.activity.ide.contentassist.antlr.internal,
+ de.cooperateproject.modeling.textual.activity.ide.contentassist.antlr
+

@@ -87,8 +87,8 @@ Workflow {
             name = "${basename}.Act"
             fileExtensions = "act"
             
-            referencedResource = "platform:/resource/${basename}.metamodel/model/<name of your genmodel file>.genmodel"
-            referencedResource = "platform:/resource/${basename}.metamodel/model/<name of your meta model file>.ecore"
+            referencedResource = "platform:/resource/${basename}.metamodel/model/act.genmodel"
+            referencedResource = "platform:/resource/${basename}.metamodel/model/act.ecore"
             referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
             referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
             

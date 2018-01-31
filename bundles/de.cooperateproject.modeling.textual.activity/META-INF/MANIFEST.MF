@@ -9,5 +9,23 @@ Require-Bundle: de.cooperateproject.modeling.textual.activity.metamodel,
  org.eclipse.xtext,
  org.eclipse.xtext.xbase,
  org.eclipse.equinox.common;bundle-version="3.5.0",
- de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.7.1"
+ de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.7.1",
+ org.eclipse.uml2.codegen.ecore;bundle-version="2.3.0",
+ de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport,
+ de.cooperateproject.modeling.textual.common;visibility:=reexport,
+ net.winklerweb.cdoxtext.runtime;visibility:=reexport,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.cooperateproject.modeling.textual.activity.serializer,
+ de.cooperateproject.modeling.textual.activity.validation,
+ de.cooperateproject.modeling.textual.activity,
+ de.cooperateproject.modeling.textual.activity.parser.antlr.internal,
+ de.cooperateproject.modeling.textual.activity.parser.antlr,
+ de.cooperateproject.modeling.textual.activity.services,
+ de.cooperateproject.modeling.textual.activity.scoping,
+ de.cooperateproject.modeling.textual.activity.issues
+Import-Package: org.slf4j;version="1.7.2"
+
