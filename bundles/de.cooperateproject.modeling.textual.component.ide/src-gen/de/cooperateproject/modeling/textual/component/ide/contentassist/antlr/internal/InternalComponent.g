@@ -4554,9 +4554,9 @@ rule__Port__RealizedClassifierAssignment_5
 	(
 		{ before(grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0()); }
 		(
-			{ before(grammarAccess.getPortAccess().getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getPortAccess().getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1()); }
+			{ before(grammarAccess.getPortAccess().getRealizedClassifierClassifierFQNParserRuleCall_5_0_1()); }
+			ruleFQN
+			{ after(grammarAccess.getPortAccess().getRealizedClassifierClassifierFQNParserRuleCall_5_0_1()); }
 		)
 		{ after(grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0()); }
 	)

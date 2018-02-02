@@ -506,15 +506,15 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cConjugatedConjugatedKeyword_4_0_1 = (Keyword)cConjugatedAlternatives_4_0.eContents().get(1);
 		private final Assignment cRealizedClassifierAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final CrossReference cRealizedClassifierClassifierCrossReference_5_0 = (CrossReference)cRealizedClassifierAssignment_5.eContents().get(0);
-		private final RuleCall cRealizedClassifierClassifierIDTerminalRuleCall_5_0_1 = (RuleCall)cRealizedClassifierClassifierCrossReference_5_0.eContents().get(1);
+		private final RuleCall cRealizedClassifierClassifierFQNParserRuleCall_5_0_1 = (RuleCall)cRealizedClassifierClassifierCrossReference_5_0.eContents().get(1);
 		
 		//Port:
 		//	visibility=Visibility? 'port'
 		//	name=ID
-		//	'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier];
+		//	'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? 'port' name=ID 'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier]
+		//visibility=Visibility? 'port' name=ID 'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier|FQN]
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -547,14 +547,14 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'conjugated'
 		public Keyword getConjugatedConjugatedKeyword_4_0_1() { return cConjugatedConjugatedKeyword_4_0_1; }
 		
-		//realizedClassifier=[Classifier]
+		//realizedClassifier=[Classifier|FQN]
 		public Assignment getRealizedClassifierAssignment_5() { return cRealizedClassifierAssignment_5; }
 		
-		//[Classifier]
+		//[Classifier|FQN]
 		public CrossReference getRealizedClassifierClassifierCrossReference_5_0() { return cRealizedClassifierClassifierCrossReference_5_0; }
 		
-		//ID
-		public RuleCall getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1() { return cRealizedClassifierClassifierIDTerminalRuleCall_5_0_1; }
+		//FQN
+		public RuleCall getRealizedClassifierClassifierFQNParserRuleCall_5_0_1() { return cRealizedClassifierClassifierFQNParserRuleCall_5_0_1; }
 	}
 	public class InterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Interface");
@@ -1451,7 +1451,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//Port:
 	//	visibility=Visibility? 'port'
 	//	name=ID
-	//	'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier];
+	//	'realizes' conjugated?=('~' | 'conjugated')? realizedClassifier=[Classifier|FQN];
 	public PortElements getPortAccess() {
 		return pPort;
 	}
@@ -1597,7 +1597,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' | "'" ('\\' . | !('\\' | "'"))* "'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' |
+	//	"'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	}

@@ -69,7 +69,7 @@ Comment returns textualCommons::Comment:
 Port returns Port:
 	(visibility = Visibility)? 'port'
 	name = ID 
-	'realizes' (conjugated?=('~'|'conjugated'))? realizedClassifier=[Classifier]
+	'realizes' (conjugated?=('~'|'conjugated'))? realizedClassifier=[Classifier|FQN]
 ;
 
 Interface returns Interface: 

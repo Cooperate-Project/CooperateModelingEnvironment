@@ -948,9 +948,12 @@ rulePort returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getPortRule());
 					}
 				}
-				otherlv_5=RULE_ID
 				{
-					newLeafNode(otherlv_5, grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0());
+					newCompositeNode(grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0());
+				}
+				ruleFQN
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)

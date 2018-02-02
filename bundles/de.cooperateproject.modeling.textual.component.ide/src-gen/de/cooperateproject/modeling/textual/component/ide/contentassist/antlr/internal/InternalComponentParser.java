@@ -14167,25 +14167,29 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Port__RealizedClassifierAssignment_5"
-    // InternalComponent.g:4549:1: rule__Port__RealizedClassifierAssignment_5 : ( ( RULE_ID ) ) ;
+    // InternalComponent.g:4549:1: rule__Port__RealizedClassifierAssignment_5 : ( ( ruleFQN ) ) ;
     public final void rule__Port__RealizedClassifierAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalComponent.g:4553:1: ( ( ( RULE_ID ) ) )
-            // InternalComponent.g:4554:2: ( ( RULE_ID ) )
+            // InternalComponent.g:4553:1: ( ( ( ruleFQN ) ) )
+            // InternalComponent.g:4554:2: ( ( ruleFQN ) )
             {
-            // InternalComponent.g:4554:2: ( ( RULE_ID ) )
-            // InternalComponent.g:4555:3: ( RULE_ID )
+            // InternalComponent.g:4554:2: ( ( ruleFQN ) )
+            // InternalComponent.g:4555:3: ( ruleFQN )
             {
              before(grammarAccess.getPortAccess().getRealizedClassifierClassifierCrossReference_5_0()); 
-            // InternalComponent.g:4556:3: ( RULE_ID )
-            // InternalComponent.g:4557:4: RULE_ID
+            // InternalComponent.g:4556:3: ( ruleFQN )
+            // InternalComponent.g:4557:4: ruleFQN
             {
-             before(grammarAccess.getPortAccess().getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getPortAccess().getRealizedClassifierClassifierIDTerminalRuleCall_5_0_1()); 
+             before(grammarAccess.getPortAccess().getRealizedClassifierClassifierFQNParserRuleCall_5_0_1()); 
+            pushFollow(FOLLOW_2);
+            ruleFQN();
+
+            state._fsp--;
+
+             after(grammarAccess.getPortAccess().getRealizedClassifierClassifierFQNParserRuleCall_5_0_1()); 
 
             }
 

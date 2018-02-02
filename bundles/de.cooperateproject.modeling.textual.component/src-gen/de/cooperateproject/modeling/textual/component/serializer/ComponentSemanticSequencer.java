@@ -314,7 +314,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Port returns Port
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? name=ID (conjugated?='~' | conjugated?='conjugated')? realizedClassifier=[Classifier|ID])
+	 *     (visibility=Visibility? name=ID (conjugated?='~' | conjugated?='conjugated')? realizedClassifier=[Classifier|FQN])
 	 */
 	protected void sequence_Port(ISerializationContext context, Port semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
