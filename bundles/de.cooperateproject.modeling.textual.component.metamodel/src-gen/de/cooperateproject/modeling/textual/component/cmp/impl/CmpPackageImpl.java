@@ -898,11 +898,11 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(classifierRelationEClass_LeftUMLType);
         g1.getETypeArguments().add(g2);
-        initEReference(getClassifierRelation_LeftClassifier(), g1, null, "leftClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifierRelation_LeftClassifier(), g1, null, "leftClassifier", null, 1, 1, ClassifierRelation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(classifierRelationEClass_RightUMLType);
         g1.getETypeArguments().add(g2);
-        initEReference(getClassifierRelation_RightClassifier(), g1, null, "rightClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifierRelation_RightClassifier(), g1, null, "rightClassifier", null, 1, 1, ClassifierRelation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getConnector_ConnectorEnds(), this.getConnectorEnd(), null, "connectorEnds", null, 0, -1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -35,7 +35,7 @@ public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType
      * @return the value of the '<em>Left Classifier</em>' reference.
      * @see #setLeftClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getClassifierRelation_LeftClassifier()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     de.cooperateproject.modeling.textual.component.cmp.Classifier<LeftUMLType> getLeftClassifier();
@@ -61,7 +61,7 @@ public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType
      * @return the value of the '<em>Right Classifier</em>' reference.
      * @see #setRightClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getClassifierRelation_RightClassifier()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     de.cooperateproject.modeling.textual.component.cmp.Classifier<RightUMLType> getRightClassifier();

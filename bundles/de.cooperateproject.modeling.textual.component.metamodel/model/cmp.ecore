@@ -70,7 +70,8 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="leftClassifier"
-        lowerBound="1">
+        lowerBound="1"
+        transient="true">
       <eGenericType
           eClassifier="#//Classifier">
         <eTypeArguments
@@ -80,7 +81,8 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="rightClassifier"
-        lowerBound="1">
+        lowerBound="1"
+        transient="true">
       <eGenericType
           eClassifier="#//Classifier">
         <eTypeArguments

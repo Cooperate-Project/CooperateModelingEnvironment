@@ -19,7 +19,9 @@ public class ComponentTransientStatusProvider implements ITransientStatusProvide
     		CmpPackage.Literals.CONNECTOR_END__ROLE,
     		CmpPackage.Literals.PROPERTY__TYPE,
     		CmpPackage.Literals.PROPERTY__STATIC,
-    		CmpPackage.Literals.METHOD__ABSTRACT
+    		CmpPackage.Literals.METHOD__ABSTRACT,
+    		CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER,
+    		CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER
     		));
 
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
