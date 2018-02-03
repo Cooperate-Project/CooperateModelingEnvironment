@@ -22,6 +22,7 @@ import de.cooperateproject.modeling.textual.component.cmp.Parameter
 import org.apache.commons.lang3.StringUtils
 import de.cooperateproject.modeling.textual.common.issues.DependingElementMissingElementResolvableCheckerBase
 import org.eclipse.uml2.uml.AttributeOwner
+import de.cooperateproject.modeling.textual.component.cmp.Generalization
 
 class ComponentMissingUMLElementResolvableChecker extends DependingElementMissingElementResolvableCheckerBase {
 	
@@ -69,6 +70,11 @@ class ComponentMissingUMLElementResolvableChecker extends DependingElementMissin
         return element.type !== null && element.type.eResource !== null && StringUtils.isNotBlank(element.name)
     }
     
+    protected def dispatch localResolutionPossible(Generalization element) {
+    	return element.leftClassifier.referencedElementHasType(UMLPackage.Literals.INTERFACE) &&
+    	element.rightClassifier.referencedElementHasType(UMLPackage.Literals.INTERFACE)
+    }
+    
     protected def dispatch getDependencies(InterfaceRelation object) {
     	#[object.interface]
     }
@@ -85,6 +91,10 @@ class ComponentMissingUMLElementResolvableChecker extends DependingElementMissin
     
     protected def dispatch getDependencies(ConnectorEnd object) {
     	#[object.role]
+    }
+    
+    protected def dispatch getDependencies(Generalization object) {
+    	#[object.leftClassifier, object.rightClassifier]
     }
     
 }

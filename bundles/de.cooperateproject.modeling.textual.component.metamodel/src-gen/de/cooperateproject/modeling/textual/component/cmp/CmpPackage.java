@@ -224,31 +224,13 @@ public interface CmpPackage extends EPackage {
     int CLASSIFIER_RELATION = 2;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CLASSIFIER_RELATION__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CLASSIFIER_RELATION__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-
-    /**
      * The feature id for the '<em><b>Left Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CLASSIFIER_RELATION__LEFT_CLASSIFIER = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+    int CLASSIFIER_RELATION__LEFT_CLASSIFIER = 0;
 
     /**
      * The feature id for the '<em><b>Right Classifier</b></em>' reference.
@@ -257,7 +239,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER_RELATION__RIGHT_CLASSIFIER = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int CLASSIFIER_RELATION__RIGHT_CLASSIFIER = 1;
 
     /**
      * The number of structural features of the '<em>Classifier Relation</em>' class.
@@ -266,16 +248,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER_RELATION_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CLASSIFIER_RELATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
+    int CLASSIFIER_RELATION_FEATURE_COUNT = 2;
 
     /**
      * The number of operations of the '<em>Classifier Relation</em>' class.
@@ -284,7 +257,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER_RELATION_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
+    int CLASSIFIER_RELATION_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.cmp.impl.ConnectorImpl <em>Connector</em>}' class.
@@ -461,31 +434,13 @@ public interface CmpPackage extends EPackage {
     int GENERALIZATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int GENERALIZATION__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int GENERALIZATION__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
      * The feature id for the '<em><b>Left Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION__LEFT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int GENERALIZATION__LEFT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Right Classifier</b></em>' reference.
@@ -494,7 +449,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__RIGHT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int GENERALIZATION__RIGHT_CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -503,7 +458,7 @@ public interface CmpPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int GENERALIZATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

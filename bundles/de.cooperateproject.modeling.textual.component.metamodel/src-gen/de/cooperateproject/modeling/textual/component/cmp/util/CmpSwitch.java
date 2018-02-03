@@ -116,9 +116,6 @@ public class CmpSwitch<T1> extends Switch<T1> {
             case CmpPackage.CLASSIFIER_RELATION: {
                 ClassifierRelation<?, ?> classifierRelation = (ClassifierRelation<?, ?>)theEObject;
                 T1 result = caseClassifierRelation(classifierRelation);
-                if (result == null) result = caseAliasedElement(classifierRelation);
-                if (result == null) result = caseNamedElement(classifierRelation);
-                if (result == null) result = caseElement(classifierRelation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -145,8 +142,6 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 T1 result = caseGeneralization(generalization);
                 if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseClassifierRelation(generalization);
-                if (result == null) result = caseAliasedElement(generalization);
-                if (result == null) result = caseNamedElement(generalization);
                 if (result == null) result = caseElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

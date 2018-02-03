@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.OperationOwner
 import org.eclipse.uml2.uml.Interface
+import de.cooperateproject.modeling.textual.component.cmp.Generalization
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -146,6 +147,12 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 			umlInterfaceUsage.name = element.name
 			element.referencedElement = umlInterfaceUsage
 		}
+	}
+	
+	private def dispatch fixMissingUMLElement(Generalization element) {
+		if(!resolvePossible) return Void
+		val umlGeneralization = element.leftClassifier.referencedElement.createGeneralization(element.rightClassifier.referencedElement)
+		element.referencedElement = umlGeneralization
 	}
 
 	private static def <T> umlParent(EObject element, Class<T> f) {

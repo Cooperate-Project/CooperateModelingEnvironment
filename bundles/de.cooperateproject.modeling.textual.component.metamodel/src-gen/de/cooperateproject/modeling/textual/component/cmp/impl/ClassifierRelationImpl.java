@@ -2,13 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
-
 import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -25,7 +24,7 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @generated
  */
-public abstract class ClassifierRelationImpl<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends AliasedElementImpl implements ClassifierRelation<LeftUMLType, RightUMLType> {
+public abstract class ClassifierRelationImpl<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends CDOObjectImpl implements ClassifierRelation<LeftUMLType, RightUMLType> {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -43,6 +42,16 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends Classifier, Rig
     @Override
     protected EClass eStaticClass() {
         return CmpPackage.Literals.CLASSIFIER_RELATION;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
     }
 
     /**

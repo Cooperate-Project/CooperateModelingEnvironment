@@ -2,8 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -21,9 +20,10 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getClassifierRelation()
  * @model abstract="true"
+ * @extends CDOObject
  * @generated
  */
-public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends AliasedElement {
+public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends CDOObject {
     /**
      * Returns the value of the '<em><b>Left Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
