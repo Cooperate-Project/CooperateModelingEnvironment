@@ -430,12 +430,14 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cRightClassifierClassifierCrossReference_4_0 = (CrossReference)cRightClassifierAssignment_4.eContents().get(0);
 		private final RuleCall cRightClassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightClassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCommentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCommentsCommentParserRuleCall_6_0 = (RuleCall)cCommentsAssignment_6.eContents().get(0);
 		
 		//Generalization:
-		//	'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')';
+		//	'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')'
+		//'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'isa'
@@ -467,6 +469,12 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_6() { return cCommentsAssignment_6; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_6_0() { return cCommentsCommentParserRuleCall_6_0; }
 	}
 	public class CommentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Comment");
@@ -1429,7 +1437,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Generalization:
-	//	'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')';
+	//	'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' comments+=Comment?;
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}

@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.transformation.cls.tests;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -83,6 +84,11 @@ public class TextualToGraphicalClassTest extends ClsDirectionalTransformationTes
     @Test
     public void testChangedRootIncremental() throws Exception {
         testIncremental("ClassDiagramChangedRoot");
+    }
+    
+    @Test
+    public void testClassCommentedGeneralization() throws Exception {
+        testRegular("ClassDiagramCommentedGeneralization");
     }
 
     @Override

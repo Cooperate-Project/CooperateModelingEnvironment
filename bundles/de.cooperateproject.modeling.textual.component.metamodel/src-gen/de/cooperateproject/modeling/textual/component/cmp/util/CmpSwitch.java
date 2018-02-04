@@ -140,8 +140,9 @@ public class CmpSwitch<T1> extends Switch<T1> {
             case CmpPackage.GENERALIZATION: {
                 Generalization generalization = (Generalization)theEObject;
                 T1 result = caseGeneralization(generalization);
-                if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseClassifierRelation(generalization);
+                if (result == null) result = caseCommentable(generalization);
+                if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

@@ -26,7 +26,10 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 
   	element := rootPackage.toEObject();
   	children := self.rootpackage.classifiers.map commentableToShape();
-    children += self.rootpackage.findAllComments().map commentToShape();
+  	
+    children += self.rootpackage.findAllClassifierComments().map commentToShape();
+    children += self.rootpackage.relations->selectByKind(cmp::Generalization)->select(isCommented()).comments->map commentToShape();
+  	
 
 	children += self.rootpackage.classifiers.map classifiersToShape();
 	edges := self.rootpackage.relations.map classifierRelationsToEdge();
@@ -34,7 +37,8 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	//also create connectors that are nested
 	var allConnectors := self.rootpackage.getAllContentsOfType(cmp::Connector.oclAsType(ecore::EClass), true);
 	edges += allConnectors->oclAsType(cmp::Connector).map connectorToEdge();
-	edges += self.rootpackage.findAllComments().map commentToEdge(); 
+	edges += self.rootpackage.findAllClassifierComments().map commentToEdge(); 
+	edges += self.rootpackage.relations->selectByKind(cmp::Generalization)->select(isCommented()).comments->map commentToEdge();
 	
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
@@ -159,9 +163,12 @@ when { self.oclIsKindOf(cmp::Require) }
 mapping textualCommons::Comment::commentToEdge() : notation::Connector
 {
     type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
+    
+    var commentShape := self.resolveoneIn(textualCommons::Comment::commentToShape);
+    var realCommentedElement := self.commentedElement.oclAsType(textualCommons::Commentable);
 
-    source := self.resolveoneIn(textualCommons::Comment::commentToShape);
-    target := self.commentedElement.resolveoneIn(textualCommons::Commentable::commentableToShape);
+    source := commentShape;
+    target := realCommentedElement.typeToView();
     result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
     
     bendpoints := result.map connectorToBendpoint();
@@ -479,6 +486,32 @@ mapping cmp::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : st
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component";
 }
 
+query textualCommons::Element::isCommentable() : Boolean
+{
+    return self.oclIsKindOf(textualCommons::Commentable);
+}
+
+query textualCommons::Element::isCommented() : Boolean
+{
+    return self.isCommentable() and not self.oclAsType(textualCommons::Commentable).comments->isEmpty();
+}
+
+query textualCommons::Commentable::typeToView() : notation::View
+{
+    return if self.oclIsKindOf(cmp::Generalization) then self.typeToEdge() else self.typeToShape() endif;
+}
+
+query textualCommons::Commentable::typeToEdge() : notation::View
+{
+    return self.resolveoneIn(cmp::ClassifierRelation::classifierRelationsToEdge);
+}
+
+query textualCommons::Commentable::typeToShape() : notation::View
+{
+    return self.resolveoneIn(cmp::Classifier::classifiersToShape);
+}
+
+
 query cmp::Component::isNestedCmp() : Boolean
 {	
 	return self.container().oclIsTypeOf(cmp::Component);
@@ -503,7 +536,7 @@ query cmp::RootPackage::findAllInterfaceRelations() : Sequence(cmp::InterfaceRel
 	return interfaceRelation;
 }
 
-query cmp::RootPackage::findAllComments() : Sequence(textualCommons::Comment) {
+query cmp::RootPackage::findAllClassifierComments() : Sequence(textualCommons::Comment) {
     var classifierComments := self.classifiers.comments->flatten();
     return classifierComments;
 }

@@ -141,6 +141,11 @@
       <eTypeArguments
           eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes
+        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"

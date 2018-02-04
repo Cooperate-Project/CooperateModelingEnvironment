@@ -116,6 +116,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParameterAccess().getTypeAssignment_3(), "rule__Parameter__TypeAssignment_3");
 					put(grammarAccess.getGeneralizationAccess().getLeftAssignment_2(), "rule__Generalization__LeftAssignment_2");
 					put(grammarAccess.getGeneralizationAccess().getRightAssignment_4(), "rule__Generalization__RightAssignment_4");
+					put(grammarAccess.getGeneralizationAccess().getCommentsAssignment_6(), "rule__Generalization__CommentsAssignment_6");
 					put(grammarAccess.getImplementationAccess().getLeftAssignment_2(), "rule__Implementation__LeftAssignment_2");
 					put(grammarAccess.getImplementationAccess().getRightAssignment_4(), "rule__Implementation__RightAssignment_4");
 					put(grammarAccess.getXtextAssociationAccess().getTwoSideBidirectionalityAssignment_0(), "rule__XtextAssociation__TwoSideBidirectionalityAssignment_0");

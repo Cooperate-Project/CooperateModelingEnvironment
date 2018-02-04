@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import org.eclipse.uml2.uml.Interface;
@@ -16,5 +17,5 @@ import org.eclipse.uml2.uml.Interface;
  * @model
  * @generated
  */
-public interface Generalization extends UMLReferencingElement<org.eclipse.uml2.uml.Generalization>, ClassifierRelation<Interface, Interface> {
+public interface Generalization extends UMLReferencingElement<org.eclipse.uml2.uml.Generalization>, ClassifierRelation<Interface, Interface>, Commentable<org.eclipse.uml2.uml.Generalization> {
 } // Generalization

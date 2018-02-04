@@ -924,6 +924,10 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g2 = createEGenericType(theUMLPackage.getGeneralization());
         g1.getETypeArguments().add(g2);
         generalizationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        g2 = createEGenericType(theUMLPackage.getGeneralization());
+        g1.getETypeArguments().add(g2);
+        generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getTypedConnector());
         g2 = createEGenericType(theUMLPackage.getInterfaceRealization());
         g1.getETypeArguments().add(g2);

@@ -231,6 +231,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 Generalization generalization = (Generalization)theEObject;
                 T1 result = caseGeneralization(generalization);
                 if (result == null) result = caseTypedConnector(generalization);
+                if (result == null) result = caseCommentable(generalization);
                 if (result == null) result = caseConnector(generalization);
                 if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = casePackageableElement(generalization);

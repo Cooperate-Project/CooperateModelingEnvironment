@@ -2,6 +2,7 @@ package de.cooperateproject.modeling.transformation.cls.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
@@ -79,6 +80,11 @@ public class GraphicalToTextualClassTest extends ClsDirectionalTransformationTes
     @Test
     public void testClassChangedRootIncremental() throws Exception {
         testIncremental("ClassDiagramChangedRoot");
+    }
+    
+    @Test
+    public void testClassCommentedGeneralization() throws Exception {
+       testRegular("ClassDiagramCommentedGeneralization");
     }
 
     @Test

@@ -108,7 +108,7 @@ Connector:
 
 
 Generalization: 
-	'isa' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
+	'isa' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')' (comments+=Comment)?
 ;
 
 Implementation:

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ComponentDiagramCommentedGeneralization">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramCommentedGeneralization.uml#_W0qy8Ak8EeiHz6plkrdsjw"/>
+    <relations xsi:type="cmp:Generalization">
+      <referencedElement xsi:type="uml:Generalization" href="ComponentDiagramCommentedGeneralization.uml#_dmQbgAk8EeiHz6plkrdsjw"/>
+      <comments>
+        <referencedElement xsi:type="uml:Comment" href="ComponentDiagramCommentedGeneralization.uml#_e23u0Ak8EeiHz6plkrdsjw"/>
+      </comments>
+    </relations>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramCommentedGeneralization.uml#_bqui8Ak8EeiHz6plkrdsjw"/>
+    </classifiers>
+    <classifiers xsi:type="cmp:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ComponentDiagramCommentedGeneralization.uml#_ch6poAk8EeiHz6plkrdsjw"/>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>

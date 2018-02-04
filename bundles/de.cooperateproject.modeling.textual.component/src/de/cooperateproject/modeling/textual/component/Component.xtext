@@ -59,7 +59,7 @@ Class returns Class:
 ;
 
 Generalization returns Generalization:
-		'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' 
+		'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' (comments+=Comment)?
 ;
 
 Comment returns textualCommons::Comment: 
