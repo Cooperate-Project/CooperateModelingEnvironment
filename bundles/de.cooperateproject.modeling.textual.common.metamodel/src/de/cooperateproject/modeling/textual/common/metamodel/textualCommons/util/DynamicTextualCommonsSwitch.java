@@ -23,6 +23,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 
 public class DynamicTextualCommonsSwitch<T> extends TextualCommonsSwitch<T> {
 
@@ -44,6 +45,8 @@ public class DynamicTextualCommonsSwitch<T> extends TextualCommonsSwitch<T> {
                 (s, o) -> s.casePackageableElement((PackageableElement) o));
         switchCases.put(TextualCommonsPackage.PACKAGE_IMPORT, (s, o) -> s.casePackageImport((PackageImport) o));
         switchCases.put(TextualCommonsPackage.NAME_OPTIONAL, (s, o) -> s.caseNameOptional((NameOptional) o));
+        switchCases.put(TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT,
+                (s, o) -> s.caseVisibilityHavingElement((VisibilityHavingElement) o));
 
         standardHierarchy = new HashMap<>();
         standardHierarchy.put(TextualCommonsPackage.ELEMENT, Arrays.asList(TextualCommonsPackage.ELEMENT));
@@ -66,6 +69,9 @@ public class DynamicTextualCommonsSwitch<T> extends TextualCommonsSwitch<T> {
                 Arrays.asList(TextualCommonsPackage.PACKAGEABLE_ELEMENT, TextualCommonsPackage.ELEMENT));
         standardHierarchy.put(TextualCommonsPackage.PACKAGE_IMPORT, Arrays.asList(TextualCommonsPackage.PACKAGE_IMPORT,
                 TextualCommonsPackage.UML_REFERENCING_ELEMENT, TextualCommonsPackage.ELEMENT));
+        standardHierarchy.put(TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT,
+                Arrays.asList(TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT));
+        standardHierarchy.put(TextualCommonsPackage.NAME_OPTIONAL, Arrays.asList(TextualCommonsPackage.NAME_OPTIONAL));
     }
 
     @SuppressWarnings("unchecked")
