@@ -73,6 +73,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     private final CDOTransaction cdoMainView;
     private final ConcreteSyntaxModel concreteSyntaxModel;
     private final IFile launcherFile;
+    private final IWorkbenchListener shutdownHook;
     private static ITransformationManager transformationManager;
     private final boolean isReadOnly;
     private Optional<IPartListener2> disposeListener = Optional.empty();
@@ -104,6 +105,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         doLockRelevantModels(cdoMainView, relevantURIs);
         transformationManager = createTransformationManager(cdoMainView, cdoView, relevantURIs);
         this.launcherFile = launcherFile;
+        this.shutdownHook = createShutdownHook(launcherFile.getProject());
     }
 
     @Override
@@ -113,7 +115,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         registerListener(newEditorPart);
         addPropertyChangeHandler(createMergeHandler(launcherFile.getProject()));
         addPropertyChangeHandler(createReloadHandler());
-        addShutdownListener(launcherFile.getProject());
+        addShutdownListener(shutdownHook);
         return newEditorPart;
     }
 
@@ -154,7 +156,6 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
     }
 
     protected void reloadEditorContentAfterViewChange(IWorkbenchPart source) {
-
         return;
     }
 
@@ -166,6 +167,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         Validate.notNull(p);
 
         promptForCommit(p.getActivePart(), launcherFile.getProject());
+        removeShutdownListener(shutdownHook);
 
         disposeListener.ifPresent(p::removePartListener);
         disposeListener = Optional.empty();
@@ -215,9 +217,16 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
         };
     }
 
-    private static void addShutdownListener(IProject project) {
-        IWorkbench workbench = PlatformUI.getWorkbench();
-        workbench.addWorkbenchListener(new IWorkbenchListener() {
+    private static void addShutdownListener(IWorkbenchListener shutdownHook) {
+        PlatformUI.getWorkbench().addWorkbenchListener(shutdownHook);
+    }
+
+    private static void removeShutdownListener(IWorkbenchListener shutdownHook) {
+        PlatformUI.getWorkbench().removeWorkbenchListener(shutdownHook);
+    }
+
+    private static IWorkbenchListener createShutdownHook(IProject project) {
+        return new IWorkbenchListener() {
             @Override
             public boolean preShutdown(IWorkbench workbench, boolean forced) {
                 IWorkbenchPage activePage = workbench.getActiveWorkbenchWindow().getActivePage();
@@ -229,7 +238,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
             public void postShutdown(IWorkbench workbench) {
                 // Nothing to do here
             }
-        });
+        };
     }
 
     private static PropertyChangeHandlerBase createMergeHandler(IProject project) {
