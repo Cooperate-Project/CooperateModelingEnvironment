@@ -18,12 +18,16 @@ class ActParsingTest {
 	@Inject
 	ParseHelper<ActivityDiagram> parseHelper
 	
+	
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			@start-actd "SomeName"
+			"SomeTitle"
+			@end-actd
 		''')
 		Assert.assertNotNull(result)
 		Assert.assertTrue(result.eResource.errors.isEmpty)
 	}
+	
 }
