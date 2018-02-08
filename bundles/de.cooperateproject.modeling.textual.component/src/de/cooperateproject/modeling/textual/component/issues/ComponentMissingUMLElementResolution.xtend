@@ -1,38 +1,35 @@
 package de.cooperateproject.modeling.textual.component.issues
 
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.component.cmp.Component
-import de.cooperateproject.modeling.textual.component.cmp.RootPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.uml2.uml.Classifier
-import org.eclipse.uml2.uml.Element
-import org.eclipse.uml2.uml.UMLFactory
-import org.eclipse.uml2.uml.UMLPackage
-import de.cooperateproject.modeling.textual.component.cmp.Provide
-import org.eclipse.emf.ecore.EObject
-import java.util.Optional
-import org.eclipse.uml2.uml.BehavioredClassifier
-import de.cooperateproject.modeling.textual.component.cmp.Require
 import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import org.eclipse.uml2.uml.StructuredClassifier
-import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.cmp.Component
 import de.cooperateproject.modeling.textual.component.cmp.Connector
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
-import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+import de.cooperateproject.modeling.textual.component.cmp.Generalization
+import de.cooperateproject.modeling.textual.component.cmp.Method
+import de.cooperateproject.modeling.textual.component.cmp.Parameter
+import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.cmp.Provide
+import de.cooperateproject.modeling.textual.component.cmp.Require
+import de.cooperateproject.modeling.textual.component.cmp.RootPackage
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
+import java.util.Optional
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.uml2.uml.AttributeOwner
-import de.cooperateproject.modeling.textual.component.cmp.Parameter
 import org.eclipse.uml2.uml.BehavioralFeature
-import de.cooperateproject.modeling.textual.component.cmp.Method
-import org.eclipse.emf.common.util.BasicEList
-import org.eclipse.uml2.uml.Type
+import org.eclipse.uml2.uml.BehavioredClassifier
+import org.eclipse.uml2.uml.Classifier
+import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.OperationOwner
-import org.eclipse.uml2.uml.Interface
-import de.cooperateproject.modeling.textual.component.cmp.Generalization
+import org.eclipse.uml2.uml.UMLFactory
+import org.eclipse.uml2.uml.UMLPackage
+
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -70,10 +67,7 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 	private def dispatch fixMissingUMLElement(Method element) {
 		if(!resolvePossible) return Void
 		val umlClassifier = element.umlParent(OperationOwner)
-		val parameterNames = new BasicEList(element.parameters.map[name])
-		val parameterTypes = new BasicEList(element.parameters.map[type].map[type|type as Type])
-		val umlOperation = umlClassifier.get.createOwnedOperation(element.name, parameterNames, parameterTypes,
-			element.type)
+		val umlOperation = umlClassifier.get.createOwnedOperation(element.name, null, null, element.type)
 		umlOperation.visibility = element.visibility
 		umlOperation.isStatic = element.static
 		umlOperation.isAbstract = element.abstract
