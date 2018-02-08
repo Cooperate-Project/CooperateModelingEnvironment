@@ -50,13 +50,18 @@
    <element name="transformation">
       <complexType>
          <sequence>
-            <choice minOccurs="1" maxOccurs="unbounded">
-               <element ref="defaulttransformation"/>
-               <element ref="transformationfactory"/>
-            </choice>
             <choice minOccurs="0" maxOccurs="1">
                <element ref="transformationfolder"/>
                <element ref="transformationuriresolver"/>
+            </choice>
+            <choice>
+               <sequence>
+                  <element ref="defaulttransformation"/>
+                  <sequence minOccurs="0" maxOccurs="unbounded">
+                     <element ref="postprocessor"/>
+                  </sequence>
+               </sequence>
+               <element ref="transformationfactory"/>
             </choice>
          </sequence>
       </complexType>
@@ -118,6 +123,36 @@
                <documentation>
                   
                </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="postprocessor">
+      <complexType>
+         <attribute name="direction" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="textual to graphical">
+                  </enumeration>
+                  <enumeration value="graphical to textual">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":de.cooperateproject.modeling.transformation.common.impl.PostProcessor"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
