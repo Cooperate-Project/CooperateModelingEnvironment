@@ -15,6 +15,8 @@
 
 	<modules>
 		<module>de.cooperateproject.modeling.graphical.papyrus.extensions.tests</module>
+		<module>de.cooperateproject.modeling.textual.activity.tests</module>
+		<module>de.cooperateproject.modeling.textual.activity.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.common.tests</module>
