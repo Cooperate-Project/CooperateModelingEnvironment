@@ -1,7 +1,10 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.tests.commons.constraints;
 
+import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.capture;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.replay;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -12,9 +15,12 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.easymock.Capture;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
@@ -25,6 +31,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.emf.validation.service.ConstraintExistsException;
+import org.eclipse.emf.validation.service.ConstraintRegistry;
+import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
@@ -92,16 +101,30 @@ public abstract class CooperateConstraintTestBase {
 	}
 	
 	private IStatus test(EObject element) {
+		String randomIdentifier = RandomStringUtils.randomAlphanumeric(30);
+		IConstraintDescriptor constraintDescriptor = createMock(IConstraintDescriptor.class);
+		expect(constraintDescriptor.getId()).andReturn(randomIdentifier).anyTimes();
+		expect(constraintDescriptor.getPluginId()).andReturn("dummy").anyTimes();
+		expect(constraintDescriptor.getStatusCode()).andReturn(42).anyTimes();
+		replay(constraintDescriptor);
+		try {
+			ConstraintRegistry.getInstance().register(constraintDescriptor);
+		} catch (ConstraintExistsException e) {
+			throw new RuntimeException(e);
+		}
+		
 		IValidationContext ctx = createMock(IValidationContext.class);
+		expect(ctx.getCurrentConstraintId()).andReturn(randomIdentifier).times(0, 1);
 		expect(ctx.getTarget()).andReturn(element).anyTimes();
 		expect(ctx.createSuccessStatus()).andReturn(Status.OK_STATUS).times(0, 1);
-		expect(ctx.createFailureStatus(element)).andReturn(Status.CANCEL_STATUS).times(0, 1);
-		// mock void method
-		/*ctx.addResults(anyObject());
-		expectLastCall().once();*/
-		// try to m
-		/*expect(ctx.getResultLocus()).andReturn(EasyMock.<HashSet<EObject>> anyObject()).anyTimes();*/
+		
+		Capture<Set<EObject>> capturedResults = new Capture<>();
+		ctx.addResults(capture(capturedResults));
+		expectLastCall().times(0, 1);
+		expect(ctx.getResultLocus()).andAnswer(capturedResults::getValue);
+		expect(ctx.createFailureStatus(new Object[] {anyObject()})).andReturn(Status.CANCEL_STATUS).anyTimes();
 		replay(ctx);
+		
 		return subject.validate(ctx);
 	}
 	

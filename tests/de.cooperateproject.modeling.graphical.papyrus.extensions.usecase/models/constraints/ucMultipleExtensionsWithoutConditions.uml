@@ -5,7 +5,6 @@
       <extend xmi:id="_G18G8_E2EeeFT65L_bKQTg" name="test" extendedCase="_G18G8vE2EeeFT65L_bKQTg" extensionLocation="_G18G9PE2EeeFT65L_bKQTg"/>
       <extend xmi:id="_4HUkIPE6EeeQb_kE67ftlw" name="test2" extendedCase="_G18G8vE2EeeFT65L_bKQTg" extensionLocation="_G18G9PE2EeeFT65L_bKQTg"/>
       <extensionPoint xmi:id="_G18G9PE2EeeFT65L_bKQTg" name="test"/>
-      <extensionPoint xmi:id="_hS5t8PE2EeeQb_kE67ftlw" name="test2"/>
     </ownedUseCase>
   </packagedElement>
 </uml:Model>

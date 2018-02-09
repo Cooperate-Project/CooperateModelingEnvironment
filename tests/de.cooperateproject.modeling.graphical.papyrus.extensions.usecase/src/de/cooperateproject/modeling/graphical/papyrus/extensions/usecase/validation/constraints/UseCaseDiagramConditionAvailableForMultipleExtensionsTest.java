@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.validation.constraints;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.cooperateproject.modeling.graphical.papyrus.extensions.tests.commons.constraints.CooperateConstraintTestBase;
@@ -11,13 +10,14 @@ public class UseCaseDiagramConditionAvailableForMultipleExtensionsTest extends C
 		super(UseCaseDiagramConditionAvailableForMultipleExtensions.class);
 	}
 
-	@Test @Ignore
+	@Test
     public void testMultipleExtensions() {
-        testSuccess("ucMultipleExtensions.uml");
+		testFail("ucMultipleExtensionsWithoutConditions.uml");
     }
-    
-	/*@Test 
-	public void testUseCaseExtendMultipleLocation() {
-	    testFail("ucExtendMultipleLocation.uml");
-	}*/
+	
+	@Test
+    public void testMultipleExtensionsWithCondition() {
+		testSuccess("ucMultipleExtensionsWithCondition.uml");
+    }
+
 }

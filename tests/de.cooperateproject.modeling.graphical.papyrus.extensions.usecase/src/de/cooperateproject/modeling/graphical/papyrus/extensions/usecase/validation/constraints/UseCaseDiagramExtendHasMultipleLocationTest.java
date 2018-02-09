@@ -17,6 +17,6 @@ public class UseCaseDiagramExtendHasMultipleLocationTest extends CooperateConstr
     
 	@Test 
 	public void testUseCaseExtendMultipleLocation() {
-	    testFail("ucExtendMultipleLocation.uml");
+	    testFail("ucExtendMultipleLocations.uml");
 	}
 }

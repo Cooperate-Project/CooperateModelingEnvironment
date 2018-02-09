@@ -39,7 +39,7 @@ public class UseCaseDiagramConditionAvailableForMultipleExtensions extends Coope
                 .filter(e -> e.getExtensionLocations().size() == 1)
                 .collect(Collectors.groupingBy(e -> e.getExtensionLocations().iterator().next()));
         Set<Extend> violatingElements = extendsToCheck.entrySet().stream().filter(e -> e.getValue().size() > 1)
-                .map(Entry::getValue).flatMap(Collection::stream).collect(Collectors.toSet());
+                .map(Entry::getValue).flatMap(Collection::stream).distinct().filter(e -> e.getCondition() == null).collect(Collectors.toSet());
         ctx.addResults(violatingElements);
         return violatingElements.isEmpty();
     }
