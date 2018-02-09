@@ -248,7 +248,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Generalization returns Generalization
 	 *
 	 * Constraint:
-	 *     (leftClassifier=[Classifier|ID] rightClassifier=[Classifier|ID] comments+=Comment?)
+	 *     (leftClassifier=[Interface|ID] rightClassifier=[Interface|ID] comments+=Comment?)
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

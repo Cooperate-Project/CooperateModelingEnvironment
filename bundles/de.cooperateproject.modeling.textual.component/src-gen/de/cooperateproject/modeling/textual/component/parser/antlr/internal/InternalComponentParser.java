@@ -2067,7 +2067,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             				
             otherlv_2=(Token)match(input,RULE_ID,FOLLOW_20); 
 
-            					newLeafNode(otherlv_2, grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierCrossReference_2_0());
+            					newLeafNode(otherlv_2, grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceCrossReference_2_0());
             				
 
             }
@@ -2092,7 +2092,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             				
             otherlv_4=(Token)match(input,RULE_ID,FOLLOW_21); 
 
-            					newLeafNode(otherlv_4, grammarAccess.getGeneralizationAccess().getRightClassifierClassifierCrossReference_4_0());
+            					newLeafNode(otherlv_4, grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceCrossReference_4_0());
             				
 
             }

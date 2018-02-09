@@ -14023,17 +14023,17 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:4483:2: ( ( RULE_ID ) )
             // InternalComponent.g:4484:3: ( RULE_ID )
             {
-             before(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierCrossReference_2_0()); 
+             before(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceCrossReference_2_0()); 
             // InternalComponent.g:4485:3: ( RULE_ID )
             // InternalComponent.g:4486:4: RULE_ID
             {
-             before(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1()); 
+             before(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1()); 
+             after(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceIDTerminalRuleCall_2_0_1()); 
 
             }
 
-             after(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierCrossReference_2_0()); 
+             after(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceCrossReference_2_0()); 
 
             }
 
@@ -14068,17 +14068,17 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:4502:2: ( ( RULE_ID ) )
             // InternalComponent.g:4503:3: ( RULE_ID )
             {
-             before(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierCrossReference_4_0()); 
+             before(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceCrossReference_4_0()); 
             // InternalComponent.g:4504:3: ( RULE_ID )
             // InternalComponent.g:4505:4: RULE_ID
             {
-             before(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1()); 
+             before(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceIDTerminalRuleCall_4_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1()); 
+             after(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceIDTerminalRuleCall_4_0_1()); 
 
             }
 
-             after(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierCrossReference_4_0()); 
+             after(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceCrossReference_4_0()); 
 
             }
 

@@ -784,7 +784,7 @@ ruleGeneralization returns [EObject current=null]
 				}
 				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierCrossReference_2_0());
+					newLeafNode(otherlv_2, grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceCrossReference_2_0());
 				}
 			)
 		)
@@ -801,7 +801,7 @@ ruleGeneralization returns [EObject current=null]
 				}
 				otherlv_4=RULE_ID
 				{
-					newLeafNode(otherlv_4, grammarAccess.getGeneralizationAccess().getRightClassifierClassifierCrossReference_4_0());
+					newLeafNode(otherlv_4, grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceCrossReference_4_0());
 				}
 			)
 		)

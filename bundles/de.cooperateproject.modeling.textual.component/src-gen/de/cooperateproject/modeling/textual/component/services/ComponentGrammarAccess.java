@@ -423,21 +423,21 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsaKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLeftClassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cLeftClassifierClassifierCrossReference_2_0 = (CrossReference)cLeftClassifierAssignment_2.eContents().get(0);
-		private final RuleCall cLeftClassifierClassifierIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftClassifierClassifierCrossReference_2_0.eContents().get(1);
+		private final CrossReference cLeftClassifierInterfaceCrossReference_2_0 = (CrossReference)cLeftClassifierAssignment_2.eContents().get(0);
+		private final RuleCall cLeftClassifierInterfaceIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftClassifierInterfaceCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRightClassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cRightClassifierClassifierCrossReference_4_0 = (CrossReference)cRightClassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRightClassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightClassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final CrossReference cRightClassifierInterfaceCrossReference_4_0 = (CrossReference)cRightClassifierAssignment_4.eContents().get(0);
+		private final RuleCall cRightClassifierInterfaceIDTerminalRuleCall_4_0_1 = (RuleCall)cRightClassifierInterfaceCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cCommentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cCommentsCommentParserRuleCall_6_0 = (RuleCall)cCommentsAssignment_6.eContents().get(0);
 		
 		//Generalization:
-		//	'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' comments+=Comment?;
+		//	'isa' '(' leftClassifier=[Interface] "," rightClassifier=[Interface] ')' comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' comments+=Comment?
+		//'isa' '(' leftClassifier=[Interface] "," rightClassifier=[Interface] ')' comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'isa'
@@ -446,26 +446,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//leftClassifier=[Classifier]
+		//leftClassifier=[Interface]
 		public Assignment getLeftClassifierAssignment_2() { return cLeftClassifierAssignment_2; }
 		
-		//[Classifier]
-		public CrossReference getLeftClassifierClassifierCrossReference_2_0() { return cLeftClassifierClassifierCrossReference_2_0; }
+		//[Interface]
+		public CrossReference getLeftClassifierInterfaceCrossReference_2_0() { return cLeftClassifierInterfaceCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getLeftClassifierClassifierIDTerminalRuleCall_2_0_1() { return cLeftClassifierClassifierIDTerminalRuleCall_2_0_1; }
+		public RuleCall getLeftClassifierInterfaceIDTerminalRuleCall_2_0_1() { return cLeftClassifierInterfaceIDTerminalRuleCall_2_0_1; }
 		
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rightClassifier=[Classifier]
+		//rightClassifier=[Interface]
 		public Assignment getRightClassifierAssignment_4() { return cRightClassifierAssignment_4; }
 		
-		//[Classifier]
-		public CrossReference getRightClassifierClassifierCrossReference_4_0() { return cRightClassifierClassifierCrossReference_4_0; }
+		//[Interface]
+		public CrossReference getRightClassifierInterfaceCrossReference_4_0() { return cRightClassifierInterfaceCrossReference_4_0; }
 		
 		//ID
-		public RuleCall getRightClassifierClassifierIDTerminalRuleCall_4_0_1() { return cRightClassifierClassifierIDTerminalRuleCall_4_0_1; }
+		public RuleCall getRightClassifierInterfaceIDTerminalRuleCall_4_0_1() { return cRightClassifierInterfaceIDTerminalRuleCall_4_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -1437,7 +1437,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Generalization:
-	//	'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' comments+=Comment?;
+	//	'isa' '(' leftClassifier=[Interface] "," rightClassifier=[Interface] ')' comments+=Comment?;
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}

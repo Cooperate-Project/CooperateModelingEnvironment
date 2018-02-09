@@ -4481,13 +4481,13 @@ rule__Generalization__LeftClassifierAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierCrossReference_2_0()); }
+		{ before(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceCrossReference_2_0()); }
 		(
-			{ before(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1()); }
+			{ before(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceIDTerminalRuleCall_2_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierIDTerminalRuleCall_2_0_1()); }
+			{ after(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceIDTerminalRuleCall_2_0_1()); }
 		)
-		{ after(grammarAccess.getGeneralizationAccess().getLeftClassifierClassifierCrossReference_2_0()); }
+		{ after(grammarAccess.getGeneralizationAccess().getLeftClassifierInterfaceCrossReference_2_0()); }
 	)
 ;
 finally {
@@ -4500,13 +4500,13 @@ rule__Generalization__RightClassifierAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierCrossReference_4_0()); }
+		{ before(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceCrossReference_4_0()); }
 		(
-			{ before(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1()); }
+			{ before(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceIDTerminalRuleCall_4_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierIDTerminalRuleCall_4_0_1()); }
+			{ after(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceIDTerminalRuleCall_4_0_1()); }
 		)
-		{ after(grammarAccess.getGeneralizationAccess().getRightClassifierClassifierCrossReference_4_0()); }
+		{ after(grammarAccess.getGeneralizationAccess().getRightClassifierInterfaceCrossReference_4_0()); }
 	)
 ;
 finally {
