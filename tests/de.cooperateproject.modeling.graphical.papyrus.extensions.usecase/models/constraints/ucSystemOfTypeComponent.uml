@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_FJM_q_RoEeeAntgTKECPrw" name="RootElement">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_FJM_rPRoEeeAntgTKECPrw" name="a"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_FJM_rfRoEeeAntgTKECPrw" name="foo" useCase="_FJM_rvRoEeeAntgTKECPrw">
+    <ownedUseCase xmi:type="uml:UseCase" xmi:id="_FJM_rvRoEeeAntgTKECPrw" name="aaa" subject="_FJM_rfRoEeeAntgTKECPrw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_60HlsPRoEeeXu_eo6hTKWg" name="Actor1"/>
+</uml:Model>

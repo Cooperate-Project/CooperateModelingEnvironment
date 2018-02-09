@@ -22,6 +22,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import de.cooperateproject.modeling.graphical.papyrus.extensions.tests.commons.constraints.CooperateConstraintTestBase;
 import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.general.NameHasToBeIDForNonAliasedElementsClassConstraint;
 
 @RunWith(Parameterized.class)

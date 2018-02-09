@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_FM7pEPRoEeeAntgTKECPrw" type="UseCase" name="uc" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_FM7pEfRoEeeAntgTKECPrw" type="Actor_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_FM7pEvRoEeeAntgTKECPrw" type="Actor_NameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FM7pE_RoEeeAntgTKECPrw"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FM7pFPRoEeeAntgTKECPrw" type="Actor_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FM7pFfRoEeeAntgTKECPrw"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FM7pFvRoEeeAntgTKECPrw" type="Actor_QualifiedNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FM7pF_RoEeeAntgTKECPrw"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FM7pGPRoEeeAntgTKECPrw" type="Actor_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FM7pGfRoEeeAntgTKECPrw"/>
+    </children>
+    <element xmi:type="uml:Actor" href="ucSystemOfTypeComponent.uml#_FJM_rPRoEeeAntgTKECPrw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FM7pGvRoEeeAntgTKECPrw"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_FM7pG_RoEeeAntgTKECPrw" type="Classifier_SubjectShape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_FM7pHPRoEeeAntgTKECPrw" type="Classifier_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_FM7pHfRoEeeAntgTKECPrw" type="Classifier_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_FM7pHvRoEeeAntgTKECPrw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_FM7pH_RoEeeAntgTKECPrw" type="Classifier_UseCaseCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_FM7pIPRoEeeAntgTKECPrw" type="UseCase_Shape_CCN">
+        <children xmi:type="notation:DecorationNode" xmi:id="_FM7pIfRoEeeAntgTKECPrw" type="UseCase_NameLabel_CCN"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_FM7pIvRoEeeAntgTKECPrw" type="UseCase_FloatingNameLabel_CCN">
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_FM7pI_RoEeeAntgTKECPrw"/>
+        </children>
+        <children xmi:type="notation:BasicCompartment" xmi:id="_FM7pJPRoEeeAntgTKECPrw" type="UseCase_ExtensionPointCompartment_CCN">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FM7pJfRoEeeAntgTKECPrw" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_FM7pJvRoEeeAntgTKECPrw" key="visible" value="true"/>
+          </eAnnotations>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_FM7pJ_RoEeeAntgTKECPrw"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_FM7pKPRoEeeAntgTKECPrw"/>
+          <styles xmi:type="notation:TitleStyle" xmi:id="_FM7pKfRoEeeAntgTKECPrw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FM7pKvRoEeeAntgTKECPrw"/>
+        </children>
+        <element xmi:type="uml:UseCase" href="ucSystemOfTypeComponent.uml#_FJM_rvRoEeeAntgTKECPrw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FM7pK_RoEeeAntgTKECPrw"/>
+      </children>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FM7pLPRoEeeAntgTKECPrw"/>
+    </children>
+    <element xmi:type="uml:Component" href="ucSystemOfTypeComponent.uml#_FJM_rfRoEeeAntgTKECPrw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FM7pLfRoEeeAntgTKECPrw"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_60HlsfRoEeeXu_eo6hTKWg" type="Actor_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_60Hls_RoEeeXu_eo6hTKWg" type="Actor_NameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_60HltPRoEeeXu_eo6hTKWg" y="15"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_60HltfRoEeeXu_eo6hTKWg" type="Actor_StereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_60HltvRoEeeXu_eo6hTKWg" x="20" y="100"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_60Hlt_RoEeeXu_eo6hTKWg" type="Actor_QualifiedNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_60HluPRoEeeXu_eo6hTKWg" x="20" y="80"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_60HlufRoEeeXu_eo6hTKWg" type="Actor_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_60HluvRoEeeXu_eo6hTKWg" y="15"/>
+    </children>
+    <element xmi:type="uml:Actor" href="ucSystemOfTypeComponent.uml#_60HlsPRoEeeXu_eo6hTKWg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_60HlsvRoEeeXu_eo6hTKWg" x="594" y="127"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_FM7pLvRoEeeAntgTKECPrw" name="diagram_compatibility_version" stringValue="1.3.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_FM7pL_RoEeeAntgTKECPrw"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_FM7pMPRoEeeAntgTKECPrw" diagramKindId="org.eclipse.papyrus.uml.diagram.useCase">
+    <owner xmi:type="uml:Model" href="ucSystemOfTypeComponent.uml#_FJM_q_RoEeeAntgTKECPrw"/>
+  </styles>
+  <element xmi:type="uml:Model" href="ucSystemOfTypeComponent.uml#_FJM_q_RoEeeAntgTKECPrw"/>
+</notation:Diagram>

@@ -1,9 +1,9 @@
-package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.usecasediagram;
+package de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.validation.constraints;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CooperateConstraintTestBase;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.tests.commons.constraints.CooperateConstraintTestBase;
 
 public class UseCaseDiagramConditionAvailableForMultipleExtensionsTest extends CooperateConstraintTestBase {
 

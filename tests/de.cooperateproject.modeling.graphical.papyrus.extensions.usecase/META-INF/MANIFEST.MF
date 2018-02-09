@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus Extensions Use Case Diagram Tests
+Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.tests
+Bundle-Version: 0.7.1.qualifier
+Fragment-Host: de.cooperateproject.modeling.graphical.papyrus.extensions.usecase;bundle-version="0.7.1.qualifier"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.cooperateproject.modeling.graphical.papyrus.extensions.tests.commons;bundle-version="0.7.1"

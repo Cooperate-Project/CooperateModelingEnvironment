@@ -2,7 +2,7 @@ package de.cooperateproject.modeling.graphical.papyrus.extensions.validation.con
 
 import org.junit.Test;
 
-import de.cooperateproject.modeling.graphical.papyrus.extensions.validation.constraints.CooperateConstraintTestBase;
+import de.cooperateproject.modeling.graphical.papyrus.extensions.tests.commons.constraints.CooperateConstraintTestBase;
 
 public class ClassDiagramAssociationConstraintTest extends CooperateConstraintTestBase {
 
