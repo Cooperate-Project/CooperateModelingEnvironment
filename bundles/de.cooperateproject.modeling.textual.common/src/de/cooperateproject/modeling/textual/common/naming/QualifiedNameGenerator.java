@@ -3,7 +3,6 @@ package de.cooperateproject.modeling.textual.common.naming;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.QualifiedName;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
@@ -26,14 +25,16 @@ public class QualifiedNameGenerator extends DynamicTextualCommonsSwitch<String> 
     @Override
     public String caseNamedElement(NamedElement object) {
         String parentName = doSwitch(object.eContainer());
-        if (StringUtils.isNotEmpty(parentName)) {
-            return String.format("%s.%s", parentName, getName(object));
+        String objectName = getName(object);
+        if (StringUtils.isNotEmpty(parentName) && StringUtils.isNotEmpty(objectName)) {
+            return String.format("%s.%s", parentName, objectName);
         }
-        return getName(object);
+        return objectName;
     }
 
-    private String getName(NamedElement object) {
-        if (object instanceof PackageBase && ((PackageBase) object).getOwningPackage() == null
+    @SuppressWarnings("unchecked")
+    private static String getName(NamedElement object) {
+        if (object instanceof PackageBase && ((PackageBase<?>) object).getOwningPackage() == null
                 && StringUtils.isBlank(object.getName())) {
             return Optional
                     .ofNullable(
@@ -41,15 +42,6 @@ public class QualifiedNameGenerator extends DynamicTextualCommonsSwitch<String> 
                     .map(org.eclipse.uml2.uml.NamedElement::getName).orElse(null);
         }
         return object.getName();
-    }
-
-    @Override
-    public String defaultCase(EObject object) {
-        EObject container = object.eContainer();
-        if (container != null) {
-            return doSwitch(container);
-        }
-        return null;
     }
 
 }

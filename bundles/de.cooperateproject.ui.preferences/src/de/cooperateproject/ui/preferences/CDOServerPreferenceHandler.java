@@ -14,7 +14,6 @@ public enum CDOServerPreferenceHandler {
     private static final String CDO_SERVER_HOSTNAME_PREFERENCE = "cdo_server_hostname_pref";
     private static final String CDO_SERVER_PORT_PREFERENCE = "cdo_server_port_pref";
     private static final String CDO_SERVER_REPOSITORY_PREFERENCE = "cdo_server_repository_pref";
-    private static final String CDO_SERVER_MESSAGE_BROKER_PREFERENCE = "cdo_server_msg_broker_pref";
 
     public String getCDOServerHostnamePreference() {
         return CDO_SERVER_HOSTNAME_PREFERENCE;
@@ -26,10 +25,6 @@ public enum CDOServerPreferenceHandler {
 
     public String getCdoServerRepositoryPreference() {
         return CDO_SERVER_REPOSITORY_PREFERENCE;
-    }
-
-    public String getCdoServerMessageBrokerPreference() {
-        return CDO_SERVER_MESSAGE_BROKER_PREFERENCE;
     }
 
     public String getCDOServerHostnameSetting() {
@@ -57,7 +52,4 @@ public enum CDOServerPreferenceHandler {
         return preferenceValue;
     }
 
-    public int getCDOServerMessageBrokerSetting() {
-        return PreferenceActivator.getDefault().getPreferenceStore().getInt(CDO_SERVER_MESSAGE_BROKER_PREFERENCE);
-    }
 }

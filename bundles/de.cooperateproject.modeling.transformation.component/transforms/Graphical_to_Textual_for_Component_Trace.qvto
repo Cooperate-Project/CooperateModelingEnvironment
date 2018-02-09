@@ -46,24 +46,21 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordExtended_InterfaceRelationToEdge();
 	result += self.map traceRecordExtendedProvideToEdge();
 	result += self.map traceRecordExtendedRequireToEdge();
-	result += self.map traceRecordExtendedManifestationToEdge();
 	result += self.map traceRecordExtendedGeneralizationToEdge();
-	result += self.map traceRecordExtendedAbstractionToEdge();
-	result += self.map traceRecordExtendedSubstitutionToEdge();
-	result += self.map traceRecordExtendedDependencyToEdge();
 	result += self.map traceRecordExtendedConnectorToEdge();
+	result += self.map traceRecordComment();
 	}
 
 
 mapping trace::TraceRecord::traceRecordClassifier() :List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToClassifier"}
 { 
+
 	var classifier := self.getResult().modelElement;
 	var shape := self.getSelf().modelElement;
 	result += new TraceRecord("classifiersToShape", "Classifier", classifier, "Shape", shape.toEObject());
-
-
-
+	result += new TraceRecord("commentableToShape", "Commentable", classifier, "Shape", shape.toEObject());
+	
 }
 
 mapping trace::TraceRecord::traceRecordClassifierRelation() :List(trace::TraceRecord)
@@ -110,8 +107,7 @@ when {self.mappingOperation.name = "nodeToComponent"}
 		result += new TraceRecord("portToShapeDisplay", "Component", classifier, "BasicCompartment", port.eobject());
 		result += new TraceRecord("titleStyle", "EObject", classifier.eobject(), "TitleStyle", port.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
 		result += port.map traceRecordExtended_notationBounds();
-	}
-	
+	};
 }
 
 mapping trace::TraceRecord::traceRecordPortShapeToNode() : List(trace::TraceRecord)
@@ -160,6 +156,8 @@ when {self.mappingOperation.name = "nodeToInterface"}
 	var classifier := self.getResult().modelElement;
 	var node := self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR);
 	var decoration :=self.getSelfNode().getChild(PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR);
+	
+
 	result += new TraceRecord("interfaceFloatingNameLabel", "Interface", classifier, "DecorationNode", node.eobject());
 	result += new TraceRecord("interfaceToNameLabel", "Interface", classifier, "DecorationNode", decoration.eobject());
 	result += node.map traceRecordExtended_locationConstraint();
@@ -276,34 +274,6 @@ when {self.mappingOperation.name = "edgeToRequire"}
 	result += edge.getChild(PAPYRUS_NOTATION_NODE_USAGE_NAME_REGULAR).map traceRecordExtended_locationConstraint();
 }
 
-mapping trace::TraceRecord::traceRecordExtendedManifestationToEdge() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToManifestation"}
-{
-	var connector := self.getResult().modelElement.oclAsType(cmp::Manifestation);
-	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
-	
-	result += new TraceRecord("manifestationToEdge", "Manifestation", connector.eobject(), "Connector", edge.eobject());
-	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeManifestationDecoration", "Manifestation", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_MANIFESTATION_STEREOTYPE).eobject());
-	result += new TraceRecord("manifestationDecorationNameLabel", "Manifestation", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR).eobject());
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_MANIFESTATION_STEREOTYPE).map traceRecordExtended_locationConstraint();
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_MANIFESTATION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
-}
-
-mapping trace::TraceRecord::traceRecordExtendedSubstitutionToEdge() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToSubstitution"}
-{
-	var connector := self.getResult().modelElement.oclAsType(cmp::Substitution);
-	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
-	
-	result += new TraceRecord("substitutionToEdge", "Substitution", connector.eobject(), "Connector", edge.eobject());
-	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeSubstitutionDecoration", "Substitution", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE).eobject());
-	result += new TraceRecord("substitutionDecorationNameLabel", "Substitution", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_NAME_REGULAR).eobject());
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_STEREOTYPE).map traceRecordExtended_locationConstraint();
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_SUBSTITUTION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
-}
-
 mapping trace::TraceRecord::traceRecordExtendedGeneralizationToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToGeneralization"}
 {
@@ -314,34 +284,6 @@ when {self.mappingOperation.name = "edgeToGeneralization"}
 	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
 	result += new TraceRecord("stereotypeGeneralizationDecoration", "Generalization", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_GENERALIZATION_STEREOTYPE).eobject());
 	result += edge.getChild(PAPYRUS_NOTATION_EDGE_GENERALIZATION_STEREOTYPE).map traceRecordExtended_locationConstraint();
-}
-
-mapping trace::TraceRecord::traceRecordExtendedAbstractionToEdge() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToAbstraction"}
-{
-	var connector := self.getResult().modelElement.oclAsType(cmp::Abstraction);
-	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
-	
-	result += new TraceRecord("abstractionToEdge", "Abstraction", connector.eobject(), "Connector", edge.eobject());
-	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeAbstractionDecoration", "Abstraction", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_STEREOTYPE).eobject());
-	result += new TraceRecord("abstractionDecorationNameLabel", "Abstraction", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_NAME_REGULAR).eobject());
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_STEREOTYPE).map traceRecordExtended_locationConstraint();
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_ABSTRACTION_NAME_REGULAR).map traceRecordExtended_locationConstraint();
-}
-
-mapping trace::TraceRecord::traceRecordExtendedDependencyToEdge() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToDependency"}
-{
-	var connector := self.getResult().modelElement.oclAsType(cmp::Dependency);
-	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
-	
-	result += new TraceRecord("dependencyToEdge", "Dependency", connector.eobject(), "Connector", edge.eobject());
-	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeDependencyDecoration", "Dependency", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE).eobject());
-	result += new TraceRecord("dependencyDecorationNameLabel", "Dependency", connector.eobject(), "DecorationNode", edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR).eobject());
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_STEREOTYPE).map traceRecordExtended_locationConstraint();
-	result += edge.getChild(PAPYRUS_NOTATION_EDGE_DEPENDENCY_NAME_REGULAR).map traceRecordExtended_locationConstraint();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge() : List(trace::TraceRecord)
@@ -377,6 +319,27 @@ mapping ecore::EObject::traceRecordExtendedConnectorToEdge_ConnectorBase(edge : 
 {
 	result += new TraceRecord("connectorToBendpoint", "Connector", edge.eobject(), "RelativeBendpoints", edge.bendpoints.eobject());
 	result += new TraceRecord("fontStyle", "EObject", edge.eobject() , "FontStyle", edge.styles->selectByKind(notation::FontStyle)->any(true).eobject());
+}
+
+mapping trace::TraceRecord::traceRecordComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToComment"}
+{
+    var viewComment := self.getSelf().modelElement.oclAsType(notation::Node);
+    var txtComment := self.getResult().modelElement;
+    var bodyDecoration := viewComment.children->any(type = PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR);
+    var edgeComment = viewComment.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_COMMENTLINK)->any(source = viewComment or target = viewComment);
+
+    result += new TraceRecord("commentToShape", "Comment", txtComment, "Shape", viewComment.toEObject());
+    result += new TraceRecord("commentLabelBodyHintDecoration", "Comment", txtComment, "DecorationNode", bodyDecoration.toEObject());
+    result += viewComment.map traceRecordExtended_notationBounds();
+    result += new TraceRecord("commentToEdge", "Comment", txtComment, "Connector", edgeComment.toEObject());
+    result += edgeComment.map edge();
+}
+
+mapping notation::Edge::edge() : List(trace::TraceRecord)
+{
+    result += new TraceRecord("fontStyle", "EObject", self.eobject(), "FontStyle", self.styles->any(oclIsKindOf(notation::FontStyle)).eobject());
+    result += new TraceRecord("connectorToBendpoint", "Connector", self.eobject(), "RelativeBendpoints", self.bendpoints.eobject());
 }
 query trace::TraceRecord::getSelfNode() : notation::Node {
 	assert error (self.getSelf().modelElement.oclIsKindOf(notation::Node)) with log('The contained model element is not a node.');

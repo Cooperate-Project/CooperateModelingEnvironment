@@ -19,7 +19,6 @@ public class CDOCredentialsValidator extends MultiValidator {
     private final IObservableValue<String> observedHost;
     private final IObservableValue<Integer> observedPort;
     private final IObservableValue<String> observedRepo;
-    private final IObservableValue<Integer> observedMsgPort;
 
     /**
      * Constructor for CDOCredentialsValidator.
@@ -30,16 +29,13 @@ public class CDOCredentialsValidator extends MultiValidator {
      *            Port of repository to be validated.
      * @param observedRepo
      *            Name of repository to be validated.
-     * @param observedMsgPort
-     *            Port of message server to be validated.
      */
     public CDOCredentialsValidator(IObservableValue<String> observedHost, IObservableValue<Integer> observedPort,
-            IObservableValue<String> observedRepo, IObservableValue<Integer> observedMsgPort) {
+            IObservableValue<String> observedRepo) {
         super();
         this.observedHost = observedHost;
         this.observedPort = observedPort;
         this.observedRepo = observedRepo;
-        this.observedMsgPort = observedMsgPort;
     }
 
     @Override
@@ -47,8 +43,7 @@ public class CDOCredentialsValidator extends MultiValidator {
         String host = observedHost.getValue();
         Integer port = observedPort.getValue();
         String repository = observedRepo.getValue();
-        Integer msgPort = observedMsgPort.getValue();
-        return validate(host, port, repository, msgPort);
+        return validate(host, port, repository);
     }
 
     /**
@@ -60,12 +55,10 @@ public class CDOCredentialsValidator extends MultiValidator {
      *            Port of repository.
      * @param repository
      *            Name of repository.
-     * @param msgPort
-     *            Port of message server.
      * @return Returns Status.OK_STATUS if successful, IStatus.ERROR otherwise.
      */
-    public static IStatus validate(String host, int port, String repository, int msgPort) {
-        if (ConnectionValidator.connectionInfoIsValid(host, port, repository, msgPort, 1000)) {
+    public static IStatus validate(String host, int port, String repository) {
+        if (ConnectionValidator.connectionInfoIsValid(host, port, repository, 1000)) {
             return Status.OK_STATUS;
         }
         return createFailedConnectionStatus();

@@ -56,8 +56,7 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="ClassifierRelation"
-      abstract="true"
-      eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement">
+      abstract="true">
     <eTypeParameters
         name="LeftUMLType">
       <eBounds
@@ -71,7 +70,8 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="leftClassifier"
-        lowerBound="1">
+        lowerBound="1"
+        transient="true">
       <eGenericType
           eClassifier="#//Classifier">
         <eTypeArguments
@@ -81,7 +81,8 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="rightClassifier"
-        lowerBound="1">
+        lowerBound="1"
+        transient="true">
       <eGenericType
           eClassifier="#//Classifier">
         <eTypeArguments
@@ -140,69 +141,10 @@
       <eTypeArguments
           eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
     </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Abstraction">
     <eGenericSuperTypes
-        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
       <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
-    </eGenericSuperTypes>
-    <eGenericSuperTypes
-        eClassifier="#//ClassifierRelation">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Manifestation">
-    <eGenericSuperTypes
-        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Manifestation"/>
-    </eGenericSuperTypes>
-    <eGenericSuperTypes
-        eClassifier="#//ClassifierRelation">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Substitution">
-    <eGenericSuperTypes
-        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution"/>
-    </eGenericSuperTypes>
-    <eGenericSuperTypes
-        eClassifier="#//ClassifierRelation">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers
-      xsi:type="ecore:EClass"
-      name="Dependency">
-    <eGenericSuperTypes
-        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
-    </eGenericSuperTypes>
-    <eGenericSuperTypes
-        eClassifier="#//ClassifierRelation">
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-      <eTypeArguments
-          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers

@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.Property;
 
 /**

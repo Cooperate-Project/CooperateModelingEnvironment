@@ -34,6 +34,9 @@
             class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.ConnectorEndInitializer">
       </class>
       <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.initializer.GeneralizationInitializer">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.RequireCalculator">
       </class>
       <class
@@ -48,6 +51,9 @@
        <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.ConnectorEndCalculator">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.calculator.GeneralizationCalculator">
+      </class>
        <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.remover.PortRemover">
       </class>
@@ -59,6 +65,9 @@
       </class>
       <class
             class="de.cooperateproject.modeling.textual.component.derivedstate.remover.PropertyRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.component.derivedstate.remover.GeneralizationRemover">
       </class>
    </extension>
    <extension

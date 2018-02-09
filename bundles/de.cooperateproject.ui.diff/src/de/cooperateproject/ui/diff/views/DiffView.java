@@ -5,6 +5,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DateTime;
 
+import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.ui.commands.ResetToPreviousStateCommand;
 import de.cooperateproject.ui.diff.action.DoubleClickCommitViewerAction;
 import de.cooperateproject.ui.diff.action.IToggleAction;
 import de.cooperateproject.ui.diff.action.LiveToggleAction;
@@ -23,14 +25,17 @@ import de.cooperateproject.ui.diff.listener.ViewPartListener;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -39,6 +44,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -202,6 +208,41 @@ public class DiffView extends ViewPart implements IDiffView {
                 }
             }
         });
+        
+        manager.add(new Action("Revert to this commit") {
+            @Override
+            public void run() {
+                
+                if (checkIfReadyForReset(file)) {
+                    IStructuredSelection selection = (IStructuredSelection) commitViewer.getSelection();
+                    if (selection.size() == 1) {       
+                        CDOCommitInfo commit = (CDOCommitInfo) selection.getFirstElement();
+                        CDOSession session = CDOConnectionManager.getInstance().acquireSession(file.getProject());
+                        try {
+                            ResetToPreviousStateCommand.reset(session, commit, file);
+                        } finally {
+                            CDOConnectionManager.getInstance().releaseSession(session);
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    private boolean checkIfReadyForReset(IFile file) {
+        if (!ResetToPreviousStateCommand.checkIfDiagramNotLocked(file)) {
+            MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                    "Resources currently in use.",
+                    "One of the resources to be reset is currently used by another user.");
+            return false;
+        }
+        AtomicReference<Boolean> reference = new AtomicReference<>(false);
+        PlatformUI.getWorkbench().getDisplay()
+                .syncExec(() -> reference.set(MessageDialog.openConfirm(
+                        PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Revert to selected commit",
+                        "Are you sure you want to revert the selected resource to the chosen commit?"
+                                + " This will be done globally and affect others who are working on the project as well.")));
+        return reference.get();
     }
     
     private void createToolbar() {
@@ -282,7 +323,7 @@ public class DiffView extends ViewPart implements IDiffView {
         commitViewer.getTable().setHeaderVisible(true);
         commitViewer.getTable().setLinesVisible(false);
         commitViewer.setComparator(new CommitViewerComparator());
-        String[] columnNames1 = new String[] { "Date", "Time", "Message" };
+        String[] columnNames1 = new String[] { "Date", "Time", "Message", "Author" };
         for (int i = 0; i < columnNames1.length; i++) {
             TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
             tableColumn.setText(columnNames1[i]);

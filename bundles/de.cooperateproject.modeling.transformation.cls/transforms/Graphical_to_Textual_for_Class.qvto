@@ -26,7 +26,7 @@ mapping notation::Diagram::diagramToRootPackage() : cls::Package {
 	referencedElement := self.element.oclAsType(uml::Package);
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
-	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector();
+	connectors += self.edges->select(not isCommentLinkForAssociation() and not isCommentLinkForGeneralization())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
 }
@@ -40,7 +40,7 @@ mapping notation::Node::nodeToPackage() : cls::Package
 	referencedElement := umlPackage;
 	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
-	connectors += relevantEdges->select(not isCommentLinkForAssociation())->map edgeToConnector();
+	connectors += relevantEdges->select(not isCommentLinkForAssociation() and not isCommentLinkForGeneralization())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
 }
@@ -214,6 +214,13 @@ mapping notation::Edge::edgeToGeneralization() : cls::Generalization
 {
 	var generalization := self.element.oclAsType(uml::Generalization);
 	assert error (generalization.source->size() = 1 and generalization.target->size() = 1) with log ('Generalizations must of exactly one source and one target.', generalization);
+	
+	
+	var relevantComments := self.findViewCommentViews();
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
+	
+	comments := relevantComments.map commentViewToComment();
+	
 	referencedElement := generalization;
 }
 
@@ -318,6 +325,10 @@ query notation::Edge::isCommentLink() : Boolean {
 
 query notation::Edge::isCommentLinkForAssociation() : Boolean {
 	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
+}
+
+query notation::Edge::isCommentLinkForGeneralization() : Boolean {
+	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Generalization)));
 }
 
 /*

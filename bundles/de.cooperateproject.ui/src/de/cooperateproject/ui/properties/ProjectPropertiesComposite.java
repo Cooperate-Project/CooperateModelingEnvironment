@@ -37,7 +37,6 @@ public class ProjectPropertiesComposite extends Composite {
     private Text txtCDORepository;
     private Text txtCDOUsername;
     private Text txtCDOPassword;
-    private Text txtMsgPort;
 
     private final ProjectPropertiesDTO preferencesDTO;
     private final IChangeListener validatorStatusListener;
@@ -117,15 +116,6 @@ public class ProjectPropertiesComposite extends Composite {
         accLblPassword.addRelation(ACC.RELATION_LABEL_FOR, accTxtPassword);
         accTxtPassword.addRelation(ACC.RELATION_LABELLED_BY, accLblPassword);
 
-        Label lblMsgPort = new Label(grpCdo, SWT.NONE);
-        lblMsgPort.setText("Message Server Port:");
-        txtMsgPort = new Text(grpCdo, SWT.BORDER);
-        txtMsgPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        Accessible accLblMsgPort = lblMsgPort.getAccessible();
-        Accessible accTxtMsgPort = txtMsgPort.getAccessible();
-        accLblMsgPort.addRelation(ACC.RELATION_LABEL_FOR, accTxtMsgPort);
-        accTxtMsgPort.addRelation(ACC.RELATION_LABELLED_BY, accLblMsgPort);
-
         mBindingContext = createDataBindings();
     }
 
@@ -162,25 +152,16 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> atomicValidatedRepository = new WritableValue<>(null, String.class);
         bindingContext.bindValue(observeTextTxtCDORepositoryObserveWidget, atomicValidatedRepository,
                 strategyAtomicStringToModel, strategyAtomicStringToTarget);
-        // atomic message port
-        IObservableValue<String> observeTextTxtMsgPortObserveWidget = WidgetProperties.text(SWT.Modify)
-                .observeDelayed(UPDATE_DELAY, txtMsgPort);
-        IObservableValue<Integer> atomicValidatedMsgPort = new WritableValue<>(null, Integer.class);
-        UpdateValueStrategy msgStrategy = new UpdateValueStrategy();
-        msgStrategy.setConverter(new StringToNumberConverter());
-        msgStrategy.setAfterGetValidator(new StringToNumberConverter());
-        UpdateValueStrategy msgStrategy1 = new UpdateValueStrategy();
-        msgStrategy1.setConverter(new NumberToStringConverter());
-        msgStrategy1.setAfterGetValidator(new NumberToStringConverter());
-        bindingContext.bindValue(observeTextTxtMsgPortObserveWidget, atomicValidatedMsgPort, msgStrategy, msgStrategy1);
+        // atomic user
+        IObservableValue<String> observeUsername = WidgetProperties.text(SWT.Modify).observeDelayed(UPDATE_DELAY,
+                txtCDOUsername);
         // connection validation
         MultiValidator connectionValidator = new CDOCredentialsValidator(atomicValidatedHostname, atomicValidatedPort,
-                atomicValidatedRepository, atomicValidatedMsgPort);
+                atomicValidatedRepository);
         bindingContext.addValidationStatusProvider(connectionValidator);
         IObservableValue<String> validatedHostname = connectionValidator.observeValidatedValue(atomicValidatedHostname);
         IObservableValue<Integer> validatedPort = connectionValidator.observeValidatedValue(atomicValidatedPort);
         IObservableValue<String> validatedRepo = connectionValidator.observeValidatedValue(atomicValidatedRepository);
-        IObservableValue<Integer> validatedMsgPort = connectionValidator.observeValidatedValue(atomicValidatedMsgPort);
         // model bindings
         IObservableValue<String> cdoHostPreferencesDTOObserveValue = BeanProperties.value("cdoHost")
                 .observe(preferencesDTO);
@@ -191,9 +172,9 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> cdoRepoPreferencesDTOObserveValue = BeanProperties.value("cdoRepo")
                 .observe(preferencesDTO);
         bindingContext.bindValue(validatedRepo, cdoRepoPreferencesDTOObserveValue);
-        IObservableValue<Integer> msgPortPreferencesDTOObserveValue = BeanProperties.value("msgPort")
+        IObservableValue<String> cdoUserPreferencesDTOObserveValue = BeanProperties.value("cdoUser")
                 .observe(preferencesDTO);
-        bindingContext.bindValue(validatedMsgPort, msgPortPreferencesDTOObserveValue);
+        bindingContext.bindValue(observeUsername, cdoUserPreferencesDTOObserveValue);
         // validation status notifier
         aggregatedStatus = new AggregateValidationStatus(bindingContext, AggregateValidationStatus.MAX_SEVERITY);
         aggregatedStatus.addChangeListener(validatorStatusListener);

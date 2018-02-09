@@ -1342,6 +1342,25 @@ ruleGeneralization returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getGeneralizationAccess().getRightParenthesisKeyword_5());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getGeneralizationAccess().getCommentsCommentParserRuleCall_6_0());
+				}
+				lv_comments_6_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getGeneralizationRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_6_0,
+						"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

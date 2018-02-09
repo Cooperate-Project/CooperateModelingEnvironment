@@ -1245,13 +1245,22 @@ public interface ClsPackage extends EPackage {
     int GENERALIZATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__COMMENTS = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Generalization</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+    int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

@@ -1,12 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='32'>
-    <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
-      <repositories size='1'>
-        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
-      </repositories>
-    </iu>
+  <ius size='29'>
     <iu id='org.eclipse.emf.cdo.epp.feature.group' name='CDO Model Repository EPP' version='4.6.0.v20171016-1705'>
       <repositories size='1'>
         <repository location='https://dl.bintray.com/cooperate-project/CDO/updatesite/latest/'/>
@@ -85,11 +80,6 @@
         <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
       </repositories>
     </iu>
-    <iu id='javax.jms' name='JMS API' version='1.1.0.v201205091237'>
-      <repositories size='1'>
-        <repository location='http://download.eclipse.org/tools/orbit/R-builds/R20170516192513/repository'/>
-      </repositories>
-    </iu>
     <iu id='org.eclipse.emf.compare.source.feature.group' name='Model comparison (EMF Compare) - Core - SDK' version='3.3.1.201706130827'>
       <repositories size='2'>
         <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/oxygen/'/>
@@ -118,11 +108,6 @@
       <repositories size='2'>
         <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/oxygen/'/>
         <repository location='http://download.eclipse.org/releases/oxygen/'/>
-      </repositories>
-    </iu>
-    <iu id='org.apache.activemq.all' name='org.apache.activemq.all' version='5.14.3'>
-      <repositories size='1'>
-        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
       </repositories>
     </iu>
     <iu id='org.reflections' name='org.reflections' version='0.9.10'>

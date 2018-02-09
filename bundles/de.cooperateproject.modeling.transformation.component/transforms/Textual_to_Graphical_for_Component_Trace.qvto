@@ -41,13 +41,10 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceEdgeToInterfaceRelation();
 	result += self.map traceEdgeToProvide();
 	result += self.map traceEdgeToRequire();
-	result += self.map traceEdgeToManifestation();
-	result += self.map traceEdgeToAbstraction();
-	result += self.map traceEdgeToSubstitution();
 	result += self.map traceEdgeToGeneralization();
-	result += self.map traceEdgeToDependency();
 	result += self.map traceEdgeToConnector();
 	result += self.map traceNodeToPort();
+	result += self.map traceRecordComment();
 }
 
 
@@ -73,6 +70,14 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	
 	result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram, "ComponentDiagram", componentDiagram.eobject());
 	result += new TraceRecord("diagramToRootPackage", "Diagram", notationDiagram, "RootPackage", componentDiagram.rootpackage.eobject());
+}
+mapping trace::TraceRecord::traceRecordComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToShape"}
+{
+    var node := self.getResult().modelElement;
+    var comment := self.getSelf().modelElement.oclAsType(textualCommons::Comment);
+    
+    result += new TraceRecord("commentToComment", "View", node, "Comment", comment.eobject());
 }
 
 mapping trace::TraceRecord::traceNodeToComponent() : List(trace::TraceRecord)
@@ -156,44 +161,12 @@ when {self.mappingOperation.name = "requireToEdge"}
 	result += new TraceRecord("edgeToRequire", "Edge", edge, "Require", require.eobject());
 }
 
-mapping trace::TraceRecord::traceEdgeToManifestation() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "manifestationToEdge"}
-{
-	var edge := self.getResult().modelElement;
-	var manifestation := self.getSelf().modelElement.oclAsType(cmp::Manifestation);
-	result += new TraceRecord("edgeToManifestation", "Edge", edge, "Manifestation", manifestation.eobject());
-}
-
-mapping trace::TraceRecord::traceEdgeToDependency() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "dependencyToEdge"}
-{
-	var edge := self.getResult().modelElement;
-	var dependency := self.getSelf().modelElement.oclAsType(cmp::Dependency);
-	result += new TraceRecord("edgeToDependency", "Edge", edge, "Dependency", dependency.eobject());
-}
-
 mapping trace::TraceRecord::traceEdgeToGeneralization() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "generalizationToEdge"}
 {
 	var edge := self.getResult().modelElement;
 	var generalization := self.getSelf().modelElement.oclAsType(cmp::Generalization);
 	result += new TraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", generalization.eobject());
-}
-
-mapping trace::TraceRecord::traceEdgeToAbstraction() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "abstractionToEdge"}
-{
-	var edge := self.getResult().modelElement;
-	var abstraction := self.getSelf().modelElement.oclAsType(cmp::Abstraction);
-	result += new TraceRecord("edgeToAbstraction", "Edge", edge, "Abstraction", abstraction.eobject());
-}
-
-mapping trace::TraceRecord::traceEdgeToSubstitution() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "substitutionToEdge"}
-{
-	var edge := self.getResult().modelElement;
-	var substitution := self.getSelf().modelElement.oclAsType(cmp::Substitution);
-	result += new TraceRecord("edgeToSubstitution", "Edge", edge, "Substitution", substitution.eobject());
 }
 
 mapping trace::TraceRecord::traceEdgeToConnector() : List(trace::TraceRecord)

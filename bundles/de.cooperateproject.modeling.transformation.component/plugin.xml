@@ -12,6 +12,10 @@
          <transformationfolder
                foldername="transforms">
          </transformationfolder>
+         <postprocessor
+               class="de.cooperateproject.modeling.transformation.component.postprocessor.T2GPostProcessor"
+               direction="textual to graphical">
+         </postprocessor>
       </transformation>
    </extension>
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_SEhkwANJEeiUHIKWeuPA8A" type="PapyrusUMLComponentDiagram" name="ComponentDiagramClassNote" measurementUnit="Pixel">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WtgiEANJEeiUHIKWeuPA8A" source="PapyrusCSSForceValue">
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WtgiEQNJEeiUHIKWeuPA8A" key="canonical" value="true"/>
+  </eAnnotations>
+  <children xmi:type="notation:Shape" xmi:id="_WtpsAANJEeiUHIKWeuPA8A" type="NamedElement_DefaultShape">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WvoB8ANJEeiUHIKWeuPA8A" source="PapyrusCSSForceValue">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WvoB8QNJEeiUHIKWeuPA8A" key="mutable" value="true"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_WtsIQANJEeiUHIKWeuPA8A" type="NamedElement_NameLabel"/>
+    <element xmi:type="uml:Class" href="ComponentDiagramClassNote.uml#_VZA0UANJEeiUHIKWeuPA8A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WtpsAQNJEeiUHIKWeuPA8A" x="672" y="295"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_Z6nXQANJEeiUHIKWeuPA8A" type="Comment_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Z6n-UANJEeiUHIKWeuPA8A" type="Comment_BodyLabel"/>
+    <element xmi:type="uml:Comment" href="ComponentDiagramClassNote.uml#_Z6gpkANJEeiUHIKWeuPA8A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Z6nXQQNJEeiUHIKWeuPA8A" x="900" y="220"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_SEhkwQNJEeiUHIKWeuPA8A" name="diagram_compatibility_version" stringValue="1.3.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_SEhkwgNJEeiUHIKWeuPA8A"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_SEhkwwNJEeiUHIKWeuPA8A" diagramKindId="org.eclipse.papyrus.uml.diagram.component.root.package">
+    <owner xmi:type="uml:Model" href="ComponentDiagramClassNote.uml#_P7L5sANJEeiUHIKWeuPA8A"/>
+  </styles>
+  <styles xmi:type="notation:CanonicalStyle" xmi:id="_WtdewANJEeiUHIKWeuPA8A" canonical="false"/>
+  <element xmi:type="uml:Model" href="ComponentDiagramClassNote.uml#_P7L5sANJEeiUHIKWeuPA8A"/>
+  <edges xmi:type="notation:Connector" xmi:id="_bHD8QANJEeiUHIKWeuPA8A" type="Comment_AnnotatedElementEdge" source="_Z6nXQANJEeiUHIKWeuPA8A" target="_WtpsAANJEeiUHIKWeuPA8A">
+    <styles xmi:type="notation:FontStyle" xmi:id="_bHD8QQNJEeiUHIKWeuPA8A"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_bHD8QgNJEeiUHIKWeuPA8A" points="[900, 260, -643984, -643984]$[740, 345, -643984, -643984]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bJTX8ANJEeiUHIKWeuPA8A" id="(0.0,0.6666666666666666)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bJT_AANJEeiUHIKWeuPA8A" id="(0.68,1.0)"/>
+  </edges>
+</notation:Diagram>

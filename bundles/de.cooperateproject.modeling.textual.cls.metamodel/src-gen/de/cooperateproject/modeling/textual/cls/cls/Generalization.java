@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Generalization</b></em>'.
@@ -12,5 +14,5 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model
  * @generated
  */
-public interface Generalization extends TypedConnector<org.eclipse.uml2.uml.Generalization> {
+public interface Generalization extends TypedConnector<org.eclipse.uml2.uml.Generalization>, Commentable<org.eclipse.uml2.uml.Generalization> {
 } // Generalization

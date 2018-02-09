@@ -48,4 +48,10 @@ public class GraphicalToTextualClassTraceTest extends ClsDirectionalTraceTransfo
     public void testClassChangedRoot() throws Exception {
         testTraceTransformation("ClassDiagramChangedRoot");
     }
+    
+    @Test
+    public void testClassCommentedGeneralization() throws Exception {
+       testTraceTransformation("ClassDiagramCommentedGeneralization");
+    }
+    
 }

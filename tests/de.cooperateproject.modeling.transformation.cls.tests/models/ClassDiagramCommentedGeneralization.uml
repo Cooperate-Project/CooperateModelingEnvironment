@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="__N_CoAmVEeiDlMkoaREtfw" name="models">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_PAl_wAmWEeiDlMkoaREtfw" annotatedElement="_S_BkMAmWEeiDlMkoaREtfw">
+    <body>note</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_NCoeQAmWEeiDlMkoaREtfw" name="Interface1"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_N2qjQAmWEeiDlMkoaREtfw" name="Interface2">
+    <generalization xmi:type="uml:Generalization" xmi:id="_S_BkMAmWEeiDlMkoaREtfw" general="_NCoeQAmWEeiDlMkoaREtfw"/>
+  </packagedElement>
+</uml:Model>

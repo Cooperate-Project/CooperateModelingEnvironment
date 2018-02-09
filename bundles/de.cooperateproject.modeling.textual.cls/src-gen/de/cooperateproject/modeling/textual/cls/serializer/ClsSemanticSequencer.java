@@ -183,19 +183,10 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Generalization returns Generalization
 	 *
 	 * Constraint:
-	 *     (left=[Classifier|FQN] right=[Classifier|FQN])
+	 *     (left=[Classifier|FQN] right=[Classifier|FQN] comments+=Comment?)
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__LEFT));
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftClassifierFQNParserRuleCall_2_0_1(), semanticObject.eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, false));
-		feeder.accept(grammarAccess.getGeneralizationAccess().getRightClassifierFQNParserRuleCall_4_0_1(), semanticObject.eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	

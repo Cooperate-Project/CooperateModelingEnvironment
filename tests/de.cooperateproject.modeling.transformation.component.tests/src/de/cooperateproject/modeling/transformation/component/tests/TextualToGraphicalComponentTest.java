@@ -82,16 +82,6 @@ public class TextualToGraphicalComponentTest extends ComponentDirectionalTransfo
     }
 
     @Test
-    public void testManifestation() throws Exception {
-        testRegular("ComponentDiagramManifestation");
-    }
-
-    @Test
-    public void testEntireClassiferRelations() throws Exception {
-        testRegular("ComponentDiagramEntireClassifierRelations");
-    }
-
-    @Test
     public void testComponentDiagramPorts() throws Exception {
         testRegular("ComponentDiagramPorts");
     }
@@ -115,4 +105,25 @@ public class TextualToGraphicalComponentTest extends ComponentDirectionalTransfo
     public void testComponentDiagramPortTypeClass() throws Exception {
         testRegular("ComponentDiagramPortTypeClass");
     }
+    
+    @Test
+    public void testComponentDiagramNestedClass() throws Exception {
+        testRegular("ComponentDiagramNestedClass");
+    }
+    
+    @Test
+    public void testComponentDiagramSingleClass() throws Exception {
+        testRegular("ComponentDiagramSingleClass");
+    }
+    
+    @Test
+    public void testComponentDiagramComponentNote() throws Exception {
+        testRegular("ComponentDiagramComponentNote");
+    }
+    
+    @Test
+    public void testComponentDiagramCommentedGeneralization() throws Exception {
+        testRegular("ComponentDiagramCommentedGeneralization");
+    }
+    
 }

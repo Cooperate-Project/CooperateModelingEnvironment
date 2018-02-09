@@ -48,11 +48,6 @@
             name="Delete Diagram from Repositoy">
       </command>
       <command
-            defaultHandler="de.cooperateproject.ui.commands.ResetToPreviousStateCommand"
-            id="de.cooperateproject.ui.ResetToPreviousStateCommand"
-            name="Reset to previous state">
-      </command>
-      <command
             id="de.cooperateproject.ui.CommitEditorChanges"
             name="Commit Editor Changes">
       </command>
@@ -209,63 +204,6 @@
                   value="de.cooperateproject.ui.newCooperateProjectWizard">
             </parameter>
          </command>
-         <command
-               commandId="org.eclipse.ui.newWizard"
-               icon="icons/16/cooperate_16.png"
-               label="Class Diagram"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="de.cooperateproject.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-            <parameter
-                  name="newWizardId"
-                  value="de.cooperateproject.ui.wizards.newClassDiagram">
-            </parameter>
-         </command>
-         <command
-               commandId="org.eclipse.ui.newWizard"
-               icon="icons/16/cooperate_16.png"
-               label="Usecase Diagram"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="de.cooperateproject.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-            <parameter
-                  name="newWizardId"
-                  value="de.cooperateproject.ui.wizards.newUsecaseDiagram">
-            </parameter>
-         </command>
-         <command
-               commandId="org.eclipse.ui.newWizard"
-               icon="icons/16/cooperate_16.png"
-               label="Component Diagram"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeWorkbenchWindow.activePerspective">
-                  <equals
-                        value="de.cooperateproject.ui.perspective">
-                  </equals>
-               </with>
-            </visibleWhen>
-            <parameter
-                  name="newWizardId"
-                  value="de.cooperateproject.ui.wizards.newComponentDiagram">
-            </parameter>
-         </command>
       </menuContribution>
       <menuContribution
             allPopups="false"
@@ -382,50 +320,6 @@
                   name="importWizardId"
                   value="de.cooperateproject.ui.importCooperateProjectWizard">
             </parameter>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?endof=org.eclipse.ui.edit.delete">
-         <command
-               commandId="de.cooperateproject.ui.ResetToPreviousStateCommand"
-               label="Reset to previous state"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <and>
-                  <with
-                        variable="activeWorkbenchWindow.activePerspective">
-                     <equals
-                           value="de.cooperateproject.ui.perspective">
-                     </equals>
-                  </with>
-                  <iterate
-                        ifEmpty="false"
-                        operator="and">
-                     <or>
-                        <and>
-                           <instanceof
-                                 value="org.eclipse.core.resources.IProject">
-                           </instanceof>
-                           <test
-                                 property="org.eclipse.core.resources.projectNature"
-                                 value="de.cooperateproject.ui.CooperateProjectNature">
-                           </test>
-                        </and>
-                        <and>
-                           <instanceof
-                                 value="org.eclipse.core.resources.IFile">
-                           </instanceof>
-                           <test
-                                 property="org.eclipse.core.resources.extension"
-                                 value="cooperate">
-                           </test>
-                        </and>
-                     </or>
-                  </iterate>
-               </and>
-            </visibleWhen>
          </command>
       </menuContribution>
    </extension>

@@ -12,5 +12,30 @@
             name="Component Diagram">
       </wizard>
    </extension>
-
+  <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:common.new.menu?after=new">
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               icon="platform:/plugin/de.cooperateproject.ui/icons/16/cooperate_16.png"
+               label="Component Diagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="newWizardId"
+                  value="de.cooperateproject.ui.component.wizards.modelnew.newComponentDiagram">
+            </parameter>
+         </command>
+      </menuContribution>
+  </extension>
 </plugin>

@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.component.cmp.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
-import de.cooperateproject.modeling.textual.component.cmp.Abstraction;
 import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.Classifier;
 import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation;
@@ -14,12 +13,10 @@ import de.cooperateproject.modeling.textual.component.cmp.Component;
 import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram;
 import de.cooperateproject.modeling.textual.component.cmp.Connector;
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd;
-import de.cooperateproject.modeling.textual.component.cmp.Dependency;
 import de.cooperateproject.modeling.textual.component.cmp.Generalization;
 import de.cooperateproject.modeling.textual.component.cmp.Interface;
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceProvidingRequiringEntity;
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation;
-import de.cooperateproject.modeling.textual.component.cmp.Manifestation;
 import de.cooperateproject.modeling.textual.component.cmp.Member;
 import de.cooperateproject.modeling.textual.component.cmp.Method;
 import de.cooperateproject.modeling.textual.component.cmp.Parameter;
@@ -28,7 +25,6 @@ import de.cooperateproject.modeling.textual.component.cmp.Property;
 import de.cooperateproject.modeling.textual.component.cmp.Provide;
 import de.cooperateproject.modeling.textual.component.cmp.Require;
 import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
-import de.cooperateproject.modeling.textual.component.cmp.Substitution;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -92,34 +88,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * @generated
      */
     private EClass generalizationEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass abstractionEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass manifestationEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass substitutionEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass dependencyEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -426,42 +394,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getAbstraction() {
-        return abstractionEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getManifestation() {
-        return manifestationEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getSubstitution() {
-        return substitutionEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getDependency() {
-        return dependencyEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getClassifier() {
         return classifierEClass;
     }
@@ -758,14 +690,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
 
         generalizationEClass = createEClass(GENERALIZATION);
 
-        abstractionEClass = createEClass(ABSTRACTION);
-
-        manifestationEClass = createEClass(MANIFESTATION);
-
-        substitutionEClass = createEClass(SUBSTITUTION);
-
-        dependencyEClass = createEClass(DEPENDENCY);
-
         classifierEClass = createEClass(CLASSIFIER);
 
         propertyEClass = createEClass(PROPERTY);
@@ -861,7 +785,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         EGenericType g2 = createEGenericType(this.getRootPackage());
         g1.getETypeArguments().add(g2);
         rootPackageEClass.getEGenericSuperTypes().add(g1);
-        classifierRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getConnector());
         g1.getETypeArguments().add(g2);
@@ -882,46 +805,10 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g2 = createEGenericType(theUMLPackage.getInterface());
         g1.getETypeArguments().add(g2);
         generalizationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getAbstraction());
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        g2 = createEGenericType(theUMLPackage.getGeneralization());
         g1.getETypeArguments().add(g2);
-        abstractionEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getClassifierRelation());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        abstractionEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getManifestation());
-        g1.getETypeArguments().add(g2);
-        manifestationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getClassifierRelation());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        manifestationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getSubstitution());
-        g1.getETypeArguments().add(g2);
-        substitutionEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getClassifierRelation());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        substitutionEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getDependency());
-        g1.getETypeArguments().add(g2);
-        dependencyEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getClassifierRelation());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
-        dependencyEClass.getEGenericSuperTypes().add(g1);
+        generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
         g2 = createEGenericType(classifierEClass_T);
         g1.getETypeArguments().add(g2);
@@ -1015,11 +902,11 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(classifierRelationEClass_LeftUMLType);
         g1.getETypeArguments().add(g2);
-        initEReference(getClassifierRelation_LeftClassifier(), g1, null, "leftClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifierRelation_LeftClassifier(), g1, null, "leftClassifier", null, 1, 1, ClassifierRelation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(classifierRelationEClass_RightUMLType);
         g1.getETypeArguments().add(g2);
-        initEReference(getClassifierRelation_RightClassifier(), g1, null, "rightClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifierRelation_RightClassifier(), g1, null, "rightClassifier", null, 1, 1, ClassifierRelation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getConnector_ConnectorEnds(), this.getConnectorEnd(), null, "connectorEnds", null, 0, -1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1029,14 +916,6 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         initEReference(getConnectorEnd_Role(), this.getPort(), null, "role", null, 0, 1, ConnectorEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(abstractionEClass, Abstraction.class, "Abstraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(manifestationEClass, Manifestation.class, "Manifestation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(substitutionEClass, Substitution.class, "Substitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

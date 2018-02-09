@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 
-import de.cooperateproject.modeling.textual.component.cmp.Abstraction;
 import de.cooperateproject.modeling.textual.component.cmp.Attribute;
 import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
@@ -18,12 +17,10 @@ import de.cooperateproject.modeling.textual.component.cmp.Component;
 import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram;
 import de.cooperateproject.modeling.textual.component.cmp.Connector;
 import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd;
-import de.cooperateproject.modeling.textual.component.cmp.Dependency;
 import de.cooperateproject.modeling.textual.component.cmp.Generalization;
 import de.cooperateproject.modeling.textual.component.cmp.Interface;
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceProvidingRequiringEntity;
 import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation;
-import de.cooperateproject.modeling.textual.component.cmp.Manifestation;
 import de.cooperateproject.modeling.textual.component.cmp.Member;
 import de.cooperateproject.modeling.textual.component.cmp.Method;
 import de.cooperateproject.modeling.textual.component.cmp.Parameter;
@@ -32,7 +29,6 @@ import de.cooperateproject.modeling.textual.component.cmp.Property;
 import de.cooperateproject.modeling.textual.component.cmp.Provide;
 import de.cooperateproject.modeling.textual.component.cmp.Require;
 import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
-import de.cooperateproject.modeling.textual.component.cmp.Substitution;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -124,22 +120,6 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseGeneralization(Generalization object) {
                 return createGeneralizationAdapter();
-            }
-            @Override
-            public Adapter caseAbstraction(Abstraction object) {
-                return createAbstractionAdapter();
-            }
-            @Override
-            public Adapter caseManifestation(Manifestation object) {
-                return createManifestationAdapter();
-            }
-            @Override
-            public Adapter caseSubstitution(Substitution object) {
-                return createSubstitutionAdapter();
-            }
-            @Override
-            public Adapter caseDependency(Dependency object) {
-                return createDependencyAdapter();
             }
             @Override
             public <T extends Classifier> Adapter caseClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier<T> object) {
@@ -330,62 +310,6 @@ public class CmpAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createGeneralizationAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.cmp.Abstraction <em>Abstraction</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Abstraction
-     * @generated
-     */
-    public Adapter createAbstractionAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.cmp.Manifestation <em>Manifestation</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Manifestation
-     * @generated
-     */
-    public Adapter createManifestationAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.cmp.Substitution <em>Substitution</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Substitution
-     * @generated
-     */
-    public Adapter createSubstitutionAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.cmp.Dependency <em>Dependency</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.component.cmp.Dependency
-     * @generated
-     */
-    public Adapter createDependencyAdapter() {
         return null;
     }
 

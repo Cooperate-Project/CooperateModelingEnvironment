@@ -4,12 +4,21 @@
    <extension
          point="de.cooperateproject.modeling.transformation.registry.transformationfactories">
       <transformation>
-         <transformationfactory
-               class="de.cooperateproject.modeling.transformation.cls.ClsTransformationFactory">
-         </transformationfactory>
          <transformationfolder
                foldername="transforms">
          </transformationfolder>
+         <defaulttransformation
+               diagramName="Class"
+               graphicalFileExtension="notation">
+         </defaulttransformation>
+         <postprocessor
+               class="de.cooperateproject.modeling.transformation.cls.postprocessors.T2GPostProcessor"
+               direction="textual to graphical">
+         </postprocessor>
+         <postprocessor
+               class="de.cooperateproject.modeling.transformation.cls.postprocessors.G2TPostProcessor"
+               direction="graphical to textual">
+         </postprocessor>
       </transformation>
    </extension>
 

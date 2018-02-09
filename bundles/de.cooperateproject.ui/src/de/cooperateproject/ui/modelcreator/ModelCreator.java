@@ -33,6 +33,8 @@ import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.IDiagramType;
 import de.cooperateproject.ui.Activator;
+import de.cooperateproject.ui.properties.ProjectPropertiesStore;
+import de.cooperateproject.util.conventions.Constants;
 
 public class ModelCreator {
 
@@ -50,6 +52,7 @@ public class ModelCreator {
     public static IStatus createDiagram(IProject project, String modelName, String diagramName,
             IDiagramType diagramType) {
         CDOCheckout checkout = CDOConnectionManager.getInstance().createCDOCheckout(project, true, true);
+        checkout.open();
         CDOSession session = checkout.getView().getSession();
         try {
             CDOBranch tmpBranch = checkout.getView().getBranch();
@@ -62,8 +65,15 @@ public class ModelCreator {
 
                 mainTransaction.merge(tmpBranch.getHead(), tmpBranch.getBase(),
                         new DefaultCDOMerger.PerFeature.ManyValued());
-                mainTransaction.setCommitComment("Diagram " + diagramName + " in project " + project.getName()
-                        + " created by " + System.getProperty("user.name") + ".");
+
+                ProjectPropertiesStore store = new ProjectPropertiesStore(project);
+                store.initFromStore();
+                String cdoUser = store.getPreferences().getCdoUser();
+                String commitMessage = "Created diagram " + diagramName + " in project " + project.getName() + ".";
+                if (!(cdoUser.isEmpty() || cdoUser.contentEquals(""))) {
+                    commitMessage += Constants.AUTHOR_PARSE_STRING + cdoUser;
+                }
+                mainTransaction.setCommitComment(commitMessage);
                 mainTransaction.commit();
 
                 return Status.OK_STATUS;

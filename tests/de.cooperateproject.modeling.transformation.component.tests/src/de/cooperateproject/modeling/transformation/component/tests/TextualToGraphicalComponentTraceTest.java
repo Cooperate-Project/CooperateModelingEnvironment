@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.component.tests;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -82,16 +80,6 @@ public class TextualToGraphicalComponentTraceTest extends ComponentDirectionalTr
     }
 
     @Test
-    public void testManifestation() throws Exception {
-        testTraceTransformation("ComponentDiagramManifestation");
-    }
-
-    @Test
-    public void testEntireClassifierRelations() throws Exception {
-        testTraceTransformation("ComponentDiagramEntireClassifierRelations");
-    }
-
-    @Test
     public void testSinglePort() throws Exception {
         testTraceTransformation("ComponentDiagramSinglePort");
     }
@@ -114,5 +102,25 @@ public class TextualToGraphicalComponentTraceTest extends ComponentDirectionalTr
     @Test
     public void testComponentDiagramPortTypeClass() throws Exception {
     	testTraceTransformation("ComponentDiagramPortTypeClass");
+    }
+    
+    @Test
+    public void testComponentDiagramNestedClass() throws Exception {
+    	testTraceTransformation("ComponentDiagramNestedClass");
+    }
+    
+    @Test
+    public void testComponentDiagramSingleClass() throws Exception {
+    	testTraceTransformation("ComponentDiagramSingleClass");
+    }
+    
+    @Test
+    public void testComponentDiagramComponentNote() throws Exception {
+    	testTraceTransformation("ComponentDiagramComponentNote");
+    }
+    
+    @Test
+    public void testComponentDiagramCommentedGeneralization() throws Exception {
+    	testTraceTransformation("ComponentDiagramCommentedGeneralization");
     }
 }

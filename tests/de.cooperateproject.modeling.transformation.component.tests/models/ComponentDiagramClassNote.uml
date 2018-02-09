@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_P7L5sANJEeiUHIKWeuPA8A" name="ComponentDiagramClassNote">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_Z6gpkANJEeiUHIKWeuPA8A" annotatedElement="_VZA0UANJEeiUHIKWeuPA8A">
+    <body>comment</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_VZA0UANJEeiUHIKWeuPA8A" name="Class1"/>
+</uml:Model>

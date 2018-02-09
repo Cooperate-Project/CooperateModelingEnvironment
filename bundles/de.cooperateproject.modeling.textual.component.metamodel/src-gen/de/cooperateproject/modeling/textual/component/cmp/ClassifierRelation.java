@@ -2,8 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -21,9 +20,10 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getClassifierRelation()
  * @model abstract="true"
+ * @extends CDOObject
  * @generated
  */
-public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends AliasedElement {
+public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends CDOObject {
     /**
      * Returns the value of the '<em><b>Left Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType
      * @return the value of the '<em>Left Classifier</em>' reference.
      * @see #setLeftClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getClassifierRelation_LeftClassifier()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     de.cooperateproject.modeling.textual.component.cmp.Classifier<LeftUMLType> getLeftClassifier();
@@ -61,7 +61,7 @@ public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType
      * @return the value of the '<em>Right Classifier</em>' reference.
      * @see #setRightClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getClassifierRelation_RightClassifier()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     de.cooperateproject.modeling.textual.component.cmp.Classifier<RightUMLType> getRightClassifier();

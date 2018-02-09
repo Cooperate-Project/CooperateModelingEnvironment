@@ -6,8 +6,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 
-import org.eclipse.uml2.uml.Classifier;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Port</b></em>'.
@@ -35,12 +33,12 @@ public interface Port extends NamedElement, VisibilityHavingElement, UMLReferenc
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Realized Classifier</em>' reference.
-     * @see #setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier)
+     * @see #setRealizedClassifier(Classifier)
      * @see de.cooperateproject.modeling.textual.component.cmp.CmpPackage#getPort_RealizedClassifier()
      * @model transient="true"
      * @generated
      */
-    de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> getRealizedClassifier();
+    Classifier<org.eclipse.uml2.uml.Classifier> getRealizedClassifier();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.cmp.Port#getRealizedClassifier <em>Realized Classifier</em>}' reference.
@@ -50,7 +48,7 @@ public interface Port extends NamedElement, VisibilityHavingElement, UMLReferenc
      * @see #getRealizedClassifier()
      * @generated
      */
-    void setRealizedClassifier(de.cooperateproject.modeling.textual.component.cmp.Classifier<Classifier> value);
+    void setRealizedClassifier(Classifier<org.eclipse.uml2.uml.Classifier> value);
 
     /**
      * Returns the value of the '<em><b>Conjugated</b></em>' attribute.

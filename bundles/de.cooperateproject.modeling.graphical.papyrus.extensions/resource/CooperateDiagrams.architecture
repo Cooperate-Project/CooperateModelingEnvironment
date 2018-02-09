@@ -102,13 +102,10 @@
       <paletteRules xmi:id="_BGZQQMkgEeeBNpqZKhMZag" element="component.tool.operation"/>
       <paletteRules xmi:id="_Gd3rQMkgEeeBNpqZKhMZag" element="component.tool.connector"/>
       <paletteRules xmi:id="_KlUBwMkgEeeBNpqZKhMZag" element="component.tool.generalization"/>
-      <paletteRules xmi:id="_M4kd0MkgEeeBNpqZKhMZag" element="component.tool.manifestation"/>
       <paletteRules xmi:id="_S8rVUMkgEeeBNpqZKhMZag" element="component.tool.usage"/>
-      <paletteRules xmi:id="_VgjnUMkgEeeBNpqZKhMZag" element="component.tool.substitution"/>
       <paletteRules xmi:id="_YiRE0MkgEeeBNpqZKhMZag" element="component.tool.interfaceRealization"/>
-      <paletteRules xmi:id="_d16IsMkgEeeBNpqZKhMZag" element="component.tool.abstraction"/>
-      <paletteRules xmi:id="_jKV2wMkgEeeBNpqZKhMZag" element="component.tool.dependency"/>
       <paletteRules xmi:id="_FF3RcMobEee7xY_zpd67gg" element="component.tool.link"/>
+      <paletteRules xmi:id="_FDE_YAUEEeiX4I6--CmZhA" element="component.tool.class"/>
       <paletteRules xmi:id="_iU0ZcMkfEeeBNpqZKhMZag" permit="false" element="component.tool.*"/>
       <assistantRules xmi:id="_ysW1cMoYEee7xY_zpd67gg" elementTypeID="org.eclipse.papyrus.umldi.Operation_InterfaceOperationLabel"/>
       <assistantRules xmi:id="_go4McMoZEee7xY_zpd67gg" elementTypeID="org.eclipse.papyrus.umldi.Property_InterfaceAttributeLabel"/>

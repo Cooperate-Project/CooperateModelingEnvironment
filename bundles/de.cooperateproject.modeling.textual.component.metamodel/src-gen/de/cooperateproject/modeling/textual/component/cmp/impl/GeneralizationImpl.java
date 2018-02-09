@@ -2,18 +2,22 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.component.cmp.Classifier;
 import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation;
 import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
 
+import java.util.Collection;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Interface;
 
@@ -25,35 +29,14 @@ import org.eclipse.uml2.uml.Interface;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.GeneralizationImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.GeneralizationImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.GeneralizationImpl#getLeftClassifier <em>Left Classifier</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.GeneralizationImpl#getRightClassifier <em>Right Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.cmp.impl.GeneralizationImpl#getComments <em>Comments</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization> implements de.cooperateproject.modeling.textual.component.cmp.Generalization {
-    /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected static final String NAME_EDEFAULT = null;
-
-    /**
-     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAlias()
-     * @generated
-     * @ordered
-     */
-    protected static final String ALIAS_EDEFAULT = null;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -82,78 +65,6 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
     @Override
     public void setReferencedElement(Generalization newReferencedElement) {
         super.setReferencedElement(newReferencedElement);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName() {
-        return (String)eDynamicGet(CmpPackage.GENERALIZATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setName(String newName) {
-        eDynamicSet(CmpPackage.GENERALIZATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetName() {
-        eDynamicUnset(CmpPackage.GENERALIZATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetName() {
-        return eDynamicIsSet(CmpPackage.GENERALIZATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getAlias() {
-        return (String)eDynamicGet(CmpPackage.GENERALIZATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setAlias(String newAlias) {
-        eDynamicSet(CmpPackage.GENERALIZATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetAlias() {
-        eDynamicUnset(CmpPackage.GENERALIZATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetAlias() {
-        return eDynamicIsSet(CmpPackage.GENERALIZATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -217,19 +128,56 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(CmpPackage.GENERALIZATION__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CmpPackage.GENERALIZATION__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CmpPackage.GENERALIZATION__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CmpPackage.GENERALIZATION__NAME:
-                return getName();
-            case CmpPackage.GENERALIZATION__ALIAS:
-                return getAlias();
             case CmpPackage.GENERALIZATION__LEFT_CLASSIFIER:
                 if (resolve) return getLeftClassifier();
                 return basicGetLeftClassifier();
             case CmpPackage.GENERALIZATION__RIGHT_CLASSIFIER:
                 if (resolve) return getRightClassifier();
                 return basicGetRightClassifier();
+            case CmpPackage.GENERALIZATION__COMMENTS:
+                return getComments();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -243,17 +191,15 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CmpPackage.GENERALIZATION__NAME:
-                setName((String)newValue);
-                return;
-            case CmpPackage.GENERALIZATION__ALIAS:
-                setAlias((String)newValue);
-                return;
             case CmpPackage.GENERALIZATION__LEFT_CLASSIFIER:
                 setLeftClassifier((Classifier<Interface>)newValue);
                 return;
             case CmpPackage.GENERALIZATION__RIGHT_CLASSIFIER:
                 setRightClassifier((Classifier<Interface>)newValue);
+                return;
+            case CmpPackage.GENERALIZATION__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -267,17 +213,14 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CmpPackage.GENERALIZATION__NAME:
-                unsetName();
-                return;
-            case CmpPackage.GENERALIZATION__ALIAS:
-                unsetAlias();
-                return;
             case CmpPackage.GENERALIZATION__LEFT_CLASSIFIER:
                 setLeftClassifier((Classifier<Interface>)null);
                 return;
             case CmpPackage.GENERALIZATION__RIGHT_CLASSIFIER:
                 setRightClassifier((Classifier<Interface>)null);
+                return;
+            case CmpPackage.GENERALIZATION__COMMENTS:
+                getComments().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -291,14 +234,12 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CmpPackage.GENERALIZATION__NAME:
-                return isSetName();
-            case CmpPackage.GENERALIZATION__ALIAS:
-                return isSetAlias();
             case CmpPackage.GENERALIZATION__LEFT_CLASSIFIER:
                 return basicGetLeftClassifier() != null;
             case CmpPackage.GENERALIZATION__RIGHT_CLASSIFIER:
                 return basicGetRightClassifier() != null;
+            case CmpPackage.GENERALIZATION__COMMENTS:
+                return !getComments().isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -310,22 +251,16 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == NamedElement.class) {
-            switch (derivedFeatureID) {
-                case CmpPackage.GENERALIZATION__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedElement.class) {
-            switch (derivedFeatureID) {
-                case CmpPackage.GENERALIZATION__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-                default: return -1;
-            }
-        }
         if (baseClass == ClassifierRelation.class) {
             switch (derivedFeatureID) {
                 case CmpPackage.GENERALIZATION__LEFT_CLASSIFIER: return CmpPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER;
                 case CmpPackage.GENERALIZATION__RIGHT_CLASSIFIER: return CmpPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case CmpPackage.GENERALIZATION__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
                 default: return -1;
             }
         }
@@ -339,22 +274,16 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == NamedElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return CmpPackage.GENERALIZATION__NAME;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return CmpPackage.GENERALIZATION__ALIAS;
-                default: return -1;
-            }
-        }
         if (baseClass == ClassifierRelation.class) {
             switch (baseFeatureID) {
                 case CmpPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER: return CmpPackage.GENERALIZATION__LEFT_CLASSIFIER;
                 case CmpPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER: return CmpPackage.GENERALIZATION__RIGHT_CLASSIFIER;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return CmpPackage.GENERALIZATION__COMMENTS;
                 default: return -1;
             }
         }

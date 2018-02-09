@@ -24,8 +24,8 @@ mapping notation::Diagram::diagramToDiagram() : cmp::ComponentDiagram
 mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 {
 	referencedElement := self.element.oclAsType(uml::Package);
-	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToClassifier();
-	relations += self.edges.map edgeToClassifierRelation();
+	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
+	relations := self.edges.map edgeToClassifierRelation();
 }
 
 mapping notation::Node::nodeToClassifier() : cmp::Classifier
@@ -36,28 +36,29 @@ disjuncts
 {
 
 }
-
-	
 	
 mapping notation::Node::nodeToComponent() : cmp::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement := self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
-	attributes += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
-	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
-	packagedElements += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE).map nodeToClassifier();
-	//collect all classes that are in the diagram and belog to the component
-	var rootShapes := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT and element.oclAsType(uml::Classifier).owner = referencedElement);
-	packagedElements += rootShapes.map nodeToClassifier();
+	attributes := packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY).map nodeToAttribute();
+	comments := self.getCommentShape().map commentToComment();
 	
-	port += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
+	interfaceRelation := self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
+	
+	packagedElements := packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMPONENT_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
+	//collect all classes that are in the diagram and belog to the component
+	//var rootShapes := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT and element.oclAsType(uml::Classifier).owner = referencedElement);
+	//packagedElements += rootShapes.map nodeToClassifier();
+	
+	port := self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR).map nodeToPort();
 	var portNodes = self.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
 	//add ports of properties
 	portNodes += self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR)
 			.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_PROPERTY)
 			.children->select(type = PAPYRUS_NOTATION_SHAPE_PORT_REGULAR);
 	
-	connectors += self.diagram.edges->select(not isCommentLinkForAssociation())->select(portNodes->exists(e | e = source))->map edgeToConnector();
+	connectors := self.diagram.edges->select(not isCommentLinkForAssociation())->select(portNodes->exists(e | e = source))->map edgeToConnector();
 }
 
 
@@ -65,16 +66,17 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 mapping notation::Node::nodeToInterface() : cmp::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
 	referencedElement := self.element.oclAsType(uml::Interface);
-	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
+	comments := self.getCommentShape().map commentToComment();
+	members := self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
 
 mapping notation::Node::nodeToClass() : cmp::Class
 	when {		self.element.oclIsKindOf(uml::Class)	}{
 	referencedElement := self.element.oclAsType(uml::Class);
-	interfaceRelation += self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
+	comments := self.getCommentShape().map commentToComment();
+	interfaceRelation := self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
 }
-//	
 
 mapping notation::Node::nodeToAttribute() : cmp::Attribute
 	when {		self.element.oclIsKindOf(uml::Property)	}{
@@ -96,13 +98,8 @@ mapping notation::Node::nodeToPort() : cmp::Port
 
 mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
 disjuncts
- notation::Edge::edgeToGeneralization,
- notation::Edge::edgeToManifestation,
- notation::Edge::edgeToSubstitution,
- notation::Edge::edgeToDependency,
- notation::Edge::edgeToAbstraction
+ notation::Edge::edgeToGeneralization
 {
-	
 }
 
 
@@ -115,6 +112,7 @@ mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
 	var generalization := self.element.oclAsType(uml::Generalization);
 	assert error (generalization.source->size() = 1 and generalization.target->size() = 1) with log ('Generalization : Log must of exactly one source and one target.', generalization);
 	referencedElement := generalization;
+	comments := self.getCommentShape().map commentToComment();
 	var umlGeneralization :=self.element.oclAsType(uml::Generalization);
 	var umlSourceClassifierEnd := umlGeneralization.specific;
 	var umlTargetClassifierEnd := umlGeneralization.general;
@@ -127,93 +125,6 @@ mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
 		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
 	);
 }
-mapping notation::Edge::edgeToAbstraction() : cmp::Abstraction
-	when {
-	self.element != null and
-	self.element.oclIsKindOf(uml::Abstraction) and
-	self.type = PAPYRUS_NOTATION_EDGE_ABSTRACTION
-	}{
-	var abstraction := self.element.oclAsType(uml::Abstraction);
-	assert error (abstraction.source->size() = 1 and abstraction.target->size() = 1) with log ('Abstraction : Log must of exactly one source and one target.', abstraction);
-	referencedElement := abstraction;
-	var umlAbstraction :=self.element.oclAsType(uml::Abstraction);
-	var umlSourceClassifierEnd := umlAbstraction.client;
-	var umlTargetClassifierEnd := umlAbstraction.supplier;
-	leftClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-	rightClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-}
-mapping notation::Edge::edgeToManifestation() : cmp::Manifestation
-	when {
-	self.element != null and
-	self.element.oclIsKindOf(uml::Manifestation)  and
-	self.type = PAPYRUS_NOTATION_EDGE_MANIFESTATION 
-	}
-{
-	var manifestation := self.element.oclAsType(uml::Manifestation);
-	assert error (manifestation.source->size() = 1 and manifestation.target->size() = 1) with log ('Manifestation : Log must of exactly one source and one target.', manifestation);
-	referencedElement := manifestation;
-	var umlManifestation :=self.element.oclAsType(uml::Manifestation);
-	var umlSourceClassifierEnd := umlManifestation.client;
-	var umlTargetClassifierEnd := umlManifestation.supplier;
-	leftClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-	rightClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-
-}
-mapping notation::Edge::edgeToSubstitution() : cmp::Substitution
-	when {
-	self.element != null and
-	self.element.oclIsKindOf(uml::Substitution) and
-	self.type = PAPYRUS_NOTATION_EDGE_SUBSTITUTION
-	}{
-	var substitution := self.element.oclAsType(uml::Substitution);
-	assert error (substitution.source->size() = 1 and substitution.target->size() = 1) with log ('Substitution : Log must of exactly one source and one target.', substitution);
-	referencedElement := substitution;
-	var umlSubstitution :=self.element.oclAsType(uml::Substitution);
-	var umlSourceClassifierEnd := umlSubstitution.client;
-	var umlTargetClassifierEnd := umlSubstitution.supplier;
-	leftClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-	rightClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-}
-mapping notation::Edge::edgeToDependency() : cmp::Dependency
-	when {
-	self.element != null and
-	self.element.oclIsKindOf(uml::Dependency) and
-	self.type = PAPYRUS_NOTATION_EDGE_DEPENDENCY
-	}{
-	var dependency := self.element.oclAsType(uml::Dependency);
-	assert error (dependency.source->size() = 1 and dependency.target->size() = 1) with log ('Dependency : Log must of exactly one source and one target.', dependency);
-	referencedElement := dependency;
-	var umlDependency :=self.element.oclAsType(uml::Dependency);
-	var umlSourceClassifierEnd := umlDependency.client;
-	var umlTargetClassifierEnd := umlDependency.supplier;
-	leftClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-	rightClassifier := late resolveoneIn(
-		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
-	);
-}
-
 
 
 
@@ -238,12 +149,15 @@ when {not self.oclIsInvalid() and not self.oclIsUndefined()}
 	referencedElement := self.element.oclAsType(uml::Comment);
 }
 
+mapping notation::View::commentViewToComment() : textualCommons::Comment
+{
+	var umlComment = self.element.oclAsType(uml::Comment);
+	referencedElement := umlComment;
+}
 query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
 {
 	return self.findRelevantEdgesByContainment();
 }
-
-
 
 mapping notation::Edge::edgeToInterfaceRelation() : cmp::InterfaceRelation
 disjuncts
@@ -336,12 +250,6 @@ query notation::Edge::findOwningPackage() : uml::Package
 	return if self.oclIsKindOf(notation::Connector) then self.oclAsType(notation::Connector).findOwningPackage() else null endif;
 }
 
-
-mapping notation::View::commentViewToComment() : textualCommons::Comment
-{
-	var umlComment = self.element.oclAsType(uml::Comment);
-	referencedElement := umlComment;
-}
 
 query notation::View::getCommentShape() : notation::View
 {

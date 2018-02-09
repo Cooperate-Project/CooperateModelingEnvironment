@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cmp:ComponentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmp="http://www.cooperateproject.de/modeling/textual/component/Component" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ComponentDiagramComponentNote">
+  <rootpackage>
+    <referencedElement xsi:type="uml:Model" href="ComponentDiagramComponentNote.uml#_ugBJsAK0Eeitl8_60e4uqg"/>
+    <classifiers xsi:type="cmp:Component">
+    <comments>
+          <referencedElement xsi:type="uml:Comment" href="ComponentDiagramComponentNote.uml#_ytX68AK0Eeitl8_60e4uqg"/>
+          </comments>
+      <referencedElement xsi:type="uml:Component" href="ComponentDiagramComponentNote.uml#_xqwnYAK0Eeitl8_60e4uqg"/>
+    </classifiers>
+  </rootpackage>
+</cmp:ComponentDiagram>

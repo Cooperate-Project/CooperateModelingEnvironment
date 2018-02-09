@@ -9,22 +9,16 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Platform;
+import org.apache.commons.lang3.tuple.Pair;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.content.IPostProcessor;
 import de.cooperateproject.ui.diff.content.SummaryItem;
 import de.cooperateproject.ui.diff.internal.IsTransitiveChildPredicate;
+import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
 /**
  * Finds the correct post-processor for the specific meta-model. Delegates the post-processing
@@ -38,8 +32,6 @@ public final class PostProcessorManager {
     private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.postProcessor";
     private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
     private static final String CLASS_ATTRIBUTE_ID = "class";
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PostProcessorManager.class);
 
     private PostProcessorManager() {
         // private constructor to hide creation of object
@@ -55,11 +47,7 @@ public final class PostProcessorManager {
         // which meta model it is.
         EObject oneKey = keys.iterator().next();
         String objectType = oneKey.getClass().getPackage().getName();
-        IPostProcessor postProcessor = findPostProcessor(objectType);
-        if (postProcessor != null) {
-            return postProcessor.postProcessDiffTreeBuilder(tree);
-        }
-
+        findPostProcessor(objectType).ifPresent(p -> p.postProcessDiffTreeBuilder(tree));
         return tree;
     }
 
@@ -68,9 +56,10 @@ public final class PostProcessorManager {
 			return summaryList;
 		}
 
-		List<SummaryItem> result = determineRelevantPackageName(summaryList).map(PostProcessorManager::findPostProcessor)
-                .map(processor -> processor.postProcessSummaryViewBuilder(summaryList)).orElse(summaryList);
-		
+		List<SummaryItem> result = determineRelevantPackageName(summaryList)
+				.flatMap(PostProcessorManager::findPostProcessor)
+				.map(processor -> processor.postProcessSummaryViewBuilder(summaryList)).orElse(summaryList);
+
 		return filterTransitivelyContainedChanges(result);
 	}
 
@@ -128,26 +117,11 @@ public final class PostProcessorManager {
     	return item.getChangedFeature() instanceof EReference && ((EReference)item.getChangedFeature()).isContainment();
     }
 
-    private static IPostProcessor findPostProcessor(String objectType) {
-        IPostProcessor postProcessor = null;
-        IExtensionRegistry reg = Platform.getExtensionRegistry();
-        IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
-        IExtension[] extensions = ep.getExtensions();
-
-        for (IExtension extension : extensions) {
-            IConfigurationElement[] configurationElements = extension.getConfigurationElements();
-            for (IConfigurationElement configurationElement : configurationElements) {
-                if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
-                    continue;
-                }
-                try {
-                    postProcessor = (IPostProcessor) configurationElement.createExecutableExtension(CLASS_ATTRIBUTE_ID);
-                } catch (CoreException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-            }
-        }
-
-        return postProcessor;
-    }
+	private static Optional<IPostProcessor> findPostProcessor(String objectType) {
+		Collection<Pair<IPostProcessor, Map<String, String>>> extensions = ExtensionPointHelper
+				.getExtensions(EXTENSION_POINT_ID, CLASS_ATTRIBUTE_ID, IPostProcessor.class, METAMODEL_ATTRIBUTE_ID);
+		return extensions.stream()
+				.filter(ext -> ext.getRight().getOrDefault(METAMODEL_ATTRIBUTE_ID, "").contains(objectType)).findAny()
+				.map(Pair::getLeft);
+	}
 }

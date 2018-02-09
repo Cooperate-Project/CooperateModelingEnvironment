@@ -21,48 +21,80 @@ import de.cooperateproject.modeling.textual.component.cmp.Connector
 import de.cooperateproject.modeling.textual.component.cmp.Parameter
 import org.apache.commons.lang3.StringUtils
 import de.cooperateproject.modeling.textual.common.issues.DependingElementMissingElementResolvableCheckerBase
+import org.eclipse.uml2.uml.AttributeOwner
+import de.cooperateproject.modeling.textual.component.cmp.Generalization
 
-class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
+class ComponentMissingUMLElementResolvableChecker extends DependingElementMissingElementResolvableCheckerBase {
 	
-	override isResolvable(UMLReferencingElement<Element> element) {
-		element.resolvePossible
-	}
-	
-	private def dispatch resolvePossible(UMLReferencingElement element) {
+	protected def dispatch localResolutionPossible(UMLReferencingElement element) {
 	    val referencedType = element.eClass.getFeatureType(TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement).EClassifier as EClass
 	    return (UMLPackage.eINSTANCE.classifier.isSuperTypeOf(referencedType) 
 	         && UMLPackage.eINSTANCE.packageableElement.isSuperTypeOf(referencedType)
 	         && (element.hasValidParent(CmpPackage.eINSTANCE.component) || element.hasValidParent(CmpPackage.eINSTANCE.rootPackage)))
 	}
 	
-	private def dispatch resolvePossible(InterfaceRelation element) {
-		return element.interface.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
+	protected def dispatch resolvePossible(Component element) {
+		if (!element.hasValidParent(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT)) {
+			return false;
 		}
+		val parent = element.eContainer as UMLReferencingElement<Element>
+		return parent.referencedElementHasEitherType(UMLPackage.Literals.PACKAGE, UMLPackage.Literals.CLASS)
+	}
 	
-	private def dispatch resolvePossible(Attribute element) {
+	protected def dispatch localResolutionPossible(InterfaceRelation element) {
+		return element.hasValidParent(CmpPackage.eINSTANCE.classifier)
+	}
+	
+	protected def dispatch localResolutionPossible(Attribute element) {
 		return element.type !== null && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
 	}
 	
-	private def dispatch resolvePossible(Port element) {
-		return element.realizedClassifier.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.component)
+	protected def dispatch localResolutionPossible(Port element) {
+		return element.hasValidParent(CmpPackage.eINSTANCE.component)
 	}
 	
-	private def dispatch resolvePossible(ConnectorEnd element) {
-		return element.role.hasReferencedElement && element.hasValidParent(CmpPackage.eINSTANCE.connector)
+	protected def dispatch localResolutionPossible(ConnectorEnd element) {
+		return element.hasValidParent(CmpPackage.eINSTANCE.connector)
 	}
 	
-	private def dispatch resolvePossible(Connector element) {
-		return element.name !== null && element.hasValidParent(CmpPackage.eINSTANCE.component)
+	protected def dispatch localResolutionPossible(Connector element) {
+		return element.name !== null && element.hasValidParent(CmpPackage.eINSTANCE.component) && !element.connectorEnds.map[role].contains(null)
 	}
 	
-	private def dispatch resolvePossible(Method element) {
-		return !element.parameters.map[type].contains(null) && !element.parameters.map[name].contains(null)
+	protected def dispatch localResolutionPossible(Method element) {
+		return !element.parameters.map[type].contains(null) && !element.parameters.map[name].contains(null) 
+		&& element.eContainer !== null
 	}
 	
-    private def dispatch resolvePossible(Parameter element) {
+    protected def dispatch localResolutionPossible(Parameter element) {
         return element.type !== null && element.type.eResource !== null && StringUtils.isNotBlank(element.name)
     }
-	
-	
-	
+    
+    protected def dispatch localResolutionPossible(Generalization element) {
+    	return element.leftClassifier.referencedElementHasType(UMLPackage.Literals.INTERFACE) &&
+    	element.rightClassifier.referencedElementHasType(UMLPackage.Literals.INTERFACE)
+    }
+    
+    protected def dispatch getDependencies(InterfaceRelation object) {
+    	#[object.interface]
+    }
+    
+    protected def dispatch getDependencies(Parameter object) {
+        object.owner.parameters.take(object.owner.parameters.indexOf(object)).map[it as UMLReferencingElement<? extends Element>].toList => [
+            add(0, object.owner)
+        ]
+    }
+    
+    protected def dispatch getDependencies(Port object) {
+    	#[object.realizedClassifier]
+    }
+    
+    protected def dispatch getDependencies(ConnectorEnd object) {
+    	#[object.role]
+    }
+    
+    protected def dispatch getDependencies(Generalization object) {
+    	#[object.leftClassifier, object.rightClassifier]
+    }
+    
 }

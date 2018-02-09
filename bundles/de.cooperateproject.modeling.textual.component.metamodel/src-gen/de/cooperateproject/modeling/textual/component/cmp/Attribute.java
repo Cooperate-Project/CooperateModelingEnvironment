@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.component.cmp;
 
 import org.eclipse.uml2.uml.Property;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Attribute</b></em>'.
