@@ -98,6 +98,11 @@
     </eGenericSuperTypes>
     <eGenericSuperTypes
         eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//PackageableElement"/>
+    <eGenericSuperTypes
+        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
@@ -357,6 +362,11 @@
       name="Implementation">
     <eGenericSuperTypes
         eClassifier="#//TypedConnector">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes
+        eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
       <eTypeArguments
           eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
     </eGenericSuperTypes>

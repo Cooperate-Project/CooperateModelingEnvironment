@@ -519,7 +519,8 @@ mapping cls::AssociationMemberEnd::semanticBranchStyle() : notation::EObjectValu
 
 query textualCommons::PackageableElement::typeToView() : notation::View
 {
-    return if self.oclIsKindOf(cls::Association) or self.oclIsKindOf(cls::Generalization) then self.typeToEdge() else self.typeToShape() endif;
+    return if self.oclIsKindOf(cls::Association) or self.oclIsKindOf(cls::Generalization)
+    or self.oclIsKindOf(cls::Implementation) or self.oclIsKindOf(textualCommons::PackageImport) then self.typeToEdge() else self.typeToShape() endif;
 }
 
 query textualCommons::PackageableElement::typeToEdge() : notation::View

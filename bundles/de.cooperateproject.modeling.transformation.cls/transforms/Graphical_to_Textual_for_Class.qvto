@@ -26,7 +26,7 @@ mapping notation::Diagram::diagramToRootPackage() : cls::Package {
 	referencedElement := self.element.oclAsType(uml::Package);
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
-	connectors += self.edges->select(not isCommentLinkForAssociation() and not isCommentLinkForGeneralization())->map edgeToConnector();
+	connectors += self.edges->select(not isCommentLinkForConnector())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
 }
@@ -40,7 +40,7 @@ mapping notation::Node::nodeToPackage() : cls::Package
 	referencedElement := umlPackage;
 	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
-	connectors += relevantEdges->select(not isCommentLinkForAssociation() and not isCommentLinkForGeneralization())->map edgeToConnector();
+	connectors += relevantEdges->select(not isCommentLinkForConnector())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
 }
@@ -124,6 +124,10 @@ query notation::View::findRelevantAssociationBranches() : OrderedSet(notation::N
 mapping notation::Edge::edgeToPackageImport() : textualCommons::PackageImport
 {
 	assert error (self.element.oclIsKindOf(uml::PackageImport)) with log('Only edges containing a package import can be mapped to a package import.');
+	var relevantComments := self.findViewCommentViews();
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
+	
+	comments := relevantComments.map commentViewToComment();
 	referencedElement := self.element.oclAsType(uml::PackageImport);
 }
 
@@ -232,6 +236,12 @@ mapping notation::Edge::edgeToImplementation() : cls::Implementation
 {
 	var realization := self.element.oclAsType(uml::InterfaceRealization);
 	assert error (realization.source->size() = 1 and realization.target->size() = 1) with log ('Interface realizations must of exactly one source and one target.', realization);
+	
+	var relevantComments := self.findViewCommentViews();
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
+	
+	comments := relevantComments.map commentViewToComment();
+	
 	referencedElement := realization;
 }
 
@@ -323,13 +333,11 @@ query notation::Edge::isCommentLink() : Boolean {
 			)
 }
 
-query notation::Edge::isCommentLinkForAssociation() : Boolean {
-	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
+query notation::Edge::isCommentLinkForConnector() : Boolean {
+	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(
+	oclIsKindOf(uml::Association) or oclIsKindOf(uml::Generalization) or oclIsKindOf(uml::InterfaceRealization)));
 }
 
-query notation::Edge::isCommentLinkForGeneralization() : Boolean {
-	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Generalization)));
-}
 
 /*
  * Attention: This is dangerous for the incremental execution mode

@@ -90,6 +90,11 @@ public class TextualToGraphicalClassTest extends ClsDirectionalTransformationTes
     public void testClassCommentedGeneralization() throws Exception {
         testRegular("ClassDiagramCommentedGeneralization");
     }
+    
+    @Test
+    public void testClassCommentedImpl() throws Exception {
+        testRegular("ClassDiagramCommentedImpl");
+    }
 
     @Override
     protected void testRegular(String modelName) throws Exception {

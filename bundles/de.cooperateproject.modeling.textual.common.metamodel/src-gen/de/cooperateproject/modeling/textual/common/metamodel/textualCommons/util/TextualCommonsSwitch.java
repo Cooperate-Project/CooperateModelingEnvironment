@@ -138,6 +138,7 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
             case TextualCommonsPackage.PACKAGE_IMPORT: {
                 PackageImport packageImport = (PackageImport)theEObject;
                 T result = casePackageImport(packageImport);
+                if (result == null) result = caseCommentable(packageImport);
                 if (result == null) result = caseUMLReferencingElement(packageImport);
                 if (result == null) result = caseElement(packageImport);
                 if (result == null) result = defaultCase(theEObject);

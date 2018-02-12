@@ -421,6 +421,25 @@ rulePackageImport returns [EObject current=null]
 				}
 			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPackageImportAccess().getCommentsCommentParserRuleCall_2_0());
+				}
+				lv_comments_2_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPackageImportRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_2_0,
+						"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -1428,6 +1447,25 @@ ruleImplementation returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getImplementationAccess().getRightParenthesisKeyword_5());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getImplementationAccess().getCommentsCommentParserRuleCall_6_0());
+				}
+				lv_comments_6_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getImplementationRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_6_0,
+						"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

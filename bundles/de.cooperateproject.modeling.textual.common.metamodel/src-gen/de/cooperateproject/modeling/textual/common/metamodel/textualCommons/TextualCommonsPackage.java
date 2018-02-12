@@ -610,13 +610,22 @@ public interface TextualCommonsPackage extends EPackage {
     int PACKAGE_IMPORT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE_IMPORT__COMMENTS = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Importing Package</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PACKAGE_IMPORT__IMPORTING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int PACKAGE_IMPORT__IMPORTING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Imported Package</b></em>' reference.
@@ -625,7 +634,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_IMPORT__IMPORTED_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int PACKAGE_IMPORT__IMPORTED_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Package Import</em>' class.
@@ -634,7 +643,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_IMPORT_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int PACKAGE_IMPORT_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

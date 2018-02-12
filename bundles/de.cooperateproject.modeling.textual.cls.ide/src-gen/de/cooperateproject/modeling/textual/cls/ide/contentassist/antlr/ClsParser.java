@@ -85,6 +85,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageAccess().getConnectorsAssignment_5(), "rule__Package__ConnectorsAssignment_5");
 					put(grammarAccess.getPackageAccess().getPackagesAssignment_6(), "rule__Package__PackagesAssignment_6");
 					put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_1(), "rule__PackageImport__ImportedPackageAssignment_1");
+					put(grammarAccess.getPackageImportAccess().getCommentsAssignment_2(), "rule__PackageImport__CommentsAssignment_2");
 					put(grammarAccess.getClassAccess().getVisibilityAssignment_0(), "rule__Class__VisibilityAssignment_0");
 					put(grammarAccess.getClassAccess().getAbstractAssignment_1(), "rule__Class__AbstractAssignment_1");
 					put(grammarAccess.getClassAccess().getNameAssignment_3_0(), "rule__Class__NameAssignment_3_0");
@@ -119,6 +120,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGeneralizationAccess().getCommentsAssignment_6(), "rule__Generalization__CommentsAssignment_6");
 					put(grammarAccess.getImplementationAccess().getLeftAssignment_2(), "rule__Implementation__LeftAssignment_2");
 					put(grammarAccess.getImplementationAccess().getRightAssignment_4(), "rule__Implementation__RightAssignment_4");
+					put(grammarAccess.getImplementationAccess().getCommentsAssignment_6(), "rule__Implementation__CommentsAssignment_6");
 					put(grammarAccess.getXtextAssociationAccess().getTwoSideBidirectionalityAssignment_0(), "rule__XtextAssociation__TwoSideBidirectionalityAssignment_0");
 					put(grammarAccess.getXtextAssociationAccess().getTwoSideAggregationKindAssignment_1(), "rule__XtextAssociation__TwoSideAggregationKindAssignment_1");
 					put(grammarAccess.getXtextAssociationAccess().getNameAssignment_2(), "rule__XtextAssociation__NameAssignment_2");

@@ -2,14 +2,19 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.PackageImport;
 
 /**
@@ -20,6 +25,7 @@ import org.eclipse.uml2.uml.PackageImport;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl#getImportingPackage <em>Importing Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl#getImportedPackage <em>Imported Package</em>}</li>
  * </ul>
@@ -58,6 +64,16 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -117,9 +133,12 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
@@ -136,6 +155,8 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 return basicSetImportingPackage(null, msgs);
         }
@@ -164,6 +185,8 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS:
+                return getComments();
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 return getImportingPackage();
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
@@ -178,9 +201,14 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
+                return;
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 setImportingPackage((PackageBase<?>)newValue);
                 return;
@@ -199,6 +227,9 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public void eUnset(int featureID) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS:
+                getComments().clear();
+                return;
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 setImportingPackage((PackageBase<?>)null);
                 return;
@@ -217,12 +248,46 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS:
+                return !getComments().isEmpty();
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 return getImportingPackage() != null;
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
                 return basicGetImportedPackage() != null;
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return TextualCommonsPackage.PACKAGE_IMPORT__COMMENTS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //PackageImportImpl

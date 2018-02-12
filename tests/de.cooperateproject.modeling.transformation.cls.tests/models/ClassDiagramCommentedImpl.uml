@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_xylIgA3qEeisg6Rlyy4edQ" name="ClassDiagramCommentedImpl">
+  <ownedComment xmi:type="uml:Comment" xmi:id="__0TW0A3qEeisg6Rlyy4edQ" annotatedElement="_95xj0A3qEeisg6Rlyy4edQ">
+    <body>comment</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1pK_kA3qEeisg6Rlyy4edQ" name="Class1">
+    <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_95xj0A3qEeisg6Rlyy4edQ" client="_1pK_kA3qEeisg6Rlyy4edQ" supplier="_7B-QQA3qEeisg6Rlyy4edQ" contract="_7B-QQA3qEeisg6Rlyy4edQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_7B-QQA3qEeisg6Rlyy4edQ" name="Interface1"/>
+</uml:Model>

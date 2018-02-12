@@ -20,7 +20,7 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
  * @model
  * @generated
  */
-public interface PackageImport extends UMLReferencingElement<org.eclipse.uml2.uml.PackageImport> {
+public interface PackageImport extends UMLReferencingElement<org.eclipse.uml2.uml.PackageImport>, Commentable<org.eclipse.uml2.uml.PackageImport> {
 	/**
      * Returns the value of the '<em><b>Imported Package</b></em>' reference.
      * <!-- begin-user-doc -->

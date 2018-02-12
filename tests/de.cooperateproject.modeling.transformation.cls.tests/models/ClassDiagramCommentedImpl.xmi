@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ClassDiagramCommentedImpl">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="ClassDiagramCommentedImpl.uml#_xylIgA3qEeisg6Rlyy4edQ"/>
+    <classifiers xsi:type="cls:Class">
+      <referencedElement xsi:type="uml:Class" href="ClassDiagramCommentedImpl.uml#_1pK_kA3qEeisg6Rlyy4edQ"/>
+    </classifiers>
+    <classifiers xsi:type="cls:Interface">
+      <referencedElement xsi:type="uml:Interface" href="ClassDiagramCommentedImpl.uml#_7B-QQA3qEeisg6Rlyy4edQ"/>
+    </classifiers>
+    <connectors xsi:type="cls:Implementation">
+      <referencedElement xsi:type="uml:InterfaceRealization" href="ClassDiagramCommentedImpl.uml#_95xj0A3qEeisg6Rlyy4edQ"/>
+      <comments>
+        <referencedElement xsi:type="uml:Comment" href="ClassDiagramCommentedImpl.uml#__0TW0A3qEeisg6Rlyy4edQ"/>
+      </comments>
+    </connectors>
+  </rootPackage>
+</cls:ClassDiagram>

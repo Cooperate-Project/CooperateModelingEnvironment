@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 
@@ -24,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Package extends PackageBase<Package>, PackageableElement {
+public interface Package extends PackageBase<Package>, PackageableElement, Commentable<org.eclipse.uml2.uml.Package> {
     /**
      * Returns the value of the '<em><b>Classifiers</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}<code>&lt;? extends org.eclipse.uml2.uml.Classifier&gt;</code>.

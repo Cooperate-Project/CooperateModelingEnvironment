@@ -190,13 +190,22 @@ public interface ClsPackage extends EPackage {
     int PACKAGE__PACKAGE_IMPORTS = TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE__COMMENTS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Classifiers</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PACKAGE__CLASSIFIERS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
+    int PACKAGE__CLASSIFIERS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Connectors</b></em>' containment reference list.
@@ -205,7 +214,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE__CONNECTORS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
+    int PACKAGE__CONNECTORS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Package</em>' class.
@@ -214,7 +223,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
+    int PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1336,13 +1345,22 @@ public interface ClsPackage extends EPackage {
     int IMPLEMENTATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLEMENTATION__COMMENTS = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Implementation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+    int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

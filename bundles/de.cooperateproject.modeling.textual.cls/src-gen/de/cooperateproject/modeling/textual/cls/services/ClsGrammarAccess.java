@@ -216,12 +216,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cImportedPackageAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cImportedPackagePackageCrossReference_1_0 = (CrossReference)cImportedPackageAssignment_1.eContents().get(0);
 		private final RuleCall cImportedPackagePackageFQNParserRuleCall_1_0_1 = (RuleCall)cImportedPackagePackageCrossReference_1_0.eContents().get(1);
+		private final Assignment cCommentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCommentsCommentParserRuleCall_2_0 = (RuleCall)cCommentsAssignment_2.eContents().get(0);
 		
 		//PackageImport commons::PackageImport:
-		//	"import" importedPackage=[uml::Package|FQN];
+		//	"import" importedPackage=[uml::Package|FQN] comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"import" importedPackage=[uml::Package|FQN]
+		//"import" importedPackage=[uml::Package|FQN] comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//"import"
@@ -235,6 +237,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FQN
 		public RuleCall getImportedPackagePackageFQNParserRuleCall_1_0_1() { return cImportedPackagePackageFQNParserRuleCall_1_0_1; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_2() { return cCommentsAssignment_2; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_2_0() { return cCommentsCommentParserRuleCall_2_0; }
 	}
 	public class NameStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.NameString");
@@ -827,12 +835,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cRightClassifierCrossReference_4_0 = (CrossReference)cRightAssignment_4.eContents().get(0);
 		private final RuleCall cRightClassifierFQNParserRuleCall_4_0_1 = (RuleCall)cRightClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCommentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCommentsCommentParserRuleCall_6_0 = (RuleCall)cCommentsAssignment_6.eContents().get(0);
 		
 		//Implementation:
-		//	'impl' '(' left=[Classifier|FQN] ',' right=[Classifier|FQN] ')';
+		//	'impl' '(' left=[Classifier|FQN] ',' right=[Classifier|FQN] ')' comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'impl' '(' left=[Classifier|FQN] ',' right=[Classifier|FQN] ')'
+		//'impl' '(' left=[Classifier|FQN] ',' right=[Classifier|FQN] ')' comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'impl'
@@ -864,6 +874,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_6() { return cCommentsAssignment_6; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_6_0() { return cCommentsCommentParserRuleCall_6_0; }
 	}
 	public class XtextAssociationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.XtextAssociation");
@@ -1402,7 +1418,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PackageImport commons::PackageImport:
-	//	"import" importedPackage=[uml::Package|FQN];
+	//	"import" importedPackage=[uml::Package|FQN] comments+=Comment?;
 	public PackageImportElements getPackageImportAccess() {
 		return pPackageImport;
 	}
@@ -1536,7 +1552,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Implementation:
-	//	'impl' '(' left=[Classifier|FQN] ',' right=[Classifier|FQN] ')';
+	//	'impl' '(' left=[Classifier|FQN] ',' right=[Classifier|FQN] ')' comments+=Comment?;
 	public ImplementationElements getImplementationAccess() {
 		return pImplementation;
 	}

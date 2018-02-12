@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**
@@ -14,5 +15,5 @@ import org.eclipse.uml2.uml.InterfaceRealization;
  * @model
  * @generated
  */
-public interface Implementation extends TypedConnector<InterfaceRealization> {
+public interface Implementation extends TypedConnector<InterfaceRealization>, Commentable<InterfaceRealization> {
 } // Implementation

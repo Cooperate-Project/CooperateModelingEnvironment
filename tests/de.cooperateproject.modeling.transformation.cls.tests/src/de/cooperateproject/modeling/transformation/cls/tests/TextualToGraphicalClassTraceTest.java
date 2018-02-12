@@ -53,4 +53,9 @@ public class TextualToGraphicalClassTraceTest extends ClsDirectionalTraceTransfo
     public void testClassCommentedGeneralization() throws Exception {
        testTraceTransformation("ClassDiagramCommentedGeneralization");
     }
+    
+    @Test
+    public void testClassCommentedImpl() throws Exception {
+       testTraceTransformation("ClassDiagramCommentedImpl");
+    }
 }

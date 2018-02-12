@@ -31,6 +31,7 @@ RootPackage returns Package:
 
 Package:
 	'package' name=FQN '{'
+	//(comments+=Comment)?
 	packageImports+=PackageImport*
 	classifiers+=Classifier*
 	connectors+=Connector*
@@ -40,7 +41,7 @@ Package:
 
 
 PackageImport returns commons::PackageImport:
-	"import" importedPackage=[uml::Package|FQN]
+	"import" importedPackage=[uml::Package|FQN] (comments+=Comment)?
 ;
 
 NameString returns ecore::EString:
@@ -112,7 +113,7 @@ Generalization:
 ;
 
 Implementation:
-	'impl' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
+	'impl' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')' (comments+=Comment)?
 ;
 
 

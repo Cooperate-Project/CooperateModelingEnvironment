@@ -105,6 +105,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 de.cooperateproject.modeling.textual.cls.cls.Package package_ = (de.cooperateproject.modeling.textual.cls.cls.Package)theEObject;
                 T1 result = casePackage(package_);
                 if (result == null) result = casePackageBase(package_);
+                if (result == null) result = caseCommentable(package_);
                 if (result == null) result = casePackageableElement(package_);
                 if (result == null) result = caseUMLReferencingElement(package_);
                 if (result == null) result = caseNamedElement(package_);
@@ -243,6 +244,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 Implementation implementation = (Implementation)theEObject;
                 T1 result = caseImplementation(implementation);
                 if (result == null) result = caseTypedConnector(implementation);
+                if (result == null) result = caseCommentable(implementation);
                 if (result == null) result = caseConnector(implementation);
                 if (result == null) result = caseUMLReferencingElement(implementation);
                 if (result == null) result = casePackageableElement(implementation);
