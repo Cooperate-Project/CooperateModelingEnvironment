@@ -1517,13 +1517,22 @@ public interface CmpPackage extends EPackage {
     int PROVIDE__REFERENCED_ELEMENT = INTERFACE_RELATION_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROVIDE__COMMENTS = INTERFACE_RELATION_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Provide</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROVIDE_FEATURE_COUNT = INTERFACE_RELATION_FEATURE_COUNT + 1;
+    int PROVIDE_FEATURE_COUNT = INTERFACE_RELATION_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1599,13 +1608,22 @@ public interface CmpPackage extends EPackage {
     int REQUIRE__REFERENCED_ELEMENT = INTERFACE_RELATION_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REQUIRE__COMMENTS = INTERFACE_RELATION_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Require</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REQUIRE_FEATURE_COUNT = INTERFACE_RELATION_FEATURE_COUNT + 1;
+    int REQUIRE_FEATURE_COUNT = INTERFACE_RELATION_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

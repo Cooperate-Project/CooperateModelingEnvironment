@@ -129,4 +129,10 @@ public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTr
     	testTraceTransformation("ComponentDiagramCommentedGeneralization");
     }
     
+    @Test
+    public void testComponentDiagramCommentedInterfaceRel() throws Exception {
+    	testTraceTransformation("ComponentDiagramCommentedInterfaceRel");
+    }
+    
+    
 }

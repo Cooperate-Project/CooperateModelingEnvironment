@@ -866,9 +866,17 @@ public class CmpPackageImpl extends EPackageImpl implements CmpPackage {
         g2 = createEGenericType(theUMLPackage.getInterfaceRealization());
         g1.getETypeArguments().add(g2);
         provideEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        g2 = createEGenericType(theUMLPackage.getInterfaceRealization());
+        g1.getETypeArguments().add(g2);
+        provideEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getInterfaceRelation());
         requireEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getUsage());
+        g1.getETypeArguments().add(g2);
+        requireEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
         g2 = createEGenericType(theUMLPackage.getUsage());
         g1.getETypeArguments().add(g2);
         requireEClass.getEGenericSuperTypes().add(g1);

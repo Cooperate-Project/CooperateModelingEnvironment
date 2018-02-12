@@ -1430,6 +1430,25 @@ ruleProvide returns [EObject current=null]
 				}
 			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProvideAccess().getCommentsCommentParserRuleCall_4_0());
+				}
+				lv_comments_7_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProvideRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_7_0,
+						"de.cooperateproject.modeling.textual.component.Component.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -1539,6 +1558,25 @@ ruleRequire returns [EObject current=null]
 				}
 			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRequireAccess().getCommentsCommentParserRuleCall_4_0());
+				}
+				lv_comments_7_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRequireRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_7_0,
+						"de.cooperateproject.modeling.textual.component.Component.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

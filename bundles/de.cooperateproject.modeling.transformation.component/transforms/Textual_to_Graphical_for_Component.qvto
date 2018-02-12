@@ -29,7 +29,8 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
   	
     children += self.rootpackage.findAllClassifierComments().map commentToShape();
     children += self.rootpackage.relations->selectByKind(cmp::Generalization)->select(isCommented()).comments->map commentToShape();
-  	
+	children += interfaceRelation->selectByKind(cmp::Provide)->select(isCommented()).comments->map commentToShape();
+	children += interfaceRelation->selectByKind(cmp::Require)->select(isCommented()).comments->map commentToShape();
 
 	children += self.rootpackage.classifiers.map classifiersToShape();
 	edges := self.rootpackage.relations.map classifierRelationsToEdge();
@@ -37,13 +38,16 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	//also create connectors that are nested
 	var allConnectors := self.rootpackage.getAllContentsOfType(cmp::Connector.oclAsType(ecore::EClass), true);
 	edges += allConnectors->oclAsType(cmp::Connector).map connectorToEdge();
+	edges += interfaceRelation.map interfaceRelationToEdge();
+	
 	edges += self.rootpackage.findAllClassifierComments().map commentToEdge(); 
 	edges += self.rootpackage.relations->selectByKind(cmp::Generalization)->select(isCommented()).comments->map commentToEdge();
+	edges += interfaceRelation->selectByKind(cmp::Provide)->select(isCommented()).comments->map commentToEdge();
+	edges += interfaceRelation->selectByKind(cmp::Require)->select(isCommented()).comments->map commentToEdge();
 	
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
-	edges += interfaceRelation.map interfaceRelationToEdge();
 	log("exit");
 }
 
@@ -498,12 +502,14 @@ query textualCommons::Element::isCommented() : Boolean
 
 query textualCommons::Commentable::typeToView() : notation::View
 {
-    return if self.oclIsKindOf(cmp::Generalization) then self.typeToEdge() else self.typeToShape() endif;
+    return if self.oclIsKindOf(cmp::Generalization) or self.oclIsTypeOf(cmp::Require) or self.oclIsTypeOf(cmp::Provide) then self.typeToEdge() 
+    else self.typeToShape() endif;
 }
 
 query textualCommons::Commentable::typeToEdge() : notation::View
 {
-    return self.resolveoneIn(cmp::ClassifierRelation::classifierRelationsToEdge);
+    return if self.oclIsKindOf(cmp::Generalization) then self.resolveoneIn(cmp::ClassifierRelation::classifierRelationsToEdge)
+    else self.resolveoneIn(cmp::InterfaceRelation::interfaceRelationToEdge) endif;
 }
 
 query textualCommons::Commentable::typeToShape() : notation::View

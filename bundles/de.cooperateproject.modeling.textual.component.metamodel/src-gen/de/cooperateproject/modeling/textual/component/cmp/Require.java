@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import org.eclipse.uml2.uml.Usage;
@@ -16,5 +17,5 @@ import org.eclipse.uml2.uml.Usage;
  * @model
  * @generated
  */
-public interface Require extends InterfaceRelation, UMLReferencingElement<Usage> {
+public interface Require extends InterfaceRelation, UMLReferencingElement<Usage>, Commentable<Usage> {
 } // Require

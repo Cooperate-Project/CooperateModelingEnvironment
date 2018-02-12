@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.cmp;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import org.eclipse.uml2.uml.InterfaceRealization;
@@ -16,5 +17,5 @@ import org.eclipse.uml2.uml.InterfaceRealization;
  * @model
  * @generated
  */
-public interface Provide extends InterfaceRelation, UMLReferencingElement<InterfaceRealization> {
+public interface Provide extends InterfaceRelation, UMLReferencingElement<InterfaceRealization>, Commentable<InterfaceRealization> {
 } // Provide

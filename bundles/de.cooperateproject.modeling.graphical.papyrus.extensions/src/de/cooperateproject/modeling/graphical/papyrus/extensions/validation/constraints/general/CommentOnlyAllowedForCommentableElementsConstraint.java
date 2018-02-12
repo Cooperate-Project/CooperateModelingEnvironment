@@ -9,8 +9,12 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extend;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
 
 /**
@@ -20,7 +24,8 @@ public class CommentOnlyAllowedForCommentableElementsConstraint extends Cooperat
 
     private static final Collection<Class<? extends Element>> COMMENTABLE_ELEMENTS = Arrays.asList(
             org.eclipse.uml2.uml.Class.class, Interface.class, Association.class, Actor.class, UseCase.class,
-            Component.class, Generalization.class);
+            Component.class, Generalization.class, org.eclipse.uml2.uml.Include.class, Extend.class,
+            PackageImport.class, InterfaceRealization.class, Usage.class);
 
     /**
      * Constructs the constraint.

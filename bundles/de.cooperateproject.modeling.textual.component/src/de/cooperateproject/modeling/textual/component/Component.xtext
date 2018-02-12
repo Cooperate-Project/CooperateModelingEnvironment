@@ -91,12 +91,12 @@ ConnectorEnd returns ConnectorEnd:
 
 Provide returns Provide: 
 	{Provide}
-		'provide' (name = ID | alias = ID 'as' name = STRING) interface=[Interface|FQN]
+		'provide' (name = ID | alias = ID 'as' name = STRING) interface=[Interface|FQN] (comments+=Comment)?
 ;
 
 Require returns Require: 
 	{Require}
-		'require' (name = ID | alias = ID 'as' name = STRING) interface=[Interface|FQN]
+		'require' (name = ID | alias = ID 'as' name = STRING) interface=[Interface|FQN] (comments+=Comment)?
 ;
 
 enum Visibility returns uml::VisibilityKind: 

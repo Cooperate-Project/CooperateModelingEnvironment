@@ -801,13 +801,15 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInterfaceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cInterfaceInterfaceCrossReference_3_0 = (CrossReference)cInterfaceAssignment_3.eContents().get(0);
 		private final RuleCall cInterfaceInterfaceFQNParserRuleCall_3_0_1 = (RuleCall)cInterfaceInterfaceCrossReference_3_0.eContents().get(1);
+		private final Assignment cCommentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cCommentsCommentParserRuleCall_4_0 = (RuleCall)cCommentsAssignment_4.eContents().get(0);
 		
 		//Provide:
 		//	{Provide}
-		//	'provide' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN];
+		//	'provide' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN] comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Provide} 'provide' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN]
+		//{Provide} 'provide' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN] comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//{Provide}
@@ -851,6 +853,12 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FQN
 		public RuleCall getInterfaceInterfaceFQNParserRuleCall_3_0_1() { return cInterfaceInterfaceFQNParserRuleCall_3_0_1; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_4() { return cCommentsAssignment_4; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_4_0() { return cCommentsCommentParserRuleCall_4_0; }
 	}
 	public class RequireElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Require");
@@ -869,13 +877,15 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInterfaceAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cInterfaceInterfaceCrossReference_3_0 = (CrossReference)cInterfaceAssignment_3.eContents().get(0);
 		private final RuleCall cInterfaceInterfaceFQNParserRuleCall_3_0_1 = (RuleCall)cInterfaceInterfaceCrossReference_3_0.eContents().get(1);
+		private final Assignment cCommentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cCommentsCommentParserRuleCall_4_0 = (RuleCall)cCommentsAssignment_4.eContents().get(0);
 		
 		//Require:
 		//	{Require}
-		//	'require' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN];
+		//	'require' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN] comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Require} 'require' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN]
+		//{Require} 'require' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN] comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//{Require}
@@ -919,6 +929,12 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FQN
 		public RuleCall getInterfaceInterfaceFQNParserRuleCall_3_0_1() { return cInterfaceInterfaceFQNParserRuleCall_3_0_1; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_4() { return cCommentsAssignment_4; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_4_0() { return cCommentsCommentParserRuleCall_4_0; }
 	}
 	public class MethodElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Method");
@@ -1503,7 +1519,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Provide:
 	//	{Provide}
-	//	'provide' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN];
+	//	'provide' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN] comments+=Comment?;
 	public ProvideElements getProvideAccess() {
 		return pProvide;
 	}
@@ -1514,7 +1530,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Require:
 	//	{Require}
-	//	'require' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN];
+	//	'require' (name=ID | alias=ID 'as' name=STRING) interface=[Interface|FQN] comments+=Comment?;
 	public RequireElements getRequireAccess() {
 		return pRequire;
 	}

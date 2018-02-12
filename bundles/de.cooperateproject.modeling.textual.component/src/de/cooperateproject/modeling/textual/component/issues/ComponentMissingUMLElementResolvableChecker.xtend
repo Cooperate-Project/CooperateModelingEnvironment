@@ -46,7 +46,7 @@ class ComponentMissingUMLElementResolvableChecker extends DependingElementMissin
 	}
 	
 	protected def dispatch localResolutionPossible(Attribute element) {
-		return element.type !== null && element.hasValidParent(CmpPackage.eINSTANCE.classifier)
+		return element.type !== null && element.hasValidParent(CmpPackage.eINSTANCE.classifier) && !element.type.eIsProxy
 	}
 	
 	protected def dispatch localResolutionPossible(Port element) {

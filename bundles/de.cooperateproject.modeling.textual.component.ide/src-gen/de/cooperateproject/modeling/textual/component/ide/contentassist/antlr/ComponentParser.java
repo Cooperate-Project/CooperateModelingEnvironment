@@ -124,10 +124,12 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProvideAccess().getAliasAssignment_2_1_0(), "rule__Provide__AliasAssignment_2_1_0");
 					put(grammarAccess.getProvideAccess().getNameAssignment_2_1_2(), "rule__Provide__NameAssignment_2_1_2");
 					put(grammarAccess.getProvideAccess().getInterfaceAssignment_3(), "rule__Provide__InterfaceAssignment_3");
+					put(grammarAccess.getProvideAccess().getCommentsAssignment_4(), "rule__Provide__CommentsAssignment_4");
 					put(grammarAccess.getRequireAccess().getNameAssignment_2_0(), "rule__Require__NameAssignment_2_0");
 					put(grammarAccess.getRequireAccess().getAliasAssignment_2_1_0(), "rule__Require__AliasAssignment_2_1_0");
 					put(grammarAccess.getRequireAccess().getNameAssignment_2_1_2(), "rule__Require__NameAssignment_2_1_2");
 					put(grammarAccess.getRequireAccess().getInterfaceAssignment_3(), "rule__Require__InterfaceAssignment_3");
+					put(grammarAccess.getRequireAccess().getCommentsAssignment_4(), "rule__Require__CommentsAssignment_4");
 					put(grammarAccess.getMethodAccess().getVisibilityAssignment_1(), "rule__Method__VisibilityAssignment_1");
 					put(grammarAccess.getMethodAccess().getAbstractAssignment_2(), "rule__Method__AbstractAssignment_2");
 					put(grammarAccess.getMethodAccess().getStaticAssignment_3(), "rule__Method__StaticAssignment_3");

@@ -127,8 +127,13 @@ public class GraphicalToTextualComponentTest extends ComponentDirectionalTransfo
     }
     
     @Test
-    public void testComponentDiagramComponentGeneralization() throws Exception {
+    public void testComponentDiagramCommentedGeneralization() throws Exception {
     	testRegular("ComponentDiagramCommentedGeneralization");
+    }
+    
+    @Test
+    public void testComponentDiagramCommentedInterfaceRel() throws Exception {
+    	testRegular("ComponentDiagramCommentedInterfaceRel");
     }
     
 }

@@ -275,8 +275,9 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 Provide provide = (Provide)theEObject;
                 T1 result = caseProvide(provide);
                 if (result == null) result = caseInterfaceRelation(provide);
-                if (result == null) result = caseUMLReferencingElement(provide);
+                if (result == null) result = caseCommentable(provide);
                 if (result == null) result = caseAliasedElement(provide);
+                if (result == null) result = caseUMLReferencingElement(provide);
                 if (result == null) result = caseNamedElement(provide);
                 if (result == null) result = caseElement(provide);
                 if (result == null) result = defaultCase(theEObject);
@@ -286,8 +287,9 @@ public class CmpSwitch<T1> extends Switch<T1> {
                 Require require = (Require)theEObject;
                 T1 result = caseRequire(require);
                 if (result == null) result = caseInterfaceRelation(require);
-                if (result == null) result = caseUMLReferencingElement(require);
+                if (result == null) result = caseCommentable(require);
                 if (result == null) result = caseAliasedElement(require);
+                if (result == null) result = caseUMLReferencingElement(require);
                 if (result == null) result = caseNamedElement(require);
                 if (result == null) result = caseElement(require);
                 if (result == null) result = defaultCase(theEObject);

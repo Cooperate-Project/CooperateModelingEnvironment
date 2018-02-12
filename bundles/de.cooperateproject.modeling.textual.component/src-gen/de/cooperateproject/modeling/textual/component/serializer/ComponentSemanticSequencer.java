@@ -318,7 +318,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Provide returns Provide
 	 *
 	 * Constraint:
-	 *     ((name=ID | (alias=ID name=STRING)) interface=[Interface|FQN])
+	 *     ((name=ID | (alias=ID name=STRING)) interface=[Interface|FQN] comments+=Comment?)
 	 */
 	protected void sequence_Provide(ISerializationContext context, Provide semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -331,7 +331,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Require returns Require
 	 *
 	 * Constraint:
-	 *     ((name=ID | (alias=ID name=STRING)) interface=[Interface|FQN])
+	 *     ((name=ID | (alias=ID name=STRING)) interface=[Interface|FQN] comments+=Comment?)
 	 */
 	protected void sequence_Require(ISerializationContext context, Require semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
