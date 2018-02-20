@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Cooperate Papyrus Component Extension
+Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions.component;singleton:=true
+Bundle-Version: 0.7.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle-version="0.7.1",
+ org.eclipse.papyrus.uml.diagram.common,
+ com.google.guava;bundle-version="21.0.0",
+ de.cooperateproject.ui,
+ org.eclipse.emf.ecore,
+ org.eclipse.papyrus.uml.diagram.usecase;bundle-version="3.0.0",
+ de.cooperateproject.modeling.common
