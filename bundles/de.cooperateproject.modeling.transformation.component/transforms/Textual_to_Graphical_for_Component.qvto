@@ -33,7 +33,7 @@ mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	children += interfaceRelation->selectByKind(cmp::Require)->select(isCommented()).comments->map commentToShape();
 
 	children += self.rootpackage.classifiers.map classifiersToShape();
-	edges := self.rootpackage.relations.map classifierRelationsToEdge();
+	edges += self.rootpackage.relations.map classifierRelationsToEdge();
 	
 	//also create connectors that are nested
 	var allConnectors := self.rootpackage.getAllContentsOfType(cmp::Connector.oclAsType(ecore::EClass), true);
