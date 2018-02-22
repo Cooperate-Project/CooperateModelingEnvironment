@@ -31,10 +31,10 @@
 		<module>de.cooperateproject.modeling.textual.usecase.ide</module>
 		<module>de.cooperateproject.modeling.textual.usecase.metamodel</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ui</module>
-		<module>de.cooperateproject.modeling.textual.acivity</module>
-		<module>de.cooperateproject.modeling.textual.acivity.ide</module>
-		<module>de.cooperateproject.modeling.textual.acivity.metamodel</module>
-		<module>de.cooperateproject.modeling.textual.acivity.ui</module>
+		<module>de.cooperateproject.modeling.textual.activity</module>
+		<module>de.cooperateproject.modeling.textual.activity.ide</module>
+		<module>de.cooperateproject.modeling.textual.activity.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.activity.ui</module>
 		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.ui</module>
