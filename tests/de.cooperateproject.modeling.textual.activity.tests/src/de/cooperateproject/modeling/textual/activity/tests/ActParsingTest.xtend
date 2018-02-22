@@ -31,11 +31,22 @@ class ActParsingTest extends AbstractActTest {
 	@Test
 	def void emptyDiagramTest() {
 		val model = '''
-			@start-actd "SomeName"
+			@start-actd "SomeTitle"
 			rootPackage RootElement
 			@end-actd
 		'''.parse(rs)
-		// validationTestHelper.assertNoIssues(model) // TODO: Re-enable when meta model is ready
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	@Test
+	def void activityNameTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			activityName "SomeName"
+			@end-actd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
 	}
 	
 	private static def parse(CharSequence text, ResourceSet rs) {

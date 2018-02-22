@@ -142,6 +142,15 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getActivityDiagram_ActivityName() {
+		return (EAttribute)activityDiagramEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRootPackage() {
 		return rootPackageEClass;
 	}
@@ -177,6 +186,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		activityDiagramEClass = createEClass(ACTIVITY_DIAGRAM);
 		createEAttribute(activityDiagramEClass, ACTIVITY_DIAGRAM__TITLE);
 		createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__ROOT_PACKAGE);
+		createEAttribute(activityDiagramEClass, ACTIVITY_DIAGRAM__ACTIVITY_NAME);
 
 		rootPackageEClass = createEClass(ROOT_PACKAGE);
 	}
@@ -221,7 +231,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActivityDiagram_Title(), theEcorePackage.getEString(), "title", null, 1, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActivityDiagram_RootPackage(), this.getRootPackage(), null, "rootPackage", null, 1, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivityDiagram_RootPackage(), this.getRootPackage(), null, "rootPackage", null, 1, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getActivityDiagram_ActivityName(), ecorePackage.getEString(), "activityName", null, 0, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

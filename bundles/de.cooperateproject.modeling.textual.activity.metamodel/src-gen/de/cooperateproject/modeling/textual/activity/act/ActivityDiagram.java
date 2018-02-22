@@ -15,6 +15,7 @@ import org.eclipse.emf.cdo.CDOObject;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getTitle <em>Title</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getRootPackage <em>Root Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getActivityName <em>Activity Name</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActivityDiagram()
@@ -50,29 +51,55 @@ public interface ActivityDiagram extends CDOObject {
 	void setTitle(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Root Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Root Package</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Root Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root Package</em>' reference.
+	 * @return the value of the '<em>Root Package</em>' containment reference.
 	 * @see #setRootPackage(RootPackage)
 	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActivityDiagram_RootPackage()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	RootPackage getRootPackage();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getRootPackage <em>Root Package</em>}' reference.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getRootPackage <em>Root Package</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root Package</em>' reference.
+	 * @param value the new value of the '<em>Root Package</em>' containment reference.
 	 * @see #getRootPackage()
 	 * @generated
 	 */
 	void setRootPackage(RootPackage value);
+
+	/**
+	 * Returns the value of the '<em><b>Activity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Activity Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activity Name</em>' attribute.
+	 * @see #setActivityName(String)
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActivityDiagram_ActivityName()
+	 * @model
+	 * @generated
+	 */
+	String getActivityName();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getActivityName <em>Activity Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activity Name</em>' attribute.
+	 * @see #getActivityName()
+	 * @generated
+	 */
+	void setActivityName(String value);
 
 } // ActivityDiagram

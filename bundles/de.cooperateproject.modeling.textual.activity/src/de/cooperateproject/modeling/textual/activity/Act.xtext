@@ -8,5 +8,16 @@ import "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel
 ActivityDiagram returns ActivityDiagram:
 	{ActivityDiagram}
 		'@start-actd' title=STRING
+		rootPackage=RootPackage
+		('activityName' activityName=STRING)?
 		'@end-actd'
+;
+
+RootPackage:
+	{RootPackage} 
+	('rootPackage' name=FQN)?
+	;
+	
+FQN:
+    ID ("." ID)*
 ;

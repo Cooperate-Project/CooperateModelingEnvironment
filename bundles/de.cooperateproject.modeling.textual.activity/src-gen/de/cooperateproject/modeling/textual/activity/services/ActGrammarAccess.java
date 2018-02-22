@@ -29,15 +29,22 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStartActdKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTitleAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
-		private final Keyword cEndActdKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cRootPackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRootPackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootPackageAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cActivityNameKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cActivityNameAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cActivityNameSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cActivityNameAssignment_4_1.eContents().get(0);
+		private final Keyword cEndActdKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//ActivityDiagram:
 		//	{ActivityDiagram}
 		//	'@start-actd' title=STRING
+		//	rootPackage=RootPackage ('activityName' activityName=STRING)?
 		//	'@end-actd';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ActivityDiagram} '@start-actd' title=STRING '@end-actd'
+		//{ActivityDiagram} '@start-actd' title=STRING rootPackage=RootPackage ('activityName' activityName=STRING)? '@end-actd'
 		public Group getGroup() { return cGroup; }
 		
 		//{ActivityDiagram}
@@ -52,12 +59,90 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getTitleSTRINGTerminalRuleCall_2_0() { return cTitleSTRINGTerminalRuleCall_2_0; }
 		
+		//rootPackage=RootPackage
+		public Assignment getRootPackageAssignment_3() { return cRootPackageAssignment_3; }
+		
+		//RootPackage
+		public RuleCall getRootPackageRootPackageParserRuleCall_3_0() { return cRootPackageRootPackageParserRuleCall_3_0; }
+		
+		//('activityName' activityName=STRING)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'activityName'
+		public Keyword getActivityNameKeyword_4_0() { return cActivityNameKeyword_4_0; }
+		
+		//activityName=STRING
+		public Assignment getActivityNameAssignment_4_1() { return cActivityNameAssignment_4_1; }
+		
+		//STRING
+		public RuleCall getActivityNameSTRINGTerminalRuleCall_4_1_0() { return cActivityNameSTRINGTerminalRuleCall_4_1_0; }
+		
 		//'@end-actd'
-		public Keyword getEndActdKeyword_3() { return cEndActdKeyword_3; }
+		public Keyword getEndActdKeyword_5() { return cEndActdKeyword_5; }
+	}
+	public class RootPackageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.RootPackage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRootPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		
+		//RootPackage:
+		//	{RootPackage} ('rootPackage' name=FQN)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{RootPackage} ('rootPackage' name=FQN)?
+		public Group getGroup() { return cGroup; }
+		
+		//{RootPackage}
+		public Action getRootPackageAction_0() { return cRootPackageAction_0; }
+		
+		//('rootPackage' name=FQN)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'rootPackage'
+		public Keyword getRootPackageKeyword_1_0() { return cRootPackageKeyword_1_0; }
+		
+		//name=FQN
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+		
+		//FQN
+		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
+	}
+	public class FQNElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FQN");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//FQN:
+		//	ID ("." ID)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID ("." ID)*
+		public Group getGroup() { return cGroup; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//("." ID)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//"."
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
 	
 	private final ActivityDiagramElements pActivityDiagram;
+	private final RootPackageElements pRootPackage;
+	private final FQNElements pFQN;
 	
 	private final Grammar grammar;
 	
@@ -69,6 +154,8 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pActivityDiagram = new ActivityDiagramElements();
+		this.pRootPackage = new RootPackageElements();
+		this.pFQN = new FQNElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -101,6 +188,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	//ActivityDiagram:
 	//	{ActivityDiagram}
 	//	'@start-actd' title=STRING
+	//	rootPackage=RootPackage ('activityName' activityName=STRING)?
 	//	'@end-actd';
 	public ActivityDiagramElements getActivityDiagramAccess() {
 		return pActivityDiagram;
@@ -108,6 +196,26 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getActivityDiagramRule() {
 		return getActivityDiagramAccess().getRule();
+	}
+	
+	//RootPackage:
+	//	{RootPackage} ('rootPackage' name=FQN)?;
+	public RootPackageElements getRootPackageAccess() {
+		return pRootPackage;
+	}
+	
+	public ParserRule getRootPackageRule() {
+		return getRootPackageAccess().getRule();
+	}
+	
+	//FQN:
+	//	ID ("." ID)*;
+	public FQNElements getFQNAccess() {
+		return pFQN;
+	}
+	
+	public ParserRule getFQNRule() {
+		return getFQNAccess().getRule();
 	}
 	
 	//terminal ID:

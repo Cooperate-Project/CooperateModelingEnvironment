@@ -1,5 +1,8 @@
-'@end-actd'=12
+'.'=15
+'@end-actd'=13
 '@start-actd'=11
+'activityName'=12
+'rootPackage'=14
 RULE_ANY_OTHER=10
 RULE_ID=5
 RULE_INT=6
@@ -9,3 +12,6 @@ RULE_STRING=4
 RULE_WS=9
 T__11=11
 T__12=12
+T__13=13
+T__14=14
+T__15=15

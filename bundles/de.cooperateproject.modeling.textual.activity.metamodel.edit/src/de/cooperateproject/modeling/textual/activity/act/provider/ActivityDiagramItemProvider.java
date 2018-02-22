@@ -63,6 +63,7 @@ public class ActivityDiagramItemProvider
 
 			addTitlePropertyDescriptor(object);
 			addRootPackagePropertyDescriptor(object);
+			addActivityNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,6 +113,28 @@ public class ActivityDiagramItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Activity Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActivityNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActivityDiagram_activityName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActivityDiagram_activityName_feature", "_UI_ActivityDiagram_type"),
+				 ActPackage.Literals.ACTIVITY_DIAGRAM__ACTIVITY_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ActivityDiagram.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +153,7 @@ public class ActivityDiagramItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActivityDiagram)object).getTitle();
+		String label = ((ActivityDiagram)object).getActivityName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ActivityDiagram_type") :
 			getString("_UI_ActivityDiagram_type") + " " + label;
@@ -150,6 +173,7 @@ public class ActivityDiagramItemProvider
 
 		switch (notification.getFeatureID(ActivityDiagram.class)) {
 			case ActPackage.ACTIVITY_DIAGRAM__TITLE:
+			case ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

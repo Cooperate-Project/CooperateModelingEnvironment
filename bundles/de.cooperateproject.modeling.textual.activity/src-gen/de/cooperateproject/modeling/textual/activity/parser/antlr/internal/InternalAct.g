@@ -105,10 +105,144 @@ ruleActivityDiagram returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_3='@end-actd'
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getActivityDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0());
+				}
+				lv_rootPackage_3_0=ruleRootPackage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getActivityDiagramRule());
+					}
+					set(
+						$current,
+						"rootPackage",
+						lv_rootPackage_3_0,
+						"de.cooperateproject.modeling.textual.activity.Act.RootPackage");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_4='activityName'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getActivityDiagramAccess().getActivityNameKeyword_4_0());
+			}
+			(
+				(
+					lv_activityName_5_0=RULE_STRING
+					{
+						newLeafNode(lv_activityName_5_0, grammarAccess.getActivityDiagramAccess().getActivityNameSTRINGTerminalRuleCall_4_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getActivityDiagramRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"activityName",
+							lv_activityName_5_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+		)?
+		otherlv_6='@end-actd'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getActivityDiagramAccess().getEndActdKeyword_3());
+			newLeafNode(otherlv_6, grammarAccess.getActivityDiagramAccess().getEndActdKeyword_5());
 		}
+	)
+;
+
+// Entry rule entryRuleRootPackage
+entryRuleRootPackage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRootPackageRule()); }
+	iv_ruleRootPackage=ruleRootPackage
+	{ $current=$iv_ruleRootPackage.current; }
+	EOF;
+
+// Rule RootPackage
+ruleRootPackage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRootPackageAccess().getRootPackageAction_0(),
+					$current);
+			}
+		)
+		(
+			otherlv_1='rootPackage'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getRootPackageAccess().getRootPackageKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRootPackageAccess().getNameFQNParserRuleCall_1_1_0());
+					}
+					lv_name_2_0=ruleFQN
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+						}
+						set(
+							$current,
+							"name",
+							lv_name_2_0,
+							"de.cooperateproject.modeling.textual.activity.Act.FQN");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+	)
+;
+
+// Entry rule entryRuleFQN
+entryRuleFQN returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getFQNRule()); }
+	iv_ruleFQN=ruleFQN
+	{ $current=$iv_ruleFQN.current.getText(); }
+	EOF;
+
+// Rule FQN
+ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		this_ID_0=RULE_ID
+		{
+			$current.merge(this_ID_0);
+		}
+		{
+			newLeafNode(this_ID_0, grammarAccess.getFQNAccess().getIDTerminalRuleCall_0());
+		}
+		(
+			kw='.'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getFQNAccess().getFullStopKeyword_1_0());
+			}
+			this_ID_2=RULE_ID
+			{
+				$current.merge(this_ID_2);
+			}
+			{
+				newLeafNode(this_ID_2, grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1());
+			}
+		)*
 	)
 ;
 

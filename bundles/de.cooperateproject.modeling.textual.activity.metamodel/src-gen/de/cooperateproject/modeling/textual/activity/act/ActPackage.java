@@ -78,7 +78,7 @@ public interface ActPackage extends EPackage {
 	int ACTIVITY_DIAGRAM__TITLE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Root Package</b></em>' reference.
+	 * The feature id for the '<em><b>Root Package</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,13 +87,22 @@ public interface ActPackage extends EPackage {
 	int ACTIVITY_DIAGRAM__ROOT_PACKAGE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_DIAGRAM__ACTIVITY_NAME = 2;
+
+	/**
 	 * The number of structural features of the '<em>Activity Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_DIAGRAM_FEATURE_COUNT = 2;
+	int ACTIVITY_DIAGRAM_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Activity Diagram</em>' class.
@@ -218,15 +227,26 @@ public interface ActPackage extends EPackage {
 	EAttribute getActivityDiagram_Title();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getRootPackage <em>Root Package</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getRootPackage <em>Root Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Root Package</em>'.
+	 * @return the meta object for the containment reference '<em>Root Package</em>'.
 	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getRootPackage()
 	 * @see #getActivityDiagram()
 	 * @generated
 	 */
 	EReference getActivityDiagram_RootPackage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getActivityName <em>Activity Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Activity Name</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getActivityName()
+	 * @see #getActivityDiagram()
+	 * @generated
+	 */
+	EAttribute getActivityDiagram_ActivityName();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage <em>Root Package</em>}'.
@@ -280,12 +300,20 @@ public interface ActPackage extends EPackage {
 		EAttribute ACTIVITY_DIAGRAM__TITLE = eINSTANCE.getActivityDiagram_Title();
 
 		/**
-		 * The meta object literal for the '<em><b>Root Package</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Root Package</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ACTIVITY_DIAGRAM__ROOT_PACKAGE = eINSTANCE.getActivityDiagram_RootPackage();
+
+		/**
+		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTIVITY_DIAGRAM__ACTIVITY_NAME = eINSTANCE.getActivityDiagram_ActivityName();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl <em>Root Package</em>}' class.
