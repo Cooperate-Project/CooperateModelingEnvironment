@@ -4,30 +4,45 @@
 package de.cooperateproject.modeling.textual.activity.tests
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.activity.act.ActPackage
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram
+import java.util.Collections
+import org.apache.commons.io.IOUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
-import org.eclipse.xtext.testing.util.ParseHelper
-import org.junit.Assert
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
+import de.cooperateproject.modeling.textual.activity.tests.scoping.util.ActivityCustomizedInjectorProvider
 
 @RunWith(XtextRunner)
-@InjectWith(ActInjectorProvider)
-class ActParsingTest {
-	@Inject
-	ParseHelper<ActivityDiagram> parseHelper
+@InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
+class ActParsingTest extends AbstractActTest {
 	
+	@Inject ValidationTestHelper validationTestHelper
+	
+	override setup() {
+		super.setup()
+		rs.packageRegistry.put(ActPackage.eNS_URI, ActPackage.eINSTANCE)
+	}
 	
 	@Test
-	def void loadModel() {
-		val result = parseHelper.parse('''
+	def void emptyDiagramTest() {
+		val model = '''
 			@start-actd "SomeName"
-			"SomeTitle"
+			rootPackage RootElement
 			@end-actd
-		''')
-		Assert.assertNotNull(result)
-		Assert.assertTrue(result.eResource.errors.isEmpty)
+		'''.parse(rs)
+		// validationTestHelper.assertNoIssues(model) // TODO: Re-enable when meta model is ready
+	}
+	
+	private static def parse(CharSequence text, ResourceSet rs) {
+		val r = rs.createResource(URI.createFileURI("testmodels/testfile.act"))
+		val is = IOUtils.toInputStream(text);		
+		r.load(is, Collections.emptyMap());
+		return r.contents.get(0) as ActivityDiagram
 	}
 	
 }
