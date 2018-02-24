@@ -54,11 +54,17 @@
 			<relationships xsi:type="usecase:Include">
 				<referencedElement xsi:type="uml:Include"
 					href="UseCaseDiagram.uml#_e0zpwPpzEeaBXuZho-Bj0w" />
+					        <comments>
+          <referencedElement xsi:type="uml:Comment" href="UseCaseDiagram.uml#_vYuQgBjzEei1nqPPB6ryJw"/>
+        </comments>
 			</relationships>
 
 			<relationships xsi:type="usecase:Extend">
 				<referencedElement xsi:type="uml:Extend"
 					href="UseCaseDiagram.uml#_qddu8PpzEeaBXuZho-Bj0w" />
+					        <comments>
+          <referencedElement xsi:type="uml:Comment" href="UseCaseDiagram.uml#_IQ12EBjzEei1nqPPB6ryJw"/>
+        </comments>
 			</relationships>
 			<relationships xsi:type="usecase:Extend">
 				<referencedElement xsi:type="uml:Extend"
@@ -72,6 +78,9 @@
 		<relationships xsi:type="usecase:Association">
 			<referencedElement xsi:type="uml:Association"
 				href="UseCaseDiagram.uml#_wkafEPpzEeaBXuZho-Bj0w" />
+				      <comments>
+        <referencedElement xsi:type="uml:Comment" href="UseCaseDiagram.uml#_M3HBIBj0Eei1nqPPB6ryJw"/>
+      </comments>
 		</relationships>
 		<relationships xsi:type="usecase:Association">
 			<referencedElement xsi:type="uml:Association"

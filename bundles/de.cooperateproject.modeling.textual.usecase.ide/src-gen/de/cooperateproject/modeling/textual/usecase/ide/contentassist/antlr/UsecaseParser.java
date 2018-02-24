@@ -100,14 +100,18 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssociationAccess().getUsecaseAssignment_4(), "rule__Association__UsecaseAssignment_4");
 					put(grammarAccess.getAssociationAccess().getActorCardinalityAssignment_6_2(), "rule__Association__ActorCardinalityAssignment_6_2");
 					put(grammarAccess.getAssociationAccess().getUseCaseCardinalityAssignment_6_3_1(), "rule__Association__UseCaseCardinalityAssignment_6_3_1");
+					put(grammarAccess.getAssociationAccess().getCommentsAssignment_7(), "rule__Association__CommentsAssignment_7");
 					put(grammarAccess.getGeneralizationAccess().getSpecificAssignment_2(), "rule__Generalization__SpecificAssignment_2");
 					put(grammarAccess.getGeneralizationAccess().getGeneralAssignment_4(), "rule__Generalization__GeneralAssignment_4");
+					put(grammarAccess.getGeneralizationAccess().getCommentsAssignment_6(), "rule__Generalization__CommentsAssignment_6");
 					put(grammarAccess.getIncludeAccess().getIncludingCaseAssignment_2(), "rule__Include__IncludingCaseAssignment_2");
 					put(grammarAccess.getIncludeAccess().getAdditionAssignment_4(), "rule__Include__AdditionAssignment_4");
+					put(grammarAccess.getIncludeAccess().getCommentsAssignment_6(), "rule__Include__CommentsAssignment_6");
 					put(grammarAccess.getExtendAccess().getExtensionAssignment_2(), "rule__Extend__ExtensionAssignment_2");
 					put(grammarAccess.getExtendAccess().getExtendedCaseAssignment_4(), "rule__Extend__ExtendedCaseAssignment_4");
 					put(grammarAccess.getExtendAccess().getExtensionLocationAssignment_8(), "rule__Extend__ExtensionLocationAssignment_8");
 					put(grammarAccess.getExtendAccess().getConditionAssignment_10_2(), "rule__Extend__ConditionAssignment_10_2");
+					put(grammarAccess.getExtendAccess().getCommentsAssignment_11(), "rule__Extend__CommentsAssignment_11");
 					put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 					put(grammarAccess.getCardinalityAccess().getLowerBoundAssignment_0(), "rule__Cardinality__LowerBoundAssignment_0");
 					put(grammarAccess.getCardinalityAccess().getUpperBoundAssignment_1_1(), "rule__Cardinality__UpperBoundAssignment_1_1");

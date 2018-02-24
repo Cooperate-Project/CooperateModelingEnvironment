@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -13,11 +15,15 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Optional;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.Namespace;
 
 /**
@@ -29,6 +35,7 @@ import org.eclipse.uml2.uml.Namespace;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
  * </ul>
@@ -90,6 +97,16 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      */
     public void setReferencedElement(org.eclipse.uml2.uml.Generalization newReferencedElement) {
         eDynamicSet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(UsecasePackage.GENERALIZATION__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
     /**
@@ -166,12 +183,43 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.GENERALIZATION__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.GENERALIZATION__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.GENERALIZATION__COMMENTS:
+                return getComments();
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 if (resolve) return getSpecific();
                 return basicGetSpecific();
@@ -194,6 +242,10 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)newValue);
                 return;
+            case UsecasePackage.GENERALIZATION__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
+                return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)newValue);
                 return;
@@ -215,6 +267,9 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)null);
                 return;
+            case UsecasePackage.GENERALIZATION__COMMENTS:
+                getComments().clear();
+                return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)null);
                 return;
@@ -235,6 +290,8 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
         switch (featureID) {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case UsecasePackage.GENERALIZATION__COMMENTS:
+                return !getComments().isEmpty();
             case UsecasePackage.GENERALIZATION__SPECIFIC:
                 return basicGetSpecific() != null;
             case UsecasePackage.GENERALIZATION__GENERAL:
@@ -261,6 +318,12 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.GENERALIZATION__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -282,6 +345,12 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return UsecasePackage.GENERALIZATION__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
@@ -300,6 +369,11 @@ public class GeneralizationImpl extends ElementImpl implements Generalization {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseOperationID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return UsecasePackage.GENERALIZATION___GET_UML_PARENT_NAMESPACE;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
                 default: return -1;
             }
         }

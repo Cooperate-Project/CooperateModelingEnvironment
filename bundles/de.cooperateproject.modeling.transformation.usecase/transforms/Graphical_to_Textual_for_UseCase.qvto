@@ -107,24 +107,29 @@ when {self.element != null and self.element.oclIsKindOf(uml::Association)}
     referencedElement := self.element.toElement();
     actorCardinality := umlActorEnd.map multiplicityElementToCardinality();
     useCaseCardinality := umlUseCaseEnd.map multiplicityElementToCardinality();
+    
+    comments := self.getCommentShape().map commentToComment();
 }
 
 mapping notation::Edge::edgeToGeneralization() : usecase::Generalization
 when {self.element != null and self.element.oclIsKindOf(uml::Generalization)}
 {
     referencedElement := self.element.toElement();
+    comments := self.getCommentShape().map commentToComment();
 }
 
 mapping notation::Edge::edgeToExtend() : usecase::Extend
 when {self.element != null and self.element.oclIsKindOf(uml::Extend)}
 {
     referencedElement := self.element.toElement();
+    comments := self.getCommentShape().map commentToComment();
 }
 
 mapping notation::Edge::edgeToInclude() : usecase::Include
 when {self.element != null and self.element.oclIsKindOf(uml::Include)}
 {
     referencedElement := self.element.toElement();
+    comments := self.getCommentShape().map commentToComment();
 }
 
 

@@ -170,9 +170,10 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
             case UsecasePackage.ASSOCIATION: {
                 Association association = (Association)theEObject;
                 T1 result = caseAssociation(association);
-                if (result == null) result = caseUMLReferencingElement(association);
                 if (result == null) result = caseUseCaseRelationship(association);
                 if (result == null) result = caseActorUsecaseRelationship(association);
+                if (result == null) result = caseCommentable(association);
+                if (result == null) result = caseUMLReferencingElement(association);
                 if (result == null) result = caseRelationship(association);
                 if (result == null) result = caseElement(association);
                 if (result == null) result = defaultCase(theEObject);
@@ -183,8 +184,9 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 T1 result = caseGeneralization(generalization);
                 if (result == null) result = caseUseCaseRelationship(generalization);
                 if (result == null) result = caseActorUsecaseRelationship(generalization);
-                if (result == null) result = caseUMLReferencingElement(generalization);
+                if (result == null) result = caseCommentable(generalization);
                 if (result == null) result = caseRelationship(generalization);
+                if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -193,8 +195,9 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 Include include = (Include)theEObject;
                 T1 result = caseInclude(include);
                 if (result == null) result = caseUseCaseRelationship(include);
-                if (result == null) result = caseUMLReferencingElement(include);
+                if (result == null) result = caseCommentable(include);
                 if (result == null) result = caseRelationship(include);
+                if (result == null) result = caseUMLReferencingElement(include);
                 if (result == null) result = caseElement(include);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -203,8 +206,9 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 Extend extend = (Extend)theEObject;
                 T1 result = caseExtend(extend);
                 if (result == null) result = caseUseCaseRelationship(extend);
-                if (result == null) result = caseUMLReferencingElement(extend);
+                if (result == null) result = caseCommentable(extend);
                 if (result == null) result = caseRelationship(extend);
+                if (result == null) result = caseUMLReferencingElement(extend);
                 if (result == null) result = caseElement(extend);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

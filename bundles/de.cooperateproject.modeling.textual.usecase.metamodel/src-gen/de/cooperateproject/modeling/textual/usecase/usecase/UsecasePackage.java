@@ -762,13 +762,22 @@ public interface UsecasePackage extends EPackage {
     int ASSOCIATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Actor</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ASSOCIATION__ACTOR = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int ASSOCIATION__ACTOR = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Usecase</b></em>' reference.
@@ -777,7 +786,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__USECASE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int ASSOCIATION__USECASE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Actor Cardinality</b></em>' containment reference.
@@ -786,7 +795,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__ACTOR_CARDINALITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int ASSOCIATION__ACTOR_CARDINALITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Use Case Cardinality</b></em>' containment reference.
@@ -795,7 +804,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__USE_CASE_CARDINALITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int ASSOCIATION__USE_CASE_CARDINALITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Association</em>' class.
@@ -804,7 +813,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int ASSOCIATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -890,13 +899,22 @@ public interface UsecasePackage extends EPackage {
     int GENERALIZATION__REFERENCED_ELEMENT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__COMMENTS = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Specific</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION__SPECIFIC = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
+    int GENERALIZATION__SPECIFIC = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>General</b></em>' reference.
@@ -905,7 +923,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__GENERAL = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
+    int GENERALIZATION__GENERAL = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -914,7 +932,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
+    int GENERALIZATION_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -963,13 +981,22 @@ public interface UsecasePackage extends EPackage {
     int INCLUDE__REFERENCED_ELEMENT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INCLUDE__COMMENTS = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Addition</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INCLUDE__ADDITION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
+    int INCLUDE__ADDITION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Including Case</b></em>' reference.
@@ -978,7 +1005,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE__INCLUDING_CASE = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
+    int INCLUDE__INCLUDING_CASE = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Include</em>' class.
@@ -987,7 +1014,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INCLUDE_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
+    int INCLUDE_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1036,13 +1063,22 @@ public interface UsecasePackage extends EPackage {
     int EXTEND__REFERENCED_ELEMENT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTEND__COMMENTS = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENSION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 1;
+    int EXTEND__EXTENSION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Extended Case</b></em>' reference.
@@ -1051,7 +1087,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENDED_CASE = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 2;
+    int EXTEND__EXTENDED_CASE = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Extension Location</b></em>' reference.
@@ -1060,7 +1096,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__EXTENSION_LOCATION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 3;
+    int EXTEND__EXTENSION_LOCATION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -1069,7 +1105,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND__CONDITION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 4;
+    int EXTEND__CONDITION = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Extend</em>' class.
@@ -1078,7 +1114,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTEND_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 5;
+    int EXTEND_FEATURE_COUNT = USE_CASE_RELATIONSHIP_FEATURE_COUNT + 6;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

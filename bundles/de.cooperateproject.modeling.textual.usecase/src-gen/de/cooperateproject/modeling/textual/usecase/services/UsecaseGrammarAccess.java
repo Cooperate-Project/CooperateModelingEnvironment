@@ -39,7 +39,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndUscdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//UseCaseDiagram:
-		//	{UseCaseDiagram} '@start-uscd' title=STRING rootPackage=RootPackage '@end-uscd';
+		//	{UseCaseDiagram}
+		//	'@start-uscd' title=STRING
+		//	rootPackage=RootPackage
+		//	'@end-uscd';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{UseCaseDiagram} '@start-uscd' title=STRING rootPackage=RootPackage '@end-uscd'
@@ -82,7 +85,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationshipsActorUsecaseRelationshipParserRuleCall_4_0 = (RuleCall)cRelationshipsAssignment_4.eContents().get(0);
 		
 		//RootPackage:
-		//	{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*;
+		//	{RootPackage} ('rootPackage' name=FQN)?
+		//	actors+=Actor*
+		//	systems+=System*
+		//	relationships+=ActorUsecaseRelationship*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*
@@ -284,7 +290,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_2_1_4 = (Keyword)cGroup_2_1.eContents().get(4);
 		
 		//System:
-		//	'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship*
+		//	'sys' name=FQN (comments+=Comment? | '{'
+		//	comments+=Comment?
+		//	usecases+=UseCase*
+		//	relationships+=UseCaseRelationship*
 		//	'}');
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -546,14 +555,17 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cUseCaseCardinalityAssignment_6_3_1 = (Assignment)cGroup_6_3.eContents().get(1);
 		private final RuleCall cUseCaseCardinalityCardinalityParserRuleCall_6_3_1_0 = (RuleCall)cUseCaseCardinalityAssignment_6_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
+		private final Assignment cCommentsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cCommentsCommentParserRuleCall_7_0 = (RuleCall)cCommentsAssignment_7.eContents().get(0);
 		
 		//Association:
 		//	'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality (':'
-		//	useCaseCardinality=Cardinality)? ']')?;
+		//	useCaseCardinality=Cardinality)? ']')?
+		//	comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality (':'
-		//useCaseCardinality=Cardinality)? ']')?
+		//useCaseCardinality=Cardinality)? ']')? comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'iac'
@@ -615,6 +627,12 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_6_4() { return cRightSquareBracketKeyword_6_4; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_7() { return cCommentsAssignment_7; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_7_0() { return cCommentsCommentParserRuleCall_7_0; }
 	}
 	public class GeneralizationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Generalization");
@@ -629,12 +647,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cGeneralBehavioredClassifierCrossReference_4_0 = (CrossReference)cGeneralAssignment_4.eContents().get(0);
 		private final RuleCall cGeneralBehavioredClassifierFQNParserRuleCall_4_0_1 = (RuleCall)cGeneralBehavioredClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCommentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCommentsCommentParserRuleCall_6_0 = (RuleCall)cCommentsAssignment_6.eContents().get(0);
 		
 		//Generalization:
-		//	'isa' '(' specific=[BehavioredClassifier|FQN] ',' general=[BehavioredClassifier|FQN] ')';
+		//	'isa' '(' specific=[BehavioredClassifier|FQN] ',' general=[BehavioredClassifier|FQN] ')' comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'isa' '(' specific=[BehavioredClassifier|FQN] ',' general=[BehavioredClassifier|FQN] ')'
+		//'isa' '(' specific=[BehavioredClassifier|FQN] ',' general=[BehavioredClassifier|FQN] ')' comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'isa'
@@ -666,6 +686,12 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_6() { return cCommentsAssignment_6; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_6_0() { return cCommentsCommentParserRuleCall_6_0; }
 	}
 	public class IncludeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Include");
@@ -680,12 +706,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cAdditionUseCaseCrossReference_4_0 = (CrossReference)cAdditionAssignment_4.eContents().get(0);
 		private final RuleCall cAdditionUseCaseFQNParserRuleCall_4_0_1 = (RuleCall)cAdditionUseCaseCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCommentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCommentsCommentParserRuleCall_6_0 = (RuleCall)cCommentsAssignment_6.eContents().get(0);
 		
 		//Include:
-		//	'inc' '(' includingCase=[UseCase|FQN] ',' addition=[UseCase|FQN] ')';
+		//	'inc' '(' includingCase=[UseCase|FQN] ',' addition=[UseCase|FQN] ')' comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'inc' '(' includingCase=[UseCase|FQN] ',' addition=[UseCase|FQN] ')'
+		//'inc' '(' includingCase=[UseCase|FQN] ',' addition=[UseCase|FQN] ')' comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'inc'
@@ -717,6 +745,12 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_6() { return cCommentsAssignment_6; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_6_0() { return cCommentsCommentParserRuleCall_6_0; }
 	}
 	public class ExtendElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Extend");
@@ -743,14 +777,17 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cConditionAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
 		private final RuleCall cConditionSTRINGTerminalRuleCall_10_2_0 = (RuleCall)cConditionAssignment_10_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_10_3 = (Keyword)cGroup_10.eContents().get(3);
+		private final Assignment cCommentsAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cCommentsCommentParserRuleCall_11_0 = (RuleCall)cCommentsAssignment_11.eContents().get(0);
 		
 		//Extend:
 		//	'ext' '(' extension=[UseCase|FQN] ',' extendedCase=[UseCase|FQN] ')' 'ep' '[' extensionLocation=[ExtensionPoint] ']'
-		//	('cond' '[' condition=STRING ']')?;
+		//	('cond' '[' condition=STRING ']')?
+		//	comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'ext' '(' extension=[UseCase|FQN] ',' extendedCase=[UseCase|FQN] ')' 'ep' '[' extensionLocation=[ExtensionPoint] ']'
-		//('cond' '[' condition=STRING ']')?
+		//('cond' '[' condition=STRING ']')? comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//'ext'
@@ -818,6 +855,12 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_10_3() { return cRightSquareBracketKeyword_10_3; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_11() { return cCommentsAssignment_11; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_11_0() { return cCommentsCommentParserRuleCall_11_0; }
 	}
 	public class CommentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Comment");
@@ -954,7 +997,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPackageTildeKeyword_6_0 = (Keyword)cPackageEnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum Visibility returns uml::VisibilityKind:
-		//	public='+' | public | private='-' | private | protected='#' | protected | package='~';
+		//	public='+'
+		//	| public | private='-'
+		//	| private | protected='#'
+		//	| protected | package='~';
 		public EnumRule getRule() { return rule; }
 		
 		//public='+' | public | private='-' | private | protected='#' | protected | package='~'
@@ -1011,7 +1057,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMACHINEMachineKeyword_1_0 = (Keyword)cMACHINEEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum ActorType:
-		//	HUMAN='human' | MACHINE='machine';
+		//	HUMAN='human'
+		//	| MACHINE='machine';
 		public EnumRule getRule() { return rule; }
 		
 		//HUMAN='human' | MACHINE='machine'
@@ -1110,7 +1157,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//UseCaseDiagram:
-	//	{UseCaseDiagram} '@start-uscd' title=STRING rootPackage=RootPackage '@end-uscd';
+	//	{UseCaseDiagram}
+	//	'@start-uscd' title=STRING
+	//	rootPackage=RootPackage
+	//	'@end-uscd';
 	public UseCaseDiagramElements getUseCaseDiagramAccess() {
 		return pUseCaseDiagram;
 	}
@@ -1120,7 +1170,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	{RootPackage} ('rootPackage' name=FQN)? actors+=Actor* systems+=System* relationships+=ActorUsecaseRelationship*;
+	//	{RootPackage} ('rootPackage' name=FQN)?
+	//	actors+=Actor*
+	//	systems+=System*
+	//	relationships+=ActorUsecaseRelationship*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}
@@ -1161,7 +1214,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//System:
-	//	'sys' name=FQN (comments+=Comment? | '{' comments+=Comment? usecases+=UseCase* relationships+=UseCaseRelationship*
+	//	'sys' name=FQN (comments+=Comment? | '{'
+	//	comments+=Comment?
+	//	usecases+=UseCase*
+	//	relationships+=UseCaseRelationship*
 	//	'}');
 	public SystemElements getSystemAccess() {
 		return pSystem;
@@ -1204,7 +1260,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Association:
 	//	'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality (':'
-	//	useCaseCardinality=Cardinality)? ']')?;
+	//	useCaseCardinality=Cardinality)? ']')?
+	//	comments+=Comment?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
 	}
@@ -1214,7 +1271,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Generalization:
-	//	'isa' '(' specific=[BehavioredClassifier|FQN] ',' general=[BehavioredClassifier|FQN] ')';
+	//	'isa' '(' specific=[BehavioredClassifier|FQN] ',' general=[BehavioredClassifier|FQN] ')' comments+=Comment?;
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}
@@ -1224,7 +1281,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Include:
-	//	'inc' '(' includingCase=[UseCase|FQN] ',' addition=[UseCase|FQN] ')';
+	//	'inc' '(' includingCase=[UseCase|FQN] ',' addition=[UseCase|FQN] ')' comments+=Comment?;
 	public IncludeElements getIncludeAccess() {
 		return pInclude;
 	}
@@ -1235,7 +1292,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Extend:
 	//	'ext' '(' extension=[UseCase|FQN] ',' extendedCase=[UseCase|FQN] ')' 'ep' '[' extensionLocation=[ExtensionPoint] ']'
-	//	('cond' '[' condition=STRING ']')?;
+	//	('cond' '[' condition=STRING ']')?
+	//	comments+=Comment?;
 	public ExtendElements getExtendAccess() {
 		return pExtend;
 	}
@@ -1295,7 +1353,10 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum Visibility returns uml::VisibilityKind:
-	//	public='+' | public | private='-' | private | protected='#' | protected | package='~';
+	//	public='+'
+	//	| public | private='-'
+	//	| private | protected='#'
+	//	| protected | package='~';
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
 	}
@@ -1305,7 +1366,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum ActorType:
-	//	HUMAN='human' | MACHINE='machine';
+	//	HUMAN='human'
+	//	| MACHINE='machine';
 	public ActorTypeElements getActorTypeAccess() {
 		return eActorType;
 	}
@@ -1327,7 +1389,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' | "'" ('\\' . | !('\\' | "'"))* "'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' |
+	//	"'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	}

@@ -28,11 +28,14 @@ mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
     children += self.rootPackage.actors.map commentableToShape();
     children += conditionedExtends.map extendToShape();
     children += self.rootPackage.findAllComments().map commentToShape();
+    children += self.rootPackage.findAllRelationshipComments().map commentToShape();
 
     edges += self.rootPackage.relationships.map relationshipToEdge();
 	edges += self.rootPackage.systems.relationships.map relationshipToEdge();
     edges += conditionedExtends.map extendToConstraintEdge();
     edges += self.rootPackage.findAllComments().map commentToEdge(); 
+    
+    edges += self.rootPackage.findAllRelationshipComments().map commentToEdge();
     
     styles += self.map stringValueStyle();
     styles += self.map diagramStyle();
@@ -226,15 +229,19 @@ mapping usecase::Extend::extendToConstraintEdge() : notation::Connector
 mapping textualCommons::Comment::commentToEdge() : notation::Connector
 {
     type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
+	var realCommentedElement := self.commentedElement.oclAsType(textualCommons::Commentable);
 
     source := self.resolveoneIn(textualCommons::Comment::commentToShape);
-    target := self.commentedElement.resolveoneIn(textualCommons::Commentable::commentableToShape);
+    
+	target := realCommentedElement.typeToView();
+        
+    
+    //target := self.commentedElement.resolveoneIn(textualCommons::Commentable::commentableToShape);
     result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
     
     bendpoints := result.map connectorToBendpoint();
     styles += result.toEObject().map fontStyle();
 }
-
 
 // labels / decorations / ...
 
@@ -430,4 +437,44 @@ query usecase::RootPackage::findAllComments() : Sequence(textualCommons::Comment
     var systemComments := self.systems.comments->flatten();
     var usecaseComments := self.systems.usecases.comments->flatten();
     return actorComments->union(systemComments)->union(usecaseComments);
+}
+
+query usecase::RootPackage::findAllRelationshipComments() : Sequence(textualCommons::Comment) {
+    var genComments := self.relationships->selectByKind(usecase::Generalization)->select(isCommented()).comments->flatten();
+    var assComments := self.relationships->selectByKind(usecase::Association)->select(isCommented()).comments->flatten();
+    var sysExtendsComments := self.systems.relationships->selectByKind(usecase::Extend)->select(isCommented()).comments->flatten();
+    var sysIncludeComments := self.systems.relationships->selectByKind(usecase::Include)->select(isCommented()).comments->flatten();
+    var sysAssComments := self.systems.relationships->selectByKind(usecase::Association)->select(isCommented()).comments->flatten();
+    
+    return genComments->union(assComments)->union(sysExtendsComments)->union(sysIncludeComments)->union(sysAssComments);
+}
+
+
+query textualCommons::Commentable::typeToView() : notation::View
+{
+    return if self.oclIsKindOf(usecase::System) or self.oclIsTypeOf(usecase::Actor) or self.oclIsTypeOf(usecase::UseCase) then self.typeToShape() 
+    else self.typeToEdge() endif;
+}
+
+query textualCommons::Commentable::typeToEdge() : notation::View
+{
+    return if (self.oclIsKindOf(usecase::Extend) and self.referencedElement.oclAsType(uml::Extend).condition.oclIsUndefined()) then
+    self.resolveoneIn(usecase::Extend::extendToConstraintEdge) else
+    
+    self.resolveoneIn(usecase::Relationship::relationshipToEdge) endif;
+}
+
+query textualCommons::Commentable::typeToShape() : notation::View
+{
+    return self.resolveoneIn(textualCommons::Commentable::commentableToShape);
+}
+
+query textualCommons::Element::isCommentable() : Boolean
+{
+    return self.oclIsKindOf(textualCommons::Commentable);
+}
+
+query textualCommons::Element::isCommented() : Boolean
+{
+    return self.isCommentable() and not self.oclAsType(textualCommons::Commentable).comments->isEmpty();
 }

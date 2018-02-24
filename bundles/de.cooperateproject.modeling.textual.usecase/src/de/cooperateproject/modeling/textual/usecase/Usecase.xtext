@@ -63,19 +63,21 @@ Relationship:
 ;
 
 Association:
-	'iac' '('actor = [Actor|FQN] ',' usecase = [UseCase|FQN] ')' ('card''[' actorCardinality=Cardinality (':' useCaseCardinality=Cardinality)? ']')?
+	'iac' '('actor = [Actor|FQN] ',' usecase = [UseCase|FQN] ')' ('card''[' actorCardinality=Cardinality (':' useCaseCardinality=Cardinality)? ']')? 
+	(comments+=Comment)?
 ;
 
 Generalization:
-	'isa''('specific = [BehavioredClassifier|FQN]',' general = [BehavioredClassifier|FQN]')'
+	'isa''('specific = [BehavioredClassifier|FQN]',' general = [BehavioredClassifier|FQN]')' (comments+=Comment)?
 ;
 
 Include:
-	'inc''('includingCase = [UseCase|FQN]','addition = [UseCase|FQN]')'
+	'inc''('includingCase = [UseCase|FQN]','addition = [UseCase|FQN]')' (comments+=Comment)?
 ;
 
 Extend:
 	'ext''('extension = [UseCase|FQN]',' extendedCase = [UseCase|FQN]')' 'ep''[' extensionLocation = [ExtensionPoint]']' ('cond''['condition=STRING']')?
+	(comments+=Comment)?
 ;
 
 Comment returns commons::Comment:

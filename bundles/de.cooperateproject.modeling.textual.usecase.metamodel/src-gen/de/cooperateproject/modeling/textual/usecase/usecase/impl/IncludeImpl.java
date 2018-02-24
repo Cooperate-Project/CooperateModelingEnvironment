@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -12,11 +14,15 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Optional;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.Namespace;
 
 /**
@@ -28,6 +34,7 @@ import org.eclipse.uml2.uml.Namespace;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getAddition <em>Addition</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getIncludingCase <em>Including Case</em>}</li>
  * </ul>
@@ -89,6 +96,16 @@ public class IncludeImpl extends ElementImpl implements Include {
      */
     public void setReferencedElement(org.eclipse.uml2.uml.Include newReferencedElement) {
         eDynamicSet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(UsecasePackage.INCLUDE__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
     /**
@@ -163,12 +180,43 @@ public class IncludeImpl extends ElementImpl implements Include {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.INCLUDE__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.INCLUDE__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.INCLUDE__COMMENTS:
+                return getComments();
             case UsecasePackage.INCLUDE__ADDITION:
                 if (resolve) return getAddition();
                 return basicGetAddition();
@@ -184,11 +232,16 @@ public class IncludeImpl extends ElementImpl implements Include {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)newValue);
+                return;
+            case UsecasePackage.INCLUDE__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
             case UsecasePackage.INCLUDE__ADDITION:
                 setAddition((UseCase)newValue);
@@ -211,6 +264,9 @@ public class IncludeImpl extends ElementImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)null);
                 return;
+            case UsecasePackage.INCLUDE__COMMENTS:
+                getComments().clear();
+                return;
             case UsecasePackage.INCLUDE__ADDITION:
                 setAddition((UseCase)null);
                 return;
@@ -231,6 +287,8 @@ public class IncludeImpl extends ElementImpl implements Include {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case UsecasePackage.INCLUDE__COMMENTS:
+                return !getComments().isEmpty();
             case UsecasePackage.INCLUDE__ADDITION:
                 return basicGetAddition() != null;
             case UsecasePackage.INCLUDE__INCLUDING_CASE:
@@ -252,6 +310,12 @@ public class IncludeImpl extends ElementImpl implements Include {
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.INCLUDE__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -268,6 +332,12 @@ public class IncludeImpl extends ElementImpl implements Include {
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return UsecasePackage.INCLUDE__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
@@ -281,6 +351,11 @@ public class IncludeImpl extends ElementImpl implements Include {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseOperationID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return UsecasePackage.INCLUDE___GET_UML_PARENT_NAMESPACE;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
                 default: return -1;
             }
         }

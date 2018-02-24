@@ -1020,6 +1020,25 @@ ruleAssociation returns [EObject current=null]
 				newLeafNode(otherlv_11, grammarAccess.getAssociationAccess().getRightSquareBracketKeyword_6_4());
 			}
 		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAssociationAccess().getCommentsCommentParserRuleCall_7_0());
+				}
+				lv_comments_12_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAssociationRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_12_0,
+						"de.cooperateproject.modeling.textual.usecase.Usecase.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -1087,6 +1106,25 @@ ruleGeneralization returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getGeneralizationAccess().getRightParenthesisKeyword_5());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getGeneralizationAccess().getCommentsCommentParserRuleCall_6_0());
+				}
+				lv_comments_6_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getGeneralizationRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_6_0,
+						"de.cooperateproject.modeling.textual.usecase.Usecase.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -1154,6 +1192,25 @@ ruleInclude returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getIncludeAccess().getRightParenthesisKeyword_5());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIncludeAccess().getCommentsCommentParserRuleCall_6_0());
+				}
+				lv_comments_6_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIncludeRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_6_0,
+						"de.cooperateproject.modeling.textual.usecase.Usecase.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -1277,6 +1334,25 @@ ruleExtend returns [EObject current=null]
 			{
 				newLeafNode(otherlv_13, grammarAccess.getExtendAccess().getRightSquareBracketKeyword_10_3());
 			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getExtendAccess().getCommentsCommentParserRuleCall_11_0());
+				}
+				lv_comments_14_0=ruleComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getExtendRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_14_0,
+						"de.cooperateproject.modeling.textual.usecase.Usecase.Comment");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)?
 	)
 ;

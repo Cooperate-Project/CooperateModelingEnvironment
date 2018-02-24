@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
@@ -24,7 +25,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, UseCaseRelationship, ActorUsecaseRelationship {
+public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, UseCaseRelationship, ActorUsecaseRelationship, Commentable<org.eclipse.uml2.uml.Association> {
     /**
      * Returns the value of the '<em><b>Actor</b></em>' reference.
      * <!-- begin-user-doc -->

@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
@@ -23,7 +24,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Extend extends UseCaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Extend> {
+public interface Extend extends UseCaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Extend>, Commentable<org.eclipse.uml2.uml.Extend> {
     /**
      * Returns the value of the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->

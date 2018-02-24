@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
@@ -21,7 +22,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Generalization extends UseCaseRelationship, ActorUsecaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Generalization> {
+public interface Generalization extends UseCaseRelationship, ActorUsecaseRelationship, UMLReferencingElement<org.eclipse.uml2.uml.Generalization>, Commentable<org.eclipse.uml2.uml.Generalization> {
     /**
      * Returns the value of the '<em><b>Specific</b></em>' reference.
      * <!-- begin-user-doc -->

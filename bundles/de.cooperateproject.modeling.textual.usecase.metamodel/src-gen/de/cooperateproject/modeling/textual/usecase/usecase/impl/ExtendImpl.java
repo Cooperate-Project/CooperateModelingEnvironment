@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -13,11 +15,15 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Optional;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.uml.Namespace;
 
 /**
@@ -29,6 +35,7 @@ import org.eclipse.uml2.uml.Namespace;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtendedCase <em>Extended Case</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtensionLocation <em>Extension Location</em>}</li>
@@ -101,6 +108,16 @@ public class ExtendImpl extends ElementImpl implements Extend {
      */
     public void setReferencedElement(org.eclipse.uml2.uml.Extend newReferencedElement) {
         eDynamicSet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(UsecasePackage.EXTEND__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
     /**
@@ -238,12 +255,43 @@ public class ExtendImpl extends ElementImpl implements Extend {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.EXTEND__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case UsecasePackage.EXTEND__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.EXTEND__COMMENTS:
+                return getComments();
             case UsecasePackage.EXTEND__EXTENSION:
                 if (resolve) return getExtension();
                 return basicGetExtension();
@@ -264,11 +312,16 @@ public class ExtendImpl extends ElementImpl implements Extend {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)newValue);
+                return;
+            case UsecasePackage.EXTEND__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
             case UsecasePackage.EXTEND__EXTENSION:
                 setExtension((UseCase)newValue);
@@ -297,6 +350,9 @@ public class ExtendImpl extends ElementImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)null);
                 return;
+            case UsecasePackage.EXTEND__COMMENTS:
+                getComments().clear();
+                return;
             case UsecasePackage.EXTEND__EXTENSION:
                 setExtension((UseCase)null);
                 return;
@@ -323,6 +379,8 @@ public class ExtendImpl extends ElementImpl implements Extend {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case UsecasePackage.EXTEND__COMMENTS:
+                return !getComments().isEmpty();
             case UsecasePackage.EXTEND__EXTENSION:
                 return basicGetExtension() != null;
             case UsecasePackage.EXTEND__EXTENDED_CASE:
@@ -348,6 +406,12 @@ public class ExtendImpl extends ElementImpl implements Extend {
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.EXTEND__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -364,6 +428,12 @@ public class ExtendImpl extends ElementImpl implements Extend {
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return UsecasePackage.EXTEND__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
@@ -377,6 +447,11 @@ public class ExtendImpl extends ElementImpl implements Extend {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseOperationID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE: return UsecasePackage.EXTEND___GET_UML_PARENT_NAMESPACE;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
                 default: return -1;
             }
         }
