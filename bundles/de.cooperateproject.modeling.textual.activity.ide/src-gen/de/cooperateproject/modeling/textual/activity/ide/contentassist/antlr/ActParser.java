@@ -31,16 +31,21 @@ public class ActParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getNodeTypeAccess().getAlternatives(), "rule__NodeType__Alternatives");
 					put(grammarAccess.getActivityDiagramAccess().getGroup(), "rule__ActivityDiagram__Group__0");
 					put(grammarAccess.getActivityDiagramAccess().getGroup_4(), "rule__ActivityDiagram__Group_4__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup_1(), "rule__RootPackage__Group_1__0");
+					put(grammarAccess.getNodeAccess().getGroup(), "rule__Node__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 					put(grammarAccess.getActivityDiagramAccess().getTitleAssignment_2(), "rule__ActivityDiagram__TitleAssignment_2");
 					put(grammarAccess.getActivityDiagramAccess().getRootPackageAssignment_3(), "rule__ActivityDiagram__RootPackageAssignment_3");
 					put(grammarAccess.getActivityDiagramAccess().getActivityNameAssignment_4_1(), "rule__ActivityDiagram__ActivityNameAssignment_4_1");
 					put(grammarAccess.getRootPackageAccess().getNameAssignment_1_1(), "rule__RootPackage__NameAssignment_1_1");
+					put(grammarAccess.getRootPackageAccess().getNodesAssignment_2(), "rule__RootPackage__NodesAssignment_2");
+					put(grammarAccess.getNodeAccess().getTypeAssignment_0(), "rule__Node__TypeAssignment_0");
+					put(grammarAccess.getNodeAccess().getNameAssignment_1(), "rule__Node__NameAssignment_1");
 				}
 			};
 		}

@@ -2,6 +2,9 @@
 '@end-actd'=13
 '@start-actd'=11
 'activityName'=12
+'ffin'=18
+'fin'=17
+'ini'=16
 'rootPackage'=14
 RULE_ANY_OTHER=10
 RULE_ID=5
@@ -15,3 +18,6 @@ T__12=12
 T__13=13
 T__14=14
 T__15=15
+T__16=16
+T__17=17
+T__18=18

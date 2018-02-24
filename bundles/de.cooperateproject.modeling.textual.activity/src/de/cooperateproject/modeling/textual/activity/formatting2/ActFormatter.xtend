@@ -13,7 +13,7 @@ class ActFormatter extends AbstractFormatter2 {
 	@Inject extension ActGrammarAccess
 	
 	override format(Object obj, IFormattableDocument document) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		
 	}
 	
 }

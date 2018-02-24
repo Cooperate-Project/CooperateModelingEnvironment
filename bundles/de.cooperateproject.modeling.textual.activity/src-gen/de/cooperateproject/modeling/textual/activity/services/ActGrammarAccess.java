@@ -7,7 +7,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
 import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -16,6 +19,7 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import org.eclipse.xtext.service.AbstractElementFinder.AbstractEnumRuleElementFinder;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -88,12 +92,15 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Assignment cNodesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNodesNodeParserRuleCall_2_0 = (RuleCall)cNodesAssignment_2.eContents().get(0);
 		
 		//RootPackage:
-		//	{RootPackage} ('rootPackage' name=FQN)?;
+		//	{RootPackage} ('rootPackage' name=FQN)?
+		//	nodes+=Node*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{RootPackage} ('rootPackage' name=FQN)?
+		//{RootPackage} ('rootPackage' name=FQN)? nodes+=Node*
 		public Group getGroup() { return cGroup; }
 		
 		//{RootPackage}
@@ -110,6 +117,39 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
+		
+		//nodes+=Node*
+		public Assignment getNodesAssignment_2() { return cNodesAssignment_2; }
+		
+		//Node
+		public RuleCall getNodesNodeParserRuleCall_2_0() { return cNodesNodeParserRuleCall_2_0; }
+	}
+	public class NodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Node");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeNodeTypeEnumRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//Node:
+		//	type=NodeType name=STRING?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=NodeType name=STRING?
+		public Group getGroup() { return cGroup; }
+		
+		//type=NodeType
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		
+		//NodeType
+		public RuleCall getTypeNodeTypeEnumRuleCall_0_0() { return cTypeNodeTypeEnumRuleCall_0_0; }
+		
+		//name=STRING?
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
 	}
 	public class FQNElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FQN");
@@ -139,9 +179,48 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
+	public class NodeTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.NodeType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cINITIALEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cINITIALIniKeyword_0_0 = (Keyword)cINITIALEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cFINALEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cFINALFinKeyword_1_0 = (Keyword)cFINALEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cFLOW_FINALEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cFLOW_FINALFfinKeyword_2_0 = (Keyword)cFLOW_FINALEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum NodeType:
+		//	INITIAL='ini'
+		//	| FINAL='fin'
+		//	| FLOW_FINAL='ffin';
+		public EnumRule getRule() { return rule; }
+		
+		//INITIAL='ini' | FINAL='fin' | FLOW_FINAL='ffin'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//INITIAL='ini'
+		public EnumLiteralDeclaration getINITIALEnumLiteralDeclaration_0() { return cINITIALEnumLiteralDeclaration_0; }
+		
+		//'ini'
+		public Keyword getINITIALIniKeyword_0_0() { return cINITIALIniKeyword_0_0; }
+		
+		//FINAL='fin'
+		public EnumLiteralDeclaration getFINALEnumLiteralDeclaration_1() { return cFINALEnumLiteralDeclaration_1; }
+		
+		//'fin'
+		public Keyword getFINALFinKeyword_1_0() { return cFINALFinKeyword_1_0; }
+		
+		//FLOW_FINAL='ffin'
+		public EnumLiteralDeclaration getFLOW_FINALEnumLiteralDeclaration_2() { return cFLOW_FINALEnumLiteralDeclaration_2; }
+		
+		//'ffin'
+		public Keyword getFLOW_FINALFfinKeyword_2_0() { return cFLOW_FINALFfinKeyword_2_0; }
+	}
 	
 	private final ActivityDiagramElements pActivityDiagram;
 	private final RootPackageElements pRootPackage;
+	private final NodeElements pNode;
+	private final NodeTypeElements eNodeType;
 	private final FQNElements pFQN;
 	
 	private final Grammar grammar;
@@ -155,6 +234,8 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pActivityDiagram = new ActivityDiagramElements();
 		this.pRootPackage = new RootPackageElements();
+		this.pNode = new NodeElements();
+		this.eNodeType = new NodeTypeElements();
 		this.pFQN = new FQNElements();
 	}
 	
@@ -199,13 +280,36 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	{RootPackage} ('rootPackage' name=FQN)?;
+	//	{RootPackage} ('rootPackage' name=FQN)?
+	//	nodes+=Node*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}
 	
 	public ParserRule getRootPackageRule() {
 		return getRootPackageAccess().getRule();
+	}
+	
+	//Node:
+	//	type=NodeType name=STRING?;
+	public NodeElements getNodeAccess() {
+		return pNode;
+	}
+	
+	public ParserRule getNodeRule() {
+		return getNodeAccess().getRule();
+	}
+	
+	//enum NodeType:
+	//	INITIAL='ini'
+	//	| FINAL='fin'
+	//	| FLOW_FINAL='ffin';
+	public NodeTypeElements getNodeTypeAccess() {
+		return eNodeType;
+	}
+	
+	public EnumRule getNodeTypeRule() {
+		return getNodeTypeAccess().getRule();
 	}
 	
 	//FQN:

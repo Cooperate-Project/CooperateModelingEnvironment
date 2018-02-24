@@ -16,7 +16,18 @@ ActivityDiagram returns ActivityDiagram:
 RootPackage:
 	{RootPackage} 
 	('rootPackage' name=FQN)?
+	nodes+=Node*
 	;
+
+Node returns Node:
+	type=NodeType (name = STRING)? 
+;
+
+enum NodeType:
+	INITIAL = 'ini'
+	| FINAL = 'fin'
+	| FLOW_FINAL = 'ffin'
+;
 	
 FQN:
     ID ("." ID)*

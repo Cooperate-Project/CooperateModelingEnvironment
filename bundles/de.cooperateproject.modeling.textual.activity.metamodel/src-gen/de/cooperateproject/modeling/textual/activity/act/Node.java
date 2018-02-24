@@ -1,0 +1,82 @@
+/**
+ */
+package de.cooperateproject.modeling.textual.activity.act;
+
+import org.eclipse.emf.cdo.CDOObject;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Node</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.Node#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.Node#getType <em>Type</em>}</li>
+ * </ul>
+ *
+ * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getNode()
+ * @model
+ * @extends CDOObject
+ * @generated
+ */
+public interface Node extends CDOObject {
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getNode_Name()
+	 * @model dataType="org.eclipse.uml2.types.String"
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.Node#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.activity.act.NodeType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see de.cooperateproject.modeling.textual.activity.act.NodeType
+	 * @see #setType(NodeType)
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getNode_Type()
+	 * @model
+	 * @generated
+	 */
+	NodeType getType();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.Node#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see de.cooperateproject.modeling.textual.activity.act.NodeType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(NodeType value);
+
+} // Node

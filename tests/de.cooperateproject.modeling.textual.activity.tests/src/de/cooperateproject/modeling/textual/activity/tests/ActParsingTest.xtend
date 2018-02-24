@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.activity.tests
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.activity.act.ActPackage
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram
+import de.cooperateproject.modeling.textual.activity.tests.scoping.util.ActivityCustomizedInjectorProvider
 import java.util.Collections
 import org.apache.commons.io.IOUtils
 import org.eclipse.emf.common.util.URI
@@ -15,19 +16,21 @@ import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
-import de.cooperateproject.modeling.textual.activity.tests.scoping.util.ActivityCustomizedInjectorProvider
+
+import static org.junit.Assert.assertEquals
+import de.cooperateproject.modeling.textual.activity.act.NodeType
 
 @RunWith(XtextRunner)
 @InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
 class ActParsingTest extends AbstractActTest {
-	
+
 	@Inject ValidationTestHelper validationTestHelper
-	
+
 	override setup() {
 		super.setup()
 		rs.packageRegistry.put(ActPackage.eNS_URI, ActPackage.eINSTANCE)
 	}
-	
+
 	@Test
 	def void emptyDiagramTest() {
 		val model = '''
@@ -35,25 +38,48 @@ class ActParsingTest extends AbstractActTest {
 			rootPackage RootElement
 			@end-actd
 		'''.parse(rs)
+		assertEquals(model.rootPackage.name, "RootElement") 
 		validationTestHelper.assertNoIssues(model)
 	}
-	
+
 	@Test
 	def void activityNameTest() {
 		val model = '''
 			@start-actd "SomeTitle"
 			rootPackage RootElement
-			activityName "SomeName"
+			activityName "Some Name"
 			@end-actd
 		'''.parse(rs)
+		assertEquals(model.activityName, "Some Name") 
 		validationTestHelper.assertNoIssues(model)
 	}
 	
+	// TODO: Deal with ordering?
+	
+	@Test
+	def void nodeTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			ini "Initial Node"
+			fin
+			ffin
+			@end-actd
+		'''.parse(rs)
+		assertEquals(model.rootPackage.nodes.length, 3)
+		assertEquals(model.rootPackage.nodes.get(0).name, "Initial Node")
+		assertEquals(model.rootPackage.nodes.get(0).type, NodeType.INITIAL)
+		assertEquals(model.rootPackage.nodes.get(1).type, NodeType.FINAL)
+		assertEquals(model.rootPackage.nodes.get(2).type, NodeType.FLOW_FINAL)
+		
+		validationTestHelper.assertNoIssues(model)
+	}
+
 	private static def parse(CharSequence text, ResourceSet rs) {
 		val r = rs.createResource(URI.createFileURI("testmodels/testfile.act"))
-		val is = IOUtils.toInputStream(text);		
+		val is = IOUtils.toInputStream(text);
 		r.load(is, Collections.emptyMap());
-		return r.contents.get(0) as ActivityDiagram
+		val model = r.contents.get(0) as ActivityDiagram
+		return model
 	}
-	
 }
