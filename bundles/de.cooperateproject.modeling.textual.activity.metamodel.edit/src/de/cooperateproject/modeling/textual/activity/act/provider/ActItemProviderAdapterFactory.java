@@ -118,26 +118,49 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.Node} instances.
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.ControlNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NodeItemProvider nodeItemProvider;
+	protected ControlNodeItemProvider controlNodeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Node}.
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.ControlNode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createNodeAdapter() {
-		if (nodeItemProvider == null) {
-			nodeItemProvider = new NodeItemProvider(this);
+	public Adapter createControlNodeAdapter() {
+		if (controlNodeItemProvider == null) {
+			controlNodeItemProvider = new ControlNodeItemProvider(this);
 		}
 
-		return nodeItemProvider;
+		return controlNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.ActivityNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityNodeItemProvider activityNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.ActivityNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityNodeAdapter() {
+		if (activityNodeItemProvider == null) {
+			activityNodeItemProvider = new ActivityNodeItemProvider(this);
+		}
+
+		return activityNodeItemProvider;
 	}
 
 	/**
@@ -241,7 +264,8 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	public void dispose() {
 		if (activityDiagramItemProvider != null) activityDiagramItemProvider.dispose();
 		if (rootPackageItemProvider != null) rootPackageItemProvider.dispose();
-		if (nodeItemProvider != null) nodeItemProvider.dispose();
+		if (controlNodeItemProvider != null) controlNodeItemProvider.dispose();
+		if (activityNodeItemProvider != null) activityNodeItemProvider.dispose();
 	}
 
 }

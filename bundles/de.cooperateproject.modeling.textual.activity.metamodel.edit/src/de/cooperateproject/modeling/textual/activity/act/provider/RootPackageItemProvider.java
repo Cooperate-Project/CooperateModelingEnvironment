@@ -149,7 +149,12 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ActPackage.Literals.ROOT_PACKAGE__NODES,
-				 ActFactory.eINSTANCE.createNode()));
+				 ActFactory.eINSTANCE.createControlNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__NODES,
+				 ActFactory.eINSTANCE.createActivityNode()));
 	}
 
 	/**

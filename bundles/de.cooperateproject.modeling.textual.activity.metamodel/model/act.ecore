@@ -15,13 +15,18 @@
       <eTypeArguments eClassifier="#//RootPackage"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Node">
+  <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//NodeType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="NodeType">
     <eLiterals name="INITIAL"/>
     <eLiterals name="FINAL" value="1"/>
     <eLiterals name="FLOW_FINAL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlNode" eSuperTypes="#//Node">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NodeType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityNode" eSuperTypes="#//Node">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
 </ecore:EPackage>

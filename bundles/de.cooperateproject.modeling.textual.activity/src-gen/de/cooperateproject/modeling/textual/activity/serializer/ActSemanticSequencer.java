@@ -6,7 +6,8 @@ package de.cooperateproject.modeling.textual.activity.serializer;
 import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
-import de.cooperateproject.modeling.textual.activity.act.Node;
+import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
+import de.cooperateproject.modeling.textual.activity.act.ControlNode;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 import de.cooperateproject.modeling.textual.activity.services.ActGrammarAccess;
 import java.util.Set;
@@ -35,8 +36,11 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ActPackage.ACTIVITY_DIAGRAM:
 				sequence_ActivityDiagram(context, (ActivityDiagram) semanticObject); 
 				return; 
-			case ActPackage.NODE:
-				sequence_Node(context, (Node) semanticObject); 
+			case ActPackage.ACTIVITY_NODE:
+				sequence_ActivityNode(context, (ActivityNode) semanticObject); 
+				return; 
+			case ActPackage.CONTROL_NODE:
+				sequence_ControlNode(context, (ControlNode) semanticObject); 
 				return; 
 			case ActPackage.ROOT_PACKAGE:
 				sequence_RootPackage(context, (RootPackage) semanticObject); 
@@ -60,12 +64,26 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Node returns Node
+	 *     Node returns ActivityNode
+	 *     ActivityNode returns ActivityNode
+	 *
+	 * Constraint:
+	 *     (name=ID | (name=ID alias=STRING))
+	 */
+	protected void sequence_ActivityNode(ISerializationContext context, ActivityNode semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Node returns ControlNode
+	 *     ControlNode returns ControlNode
 	 *
 	 * Constraint:
 	 *     (type=NodeType name=STRING?)
 	 */
-	protected void sequence_Node(ISerializationContext context, Node semanticObject) {
+	protected void sequence_ControlNode(ISerializationContext context, ControlNode semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

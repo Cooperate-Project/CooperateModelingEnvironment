@@ -5,6 +5,8 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 import de.cooperateproject.modeling.textual.activity.act.ActFactory;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
+import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
+import de.cooperateproject.modeling.textual.activity.act.ControlNode;
 import de.cooperateproject.modeling.textual.activity.act.Node;
 import de.cooperateproject.modeling.textual.activity.act.NodeType;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
@@ -52,6 +54,20 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * @generated
 	 */
 	private EClass nodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass controlNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass activityNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -204,8 +220,35 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNode_Type() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
+	public EClass getControlNode() {
+		return controlNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getControlNode_Type() {
+		return (EAttribute)controlNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActivityNode() {
+		return activityNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getActivityNode_Alias() {
+		return (EAttribute)activityNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -255,7 +298,12 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
-		createEAttribute(nodeEClass, NODE__TYPE);
+
+		controlNodeEClass = createEClass(CONTROL_NODE);
+		createEAttribute(controlNodeEClass, CONTROL_NODE__TYPE);
+
+		activityNodeEClass = createEClass(ACTIVITY_NODE);
+		createEAttribute(activityNodeEClass, ACTIVITY_NODE__ALIAS);
 
 		// Create enums
 		nodeTypeEEnum = createEEnum(NODE_TYPE);
@@ -298,6 +346,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		EGenericType g2 = createEGenericType(this.getRootPackage());
 		g1.getETypeArguments().add(g2);
 		rootPackageEClass.getEGenericSuperTypes().add(g1);
+		controlNodeEClass.getESuperTypes().add(this.getNode());
+		activityNodeEClass.getESuperTypes().add(this.getNode());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -308,9 +358,14 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRootPackage_Nodes(), this.getNode(), null, "nodes", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), theTypesPackage.getString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNode_Type(), this.getNodeType(), "type", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(controlNodeEClass, ControlNode.class, "ControlNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getControlNode_Type(), this.getNodeType(), "type", null, 1, 1, ControlNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(activityNodeEClass, ActivityNode.class, "ActivityNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActivityNode_Alias(), theTypesPackage.getString(), "alias", null, 0, 1, ActivityNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(nodeTypeEEnum, NodeType.class, "NodeType");

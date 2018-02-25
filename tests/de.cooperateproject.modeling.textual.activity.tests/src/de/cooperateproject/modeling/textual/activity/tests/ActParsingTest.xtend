@@ -19,6 +19,8 @@ import org.junit.runner.RunWith
 
 import static org.junit.Assert.assertEquals
 import de.cooperateproject.modeling.textual.activity.act.NodeType
+import de.cooperateproject.modeling.textual.activity.act.ControlNode
+import de.cooperateproject.modeling.textual.activity.act.ActivityNode
 
 @RunWith(XtextRunner)
 @InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
@@ -57,7 +59,7 @@ class ActParsingTest extends AbstractActTest {
 	// TODO: Deal with ordering?
 	
 	@Test
-	def void nodeTest() {
+	def void controlNodeTest() {
 		val model = '''
 			@start-actd "SomeTitle"
 			rootPackage RootElement
@@ -66,11 +68,39 @@ class ActParsingTest extends AbstractActTest {
 			ffin
 			@end-actd
 		'''.parse(rs)
+		
 		assertEquals(model.rootPackage.nodes.length, 3)
-		assertEquals(model.rootPackage.nodes.get(0).name, "Initial Node")
-		assertEquals(model.rootPackage.nodes.get(0).type, NodeType.INITIAL)
-		assertEquals(model.rootPackage.nodes.get(1).type, NodeType.FINAL)
-		assertEquals(model.rootPackage.nodes.get(2).type, NodeType.FLOW_FINAL)
+		
+		val firstNode = model.rootPackage.nodes.get(0) as ControlNode
+		val secondNode = model.rootPackage.nodes.get(1) as ControlNode
+		val thirdNode = model.rootPackage.nodes.get(2) as ControlNode
+		
+		assertEquals(firstNode.name, "Initial Node")
+		assertEquals(firstNode.type, NodeType.INITIAL)
+		assertEquals(secondNode.type, NodeType.FINAL)
+		assertEquals(thirdNode.type, NodeType.FLOW_FINAL)
+		
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	@Test
+	def void activityNodeTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			actn someActivity
+			actn anotherActivity as "Another Activity"
+			@end-actd
+		'''.parse(rs)
+		
+		assertEquals(model.rootPackage.nodes.length, 2)
+		
+		val firstNode = model.rootPackage.nodes.get(0) as ActivityNode
+		val secondNode = model.rootPackage.nodes.get(1) as ActivityNode
+		
+		assertEquals(firstNode.name, "someActivity")
+		assertEquals(secondNode.name, "anotherActivity")
+		assertEquals(secondNode.alias, "Another Activity")
 		
 		validationTestHelper.assertNoIssues(model)
 	}

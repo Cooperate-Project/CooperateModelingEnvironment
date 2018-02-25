@@ -84,6 +84,14 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
+			public Adapter caseControlNode(ControlNode object) {
+				return createControlNodeAdapter();
+			}
+			@Override
+			public Adapter caseActivityNode(ActivityNode object) {
+				return createActivityNodeAdapter();
+			}
+			@Override
 			public Adapter caseElement(Element object) {
 				return createElementAdapter();
 			}
@@ -162,6 +170,34 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.ControlNode <em>Control Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ControlNode
+	 * @generated
+	 */
+	public Adapter createControlNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode <em>Activity Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityNode
+	 * @generated
+	 */
+	public Adapter createActivityNodeAdapter() {
 		return null;
 	}
 

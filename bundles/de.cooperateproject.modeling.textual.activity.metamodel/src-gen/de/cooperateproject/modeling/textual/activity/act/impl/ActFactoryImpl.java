@@ -59,7 +59,8 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 		switch (eClass.getClassifierID()) {
 			case ActPackage.ACTIVITY_DIAGRAM: return (EObject)createActivityDiagram();
 			case ActPackage.ROOT_PACKAGE: return (EObject)createRootPackage();
-			case ActPackage.NODE: return (EObject)createNode();
+			case ActPackage.CONTROL_NODE: return (EObject)createControlNode();
+			case ActPackage.ACTIVITY_NODE: return (EObject)createActivityNode();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -120,9 +121,19 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Node createNode() {
-		NodeImpl node = new NodeImpl();
-		return node;
+	public ControlNode createControlNode() {
+		ControlNodeImpl controlNode = new ControlNodeImpl();
+		return controlNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivityNode createActivityNode() {
+		ActivityNodeImpl activityNode = new ActivityNodeImpl();
+		return activityNode;
 	}
 
 	/**

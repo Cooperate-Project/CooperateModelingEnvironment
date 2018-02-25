@@ -40,13 +40,22 @@ public interface ActFactory extends EFactory {
 	RootPackage createRootPackage();
 
 	/**
-	 * Returns a new object of class '<em>Node</em>'.
+	 * Returns a new object of class '<em>Control Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Node</em>'.
+	 * @return a new object of class '<em>Control Node</em>'.
 	 * @generated
 	 */
-	Node createNode();
+	ControlNode createControlNode();
+
+	/**
+	 * Returns a new object of class '<em>Activity Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Activity Node</em>'.
+	 * @generated
+	 */
+	ActivityNode createActivityNode();
 
 	/**
 	 * Returns the package supported by this factory.

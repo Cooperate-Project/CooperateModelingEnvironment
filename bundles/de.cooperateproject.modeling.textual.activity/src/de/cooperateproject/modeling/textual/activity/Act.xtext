@@ -20,6 +20,14 @@ RootPackage:
 	;
 
 Node returns Node:
+	ActivityNode | ControlNode
+;
+
+ActivityNode returns ActivityNode:
+	'actn'(name = ID | name = ID 'as' alias = STRING) // FIXME: Ordering? (NOT Copy-Paste from CMP)
+;
+
+ControlNode returns ControlNode:
 	type=NodeType (name = STRING)? 
 ;
 

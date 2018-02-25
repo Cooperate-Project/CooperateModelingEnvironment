@@ -235,22 +235,13 @@ public interface ActPackage extends EPackage {
 	int NODE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__TYPE = 1;
-
-	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 2;
+	int NODE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Node</em>' class.
@@ -262,6 +253,98 @@ public interface ActPackage extends EPackage {
 	int NODE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ControlNodeImpl <em>Control Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ControlNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getControlNode()
+	 * @generated
+	 */
+	int CONTROL_NODE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE__NAME = NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE__TYPE = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Control Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Control Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl <em>Activity Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActivityNode()
+	 * @generated
+	 */
+	int ACTIVITY_NODE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_NODE__NAME = NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_NODE__ALIAS = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Activity Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Activity Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,7 +352,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getNodeType()
 	 * @generated
 	 */
-	int NODE_TYPE = 3;
+	int NODE_TYPE = 5;
 
 
 	/**
@@ -358,15 +441,46 @@ public interface ActPackage extends EPackage {
 	EAttribute getNode_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Node#getType <em>Type</em>}'.
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ControlNode <em>Control Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Control Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ControlNode
+	 * @generated
+	 */
+	EClass getControlNode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ControlNode#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.Node#getType()
-	 * @see #getNode()
+	 * @see de.cooperateproject.modeling.textual.activity.act.ControlNode#getType()
+	 * @see #getControlNode()
 	 * @generated
 	 */
-	EAttribute getNode_Type();
+	EAttribute getControlNode_Type();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode <em>Activity Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Activity Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityNode
+	 * @generated
+	 */
+	EClass getActivityNode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alias</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityNode#getAlias()
+	 * @see #getActivityNode()
+	 * @generated
+	 */
+	EAttribute getActivityNode_Alias();
 
 	/**
 	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}'.
@@ -472,12 +586,40 @@ public interface ActPackage extends EPackage {
 		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
 
 		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ControlNodeImpl <em>Control Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ControlNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getControlNode()
+		 * @generated
+		 */
+		EClass CONTROL_NODE = eINSTANCE.getControlNode();
+
+		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NODE__TYPE = eINSTANCE.getNode_Type();
+		EAttribute CONTROL_NODE__TYPE = eINSTANCE.getControlNode_Type();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl <em>Activity Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActivityNode()
+		 * @generated
+		 */
+		EClass ACTIVITY_NODE = eINSTANCE.getActivityNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTIVITY_NODE__ALIAS = eINSTANCE.getActivityNode_Alias();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}' enum.
