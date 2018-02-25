@@ -17,6 +17,7 @@ RootPackage:
 	{RootPackage} 
 	('rootPackage' name=FQN)?
 	nodes+=Node*
+	relations+=Flow*
 	;
 
 Node returns Node:
@@ -28,7 +29,7 @@ ActivityNode returns ActivityNode:
 ;
 
 ControlNode returns ControlNode:
-	type=NodeType (name = STRING)? 
+	type=NodeType (name = STRING)? // TODO: Empty names = 'ini' etc.
 ;
 
 enum NodeType:
@@ -36,6 +37,12 @@ enum NodeType:
 	| FINAL = 'fin'
 	| FLOW_FINAL = 'ffin'
 ;
+
+Flow returns Flow:
+	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')'
+;
+
+// TODO: Multiflow flw(A,B,C)
 	
 FQN:
     ID ("." ID)*

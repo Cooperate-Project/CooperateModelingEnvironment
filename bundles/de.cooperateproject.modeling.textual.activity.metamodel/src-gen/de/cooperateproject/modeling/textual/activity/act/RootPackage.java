@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getNodes <em>Nodes</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage()
@@ -38,4 +39,20 @@ public interface RootPackage extends PackageBase<RootPackage> {
 	 * @generated
 	 */
 	EList<Node> getNodes();
+
+	/**
+	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
+	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Flow}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Relations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relations</em>' containment reference list.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage_Relations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Flow> getRelations();
 } // RootPackage

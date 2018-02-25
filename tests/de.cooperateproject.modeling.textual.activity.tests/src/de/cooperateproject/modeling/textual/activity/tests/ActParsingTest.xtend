@@ -40,8 +40,8 @@ class ActParsingTest extends AbstractActTest {
 			rootPackage RootElement
 			@end-actd
 		'''.parse(rs)
-		assertEquals(model.rootPackage.name, "RootElement") 
 		validationTestHelper.assertNoIssues(model)
+		assertEquals(model.rootPackage.name, "RootElement") 
 	}
 
 	@Test
@@ -52,8 +52,9 @@ class ActParsingTest extends AbstractActTest {
 			activityName "Some Name"
 			@end-actd
 		'''.parse(rs)
-		assertEquals(model.activityName, "Some Name") 
 		validationTestHelper.assertNoIssues(model)
+		
+		assertEquals(model.activityName, "Some Name") 
 	}
 	
 	// TODO: Deal with ordering?
@@ -68,6 +69,7 @@ class ActParsingTest extends AbstractActTest {
 			ffin
 			@end-actd
 		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
 		
 		assertEquals(model.rootPackage.nodes.length, 3)
 		
@@ -79,8 +81,6 @@ class ActParsingTest extends AbstractActTest {
 		assertEquals(firstNode.type, NodeType.INITIAL)
 		assertEquals(secondNode.type, NodeType.FINAL)
 		assertEquals(thirdNode.type, NodeType.FLOW_FINAL)
-		
-		validationTestHelper.assertNoIssues(model)
 	}
 	
 	@Test
@@ -92,6 +92,7 @@ class ActParsingTest extends AbstractActTest {
 			actn anotherActivity as "Another Activity"
 			@end-actd
 		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
 		
 		assertEquals(model.rootPackage.nodes.length, 2)
 		
@@ -101,8 +102,28 @@ class ActParsingTest extends AbstractActTest {
 		assertEquals(firstNode.name, "someActivity")
 		assertEquals(secondNode.name, "anotherActivity")
 		assertEquals(secondNode.alias, "Another Activity")
-		
+	}
+	
+	@Test
+	def void flowTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			actn someActivity
+			actn anotherActivity
+			flw(someActivity,anotherActivity)
+			@end-actd
+		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
+		
+		assertEquals(model.rootPackage.relations.length, 1)
+		assertEquals(model.rootPackage.relations.get(0).relatedElements.length, 2)
+		
+		val firstNode = model.rootPackage.relations.get(0).relatedElements.get(0) as ActivityNode
+		val secondNode = model.rootPackage.relations.get(0).relatedElements.get(1) as ActivityNode
+
+		assertEquals(firstNode.name, "someActivity")
+		assertEquals(secondNode.name, "anotherActivity")
 	}
 
 	private static def parse(CharSequence text, ResourceSet rs) {

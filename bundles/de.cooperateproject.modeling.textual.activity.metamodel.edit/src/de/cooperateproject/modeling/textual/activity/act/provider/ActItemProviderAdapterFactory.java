@@ -164,6 +164,29 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.Flow} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FlowItemProvider flowItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Flow}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFlowAdapter() {
+		if (flowItemProvider == null) {
+			flowItemProvider = new FlowItemProvider(this);
+		}
+
+		return flowItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,6 +289,7 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 		if (rootPackageItemProvider != null) rootPackageItemProvider.dispose();
 		if (controlNodeItemProvider != null) controlNodeItemProvider.dispose();
 		if (activityNodeItemProvider != null) activityNodeItemProvider.dispose();
+		if (flowItemProvider != null) flowItemProvider.dispose();
 	}
 
 }

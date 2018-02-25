@@ -223,6 +223,25 @@ ruleRootPackage returns [EObject current=null]
 				}
 			)
 		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationsFlowParserRuleCall_3_0());
+				}
+				lv_relations_4_0=ruleFlow
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+					}
+					add(
+						$current,
+						"relations",
+						lv_relations_4_0,
+						"de.cooperateproject.modeling.textual.activity.Act.Flow");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
 	)
 ;
 
@@ -401,6 +420,67 @@ ruleControlNode returns [EObject current=null]
 				}
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleFlow
+entryRuleFlow returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFlowRule()); }
+	iv_ruleFlow=ruleFlow
+	{ $current=$iv_ruleFlow.current; }
+	EOF;
+
+// Rule Flow
+ruleFlow returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='flw'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getFlowAccess().getFlwKeyword_0());
+		}
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getFlowAccess().getLeftParenthesisKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFlowRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_2_0());
+				}
+			)
+		)
+		otherlv_3=','
+		{
+			newLeafNode(otherlv_3, grammarAccess.getFlowAccess().getCommaKeyword_3());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFlowRule());
+					}
+				}
+				otherlv_4=RULE_ID
+				{
+					newLeafNode(otherlv_4, grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_4_0());
+				}
+			)
+		)
+		otherlv_5=')'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getFlowAccess().getRightParenthesisKeyword_5());
+		}
 	)
 ;
 

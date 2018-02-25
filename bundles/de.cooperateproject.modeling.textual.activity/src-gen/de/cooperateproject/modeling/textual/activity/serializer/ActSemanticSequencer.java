@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
 import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
 import de.cooperateproject.modeling.textual.activity.act.ControlNode;
+import de.cooperateproject.modeling.textual.activity.act.Flow;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 import de.cooperateproject.modeling.textual.activity.services.ActGrammarAccess;
 import java.util.Set;
@@ -41,6 +42,9 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case ActPackage.CONTROL_NODE:
 				sequence_ControlNode(context, (ControlNode) semanticObject); 
+				return; 
+			case ActPackage.FLOW:
+				sequence_Flow(context, (Flow) semanticObject); 
 				return; 
 			case ActPackage.ROOT_PACKAGE:
 				sequence_RootPackage(context, (RootPackage) semanticObject); 
@@ -90,10 +94,22 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Flow returns Flow
+	 *
+	 * Constraint:
+	 *     (relatedElements+=[Node|ID] relatedElements+=[Node|ID])
+	 */
+	protected void sequence_Flow(ISerializationContext context, Flow semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN? nodes+=Node*)
+	 *     (name=FQN? nodes+=Node* relations+=Flow*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

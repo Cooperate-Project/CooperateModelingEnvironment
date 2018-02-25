@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
 import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
 import de.cooperateproject.modeling.textual.activity.act.ControlNode;
+import de.cooperateproject.modeling.textual.activity.act.Flow;
 import de.cooperateproject.modeling.textual.activity.act.Node;
 import de.cooperateproject.modeling.textual.activity.act.NodeType;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
@@ -68,6 +69,13 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * @generated
 	 */
 	private EClass activityNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass flowEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,6 +210,15 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRootPackage_Relations() {
+		return (EReference)rootPackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -256,6 +273,24 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFlow() {
+		return flowEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFlow_RelatedElements() {
+		return (EReference)flowEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getNodeType() {
 		return nodeTypeEEnum;
 	}
@@ -295,6 +330,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		rootPackageEClass = createEClass(ROOT_PACKAGE);
 		createEReference(rootPackageEClass, ROOT_PACKAGE__NODES);
+		createEReference(rootPackageEClass, ROOT_PACKAGE__RELATIONS);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
@@ -304,6 +340,9 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		activityNodeEClass = createEClass(ACTIVITY_NODE);
 		createEAttribute(activityNodeEClass, ACTIVITY_NODE__ALIAS);
+
+		flowEClass = createEClass(FLOW);
+		createEReference(flowEClass, FLOW__RELATED_ELEMENTS);
 
 		// Create enums
 		nodeTypeEEnum = createEEnum(NODE_TYPE);
@@ -357,6 +396,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRootPackage_Nodes(), this.getNode(), null, "nodes", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRootPackage_Relations(), this.getFlow(), null, "relations", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), theTypesPackage.getString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -366,6 +406,9 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		initEClass(activityNodeEClass, ActivityNode.class, "ActivityNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActivityNode_Alias(), theTypesPackage.getString(), "alias", null, 0, 1, ActivityNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFlow_RelatedElements(), this.getNode(), null, "relatedElements", null, 2, 2, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(nodeTypeEEnum, NodeType.class, "NodeType");
