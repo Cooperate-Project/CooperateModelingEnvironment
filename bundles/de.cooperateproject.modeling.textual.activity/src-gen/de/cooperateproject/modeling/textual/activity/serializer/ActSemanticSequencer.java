@@ -85,7 +85,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ControlNode returns ControlNode
 	 *
 	 * Constraint:
-	 *     (type=NodeType name=STRING?)
+	 *     (type=NodeType name=ID?)
 	 */
 	protected void sequence_ControlNode(ISerializationContext context, ControlNode semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -97,7 +97,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Flow returns Flow
 	 *
 	 * Constraint:
-	 *     (relatedElements+=[Node|ID] relatedElements+=[Node|ID])
+	 *     (relatedElements+=[Node|ID] relatedElements+=[Node|ID] condition=STRING?)
 	 */
 	protected void sequence_Flow(ISerializationContext context, Flow semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

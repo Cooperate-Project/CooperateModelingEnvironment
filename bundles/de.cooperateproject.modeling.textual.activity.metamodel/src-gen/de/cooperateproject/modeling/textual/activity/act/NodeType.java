@@ -46,7 +46,23 @@ public enum NodeType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOW_FINAL(2, "FLOW_FINAL", "FLOW_FINAL");
+	FLOW_FINAL(2, "FLOW_FINAL", "FLOW_FINAL"), /**
+	 * The '<em><b>DECISION</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DECISION_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DECISION(3, "DECISION", "DECISION"), /**
+	 * The '<em><b>MERGE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MERGE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MERGE(4, "MERGE", "MERGE");
 
 	/**
 	 * The '<em><b>INITIAL</b></em>' literal value.
@@ -94,6 +110,36 @@ public enum NodeType implements Enumerator {
 	public static final int FLOW_FINAL_VALUE = 2;
 
 	/**
+	 * The '<em><b>DECISION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>DECISION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DECISION
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DECISION_VALUE = 3;
+
+	/**
+	 * The '<em><b>MERGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MERGE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MERGE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MERGE_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Node Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,6 +150,8 @@ public enum NodeType implements Enumerator {
 			INITIAL,
 			FINAL,
 			FLOW_FINAL,
+			DECISION,
+			MERGE,
 		};
 
 	/**
@@ -163,6 +211,8 @@ public enum NodeType implements Enumerator {
 			case INITIAL_VALUE: return INITIAL;
 			case FINAL_VALUE: return FINAL;
 			case FLOW_FINAL_VALUE: return FLOW_FINAL;
+			case DECISION_VALUE: return DECISION;
+			case MERGE_VALUE: return MERGE;
 		}
 		return null;
 	}

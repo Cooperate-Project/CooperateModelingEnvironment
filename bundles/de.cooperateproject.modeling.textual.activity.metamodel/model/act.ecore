@@ -24,6 +24,8 @@
     <eLiterals name="INITIAL"/>
     <eLiterals name="FINAL" value="1"/>
     <eLiterals name="FLOW_FINAL" value="2"/>
+    <eLiterals name="DECISION" value="3"/>
+    <eLiterals name="MERGE" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ControlNode" eSuperTypes="#//Node">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NodeType"/>
@@ -34,5 +36,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Flow">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedElements" lowerBound="2"
         upperBound="2" eType="#//Node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
   </eClassifiers>
 </ecore:EPackage>

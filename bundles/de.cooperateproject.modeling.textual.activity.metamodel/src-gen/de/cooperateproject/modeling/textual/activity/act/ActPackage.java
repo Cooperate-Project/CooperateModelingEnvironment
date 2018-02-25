@@ -373,13 +373,22 @@ public interface ActPackage extends EPackage {
 	int FLOW__RELATED_ELEMENTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Condition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW__CONDITION = 1;
+
+	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FEATURE_COUNT = 1;
+	int FLOW_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Flow</em>' class.
@@ -561,6 +570,17 @@ public interface ActPackage extends EPackage {
 	EReference getFlow_RelatedElements();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Condition</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Flow#getCondition()
+	 * @see #getFlow()
+	 * @generated
+	 */
+	EAttribute getFlow_Condition();
+
+	/**
 	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -724,6 +744,14 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FLOW__RELATED_ELEMENTS = eINSTANCE.getFlow_RelatedElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FLOW__CONDITION = eINSTANCE.getFlow_Condition();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}' enum.

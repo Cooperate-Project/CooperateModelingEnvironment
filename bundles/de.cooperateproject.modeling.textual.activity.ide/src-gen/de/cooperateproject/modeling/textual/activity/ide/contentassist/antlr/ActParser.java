@@ -42,6 +42,7 @@ public class ActParser extends AbstractContentAssistParser {
 					put(grammarAccess.getActivityNodeAccess().getGroup_1_1(), "rule__ActivityNode__Group_1_1__0");
 					put(grammarAccess.getControlNodeAccess().getGroup(), "rule__ControlNode__Group__0");
 					put(grammarAccess.getFlowAccess().getGroup(), "rule__Flow__Group__0");
+					put(grammarAccess.getFlowAccess().getGroup_6(), "rule__Flow__Group_6__0");
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 					put(grammarAccess.getActivityDiagramAccess().getTitleAssignment_2(), "rule__ActivityDiagram__TitleAssignment_2");
@@ -57,6 +58,7 @@ public class ActParser extends AbstractContentAssistParser {
 					put(grammarAccess.getControlNodeAccess().getNameAssignment_1(), "rule__ControlNode__NameAssignment_1");
 					put(grammarAccess.getFlowAccess().getRelatedElementsAssignment_2(), "rule__Flow__RelatedElementsAssignment_2");
 					put(grammarAccess.getFlowAccess().getRelatedElementsAssignment_4(), "rule__Flow__RelatedElementsAssignment_4");
+					put(grammarAccess.getFlowAccess().getConditionAssignment_6_1(), "rule__Flow__ConditionAssignment_6_1");
 				}
 			};
 		}

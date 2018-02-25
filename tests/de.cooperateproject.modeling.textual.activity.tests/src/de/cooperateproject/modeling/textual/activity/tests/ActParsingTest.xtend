@@ -21,6 +21,9 @@ import static org.junit.Assert.assertEquals
 import de.cooperateproject.modeling.textual.activity.act.NodeType
 import de.cooperateproject.modeling.textual.activity.act.ControlNode
 import de.cooperateproject.modeling.textual.activity.act.ActivityNode
+import org.eclipse.emf.ecore.EClass
+import org.junit.Assert
+import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
@@ -64,7 +67,7 @@ class ActParsingTest extends AbstractActTest {
 		val model = '''
 			@start-actd "SomeTitle"
 			rootPackage RootElement
-			ini "Initial Node"
+			ini InitialNode
 			fin
 			ffin
 			@end-actd
@@ -77,7 +80,7 @@ class ActParsingTest extends AbstractActTest {
 		val secondNode = model.rootPackage.nodes.get(1) as ControlNode
 		val thirdNode = model.rootPackage.nodes.get(2) as ControlNode
 		
-		assertEquals(firstNode.name, "Initial Node")
+		assertEquals(firstNode.name, "InitialNode")
 		assertEquals(firstNode.type, NodeType.INITIAL)
 		assertEquals(secondNode.type, NodeType.FINAL)
 		assertEquals(thirdNode.type, NodeType.FLOW_FINAL)
@@ -124,6 +127,53 @@ class ActParsingTest extends AbstractActTest {
 
 		assertEquals(firstNode.name, "someActivity")
 		assertEquals(secondNode.name, "anotherActivity")
+	}
+	
+	@Ignore @Test
+	def void flowWithFailureTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			actn someActivity
+			flw(someActivity,anotherActivity)
+			@end-actd
+		'''.parse(rs)
+		
+		// FIXME: flw should fail (anotherActivity not defined first?)
+		Assert.assertFalse(model.eResource.errors.isEmpty)
+	}
+	
+	@Test
+	def void linearDecisionTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			actn A
+			actn B
+			actn C
+			actn D
+			decn X
+			mrgn Y
+			flw(A,Y)
+			flw(Y,B)
+			flw(B,X)
+			flw(X,C) ["test"]
+			flw(X,D) ["else"]
+			flw(D,Y)
+			@end-actd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+		
+		assertEquals(model.rootPackage.relations.length, 6)
+		assertEquals(model.rootPackage.relations.get(3).relatedElements.length, 2)
+		
+		val conditionFlow = model.rootPackage.relations.get(3)
+		val firstNode = conditionFlow.relatedElements.get(0) as ControlNode
+		val secondNode = conditionFlow.relatedElements.get(1) as ActivityNode
+
+		assertEquals(firstNode.name, "X")
+		assertEquals(secondNode.name, "C")
+		assertEquals(conditionFlow.condition, "test")
 	}
 
 	private static def parse(CharSequence text, ResourceSet rs) {

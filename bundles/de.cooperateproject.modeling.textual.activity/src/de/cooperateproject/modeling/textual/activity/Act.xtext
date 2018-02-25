@@ -29,21 +29,22 @@ ActivityNode returns ActivityNode:
 ;
 
 ControlNode returns ControlNode:
-	type=NodeType (name = STRING)? // TODO: Empty names = 'ini' etc.
+	type=NodeType (name = ID)? // TODO: Empty names = 'ini' etc.
 ;
 
 enum NodeType:
 	INITIAL = 'ini'
 	| FINAL = 'fin'
 	| FLOW_FINAL = 'ffin'
+	| DECISION = 'decn'
+	| MERGE = 'mrgn'
 ;
 
 Flow returns Flow:
-	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')'
+	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')? // TODO: Multiflow flw(A,B,C)
+	
 ;
 
-// TODO: Multiflow flw(A,B,C)
-	
 FQN:
     ID ("." ID)*
 ;

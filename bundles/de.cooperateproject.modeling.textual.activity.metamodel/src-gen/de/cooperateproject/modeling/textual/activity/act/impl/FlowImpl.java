@@ -20,11 +20,22 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl#getRelatedElements <em>Related Elements</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FlowImpl extends CDOObjectImpl implements Flow {
+	/**
+	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONDITION_EDEFAULT = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,11 +80,31 @@ public class FlowImpl extends CDOObjectImpl implements Flow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCondition() {
+		return (String)eDynamicGet(ActPackage.FLOW__CONDITION, ActPackage.Literals.FLOW__CONDITION, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCondition(String newCondition) {
+		eDynamicSet(ActPackage.FLOW__CONDITION, ActPackage.Literals.FLOW__CONDITION, newCondition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ActPackage.FLOW__RELATED_ELEMENTS:
 				return getRelatedElements();
+			case ActPackage.FLOW__CONDITION:
+				return getCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -91,6 +122,9 @@ public class FlowImpl extends CDOObjectImpl implements Flow {
 				getRelatedElements().clear();
 				getRelatedElements().addAll((Collection<? extends Node>)newValue);
 				return;
+			case ActPackage.FLOW__CONDITION:
+				setCondition((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -106,6 +140,9 @@ public class FlowImpl extends CDOObjectImpl implements Flow {
 			case ActPackage.FLOW__RELATED_ELEMENTS:
 				getRelatedElements().clear();
 				return;
+			case ActPackage.FLOW__CONDITION:
+				setCondition(CONDITION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -120,6 +157,8 @@ public class FlowImpl extends CDOObjectImpl implements Flow {
 		switch (featureID) {
 			case ActPackage.FLOW__RELATED_ELEMENTS:
 				return !getRelatedElements().isEmpty();
+			case ActPackage.FLOW__CONDITION:
+				return CONDITION_EDEFAULT == null ? getCondition() != null : !CONDITION_EDEFAULT.equals(getCondition());
 		}
 		return super.eIsSet(featureID);
 	}

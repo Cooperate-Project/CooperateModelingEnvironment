@@ -291,6 +291,15 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFlow_Condition() {
+		return (EAttribute)flowEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getNodeType() {
 		return nodeTypeEEnum;
 	}
@@ -343,6 +352,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		flowEClass = createEClass(FLOW);
 		createEReference(flowEClass, FLOW__RELATED_ELEMENTS);
+		createEAttribute(flowEClass, FLOW__CONDITION);
 
 		// Create enums
 		nodeTypeEEnum = createEEnum(NODE_TYPE);
@@ -409,12 +419,15 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlow_RelatedElements(), this.getNode(), null, "relatedElements", null, 2, 2, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFlow_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(nodeTypeEEnum, NodeType.class, "NodeType");
 		addEEnumLiteral(nodeTypeEEnum, NodeType.INITIAL);
 		addEEnumLiteral(nodeTypeEEnum, NodeType.FINAL);
 		addEEnumLiteral(nodeTypeEEnum, NodeType.FLOW_FINAL);
+		addEEnumLiteral(nodeTypeEEnum, NodeType.DECISION);
+		addEEnumLiteral(nodeTypeEEnum, NodeType.MERGE);
 
 		// Create resource
 		createResource(eNS_URI);

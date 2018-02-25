@@ -404,9 +404,9 @@ ruleControlNode returns [EObject current=null]
 		)
 		(
 			(
-				lv_name_1_0=RULE_STRING
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getControlNodeAccess().getNameSTRINGTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getControlNodeAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -416,7 +416,7 @@ ruleControlNode returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)?
@@ -481,6 +481,34 @@ ruleFlow returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getFlowAccess().getRightParenthesisKeyword_5());
 		}
+		(
+			otherlv_6='['
+			{
+				newLeafNode(otherlv_6, grammarAccess.getFlowAccess().getLeftSquareBracketKeyword_6_0());
+			}
+			(
+				(
+					lv_condition_7_0=RULE_STRING
+					{
+						newLeafNode(lv_condition_7_0, grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFlowRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"condition",
+							lv_condition_7_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+			otherlv_8=']'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getFlowAccess().getRightSquareBracketKeyword_6_2());
+			}
+		)?
 	)
 ;
 
@@ -554,6 +582,22 @@ ruleNodeType returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getNodeTypeAccess().getFLOW_FINALEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getNodeTypeAccess().getFLOW_FINALEnumLiteralDeclaration_2());
+			}
+		)
+		    |
+		(
+			enumLiteral_3='decn'
+			{
+				$current = grammarAccess.getNodeTypeAccess().getDECISIONEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getNodeTypeAccess().getDECISIONEnumLiteralDeclaration_3());
+			}
+		)
+		    |
+		(
+			enumLiteral_4='mrgn'
+			{
+				$current = grammarAccess.getNodeTypeAccess().getMERGEEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getNodeTypeAccess().getMERGEEnumLiteralDeclaration_4());
 			}
 		)
 	)

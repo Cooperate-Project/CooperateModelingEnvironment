@@ -210,14 +210,14 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTypeNodeTypeEnumRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//ControlNode:
-		//	type=NodeType name=STRING? // TODO: Empty names = 'ini' etc.
+		//	type=NodeType name=ID? // TODO: Empty names = 'ini' etc.
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=NodeType name=STRING?
+		//type=NodeType name=ID?
 		public Group getGroup() { return cGroup; }
 		
 		//type=NodeType
@@ -226,11 +226,11 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//NodeType
 		public RuleCall getTypeNodeTypeEnumRuleCall_0_0() { return cTypeNodeTypeEnumRuleCall_0_0; }
 		
-		//name=STRING?
+		//name=ID?
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class FlowElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Flow");
@@ -245,12 +245,18 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cRelatedElementsNodeCrossReference_4_0 = (CrossReference)cRelatedElementsAssignment_4.eContents().get(0);
 		private final RuleCall cRelatedElementsNodeIDTerminalRuleCall_4_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cLeftSquareBracketKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cConditionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cConditionSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cConditionAssignment_6_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
 		
 		//Flow:
-		//	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')';
+		//	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')? // TODO: Multiflow flw(A,B,C)
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')'
+		//'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'flw'
@@ -282,6 +288,21 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		
+		//('[' condition=STRING ']')?
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_6_0() { return cLeftSquareBracketKeyword_6_0; }
+		
+		//condition=STRING
+		public Assignment getConditionAssignment_6_1() { return cConditionAssignment_6_1; }
+		
+		//STRING
+		public RuleCall getConditionSTRINGTerminalRuleCall_6_1_0() { return cConditionSTRINGTerminalRuleCall_6_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_6_2() { return cRightSquareBracketKeyword_6_2; }
 	}
 	public class FQNElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FQN");
@@ -291,7 +312,6 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
-		//// TODO: Multiflow flw(A,B,C)
 		//FQN:
 		//	ID ("." ID)*;
 		@Override public ParserRule getRule() { return rule; }
@@ -321,14 +341,20 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFINALFinKeyword_1_0 = (Keyword)cFINALEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cFLOW_FINALEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cFLOW_FINALFfinKeyword_2_0 = (Keyword)cFLOW_FINALEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cDECISIONEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cDECISIONDecnKeyword_3_0 = (Keyword)cDECISIONEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cMERGEEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cMERGEMrgnKeyword_4_0 = (Keyword)cMERGEEnumLiteralDeclaration_4.eContents().get(0);
 		
 		//enum NodeType:
 		//	INITIAL='ini'
 		//	| FINAL='fin'
-		//	| FLOW_FINAL='ffin';
+		//	| FLOW_FINAL='ffin'
+		//	| DECISION='decn'
+		//	| MERGE='mrgn';
 		public EnumRule getRule() { return rule; }
 		
-		//INITIAL='ini' | FINAL='fin' | FLOW_FINAL='ffin'
+		//INITIAL='ini' | FINAL='fin' | FLOW_FINAL='ffin' | DECISION='decn' | MERGE='mrgn'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//INITIAL='ini'
@@ -348,6 +374,18 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'ffin'
 		public Keyword getFLOW_FINALFfinKeyword_2_0() { return cFLOW_FINALFfinKeyword_2_0; }
+		
+		//DECISION='decn'
+		public EnumLiteralDeclaration getDECISIONEnumLiteralDeclaration_3() { return cDECISIONEnumLiteralDeclaration_3; }
+		
+		//'decn'
+		public Keyword getDECISIONDecnKeyword_3_0() { return cDECISIONDecnKeyword_3_0; }
+		
+		//MERGE='mrgn'
+		public EnumLiteralDeclaration getMERGEEnumLiteralDeclaration_4() { return cMERGEEnumLiteralDeclaration_4; }
+		
+		//'mrgn'
+		public Keyword getMERGEMrgnKeyword_4_0() { return cMERGEMrgnKeyword_4_0; }
 	}
 	
 	private final ActivityDiagramElements pActivityDiagram;
@@ -451,7 +489,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ControlNode:
-	//	type=NodeType name=STRING? // TODO: Empty names = 'ini' etc.
+	//	type=NodeType name=ID? // TODO: Empty names = 'ini' etc.
 	//;
 	public ControlNodeElements getControlNodeAccess() {
 		return pControlNode;
@@ -464,7 +502,9 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	//enum NodeType:
 	//	INITIAL='ini'
 	//	| FINAL='fin'
-	//	| FLOW_FINAL='ffin';
+	//	| FLOW_FINAL='ffin'
+	//	| DECISION='decn'
+	//	| MERGE='mrgn';
 	public NodeTypeElements getNodeTypeAccess() {
 		return eNodeType;
 	}
@@ -474,7 +514,8 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Flow:
-	//	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')';
+	//	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')? // TODO: Multiflow flw(A,B,C)
+	//;
 	public FlowElements getFlowAccess() {
 		return pFlow;
 	}
@@ -483,7 +524,6 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		return getFlowAccess().getRule();
 	}
 	
-	//// TODO: Multiflow flw(A,B,C)
 	//FQN:
 	//	ID ("." ID)*;
 	public FQNElements getFQNAccess() {
