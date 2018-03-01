@@ -11,3 +11,4 @@ Require-Bundle: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle
  org.eclipse.emf.ecore,
  org.eclipse.papyrus.uml.diagram.usecase;bundle-version="3.0.0",
  de.cooperateproject.modeling.common
+Export-Package: de.cooperateproject.modeling.graphical.papyrus.extensions.component.validation.constraints
