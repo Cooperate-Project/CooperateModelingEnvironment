@@ -30,11 +30,13 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
     children += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2)->map multiAssociationToShape(); // all nested in root
     children += self.rootPackage.connectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
     children += self.rootPackage.classifiers->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
+    children += self.rootPackage.packages->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
     
     edges += allConnectors->map connectorToConnector();
     edges += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2).memberEnds->map connectorEndToEdge();
     edges += allConnectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToEdge();
     edges += self.rootPackage.classifiers->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToEdge();
+    edges += allPackages->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToEdge();
     edges += allPackages->collect(packageImports)->map packageImportToEdge();
     
     styles += self.map stringValueStyle();
@@ -62,7 +64,10 @@ mapping cls::Package::packageToCompartment() : notation::BasicCompartment
     children += self.packages.oclAsType(cls::Package)->map packageToShape();
     children += self.classifiers->map classifierToShape();
     children += self.classifiers->select(isCommented())
-        ->union(self.connectors->select(isCommented()))->selectByKind(textualCommons::Commentable).comments->map commentToShape();
+        ->union(self.connectors->select(isCommented())
+        ->union(self.packages->select(isCommented())))
+        ->selectByKind(textualCommons::Commentable).comments->map commentToShape();
+    
 }
 
 
@@ -520,7 +525,8 @@ mapping cls::AssociationMemberEnd::semanticBranchStyle() : notation::EObjectValu
 query textualCommons::PackageableElement::typeToView() : notation::View
 {
     return if self.oclIsKindOf(cls::Association) or self.oclIsKindOf(cls::Generalization)
-    or self.oclIsKindOf(cls::Implementation) or self.oclIsKindOf(textualCommons::PackageImport) then self.typeToEdge() else self.typeToShape() endif;
+    or self.oclIsKindOf(cls::Implementation) or self.oclIsKindOf(textualCommons::PackageImport) then self.typeToEdge() 
+    else self.typeToShape() endif;
 }
 
 query textualCommons::PackageableElement::typeToEdge() : notation::View
@@ -530,7 +536,8 @@ query textualCommons::PackageableElement::typeToEdge() : notation::View
 
 query textualCommons::PackageableElement::typeToShape() : notation::View
 {
-    return self.resolveoneIn(cls::Classifier::classifierToShape);
+	if self.oclIsKindOf(cls::Package) then return self.resolveoneIn(cls::Package::packageToShape) else
+    return self.resolveoneIn(cls::Classifier::classifierToShape) endif
 }
 
 query textualCommons::Element::isCommentable() : Boolean
@@ -552,5 +559,8 @@ query textualCommons::Element::isNested() : Boolean
 
 query textualCommons::Element::getNestedName(type : String) : String
 {
-    return type.getNestedName(self.isNested());
+//TODO checken ob das kommentar am package hängt? 
+	if type.equalsIgnoreCase(PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR) or type.equalsIgnoreCase(PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR)
+	then return type.getNestedName(self.getNearestPackage().isNested())
+    else return type.getNestedName(self.isNested()) endif
 }

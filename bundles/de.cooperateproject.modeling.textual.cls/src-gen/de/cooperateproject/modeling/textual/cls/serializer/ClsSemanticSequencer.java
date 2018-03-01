@@ -253,7 +253,14 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Package returns Package
 	 *
 	 * Constraint:
-	 *     (name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*)
+	 *     (
+	 *         name=FQN 
+	 *         comments+=Comment? 
+	 *         packageImports+=PackageImport* 
+	 *         classifiers+=Classifier* 
+	 *         connectors+=Connector* 
+	 *         packages+=Package*
+	 *     )
 	 */
 	protected void sequence_Package(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Package semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

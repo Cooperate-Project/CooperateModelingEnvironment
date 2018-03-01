@@ -80,10 +80,11 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootPackageAccess().getConnectorsAssignment_4(), "rule__RootPackage__ConnectorsAssignment_4");
 					put(grammarAccess.getRootPackageAccess().getPackagesAssignment_5(), "rule__RootPackage__PackagesAssignment_5");
 					put(grammarAccess.getPackageAccess().getNameAssignment_1(), "rule__Package__NameAssignment_1");
-					put(grammarAccess.getPackageAccess().getPackageImportsAssignment_3(), "rule__Package__PackageImportsAssignment_3");
-					put(grammarAccess.getPackageAccess().getClassifiersAssignment_4(), "rule__Package__ClassifiersAssignment_4");
-					put(grammarAccess.getPackageAccess().getConnectorsAssignment_5(), "rule__Package__ConnectorsAssignment_5");
-					put(grammarAccess.getPackageAccess().getPackagesAssignment_6(), "rule__Package__PackagesAssignment_6");
+					put(grammarAccess.getPackageAccess().getCommentsAssignment_3(), "rule__Package__CommentsAssignment_3");
+					put(grammarAccess.getPackageAccess().getPackageImportsAssignment_4(), "rule__Package__PackageImportsAssignment_4");
+					put(grammarAccess.getPackageAccess().getClassifiersAssignment_5(), "rule__Package__ClassifiersAssignment_5");
+					put(grammarAccess.getPackageAccess().getConnectorsAssignment_6(), "rule__Package__ConnectorsAssignment_6");
+					put(grammarAccess.getPackageAccess().getPackagesAssignment_7(), "rule__Package__PackagesAssignment_7");
 					put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_1(), "rule__PackageImport__ImportedPackageAssignment_1");
 					put(grammarAccess.getPackageImportAccess().getCommentsAssignment_2(), "rule__PackageImport__CommentsAssignment_2");
 					put(grammarAccess.getClassAccess().getVisibilityAssignment_0(), "rule__Class__VisibilityAssignment_0");

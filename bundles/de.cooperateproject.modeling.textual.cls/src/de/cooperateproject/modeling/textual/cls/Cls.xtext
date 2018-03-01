@@ -31,7 +31,7 @@ RootPackage returns Package:
 
 Package:
 	'package' name=FQN '{'
-	//(comments+=Comment)?
+	(comments+=Comment)?
 	packageImports+=PackageImport*
 	classifiers+=Classifier*
 	connectors+=Connector*

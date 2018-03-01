@@ -41,7 +41,7 @@ class ClsFormatter extends AbstractFormatter2 {
 		pkg.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		interior(			
 			pkg.regionFor.keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine].prepend[space = " "],
-			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 4],
+			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_8).append[newLines = 2].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
 			

@@ -43,6 +43,11 @@ mapping notation::Node::nodeToPackage() : cls::Package
 	connectors += relevantEdges->select(not isCommentLinkForConnector())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
+	
+	var relevantComments := self.findViewCommentViews();
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
+	
+	comments := relevantComments.map commentViewToComment();
 }
 
 query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
@@ -221,7 +226,7 @@ mapping notation::Edge::edgeToGeneralization() : cls::Generalization
 	
 	
 	var relevantComments := self.findViewCommentViews();
-	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for a generalization.');
 	
 	comments := relevantComments.map commentViewToComment();
 	
@@ -238,7 +243,7 @@ mapping notation::Edge::edgeToImplementation() : cls::Implementation
 	assert error (realization.source->size() = 1 and realization.target->size() = 1) with log ('Interface realizations must of exactly one source and one target.', realization);
 	
 	var relevantComments := self.findViewCommentViews();
-	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an implementation.');
 	
 	comments := relevantComments.map commentViewToComment();
 	
@@ -337,7 +342,6 @@ query notation::Edge::isCommentLinkForConnector() : Boolean {
 	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(
 	oclIsKindOf(uml::Association) or oclIsKindOf(uml::Generalization) or oclIsKindOf(uml::InterfaceRealization)));
 }
-
 
 /*
  * Attention: This is dangerous for the incremental execution mode

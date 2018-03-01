@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_deWuoBzCEei6waA7d0nPCQ" name="ClassDiagramCommentedPackage">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_3U3SQBzFEei6waA7d0nPCQ" annotatedElement="_lfkMABzCEei6waA7d0nPCQ">
+    <body>Comment1</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lfkMABzCEei6waA7d0nPCQ" name="Package1">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_xBVmEBzCEei6waA7d0nPCQ" annotatedElement="_pUNiUBzCEei6waA7d0nPCQ">
+      <body>Comment2</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_pUNiUBzCEei6waA7d0nPCQ" name="Package2"/>
+  </packagedElement>
+</uml:Model>

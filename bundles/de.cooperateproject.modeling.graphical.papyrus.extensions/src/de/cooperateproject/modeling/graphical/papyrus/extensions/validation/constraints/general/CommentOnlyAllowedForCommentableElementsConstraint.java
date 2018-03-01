@@ -25,7 +25,7 @@ public class CommentOnlyAllowedForCommentableElementsConstraint extends Cooperat
     private static final Collection<Class<? extends Element>> COMMENTABLE_ELEMENTS = Arrays.asList(
             org.eclipse.uml2.uml.Class.class, Interface.class, Association.class, Actor.class, UseCase.class,
             Component.class, Generalization.class, org.eclipse.uml2.uml.Include.class, Extend.class,
-            PackageImport.class, InterfaceRealization.class, Usage.class);
+            PackageImport.class, InterfaceRealization.class, Usage.class, org.eclipse.uml2.uml.Package.class);
 
     /**
      * Constructs the constraint.

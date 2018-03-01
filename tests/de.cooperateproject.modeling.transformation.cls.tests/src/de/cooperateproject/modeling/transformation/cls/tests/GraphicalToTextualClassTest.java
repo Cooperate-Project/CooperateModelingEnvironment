@@ -91,6 +91,11 @@ public class GraphicalToTextualClassTest extends ClsDirectionalTransformationTes
     public void testClassCommentedImpl() throws Exception {
        testRegular("ClassDiagramCommentedImpl");
     }
+    
+    @Test
+    public void testClassCommentedPackage() throws Exception {
+       testRegular("ClassDiagramCommentedPackage");
+    }
 
     @Test
     public void testDeleteClass() throws Exception {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ipVlwBzCEei6waA7d0nPCQ" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_lfvLIBzCEei6waA7d0nPCQ" type="Package_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_lfxAUBzCEei6waA7d0nPCQ" type="Package_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_lfxnYBzCEei6waA7d0nPCQ" type="Package_PackagedElementCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_pUWsQBzCEei6waA7d0nPCQ" type="Package_Shape_CN">
+        <children xmi:type="notation:DecorationNode" xmi:id="_pUX6YBzCEei6waA7d0nPCQ" type="Package_NameLabel_CN"/>
+        <children xmi:type="notation:BasicCompartment" xmi:id="_pUX6YRzCEei6waA7d0nPCQ" type="Package_PackagedElementCompartment_CN">
+          <styles xmi:type="notation:TitleStyle" xmi:id="_pUX6YhzCEei6waA7d0nPCQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pUX6YxzCEei6waA7d0nPCQ"/>
+        </children>
+        <element xmi:type="uml:Package" href="ClassDiagramCommentedPackage.uml#_pUNiUBzCEei6waA7d0nPCQ"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pUWsQRzCEei6waA7d0nPCQ" x="74" y="32"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_xBcTwBzCEei6waA7d0nPCQ" type="Comment_Shape_CN">
+        <children xmi:type="notation:DecorationNode" xmi:id="_xBc60BzCEei6waA7d0nPCQ" type="Comment_BodyLabel_CN"/>
+        <element xmi:type="uml:Comment" href="ClassDiagramCommentedPackage.uml#_xBVmEBzCEei6waA7d0nPCQ"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xBcTwRzCEei6waA7d0nPCQ" x="354" y="32"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_lfxnYRzCEei6waA7d0nPCQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lfxnYhzCEei6waA7d0nPCQ"/>
+    </children>
+    <element xmi:type="uml:Package" href="ClassDiagramCommentedPackage.uml#_lfkMABzCEei6waA7d0nPCQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lfvLIRzCEei6waA7d0nPCQ" x="160" y="100" width="541" height="261"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_3U68oBzFEei6waA7d0nPCQ" type="Comment_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_3U7jsBzFEei6waA7d0nPCQ" type="Comment_BodyLabel"/>
+    <element xmi:type="uml:Comment" href="ClassDiagramCommentedPackage.uml#_3U3SQBzFEei6waA7d0nPCQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3U68oRzFEei6waA7d0nPCQ" x="520" y="40"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_ipVlwRzCEei6waA7d0nPCQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_ipVlwhzCEei6waA7d0nPCQ"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_ipVlwxzCEei6waA7d0nPCQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+    <owner xmi:type="uml:Model" href="ClassDiagramCommentedPackage.uml#_deWuoBzCEei6waA7d0nPCQ"/>
+  </styles>
+  <element xmi:type="uml:Model" href="ClassDiagramCommentedPackage.uml#_deWuoBzCEei6waA7d0nPCQ"/>
+    <edges xmi:type="notation:Connector" xmi:id="_9fPw4BzFEei6waA7d0nPCQ" type="Comment_AnnotatedElementEdge" source="_3U68oBzFEei6waA7d0nPCQ" target="_lfvLIBzCEei6waA7d0nPCQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_9fPw4RzFEei6waA7d0nPCQ"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9fPw4hzFEei6waA7d0nPCQ" points="[560, 40, -643984, -643984]$[340, 122, -643984, -643984]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9jCEsBzFEei6waA7d0nPCQ" id="(0.4,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9jCEsRzFEei6waA7d0nPCQ" id="(0.33271719038817005,0.0842911877394636)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_3st48BzCEei6waA7d0nPCQ" type="Comment_AnnotatedElementEdge" source="_xBcTwBzCEei6waA7d0nPCQ" target="_pUWsQBzCEei6waA7d0nPCQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_3st48RzCEei6waA7d0nPCQ"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3st48hzCEei6waA7d0nPCQ" points="[580, 160, -643984, -643984]$[320, 260, -643984, -643984]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3w9fwBzCEei6waA7d0nPCQ" id="(0.6,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3w9fwRzCEei6waA7d0nPCQ" id="(0.4,1.0)"/>
+  </edges>
+</notation:Diagram>

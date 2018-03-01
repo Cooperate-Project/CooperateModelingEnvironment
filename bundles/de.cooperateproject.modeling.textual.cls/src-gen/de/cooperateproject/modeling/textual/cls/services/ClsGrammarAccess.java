@@ -147,18 +147,21 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cPackageImportsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPackageImportsPackageImportParserRuleCall_3_0 = (RuleCall)cPackageImportsAssignment_3.eContents().get(0);
-		private final Assignment cClassifiersAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cClassifiersClassifierParserRuleCall_4_0 = (RuleCall)cClassifiersAssignment_4.eContents().get(0);
-		private final Assignment cConnectorsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cConnectorsConnectorParserRuleCall_5_0 = (RuleCall)cConnectorsAssignment_5.eContents().get(0);
-		private final Assignment cPackagesAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cPackagesPackageParserRuleCall_6_0 = (RuleCall)cPackagesAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cCommentsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cCommentsCommentParserRuleCall_3_0 = (RuleCall)cCommentsAssignment_3.eContents().get(0);
+		private final Assignment cPackageImportsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPackageImportsPackageImportParserRuleCall_4_0 = (RuleCall)cPackageImportsAssignment_4.eContents().get(0);
+		private final Assignment cClassifiersAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cClassifiersClassifierParserRuleCall_5_0 = (RuleCall)cClassifiersAssignment_5.eContents().get(0);
+		private final Assignment cConnectorsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cConnectorsConnectorParserRuleCall_6_0 = (RuleCall)cConnectorsAssignment_6.eContents().get(0);
+		private final Assignment cPackagesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cPackagesPackageParserRuleCall_7_0 = (RuleCall)cPackagesAssignment_7.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Package:
 		//	'package' name=FQN '{'
+		//	comments+=Comment?
 		//	packageImports+=PackageImport*
 		//	classifiers+=Classifier*
 		//	connectors+=Connector*
@@ -166,8 +169,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*
-		//'}'
+		//'package' name=FQN '{' comments+=Comment? packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+		//packages+=Package* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'package'
@@ -182,32 +185,38 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_3() { return cCommentsAssignment_3; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_3_0() { return cCommentsCommentParserRuleCall_3_0; }
+		
 		//packageImports+=PackageImport*
-		public Assignment getPackageImportsAssignment_3() { return cPackageImportsAssignment_3; }
+		public Assignment getPackageImportsAssignment_4() { return cPackageImportsAssignment_4; }
 		
 		//PackageImport
-		public RuleCall getPackageImportsPackageImportParserRuleCall_3_0() { return cPackageImportsPackageImportParserRuleCall_3_0; }
+		public RuleCall getPackageImportsPackageImportParserRuleCall_4_0() { return cPackageImportsPackageImportParserRuleCall_4_0; }
 		
 		//classifiers+=Classifier*
-		public Assignment getClassifiersAssignment_4() { return cClassifiersAssignment_4; }
+		public Assignment getClassifiersAssignment_5() { return cClassifiersAssignment_5; }
 		
 		//Classifier
-		public RuleCall getClassifiersClassifierParserRuleCall_4_0() { return cClassifiersClassifierParserRuleCall_4_0; }
+		public RuleCall getClassifiersClassifierParserRuleCall_5_0() { return cClassifiersClassifierParserRuleCall_5_0; }
 		
 		//connectors+=Connector*
-		public Assignment getConnectorsAssignment_5() { return cConnectorsAssignment_5; }
+		public Assignment getConnectorsAssignment_6() { return cConnectorsAssignment_6; }
 		
 		//Connector
-		public RuleCall getConnectorsConnectorParserRuleCall_5_0() { return cConnectorsConnectorParserRuleCall_5_0; }
+		public RuleCall getConnectorsConnectorParserRuleCall_6_0() { return cConnectorsConnectorParserRuleCall_6_0; }
 		
 		//packages+=Package*
-		public Assignment getPackagesAssignment_6() { return cPackagesAssignment_6; }
+		public Assignment getPackagesAssignment_7() { return cPackagesAssignment_7; }
 		
 		//Package
-		public RuleCall getPackagesPackageParserRuleCall_6_0() { return cPackagesPackageParserRuleCall_6_0; }
+		public RuleCall getPackagesPackageParserRuleCall_7_0() { return cPackagesPackageParserRuleCall_7_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 	public class PackageImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.PackageImport");
@@ -1404,6 +1413,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Package:
 	//	'package' name=FQN '{'
+	//	comments+=Comment?
 	//	packageImports+=PackageImport*
 	//	classifiers+=Classifier*
 	//	connectors+=Connector*
