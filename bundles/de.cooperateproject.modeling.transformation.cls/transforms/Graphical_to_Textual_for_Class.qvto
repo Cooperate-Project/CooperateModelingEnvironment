@@ -24,11 +24,13 @@ mapping notation::Diagram::diagramToRootPackage() : cls::Package {
 	var relevantEdges := self.findRelevantEdges();
 
 	referencedElement := self.element.oclAsType(uml::Package);
-	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
-	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
+	
+	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
+	connectors := self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
 	connectors += self.edges->select(not isCommentLinkForConnector())->map edgeToConnector();
-	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
-	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
+	packageImports := relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
+	packages := self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
+	
 }
 
 mapping notation::Node::nodeToPackage() : cls::Package
@@ -38,11 +40,13 @@ mapping notation::Node::nodeToPackage() : cls::Package
 	var packagedElementsNode := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_INPACKAGE or type = PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_REGULAR);
 	
 	referencedElement := umlPackage;
-	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
-	connectors += self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
+	
+	classifiers := packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
+	connectors := self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
 	connectors += relevantEdges->select(not isCommentLinkForConnector())->map edgeToConnector();
-	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
-	packages += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
+	packageImports := relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
+	
+	packages := packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
 	
 	var relevantComments := self.findViewCommentViews();
 	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
@@ -149,7 +153,7 @@ mapping notation::Node::nodeToClass() : cls::Class
 	var clz := self.element.oclAsType(uml::Class);
 	referencedElement := clz;
 
-	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
+	members := self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 	
 	var relevantComments := self.findViewCommentViews();
@@ -165,8 +169,7 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 {
 	var interface := self.element.oclAsType(uml::Interface);
 	referencedElement := interface;
-	
-	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
+	members := self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 	
 	var relevantComments := self.findViewCommentViews();
@@ -178,7 +181,7 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 mapping notation::Node::nodeToOperation() : cls::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
-	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
+	parameters := operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
