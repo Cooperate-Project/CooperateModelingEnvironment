@@ -131,7 +131,7 @@ mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
 mapping notation::Node::nodeToOperation() : cmp::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
-	parameters += operation.ownedParameter->map umlParameterToParameter();
+	parameters := operation.ownedParameter->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cmp::Parameter {
