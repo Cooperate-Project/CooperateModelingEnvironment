@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.cls.utils.ClsConversionUtilities.*
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+import org.eclipse.uml2.uml.AttributeOwner
 
 class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -82,7 +83,7 @@ class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 
 	private def dispatch fixMissingUMLElement(Attribute element) {
 		if(!resolvePossible) return Void
-		val umlClassifier = element.owner.referencedElement as StructuredClassifier
+		val umlClassifier = element.owner.referencedElement as AttributeOwner
 		val umlAttribute = umlClassifier.createOwnedAttribute(element.name, element.type)
 		umlAttribute.visibility = element.visibility
 		umlAttribute.isStatic = element.static
@@ -92,10 +93,7 @@ class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 	private def dispatch fixMissingUMLElement(Method element) {
 		if(!resolvePossible) return Void
 		val umlClassifier = element.owner.referencedElement as OperationOwner
-		val parameterNames = new BasicEList(element.parameters.map[name])
-		val parameterTypes = new BasicEList(element.parameters.map[type].map[type|type as Type])
-		val umlOperation = umlClassifier.createOwnedOperation(element.name, parameterNames, parameterTypes,
-			element.type)
+		val umlOperation = umlClassifier.createOwnedOperation(element.name, null, null, element.type)
 		umlOperation.visibility = element.visibility
 		umlOperation.isStatic = element.static
 		umlOperation.isAbstract = element.abstract

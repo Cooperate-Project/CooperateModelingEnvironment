@@ -44,7 +44,8 @@ class ClsUMLReferencingElementMissingElementResolvableChecker extends DependingE
     }
 
     protected def dispatch localResolutionPossible(Attribute element) {
-        return element.owner.referencedElementHasType(UMLPackage.Literals.STRUCTURED_CLASSIFIER)
+        return (element.owner.referencedElementHasType(UMLPackage.Literals.CLASS) 
+        	|| element.owner.referencedElementHasType(UMLPackage.Literals.INTERFACE))
             && element.type !== null && !element.type.eIsProxy
     }
 
