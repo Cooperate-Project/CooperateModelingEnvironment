@@ -149,9 +149,7 @@ query OrderedSet(notation::Edge)::onlyUsecaseEdges() : OrderedSet(notation::Edge
 
 query notation::View::getCommentShape() : notation::View
 {
-    return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR)->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
-//  return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR).element
-//         ->selectByKind(uml::Comment)->any(annotatedElement->includes(self.element));
+	return self.diagram.children->closure(children)->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR.getNestedName(true))->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
 }
 
 query ecore::EObject::toElement() : uml::Element {
