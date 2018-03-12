@@ -255,6 +255,9 @@ query notation::Edge::findOwningPackage() : uml::Package
 
 query notation::View::getCommentShape() : notation::View
 {
-	return self.diagram.children->closure(children)->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR.getNestedName(true))->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
-	//return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR)->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
+	var commentShape := self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR)->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
+	
+	if commentShape != null then return commentShape
+	else return self.diagram.children->closure(children)->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR.getNestedName(true))
+		->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element)) endif
 }
