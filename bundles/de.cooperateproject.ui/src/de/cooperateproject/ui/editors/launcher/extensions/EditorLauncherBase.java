@@ -42,6 +42,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.TransformationManager.TransformationException;
@@ -287,7 +288,7 @@ public abstract class EditorLauncherBase implements IEditorLauncher {
             ErrorDialog.openError(shell, "Commit failed",
                     "The requested commit failed. "
                             + "The changes stay in the temporary branch but will not appear on the master branch.",
-                    new Status(Status.ERROR, null, "Merging of branches failed.", e));
+                    new Status(Status.ERROR, Activator.PLUGIN_ID, "Merging of branches failed.", e));
         }
     }
 
