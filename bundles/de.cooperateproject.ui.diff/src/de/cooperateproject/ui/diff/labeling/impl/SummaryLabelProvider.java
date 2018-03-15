@@ -1,6 +1,7 @@
 package de.cooperateproject.ui.diff.labeling.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -135,13 +136,15 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	 * @return label handlers for the new and changed value.
 	 */
 	private static Collection<LabelHandler> findLabelHandlers(SummaryItem item) {
-		String packageName = item.getNewValue().getClass().getPackage().getName();
-		String changedObjectPackageName = item.getChangedObject().getClass().getPackage().getName();
-		
-		HashSet<LabelHandler> labelHandlers = new HashSet<>(LabelHandlerRegistry.getInstance().getLabelHandlers(packageName));
-		labelHandlers.addAll(LabelHandlerRegistry.getInstance().getLabelHandlers(changedObjectPackageName));
-		
+		HashSet<LabelHandler> labelHandlers = new HashSet<>(findLabelHandler(item.getNewValue()));
+		labelHandlers.addAll(findLabelHandler(item.getOldValue()));
+		labelHandlers.addAll(findLabelHandler(item.getChangedObject()));
         return labelHandlers;
+	}
+	
+	private static Collection<LabelHandler> findLabelHandler(Object value) {
+		return Optional.ofNullable(value).map(Object::getClass).map(Class::getPackage).map(Package::getName)
+				.map(LabelHandlerRegistry.getInstance()::getLabelHandlers).orElse(Collections.emptyList());
 	}
 
 }
