@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Component Diagram Transformation Plug-in
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.component;singleton:=true
-Bundle-Version: 0.8.0
+Bundle-Version: 0.8.1.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,
  de.cooperateproject.modeling.textual.component.metamodel;bundle-version="0.2.2",

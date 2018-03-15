@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Component Diagrams
-Bundle-Version: 0.8.0
+Bundle-Version: 0.8.1.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.component;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,

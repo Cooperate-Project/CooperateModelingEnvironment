@@ -2,18 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI
 Bundle-SymbolicName: de.cooperateproject.ui;singleton:=true
-Bundle-Version: 0.8.0
+Bundle-Version: 0.8.1.qualifier
 Bundle-Activator: de.cooperateproject.ui.Activator
 Require-Bundle: com.google.guava;bundle-version="15.0.0",
  com.ibm.icu,
- de.cooperateproject.cdo.util;bundle-version="0.8.0",
- de.cooperateproject.modeling.cdo;bundle-version="0.8.0",
+ de.cooperateproject.cdo.util;bundle-version="0.8.1",
+ de.cooperateproject.modeling.cdo;bundle-version="0.8.1",
  de.cooperateproject.modeling.common,
  de.cooperateproject.modeling.textual.common,
  de.cooperateproject.modeling.transformation.common,
  de.cooperateproject.modeling.transformation.engine,
  de.cooperateproject.ui.launchermodel;visibility:=reexport,
- de.cooperateproject.ui.preferences;bundle-version="0.8.0",
+ de.cooperateproject.ui.preferences;bundle-version="0.8.1",
  de.cooperateproject.ui.util,
  de.cooperateproject.util;visibility:=reexport,
  org.apache.commons.io,

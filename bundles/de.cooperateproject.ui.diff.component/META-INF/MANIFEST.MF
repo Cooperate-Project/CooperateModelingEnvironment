@@ -2,13 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Accessible Diff UI for Component Diagrams
 Bundle-SymbolicName: de.cooperateproject.ui.diff.component;singleton:=true
-Bundle-Version: 0.8.0
+Bundle-Version: 0.8.1.qualifier
 Bundle-Activator: de.cooperateproject.ui.diff.component.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  de.cooperateproject.ui.diff,
  org.eclipse.emf.compare;bundle-version="3.5.1",
- de.cooperateproject.modeling.textual.component.metamodel;bundle-version="0.8.0",
- de.cooperateproject.modeling.textual.component.ui;bundle-version="0.8.0",
- de.cooperateproject.modeling.textual.component;bundle-version="0.8.0"
+ de.cooperateproject.modeling.textual.component.metamodel;bundle-version="0.8.1",
+ de.cooperateproject.modeling.textual.component.ui;bundle-version="0.8.1",
+ de.cooperateproject.modeling.textual.component;bundle-version="0.8.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
