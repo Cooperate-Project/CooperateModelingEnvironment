@@ -206,7 +206,14 @@ public class TransformationManager implements ITransformationManager {
         if (eObject == null) {
             return;
         }
-        Object value = eObject.eGet(eReference, true);
+
+        Object value = null;
+        try {
+            value = eObject.eGet(eReference, true);
+        } catch (ClassCastException e) {
+            CDOUtil.cleanStaleReference(eObject, eReference);
+        }
+
         if (value instanceof EObject && CDOUtil.isStaleObject(value)) {
             CDOUtil.cleanStaleReference(eObject, eReference);
         } else if (value instanceof List<?>) {
