@@ -11320,47 +11320,40 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Method__Group__6__Impl"
-    // InternalComponent.g:3554:1: rule__Method__Group__6__Impl : ( ( rule__Method__Group_6__0 )* ) ;
+    // InternalComponent.g:3554:1: rule__Method__Group__6__Impl : ( ( rule__Method__Group_6__0 )? ) ;
     public final void rule__Method__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalComponent.g:3558:1: ( ( ( rule__Method__Group_6__0 )* ) )
-            // InternalComponent.g:3559:1: ( ( rule__Method__Group_6__0 )* )
+            // InternalComponent.g:3558:1: ( ( ( rule__Method__Group_6__0 )? ) )
+            // InternalComponent.g:3559:1: ( ( rule__Method__Group_6__0 )? )
             {
-            // InternalComponent.g:3559:1: ( ( rule__Method__Group_6__0 )* )
-            // InternalComponent.g:3560:2: ( rule__Method__Group_6__0 )*
+            // InternalComponent.g:3559:1: ( ( rule__Method__Group_6__0 )? )
+            // InternalComponent.g:3560:2: ( rule__Method__Group_6__0 )?
             {
              before(grammarAccess.getMethodAccess().getGroup_6()); 
-            // InternalComponent.g:3561:2: ( rule__Method__Group_6__0 )*
-            loop41:
-            do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+            // InternalComponent.g:3561:2: ( rule__Method__Group_6__0 )?
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-                if ( (LA41_0==RULE_ID||LA41_0==11||(LA41_0>=13 && LA41_0<=18)) ) {
-                    alt41=1;
-                }
+            if ( (LA41_0==RULE_ID||LA41_0==11||(LA41_0>=13 && LA41_0<=18)) ) {
+                alt41=1;
+            }
+            switch (alt41) {
+                case 1 :
+                    // InternalComponent.g:3561:3: rule__Method__Group_6__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Method__Group_6__0();
 
-
-                switch (alt41) {
-            	case 1 :
-            	    // InternalComponent.g:3561:3: rule__Method__Group_6__0
-            	    {
-            	    pushFollow(FOLLOW_34);
-            	    rule__Method__Group_6__0();
-
-            	    state._fsp--;
+                    state._fsp--;
 
 
-            	    }
-            	    break;
+                    }
+                    break;
 
-            	default :
-            	    break loop41;
-                }
-            } while (true);
+            }
 
              after(grammarAccess.getMethodAccess().getGroup_6()); 
 
@@ -11394,7 +11387,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:3573:1: ( rule__Method__Group__7__Impl rule__Method__Group__8 )
             // InternalComponent.g:3574:2: rule__Method__Group__7__Impl rule__Method__Group__8
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__Method__Group__7__Impl();
 
             state._fsp--;
@@ -11743,7 +11736,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:3681:1: ( rule__Method__Group_6_1__0__Impl rule__Method__Group_6_1__1 )
             // InternalComponent.g:3682:2: rule__Method__Group_6_1__0__Impl rule__Method__Group_6_1__1
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__Method__Group_6_1__0__Impl();
 
             state._fsp--;
@@ -12245,7 +12238,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:3843:1: ( rule__Attribute__Group__2__Impl rule__Attribute__Group__3 )
             // InternalComponent.g:3844:2: rule__Attribute__Group__2__Impl rule__Attribute__Group__3
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__Attribute__Group__2__Impl();
 
             state._fsp--;
@@ -12485,7 +12478,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:3924:1: ( rule__ComponentTypeAttribute__Group__0__Impl rule__ComponentTypeAttribute__Group__1 )
             // InternalComponent.g:3925:2: rule__ComponentTypeAttribute__Group__0__Impl rule__ComponentTypeAttribute__Group__1
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__ComponentTypeAttribute__Group__0__Impl();
 
             state._fsp--;
@@ -12725,7 +12718,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:4005:1: ( rule__Parameter__Group__0__Impl rule__Parameter__Group__1 )
             // InternalComponent.g:4006:2: rule__Parameter__Group__0__Impl rule__Parameter__Group__1
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__Parameter__Group__0__Impl();
 
             state._fsp--;
@@ -12821,7 +12814,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             // InternalComponent.g:4032:1: ( rule__Parameter__Group__1__Impl rule__Parameter__Group__2 )
             // InternalComponent.g:4033:2: rule__Parameter__Group__1__Impl rule__Parameter__Group__2
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__Parameter__Group__1__Impl();
 
             state._fsp--;
@@ -13188,7 +13181,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             	case 1 :
             	    // InternalComponent.g:4154:3: rule__FQN__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_37);
+            	    pushFollow(FOLLOW_36);
             	    rule__FQN__Group_1__0();
 
             	    state._fsp--;
@@ -16229,9 +16222,8 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000006000000000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x000003000007E810L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x000000004007E810L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x000000000007E812L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x000000000007E810L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x000000000007E810L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000001000000002L});
 
 }

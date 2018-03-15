@@ -227,7 +227,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         abstract?='abstract'? 
 	 *         static?='static'? 
 	 *         name=ID 
-	 *         (parameters+=Parameter parameters+=Parameter*)* 
+	 *         (parameters+=Parameter parameters+=Parameter*)? 
 	 *         type=[Classifier|FQN]?
 	 *     )
 	 */

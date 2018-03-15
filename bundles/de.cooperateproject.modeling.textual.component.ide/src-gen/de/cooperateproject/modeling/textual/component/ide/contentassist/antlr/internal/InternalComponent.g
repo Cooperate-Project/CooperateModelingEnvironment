@@ -3558,7 +3558,7 @@ rule__Method__Group__6__Impl
 :
 (
 	{ before(grammarAccess.getMethodAccess().getGroup_6()); }
-	(rule__Method__Group_6__0)*
+	(rule__Method__Group_6__0)?
 	{ after(grammarAccess.getMethodAccess().getGroup_6()); }
 )
 ;

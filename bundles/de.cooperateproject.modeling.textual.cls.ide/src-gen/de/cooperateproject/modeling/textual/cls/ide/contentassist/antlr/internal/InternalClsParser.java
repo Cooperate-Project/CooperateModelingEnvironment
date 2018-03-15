@@ -8439,47 +8439,40 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__Group__5__Impl"
-    // InternalCls.g:2620:1: rule__Method__Group__5__Impl : ( ( rule__Method__Group_5__0 )* ) ;
+    // InternalCls.g:2620:1: rule__Method__Group__5__Impl : ( ( rule__Method__Group_5__0 )? ) ;
     public final void rule__Method__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:2624:1: ( ( ( rule__Method__Group_5__0 )* ) )
-            // InternalCls.g:2625:1: ( ( rule__Method__Group_5__0 )* )
+            // InternalCls.g:2624:1: ( ( ( rule__Method__Group_5__0 )? ) )
+            // InternalCls.g:2625:1: ( ( rule__Method__Group_5__0 )? )
             {
-            // InternalCls.g:2625:1: ( ( rule__Method__Group_5__0 )* )
-            // InternalCls.g:2626:2: ( rule__Method__Group_5__0 )*
+            // InternalCls.g:2625:1: ( ( rule__Method__Group_5__0 )? )
+            // InternalCls.g:2626:2: ( rule__Method__Group_5__0 )?
             {
              before(grammarAccess.getMethodAccess().getGroup_5()); 
-            // InternalCls.g:2627:2: ( rule__Method__Group_5__0 )*
-            loop38:
-            do {
-                int alt38=2;
-                int LA38_0 = input.LA(1);
+            // InternalCls.g:2627:2: ( rule__Method__Group_5__0 )?
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-                if ( (LA38_0==RULE_ID||(LA38_0>=13 && LA38_0<=19)) ) {
-                    alt38=1;
-                }
+            if ( (LA38_0==RULE_ID||(LA38_0>=13 && LA38_0<=19)) ) {
+                alt38=1;
+            }
+            switch (alt38) {
+                case 1 :
+                    // InternalCls.g:2627:3: rule__Method__Group_5__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Method__Group_5__0();
 
-
-                switch (alt38) {
-            	case 1 :
-            	    // InternalCls.g:2627:3: rule__Method__Group_5__0
-            	    {
-            	    pushFollow(FOLLOW_28);
-            	    rule__Method__Group_5__0();
-
-            	    state._fsp--;
+                    state._fsp--;
 
 
-            	    }
-            	    break;
+                    }
+                    break;
 
-            	default :
-            	    break loop38;
-                }
-            } while (true);
+            }
 
              after(grammarAccess.getMethodAccess().getGroup_5()); 
 
@@ -8679,7 +8672,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:2693:1: ( rule__Method__Group_5__0__Impl rule__Method__Group_5__1 )
             // InternalCls.g:2694:2: rule__Method__Group_5__0__Impl rule__Method__Group_5__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_28);
             rule__Method__Group_5__0__Impl();
 
             state._fsp--;
@@ -8816,7 +8809,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalCls.g:2734:3: rule__Method__Group_5_1__0
             	    {
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_29);
             	    rule__Method__Group_5_1__0();
 
             	    state._fsp--;
@@ -8862,7 +8855,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:2747:1: ( rule__Method__Group_5_1__0__Impl rule__Method__Group_5_1__1 )
             // InternalCls.g:2748:2: rule__Method__Group_5_1__0__Impl rule__Method__Group_5_1__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_30);
             rule__Method__Group_5_1__0__Impl();
 
             state._fsp--;
@@ -9172,7 +9165,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:2855:1: ( rule__Parameter__Group__0__Impl rule__Parameter__Group__1 )
             // InternalCls.g:2856:2: rule__Parameter__Group__0__Impl rule__Parameter__Group__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_30);
             rule__Parameter__Group__0__Impl();
 
             state._fsp--;
@@ -9658,7 +9651,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3017:1: ( rule__Generalization__Group__2__Impl rule__Generalization__Group__3 )
             // InternalCls.g:3018:2: rule__Generalization__Group__2__Impl rule__Generalization__Group__3
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_28);
             rule__Generalization__Group__2__Impl();
 
             state._fsp--;
@@ -9818,7 +9811,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3071:1: ( rule__Generalization__Group__4__Impl rule__Generalization__Group__5 )
             // InternalCls.g:3072:2: rule__Generalization__Group__4__Impl rule__Generalization__Group__5
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_31);
             rule__Generalization__Group__4__Impl();
 
             state._fsp--;
@@ -10219,7 +10212,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3206:1: ( rule__Implementation__Group__2__Impl rule__Implementation__Group__3 )
             // InternalCls.g:3207:2: rule__Implementation__Group__2__Impl rule__Implementation__Group__3
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_28);
             rule__Implementation__Group__2__Impl();
 
             state._fsp--;
@@ -10379,7 +10372,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3260:1: ( rule__Implementation__Group__4__Impl rule__Implementation__Group__5 )
             // InternalCls.g:3261:2: rule__Implementation__Group__4__Impl rule__Implementation__Group__5
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_31);
             rule__Implementation__Group__4__Impl();
 
             state._fsp--;
@@ -10630,7 +10623,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3341:1: ( rule__XtextAssociation__Group__0__Impl rule__XtextAssociation__Group__1 )
             // InternalCls.g:3342:2: rule__XtextAssociation__Group__0__Impl rule__XtextAssociation__Group__1
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_32);
             rule__XtextAssociation__Group__0__Impl();
 
             state._fsp--;
@@ -10726,7 +10719,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3368:1: ( rule__XtextAssociation__Group__1__Impl rule__XtextAssociation__Group__2 )
             // InternalCls.g:3369:2: rule__XtextAssociation__Group__1__Impl rule__XtextAssociation__Group__2
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_33);
             rule__XtextAssociation__Group__1__Impl();
 
             state._fsp--;
@@ -10811,7 +10804,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3395:1: ( rule__XtextAssociation__Group__2__Impl rule__XtextAssociation__Group__3 )
             // InternalCls.g:3396:2: rule__XtextAssociation__Group__2__Impl rule__XtextAssociation__Group__3
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_33);
             rule__XtextAssociation__Group__2__Impl();
 
             state._fsp--;
@@ -10982,7 +10975,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3449:1: ( rule__XtextAssociation__Group__4__Impl rule__XtextAssociation__Group__5 )
             // InternalCls.g:3450:2: rule__XtextAssociation__Group__4__Impl rule__XtextAssociation__Group__5
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__XtextAssociation__Group__4__Impl();
 
             state._fsp--;
@@ -11067,7 +11060,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3476:1: ( rule__XtextAssociation__Group__5__Impl rule__XtextAssociation__Group__6 )
             // InternalCls.g:3477:2: rule__XtextAssociation__Group__5__Impl rule__XtextAssociation__Group__6
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_34);
             rule__XtextAssociation__Group__5__Impl();
 
             state._fsp--;
@@ -11124,7 +11117,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalCls.g:3491:3: rule__XtextAssociation__Group_5__0
             	    {
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_29);
             	    rule__XtextAssociation__Group_5__0();
 
             	    state._fsp--;
@@ -11170,7 +11163,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3503:1: ( rule__XtextAssociation__Group__6__Impl rule__XtextAssociation__Group__7 )
             // InternalCls.g:3504:2: rule__XtextAssociation__Group__6__Impl rule__XtextAssociation__Group__7
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__XtextAssociation__Group__6__Impl();
 
             state._fsp--;
@@ -11245,7 +11238,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3530:1: ( rule__XtextAssociation__Group__7__Impl rule__XtextAssociation__Group__8 )
             // InternalCls.g:3531:2: rule__XtextAssociation__Group__7__Impl rule__XtextAssociation__Group__8
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__XtextAssociation__Group__7__Impl();
 
             state._fsp--;
@@ -11341,7 +11334,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3557:1: ( rule__XtextAssociation__Group__8__Impl rule__XtextAssociation__Group__9 )
             // InternalCls.g:3558:2: rule__XtextAssociation__Group__8__Impl rule__XtextAssociation__Group__9
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_35);
             rule__XtextAssociation__Group__8__Impl();
 
             state._fsp--;
@@ -11683,7 +11676,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3665:1: ( rule__XtextAssociation__Group_7__0__Impl rule__XtextAssociation__Group_7__1 )
             // InternalCls.g:3666:2: rule__XtextAssociation__Group_7__0__Impl rule__XtextAssociation__Group_7__1
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_36);
             rule__XtextAssociation__Group_7__0__Impl();
 
             state._fsp--;
@@ -11758,7 +11751,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3692:1: ( rule__XtextAssociation__Group_7__1__Impl rule__XtextAssociation__Group_7__2 )
             // InternalCls.g:3693:2: rule__XtextAssociation__Group_7__1__Impl rule__XtextAssociation__Group_7__2
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_37);
             rule__XtextAssociation__Group_7__1__Impl();
 
             state._fsp--;
@@ -11833,7 +11826,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3719:1: ( rule__XtextAssociation__Group_7__2__Impl rule__XtextAssociation__Group_7__3 )
             // InternalCls.g:3720:2: rule__XtextAssociation__Group_7__2__Impl rule__XtextAssociation__Group_7__3
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_38);
             rule__XtextAssociation__Group_7__2__Impl();
 
             state._fsp--;
@@ -11918,7 +11911,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3746:1: ( rule__XtextAssociation__Group_7__3__Impl rule__XtextAssociation__Group_7__4 )
             // InternalCls.g:3747:2: rule__XtextAssociation__Group_7__3__Impl rule__XtextAssociation__Group_7__4
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_38);
             rule__XtextAssociation__Group_7__3__Impl();
 
             state._fsp--;
@@ -11975,7 +11968,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalCls.g:3761:3: rule__XtextAssociation__Group_7_3__0
             	    {
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_29);
             	    rule__XtextAssociation__Group_7_3__0();
 
             	    state._fsp--;
@@ -12091,7 +12084,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3800:1: ( rule__XtextAssociation__Group_7_3__0__Impl rule__XtextAssociation__Group_7_3__1 )
             // InternalCls.g:3801:2: rule__XtextAssociation__Group_7_3__0__Impl rule__XtextAssociation__Group_7_3__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_37);
             rule__XtextAssociation__Group_7_3__0__Impl();
 
             state._fsp--;
@@ -12246,7 +12239,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3854:1: ( rule__XtextAssociation__Group_8__0__Impl rule__XtextAssociation__Group_8__1 )
             // InternalCls.g:3855:2: rule__XtextAssociation__Group_8__0__Impl rule__XtextAssociation__Group_8__1
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_36);
             rule__XtextAssociation__Group_8__0__Impl();
 
             state._fsp--;
@@ -12321,7 +12314,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3881:1: ( rule__XtextAssociation__Group_8__1__Impl rule__XtextAssociation__Group_8__2 )
             // InternalCls.g:3882:2: rule__XtextAssociation__Group_8__1__Impl rule__XtextAssociation__Group_8__2
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_39);
             rule__XtextAssociation__Group_8__1__Impl();
 
             state._fsp--;
@@ -12396,7 +12389,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3908:1: ( rule__XtextAssociation__Group_8__2__Impl rule__XtextAssociation__Group_8__3 )
             // InternalCls.g:3909:2: rule__XtextAssociation__Group_8__2__Impl rule__XtextAssociation__Group_8__3
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_40);
             rule__XtextAssociation__Group_8__2__Impl();
 
             state._fsp--;
@@ -12481,7 +12474,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3935:1: ( rule__XtextAssociation__Group_8__3__Impl rule__XtextAssociation__Group_8__4 )
             // InternalCls.g:3936:2: rule__XtextAssociation__Group_8__3__Impl rule__XtextAssociation__Group_8__4
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_40);
             rule__XtextAssociation__Group_8__3__Impl();
 
             state._fsp--;
@@ -12538,7 +12531,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalCls.g:3950:3: rule__XtextAssociation__Group_8_3__0
             	    {
-            	    pushFollow(FOLLOW_42);
+            	    pushFollow(FOLLOW_41);
             	    rule__XtextAssociation__Group_8_3__0();
 
             	    state._fsp--;
@@ -12654,7 +12647,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3989:1: ( rule__XtextAssociation__Group_8_3__0__Impl rule__XtextAssociation__Group_8_3__1 )
             // InternalCls.g:3990:2: rule__XtextAssociation__Group_8_3__0__Impl rule__XtextAssociation__Group_8_3__1
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_39);
             rule__XtextAssociation__Group_8_3__0__Impl();
 
             state._fsp--;
@@ -12964,7 +12957,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:4097:1: ( rule__Cardinality__Group__0__Impl rule__Cardinality__Group__1 )
             // InternalCls.g:4098:2: rule__Cardinality__Group__0__Impl rule__Cardinality__Group__1
             {
-            pushFollow(FOLLOW_43);
+            pushFollow(FOLLOW_42);
             rule__Cardinality__Group__0__Impl();
 
             state._fsp--;
@@ -13140,7 +13133,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:4151:1: ( rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1 )
             // InternalCls.g:4152:2: rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_39);
             rule__Cardinality__Group_1__0__Impl();
 
             state._fsp--;
@@ -16076,21 +16069,20 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000C000000FE040L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x00000010000FE040L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x00000000000FE042L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x00000000000FE040L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0001000000700000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000800000040L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000003000000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000190000000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x00000000000000C0L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000042000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000001020L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000040400000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000002000000002L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x00000000000FE040L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0001000000700000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000800000040L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000190000000000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x00000000000000C0L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000042000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000001020L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000040400000000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000200000000000L});
 
 }

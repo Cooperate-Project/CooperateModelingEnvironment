@@ -2624,7 +2624,7 @@ rule__Method__Group__5__Impl
 :
 (
 	{ before(grammarAccess.getMethodAccess().getGroup_5()); }
-	(rule__Method__Group_5__0)*
+	(rule__Method__Group_5__0)?
 	{ after(grammarAccess.getMethodAccess().getGroup_5()); }
 )
 ;

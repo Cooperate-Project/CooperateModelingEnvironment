@@ -279,7 +279,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         abstract?='abstract'? 
 	 *         static?='static'? 
 	 *         name=ID 
-	 *         (parameters+=Parameter parameters+=Parameter*)* 
+	 *         (parameters+=Parameter parameters+=Parameter*)? 
 	 *         type=[Classifier|FQN]?
 	 *     )
 	 */

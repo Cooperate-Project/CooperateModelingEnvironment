@@ -967,11 +967,11 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//	{Method} visibility=Visibility?
 		//	abstract?='abstract'?
 		//	static?='static'?
-		//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
+		//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)? ')' (':' type=[uml::Classifier|FQN])?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Method} visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
-		//parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?
+		//parameters+=Parameter)*)? ')' (':' type=[uml::Classifier|FQN])?
 		public Group getGroup() { return cGroup; }
 		
 		//{Method}
@@ -1004,7 +1004,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_5() { return cLeftParenthesisKeyword_5; }
 		
-		//(parameters+=Parameter (',' parameters+=Parameter)*)*
+		//(parameters+=Parameter (',' parameters+=Parameter)*)?
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//parameters+=Parameter
@@ -1556,7 +1556,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//	{Method} visibility=Visibility?
 	//	abstract?='abstract'?
 	//	static?='static'?
-	//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
+	//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)? ')' (':' type=[uml::Classifier|FQN])?;
 	public MethodElements getMethodAccess() {
 		return pMethod;
 	}
@@ -1621,8 +1621,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//terminal STRING:
-	//	'"' ('\\' . | !('\\' | '"'))* '"' |
-	//	"'" ('\\' . | !('\\' | "'"))* "'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' | "'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	}

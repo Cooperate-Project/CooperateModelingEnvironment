@@ -1165,7 +1165,7 @@ ruleMethod returns [EObject current=null]
 					)
 				)
 			)*
-		)*
+		)?
 		otherlv_8=')'
 		{
 			newLeafNode(otherlv_8, grammarAccess.getMethodAccess().getRightParenthesisKeyword_6());

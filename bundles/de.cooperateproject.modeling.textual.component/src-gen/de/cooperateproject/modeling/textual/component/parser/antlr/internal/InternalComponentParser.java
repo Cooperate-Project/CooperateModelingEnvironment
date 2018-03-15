@@ -4025,7 +4025,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMethod"
-    // InternalComponent.g:1591:1: ruleMethod returns [EObject current=null] : ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )* otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? ) ;
+    // InternalComponent.g:1591:1: ruleMethod returns [EObject current=null] : ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )? otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? ) ;
     public final EObject ruleMethod() throws RecognitionException {
         EObject current = null;
 
@@ -4047,11 +4047,11 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalComponent.g:1597:2: ( ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )* otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? ) )
-            // InternalComponent.g:1598:2: ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )* otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? )
+            // InternalComponent.g:1597:2: ( ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )? otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? ) )
+            // InternalComponent.g:1598:2: ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )? otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? )
             {
-            // InternalComponent.g:1598:2: ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )* otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? )
-            // InternalComponent.g:1599:3: () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )* otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )?
+            // InternalComponent.g:1598:2: ( () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )? otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )? )
+            // InternalComponent.g:1599:3: () ( (lv_visibility_1_0= ruleVisibility ) )? ( (lv_abstract_2_0= 'abstract' ) )? ( (lv_static_3_0= 'static' ) )? ( (lv_name_4_0= RULE_ID ) ) otherlv_5= '(' ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )? otherlv_9= ')' (otherlv_10= ':' ( ( ruleFQN ) ) )?
             {
             // InternalComponent.g:1599:3: ()
             // InternalComponent.g:1600:4: 
@@ -4202,121 +4202,114 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_5, grammarAccess.getMethodAccess().getLeftParenthesisKeyword_5());
             		
-            // InternalComponent.g:1675:3: ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )*
-            loop41:
-            do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+            // InternalComponent.g:1675:3: ( ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )* )?
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-                if ( (LA41_0==RULE_ID||LA41_0==26||(LA41_0>=36 && LA41_0<=41)) ) {
-                    alt41=1;
-                }
+            if ( (LA41_0==RULE_ID||LA41_0==26||(LA41_0>=36 && LA41_0<=41)) ) {
+                alt41=1;
+            }
+            switch (alt41) {
+                case 1 :
+                    // InternalComponent.g:1676:4: ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )*
+                    {
+                    // InternalComponent.g:1676:4: ( (lv_parameters_6_0= ruleParameter ) )
+                    // InternalComponent.g:1677:5: (lv_parameters_6_0= ruleParameter )
+                    {
+                    // InternalComponent.g:1677:5: (lv_parameters_6_0= ruleParameter )
+                    // InternalComponent.g:1678:6: lv_parameters_6_0= ruleParameter
+                    {
 
+                    						newCompositeNode(grammarAccess.getMethodAccess().getParametersParameterParserRuleCall_6_0_0());
+                    					
+                    pushFollow(FOLLOW_28);
+                    lv_parameters_6_0=ruleParameter();
 
-                switch (alt41) {
-            	case 1 :
-            	    // InternalComponent.g:1676:4: ( (lv_parameters_6_0= ruleParameter ) ) (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )*
-            	    {
-            	    // InternalComponent.g:1676:4: ( (lv_parameters_6_0= ruleParameter ) )
-            	    // InternalComponent.g:1677:5: (lv_parameters_6_0= ruleParameter )
-            	    {
-            	    // InternalComponent.g:1677:5: (lv_parameters_6_0= ruleParameter )
-            	    // InternalComponent.g:1678:6: lv_parameters_6_0= ruleParameter
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getMethodAccess().getParametersParameterParserRuleCall_6_0_0());
-            	    					
-            	    pushFollow(FOLLOW_33);
-            	    lv_parameters_6_0=ruleParameter();
-
-            	    state._fsp--;
+                    state._fsp--;
 
 
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getMethodRule());
-            	    						}
-            	    						add(
-            	    							current,
-            	    							"parameters",
-            	    							lv_parameters_6_0,
-            	    							"de.cooperateproject.modeling.textual.component.Component.Parameter");
-            	    						afterParserOrEnumRuleCall();
-            	    					
+                    						if (current==null) {
+                    							current = createModelElementForParent(grammarAccess.getMethodRule());
+                    						}
+                    						add(
+                    							current,
+                    							"parameters",
+                    							lv_parameters_6_0,
+                    							"de.cooperateproject.modeling.textual.component.Component.Parameter");
+                    						afterParserOrEnumRuleCall();
+                    					
 
-            	    }
-
-
-            	    }
-
-            	    // InternalComponent.g:1695:4: (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )*
-            	    loop40:
-            	    do {
-            	        int alt40=2;
-            	        int LA40_0 = input.LA(1);
-
-            	        if ( (LA40_0==21) ) {
-            	            alt40=1;
-            	        }
+                    }
 
 
-            	        switch (alt40) {
-            	    	case 1 :
-            	    	    // InternalComponent.g:1696:5: otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) )
-            	    	    {
-            	    	    otherlv_7=(Token)match(input,21,FOLLOW_34); 
+                    }
 
-            	    	    					newLeafNode(otherlv_7, grammarAccess.getMethodAccess().getCommaKeyword_6_1_0());
-            	    	    				
-            	    	    // InternalComponent.g:1700:5: ( (lv_parameters_8_0= ruleParameter ) )
-            	    	    // InternalComponent.g:1701:6: (lv_parameters_8_0= ruleParameter )
-            	    	    {
-            	    	    // InternalComponent.g:1701:6: (lv_parameters_8_0= ruleParameter )
-            	    	    // InternalComponent.g:1702:7: lv_parameters_8_0= ruleParameter
-            	    	    {
+                    // InternalComponent.g:1695:4: (otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) ) )*
+                    loop40:
+                    do {
+                        int alt40=2;
+                        int LA40_0 = input.LA(1);
 
-            	    	    							newCompositeNode(grammarAccess.getMethodAccess().getParametersParameterParserRuleCall_6_1_1_0());
-            	    	    						
-            	    	    pushFollow(FOLLOW_33);
-            	    	    lv_parameters_8_0=ruleParameter();
-
-            	    	    state._fsp--;
+                        if ( (LA40_0==21) ) {
+                            alt40=1;
+                        }
 
 
-            	    	    							if (current==null) {
-            	    	    								current = createModelElementForParent(grammarAccess.getMethodRule());
-            	    	    							}
-            	    	    							add(
-            	    	    								current,
-            	    	    								"parameters",
-            	    	    								lv_parameters_8_0,
-            	    	    								"de.cooperateproject.modeling.textual.component.Component.Parameter");
-            	    	    							afterParserOrEnumRuleCall();
-            	    	    						
+                        switch (alt40) {
+                    	case 1 :
+                    	    // InternalComponent.g:1696:5: otherlv_7= ',' ( (lv_parameters_8_0= ruleParameter ) )
+                    	    {
+                    	    otherlv_7=(Token)match(input,21,FOLLOW_33); 
 
-            	    	    }
+                    	    					newLeafNode(otherlv_7, grammarAccess.getMethodAccess().getCommaKeyword_6_1_0());
+                    	    				
+                    	    // InternalComponent.g:1700:5: ( (lv_parameters_8_0= ruleParameter ) )
+                    	    // InternalComponent.g:1701:6: (lv_parameters_8_0= ruleParameter )
+                    	    {
+                    	    // InternalComponent.g:1701:6: (lv_parameters_8_0= ruleParameter )
+                    	    // InternalComponent.g:1702:7: lv_parameters_8_0= ruleParameter
+                    	    {
 
+                    	    							newCompositeNode(grammarAccess.getMethodAccess().getParametersParameterParserRuleCall_6_1_1_0());
+                    	    						
+                    	    pushFollow(FOLLOW_28);
+                    	    lv_parameters_8_0=ruleParameter();
 
-            	    	    }
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop40;
-            	        }
-            	    } while (true);
+                    	    state._fsp--;
 
 
-            	    }
-            	    break;
+                    	    							if (current==null) {
+                    	    								current = createModelElementForParent(grammarAccess.getMethodRule());
+                    	    							}
+                    	    							add(
+                    	    								current,
+                    	    								"parameters",
+                    	    								lv_parameters_8_0,
+                    	    								"de.cooperateproject.modeling.textual.component.Component.Parameter");
+                    	    							afterParserOrEnumRuleCall();
+                    	    						
 
-            	default :
-            	    break loop41;
-                }
-            } while (true);
+                    	    }
 
-            otherlv_9=(Token)match(input,22,FOLLOW_35); 
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop40;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+
+            }
+
+            otherlv_9=(Token)match(input,22,FOLLOW_34); 
 
             			newLeafNode(otherlv_9, grammarAccess.getMethodAccess().getRightParenthesisKeyword_7());
             		
@@ -4529,7 +4522,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             // InternalComponent.g:1800:4: (lv_name_2_0= RULE_ID )
             // InternalComponent.g:1801:5: lv_name_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_36); 
+            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_35); 
 
             					newLeafNode(lv_name_2_0, grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_2_0());
             				
@@ -4663,7 +4656,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             // InternalComponent.g:1857:4: (lv_name_0_0= RULE_ID )
             // InternalComponent.g:1858:5: lv_name_0_0= RULE_ID
             {
-            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_36); 
+            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_35); 
 
             					newLeafNode(lv_name_0_0, grammarAccess.getComponentTypeAttributeAccess().getNameIDTerminalRuleCall_0_0());
             				
@@ -4841,7 +4834,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             // InternalComponent.g:1933:4: (lv_name_1_0= RULE_ID )
             // InternalComponent.g:1934:5: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_36); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_35); 
 
             					newLeafNode(lv_name_1_0, grammarAccess.getParameterAccess().getNameIDTerminalRuleCall_1_0());
             				
@@ -4970,7 +4963,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             // InternalComponent.g:1988:2: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             // InternalComponent.g:1989:3: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_37); 
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_36); 
 
             			current.merge(this_ID_0);
             		
@@ -4997,7 +4990,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             	    				current.merge(kw);
             	    				newLeafNode(kw, grammarAccess.getFQNAccess().getFullStopKeyword_1_0());
             	    			
-            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_37); 
+            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_36); 
 
             	    				current.merge(this_ID_2);
             	    			
@@ -5323,10 +5316,9 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000600000020L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000400000020L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x000003F004400020L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x000003F004600020L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x000003F004000020L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x000003F004000020L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000040000002L});
 
 }

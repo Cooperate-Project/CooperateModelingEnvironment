@@ -115,7 +115,7 @@ Method returns Method:
 	(abstract ?= 'abstract')? 
 	(static ?= 'static')? 
 	name = ID '(' 
-	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
+	(parameters += Parameter (',' parameters += Parameter)*)? ')' 
 	(':' type = [uml::Classifier|FQN])?
 ;
 
