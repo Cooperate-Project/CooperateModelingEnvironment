@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate Papyrus Usecase Extension
 Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions.usecase;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle-version="0.7.1",
+Require-Bundle: de.cooperateproject.modeling.graphical.papyrus.extensions;bundle-version="0.8.0",
  org.eclipse.papyrus.uml.diagram.common,
  com.google.guava;bundle-version="21.0.0",
  de.cooperateproject.ui,

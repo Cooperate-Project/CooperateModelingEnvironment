@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Accessible Diff UI for Class Diagrams
 Bundle-SymbolicName: de.cooperateproject.ui.diff.cls;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.0
 Bundle-Activator: de.cooperateproject.ui.diff.cls.Activator
 Require-Bundle: org.eclipse.core.runtime,
  de.cooperateproject.ui.diff,

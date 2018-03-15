@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CDO Utilities for Modeling
 Bundle-SymbolicName: de.cooperateproject.modeling.cdo;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.cdo.commithistory,
  de.cooperateproject.modeling.cdo.focustransfer
@@ -10,9 +10,9 @@ Require-Bundle: org.eclipse.emf.cdo;bundle-version="4.6.0",
  org.eclipse.emf.cdo.net4j;bundle-version="4.1.500",
  org.apache.commons.lang3,
  org.eclipse.core.resources,
- de.cooperateproject.cdo.util;bundle-version="0.7.1",
- de.cooperateproject.ui.launchermodel;bundle-version="0.7.1",
- de.cooperateproject.modeling.common;bundle-version="0.7.1"
+ de.cooperateproject.cdo.util;bundle-version="0.8.0",
+ de.cooperateproject.ui.launchermodel;bundle-version="0.8.0",
+ de.cooperateproject.modeling.common;bundle-version="0.8.0"
 Import-Package: org.osgi.service.component.annotations,
  org.slf4j
 Service-Component: OSGI-INF/de.cooperateproject.modeling.cdo.commithistory.impl.CommitHistoryManagerImpl.xml,

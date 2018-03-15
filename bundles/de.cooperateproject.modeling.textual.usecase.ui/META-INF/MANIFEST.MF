@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Use Case Diagrams UI
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.0
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.usecase,
@@ -19,9 +19,9 @@ Require-Bundle: de.cooperateproject.modeling.textual.usecase,
  org.eclipse.emf.compare.rcp,
  org.eclipse.emf.compare,
  org.eclipse.emf.compare.rcp.ui,
- de.cooperateproject.modeling.textual.common;bundle-version="0.7.1",
+ de.cooperateproject.modeling.textual.common;bundle-version="0.8.0",
  de.cooperateproject.modeling.textual.xtext.runtime.ui,
- de.cooperateproject.ui;bundle-version="0.7.1"
+ de.cooperateproject.ui;bundle-version="0.8.0"
 Import-Package: org.slf4j;version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.ui.contentassist,
