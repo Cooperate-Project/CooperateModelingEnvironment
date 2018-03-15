@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Element
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class CommonUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -27,9 +28,14 @@ class CommonUMLReferencingElementMissingElementResolution extends AutomatedIssue
 		if(!resolvePossible) return Void
 		val commentedElement = element.commentedElement
 		val Element umlCommentedElement = commentedElement.referencedElement
-		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()
+		
+		var umlComment = EcoreUtil.getAllContents(umlCommentedElement.eResource, true).filter(org.eclipse.uml2.uml.Comment).findFirst[c | c.annotatedElements.contains(umlCommentedElement)]
+		if (umlComment === null) {
+			umlComment = umlCommentedElement.nearestPackage.createOwnedComment()
+			umlComment.annotatedElements.add(umlCommentedElement)
+		}
+		
 		umlComment.body = element.body
-		umlComment.annotatedElements.add(umlCommentedElement)
 		element.referencedElement = umlComment
 	}
 	

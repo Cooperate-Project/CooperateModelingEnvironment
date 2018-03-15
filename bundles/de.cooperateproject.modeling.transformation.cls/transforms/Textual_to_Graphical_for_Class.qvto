@@ -25,7 +25,7 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
     var allConnectors := self.getAllTransitiveConnectors();
     var allPackages := self.getAllTransitivePackages();
     
-    children := self.rootPackage.packages.oclAsType(cls::Package)->map packageToShape();
+    children += self.rootPackage.packages.oclAsType(cls::Package)->map packageToShape();
     children += self.rootPackage.classifiers->map classifierToShape();
     children += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2)->map multiAssociationToShape(); // all nested in root
     children += self.rootPackage.connectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
