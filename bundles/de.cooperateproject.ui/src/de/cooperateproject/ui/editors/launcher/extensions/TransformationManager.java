@@ -196,7 +196,7 @@ public class TransformationManager implements ITransformationManager {
                 CDOObject eObject = transaction.getObject(setting.getObject());
                 fixStaleReference(eObject, setting);
             } catch (ObjectNotFoundException e) {
-                LOGGER.warn("Attempt to fix a stale reference on an non existing object.", e);
+                LOGGER.trace("Attempt to fix a stale reference on an non existing object.", e);
             }
         }
     }
