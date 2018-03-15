@@ -4,19 +4,22 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActFactory;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
+import de.cooperateproject.modeling.textual.activity.act.ActionNode;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
-import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
 import de.cooperateproject.modeling.textual.activity.act.ControlNode;
+import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
+import de.cooperateproject.modeling.textual.activity.act.FinalNode;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
+import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode;
+import de.cooperateproject.modeling.textual.activity.act.InitialNode;
+import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.activity.act.Node;
-import de.cooperateproject.modeling.textual.activity.act.NodeType;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -68,7 +71,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass activityNodeEClass = null;
+	private EClass actionNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +85,35 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum nodeTypeEEnum = null;
+	private EClass initialNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass finalNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass flowFinalNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass decisionNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mergeNodeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -183,15 +214,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActivityDiagram_ActivityName() {
-		return (EAttribute)activityDiagramEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getRootPackage() {
 		return rootPackageEClass;
 	}
@@ -212,6 +234,15 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 */
 	public EReference getRootPackage_Relations() {
 		return (EReference)rootPackageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRootPackage_ActivityName() {
+		return (EAttribute)rootPackageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -246,8 +277,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getControlNode_Type() {
-		return (EAttribute)controlNodeEClass.getEStructuralFeatures().get(0);
+	public EClass getActionNode() {
+		return actionNodeEClass;
 	}
 
 	/**
@@ -255,17 +286,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActivityNode() {
-		return activityNodeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getActivityNode_Alias() {
-		return (EAttribute)activityNodeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getActionNode_Alias() {
+		return (EAttribute)actionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -300,8 +322,44 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getNodeType() {
-		return nodeTypeEEnum;
+	public EClass getInitialNode() {
+		return initialNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFinalNode() {
+		return finalNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFlowFinalNode() {
+		return flowFinalNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDecisionNode() {
+		return decisionNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMergeNode() {
+		return mergeNodeEClass;
 	}
 
 	/**
@@ -335,27 +393,33 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		activityDiagramEClass = createEClass(ACTIVITY_DIAGRAM);
 		createEAttribute(activityDiagramEClass, ACTIVITY_DIAGRAM__TITLE);
 		createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__ROOT_PACKAGE);
-		createEAttribute(activityDiagramEClass, ACTIVITY_DIAGRAM__ACTIVITY_NAME);
 
 		rootPackageEClass = createEClass(ROOT_PACKAGE);
 		createEReference(rootPackageEClass, ROOT_PACKAGE__NODES);
 		createEReference(rootPackageEClass, ROOT_PACKAGE__RELATIONS);
+		createEAttribute(rootPackageEClass, ROOT_PACKAGE__ACTIVITY_NAME);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
 
 		controlNodeEClass = createEClass(CONTROL_NODE);
-		createEAttribute(controlNodeEClass, CONTROL_NODE__TYPE);
 
-		activityNodeEClass = createEClass(ACTIVITY_NODE);
-		createEAttribute(activityNodeEClass, ACTIVITY_NODE__ALIAS);
+		actionNodeEClass = createEClass(ACTION_NODE);
+		createEAttribute(actionNodeEClass, ACTION_NODE__ALIAS);
 
 		flowEClass = createEClass(FLOW);
 		createEReference(flowEClass, FLOW__RELATED_ELEMENTS);
 		createEAttribute(flowEClass, FLOW__CONDITION);
 
-		// Create enums
-		nodeTypeEEnum = createEEnum(NODE_TYPE);
+		initialNodeEClass = createEClass(INITIAL_NODE);
+
+		finalNodeEClass = createEClass(FINAL_NODE);
+
+		flowFinalNodeEClass = createEClass(FLOW_FINAL_NODE);
+
+		decisionNodeEClass = createEClass(DECISION_NODE);
+
+		mergeNodeEClass = createEClass(MERGE_NODE);
 	}
 
 	/**
@@ -385,6 +449,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -396,38 +461,73 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g1.getETypeArguments().add(g2);
 		rootPackageEClass.getEGenericSuperTypes().add(g1);
 		controlNodeEClass.getESuperTypes().add(this.getNode());
-		activityNodeEClass.getESuperTypes().add(this.getNode());
+		actionNodeEClass.getESuperTypes().add(this.getNode());
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getRelationship());
+		g1.getETypeArguments().add(g2);
+		flowEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		initialNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getInitialNode());
+		g1.getETypeArguments().add(g2);
+		initialNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		finalNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getFinalNode());
+		g1.getETypeArguments().add(g2);
+		finalNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		flowFinalNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getFlowFinalNode());
+		g1.getETypeArguments().add(g2);
+		flowFinalNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		decisionNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getDecisionNode());
+		g1.getETypeArguments().add(g2);
+		decisionNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		mergeNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getMergeNode());
+		g1.getETypeArguments().add(g2);
+		mergeNodeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActivityDiagram_Title(), theEcorePackage.getEString(), "title", null, 1, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActivityDiagram_RootPackage(), this.getRootPackage(), null, "rootPackage", null, 1, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getActivityDiagram_ActivityName(), ecorePackage.getEString(), "activityName", null, 0, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRootPackage_Nodes(), this.getNode(), null, "nodes", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRootPackage_Relations(), this.getFlow(), null, "relations", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRootPackage_ActivityName(), ecorePackage.getEString(), "activityName", null, 0, 1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), theTypesPackage.getString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(controlNodeEClass, ControlNode.class, "ControlNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getControlNode_Type(), this.getNodeType(), "type", null, 1, 1, ControlNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(activityNodeEClass, ActivityNode.class, "ActivityNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getActivityNode_Alias(), theTypesPackage.getString(), "alias", null, 0, 1, ActivityNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(actionNodeEClass, ActionNode.class, "ActionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActionNode_Alias(), theTypesPackage.getString(), "alias", "", 0, 1, ActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFlow_RelatedElements(), this.getNode(), null, "relatedElements", null, 2, 2, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlow_RelatedElements(), this.getNode(), null, "relatedElements", null, 2, -1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFlow_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		// Initialize enums and add enum literals
-		initEEnum(nodeTypeEEnum, NodeType.class, "NodeType");
-		addEEnumLiteral(nodeTypeEEnum, NodeType.INITIAL);
-		addEEnumLiteral(nodeTypeEEnum, NodeType.FINAL);
-		addEEnumLiteral(nodeTypeEEnum, NodeType.FLOW_FINAL);
-		addEEnumLiteral(nodeTypeEEnum, NodeType.DECISION);
-		addEEnumLiteral(nodeTypeEEnum, NodeType.MERGE);
+		initEClass(initialNodeEClass, InitialNode.class, "InitialNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(finalNodeEClass, FinalNode.class, "FinalNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(flowFinalNodeEClass, FlowFinalNode.class, "FlowFinalNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(decisionNodeEClass, DecisionNode.class, "DecisionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mergeNodeEClass, MergeNode.class, "MergeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

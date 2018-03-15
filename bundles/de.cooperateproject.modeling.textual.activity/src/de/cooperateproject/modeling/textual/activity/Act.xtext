@@ -9,39 +9,54 @@ ActivityDiagram returns ActivityDiagram:
 	{ActivityDiagram}
 		'@start-actd' title=STRING
 		rootPackage=RootPackage
-		('activityName' activityName=STRING)?
 		'@end-actd'
 ;
 
 RootPackage:
 	{RootPackage} 
 	('rootPackage' name=FQN)?
+	('activityName' activityName=STRING)?
 	nodes+=Node*
 	relations+=Flow*
 	;
 
 Node returns Node:
-	ActivityNode | ControlNode
+	ActionNode | ControlNode
 ;
 
-ActivityNode returns ActivityNode:
+ActionNode returns ActionNode:
 	'actn'(name = ID | name = ID 'as' alias = STRING) // FIXME: Ordering? (NOT Copy-Paste from CMP)
 ;
 
 ControlNode returns ControlNode:
-	type=NodeType (name = ID)? // TODO: Empty names = 'ini' etc.
+	InitialNode | FinalNode | FlowFinalNode | DecisionNode | MergeNode
 ;
 
-enum NodeType:
-	INITIAL = 'ini'
-	| FINAL = 'fin'
-	| FLOW_FINAL = 'ffin'
-	| DECISION = 'decn'
-	| MERGE = 'mrgn'
+InitialNode returns InitialNode:
+	{InitialNode}
+	'ini' (name = ID)?
+;
+
+FinalNode returns FinalNode:
+	{FinalNode}
+	'fin' (name = ID)?
+;
+
+FlowFinalNode returns FlowFinalNode:
+	{FlowFinalNode}
+	'ffin' (name = ID)?
+;
+
+DecisionNode returns DecisionNode:
+	'decn' (name = ID)
+;
+
+MergeNode returns MergeNode:
+	'mrgn' (name = ID)
 ;
 
 Flow returns Flow:
-	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')? // TODO: Multiflow flw(A,B,C)
+	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?
 	
 ;
 

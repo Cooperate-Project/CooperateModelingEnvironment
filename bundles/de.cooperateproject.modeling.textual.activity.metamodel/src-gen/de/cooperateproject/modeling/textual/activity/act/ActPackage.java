@@ -6,7 +6,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -88,22 +87,13 @@ public interface ActPackage extends EPackage {
 	int ACTIVITY_DIAGRAM__ROOT_PACKAGE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY_DIAGRAM__ACTIVITY_NAME = 2;
-
-	/**
 	 * The number of structural features of the '<em>Activity Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_DIAGRAM_FEATURE_COUNT = 3;
+	int ACTIVITY_DIAGRAM_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Activity Diagram</em>' class.
@@ -188,13 +178,22 @@ public interface ActPackage extends EPackage {
 	int ROOT_PACKAGE__RELATIONS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_PACKAGE__ACTIVITY_NAME = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Root Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
+	int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -281,22 +280,13 @@ public interface ActPackage extends EPackage {
 	int CONTROL_NODE__NAME = NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_NODE__TYPE = NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Control Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+	int CONTROL_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Control Node</em>' class.
@@ -308,14 +298,14 @@ public interface ActPackage extends EPackage {
 	int CONTROL_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl <em>Activity Node</em>}' class.
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActionNodeImpl <em>Action Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl
-	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActivityNode()
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActionNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActionNode()
 	 * @generated
 	 */
-	int ACTIVITY_NODE = 4;
+	int ACTION_NODE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -324,7 +314,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_NODE__NAME = NODE__NAME;
+	int ACTION_NODE__NAME = NODE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -333,25 +323,25 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_NODE__ALIAS = NODE_FEATURE_COUNT + 0;
+	int ACTION_NODE__ALIAS = NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Activity Node</em>' class.
+	 * The number of structural features of the '<em>Action Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+	int ACTION_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Activity Node</em>' class.
+	 * The number of operations of the '<em>Action Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+	int ACTION_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl <em>Flow</em>}' class.
@@ -364,13 +354,22 @@ public interface ActPackage extends EPackage {
 	int FLOW = 5;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Related Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__RELATED_ELEMENTS = 0;
+	int FLOW__RELATED_ELEMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -379,7 +378,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__CONDITION = 1;
+	int FLOW__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
@@ -388,7 +387,25 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FEATURE_COUNT = 2;
+	int FLOW_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Flow</em>' class.
@@ -397,18 +414,327 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_OPERATION_COUNT = 0;
+	int FLOW_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}' enum.
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.InitialNodeImpl <em>Initial Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.activity.act.NodeType
-	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getNodeType()
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.InitialNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getInitialNode()
 	 * @generated
 	 */
-	int NODE_TYPE = 6;
+	int INITIAL_NODE = 6;
 
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Initial Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Initial Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FinalNodeImpl <em>Final Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.FinalNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFinalNode()
+	 * @generated
+	 */
+	int FINAL_NODE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Final Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Final Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowFinalNodeImpl <em>Flow Final Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.FlowFinalNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFlowFinalNode()
+	 * @generated
+	 */
+	int FLOW_FINAL_NODE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Flow Final Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Flow Final Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.DecisionNodeImpl <em>Decision Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.DecisionNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getDecisionNode()
+	 * @generated
+	 */
+	int DECISION_NODE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Decision Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Decision Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.MergeNodeImpl <em>Merge Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.MergeNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getMergeNode()
+	 * @generated
+	 */
+	int MERGE_NODE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Merge Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Merge Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram <em>Activity Diagram</em>}'.
@@ -443,17 +769,6 @@ public interface ActPackage extends EPackage {
 	EReference getActivityDiagram_RootPackage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getActivityName <em>Activity Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Activity Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityDiagram#getActivityName()
-	 * @see #getActivityDiagram()
-	 * @generated
-	 */
-	EAttribute getActivityDiagram_ActivityName();
-
-	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage <em>Root Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -484,6 +799,17 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRootPackage_Relations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Activity Name</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName()
+	 * @see #getRootPackage()
+	 * @generated
+	 */
+	EAttribute getRootPackage_ActivityName();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Node <em>Node</em>}'.
@@ -517,36 +843,25 @@ public interface ActPackage extends EPackage {
 	EClass getControlNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ControlNode#getType <em>Type</em>}'.
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActionNode <em>Action Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ControlNode#getType()
-	 * @see #getControlNode()
+	 * @return the meta object for class '<em>Action Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActionNode
 	 * @generated
 	 */
-	EAttribute getControlNode_Type();
+	EClass getActionNode();
 
 	/**
-	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode <em>Activity Node</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Activity Node</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityNode
-	 * @generated
-	 */
-	EClass getActivityNode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode#getAlias <em>Alias</em>}'.
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ActionNode#getAlias <em>Alias</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Alias</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityNode#getAlias()
-	 * @see #getActivityNode()
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActionNode#getAlias()
+	 * @see #getActionNode()
 	 * @generated
 	 */
-	EAttribute getActivityNode_Alias();
+	EAttribute getActionNode_Alias();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Flow <em>Flow</em>}'.
@@ -581,14 +896,54 @@ public interface ActPackage extends EPackage {
 	EAttribute getFlow_Condition();
 
 	/**
-	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}'.
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.InitialNode <em>Initial Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Node Type</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.NodeType
+	 * @return the meta object for class '<em>Initial Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.InitialNode
 	 * @generated
 	 */
-	EEnum getNodeType();
+	EClass getInitialNode();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.FinalNode <em>Final Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Final Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.FinalNode
+	 * @generated
+	 */
+	EClass getFinalNode();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.FlowFinalNode <em>Flow Final Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Flow Final Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.FlowFinalNode
+	 * @generated
+	 */
+	EClass getFlowFinalNode();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.DecisionNode <em>Decision Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Decision Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.DecisionNode
+	 * @generated
+	 */
+	EClass getDecisionNode();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.MergeNode <em>Merge Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Merge Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.MergeNode
+	 * @generated
+	 */
+	EClass getMergeNode();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -640,14 +995,6 @@ public interface ActPackage extends EPackage {
 		EReference ACTIVITY_DIAGRAM__ROOT_PACKAGE = eINSTANCE.getActivityDiagram_RootPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ACTIVITY_DIAGRAM__ACTIVITY_NAME = eINSTANCE.getActivityDiagram_ActivityName();
-
-		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl <em>Root Package</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -672,6 +1019,14 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ROOT_PACKAGE__RELATIONS = eINSTANCE.getRootPackage_Relations();
+
+		/**
+		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROOT_PACKAGE__ACTIVITY_NAME = eINSTANCE.getRootPackage_ActivityName();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.NodeImpl <em>Node</em>}' class.
@@ -702,22 +1057,14 @@ public interface ActPackage extends EPackage {
 		EClass CONTROL_NODE = eINSTANCE.getControlNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActionNodeImpl <em>Action Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActionNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActionNode()
 		 * @generated
 		 */
-		EAttribute CONTROL_NODE__TYPE = eINSTANCE.getControlNode_Type();
-
-		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl <em>Activity Node</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl
-		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActivityNode()
-		 * @generated
-		 */
-		EClass ACTIVITY_NODE = eINSTANCE.getActivityNode();
+		EClass ACTION_NODE = eINSTANCE.getActionNode();
 
 		/**
 		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
@@ -725,7 +1072,7 @@ public interface ActPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ACTIVITY_NODE__ALIAS = eINSTANCE.getActivityNode_Alias();
+		EAttribute ACTION_NODE__ALIAS = eINSTANCE.getActionNode_Alias();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl <em>Flow</em>}' class.
@@ -754,14 +1101,54 @@ public interface ActPackage extends EPackage {
 		EAttribute FLOW__CONDITION = eINSTANCE.getFlow_Condition();
 
 		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.NodeType <em>Node Type</em>}' enum.
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.InitialNodeImpl <em>Initial Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.activity.act.NodeType
-		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getNodeType()
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.InitialNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getInitialNode()
 		 * @generated
 		 */
-		EEnum NODE_TYPE = eINSTANCE.getNodeType();
+		EClass INITIAL_NODE = eINSTANCE.getInitialNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FinalNodeImpl <em>Final Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.FinalNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFinalNode()
+		 * @generated
+		 */
+		EClass FINAL_NODE = eINSTANCE.getFinalNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowFinalNodeImpl <em>Flow Final Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.FlowFinalNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFlowFinalNode()
+		 * @generated
+		 */
+		EClass FLOW_FINAL_NODE = eINSTANCE.getFlowFinalNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.DecisionNodeImpl <em>Decision Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.DecisionNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getDecisionNode()
+		 * @generated
+		 */
+		EClass DECISION_NODE = eINSTANCE.getDecisionNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.MergeNodeImpl <em>Merge Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.MergeNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getMergeNode()
+		 * @generated
+		 */
+		EClass MERGE_NODE = eINSTANCE.getMergeNode();
 
 	}
 

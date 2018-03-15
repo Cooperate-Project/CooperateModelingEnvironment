@@ -141,26 +141,26 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.ActivityNode} instances.
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.ActionNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityNodeItemProvider activityNodeItemProvider;
+	protected ActionNodeItemProvider actionNodeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.ActivityNode}.
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.ActionNode}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createActivityNodeAdapter() {
-		if (activityNodeItemProvider == null) {
-			activityNodeItemProvider = new ActivityNodeItemProvider(this);
+	public Adapter createActionNodeAdapter() {
+		if (actionNodeItemProvider == null) {
+			actionNodeItemProvider = new ActionNodeItemProvider(this);
 		}
 
-		return activityNodeItemProvider;
+		return actionNodeItemProvider;
 	}
 
 	/**
@@ -184,6 +184,121 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 		}
 
 		return flowItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.InitialNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InitialNodeItemProvider initialNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.InitialNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInitialNodeAdapter() {
+		if (initialNodeItemProvider == null) {
+			initialNodeItemProvider = new InitialNodeItemProvider(this);
+		}
+
+		return initialNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.FinalNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FinalNodeItemProvider finalNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.FinalNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFinalNodeAdapter() {
+		if (finalNodeItemProvider == null) {
+			finalNodeItemProvider = new FinalNodeItemProvider(this);
+		}
+
+		return finalNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.FlowFinalNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FlowFinalNodeItemProvider flowFinalNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.FlowFinalNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFlowFinalNodeAdapter() {
+		if (flowFinalNodeItemProvider == null) {
+			flowFinalNodeItemProvider = new FlowFinalNodeItemProvider(this);
+		}
+
+		return flowFinalNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.DecisionNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DecisionNodeItemProvider decisionNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.DecisionNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDecisionNodeAdapter() {
+		if (decisionNodeItemProvider == null) {
+			decisionNodeItemProvider = new DecisionNodeItemProvider(this);
+		}
+
+		return decisionNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.MergeNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MergeNodeItemProvider mergeNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.MergeNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMergeNodeAdapter() {
+		if (mergeNodeItemProvider == null) {
+			mergeNodeItemProvider = new MergeNodeItemProvider(this);
+		}
+
+		return mergeNodeItemProvider;
 	}
 
 	/**
@@ -288,8 +403,13 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 		if (activityDiagramItemProvider != null) activityDiagramItemProvider.dispose();
 		if (rootPackageItemProvider != null) rootPackageItemProvider.dispose();
 		if (controlNodeItemProvider != null) controlNodeItemProvider.dispose();
-		if (activityNodeItemProvider != null) activityNodeItemProvider.dispose();
+		if (actionNodeItemProvider != null) actionNodeItemProvider.dispose();
 		if (flowItemProvider != null) flowItemProvider.dispose();
+		if (initialNodeItemProvider != null) initialNodeItemProvider.dispose();
+		if (finalNodeItemProvider != null) finalNodeItemProvider.dispose();
+		if (flowFinalNodeItemProvider != null) flowFinalNodeItemProvider.dispose();
+		if (decisionNodeItemProvider != null) decisionNodeItemProvider.dispose();
+		if (mergeNodeItemProvider != null) mergeNodeItemProvider.dispose();
 	}
 
 }

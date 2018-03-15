@@ -10,8 +10,6 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
-import org.eclipse.xtext.EnumLiteralDeclaration;
-import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -20,7 +18,6 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
-import org.eclipse.xtext.service.AbstractElementFinder.AbstractEnumRuleElementFinder;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -36,20 +33,16 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
 		private final Assignment cRootPackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootPackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootPackageAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cActivityNameKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cActivityNameAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cActivityNameSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cActivityNameAssignment_4_1.eContents().get(0);
-		private final Keyword cEndActdKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cEndActdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ActivityDiagram:
 		//	{ActivityDiagram}
 		//	'@start-actd' title=STRING
-		//	rootPackage=RootPackage ('activityName' activityName=STRING)?
+		//	rootPackage=RootPackage
 		//	'@end-actd';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ActivityDiagram} '@start-actd' title=STRING rootPackage=RootPackage ('activityName' activityName=STRING)? '@end-actd'
+		//{ActivityDiagram} '@start-actd' title=STRING rootPackage=RootPackage '@end-actd'
 		public Group getGroup() { return cGroup; }
 		
 		//{ActivityDiagram}
@@ -70,20 +63,8 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//RootPackage
 		public RuleCall getRootPackageRootPackageParserRuleCall_3_0() { return cRootPackageRootPackageParserRuleCall_3_0; }
 		
-		//('activityName' activityName=STRING)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'activityName'
-		public Keyword getActivityNameKeyword_4_0() { return cActivityNameKeyword_4_0; }
-		
-		//activityName=STRING
-		public Assignment getActivityNameAssignment_4_1() { return cActivityNameAssignment_4_1; }
-		
-		//STRING
-		public RuleCall getActivityNameSTRINGTerminalRuleCall_4_1_0() { return cActivityNameSTRINGTerminalRuleCall_4_1_0; }
-		
 		//'@end-actd'
-		public Keyword getEndActdKeyword_5() { return cEndActdKeyword_5; }
+		public Keyword getEndActdKeyword_4() { return cEndActdKeyword_4; }
 	}
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.RootPackage");
@@ -93,18 +74,22 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
-		private final Assignment cNodesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNodesNodeParserRuleCall_2_0 = (RuleCall)cNodesAssignment_2.eContents().get(0);
-		private final Assignment cRelationsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRelationsFlowParserRuleCall_3_0 = (RuleCall)cRelationsAssignment_3.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cActivityNameKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cActivityNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cActivityNameSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cActivityNameAssignment_2_1.eContents().get(0);
+		private final Assignment cNodesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNodesNodeParserRuleCall_3_0 = (RuleCall)cNodesAssignment_3.eContents().get(0);
+		private final Assignment cRelationsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRelationsFlowParserRuleCall_4_0 = (RuleCall)cRelationsAssignment_4.eContents().get(0);
 		
 		//RootPackage:
-		//	{RootPackage} ('rootPackage' name=FQN)?
+		//	{RootPackage} ('rootPackage' name=FQN)? ('activityName' activityName=STRING)?
 		//	nodes+=Node*
 		//	relations+=Flow*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{RootPackage} ('rootPackage' name=FQN)? nodes+=Node* relations+=Flow*
+		//{RootPackage} ('rootPackage' name=FQN)? ('activityName' activityName=STRING)? nodes+=Node* relations+=Flow*
 		public Group getGroup() { return cGroup; }
 		
 		//{RootPackage}
@@ -122,39 +107,51 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
 		
+		//('activityName' activityName=STRING)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'activityName'
+		public Keyword getActivityNameKeyword_2_0() { return cActivityNameKeyword_2_0; }
+		
+		//activityName=STRING
+		public Assignment getActivityNameAssignment_2_1() { return cActivityNameAssignment_2_1; }
+		
+		//STRING
+		public RuleCall getActivityNameSTRINGTerminalRuleCall_2_1_0() { return cActivityNameSTRINGTerminalRuleCall_2_1_0; }
+		
 		//nodes+=Node*
-		public Assignment getNodesAssignment_2() { return cNodesAssignment_2; }
+		public Assignment getNodesAssignment_3() { return cNodesAssignment_3; }
 		
 		//Node
-		public RuleCall getNodesNodeParserRuleCall_2_0() { return cNodesNodeParserRuleCall_2_0; }
+		public RuleCall getNodesNodeParserRuleCall_3_0() { return cNodesNodeParserRuleCall_3_0; }
 		
 		//relations+=Flow*
-		public Assignment getRelationsAssignment_3() { return cRelationsAssignment_3; }
+		public Assignment getRelationsAssignment_4() { return cRelationsAssignment_4; }
 		
 		//Flow
-		public RuleCall getRelationsFlowParserRuleCall_3_0() { return cRelationsFlowParserRuleCall_3_0; }
+		public RuleCall getRelationsFlowParserRuleCall_4_0() { return cRelationsFlowParserRuleCall_4_0; }
 	}
 	public class NodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Node");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cActivityNodeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cActionNodeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cControlNodeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Node:
-		//	ActivityNode | ControlNode;
+		//	ActionNode | ControlNode;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ActivityNode | ControlNode
+		//ActionNode | ControlNode
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ActivityNode
-		public RuleCall getActivityNodeParserRuleCall_0() { return cActivityNodeParserRuleCall_0; }
+		//ActionNode
+		public RuleCall getActionNodeParserRuleCall_0() { return cActionNodeParserRuleCall_0; }
 		
 		//ControlNode
 		public RuleCall getControlNodeParserRuleCall_1() { return cControlNodeParserRuleCall_1; }
 	}
-	public class ActivityNodeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.ActivityNode");
+	public class ActionNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.ActionNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cActnKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -167,7 +164,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAliasAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
 		private final RuleCall cAliasSTRINGTerminalRuleCall_1_1_2_0 = (RuleCall)cAliasAssignment_1_1_2.eContents().get(0);
 		
-		//ActivityNode:
+		//ActionNode:
 		//	'actn' (name=ID | name=ID 'as' alias=STRING);
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -206,27 +203,160 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class ControlNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.ControlNode");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cInitialNodeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFinalNodeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cFlowFinalNodeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDecisionNodeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cMergeNodeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		
+		//ControlNode:
+		//	InitialNode | FinalNode | FlowFinalNode | DecisionNode | MergeNode;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//InitialNode | FinalNode | FlowFinalNode | DecisionNode | MergeNode
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//InitialNode
+		public RuleCall getInitialNodeParserRuleCall_0() { return cInitialNodeParserRuleCall_0; }
+		
+		//FinalNode
+		public RuleCall getFinalNodeParserRuleCall_1() { return cFinalNodeParserRuleCall_1; }
+		
+		//FlowFinalNode
+		public RuleCall getFlowFinalNodeParserRuleCall_2() { return cFlowFinalNodeParserRuleCall_2; }
+		
+		//DecisionNode
+		public RuleCall getDecisionNodeParserRuleCall_3() { return cDecisionNodeParserRuleCall_3; }
+		
+		//MergeNode
+		public RuleCall getMergeNodeParserRuleCall_4() { return cMergeNodeParserRuleCall_4; }
+	}
+	public class InitialNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.InitialNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeNodeTypeEnumRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Action cInitialNodeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cIniKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		
+		//InitialNode:
+		//	{InitialNode}
+		//	'ini' name=ID?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{InitialNode} 'ini' name=ID?
+		public Group getGroup() { return cGroup; }
+		
+		//{InitialNode}
+		public Action getInitialNodeAction_0() { return cInitialNodeAction_0; }
+		
+		//'ini'
+		public Keyword getIniKeyword_1() { return cIniKeyword_1; }
+		
+		//name=ID?
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+	}
+	public class FinalNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FinalNode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cFinalNodeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cFinKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		
+		//FinalNode:
+		//	{FinalNode}
+		//	'fin' name=ID?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{FinalNode} 'fin' name=ID?
+		public Group getGroup() { return cGroup; }
+		
+		//{FinalNode}
+		public Action getFinalNodeAction_0() { return cFinalNodeAction_0; }
+		
+		//'fin'
+		public Keyword getFinKeyword_1() { return cFinKeyword_1; }
+		
+		//name=ID?
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+	}
+	public class FlowFinalNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FlowFinalNode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cFlowFinalNodeAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cFfinKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		
+		//FlowFinalNode:
+		//	{FlowFinalNode}
+		//	'ffin' name=ID?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{FlowFinalNode} 'ffin' name=ID?
+		public Group getGroup() { return cGroup; }
+		
+		//{FlowFinalNode}
+		public Action getFlowFinalNodeAction_0() { return cFlowFinalNodeAction_0; }
+		
+		//'ffin'
+		public Keyword getFfinKeyword_1() { return cFfinKeyword_1; }
+		
+		//name=ID?
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+	}
+	public class DecisionNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.DecisionNode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDecnKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//ControlNode:
-		//	type=NodeType name=ID? // TODO: Empty names = 'ini' etc.
-		//;
+		//DecisionNode:
+		//	'decn' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=NodeType name=ID?
+		//'decn' name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//type=NodeType
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//'decn'
+		public Keyword getDecnKeyword_0() { return cDecnKeyword_0; }
 		
-		//NodeType
-		public RuleCall getTypeNodeTypeEnumRuleCall_0_0() { return cTypeNodeTypeEnumRuleCall_0_0; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//name=ID?
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
+	public class MergeNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.MergeNode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cMrgnKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//MergeNode:
+		//	'mrgn' name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'mrgn' name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//'mrgn'
+		public Keyword getMrgnKeyword_0() { return cMrgnKeyword_0; }
+		
+		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
@@ -240,23 +370,23 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRelatedElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cRelatedElementsNodeCrossReference_2_0 = (CrossReference)cRelatedElementsAssignment_2.eContents().get(0);
 		private final RuleCall cRelatedElementsNodeIDTerminalRuleCall_2_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_2_0.eContents().get(1);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cRelatedElementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cRelatedElementsNodeCrossReference_4_0 = (CrossReference)cRelatedElementsAssignment_4.eContents().get(0);
-		private final RuleCall cRelatedElementsNodeIDTerminalRuleCall_4_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cLeftSquareBracketKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cConditionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cConditionSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cConditionAssignment_6_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cRelatedElementsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cRelatedElementsNodeCrossReference_3_1_0 = (CrossReference)cRelatedElementsAssignment_3_1.eContents().get(0);
+		private final RuleCall cRelatedElementsNodeIDTerminalRuleCall_3_1_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_3_1_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cLeftSquareBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cConditionIDTerminalRuleCall_5_1_0 = (RuleCall)cConditionAssignment_5_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Flow:
-		//	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')? // TODO: Multiflow flw(A,B,C)
-		//;
+		//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')?
+		//'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'flw'
@@ -274,35 +404,38 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getRelatedElementsNodeIDTerminalRuleCall_2_0_1() { return cRelatedElementsNodeIDTerminalRuleCall_2_0_1; }
 		
+		//(',' relatedElements+=[Node])*
+		public Group getGroup_3() { return cGroup_3; }
+		
 		//','
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 		
 		//relatedElements+=[Node]
-		public Assignment getRelatedElementsAssignment_4() { return cRelatedElementsAssignment_4; }
+		public Assignment getRelatedElementsAssignment_3_1() { return cRelatedElementsAssignment_3_1; }
 		
 		//[Node]
-		public CrossReference getRelatedElementsNodeCrossReference_4_0() { return cRelatedElementsNodeCrossReference_4_0; }
+		public CrossReference getRelatedElementsNodeCrossReference_3_1_0() { return cRelatedElementsNodeCrossReference_3_1_0; }
 		
 		//ID
-		public RuleCall getRelatedElementsNodeIDTerminalRuleCall_4_0_1() { return cRelatedElementsNodeIDTerminalRuleCall_4_0_1; }
+		public RuleCall getRelatedElementsNodeIDTerminalRuleCall_3_1_0_1() { return cRelatedElementsNodeIDTerminalRuleCall_3_1_0_1; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 		
-		//('[' condition=STRING ']')?
-		public Group getGroup_6() { return cGroup_6; }
+		//('[' condition=ID ']')?
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_6_0() { return cLeftSquareBracketKeyword_6_0; }
+		public Keyword getLeftSquareBracketKeyword_5_0() { return cLeftSquareBracketKeyword_5_0; }
 		
-		//condition=STRING
-		public Assignment getConditionAssignment_6_1() { return cConditionAssignment_6_1; }
+		//condition=ID
+		public Assignment getConditionAssignment_5_1() { return cConditionAssignment_5_1; }
 		
-		//STRING
-		public RuleCall getConditionSTRINGTerminalRuleCall_6_1_0() { return cConditionSTRINGTerminalRuleCall_6_1_0; }
+		//ID
+		public RuleCall getConditionIDTerminalRuleCall_5_1_0() { return cConditionIDTerminalRuleCall_5_1_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_6_2() { return cRightSquareBracketKeyword_6_2; }
+		public Keyword getRightSquareBracketKeyword_5_2() { return cRightSquareBracketKeyword_5_2; }
 	}
 	public class FQNElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FQN");
@@ -332,68 +465,17 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
-	public class NodeTypeElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.NodeType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cINITIALEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cINITIALIniKeyword_0_0 = (Keyword)cINITIALEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cFINALEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cFINALFinKeyword_1_0 = (Keyword)cFINALEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cFLOW_FINALEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cFLOW_FINALFfinKeyword_2_0 = (Keyword)cFLOW_FINALEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cDECISIONEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cDECISIONDecnKeyword_3_0 = (Keyword)cDECISIONEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cMERGEEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cMERGEMrgnKeyword_4_0 = (Keyword)cMERGEEnumLiteralDeclaration_4.eContents().get(0);
-		
-		//enum NodeType:
-		//	INITIAL='ini'
-		//	| FINAL='fin'
-		//	| FLOW_FINAL='ffin'
-		//	| DECISION='decn'
-		//	| MERGE='mrgn';
-		public EnumRule getRule() { return rule; }
-		
-		//INITIAL='ini' | FINAL='fin' | FLOW_FINAL='ffin' | DECISION='decn' | MERGE='mrgn'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//INITIAL='ini'
-		public EnumLiteralDeclaration getINITIALEnumLiteralDeclaration_0() { return cINITIALEnumLiteralDeclaration_0; }
-		
-		//'ini'
-		public Keyword getINITIALIniKeyword_0_0() { return cINITIALIniKeyword_0_0; }
-		
-		//FINAL='fin'
-		public EnumLiteralDeclaration getFINALEnumLiteralDeclaration_1() { return cFINALEnumLiteralDeclaration_1; }
-		
-		//'fin'
-		public Keyword getFINALFinKeyword_1_0() { return cFINALFinKeyword_1_0; }
-		
-		//FLOW_FINAL='ffin'
-		public EnumLiteralDeclaration getFLOW_FINALEnumLiteralDeclaration_2() { return cFLOW_FINALEnumLiteralDeclaration_2; }
-		
-		//'ffin'
-		public Keyword getFLOW_FINALFfinKeyword_2_0() { return cFLOW_FINALFfinKeyword_2_0; }
-		
-		//DECISION='decn'
-		public EnumLiteralDeclaration getDECISIONEnumLiteralDeclaration_3() { return cDECISIONEnumLiteralDeclaration_3; }
-		
-		//'decn'
-		public Keyword getDECISIONDecnKeyword_3_0() { return cDECISIONDecnKeyword_3_0; }
-		
-		//MERGE='mrgn'
-		public EnumLiteralDeclaration getMERGEEnumLiteralDeclaration_4() { return cMERGEEnumLiteralDeclaration_4; }
-		
-		//'mrgn'
-		public Keyword getMERGEMrgnKeyword_4_0() { return cMERGEMrgnKeyword_4_0; }
-	}
 	
 	private final ActivityDiagramElements pActivityDiagram;
 	private final RootPackageElements pRootPackage;
 	private final NodeElements pNode;
-	private final ActivityNodeElements pActivityNode;
+	private final ActionNodeElements pActionNode;
 	private final ControlNodeElements pControlNode;
-	private final NodeTypeElements eNodeType;
+	private final InitialNodeElements pInitialNode;
+	private final FinalNodeElements pFinalNode;
+	private final FlowFinalNodeElements pFlowFinalNode;
+	private final DecisionNodeElements pDecisionNode;
+	private final MergeNodeElements pMergeNode;
 	private final FlowElements pFlow;
 	private final FQNElements pFQN;
 	
@@ -409,9 +491,13 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		this.pActivityDiagram = new ActivityDiagramElements();
 		this.pRootPackage = new RootPackageElements();
 		this.pNode = new NodeElements();
-		this.pActivityNode = new ActivityNodeElements();
+		this.pActionNode = new ActionNodeElements();
 		this.pControlNode = new ControlNodeElements();
-		this.eNodeType = new NodeTypeElements();
+		this.pInitialNode = new InitialNodeElements();
+		this.pFinalNode = new FinalNodeElements();
+		this.pFlowFinalNode = new FlowFinalNodeElements();
+		this.pDecisionNode = new DecisionNodeElements();
+		this.pMergeNode = new MergeNodeElements();
 		this.pFlow = new FlowElements();
 		this.pFQN = new FQNElements();
 	}
@@ -446,7 +532,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	//ActivityDiagram:
 	//	{ActivityDiagram}
 	//	'@start-actd' title=STRING
-	//	rootPackage=RootPackage ('activityName' activityName=STRING)?
+	//	rootPackage=RootPackage
 	//	'@end-actd';
 	public ActivityDiagramElements getActivityDiagramAccess() {
 		return pActivityDiagram;
@@ -457,7 +543,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	{RootPackage} ('rootPackage' name=FQN)?
+	//	{RootPackage} ('rootPackage' name=FQN)? ('activityName' activityName=STRING)?
 	//	nodes+=Node*
 	//	relations+=Flow*;
 	public RootPackageElements getRootPackageAccess() {
@@ -469,7 +555,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Node:
-	//	ActivityNode | ControlNode;
+	//	ActionNode | ControlNode;
 	public NodeElements getNodeAccess() {
 		return pNode;
 	}
@@ -478,19 +564,18 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		return getNodeAccess().getRule();
 	}
 	
-	//ActivityNode:
+	//ActionNode:
 	//	'actn' (name=ID | name=ID 'as' alias=STRING);
-	public ActivityNodeElements getActivityNodeAccess() {
-		return pActivityNode;
+	public ActionNodeElements getActionNodeAccess() {
+		return pActionNode;
 	}
 	
-	public ParserRule getActivityNodeRule() {
-		return getActivityNodeAccess().getRule();
+	public ParserRule getActionNodeRule() {
+		return getActionNodeAccess().getRule();
 	}
 	
 	//ControlNode:
-	//	type=NodeType name=ID? // TODO: Empty names = 'ini' etc.
-	//;
+	//	InitialNode | FinalNode | FlowFinalNode | DecisionNode | MergeNode;
 	public ControlNodeElements getControlNodeAccess() {
 		return pControlNode;
 	}
@@ -499,23 +584,61 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		return getControlNodeAccess().getRule();
 	}
 	
-	//enum NodeType:
-	//	INITIAL='ini'
-	//	| FINAL='fin'
-	//	| FLOW_FINAL='ffin'
-	//	| DECISION='decn'
-	//	| MERGE='mrgn';
-	public NodeTypeElements getNodeTypeAccess() {
-		return eNodeType;
+	//InitialNode:
+	//	{InitialNode}
+	//	'ini' name=ID?;
+	public InitialNodeElements getInitialNodeAccess() {
+		return pInitialNode;
 	}
 	
-	public EnumRule getNodeTypeRule() {
-		return getNodeTypeAccess().getRule();
+	public ParserRule getInitialNodeRule() {
+		return getInitialNodeAccess().getRule();
+	}
+	
+	//FinalNode:
+	//	{FinalNode}
+	//	'fin' name=ID?;
+	public FinalNodeElements getFinalNodeAccess() {
+		return pFinalNode;
+	}
+	
+	public ParserRule getFinalNodeRule() {
+		return getFinalNodeAccess().getRule();
+	}
+	
+	//FlowFinalNode:
+	//	{FlowFinalNode}
+	//	'ffin' name=ID?;
+	public FlowFinalNodeElements getFlowFinalNodeAccess() {
+		return pFlowFinalNode;
+	}
+	
+	public ParserRule getFlowFinalNodeRule() {
+		return getFlowFinalNodeAccess().getRule();
+	}
+	
+	//DecisionNode:
+	//	'decn' name=ID;
+	public DecisionNodeElements getDecisionNodeAccess() {
+		return pDecisionNode;
+	}
+	
+	public ParserRule getDecisionNodeRule() {
+		return getDecisionNodeAccess().getRule();
+	}
+	
+	//MergeNode:
+	//	'mrgn' name=ID;
+	public MergeNodeElements getMergeNodeAccess() {
+		return pMergeNode;
+	}
+	
+	public ParserRule getMergeNodeRule() {
+		return getMergeNodeAccess().getRule();
 	}
 	
 	//Flow:
-	//	'flw' '(' relatedElements+=[Node] ',' relatedElements+=[Node] ')' ('[' condition=STRING ']')? // TODO: Multiflow flw(A,B,C)
-	//;
+	//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?;
 	public FlowElements getFlowAccess() {
 		return pFlow;
 	}

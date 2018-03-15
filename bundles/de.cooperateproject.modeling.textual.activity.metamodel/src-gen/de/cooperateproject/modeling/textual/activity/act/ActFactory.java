@@ -49,13 +49,13 @@ public interface ActFactory extends EFactory {
 	ControlNode createControlNode();
 
 	/**
-	 * Returns a new object of class '<em>Activity Node</em>'.
+	 * Returns a new object of class '<em>Action Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Activity Node</em>'.
+	 * @return a new object of class '<em>Action Node</em>'.
 	 * @generated
 	 */
-	ActivityNode createActivityNode();
+	ActionNode createActionNode();
 
 	/**
 	 * Returns a new object of class '<em>Flow</em>'.
@@ -65,6 +65,51 @@ public interface ActFactory extends EFactory {
 	 * @generated
 	 */
 	Flow createFlow();
+
+	/**
+	 * Returns a new object of class '<em>Initial Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Initial Node</em>'.
+	 * @generated
+	 */
+	InitialNode createInitialNode();
+
+	/**
+	 * Returns a new object of class '<em>Final Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Final Node</em>'.
+	 * @generated
+	 */
+	FinalNode createFinalNode();
+
+	/**
+	 * Returns a new object of class '<em>Flow Final Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Flow Final Node</em>'.
+	 * @generated
+	 */
+	FlowFinalNode createFlowFinalNode();
+
+	/**
+	 * Returns a new object of class '<em>Decision Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Decision Node</em>'.
+	 * @generated
+	 */
+	DecisionNode createDecisionNode();
+
+	/**
+	 * Returns a new object of class '<em>Merge Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Merge Node</em>'.
+	 * @generated
+	 */
+	MergeNode createMergeNode();
 
 	/**
 	 * Returns the package supported by this factory.

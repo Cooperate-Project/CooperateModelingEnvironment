@@ -22,7 +22,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityDiagramImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityDiagramImpl#getRootPackage <em>Root Package</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityDiagramImpl#getActivityName <em>Activity Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,16 +36,6 @@ public class ActivityDiagramImpl extends CDOObjectImpl implements ActivityDiagra
 	 * @ordered
 	 */
 	protected static final String TITLE_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getActivityName() <em>Activity Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivityName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ACTIVITY_NAME_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,24 +117,6 @@ public class ActivityDiagramImpl extends CDOObjectImpl implements ActivityDiagra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getActivityName() {
-		return (String)eDynamicGet(ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME, ActPackage.Literals.ACTIVITY_DIAGRAM__ACTIVITY_NAME, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActivityName(String newActivityName) {
-		eDynamicSet(ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME, ActPackage.Literals.ACTIVITY_DIAGRAM__ACTIVITY_NAME, newActivityName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -167,8 +138,6 @@ public class ActivityDiagramImpl extends CDOObjectImpl implements ActivityDiagra
 				return getTitle();
 			case ActPackage.ACTIVITY_DIAGRAM__ROOT_PACKAGE:
 				return getRootPackage();
-			case ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME:
-				return getActivityName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,9 +155,6 @@ public class ActivityDiagramImpl extends CDOObjectImpl implements ActivityDiagra
 				return;
 			case ActPackage.ACTIVITY_DIAGRAM__ROOT_PACKAGE:
 				setRootPackage((RootPackage)newValue);
-				return;
-			case ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME:
-				setActivityName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,9 +174,6 @@ public class ActivityDiagramImpl extends CDOObjectImpl implements ActivityDiagra
 			case ActPackage.ACTIVITY_DIAGRAM__ROOT_PACKAGE:
 				setRootPackage((RootPackage)null);
 				return;
-			case ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME:
-				setActivityName(ACTIVITY_NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,8 +190,6 @@ public class ActivityDiagramImpl extends CDOObjectImpl implements ActivityDiagra
 				return TITLE_EDEFAULT == null ? getTitle() != null : !TITLE_EDEFAULT.equals(getTitle());
 			case ActPackage.ACTIVITY_DIAGRAM__ROOT_PACKAGE:
 				return getRootPackage() != null;
-			case ActPackage.ACTIVITY_DIAGRAM__ACTIVITY_NAME:
-				return ACTIVITY_NAME_EDEFAULT == null ? getActivityName() != null : !ACTIVITY_NAME_EDEFAULT.equals(getActivityName());
 		}
 		return super.eIsSet(featureID);
 	}

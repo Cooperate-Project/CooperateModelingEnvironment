@@ -2,9 +2,9 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
-import org.eclipse.emf.cdo.CDOObject;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.uml2.uml.Relationship;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,10 +21,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getFlow()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface Flow extends CDOObject {
+public interface Flow extends UMLReferencingElement<Relationship> {
 
 	/**
 	 * Returns the value of the '<em><b>Related Elements</b></em>' reference list.
@@ -37,7 +36,7 @@ public interface Flow extends CDOObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Elements</em>' reference list.
 	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getFlow_RelatedElements()
-	 * @model lower="2" upper="2"
+	 * @model lower="2"
 	 * @generated
 	 */
 	EList<Node> getRelatedElements();

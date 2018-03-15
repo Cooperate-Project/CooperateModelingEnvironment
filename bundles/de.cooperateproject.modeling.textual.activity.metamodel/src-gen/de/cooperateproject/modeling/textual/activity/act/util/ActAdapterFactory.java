@@ -88,12 +88,32 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 				return createControlNodeAdapter();
 			}
 			@Override
-			public Adapter caseActivityNode(ActivityNode object) {
-				return createActivityNodeAdapter();
+			public Adapter caseActionNode(ActionNode object) {
+				return createActionNodeAdapter();
 			}
 			@Override
 			public Adapter caseFlow(Flow object) {
 				return createFlowAdapter();
+			}
+			@Override
+			public Adapter caseInitialNode(InitialNode object) {
+				return createInitialNodeAdapter();
+			}
+			@Override
+			public Adapter caseFinalNode(FinalNode object) {
+				return createFinalNodeAdapter();
+			}
+			@Override
+			public Adapter caseFlowFinalNode(FlowFinalNode object) {
+				return createFlowFinalNodeAdapter();
+			}
+			@Override
+			public Adapter caseDecisionNode(DecisionNode object) {
+				return createDecisionNodeAdapter();
+			}
+			@Override
+			public Adapter caseMergeNode(MergeNode object) {
+				return createMergeNodeAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
@@ -192,16 +212,16 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode <em>Activity Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.ActionNode <em>Action Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActivityNode
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActionNode
 	 * @generated
 	 */
-	public Adapter createActivityNodeAdapter() {
+	public Adapter createActionNodeAdapter() {
 		return null;
 	}
 
@@ -216,6 +236,76 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFlowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.InitialNode <em>Initial Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.InitialNode
+	 * @generated
+	 */
+	public Adapter createInitialNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.FinalNode <em>Final Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.FinalNode
+	 * @generated
+	 */
+	public Adapter createFinalNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.FlowFinalNode <em>Flow Final Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.FlowFinalNode
+	 * @generated
+	 */
+	public Adapter createFlowFinalNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.DecisionNode <em>Decision Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.DecisionNode
+	 * @generated
+	 */
+	public Adapter createDecisionNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.MergeNode <em>Merge Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.MergeNode
+	 * @generated
+	 */
+	public Adapter createMergeNodeAdapter() {
 		return null;
 	}
 

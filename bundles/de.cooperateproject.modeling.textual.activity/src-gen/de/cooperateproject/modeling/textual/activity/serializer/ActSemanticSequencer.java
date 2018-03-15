@@ -5,10 +5,14 @@ package de.cooperateproject.modeling.textual.activity.serializer;
 
 import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
+import de.cooperateproject.modeling.textual.activity.act.ActionNode;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
-import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
-import de.cooperateproject.modeling.textual.activity.act.ControlNode;
+import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
+import de.cooperateproject.modeling.textual.activity.act.FinalNode;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
+import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode;
+import de.cooperateproject.modeling.textual.activity.act.InitialNode;
+import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 import de.cooperateproject.modeling.textual.activity.services.ActGrammarAccess;
 import java.util.Set;
@@ -18,7 +22,9 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -34,17 +40,29 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == ActPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case ActPackage.ACTION_NODE:
+				sequence_ActionNode(context, (ActionNode) semanticObject); 
+				return; 
 			case ActPackage.ACTIVITY_DIAGRAM:
 				sequence_ActivityDiagram(context, (ActivityDiagram) semanticObject); 
 				return; 
-			case ActPackage.ACTIVITY_NODE:
-				sequence_ActivityNode(context, (ActivityNode) semanticObject); 
+			case ActPackage.DECISION_NODE:
+				sequence_DecisionNode(context, (DecisionNode) semanticObject); 
 				return; 
-			case ActPackage.CONTROL_NODE:
-				sequence_ControlNode(context, (ControlNode) semanticObject); 
+			case ActPackage.FINAL_NODE:
+				sequence_FinalNode(context, (FinalNode) semanticObject); 
 				return; 
 			case ActPackage.FLOW:
 				sequence_Flow(context, (Flow) semanticObject); 
+				return; 
+			case ActPackage.FLOW_FINAL_NODE:
+				sequence_FlowFinalNode(context, (FlowFinalNode) semanticObject); 
+				return; 
+			case ActPackage.INITIAL_NODE:
+				sequence_InitialNode(context, (InitialNode) semanticObject); 
+				return; 
+			case ActPackage.MERGE_NODE:
+				sequence_MergeNode(context, (MergeNode) semanticObject); 
 				return; 
 			case ActPackage.ROOT_PACKAGE:
 				sequence_RootPackage(context, (RootPackage) semanticObject); 
@@ -56,38 +74,82 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ActivityDiagram returns ActivityDiagram
-	 *
-	 * Constraint:
-	 *     (title=STRING rootPackage=RootPackage activityName=STRING?)
-	 */
-	protected void sequence_ActivityDiagram(ISerializationContext context, ActivityDiagram semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Node returns ActivityNode
-	 *     ActivityNode returns ActivityNode
+	 *     Node returns ActionNode
+	 *     ActionNode returns ActionNode
 	 *
 	 * Constraint:
 	 *     (name=ID | (name=ID alias=STRING))
 	 */
-	protected void sequence_ActivityNode(ISerializationContext context, ActivityNode semanticObject) {
+	protected void sequence_ActionNode(ISerializationContext context, ActionNode semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Node returns ControlNode
-	 *     ControlNode returns ControlNode
+	 *     ActivityDiagram returns ActivityDiagram
 	 *
 	 * Constraint:
-	 *     (type=NodeType name=ID?)
+	 *     (title=STRING rootPackage=RootPackage)
 	 */
-	protected void sequence_ControlNode(ISerializationContext context, ControlNode semanticObject) {
+	protected void sequence_ActivityDiagram(ISerializationContext context, ActivityDiagram semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.ACTIVITY_DIAGRAM__TITLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.ACTIVITY_DIAGRAM__TITLE));
+			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.ACTIVITY_DIAGRAM__ROOT_PACKAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.ACTIVITY_DIAGRAM__ROOT_PACKAGE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getActivityDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
+		feeder.accept(grammarAccess.getActivityDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0(), semanticObject.getRootPackage());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Node returns DecisionNode
+	 *     ControlNode returns DecisionNode
+	 *     DecisionNode returns DecisionNode
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_DecisionNode(ISerializationContext context, DecisionNode semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getDecisionNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Node returns FinalNode
+	 *     ControlNode returns FinalNode
+	 *     FinalNode returns FinalNode
+	 *
+	 * Constraint:
+	 *     name=ID?
+	 */
+	protected void sequence_FinalNode(ISerializationContext context, FinalNode semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Node returns FlowFinalNode
+	 *     ControlNode returns FlowFinalNode
+	 *     FlowFinalNode returns FlowFinalNode
+	 *
+	 * Constraint:
+	 *     name=ID?
+	 */
+	protected void sequence_FlowFinalNode(ISerializationContext context, FlowFinalNode semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
@@ -97,7 +159,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Flow returns Flow
 	 *
 	 * Constraint:
-	 *     (relatedElements+=[Node|ID] relatedElements+=[Node|ID] condition=STRING?)
+	 *     (relatedElements+=[Node|ID] relatedElements+=[Node|ID]* condition=ID?)
 	 */
 	protected void sequence_Flow(ISerializationContext context, Flow semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -106,10 +168,44 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Node returns InitialNode
+	 *     ControlNode returns InitialNode
+	 *     InitialNode returns InitialNode
+	 *
+	 * Constraint:
+	 *     name=ID?
+	 */
+	protected void sequence_InitialNode(ISerializationContext context, InitialNode semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Node returns MergeNode
+	 *     ControlNode returns MergeNode
+	 *     MergeNode returns MergeNode
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_MergeNode(ISerializationContext context, MergeNode semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getMergeNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN? nodes+=Node* relations+=Flow*)
+	 *     (name=FQN? activityName=STRING? nodes+=Node* relations+=Flow*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

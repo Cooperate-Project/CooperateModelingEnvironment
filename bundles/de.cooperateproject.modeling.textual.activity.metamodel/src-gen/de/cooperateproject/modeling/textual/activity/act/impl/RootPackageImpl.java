@@ -27,11 +27,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getActivityName <em>Activity Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements RootPackage {
+	/**
+	 * The default value of the '{@link #getActivityName() <em>Activity Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivityName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ACTIVITY_NAME_EDEFAULT = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +98,24 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getActivityName() {
+		return (String)eDynamicGet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivityName(String newActivityName) {
+		eDynamicSet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, newActivityName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -110,6 +139,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 				return getNodes();
 			case ActPackage.ROOT_PACKAGE__RELATIONS:
 				return getRelations();
+			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
+				return getActivityName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -131,6 +162,9 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 				getRelations().clear();
 				getRelations().addAll((Collection<? extends Flow>)newValue);
 				return;
+			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
+				setActivityName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -149,6 +183,9 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 			case ActPackage.ROOT_PACKAGE__RELATIONS:
 				getRelations().clear();
 				return;
+			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
+				setActivityName(ACTIVITY_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -165,6 +202,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 				return !getNodes().isEmpty();
 			case ActPackage.ROOT_PACKAGE__RELATIONS:
 				return !getRelations().isEmpty();
+			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
+				return ACTIVITY_NAME_EDEFAULT == null ? getActivityName() != null : !ACTIVITY_NAME_EDEFAULT.equals(getActivityName());
 		}
 		return super.eIsSet(featureID);
 	}

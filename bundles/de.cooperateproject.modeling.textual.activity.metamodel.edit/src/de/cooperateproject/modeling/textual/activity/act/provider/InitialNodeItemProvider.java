@@ -3,8 +3,9 @@
 package de.cooperateproject.modeling.textual.activity.act.provider;
 
 
-import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
+import de.cooperateproject.modeling.textual.activity.act.InitialNode;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,23 +14,21 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.cooperateproject.modeling.textual.activity.act.ActivityNode} object.
+ * This is the item provider adapter for a {@link de.cooperateproject.modeling.textual.activity.act.InitialNode} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ActivityNodeItemProvider extends NodeItemProvider {
+public class InitialNodeItemProvider extends ControlNodeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityNodeItemProvider(AdapterFactory adapterFactory) {
+	public InitialNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,42 +43,42 @@ public class ActivityNodeItemProvider extends NodeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAliasPropertyDescriptor(object);
+			addReferencedElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Alias feature.
+	 * This adds a property descriptor for the Referenced Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAliasPropertyDescriptor(Object object) {
+	protected void addReferencedElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ActivityNode_alias_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActivityNode_alias_feature", "_UI_ActivityNode_type"),
-				 ActPackage.Literals.ACTIVITY_NODE__ALIAS,
+				 getString("_UI_UMLReferencingElement_referencedElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UMLReferencingElement_referencedElement_feature", "_UI_UMLReferencingElement_type"),
+				 TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns ActivityNode.gif.
+	 * This returns InitialNode.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActivityNode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InitialNode"));
 	}
 
 	/**
@@ -90,10 +89,10 @@ public class ActivityNodeItemProvider extends NodeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ActivityNode)object).getName();
+		String label = ((InitialNode)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ActivityNode_type") :
-			getString("_UI_ActivityNode_type") + " " + label;
+			getString("_UI_InitialNode_type") :
+			getString("_UI_InitialNode_type") + " " + label;
 	}
 	
 
@@ -107,12 +106,6 @@ public class ActivityNodeItemProvider extends NodeItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ActivityNode.class)) {
-			case ActPackage.ACTIVITY_NODE__ALIAS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

@@ -6,10 +6,11 @@ import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
 
 import de.cooperateproject.modeling.textual.activity.act.Node;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.Relationship;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class FlowImpl extends CDOObjectImpl implements Flow {
+public class FlowImpl extends UMLReferencingElementImpl<Relationship> implements Flow {
 	/**
 	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,11 +59,12 @@ public class FlowImpl extends CDOObjectImpl implements Flow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
+	public void setReferencedElement(Relationship newReferencedElement) {
+		super.setReferencedElement(newReferencedElement);
 	}
 
 	/**

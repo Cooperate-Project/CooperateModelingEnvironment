@@ -2,26 +2,27 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Activity Node</b></em>'.
+ * A representation of the model object '<em><b>Action Node</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode#getAlias <em>Alias</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.ActionNode#getAlias <em>Alias</em>}</li>
  * </ul>
  *
- * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActivityNode()
+ * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActionNode()
  * @model
  * @generated
  */
-public interface ActivityNode extends Node {
-
+public interface ActionNode extends Node {
 	/**
 	 * Returns the value of the '<em><b>Alias</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Alias</em>' attribute isn't clear,
@@ -30,14 +31,14 @@ public interface ActivityNode extends Node {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Alias</em>' attribute.
 	 * @see #setAlias(String)
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActivityNode_Alias()
-	 * @model dataType="org.eclipse.uml2.types.String"
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getActionNode_Alias()
+	 * @model default="" dataType="org.eclipse.uml2.types.String"
 	 * @generated
 	 */
 	String getAlias();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.ActivityNode#getAlias <em>Alias</em>}' attribute.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.ActionNode#getAlias <em>Alias</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Alias</em>' attribute.
@@ -45,4 +46,5 @@ public interface ActivityNode extends Node {
 	 * @generated
 	 */
 	void setAlias(String value);
-} // ActivityNode
+
+} // ActionNode

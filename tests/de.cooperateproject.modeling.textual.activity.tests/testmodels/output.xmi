@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="SomeTitle">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="testmodels/testfile.uml#_xbCaUBfyEeiyTPreEWqyNg"/>
+    <nodes xsi:type="act:ActivityNode" name="A"/>
+    <nodes xsi:type="act:ActivityNode" name="B"/>
+    <nodes xsi:type="act:ActivityNode" name="C"/>
+    <relations relatedElements="//@rootPackage/@nodes.0 //@rootPackage/@nodes.1 //@rootPackage/@nodes.2"/>
+  </rootPackage>
+</act:ActivityDiagram>

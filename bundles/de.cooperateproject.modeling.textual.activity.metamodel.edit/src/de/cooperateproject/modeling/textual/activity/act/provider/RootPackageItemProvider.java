@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -52,29 +53,29 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRelationsPropertyDescriptor(object);
+			addActivityNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Relations feature.
+	 * This adds a property descriptor for the Activity Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelationsPropertyDescriptor(Object object) {
+	protected void addActivityNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RootPackage_relations_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RootPackage_relations_feature", "_UI_RootPackage_type"),
-				 ActPackage.Literals.ROOT_PACKAGE__RELATIONS,
+				 getString("_UI_RootPackage_activityName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RootPackage_activityName_feature", "_UI_RootPackage_type"),
+				 ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -92,6 +93,7 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ActPackage.Literals.ROOT_PACKAGE__NODES);
+			childrenFeatures.add(ActPackage.Literals.ROOT_PACKAGE__RELATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -147,7 +149,11 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RootPackage.class)) {
+			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case ActPackage.ROOT_PACKAGE__NODES:
+			case ActPackage.ROOT_PACKAGE__RELATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -178,7 +184,37 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ActPackage.Literals.ROOT_PACKAGE__NODES,
-				 ActFactory.eINSTANCE.createActivityNode()));
+				 ActFactory.eINSTANCE.createActionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__NODES,
+				 ActFactory.eINSTANCE.createInitialNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__NODES,
+				 ActFactory.eINSTANCE.createFinalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__NODES,
+				 ActFactory.eINSTANCE.createFlowFinalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__NODES,
+				 ActFactory.eINSTANCE.createDecisionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__NODES,
+				 ActFactory.eINSTANCE.createMergeNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ROOT_PACKAGE__RELATIONS,
+				 ActFactory.eINSTANCE.createFlow()));
 	}
 
 	/**

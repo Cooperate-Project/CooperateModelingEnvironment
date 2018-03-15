@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 import de.cooperateproject.modeling.textual.activity.act.*;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -60,40 +59,15 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 			case ActPackage.ACTIVITY_DIAGRAM: return (EObject)createActivityDiagram();
 			case ActPackage.ROOT_PACKAGE: return (EObject)createRootPackage();
 			case ActPackage.CONTROL_NODE: return (EObject)createControlNode();
-			case ActPackage.ACTIVITY_NODE: return (EObject)createActivityNode();
+			case ActPackage.ACTION_NODE: return (EObject)createActionNode();
 			case ActPackage.FLOW: return (EObject)createFlow();
+			case ActPackage.INITIAL_NODE: return (EObject)createInitialNode();
+			case ActPackage.FINAL_NODE: return (EObject)createFinalNode();
+			case ActPackage.FLOW_FINAL_NODE: return (EObject)createFlowFinalNode();
+			case ActPackage.DECISION_NODE: return (EObject)createDecisionNode();
+			case ActPackage.MERGE_NODE: return (EObject)createMergeNode();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case ActPackage.NODE_TYPE:
-				return createNodeTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case ActPackage.NODE_TYPE:
-				return convertNodeTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -132,9 +106,9 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityNode createActivityNode() {
-		ActivityNodeImpl activityNode = new ActivityNodeImpl();
-		return activityNode;
+	public ActionNode createActionNode() {
+		ActionNodeImpl actionNode = new ActionNodeImpl();
+		return actionNode;
 	}
 
 	/**
@@ -152,10 +126,9 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NodeType createNodeTypeFromString(EDataType eDataType, String initialValue) {
-		NodeType result = NodeType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public InitialNode createInitialNode() {
+		InitialNodeImpl initialNode = new InitialNodeImpl();
+		return initialNode;
 	}
 
 	/**
@@ -163,8 +136,39 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertNodeTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public FinalNode createFinalNode() {
+		FinalNodeImpl finalNode = new FinalNodeImpl();
+		return finalNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FlowFinalNode createFlowFinalNode() {
+		FlowFinalNodeImpl flowFinalNode = new FlowFinalNodeImpl();
+		return flowFinalNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DecisionNode createDecisionNode() {
+		DecisionNodeImpl decisionNode = new DecisionNodeImpl();
+		return decisionNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MergeNode createMergeNode() {
+		MergeNodeImpl mergeNode = new MergeNodeImpl();
+		return mergeNode;
 	}
 
 	/**

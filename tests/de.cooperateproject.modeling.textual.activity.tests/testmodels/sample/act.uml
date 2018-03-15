@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_MXB1MCiSEeiahIqgEtDKlg" name="act">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_MjXoECiSEeiahIqgEtDKlg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_MYyvwCiSEeiahIqgEtDKlg" name="Activity1" node="_S3120CiSEeiahIqgEtDKlg _aYx4sCiSEeiahIqgEtDKlg _btAgsCiSEeiahIqgEtDKlg _mr53MCiSEeiahIqgEtDKlg">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_q02CgCiSEeiahIqgEtDKlg" target="_aYx4sCiSEeiahIqgEtDKlg" source="_S3120CiSEeiahIqgEtDKlg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_rr4YMCiSEeiahIqgEtDKlg" target="_btAgsCiSEeiahIqgEtDKlg" source="_aYx4sCiSEeiahIqgEtDKlg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ufNbcCiSEeiahIqgEtDKlg" target="_mr53MCiSEeiahIqgEtDKlg" source="_btAgsCiSEeiahIqgEtDKlg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_S3120CiSEeiahIqgEtDKlg" name="init" outgoing="_q02CgCiSEeiahIqgEtDKlg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_aYx4sCiSEeiahIqgEtDKlg" name="A" incoming="_q02CgCiSEeiahIqgEtDKlg" outgoing="_rr4YMCiSEeiahIqgEtDKlg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_btAgsCiSEeiahIqgEtDKlg" name="B" incoming="_rr4YMCiSEeiahIqgEtDKlg" outgoing="_ufNbcCiSEeiahIqgEtDKlg"/>
+    <node xmi:type="uml:FlowFinalNode" xmi:id="_mr53MCiSEeiahIqgEtDKlg" name="ffin" incoming="_ufNbcCiSEeiahIqgEtDKlg"/>
+  </packagedElement>
+</uml:Model>

@@ -3,23 +3,24 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.ActivityNode;
+import de.cooperateproject.modeling.textual.activity.act.ActionNode;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Activity Node</b></em>'.
+ * An implementation of the model object '<em><b>Action Node</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityNodeImpl#getAlias <em>Alias</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActionNodeImpl#getAlias <em>Alias</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
+public class ActionNodeImpl extends NodeImpl implements ActionNode {
 	/**
 	 * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -28,14 +29,14 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ALIAS_EDEFAULT = null;
+	protected static final String ALIAS_EDEFAULT = "";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActivityNodeImpl() {
+	protected ActionNodeImpl() {
 		super();
 	}
 
@@ -46,7 +47,7 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ActPackage.Literals.ACTIVITY_NODE;
+		return ActPackage.Literals.ACTION_NODE;
 	}
 
 	/**
@@ -55,7 +56,7 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	 * @generated
 	 */
 	public String getAlias() {
-		return (String)eDynamicGet(ActPackage.ACTIVITY_NODE__ALIAS, ActPackage.Literals.ACTIVITY_NODE__ALIAS, true, true);
+		return (String)eDynamicGet(ActPackage.ACTION_NODE__ALIAS, ActPackage.Literals.ACTION_NODE__ALIAS, true, true);
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	 * @generated
 	 */
 	public void setAlias(String newAlias) {
-		eDynamicSet(ActPackage.ACTIVITY_NODE__ALIAS, ActPackage.Literals.ACTIVITY_NODE__ALIAS, newAlias);
+		eDynamicSet(ActPackage.ACTION_NODE__ALIAS, ActPackage.Literals.ACTION_NODE__ALIAS, newAlias);
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActPackage.ACTIVITY_NODE__ALIAS:
+			case ActPackage.ACTION_NODE__ALIAS:
 				return getAlias();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -89,7 +90,7 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActPackage.ACTIVITY_NODE__ALIAS:
+			case ActPackage.ACTION_NODE__ALIAS:
 				setAlias((String)newValue);
 				return;
 		}
@@ -104,7 +105,7 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActPackage.ACTIVITY_NODE__ALIAS:
+			case ActPackage.ACTION_NODE__ALIAS:
 				setAlias(ALIAS_EDEFAULT);
 				return;
 		}
@@ -119,10 +120,10 @@ public class ActivityNodeImpl extends NodeImpl implements ActivityNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActPackage.ACTIVITY_NODE__ALIAS:
+			case ActPackage.ACTION_NODE__ALIAS:
 				return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ActivityNodeImpl
+} //ActionNodeImpl

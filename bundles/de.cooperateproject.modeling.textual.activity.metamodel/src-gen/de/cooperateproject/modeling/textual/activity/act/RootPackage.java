@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getNodes <em>Nodes</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations <em>Relations</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage()
@@ -55,4 +56,30 @@ public interface RootPackage extends PackageBase<RootPackage> {
 	 * @generated
 	 */
 	EList<Flow> getRelations();
+
+	/**
+	 * Returns the value of the '<em><b>Activity Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Activity Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activity Name</em>' attribute.
+	 * @see #setActivityName(String)
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage_ActivityName()
+	 * @model
+	 * @generated
+	 */
+	String getActivityName();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activity Name</em>' attribute.
+	 * @see #getActivityName()
+	 * @generated
+	 */
+	void setActivityName(String value);
 } // RootPackage

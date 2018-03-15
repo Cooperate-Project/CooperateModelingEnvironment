@@ -100,16 +100,68 @@ public class ActSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActPackage.ACTIVITY_NODE: {
-				ActivityNode activityNode = (ActivityNode)theEObject;
-				T result = caseActivityNode(activityNode);
-				if (result == null) result = caseNode(activityNode);
+			case ActPackage.ACTION_NODE: {
+				ActionNode actionNode = (ActionNode)theEObject;
+				T result = caseActionNode(actionNode);
+				if (result == null) result = caseNode(actionNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.FLOW: {
 				Flow flow = (Flow)theEObject;
 				T result = caseFlow(flow);
+				if (result == null) result = caseUMLReferencingElement(flow);
+				if (result == null) result = caseElement(flow);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.INITIAL_NODE: {
+				InitialNode initialNode = (InitialNode)theEObject;
+				T result = caseInitialNode(initialNode);
+				if (result == null) result = caseControlNode(initialNode);
+				if (result == null) result = caseUMLReferencingElement(initialNode);
+				if (result == null) result = caseNode(initialNode);
+				if (result == null) result = caseElement(initialNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.FINAL_NODE: {
+				FinalNode finalNode = (FinalNode)theEObject;
+				T result = caseFinalNode(finalNode);
+				if (result == null) result = caseControlNode(finalNode);
+				if (result == null) result = caseUMLReferencingElement(finalNode);
+				if (result == null) result = caseNode(finalNode);
+				if (result == null) result = caseElement(finalNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.FLOW_FINAL_NODE: {
+				FlowFinalNode flowFinalNode = (FlowFinalNode)theEObject;
+				T result = caseFlowFinalNode(flowFinalNode);
+				if (result == null) result = caseControlNode(flowFinalNode);
+				if (result == null) result = caseUMLReferencingElement(flowFinalNode);
+				if (result == null) result = caseNode(flowFinalNode);
+				if (result == null) result = caseElement(flowFinalNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.DECISION_NODE: {
+				DecisionNode decisionNode = (DecisionNode)theEObject;
+				T result = caseDecisionNode(decisionNode);
+				if (result == null) result = caseControlNode(decisionNode);
+				if (result == null) result = caseUMLReferencingElement(decisionNode);
+				if (result == null) result = caseNode(decisionNode);
+				if (result == null) result = caseElement(decisionNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.MERGE_NODE: {
+				MergeNode mergeNode = (MergeNode)theEObject;
+				T result = caseMergeNode(mergeNode);
+				if (result == null) result = caseControlNode(mergeNode);
+				if (result == null) result = caseUMLReferencingElement(mergeNode);
+				if (result == null) result = caseNode(mergeNode);
+				if (result == null) result = caseElement(mergeNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -178,17 +230,17 @@ public class ActSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Activity Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Action Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Activity Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Action Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActivityNode(ActivityNode object) {
+	public T caseActionNode(ActionNode object) {
 		return null;
 	}
 
@@ -204,6 +256,81 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFlow(Flow object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Initial Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Initial Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInitialNode(InitialNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Final Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Final Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFinalNode(FinalNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Flow Final Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Flow Final Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFlowFinalNode(FlowFinalNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Decision Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Decision Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDecisionNode(DecisionNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Merge Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Merge Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMergeNode(MergeNode object) {
 		return null;
 	}
 
