@@ -101,12 +101,12 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
     }
 
     private static Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, EClass type) {
-        Optional<CDOTransaction> transation = Optional.fromNullable(umlResource.cdoView())
+        Optional<CDOTransaction> transaction = Optional.fromNullable(umlResource.cdoView())
                 .transform(v -> v.getAdapter(CDOTransaction.class));
-        if (!transation.isPresent()) {
+        if (!transaction.isPresent()) {
             return Stream.empty();
         }
-        CDOQuery query = transation.get().createQuery("ocl",
+        CDOQuery query = transaction.get().createQuery("ocl",
                 String.format("%s::%s.allInstances()", type.getEPackage().getNsPrefix(), type.getName()), true);
         Collection<EObject> results = query.getResult().stream().filter(type::isInstance).map(EObject.class::cast)
                 .filter(o -> o.eResource() == umlResource).collect(Collectors.toList());
