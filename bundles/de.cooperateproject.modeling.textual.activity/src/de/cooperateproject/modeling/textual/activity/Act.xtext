@@ -16,6 +16,7 @@ RootPackage:
 	{RootPackage} 
 	('rootPackage' name=FQN)?
 	('activityName' activityName=STRING)?
+	children+=Swimlane*
 	nodes+=Node*
 	relations+=Flow*
 	;
@@ -29,7 +30,7 @@ ActionNode returns ActionNode:
 ;
 
 ControlNode returns ControlNode:
-	InitialNode | FinalNode | FlowFinalNode | DecisionNode | MergeNode
+	InitialNode | FinalNode | FlowFinalNode | DecisionNode | MergeNode | ForkNode | JoinNode
 ;
 
 InitialNode returns InitialNode:
@@ -55,9 +56,22 @@ MergeNode returns MergeNode:
 	'mrgn' (name = ID)
 ;
 
+ForkNode returns ForkNode:
+	'fork' (name = ID)
+;
+
+JoinNode returns JoinNode:
+	'join' (name = ID)
+;
+
 Flow returns Flow:
 	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?
-	
+;
+
+Swimlane returns Swimlane:
+	'swl' (name = ID) '{'
+		nodes+=Node*
+	'}'
 ;
 
 FQN:

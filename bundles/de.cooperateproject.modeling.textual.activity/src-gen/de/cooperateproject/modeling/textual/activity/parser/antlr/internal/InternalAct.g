@@ -206,9 +206,28 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getNodesNodeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getRootPackageAccess().getChildrenSwimlaneParserRuleCall_3_0());
 				}
-				lv_nodes_5_0=ruleNode
+				lv_children_5_0=ruleSwimlane
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+					}
+					add(
+						$current,
+						"children",
+						lv_children_5_0,
+						"de.cooperateproject.modeling.textual.activity.Act.Swimlane");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRootPackageAccess().getNodesNodeParserRuleCall_4_0());
+				}
+				lv_nodes_6_0=ruleNode
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
@@ -216,7 +235,7 @@ ruleRootPackage returns [EObject current=null]
 					add(
 						$current,
 						"nodes",
-						lv_nodes_5_0,
+						lv_nodes_6_0,
 						"de.cooperateproject.modeling.textual.activity.Act.Node");
 					afterParserOrEnumRuleCall();
 				}
@@ -225,9 +244,9 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationsFlowParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationsFlowParserRuleCall_5_0());
 				}
-				lv_relations_6_0=ruleFlow
+				lv_relations_7_0=ruleFlow
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
@@ -235,7 +254,7 @@ ruleRootPackage returns [EObject current=null]
 					add(
 						$current,
 						"relations",
-						lv_relations_6_0,
+						lv_relations_7_0,
 						"de.cooperateproject.modeling.textual.activity.Act.Flow");
 					afterParserOrEnumRuleCall();
 				}
@@ -424,6 +443,24 @@ ruleControlNode returns [EObject current=null]
 		this_MergeNode_4=ruleMergeNode
 		{
 			$current = $this_MergeNode_4.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getControlNodeAccess().getForkNodeParserRuleCall_5());
+		}
+		this_ForkNode_5=ruleForkNode
+		{
+			$current = $this_ForkNode_5.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getControlNodeAccess().getJoinNodeParserRuleCall_6());
+		}
+		this_JoinNode_6=ruleJoinNode
+		{
+			$current = $this_JoinNode_6.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -655,6 +692,88 @@ ruleMergeNode returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleForkNode
+entryRuleForkNode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getForkNodeRule()); }
+	iv_ruleForkNode=ruleForkNode
+	{ $current=$iv_ruleForkNode.current; }
+	EOF;
+
+// Rule ForkNode
+ruleForkNode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='fork'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getForkNodeAccess().getForkKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getForkNodeAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getForkNodeRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleJoinNode
+entryRuleJoinNode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getJoinNodeRule()); }
+	iv_ruleJoinNode=ruleJoinNode
+	{ $current=$iv_ruleJoinNode.current; }
+	EOF;
+
+// Rule JoinNode
+ruleJoinNode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='join'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getJoinNodeAccess().getJoinKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getJoinNodeAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getJoinNodeRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRuleFlow
 entryRuleFlow returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getFlowRule()); }
@@ -743,6 +862,74 @@ ruleFlow returns [EObject current=null]
 				newLeafNode(otherlv_8, grammarAccess.getFlowAccess().getRightSquareBracketKeyword_5_2());
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleSwimlane
+entryRuleSwimlane returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSwimlaneRule()); }
+	iv_ruleSwimlane=ruleSwimlane
+	{ $current=$iv_ruleSwimlane.current; }
+	EOF;
+
+// Rule Swimlane
+ruleSwimlane returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='swl'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getSwimlaneAccess().getSwlKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getSwimlaneAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSwimlaneRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='{'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getSwimlaneAccess().getLeftCurlyBracketKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSwimlaneAccess().getNodesNodeParserRuleCall_3_0());
+				}
+				lv_nodes_3_0=ruleNode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSwimlaneRule());
+					}
+					add(
+						$current,
+						"nodes",
+						lv_nodes_3_0,
+						"de.cooperateproject.modeling.textual.activity.Act.Node");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_4='}'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getSwimlaneAccess().getRightCurlyBracketKeyword_4());
+		}
 	)
 ;
 

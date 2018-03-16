@@ -11,11 +11,14 @@ import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
 import de.cooperateproject.modeling.textual.activity.act.FinalNode;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
 import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode;
+import de.cooperateproject.modeling.textual.activity.act.ForkNode;
 import de.cooperateproject.modeling.textual.activity.act.InitialNode;
+import de.cooperateproject.modeling.textual.activity.act.JoinNode;
 import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.activity.act.Node;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 
+import de.cooperateproject.modeling.textual.activity.act.Swimlane;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -51,6 +54,13 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * @generated
 	 */
 	private EClass rootPackageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass containerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,6 +124,27 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * @generated
 	 */
 	private EClass mergeNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass forkNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass joinNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass swimlaneEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -223,8 +254,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRootPackage_Nodes() {
-		return (EReference)rootPackageEClass.getEStructuralFeatures().get(0);
+	public EAttribute getRootPackage_ActivityName() {
+		return (EAttribute)rootPackageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -241,8 +272,26 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRootPackage_ActivityName() {
-		return (EAttribute)rootPackageEClass.getEStructuralFeatures().get(2);
+	public EReference getRootPackage_Children() {
+		return (EReference)rootPackageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContainer() {
+		return containerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContainer_Nodes() {
+		return (EReference)containerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -367,6 +416,42 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getForkNode() {
+		return forkNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJoinNode() {
+		return joinNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSwimlane() {
+		return swimlaneEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSwimlane_Name() {
+		return (EAttribute)swimlaneEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ActFactory getActFactory() {
 		return (ActFactory)getEFactoryInstance();
 	}
@@ -395,9 +480,12 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__ROOT_PACKAGE);
 
 		rootPackageEClass = createEClass(ROOT_PACKAGE);
-		createEReference(rootPackageEClass, ROOT_PACKAGE__NODES);
-		createEReference(rootPackageEClass, ROOT_PACKAGE__RELATIONS);
 		createEAttribute(rootPackageEClass, ROOT_PACKAGE__ACTIVITY_NAME);
+		createEReference(rootPackageEClass, ROOT_PACKAGE__RELATIONS);
+		createEReference(rootPackageEClass, ROOT_PACKAGE__CHILDREN);
+
+		containerEClass = createEClass(CONTAINER);
+		createEReference(containerEClass, CONTAINER__NODES);
 
 		nodeEClass = createEClass(NODE);
 		createEAttribute(nodeEClass, NODE__NAME);
@@ -420,6 +508,13 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		decisionNodeEClass = createEClass(DECISION_NODE);
 
 		mergeNodeEClass = createEClass(MERGE_NODE);
+
+		forkNodeEClass = createEClass(FORK_NODE);
+
+		joinNodeEClass = createEClass(JOIN_NODE);
+
+		swimlaneEClass = createEClass(SWIMLANE);
+		createEAttribute(swimlaneEClass, SWIMLANE__NAME);
 	}
 
 	/**
@@ -460,6 +555,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		EGenericType g2 = createEGenericType(this.getRootPackage());
 		g1.getETypeArguments().add(g2);
 		rootPackageEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getContainer());
+		rootPackageEClass.getEGenericSuperTypes().add(g1);
 		controlNodeEClass.getESuperTypes().add(this.getNode());
 		actionNodeEClass.getESuperTypes().add(this.getNode());
 		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
@@ -496,6 +593,19 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g2 = createEGenericType(theUMLPackage.getMergeNode());
 		g1.getETypeArguments().add(g2);
 		mergeNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		forkNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getForkNode());
+		g1.getETypeArguments().add(g2);
+		forkNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getControlNode());
+		joinNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getJoinNode());
+		g1.getETypeArguments().add(g2);
+		joinNodeEClass.getEGenericSuperTypes().add(g1);
+		swimlaneEClass.getESuperTypes().add(this.getContainer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -503,9 +613,12 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEReference(getActivityDiagram_RootPackage(), this.getRootPackage(), null, "rootPackage", null, 1, 1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRootPackage_Nodes(), this.getNode(), null, "nodes", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRootPackage_Relations(), this.getFlow(), null, "relations", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRootPackage_ActivityName(), ecorePackage.getEString(), "activityName", null, 0, 1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRootPackage_Relations(), this.getFlow(), null, "relations", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRootPackage_Children(), this.getContainer(), null, "children", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(containerEClass, de.cooperateproject.modeling.textual.activity.act.Container.class, "Container", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContainer_Nodes(), this.getNode(), null, "nodes", null, 0, -1, de.cooperateproject.modeling.textual.activity.act.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), theTypesPackage.getString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -528,6 +641,13 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEClass(decisionNodeEClass, DecisionNode.class, "DecisionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mergeNodeEClass, MergeNode.class, "MergeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(forkNodeEClass, ForkNode.class, "ForkNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(joinNodeEClass, JoinNode.class, "JoinNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(swimlaneEClass, Swimlane.class, "Swimlane", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSwimlane_Name(), theTypesPackage.getString(), "name", null, 0, 1, Swimlane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

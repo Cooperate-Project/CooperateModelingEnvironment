@@ -11,9 +11,12 @@ import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
 import de.cooperateproject.modeling.textual.activity.act.FinalNode;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
 import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode;
+import de.cooperateproject.modeling.textual.activity.act.ForkNode;
 import de.cooperateproject.modeling.textual.activity.act.InitialNode;
+import de.cooperateproject.modeling.textual.activity.act.JoinNode;
 import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
+import de.cooperateproject.modeling.textual.activity.act.Swimlane;
 import de.cooperateproject.modeling.textual.activity.services.ActGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -58,14 +61,23 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ActPackage.FLOW_FINAL_NODE:
 				sequence_FlowFinalNode(context, (FlowFinalNode) semanticObject); 
 				return; 
+			case ActPackage.FORK_NODE:
+				sequence_ForkNode(context, (ForkNode) semanticObject); 
+				return; 
 			case ActPackage.INITIAL_NODE:
 				sequence_InitialNode(context, (InitialNode) semanticObject); 
+				return; 
+			case ActPackage.JOIN_NODE:
+				sequence_JoinNode(context, (JoinNode) semanticObject); 
 				return; 
 			case ActPackage.MERGE_NODE:
 				sequence_MergeNode(context, (MergeNode) semanticObject); 
 				return; 
 			case ActPackage.ROOT_PACKAGE:
 				sequence_RootPackage(context, (RootPackage) semanticObject); 
+				return; 
+			case ActPackage.SWIMLANE:
+				sequence_Swimlane(context, (Swimlane) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -168,6 +180,26 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Node returns ForkNode
+	 *     ControlNode returns ForkNode
+	 *     ForkNode returns ForkNode
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_ForkNode(ISerializationContext context, ForkNode semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getForkNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Node returns InitialNode
 	 *     ControlNode returns InitialNode
 	 *     InitialNode returns InitialNode
@@ -177,6 +209,26 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_InitialNode(ISerializationContext context, InitialNode semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Node returns JoinNode
+	 *     ControlNode returns JoinNode
+	 *     JoinNode returns JoinNode
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_JoinNode(ISerializationContext context, JoinNode semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getJoinNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -205,9 +257,21 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN? activityName=STRING? nodes+=Node* relations+=Flow*)
+	 *     (name=FQN? activityName=STRING? children+=Swimlane* nodes+=Node* relations+=Flow*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Swimlane returns Swimlane
+	 *
+	 * Constraint:
+	 *     (name=ID nodes+=Node*)
+	 */
+	protected void sequence_Swimlane(ISerializationContext context, Swimlane semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

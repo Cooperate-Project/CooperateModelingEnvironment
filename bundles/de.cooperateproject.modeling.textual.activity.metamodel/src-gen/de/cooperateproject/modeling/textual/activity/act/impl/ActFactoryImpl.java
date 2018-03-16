@@ -58,6 +58,7 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 		switch (eClass.getClassifierID()) {
 			case ActPackage.ACTIVITY_DIAGRAM: return (EObject)createActivityDiagram();
 			case ActPackage.ROOT_PACKAGE: return (EObject)createRootPackage();
+			case ActPackage.CONTAINER: return (EObject)createContainer();
 			case ActPackage.CONTROL_NODE: return (EObject)createControlNode();
 			case ActPackage.ACTION_NODE: return (EObject)createActionNode();
 			case ActPackage.FLOW: return (EObject)createFlow();
@@ -66,6 +67,9 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 			case ActPackage.FLOW_FINAL_NODE: return (EObject)createFlowFinalNode();
 			case ActPackage.DECISION_NODE: return (EObject)createDecisionNode();
 			case ActPackage.MERGE_NODE: return (EObject)createMergeNode();
+			case ActPackage.FORK_NODE: return (EObject)createForkNode();
+			case ActPackage.JOIN_NODE: return (EObject)createJoinNode();
+			case ActPackage.SWIMLANE: return (EObject)createSwimlane();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -89,6 +93,16 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	public RootPackage createRootPackage() {
 		RootPackageImpl rootPackage = new RootPackageImpl();
 		return rootPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public de.cooperateproject.modeling.textual.activity.act.Container createContainer() {
+		ContainerImpl container = new ContainerImpl();
+		return container;
 	}
 
 	/**
@@ -169,6 +183,36 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	public MergeNode createMergeNode() {
 		MergeNodeImpl mergeNode = new MergeNodeImpl();
 		return mergeNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ForkNode createForkNode() {
+		ForkNodeImpl forkNode = new ForkNodeImpl();
+		return forkNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JoinNode createJoinNode() {
+		JoinNodeImpl joinNode = new JoinNodeImpl();
+		return joinNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Swimlane createSwimlane() {
+		SwimlaneImpl swimlane = new SwimlaneImpl();
+		return swimlane;
 	}
 
 	/**

@@ -14,48 +14,16 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getNodes <em>Nodes</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations <em>Relations</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations <em>Relations</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getChildren <em>Children</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage()
  * @model
  * @generated
  */
-public interface RootPackage extends PackageBase<RootPackage> {
-
-	/**
-	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Node}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nodes</em>' containment reference list.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage_Nodes()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Node> getNodes();
-
-	/**
-	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Flow}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Relations</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relations</em>' containment reference list.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage_Relations()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Flow> getRelations();
+public interface RootPackage extends PackageBase<RootPackage>, Container {
 
 	/**
 	 * Returns the value of the '<em><b>Activity Name</b></em>' attribute.
@@ -82,4 +50,36 @@ public interface RootPackage extends PackageBase<RootPackage> {
 	 * @generated
 	 */
 	void setActivityName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
+	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Flow}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Relations</em>' containment reference list.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage_Relations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Flow> getRelations();
+
+	/**
+	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
+	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Container}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Children</em>' containment reference list.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getRootPackage_Children()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Container> getChildren();
 } // RootPackage

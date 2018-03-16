@@ -26,6 +26,8 @@ import org.junit.runner.RunWith
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
+import de.cooperateproject.modeling.textual.activity.act.ForkNode
+import de.cooperateproject.modeling.textual.activity.act.JoinNode
 
 @RunWith(XtextRunner)
 @InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
@@ -190,6 +192,75 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		//save(model, rs)
+		
+		assertEquals(model.rootPackage.relations.length, 1)
+		assertEquals(model.rootPackage.relations.get(0).relatedElements.length, 3)
+	}
+	
+	@Test
+	def void parlallelFlowTest() {
+		// Example from the documentation
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			actn A
+			actn B
+			actn C
+			actn D
+			fork X
+			join Y
+			join Z
+			
+			flw(A,X)
+			flw(B,Z)
+			flw(C,Y)
+			flw(D,Y)
+			flw(Y,Z)
+
+			@end-actd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+		
+		assertEquals(model.rootPackage.nodes.length, 7)
+		assertTrue(model.rootPackage.nodes.get(4) instanceof ForkNode)
+		assertTrue(model.rootPackage.nodes.get(5) instanceof JoinNode)
+	}
+	
+	@Test @Ignore
+	def void sortingTest() {
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			actn A
+			actn B
+			flw(A,B)
+			actn C
+			@end-actd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+		//TODO: Should this work?
+	}
+	
+	@Test @Ignore
+	def void swimlaneTest() {
+		// Example from the documentation
+		val model = '''
+			@start-actd "SomeTitle"
+			rootPackage RootElement
+			swl kunde {
+			   actn suchen as "Buch suchen"
+			   actn kaufen
+			}
+			swl Mitarbeiter {
+			   actn zeigen as "Regal zeigen"
+			}
+
+			flw(suchen, zeigen) 
+			flw(zeigen, kaufen)
+			@end-actd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+		// FIXME: Nested actions not found
 	}
 
 	private static def parse(CharSequence text, ResourceSet rs) {

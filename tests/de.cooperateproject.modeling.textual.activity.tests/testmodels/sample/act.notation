@@ -58,6 +58,27 @@
         <element xmi:type="uml:FlowFinalNode" href="act.uml#_mr53MCiSEeiahIqgEtDKlg"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_msE2UiiSEeiahIqgEtDKlg" x="338" y="31"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_I5nQ4ClHEeiahIqgEtDKlg" type="ActivityPartition_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_I5n38ClHEeiahIqgEtDKlg" type="ActivityPartition_NameLabel"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_I5ofAClHEeiahIqgEtDKlg" type="ActivityPartition_FloatingNameLabel">
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_I5ofASlHEeiahIqgEtDKlg" y="15"/>
+        </children>
+        <children xmi:type="notation:BasicCompartment" xmi:id="_I5ofAilHEeiahIqgEtDKlg" type="ActivityPartition_ActivityNodeCompartment">
+          <children xmi:type="notation:Shape" xmi:id="_KRuTUClHEeiahIqgEtDKlg" type="OpaqueAction_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_KRu6YClHEeiahIqgEtDKlg" type="OpaqueAction_NameLabel"/>
+            <children xmi:type="notation:DecorationNode" xmi:id="_KRu6YSlHEeiahIqgEtDKlg" type="OpaqueAction_FloatingNameLabel">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_KRu6YilHEeiahIqgEtDKlg" y="15"/>
+            </children>
+            <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_KRuTUSlHEeiahIqgEtDKlg"/>
+            <element xmi:type="uml:OpaqueAction" href="act.uml#_KRdNkClHEeiahIqgEtDKlg"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KRvhcClHEeiahIqgEtDKlg" x="41" y="42" width="77"/>
+          </children>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I5ofAylHEeiahIqgEtDKlg"/>
+        </children>
+        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_I5nQ4SlHEeiahIqgEtDKlg"/>
+        <element xmi:type="uml:ActivityPartition" href="act.uml#_I5UV8ClHEeiahIqgEtDKlg"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I5nQ4ilHEeiahIqgEtDKlg" x="232" y="255" width="164" height="154"/>
+      </children>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MckcjSiSEeiahIqgEtDKlg"/>
     </children>
     <element xmi:type="uml:Activity" href="act.uml#_MYyvwCiSEeiahIqgEtDKlg"/>

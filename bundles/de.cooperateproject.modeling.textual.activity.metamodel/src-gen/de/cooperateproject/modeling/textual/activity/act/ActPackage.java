@@ -169,22 +169,31 @@ public interface ActPackage extends EPackage {
 	int ROOT_PACKAGE__NODES = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE__RELATIONS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE__ACTIVITY_NAME = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
+	int ROOT_PACKAGE__ACTIVITY_NAME = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_PACKAGE__RELATIONS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_PACKAGE__CHILDREN = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Root Package</em>' class.
@@ -193,7 +202,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 3;
+	int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -224,6 +233,43 @@ public interface ActPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ContainerImpl <em>Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ContainerImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getContainer()
+	 * @generated
+	 */
+	int CONTAINER = 2;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER__NODES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.NodeImpl <em>Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -231,7 +277,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getNode()
 	 * @generated
 	 */
-	int NODE = 2;
+	int NODE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -268,7 +314,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getControlNode()
 	 * @generated
 	 */
-	int CONTROL_NODE = 3;
+	int CONTROL_NODE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -305,7 +351,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActionNode()
 	 * @generated
 	 */
-	int ACTION_NODE = 4;
+	int ACTION_NODE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -351,7 +397,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFlow()
 	 * @generated
 	 */
-	int FLOW = 5;
+	int FLOW = 6;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -424,7 +470,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getInitialNode()
 	 * @generated
 	 */
-	int INITIAL_NODE = 6;
+	int INITIAL_NODE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -488,7 +534,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFinalNode()
 	 * @generated
 	 */
-	int FINAL_NODE = 7;
+	int FINAL_NODE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -552,7 +598,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getFlowFinalNode()
 	 * @generated
 	 */
-	int FLOW_FINAL_NODE = 8;
+	int FLOW_FINAL_NODE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -616,7 +662,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getDecisionNode()
 	 * @generated
 	 */
-	int DECISION_NODE = 9;
+	int DECISION_NODE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -680,7 +726,7 @@ public interface ActPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getMergeNode()
 	 * @generated
 	 */
-	int MERGE_NODE = 10;
+	int MERGE_NODE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -737,6 +783,180 @@ public interface ActPackage extends EPackage {
 	int MERGE_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ForkNodeImpl <em>Fork Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ForkNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getForkNode()
+	 * @generated
+	 */
+	int FORK_NODE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Fork Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Fork Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.JoinNodeImpl <em>Join Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.JoinNodeImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getJoinNode()
+	 * @generated
+	 */
+	int JOIN_NODE = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE__NAME = CONTROL_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Join Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Join Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.SwimlaneImpl <em>Swimlane</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.SwimlaneImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getSwimlane()
+	 * @generated
+	 */
+	int SWIMLANE = 14;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE__NODES = CONTAINER__NODES;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE__NAME = CONTAINER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Swimlane</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Swimlane</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram <em>Activity Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -779,15 +999,15 @@ public interface ActPackage extends EPackage {
 	EClass getRootPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getNodes <em>Nodes</em>}'.
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Nodes</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getNodes()
+	 * @return the meta object for the attribute '<em>Activity Name</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName()
 	 * @see #getRootPackage()
 	 * @generated
 	 */
-	EReference getRootPackage_Nodes();
+	EAttribute getRootPackage_ActivityName();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations <em>Relations</em>}'.
@@ -801,15 +1021,36 @@ public interface ActPackage extends EPackage {
 	EReference getRootPackage_Relations();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Activity Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName()
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getChildren()
 	 * @see #getRootPackage()
 	 * @generated
 	 */
-	EAttribute getRootPackage_ActivityName();
+	EReference getRootPackage_Children();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Container <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Container</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Container
+	 * @generated
+	 */
+	EClass getContainer();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.Container#getNodes <em>Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Nodes</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Container#getNodes()
+	 * @see #getContainer()
+	 * @generated
+	 */
+	EReference getContainer_Nodes();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Node <em>Node</em>}'.
@@ -946,6 +1187,47 @@ public interface ActPackage extends EPackage {
 	EClass getMergeNode();
 
 	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ForkNode <em>Fork Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fork Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ForkNode
+	 * @generated
+	 */
+	EClass getForkNode();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.JoinNode <em>Join Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Join Node</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.JoinNode
+	 * @generated
+	 */
+	EClass getJoinNode();
+
+	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Swimlane <em>Swimlane</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Swimlane</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Swimlane
+	 * @generated
+	 */
+	EClass getSwimlane();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Swimlane#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Swimlane#getName()
+	 * @see #getSwimlane()
+	 * @generated
+	 */
+	EAttribute getSwimlane_Name();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1005,12 +1287,12 @@ public interface ActPackage extends EPackage {
 		EClass ROOT_PACKAGE = eINSTANCE.getRootPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ROOT_PACKAGE__NODES = eINSTANCE.getRootPackage_Nodes();
+		EAttribute ROOT_PACKAGE__ACTIVITY_NAME = eINSTANCE.getRootPackage_ActivityName();
 
 		/**
 		 * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
@@ -1021,12 +1303,30 @@ public interface ActPackage extends EPackage {
 		EReference ROOT_PACKAGE__RELATIONS = eINSTANCE.getRootPackage_Relations();
 
 		/**
-		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ROOT_PACKAGE__ACTIVITY_NAME = eINSTANCE.getRootPackage_ActivityName();
+		EReference ROOT_PACKAGE__CHILDREN = eINSTANCE.getRootPackage_Children();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ContainerImpl <em>Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ContainerImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getContainer()
+		 * @generated
+		 */
+		EClass CONTAINER = eINSTANCE.getContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINER__NODES = eINSTANCE.getContainer_Nodes();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.NodeImpl <em>Node</em>}' class.
@@ -1149,6 +1449,44 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MERGE_NODE = eINSTANCE.getMergeNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ForkNodeImpl <em>Fork Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ForkNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getForkNode()
+		 * @generated
+		 */
+		EClass FORK_NODE = eINSTANCE.getForkNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.JoinNodeImpl <em>Join Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.JoinNodeImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getJoinNode()
+		 * @generated
+		 */
+		EClass JOIN_NODE = eINSTANCE.getJoinNode();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.SwimlaneImpl <em>Swimlane</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.SwimlaneImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getSwimlane()
+		 * @generated
+		 */
+		EClass SWIMLANE = eINSTANCE.getSwimlane();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SWIMLANE__NAME = eINSTANCE.getSwimlane_Name();
 
 	}
 

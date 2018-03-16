@@ -5,14 +5,12 @@ package de.cooperateproject.modeling.textual.activity.act.provider;
 
 import de.cooperateproject.modeling.textual.activity.act.ActFactory;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.RootPackage;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.provider.PackageBaseItemProvider;
+import de.cooperateproject.modeling.textual.activity.act.Container;
 
 import java.util.Collection;
 import java.util.List;
+
+import org.eclipse.emf.cdo.edit.CDOItemProviderAdapter;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -20,25 +18,36 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.cooperateproject.modeling.textual.activity.act.RootPackage} object.
+ * This is the item provider adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Container} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RootPackageItemProvider extends PackageBaseItemProvider {
+public class ContainerItemProvider 
+	extends CDOItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RootPackageItemProvider(AdapterFactory adapterFactory) {
+	public ContainerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,31 +62,8 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addActivityNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Activity Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addActivityNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RootPackage_activityName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RootPackage_activityName_feature", "_UI_RootPackage_type"),
-				 ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -93,8 +79,6 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ActPackage.Literals.CONTAINER__NODES);
-			childrenFeatures.add(ActPackage.Literals.ROOT_PACKAGE__RELATIONS);
-			childrenFeatures.add(ActPackage.Literals.ROOT_PACKAGE__CHILDREN);
 		}
 		return childrenFeatures;
 	}
@@ -113,14 +97,14 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	}
 
 	/**
-	 * This returns RootPackage.gif.
+	 * This returns Container.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RootPackage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Container"));
 	}
 
 	/**
@@ -131,10 +115,7 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RootPackage)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_RootPackage_type") :
-			getString("_UI_RootPackage_type") + " " + label;
+		return getString("_UI_Container_type");
 	}
 	
 
@@ -149,13 +130,8 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RootPackage.class)) {
-			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ActPackage.ROOT_PACKAGE__NODES:
-			case ActPackage.ROOT_PACKAGE__RELATIONS:
-			case ActPackage.ROOT_PACKAGE__CHILDREN:
+		switch (notification.getFeatureID(Container.class)) {
+			case ActPackage.CONTAINER__NODES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -172,11 +148,6 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES,
-				 ActFactory.eINSTANCE.createRootPackage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -222,49 +193,6 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 			(createChildParameter
 				(ActPackage.Literals.CONTAINER__NODES,
 				 ActFactory.eINSTANCE.createJoinNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActPackage.Literals.ROOT_PACKAGE__RELATIONS,
-				 ActFactory.eINSTANCE.createFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActPackage.Literals.ROOT_PACKAGE__CHILDREN,
-				 ActFactory.eINSTANCE.createRootPackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActPackage.Literals.ROOT_PACKAGE__CHILDREN,
-				 ActFactory.eINSTANCE.createContainer()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ActPackage.Literals.ROOT_PACKAGE__CHILDREN,
-				 ActFactory.eINSTANCE.createSwimlane()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES ||
-			childFeature == ActPackage.Literals.ROOT_PACKAGE__CHILDREN;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

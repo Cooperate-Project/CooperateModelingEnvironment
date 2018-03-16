@@ -118,6 +118,29 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.Container} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContainerItemProvider containerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Container}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContainerAdapter() {
+		if (containerItemProvider == null) {
+			containerItemProvider = new ContainerItemProvider(this);
+		}
+
+		return containerItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.ControlNode} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -302,6 +325,75 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.ForkNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ForkNodeItemProvider forkNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.ForkNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createForkNodeAdapter() {
+		if (forkNodeItemProvider == null) {
+			forkNodeItemProvider = new ForkNodeItemProvider(this);
+		}
+
+		return forkNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.JoinNode} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JoinNodeItemProvider joinNodeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.JoinNode}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJoinNodeAdapter() {
+		if (joinNodeItemProvider == null) {
+			joinNodeItemProvider = new JoinNodeItemProvider(this);
+		}
+
+		return joinNodeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.Swimlane} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SwimlaneItemProvider swimlaneItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Swimlane}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSwimlaneAdapter() {
+		if (swimlaneItemProvider == null) {
+			swimlaneItemProvider = new SwimlaneItemProvider(this);
+		}
+
+		return swimlaneItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,6 +494,7 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	public void dispose() {
 		if (activityDiagramItemProvider != null) activityDiagramItemProvider.dispose();
 		if (rootPackageItemProvider != null) rootPackageItemProvider.dispose();
+		if (containerItemProvider != null) containerItemProvider.dispose();
 		if (controlNodeItemProvider != null) controlNodeItemProvider.dispose();
 		if (actionNodeItemProvider != null) actionNodeItemProvider.dispose();
 		if (flowItemProvider != null) flowItemProvider.dispose();
@@ -410,6 +503,9 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 		if (flowFinalNodeItemProvider != null) flowFinalNodeItemProvider.dispose();
 		if (decisionNodeItemProvider != null) decisionNodeItemProvider.dispose();
 		if (mergeNodeItemProvider != null) mergeNodeItemProvider.dispose();
+		if (forkNodeItemProvider != null) forkNodeItemProvider.dispose();
+		if (joinNodeItemProvider != null) joinNodeItemProvider.dispose();
+		if (swimlaneItemProvider != null) swimlaneItemProvider.dispose();
 	}
 
 }

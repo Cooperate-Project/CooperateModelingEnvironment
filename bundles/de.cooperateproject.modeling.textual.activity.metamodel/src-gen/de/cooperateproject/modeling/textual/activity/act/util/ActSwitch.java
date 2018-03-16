@@ -80,10 +80,17 @@ public class ActSwitch<T> extends Switch<T> {
 				RootPackage rootPackage = (RootPackage)theEObject;
 				T result = caseRootPackage(rootPackage);
 				if (result == null) result = casePackageBase(rootPackage);
+				if (result == null) result = caseContainer(rootPackage);
 				if (result == null) result = casePackageableElement(rootPackage);
 				if (result == null) result = caseUMLReferencingElement(rootPackage);
 				if (result == null) result = caseNamedElement(rootPackage);
 				if (result == null) result = caseElement(rootPackage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.CONTAINER: {
+				Container container = (Container)theEObject;
+				T result = caseContainer(container);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -165,6 +172,33 @@ public class ActSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ActPackage.FORK_NODE: {
+				ForkNode forkNode = (ForkNode)theEObject;
+				T result = caseForkNode(forkNode);
+				if (result == null) result = caseControlNode(forkNode);
+				if (result == null) result = caseUMLReferencingElement(forkNode);
+				if (result == null) result = caseNode(forkNode);
+				if (result == null) result = caseElement(forkNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.JOIN_NODE: {
+				JoinNode joinNode = (JoinNode)theEObject;
+				T result = caseJoinNode(joinNode);
+				if (result == null) result = caseControlNode(joinNode);
+				if (result == null) result = caseUMLReferencingElement(joinNode);
+				if (result == null) result = caseNode(joinNode);
+				if (result == null) result = caseElement(joinNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.SWIMLANE: {
+				Swimlane swimlane = (Swimlane)theEObject;
+				T result = caseSwimlane(swimlane);
+				if (result == null) result = caseContainer(swimlane);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -196,6 +230,21 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRootPackage(RootPackage object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContainer(Container object) {
 		return null;
 	}
 
@@ -331,6 +380,51 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMergeNode(MergeNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fork Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fork Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForkNode(ForkNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Join Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Join Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJoinNode(JoinNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Swimlane</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Swimlane</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSwimlane(Swimlane object) {
 		return null;
 	}
 

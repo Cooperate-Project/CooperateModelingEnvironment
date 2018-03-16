@@ -40,6 +40,15 @@ public interface ActFactory extends EFactory {
 	RootPackage createRootPackage();
 
 	/**
+	 * Returns a new object of class '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Container</em>'.
+	 * @generated
+	 */
+	Container createContainer();
+
+	/**
 	 * Returns a new object of class '<em>Control Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,6 +119,33 @@ public interface ActFactory extends EFactory {
 	 * @generated
 	 */
 	MergeNode createMergeNode();
+
+	/**
+	 * Returns a new object of class '<em>Fork Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fork Node</em>'.
+	 * @generated
+	 */
+	ForkNode createForkNode();
+
+	/**
+	 * Returns a new object of class '<em>Join Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Join Node</em>'.
+	 * @generated
+	 */
+	JoinNode createJoinNode();
+
+	/**
+	 * Returns a new object of class '<em>Swimlane</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Swimlane</em>'.
+	 * @generated
+	 */
+	Swimlane createSwimlane();
 
 	/**
 	 * Returns the package supported by this factory.

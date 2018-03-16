@@ -80,6 +80,10 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 				return createRootPackageAdapter();
 			}
 			@Override
+			public Adapter caseContainer(Container object) {
+				return createContainerAdapter();
+			}
+			@Override
 			public Adapter caseNode(Node object) {
 				return createNodeAdapter();
 			}
@@ -114,6 +118,18 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMergeNode(MergeNode object) {
 				return createMergeNodeAdapter();
+			}
+			@Override
+			public Adapter caseForkNode(ForkNode object) {
+				return createForkNodeAdapter();
+			}
+			@Override
+			public Adapter caseJoinNode(JoinNode object) {
+				return createJoinNodeAdapter();
+			}
+			@Override
+			public Adapter caseSwimlane(Swimlane object) {
+				return createSwimlaneAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
@@ -180,6 +196,20 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRootPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.Container <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Container
+	 * @generated
+	 */
+	public Adapter createContainerAdapter() {
 		return null;
 	}
 
@@ -306,6 +336,48 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMergeNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.ForkNode <em>Fork Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.ForkNode
+	 * @generated
+	 */
+	public Adapter createForkNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.JoinNode <em>Join Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.JoinNode
+	 * @generated
+	 */
+	public Adapter createJoinNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.act.Swimlane <em>Swimlane</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Swimlane
+	 * @generated
+	 */
+	public Adapter createSwimlaneAdapter() {
 		return null;
 	}
 
