@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="SomeTitle">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="testmodels/testfile.uml#_xbCaUBfyEeiyTPreEWqyNg"/>
+    <children xsi:type="act:Swimlane" name="kunde">
+      <nodes xsi:type="act:ActionNode" name="suchen" alias="Buch suchen"/>
+      <nodes xsi:type="act:ActionNode" name="kaufen"/>
+    </children>
+    <children xsi:type="act:Swimlane" name="Mitarbeiter">
+      <nodes xsi:type="act:ActionNode" name="zeigen" alias="Regal zeigen"/>
+    </children>
+  </rootPackage>
+</act:ActivityDiagram>

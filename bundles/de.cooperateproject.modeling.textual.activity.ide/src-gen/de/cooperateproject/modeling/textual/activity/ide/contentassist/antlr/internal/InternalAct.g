@@ -2355,9 +2355,9 @@ rule__Flow__ConditionAssignment_5_1
 	}
 :
 	(
-		{ before(grammarAccess.getFlowAccess().getConditionIDTerminalRuleCall_5_1_0()); }
-		RULE_ID
-		{ after(grammarAccess.getFlowAccess().getConditionIDTerminalRuleCall_5_1_0()); }
+		{ before(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_5_1_0()); }
+		RULE_STRING
+		{ after(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_5_1_0()); }
 	)
 ;
 finally {

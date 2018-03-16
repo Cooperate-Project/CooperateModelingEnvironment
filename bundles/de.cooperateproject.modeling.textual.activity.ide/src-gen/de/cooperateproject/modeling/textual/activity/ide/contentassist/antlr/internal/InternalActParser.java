@@ -5307,7 +5307,7 @@ public class InternalActParser extends AbstractInternalContentAssistParser {
             // InternalAct.g:1739:1: ( rule__Flow__Group_5__0__Impl rule__Flow__Group_5__1 )
             // InternalAct.g:1740:2: rule__Flow__Group_5__0__Impl rule__Flow__Group_5__1
             {
-            pushFollow(FOLLOW_10);
+            pushFollow(FOLLOW_4);
             rule__Flow__Group_5__0__Impl();
 
             state._fsp--;
@@ -6993,21 +6993,21 @@ public class InternalActParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Flow__ConditionAssignment_5_1"
-    // InternalAct.g:2352:1: rule__Flow__ConditionAssignment_5_1 : ( RULE_ID ) ;
+    // InternalAct.g:2352:1: rule__Flow__ConditionAssignment_5_1 : ( RULE_STRING ) ;
     public final void rule__Flow__ConditionAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAct.g:2356:1: ( ( RULE_ID ) )
-            // InternalAct.g:2357:2: ( RULE_ID )
+            // InternalAct.g:2356:1: ( ( RULE_STRING ) )
+            // InternalAct.g:2357:2: ( RULE_STRING )
             {
-            // InternalAct.g:2357:2: ( RULE_ID )
-            // InternalAct.g:2358:3: RULE_ID
+            // InternalAct.g:2357:2: ( RULE_STRING )
+            // InternalAct.g:2358:3: RULE_STRING
             {
-             before(grammarAccess.getFlowAccess().getConditionIDTerminalRuleCall_5_1_0()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getFlowAccess().getConditionIDTerminalRuleCall_5_1_0()); 
+             before(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_5_1_0()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_5_1_0()); 
 
             }
 

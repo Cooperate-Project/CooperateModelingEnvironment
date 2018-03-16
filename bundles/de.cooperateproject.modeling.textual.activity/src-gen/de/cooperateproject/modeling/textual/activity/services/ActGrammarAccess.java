@@ -443,14 +443,14 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cLeftSquareBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cConditionIDTerminalRuleCall_5_1_0 = (RuleCall)cConditionAssignment_5_1.eContents().get(0);
+		private final RuleCall cConditionSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cConditionAssignment_5_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Flow:
-		//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?;
+		//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?
+		//'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'flw'
@@ -486,17 +486,17 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 		
-		//('[' condition=ID ']')?
+		//('[' condition=STRING ']')?
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_5_0() { return cLeftSquareBracketKeyword_5_0; }
 		
-		//condition=ID
+		//condition=STRING
 		public Assignment getConditionAssignment_5_1() { return cConditionAssignment_5_1; }
 		
-		//ID
-		public RuleCall getConditionIDTerminalRuleCall_5_1_0() { return cConditionIDTerminalRuleCall_5_1_0; }
+		//STRING
+		public RuleCall getConditionSTRINGTerminalRuleCall_5_1_0() { return cConditionSTRINGTerminalRuleCall_5_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_5_2() { return cRightSquareBracketKeyword_5_2; }
@@ -770,7 +770,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Flow:
-	//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=ID ']')?;
+	//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?;
 	public FlowElements getFlowAccess() {
 		return pFlow;
 	}

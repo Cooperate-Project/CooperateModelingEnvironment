@@ -841,9 +841,9 @@ ruleFlow returns [EObject current=null]
 			}
 			(
 				(
-					lv_condition_7_0=RULE_ID
+					lv_condition_7_0=RULE_STRING
 					{
-						newLeafNode(lv_condition_7_0, grammarAccess.getFlowAccess().getConditionIDTerminalRuleCall_5_1_0());
+						newLeafNode(lv_condition_7_0, grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_5_1_0());
 					}
 					{
 						if ($current==null) {
@@ -853,7 +853,7 @@ ruleFlow returns [EObject current=null]
 							$current,
 							"condition",
 							lv_condition_7_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)

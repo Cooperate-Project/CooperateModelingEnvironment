@@ -159,8 +159,8 @@ class ActParsingTest extends AbstractActTest {
 			flw(A,Y)
 			flw(Y,B)
 			flw(B,X)
-			flw(X,C) [test]
-			flw(X,D) [else]
+			flw(X,C) ["one simple test"]
+			flw(X,D) ["else"]
 			flw(D,Y)
 			@end-actd
 		'''.parse(rs)
@@ -176,7 +176,7 @@ class ActParsingTest extends AbstractActTest {
 		assertEquals(firstNode.name, "X")
 		assertTrue(firstNode instanceof DecisionNode)
 		assertEquals(secondNode.name, "C")
-		assertEquals(conditionFlow.condition, "test")
+		assertEquals(conditionFlow.condition, "one simple test")
 	}
 	
 	@Test
