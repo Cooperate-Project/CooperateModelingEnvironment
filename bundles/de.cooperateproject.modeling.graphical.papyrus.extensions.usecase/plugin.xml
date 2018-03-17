@@ -70,6 +70,21 @@
          		self.owner.oclIsKindOf(Component)
       		]]>
    			</constraint>
+   			<constraint
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.ActorOutsideComponent"
+                  isEnabledByDefault="true"
+                  lang="OCL"
+                  mode="Live"
+                  name="Actors outside of components"
+                  severity="WARNING"
+                  statusCode="2">
+      		<description>Actors must not exist inside of systems modeled as components.</description>
+      		<message>Acors must not be nested in components</message>
+      		<target class="Actor"/>
+      		<![CDATA[
+         		self.owner.oclIsKindOf(Component) = false
+      		]]>
+   			</constraint>
             <constraint
                   class="de.cooperateproject.modeling.graphical.papyrus.extensions.usecase.validation.constraints.UseCaseDiagramConstraintsOnExtendsHaveToBeContained"
                   id="de.cooperateproject.modeling.graphical.papyrus.extensions.constraintModelingCorrectForExtends"
