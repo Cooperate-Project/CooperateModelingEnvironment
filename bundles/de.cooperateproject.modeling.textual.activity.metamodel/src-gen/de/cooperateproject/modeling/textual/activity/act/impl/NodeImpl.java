@@ -4,6 +4,9 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Node;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -68,7 +71,7 @@ public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingEle
 	 * @generated
 	 */
 	public String getName() {
-		return (String)eDynamicGet(ActPackage.NODE__NAME, ActPackage.Literals.NODE__NAME, true, true);
+		return (String)eDynamicGet(ActPackage.NODE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
 	}
 
 	/**
@@ -77,7 +80,25 @@ public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingEle
 	 * @generated
 	 */
 	public void setName(String newName) {
-		eDynamicSet(ActPackage.NODE__NAME, ActPackage.Literals.NODE__NAME, newName);
+		eDynamicSet(ActPackage.NODE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetName() {
+		eDynamicUnset(ActPackage.NODE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetName() {
+		return eDynamicIsSet(ActPackage.NODE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
 	}
 
 	/**
@@ -99,6 +120,7 @@ public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -118,7 +140,7 @@ public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingEle
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ActPackage.NODE__NAME:
-				setName(NAME_EDEFAULT);
+				unsetName();
 				return;
 		}
 		super.eUnset(featureID);
@@ -133,9 +155,41 @@ public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingEle
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ActPackage.NODE__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+				return isSetName();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedElement.class) {
+			switch (derivedFeatureID) {
+				case ActPackage.NODE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == NamedElement.class) {
+			switch (baseFeatureID) {
+				case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ActPackage.NODE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //NodeImpl

@@ -5,7 +5,10 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActionNode;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**
@@ -30,7 +33,7 @@ public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ALIAS_EDEFAULT = "";
+	protected static final String ALIAS_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -57,7 +60,7 @@ public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode
 	 * @generated
 	 */
 	public String getAlias() {
-		return (String)eDynamicGet(ActPackage.ACTION_NODE__ALIAS, ActPackage.Literals.ACTION_NODE__ALIAS, true, true);
+		return (String)eDynamicGet(ActPackage.ACTION_NODE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
 	}
 
 	/**
@@ -66,7 +69,25 @@ public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode
 	 * @generated
 	 */
 	public void setAlias(String newAlias) {
-		eDynamicSet(ActPackage.ACTION_NODE__ALIAS, ActPackage.Literals.ACTION_NODE__ALIAS, newAlias);
+		eDynamicSet(ActPackage.ACTION_NODE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetAlias() {
+		eDynamicUnset(ActPackage.ACTION_NODE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAlias() {
+		return eDynamicIsSet(ActPackage.ACTION_NODE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
 	}
 
 	/**
@@ -107,7 +128,7 @@ public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ActPackage.ACTION_NODE__ALIAS:
-				setAlias(ALIAS_EDEFAULT);
+				unsetAlias();
 				return;
 		}
 		super.eUnset(featureID);
@@ -122,9 +143,41 @@ public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ActPackage.ACTION_NODE__ALIAS:
-				return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+				return isSetAlias();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == AliasedElement.class) {
+			switch (derivedFeatureID) {
+				case ActPackage.ACTION_NODE__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == AliasedElement.class) {
+			switch (baseFeatureID) {
+				case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return ActPackage.ACTION_NODE__ALIAS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //ActionNodeImpl

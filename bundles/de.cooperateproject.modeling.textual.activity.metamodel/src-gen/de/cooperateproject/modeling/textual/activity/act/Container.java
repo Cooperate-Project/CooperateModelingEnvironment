@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.activity.act;
 import org.eclipse.emf.cdo.CDOObject;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**

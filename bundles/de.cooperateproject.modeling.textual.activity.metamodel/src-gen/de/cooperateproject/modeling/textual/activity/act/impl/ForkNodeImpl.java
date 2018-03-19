@@ -3,8 +3,10 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.ForkNode;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.ForkNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ForkNodeImpl extends ControlNodeImpl<org.eclipse.uml2.uml.ForkNode> implements ForkNode {
+public class ForkNodeImpl extends ControlNodeImpl<ForkNode> implements de.cooperateproject.modeling.textual.activity.act.ForkNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

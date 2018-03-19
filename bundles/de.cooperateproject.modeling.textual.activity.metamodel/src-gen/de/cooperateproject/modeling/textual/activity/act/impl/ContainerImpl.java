@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**

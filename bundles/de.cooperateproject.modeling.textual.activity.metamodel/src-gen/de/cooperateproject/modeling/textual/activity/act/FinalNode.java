@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Final Node</b></em>'.

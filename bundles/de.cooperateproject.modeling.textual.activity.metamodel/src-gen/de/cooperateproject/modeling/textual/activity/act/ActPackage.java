@@ -231,7 +231,6 @@ public interface ActPackage extends EPackage {
 	 */
 	int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.PACKAGE_BASE_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ContainerImpl <em>Container</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -1037,6 +1036,7 @@ public interface ActPackage extends EPackage {
 	 */
 	int SWIMLANE_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
 
+
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram <em>Activity Diagram</em>}'.
 	 * <!-- begin-user-doc -->
@@ -1144,17 +1144,6 @@ public interface ActPackage extends EPackage {
 	EClass getNode();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Node#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.Node#getName()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EAttribute getNode_Name();
-
-	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ControlNode <em>Control Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1173,17 +1162,6 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getActionNode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.ActionNode#getAlias <em>Alias</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Alias</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActionNode#getAlias()
-	 * @see #getActionNode()
-	 * @generated
-	 */
-	EAttribute getActionNode_Alias();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Flow <em>Flow</em>}'.
@@ -1420,14 +1398,6 @@ public interface ActPackage extends EPackage {
 		EClass NODE = eINSTANCE.getNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
-
-		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ControlNodeImpl <em>Control Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1446,14 +1416,6 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTION_NODE = eINSTANCE.getActionNode();
-
-		/**
-		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ACTION_NODE__ALIAS = eINSTANCE.getActionNode_Alias();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl <em>Flow</em>}' class.

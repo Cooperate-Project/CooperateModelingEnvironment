@@ -3,6 +3,8 @@
 package de.cooperateproject.modeling.textual.activity.act.util;
 
 import de.cooperateproject.modeling.textual.activity.act.*;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
@@ -14,6 +16,7 @@ import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ControlNode;
 
@@ -152,6 +155,10 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <PackageType extends PackageBase<?>> Adapter casePackageBase(PackageBase<PackageType> object) {
 				return createPackageBaseAdapter();
+			}
+			@Override
+			public Adapter caseAliasedElement(AliasedElement object) {
+				return createAliasedElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -450,6 +457,20 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPackageBaseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement <em>Aliased Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
+	 * @generated
+	 */
+	public Adapter createAliasedElementAdapter() {
 		return null;
 	}
 

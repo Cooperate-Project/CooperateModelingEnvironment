@@ -4,12 +4,16 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
-
 import de.cooperateproject.modeling.textual.activity.act.Node;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Relationship;
 

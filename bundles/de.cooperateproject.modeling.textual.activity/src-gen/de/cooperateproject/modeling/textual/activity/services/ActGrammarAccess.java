@@ -168,23 +168,23 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Assignment cNameAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_1_1_0_0 = (RuleCall)cNameAssignment_1_1_0.eContents().get(0);
+		private final Assignment cAliasAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cAliasIDTerminalRuleCall_1_1_0_0 = (RuleCall)cAliasAssignment_1_1_0.eContents().get(0);
 		private final Keyword cAsKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
-		private final Assignment cAliasAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
-		private final RuleCall cAliasSTRINGTerminalRuleCall_1_1_2_0 = (RuleCall)cAliasAssignment_1_1_2.eContents().get(0);
+		private final Assignment cNameAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_1_2_0 = (RuleCall)cNameAssignment_1_1_2.eContents().get(0);
 		
 		//ActionNode:
-		//	'actn' (name=ID | name=ID 'as' alias=STRING);
+		//	'actn' (name=ID | alias=ID 'as' name=STRING);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'actn' (name=ID | name=ID 'as' alias=STRING)
+		//'actn' (name=ID | alias=ID 'as' name=STRING)
 		public Group getGroup() { return cGroup; }
 		
 		//'actn'
 		public Keyword getActnKeyword_0() { return cActnKeyword_0; }
 		
-		//name=ID | name=ID 'as' alias=STRING
+		//name=ID | alias=ID 'as' name=STRING
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//name=ID
@@ -193,23 +193,23 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0_0() { return cNameIDTerminalRuleCall_1_0_0; }
 		
-		//name=ID 'as' alias=STRING
+		//alias=ID 'as' name=STRING
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1_1_0() { return cNameAssignment_1_1_0; }
+		//alias=ID
+		public Assignment getAliasAssignment_1_1_0() { return cAliasAssignment_1_1_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_1_0_0() { return cNameIDTerminalRuleCall_1_1_0_0; }
+		public RuleCall getAliasIDTerminalRuleCall_1_1_0_0() { return cAliasIDTerminalRuleCall_1_1_0_0; }
 		
 		//'as'
 		public Keyword getAsKeyword_1_1_1() { return cAsKeyword_1_1_1; }
 		
-		//alias=STRING
-		public Assignment getAliasAssignment_1_1_2() { return cAliasAssignment_1_1_2; }
+		//name=STRING
+		public Assignment getNameAssignment_1_1_2() { return cNameAssignment_1_1_2; }
 		
 		//STRING
-		public RuleCall getAliasSTRINGTerminalRuleCall_1_1_2_0() { return cAliasSTRINGTerminalRuleCall_1_1_2_0; }
+		public RuleCall getNameSTRINGTerminalRuleCall_1_1_2_0() { return cNameSTRINGTerminalRuleCall_1_1_2_0; }
 	}
 	public class ControlNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.ControlNode");
@@ -253,86 +253,71 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	public class InitialNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.InitialNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cInitialNodeAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cIniKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cIniKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//InitialNode:
-		//	{InitialNode}
-		//	'ini' name=ID?;
+		//	'ini' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{InitialNode} 'ini' name=ID?
+		//'ini' name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//{InitialNode}
-		public Action getInitialNodeAction_0() { return cInitialNodeAction_0; }
-		
 		//'ini'
-		public Keyword getIniKeyword_1() { return cIniKeyword_1; }
+		public Keyword getIniKeyword_0() { return cIniKeyword_0; }
 		
-		//name=ID?
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class FinalNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FinalNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cFinalNodeAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cFinKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cFinKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//FinalNode:
-		//	{FinalNode}
-		//	'fin' name=ID?;
+		//	'fin' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{FinalNode} 'fin' name=ID?
+		//'fin' name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//{FinalNode}
-		public Action getFinalNodeAction_0() { return cFinalNodeAction_0; }
-		
 		//'fin'
-		public Keyword getFinKeyword_1() { return cFinKeyword_1; }
+		public Keyword getFinKeyword_0() { return cFinKeyword_0; }
 		
-		//name=ID?
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class FlowFinalNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.FlowFinalNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cFlowFinalNodeAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cFfinKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cFfinKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//FlowFinalNode:
-		//	{FlowFinalNode}
-		//	'ffin' name=ID?;
+		//	'ffin' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{FlowFinalNode} 'ffin' name=ID?
+		//'ffin' name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//{FlowFinalNode}
-		public Action getFlowFinalNodeAction_0() { return cFlowFinalNodeAction_0; }
-		
 		//'ffin'
-		public Keyword getFfinKeyword_1() { return cFfinKeyword_1; }
+		public Keyword getFfinKeyword_0() { return cFfinKeyword_0; }
 		
-		//name=ID?
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class DecisionNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.DecisionNode");
@@ -677,7 +662,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ActionNode:
-	//	'actn' (name=ID | name=ID 'as' alias=STRING);
+	//	'actn' (name=ID | alias=ID 'as' name=STRING);
 	public ActionNodeElements getActionNodeAccess() {
 		return pActionNode;
 	}
@@ -697,8 +682,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//InitialNode:
-	//	{InitialNode}
-	//	'ini' name=ID?;
+	//	'ini' name=ID;
 	public InitialNodeElements getInitialNodeAccess() {
 		return pInitialNode;
 	}
@@ -708,8 +692,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FinalNode:
-	//	{FinalNode}
-	//	'fin' name=ID?;
+	//	'fin' name=ID;
 	public FinalNodeElements getFinalNodeAccess() {
 		return pFinalNode;
 	}
@@ -719,8 +702,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FlowFinalNode:
-	//	{FlowFinalNode}
-	//	'ffin' name=ID?;
+	//	'ffin' name=ID;
 	public FlowFinalNodeElements getFlowFinalNodeAccess() {
 		return pFlowFinalNode;
 	}

@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.activity.act.provider;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActionNode;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import java.util.Collection;
 import java.util.List;
 
@@ -61,9 +62,9 @@ public class ActionNodeItemProvider extends NodeItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ActionNode_alias_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActionNode_alias_feature", "_UI_ActionNode_type"),
-				 ActPackage.Literals.ACTION_NODE__ALIAS,
+				 getString("_UI_AliasedElement_alias_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AliasedElement_alias_feature", "_UI_AliasedElement_type"),
+				 TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS,
 				 true,
 				 false,
 				 false,

@@ -3,8 +3,10 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.MergeNode;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.MergeNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MergeNodeImpl extends ControlNodeImpl<org.eclipse.uml2.uml.MergeNode> implements MergeNode {
+public class MergeNodeImpl extends ControlNodeImpl<MergeNode> implements de.cooperateproject.modeling.textual.activity.act.MergeNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -3,7 +3,9 @@
 package de.cooperateproject.modeling.textual.activity.act;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Relationship;
 
@@ -25,13 +27,12 @@ import org.eclipse.uml2.uml.Relationship;
  * @generated
  */
 public interface Flow extends UMLReferencingElement<Relationship> {
-
 	/**
 	 * Returns the value of the '<em><b>Related Elements</b></em>' reference list.
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Node}<code>&lt;org.eclipse.uml2.uml.ActivityNode&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Related Elements</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Related Elements</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -67,4 +68,5 @@ public interface Flow extends UMLReferencingElement<Relationship> {
 	 * @generated
 	 */
 	void setCondition(String value);
+
 } // Flow

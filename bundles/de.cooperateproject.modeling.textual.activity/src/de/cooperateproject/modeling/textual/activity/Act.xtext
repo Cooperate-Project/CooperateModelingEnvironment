@@ -26,7 +26,7 @@ Node returns Node:
 ;
 
 ActionNode returns ActionNode:
-	'actn'(name = ID | name = ID 'as' alias = STRING) // FIXME: Ordering? (NOT Copy-Paste from CMP) CHANGE
+	'actn'(name = ID | alias = ID 'as' name = STRING)
 ;
 
 ControlNode returns ControlNode:
@@ -34,18 +34,15 @@ ControlNode returns ControlNode:
 ;
 
 InitialNode returns InitialNode:
-	{InitialNode}
-	'ini' (name = ID)?
+	'ini' (name = ID)
 ;
 
 FinalNode returns FinalNode:
-	{FinalNode}
-	'fin' (name = ID)?
+	'fin' (name = ID)
 ;
 
 FlowFinalNode returns FlowFinalNode:
-	{FlowFinalNode}
-	'ffin' (name = ID)?
+	'ffin' (name = ID)
 ;
 
 DecisionNode returns DecisionNode:

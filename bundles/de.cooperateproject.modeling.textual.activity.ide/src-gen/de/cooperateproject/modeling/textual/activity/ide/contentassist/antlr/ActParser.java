@@ -61,11 +61,11 @@ public class ActParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootPackageAccess().getNodesAssignment_4(), "rule__RootPackage__NodesAssignment_4");
 					put(grammarAccess.getRootPackageAccess().getRelationsAssignment_5(), "rule__RootPackage__RelationsAssignment_5");
 					put(grammarAccess.getActionNodeAccess().getNameAssignment_1_0(), "rule__ActionNode__NameAssignment_1_0");
-					put(grammarAccess.getActionNodeAccess().getNameAssignment_1_1_0(), "rule__ActionNode__NameAssignment_1_1_0");
-					put(grammarAccess.getActionNodeAccess().getAliasAssignment_1_1_2(), "rule__ActionNode__AliasAssignment_1_1_2");
-					put(grammarAccess.getInitialNodeAccess().getNameAssignment_2(), "rule__InitialNode__NameAssignment_2");
-					put(grammarAccess.getFinalNodeAccess().getNameAssignment_2(), "rule__FinalNode__NameAssignment_2");
-					put(grammarAccess.getFlowFinalNodeAccess().getNameAssignment_2(), "rule__FlowFinalNode__NameAssignment_2");
+					put(grammarAccess.getActionNodeAccess().getAliasAssignment_1_1_0(), "rule__ActionNode__AliasAssignment_1_1_0");
+					put(grammarAccess.getActionNodeAccess().getNameAssignment_1_1_2(), "rule__ActionNode__NameAssignment_1_1_2");
+					put(grammarAccess.getInitialNodeAccess().getNameAssignment_1(), "rule__InitialNode__NameAssignment_1");
+					put(grammarAccess.getFinalNodeAccess().getNameAssignment_1(), "rule__FinalNode__NameAssignment_1");
+					put(grammarAccess.getFlowFinalNodeAccess().getNameAssignment_1(), "rule__FlowFinalNode__NameAssignment_1");
 					put(grammarAccess.getDecisionNodeAccess().getNameAssignment_1(), "rule__DecisionNode__NameAssignment_1");
 					put(grammarAccess.getMergeNodeAccess().getNameAssignment_1(), "rule__MergeNode__NameAssignment_1");
 					put(grammarAccess.getForkNodeAccess().getNameAssignment_1(), "rule__ForkNode__NameAssignment_1");

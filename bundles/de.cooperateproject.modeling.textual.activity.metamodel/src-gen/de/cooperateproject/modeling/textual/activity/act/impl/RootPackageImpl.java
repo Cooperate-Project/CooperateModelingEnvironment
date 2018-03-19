@@ -10,12 +10,16 @@ import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**
@@ -90,6 +94,24 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getActivityName() {
+		return (String)eDynamicGet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivityName(String newActivityName) {
+		eDynamicSet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, newActivityName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public EList<Flow> getRelations() {
 		return (EList<Flow>)eDynamicGet(ActPackage.ROOT_PACKAGE__RELATIONS, ActPackage.Literals.ROOT_PACKAGE__RELATIONS, true, true);
@@ -103,24 +125,6 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	@SuppressWarnings("unchecked")
 	public EList<de.cooperateproject.modeling.textual.activity.act.Container> getChildren() {
 		return (EList<de.cooperateproject.modeling.textual.activity.act.Container>)eDynamicGet(ActPackage.ROOT_PACKAGE__CHILDREN, ActPackage.Literals.ROOT_PACKAGE__CHILDREN, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getActivityName() {
-		return (String)eDynamicGet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActivityName(String newActivityName) {
-		eDynamicSet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, newActivityName);
 	}
 
 	/**

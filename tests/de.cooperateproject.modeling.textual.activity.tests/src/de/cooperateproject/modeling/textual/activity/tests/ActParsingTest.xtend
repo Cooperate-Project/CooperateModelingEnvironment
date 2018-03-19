@@ -71,8 +71,8 @@ class ActParsingTest extends AbstractActTest {
 			@start-actd "SomeTitle"
 			rootPackage RootElement
 			ini InitialNode
-			fin
-			ffin
+			fin FinalNode
+			ffin FlowFinalNode
 			@end-actd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -106,8 +106,8 @@ class ActParsingTest extends AbstractActTest {
 		val secondNode = model.rootPackage.nodes.get(1) as ActionNode
 		
 		assertEquals(firstNode.name, "someActivity")
-		assertEquals(secondNode.name, "anotherActivity")
-		assertEquals(secondNode.alias, "Another Activity")
+		assertEquals(secondNode.name, "Another Activity")
+		assertEquals(secondNode.alias, "anotherActivity")
 	}
 	
 	@Test

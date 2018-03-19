@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.act;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -24,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface RootPackage extends PackageBase<RootPackage>, Container {
-
 	/**
 	 * Returns the value of the '<em><b>Activity Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,4 +82,5 @@ public interface RootPackage extends PackageBase<RootPackage>, Container {
 	 * @generated
 	 */
 	EList<Container> getChildren();
+
 } // RootPackage

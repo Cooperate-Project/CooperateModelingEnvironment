@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.activity.act.provider;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Node;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.provider.UMLReferencingElementItemProvider;
 import java.util.Collection;
 import java.util.List;
@@ -61,9 +62,9 @@ public class NodeItemProvider extends UMLReferencingElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_name_feature", "_UI_Node_type"),
-				 ActPackage.Literals.NODE__NAME,
+				 getString("_UI_NamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+				 TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,

@@ -3,8 +3,10 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.FlowFinalNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class FlowFinalNodeImpl extends ControlNodeImpl<org.eclipse.uml2.uml.FlowFinalNode> implements FlowFinalNode {
+public class FlowFinalNodeImpl extends ControlNodeImpl<FlowFinalNode> implements de.cooperateproject.modeling.textual.activity.act.FlowFinalNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

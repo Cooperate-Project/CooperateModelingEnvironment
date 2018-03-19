@@ -3,6 +3,8 @@
 package de.cooperateproject.modeling.textual.activity.act.util;
 
 import de.cooperateproject.modeling.textual.activity.act.*;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
@@ -12,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**
@@ -99,6 +102,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				Node<?> node = (Node<?>)theEObject;
 				T1 result = caseNode(node);
 				if (result == null) result = caseUMLReferencingElement(node);
+				if (result == null) result = caseNamedElement(node);
 				if (result == null) result = caseElement(node);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -108,6 +112,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				T1 result = caseControlNode(controlNode);
 				if (result == null) result = caseNode(controlNode);
 				if (result == null) result = caseUMLReferencingElement(controlNode);
+				if (result == null) result = caseNamedElement(controlNode);
 				if (result == null) result = caseElement(controlNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -116,7 +121,9 @@ public class ActSwitch<T1> extends Switch<T1> {
 				ActionNode actionNode = (ActionNode)theEObject;
 				T1 result = caseActionNode(actionNode);
 				if (result == null) result = caseNode(actionNode);
+				if (result == null) result = caseAliasedElement(actionNode);
 				if (result == null) result = caseUMLReferencingElement(actionNode);
+				if (result == null) result = caseNamedElement(actionNode);
 				if (result == null) result = caseElement(actionNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -135,6 +142,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(initialNode);
 				if (result == null) result = caseNode(initialNode);
 				if (result == null) result = caseUMLReferencingElement(initialNode);
+				if (result == null) result = caseNamedElement(initialNode);
 				if (result == null) result = caseElement(initialNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -145,6 +153,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(finalNode);
 				if (result == null) result = caseNode(finalNode);
 				if (result == null) result = caseUMLReferencingElement(finalNode);
+				if (result == null) result = caseNamedElement(finalNode);
 				if (result == null) result = caseElement(finalNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -155,6 +164,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(flowFinalNode);
 				if (result == null) result = caseNode(flowFinalNode);
 				if (result == null) result = caseUMLReferencingElement(flowFinalNode);
+				if (result == null) result = caseNamedElement(flowFinalNode);
 				if (result == null) result = caseElement(flowFinalNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -165,6 +175,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(decisionNode);
 				if (result == null) result = caseNode(decisionNode);
 				if (result == null) result = caseUMLReferencingElement(decisionNode);
+				if (result == null) result = caseNamedElement(decisionNode);
 				if (result == null) result = caseElement(decisionNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -175,6 +186,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(mergeNode);
 				if (result == null) result = caseNode(mergeNode);
 				if (result == null) result = caseUMLReferencingElement(mergeNode);
+				if (result == null) result = caseNamedElement(mergeNode);
 				if (result == null) result = caseElement(mergeNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -185,6 +197,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(forkNode);
 				if (result == null) result = caseNode(forkNode);
 				if (result == null) result = caseUMLReferencingElement(forkNode);
+				if (result == null) result = caseNamedElement(forkNode);
 				if (result == null) result = caseElement(forkNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -195,6 +208,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseControlNode(joinNode);
 				if (result == null) result = caseNode(joinNode);
 				if (result == null) result = caseUMLReferencingElement(joinNode);
+				if (result == null) result = caseNamedElement(joinNode);
 				if (result == null) result = caseElement(joinNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -507,6 +521,21 @@ public class ActSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public <PackageType extends PackageBase<?>> T1 casePackageBase(PackageBase<PackageType> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Aliased Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Aliased Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseAliasedElement(AliasedElement object) {
 		return null;
 	}
 

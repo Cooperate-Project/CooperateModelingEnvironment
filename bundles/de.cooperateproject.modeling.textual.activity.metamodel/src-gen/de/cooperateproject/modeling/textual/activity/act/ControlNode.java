@@ -14,5 +14,4 @@ package de.cooperateproject.modeling.textual.activity.act;
  * @generated
  */
 public interface ControlNode<T extends org.eclipse.uml2.uml.ControlNode> extends Node<T> {
-
 } // ControlNode

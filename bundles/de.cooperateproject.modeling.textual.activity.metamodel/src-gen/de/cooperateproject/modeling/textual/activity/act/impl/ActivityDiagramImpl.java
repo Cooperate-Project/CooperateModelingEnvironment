@@ -7,9 +7,10 @@ import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**

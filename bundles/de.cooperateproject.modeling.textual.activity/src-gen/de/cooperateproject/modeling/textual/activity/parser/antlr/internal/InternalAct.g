@@ -342,9 +342,9 @@ ruleActionNode returns [EObject current=null]
 			(
 				(
 					(
-						lv_name_2_0=RULE_ID
+						lv_alias_2_0=RULE_ID
 						{
-							newLeafNode(lv_name_2_0, grammarAccess.getActionNodeAccess().getNameIDTerminalRuleCall_1_1_0_0());
+							newLeafNode(lv_alias_2_0, grammarAccess.getActionNodeAccess().getAliasIDTerminalRuleCall_1_1_0_0());
 						}
 						{
 							if ($current==null) {
@@ -352,8 +352,8 @@ ruleActionNode returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"name",
-								lv_name_2_0,
+								"alias",
+								lv_alias_2_0,
 								"org.eclipse.xtext.common.Terminals.ID");
 						}
 					)
@@ -364,9 +364,9 @@ ruleActionNode returns [EObject current=null]
 				}
 				(
 					(
-						lv_alias_4_0=RULE_STRING
+						lv_name_4_0=RULE_STRING
 						{
-							newLeafNode(lv_alias_4_0, grammarAccess.getActionNodeAccess().getAliasSTRINGTerminalRuleCall_1_1_2_0());
+							newLeafNode(lv_name_4_0, grammarAccess.getActionNodeAccess().getNameSTRINGTerminalRuleCall_1_1_2_0());
 						}
 						{
 							if ($current==null) {
@@ -374,8 +374,8 @@ ruleActionNode returns [EObject current=null]
 							}
 							setWithLastConsumed(
 								$current,
-								"alias",
-								lv_alias_4_0,
+								"name",
+								lv_name_4_0,
 								"org.eclipse.xtext.common.Terminals.STRING");
 						}
 					)
@@ -482,22 +482,15 @@ ruleInitialNode returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getInitialNodeAccess().getInitialNodeAction_0(),
-					$current);
-			}
-		)
-		otherlv_1='ini'
+		otherlv_0='ini'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getInitialNodeAccess().getIniKeyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getInitialNodeAccess().getIniKeyword_0());
 		}
 		(
 			(
-				lv_name_2_0=RULE_ID
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getInitialNodeAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getInitialNodeAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -506,11 +499,11 @@ ruleInitialNode returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
-		)?
+		)
 	)
 ;
 
@@ -530,22 +523,15 @@ ruleFinalNode returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getFinalNodeAccess().getFinalNodeAction_0(),
-					$current);
-			}
-		)
-		otherlv_1='fin'
+		otherlv_0='fin'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getFinalNodeAccess().getFinKeyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getFinalNodeAccess().getFinKeyword_0());
 		}
 		(
 			(
-				lv_name_2_0=RULE_ID
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getFinalNodeAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getFinalNodeAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -554,11 +540,11 @@ ruleFinalNode returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
-		)?
+		)
 	)
 ;
 
@@ -578,22 +564,15 @@ ruleFlowFinalNode returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getFlowFinalNodeAccess().getFlowFinalNodeAction_0(),
-					$current);
-			}
-		)
-		otherlv_1='ffin'
+		otherlv_0='ffin'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getFlowFinalNodeAccess().getFfinKeyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getFlowFinalNodeAccess().getFfinKeyword_0());
 		}
 		(
 			(
-				lv_name_2_0=RULE_ID
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getFlowFinalNodeAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getFlowFinalNodeAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -602,11 +581,11 @@ ruleFlowFinalNode returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
-		)?
+		)
 	)
 ;
 

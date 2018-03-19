@@ -3,8 +3,10 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.ControlNode;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.ControlNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ControlNodeImpl<T extends org.eclipse.uml2.uml.ControlNode> extends NodeImpl<T> implements ControlNode<T> {
+public class ControlNodeImpl<T extends ControlNode> extends NodeImpl<T> implements de.cooperateproject.modeling.textual.activity.act.ControlNode<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

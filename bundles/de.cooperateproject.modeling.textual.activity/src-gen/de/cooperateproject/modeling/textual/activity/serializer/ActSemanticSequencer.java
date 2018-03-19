@@ -28,6 +28,7 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 @SuppressWarnings("all")
 public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -90,7 +91,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ActionNode returns ActionNode
 	 *
 	 * Constraint:
-	 *     (name=ID | (name=ID alias=STRING))
+	 *     (name=ID | (alias=ID name=STRING))
 	 */
 	protected void sequence_ActionNode(ISerializationContext context, ActionNode semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -129,8 +130,8 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_DecisionNode(ISerializationContext context, DecisionNode semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getDecisionNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
@@ -145,10 +146,16 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     FinalNode returns FinalNode
 	 *
 	 * Constraint:
-	 *     name=ID?
+	 *     name=ID
 	 */
 	protected void sequence_FinalNode(ISerializationContext context, FinalNode semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getFinalNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -159,10 +166,16 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     FlowFinalNode returns FlowFinalNode
 	 *
 	 * Constraint:
-	 *     name=ID?
+	 *     name=ID
 	 */
 	protected void sequence_FlowFinalNode(ISerializationContext context, FlowFinalNode semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getFlowFinalNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -189,8 +202,8 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ForkNode(ISerializationContext context, ForkNode semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getForkNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
@@ -205,10 +218,16 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     InitialNode returns InitialNode
 	 *
 	 * Constraint:
-	 *     name=ID?
+	 *     name=ID
 	 */
 	protected void sequence_InitialNode(ISerializationContext context, InitialNode semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getInitialNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -223,8 +242,8 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_JoinNode(ISerializationContext context, JoinNode semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getJoinNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
@@ -243,8 +262,8 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_MergeNode(ISerializationContext context, MergeNode semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ActPackage.Literals.NODE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActPackage.Literals.NODE__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getMergeNodeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());

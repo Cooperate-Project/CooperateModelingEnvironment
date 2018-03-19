@@ -3,8 +3,10 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.DecisionNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DecisionNodeImpl extends ControlNodeImpl<org.eclipse.uml2.uml.DecisionNode> implements DecisionNode {
+public class DecisionNodeImpl extends ControlNodeImpl<DecisionNode> implements de.cooperateproject.modeling.textual.activity.act.DecisionNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

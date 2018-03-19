@@ -3,8 +3,10 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.FinalNode;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.FinalNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class FinalNodeImpl extends ControlNodeImpl<org.eclipse.uml2.uml.FinalNode> implements FinalNode {
+public class FinalNodeImpl extends ControlNodeImpl<FinalNode> implements de.cooperateproject.modeling.textual.activity.act.FinalNode {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

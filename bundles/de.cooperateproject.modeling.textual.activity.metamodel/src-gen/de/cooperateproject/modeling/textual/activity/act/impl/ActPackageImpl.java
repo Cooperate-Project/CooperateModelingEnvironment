@@ -17,8 +17,8 @@ import de.cooperateproject.modeling.textual.activity.act.JoinNode;
 import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.activity.act.Node;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
-
 import de.cooperateproject.modeling.textual.activity.act.Swimlane;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -309,15 +309,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNode_Name() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getControlNode() {
 		return controlNodeEClass;
 	}
@@ -329,15 +320,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 */
 	public EClass getActionNode() {
 		return actionNodeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getActionNode_Alias() {
-		return (EAttribute)actionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -489,12 +471,10 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		createEReference(containerEClass, CONTAINER__NODES);
 
 		nodeEClass = createEClass(NODE);
-		createEAttribute(nodeEClass, NODE__NAME);
 
 		controlNodeEClass = createEClass(CONTROL_NODE);
 
 		actionNodeEClass = createEClass(ACTION_NODE);
-		createEAttribute(actionNodeEClass, ACTION_NODE__ALIAS);
 
 		flowEClass = createEClass(FLOW);
 		createEReference(flowEClass, FLOW__RELATED_ELEMENTS);
@@ -568,6 +548,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g2 = createEGenericType(nodeEClass_T);
 		g1.getETypeArguments().add(g2);
 		nodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+		nodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNode());
 		g2 = createEGenericType(controlNodeEClass_T);
 		g1.getETypeArguments().add(g2);
@@ -575,6 +557,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g1 = createEGenericType(this.getNode());
 		g2 = createEGenericType(theUMLPackage.getActivityNode());
 		g1.getETypeArguments().add(g2);
+		actionNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
 		actionNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getRelationship());
@@ -627,12 +611,10 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEReference(getContainer_Nodes(), g1, null, "nodes", null, 0, -1, de.cooperateproject.modeling.textual.activity.act.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNode_Name(), theTypesPackage.getString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(controlNodeEClass, ControlNode.class, "ControlNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(actionNodeEClass, ActionNode.class, "ActionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getActionNode_Alias(), theTypesPackage.getString(), "alias", "", 0, 1, ActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(this.getNode());

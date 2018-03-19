@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.act;
 
 import org.eclipse.emf.ecore.EFactory;
+
 import org.eclipse.uml2.uml.ControlNode;
 
 /**
