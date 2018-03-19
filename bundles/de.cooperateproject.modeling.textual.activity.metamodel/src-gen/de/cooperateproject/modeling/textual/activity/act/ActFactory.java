@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.act;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.uml2.uml.ControlNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +56,7 @@ public interface ActFactory extends EFactory {
 	 * @return a new object of class '<em>Control Node</em>'.
 	 * @generated
 	 */
-	ControlNode createControlNode();
+	<T extends ControlNode> de.cooperateproject.modeling.textual.activity.act.ControlNode<T> createControlNode();
 
 	/**
 	 * Returns a new object of class '<em>Action Node</em>'.

@@ -4,8 +4,9 @@ package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Node;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class NodeImpl extends CDOObjectImpl implements Node {
+public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingElementImpl<T> implements Node<T> {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,11 +54,12 @@ public abstract class NodeImpl extends CDOObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
 	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
+	public void setReferencedElement(T newReferencedElement) {
+		super.setReferencedElement(newReferencedElement);
 	}
 
 	/**

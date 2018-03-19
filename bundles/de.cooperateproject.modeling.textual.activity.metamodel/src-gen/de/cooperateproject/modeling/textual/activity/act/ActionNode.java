@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
+import org.eclipse.uml2.uml.ActivityNode;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +21,7 @@ package de.cooperateproject.modeling.textual.activity.act;
  * @model
  * @generated
  */
-public interface ActionNode extends Node {
+public interface ActionNode extends Node<ActivityNode> {
 	/**
 	 * Returns the value of the '<em><b>Alias</b></em>' attribute.
 	 * The default value is <code>""</code>.

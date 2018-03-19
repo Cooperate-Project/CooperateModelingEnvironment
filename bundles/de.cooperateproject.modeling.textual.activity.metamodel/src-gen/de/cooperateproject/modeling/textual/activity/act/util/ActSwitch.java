@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage
  * @generated
  */
-public class ActSwitch<T> extends Switch<T> {
+public class ActSwitch<T1> extends Switch<T1> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -68,17 +69,17 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+	protected T1 doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case ActPackage.ACTIVITY_DIAGRAM: {
 				ActivityDiagram activityDiagram = (ActivityDiagram)theEObject;
-				T result = caseActivityDiagram(activityDiagram);
+				T1 result = caseActivityDiagram(activityDiagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.ROOT_PACKAGE: {
 				RootPackage rootPackage = (RootPackage)theEObject;
-				T result = caseRootPackage(rootPackage);
+				T1 result = caseRootPackage(rootPackage);
 				if (result == null) result = casePackageBase(rootPackage);
 				if (result == null) result = caseContainer(rootPackage);
 				if (result == null) result = casePackageableElement(rootPackage);
@@ -90,33 +91,39 @@ public class ActSwitch<T> extends Switch<T> {
 			}
 			case ActPackage.CONTAINER: {
 				Container container = (Container)theEObject;
-				T result = caseContainer(container);
+				T1 result = caseContainer(container);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.NODE: {
-				Node node = (Node)theEObject;
-				T result = caseNode(node);
+				Node<?> node = (Node<?>)theEObject;
+				T1 result = caseNode(node);
+				if (result == null) result = caseUMLReferencingElement(node);
+				if (result == null) result = caseElement(node);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.CONTROL_NODE: {
-				ControlNode controlNode = (ControlNode)theEObject;
-				T result = caseControlNode(controlNode);
+				ControlNode<?> controlNode = (ControlNode<?>)theEObject;
+				T1 result = caseControlNode(controlNode);
 				if (result == null) result = caseNode(controlNode);
+				if (result == null) result = caseUMLReferencingElement(controlNode);
+				if (result == null) result = caseElement(controlNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.ACTION_NODE: {
 				ActionNode actionNode = (ActionNode)theEObject;
-				T result = caseActionNode(actionNode);
+				T1 result = caseActionNode(actionNode);
 				if (result == null) result = caseNode(actionNode);
+				if (result == null) result = caseUMLReferencingElement(actionNode);
+				if (result == null) result = caseElement(actionNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.FLOW: {
 				Flow flow = (Flow)theEObject;
-				T result = caseFlow(flow);
+				T1 result = caseFlow(flow);
 				if (result == null) result = caseUMLReferencingElement(flow);
 				if (result == null) result = caseElement(flow);
 				if (result == null) result = defaultCase(theEObject);
@@ -124,77 +131,77 @@ public class ActSwitch<T> extends Switch<T> {
 			}
 			case ActPackage.INITIAL_NODE: {
 				InitialNode initialNode = (InitialNode)theEObject;
-				T result = caseInitialNode(initialNode);
+				T1 result = caseInitialNode(initialNode);
 				if (result == null) result = caseControlNode(initialNode);
-				if (result == null) result = caseUMLReferencingElement(initialNode);
 				if (result == null) result = caseNode(initialNode);
+				if (result == null) result = caseUMLReferencingElement(initialNode);
 				if (result == null) result = caseElement(initialNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.FINAL_NODE: {
 				FinalNode finalNode = (FinalNode)theEObject;
-				T result = caseFinalNode(finalNode);
+				T1 result = caseFinalNode(finalNode);
 				if (result == null) result = caseControlNode(finalNode);
-				if (result == null) result = caseUMLReferencingElement(finalNode);
 				if (result == null) result = caseNode(finalNode);
+				if (result == null) result = caseUMLReferencingElement(finalNode);
 				if (result == null) result = caseElement(finalNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.FLOW_FINAL_NODE: {
 				FlowFinalNode flowFinalNode = (FlowFinalNode)theEObject;
-				T result = caseFlowFinalNode(flowFinalNode);
+				T1 result = caseFlowFinalNode(flowFinalNode);
 				if (result == null) result = caseControlNode(flowFinalNode);
-				if (result == null) result = caseUMLReferencingElement(flowFinalNode);
 				if (result == null) result = caseNode(flowFinalNode);
+				if (result == null) result = caseUMLReferencingElement(flowFinalNode);
 				if (result == null) result = caseElement(flowFinalNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.DECISION_NODE: {
 				DecisionNode decisionNode = (DecisionNode)theEObject;
-				T result = caseDecisionNode(decisionNode);
+				T1 result = caseDecisionNode(decisionNode);
 				if (result == null) result = caseControlNode(decisionNode);
-				if (result == null) result = caseUMLReferencingElement(decisionNode);
 				if (result == null) result = caseNode(decisionNode);
+				if (result == null) result = caseUMLReferencingElement(decisionNode);
 				if (result == null) result = caseElement(decisionNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.MERGE_NODE: {
 				MergeNode mergeNode = (MergeNode)theEObject;
-				T result = caseMergeNode(mergeNode);
+				T1 result = caseMergeNode(mergeNode);
 				if (result == null) result = caseControlNode(mergeNode);
-				if (result == null) result = caseUMLReferencingElement(mergeNode);
 				if (result == null) result = caseNode(mergeNode);
+				if (result == null) result = caseUMLReferencingElement(mergeNode);
 				if (result == null) result = caseElement(mergeNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.FORK_NODE: {
 				ForkNode forkNode = (ForkNode)theEObject;
-				T result = caseForkNode(forkNode);
+				T1 result = caseForkNode(forkNode);
 				if (result == null) result = caseControlNode(forkNode);
-				if (result == null) result = caseUMLReferencingElement(forkNode);
 				if (result == null) result = caseNode(forkNode);
+				if (result == null) result = caseUMLReferencingElement(forkNode);
 				if (result == null) result = caseElement(forkNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.JOIN_NODE: {
 				JoinNode joinNode = (JoinNode)theEObject;
-				T result = caseJoinNode(joinNode);
+				T1 result = caseJoinNode(joinNode);
 				if (result == null) result = caseControlNode(joinNode);
-				if (result == null) result = caseUMLReferencingElement(joinNode);
 				if (result == null) result = caseNode(joinNode);
+				if (result == null) result = caseUMLReferencingElement(joinNode);
 				if (result == null) result = caseElement(joinNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActPackage.SWIMLANE: {
 				Swimlane swimlane = (Swimlane)theEObject;
-				T result = caseSwimlane(swimlane);
+				T1 result = caseSwimlane(swimlane);
 				if (result == null) result = caseContainer(swimlane);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -214,7 +221,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActivityDiagram(ActivityDiagram object) {
+	public T1 caseActivityDiagram(ActivityDiagram object) {
 		return null;
 	}
 
@@ -229,7 +236,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRootPackage(RootPackage object) {
+	public T1 caseRootPackage(RootPackage object) {
 		return null;
 	}
 
@@ -244,7 +251,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseContainer(Container object) {
+	public T1 caseContainer(Container object) {
 		return null;
 	}
 
@@ -259,7 +266,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNode(Node object) {
+	public <T extends ActivityNode> T1 caseNode(Node<T> object) {
 		return null;
 	}
 
@@ -274,7 +281,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseControlNode(ControlNode object) {
+	public <T extends org.eclipse.uml2.uml.ControlNode> T1 caseControlNode(ControlNode<T> object) {
 		return null;
 	}
 
@@ -289,7 +296,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActionNode(ActionNode object) {
+	public T1 caseActionNode(ActionNode object) {
 		return null;
 	}
 
@@ -304,7 +311,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFlow(Flow object) {
+	public T1 caseFlow(Flow object) {
 		return null;
 	}
 
@@ -319,7 +326,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInitialNode(InitialNode object) {
+	public T1 caseInitialNode(InitialNode object) {
 		return null;
 	}
 
@@ -334,7 +341,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFinalNode(FinalNode object) {
+	public T1 caseFinalNode(FinalNode object) {
 		return null;
 	}
 
@@ -349,7 +356,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFlowFinalNode(FlowFinalNode object) {
+	public T1 caseFlowFinalNode(FlowFinalNode object) {
 		return null;
 	}
 
@@ -364,7 +371,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDecisionNode(DecisionNode object) {
+	public T1 caseDecisionNode(DecisionNode object) {
 		return null;
 	}
 
@@ -379,7 +386,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMergeNode(MergeNode object) {
+	public T1 caseMergeNode(MergeNode object) {
 		return null;
 	}
 
@@ -394,7 +401,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseForkNode(ForkNode object) {
+	public T1 caseForkNode(ForkNode object) {
 		return null;
 	}
 
@@ -409,7 +416,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseJoinNode(JoinNode object) {
+	public T1 caseJoinNode(JoinNode object) {
 		return null;
 	}
 
@@ -424,7 +431,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSwimlane(Swimlane object) {
+	public T1 caseSwimlane(Swimlane object) {
 		return null;
 	}
 
@@ -439,7 +446,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElement(Element object) {
+	public T1 caseElement(Element object) {
 		return null;
 	}
 
@@ -454,7 +461,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePackageableElement(PackageableElement object) {
+	public T1 casePackageableElement(PackageableElement object) {
 		return null;
 	}
 
@@ -469,7 +476,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <UMLType extends org.eclipse.uml2.uml.Element> T caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
+	public <UMLType extends org.eclipse.uml2.uml.Element> T1 caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
 		return null;
 	}
 
@@ -484,7 +491,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNamedElement(NamedElement object) {
+	public T1 caseNamedElement(NamedElement object) {
 		return null;
 	}
 
@@ -499,7 +506,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <PackageType extends PackageBase<?>> T casePackageBase(PackageBase<PackageType> object) {
+	public <PackageType extends PackageBase<?>> T1 casePackageBase(PackageBase<PackageType> object) {
 		return null;
 	}
 
@@ -515,7 +522,7 @@ public class ActSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object) {
+	public T1 defaultCase(EObject object) {
 		return null;
 	}
 

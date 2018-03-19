@@ -11,7 +11,9 @@ import de.cooperateproject.modeling.textual.activity.act.ControlNode
 import de.cooperateproject.modeling.textual.activity.act.DecisionNode
 import de.cooperateproject.modeling.textual.activity.act.FinalNode
 import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode
+import de.cooperateproject.modeling.textual.activity.act.ForkNode
 import de.cooperateproject.modeling.textual.activity.act.InitialNode
+import de.cooperateproject.modeling.textual.activity.act.JoinNode
 import de.cooperateproject.modeling.textual.activity.tests.scoping.util.ActivityCustomizedInjectorProvider
 import java.util.Collections
 import org.apache.commons.io.IOUtils
@@ -26,8 +28,6 @@ import org.junit.runner.RunWith
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
-import de.cooperateproject.modeling.textual.activity.act.ForkNode
-import de.cooperateproject.modeling.textual.activity.act.JoinNode
 
 @RunWith(XtextRunner)
 @InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
@@ -79,9 +79,9 @@ class ActParsingTest extends AbstractActTest {
 		
 		assertEquals(model.rootPackage.nodes.length, 3)
 		
-		val firstNode = model.rootPackage.nodes.get(0) as ControlNode
-		val secondNode = model.rootPackage.nodes.get(1) as ControlNode
-		val thirdNode = model.rootPackage.nodes.get(2) as ControlNode
+		val firstNode = model.rootPackage.nodes.get(0) as ControlNode<?>
+		val secondNode = model.rootPackage.nodes.get(1) as ControlNode<?>
+		val thirdNode = model.rootPackage.nodes.get(2) as ControlNode<?>
 		
 		assertEquals(firstNode.name, "InitialNode")
 		assertTrue(firstNode instanceof InitialNode)
@@ -170,7 +170,7 @@ class ActParsingTest extends AbstractActTest {
 		assertEquals(model.rootPackage.relations.get(3).relatedElements.length, 2)
 		
 		val conditionFlow = model.rootPackage.relations.get(3)
-		val firstNode = conditionFlow.relatedElements.get(0) as ControlNode
+		val firstNode = conditionFlow.relatedElements.get(0) as ControlNode<?>
 		val secondNode = conditionFlow.relatedElements.get(1) as ActionNode
 
 		assertEquals(firstNode.name, "X")
@@ -222,23 +222,12 @@ class ActParsingTest extends AbstractActTest {
 		validationTestHelper.assertNoIssues(model)
 		
 		assertEquals(model.rootPackage.nodes.length, 7)
-		assertTrue(model.rootPackage.nodes.get(4) instanceof ForkNode)
-		assertTrue(model.rootPackage.nodes.get(5) instanceof JoinNode)
-	}
-	
-	@Test @Ignore
-	def void sortingTest() {
-		val model = '''
-			@start-actd "SomeTitle"
-			rootPackage RootElement
-			actn A
-			actn B
-			flw(A,B)
-			actn C
-			@end-actd
-		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
-		//TODO: Should this work?
+		
+		val firstNode = model.rootPackage.nodes.get(4) as ControlNode<?>
+		val secondNode = model.rootPackage.nodes.get(5) as ControlNode<?>
+
+		assertTrue(firstNode instanceof ForkNode)
+		assertTrue(secondNode instanceof JoinNode)
 	}
 	
 	@Test @Ignore
@@ -247,7 +236,7 @@ class ActParsingTest extends AbstractActTest {
 		val model = '''
 			@start-actd "SomeTitle"
 			rootPackage RootElement
-			swl kunde {
+			swl Kunde {
 			   actn suchen as "Buch suchen"
 			   actn kaufen
 			}
@@ -255,12 +244,12 @@ class ActParsingTest extends AbstractActTest {
 			   actn zeigen as "Regal zeigen"
 			}
 
-			flw(suchen, zeigen) 
-			flw(zeigen, kaufen)
+			flw(Kunde.suchen, Mitarbeiter.zeigen) 
+			flw(Mitarbeiter.zeigen, Kunde.kaufen)
 			@end-actd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
-		// FIXME: Nested actions not found
+		// FIXME: Fix scoping
 	}
 
 	private static def parse(CharSequence text, ResourceSet rs) {

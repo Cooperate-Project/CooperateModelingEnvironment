@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,8 +81,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Node> getNodes() {
-		return (EList<Node>)eDynamicGet(ActPackage.ROOT_PACKAGE__NODES, ActPackage.Literals.CONTAINER__NODES, true, true);
+	public EList<Node<ActivityNode>> getNodes() {
+		return (EList<Node<ActivityNode>>)eDynamicGet(ActPackage.ROOT_PACKAGE__NODES, ActPackage.Literals.CONTAINER__NODES, true, true);
 	}
 
 	/**
@@ -171,7 +172,7 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 		switch (featureID) {
 			case ActPackage.ROOT_PACKAGE__NODES:
 				getNodes().clear();
-				getNodes().addAll((Collection<? extends Node>)newValue);
+				getNodes().addAll((Collection<? extends Node<ActivityNode>>)newValue);
 				return;
 			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
 				setActivityName((String)newValue);

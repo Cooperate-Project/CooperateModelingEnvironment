@@ -14,6 +14,8 @@ import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ControlNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,11 +86,11 @@ public class ActAdapterFactory extends AdapterFactoryImpl {
 				return createContainerAdapter();
 			}
 			@Override
-			public Adapter caseNode(Node object) {
+			public <T extends ActivityNode> Adapter caseNode(Node<T> object) {
 				return createNodeAdapter();
 			}
 			@Override
-			public Adapter caseControlNode(ControlNode object) {
+			public <T extends ControlNode> Adapter caseControlNode(de.cooperateproject.modeling.textual.activity.act.ControlNode<T> object) {
 				return createControlNodeAdapter();
 			}
 			@Override

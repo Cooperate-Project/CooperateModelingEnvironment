@@ -10,6 +10,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Relationship;
 
 /**
@@ -73,8 +74,8 @@ public class FlowImpl extends UMLReferencingElementImpl<Relationship> implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Node> getRelatedElements() {
-		return (EList<Node>)eDynamicGet(ActPackage.FLOW__RELATED_ELEMENTS, ActPackage.Literals.FLOW__RELATED_ELEMENTS, true, true);
+	public EList<Node<ActivityNode>> getRelatedElements() {
+		return (EList<Node<ActivityNode>>)eDynamicGet(ActPackage.FLOW__RELATED_ELEMENTS, ActPackage.Literals.FLOW__RELATED_ELEMENTS, true, true);
 	}
 
 	/**
@@ -122,7 +123,7 @@ public class FlowImpl extends UMLReferencingElementImpl<Relationship> implements
 		switch (featureID) {
 			case ActPackage.FLOW__RELATED_ELEMENTS:
 				getRelatedElements().clear();
-				getRelatedElements().addAll((Collection<? extends Node>)newValue);
+				getRelatedElements().addAll((Collection<? extends Node<ActivityNode>>)newValue);
 				return;
 			case ActPackage.FLOW__CONDITION:
 				setCondition((String)newValue);

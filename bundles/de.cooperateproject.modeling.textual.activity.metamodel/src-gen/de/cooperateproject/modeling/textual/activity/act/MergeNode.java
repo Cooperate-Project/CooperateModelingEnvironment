@@ -2,9 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Merge Node</b></em>'.
@@ -15,5 +12,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface MergeNode extends ControlNode, UMLReferencingElement<org.eclipse.uml2.uml.MergeNode> {
+public interface MergeNode extends ControlNode<org.eclipse.uml2.uml.MergeNode> {
 } // MergeNode

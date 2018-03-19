@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.activity.act;
 import org.eclipse.emf.cdo.CDOObject;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Container extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Node}.
+	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Node}<code>&lt;org.eclipse.uml2.uml.ActivityNode&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
@@ -38,6 +39,6 @@ public interface Container extends CDOObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Node> getNodes();
+	EList<Node<ActivityNode>> getNodes();
 
 } // Container

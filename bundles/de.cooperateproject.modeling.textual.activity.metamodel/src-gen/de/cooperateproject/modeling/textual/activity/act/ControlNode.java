@@ -13,6 +13,6 @@ package de.cooperateproject.modeling.textual.activity.act;
  * @model
  * @generated
  */
-public interface ControlNode extends Node {
+public interface ControlNode<T extends org.eclipse.uml2.uml.ControlNode> extends Node<T> {
 
 } // ControlNode

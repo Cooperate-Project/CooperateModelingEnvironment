@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.uml2.uml.ControlNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,8 +111,8 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ControlNode createControlNode() {
-		ControlNodeImpl controlNode = new ControlNodeImpl();
+	public <T extends ControlNode> de.cooperateproject.modeling.textual.activity.act.ControlNode<T> createControlNode() {
+		ControlNodeImpl<T> controlNode = new ControlNodeImpl<T>();
 		return controlNode;
 	}
 

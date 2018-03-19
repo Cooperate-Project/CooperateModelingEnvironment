@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,8 +68,8 @@ public class ContainerImpl extends CDOObjectImpl implements de.cooperateproject.
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Node> getNodes() {
-		return (EList<Node>)eDynamicGet(ActPackage.CONTAINER__NODES, ActPackage.Literals.CONTAINER__NODES, true, true);
+	public EList<Node<ActivityNode>> getNodes() {
+		return (EList<Node<ActivityNode>>)eDynamicGet(ActPackage.CONTAINER__NODES, ActPackage.Literals.CONTAINER__NODES, true, true);
 	}
 
 	/**
@@ -110,7 +111,7 @@ public class ContainerImpl extends CDOObjectImpl implements de.cooperateproject.
 		switch (featureID) {
 			case ActPackage.CONTAINER__NODES:
 				getNodes().clear();
-				getNodes().addAll((Collection<? extends Node>)newValue);
+				getNodes().addAll((Collection<? extends Node<ActivityNode>>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

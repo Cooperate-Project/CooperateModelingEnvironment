@@ -26,7 +26,7 @@ Node returns Node:
 ;
 
 ActionNode returns ActionNode:
-	'actn'(name = ID | name = ID 'as' alias = STRING) // FIXME: Ordering? (NOT Copy-Paste from CMP)
+	'actn'(name = ID | name = ID 'as' alias = STRING) // FIXME: Ordering? (NOT Copy-Paste from CMP) CHANGE
 ;
 
 ControlNode returns ControlNode:

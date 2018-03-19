@@ -280,13 +280,22 @@ public interface ActPackage extends EPackage {
 	int NODE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__NAME = 0;
+	int NODE__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -295,7 +304,25 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 1;
+	int NODE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Node</em>' class.
@@ -304,7 +331,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_OPERATION_COUNT = 0;
+	int NODE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ControlNodeImpl <em>Control Node</em>}' class.
@@ -315,6 +342,15 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTROL_NODE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE__REFERENCED_ELEMENT = NODE__REFERENCED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -335,6 +371,24 @@ public interface ActPackage extends EPackage {
 	int CONTROL_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE___GET_NEAREST_PACKAGE = NODE___GET_NEAREST_PACKAGE;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_NODE___GET_UML_PARENT_NAMESPACE = NODE___GET_UML_PARENT_NAMESPACE;
+
+	/**
 	 * The number of operations of the '<em>Control Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -352,6 +406,15 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 */
 	int ACTION_NODE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__REFERENCED_ELEMENT = NODE__REFERENCED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -379,6 +442,24 @@ public interface ActPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE___GET_NEAREST_PACKAGE = NODE___GET_NEAREST_PACKAGE;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE___GET_UML_PARENT_NAMESPACE = NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Action Node</em>' class.
@@ -473,6 +554,15 @@ public interface ActPackage extends EPackage {
 	int INITIAL_NODE = 7;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,22 +572,13 @@ public interface ActPackage extends EPackage {
 	int INITIAL_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INITIAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Initial Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INITIAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int INITIAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -506,7 +587,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INITIAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int INITIAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -515,7 +596,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INITIAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int INITIAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Initial Node</em>' class.
@@ -524,7 +605,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INITIAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int INITIAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FinalNodeImpl <em>Final Node</em>}' class.
@@ -537,6 +618,15 @@ public interface ActPackage extends EPackage {
 	int FINAL_NODE = 8;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -546,22 +636,13 @@ public interface ActPackage extends EPackage {
 	int FINAL_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FINAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Final Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int FINAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -570,7 +651,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int FINAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -579,7 +660,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int FINAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Final Node</em>' class.
@@ -588,7 +669,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FINAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int FINAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowFinalNodeImpl <em>Flow Final Node</em>}' class.
@@ -601,6 +682,15 @@ public interface ActPackage extends EPackage {
 	int FLOW_FINAL_NODE = 9;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW_FINAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -610,22 +700,13 @@ public interface ActPackage extends EPackage {
 	int FLOW_FINAL_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOW_FINAL_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Flow Final Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FINAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int FLOW_FINAL_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -634,7 +715,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FINAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int FLOW_FINAL_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -643,7 +724,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FINAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int FLOW_FINAL_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Flow Final Node</em>' class.
@@ -652,7 +733,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FINAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int FLOW_FINAL_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.DecisionNodeImpl <em>Decision Node</em>}' class.
@@ -665,6 +746,15 @@ public interface ActPackage extends EPackage {
 	int DECISION_NODE = 10;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -674,22 +764,13 @@ public interface ActPackage extends EPackage {
 	int DECISION_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Decision Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int DECISION_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -698,7 +779,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int DECISION_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -707,7 +788,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int DECISION_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Decision Node</em>' class.
@@ -716,7 +797,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int DECISION_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.MergeNodeImpl <em>Merge Node</em>}' class.
@@ -729,6 +810,15 @@ public interface ActPackage extends EPackage {
 	int MERGE_NODE = 11;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -738,22 +828,13 @@ public interface ActPackage extends EPackage {
 	int MERGE_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Merge Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int MERGE_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -762,7 +843,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int MERGE_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -771,7 +852,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int MERGE_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Merge Node</em>' class.
@@ -780,7 +861,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int MERGE_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ForkNodeImpl <em>Fork Node</em>}' class.
@@ -793,6 +874,15 @@ public interface ActPackage extends EPackage {
 	int FORK_NODE = 12;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -802,22 +892,13 @@ public interface ActPackage extends EPackage {
 	int FORK_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Fork Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int FORK_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -826,7 +907,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int FORK_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -835,7 +916,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int FORK_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Fork Node</em>' class.
@@ -844,7 +925,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int FORK_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.JoinNodeImpl <em>Join Node</em>}' class.
@@ -857,6 +938,15 @@ public interface ActPackage extends EPackage {
 	int JOIN_NODE = 13;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_NODE__REFERENCED_ELEMENT = CONTROL_NODE__REFERENCED_ELEMENT;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -866,22 +956,13 @@ public interface ActPackage extends EPackage {
 	int JOIN_NODE__NAME = CONTROL_NODE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__REFERENCED_ELEMENT = CONTROL_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Join Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 1;
+	int JOIN_NODE_FEATURE_COUNT = CONTROL_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -890,7 +971,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE_OPERATION_COUNT + 0;
+	int JOIN_NODE___GET_NEAREST_PACKAGE = CONTROL_NODE___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
@@ -899,7 +980,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE_OPERATION_COUNT + 1;
+	int JOIN_NODE___GET_UML_PARENT_NAMESPACE = CONTROL_NODE___GET_UML_PARENT_NAMESPACE;
 
 	/**
 	 * The number of operations of the '<em>Join Node</em>' class.
@@ -908,7 +989,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 2;
+	int JOIN_NODE_OPERATION_COUNT = CONTROL_NODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.SwimlaneImpl <em>Swimlane</em>}' class.

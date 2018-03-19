@@ -2,9 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Decision Node</b></em>'.
@@ -15,5 +12,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface DecisionNode extends ControlNode, UMLReferencingElement<org.eclipse.uml2.uml.DecisionNode> {
+public interface DecisionNode extends ControlNode<org.eclipse.uml2.uml.DecisionNode> {
 } // DecisionNode

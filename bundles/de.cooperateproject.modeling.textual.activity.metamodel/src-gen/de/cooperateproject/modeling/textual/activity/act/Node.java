@@ -2,7 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
-import org.eclipse.emf.cdo.CDOObject;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,10 +19,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getNode()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface Node extends CDOObject {
+public interface Node<T extends ActivityNode> extends UMLReferencingElement<T> {
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

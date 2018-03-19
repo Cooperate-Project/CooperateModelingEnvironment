@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -543,65 +544,67 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter nodeEClass_T = addETypeParameter(nodeEClass, "T");
+		ETypeParameter controlNodeEClass_T = addETypeParameter(controlNodeEClass, "T");
 
 		// Set bounds for type parameters
+		EGenericType g1 = createEGenericType(theUMLPackage.getActivityNode());
+		nodeEClass_T.getEBounds().add(g1);
+		g1 = createEGenericType(theUMLPackage.getControlNode());
+		controlNodeEClass_T.getEBounds().add(g1);
 
 		// Add supertypes to classes
-		EGenericType g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
+		g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
 		EGenericType g2 = createEGenericType(this.getRootPackage());
 		g1.getETypeArguments().add(g2);
 		rootPackageEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getContainer());
 		rootPackageEClass.getEGenericSuperTypes().add(g1);
-		controlNodeEClass.getESuperTypes().add(this.getNode());
-		actionNodeEClass.getESuperTypes().add(this.getNode());
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(nodeEClass_T);
+		g1.getETypeArguments().add(g2);
+		nodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNode());
+		g2 = createEGenericType(controlNodeEClass_T);
+		g1.getETypeArguments().add(g2);
+		controlNodeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNode());
+		g2 = createEGenericType(theUMLPackage.getActivityNode());
+		g1.getETypeArguments().add(g2);
+		actionNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getRelationship());
 		g1.getETypeArguments().add(g2);
 		flowEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		initialNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getInitialNode());
 		g1.getETypeArguments().add(g2);
 		initialNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		finalNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getFinalNode());
 		g1.getETypeArguments().add(g2);
 		finalNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		flowFinalNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getFlowFinalNode());
 		g1.getETypeArguments().add(g2);
 		flowFinalNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		decisionNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getDecisionNode());
 		g1.getETypeArguments().add(g2);
 		decisionNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		mergeNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getMergeNode());
 		g1.getETypeArguments().add(g2);
 		mergeNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		forkNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getForkNode());
 		g1.getETypeArguments().add(g2);
 		forkNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		joinNodeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getJoinNode());
 		g1.getETypeArguments().add(g2);
 		joinNodeEClass.getEGenericSuperTypes().add(g1);
@@ -618,7 +621,10 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEReference(getRootPackage_Children(), this.getContainer(), null, "children", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(containerEClass, de.cooperateproject.modeling.textual.activity.act.Container.class, "Container", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContainer_Nodes(), this.getNode(), null, "nodes", null, 0, -1, de.cooperateproject.modeling.textual.activity.act.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(this.getNode());
+		g2 = createEGenericType(theUMLPackage.getActivityNode());
+		g1.getETypeArguments().add(g2);
+		initEReference(getContainer_Nodes(), g1, null, "nodes", null, 0, -1, de.cooperateproject.modeling.textual.activity.act.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNode_Name(), theTypesPackage.getString(), "name", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -629,7 +635,10 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEAttribute(getActionNode_Alias(), theTypesPackage.getString(), "alias", "", 0, 1, ActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFlow_RelatedElements(), this.getNode(), null, "relatedElements", null, 2, -1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(this.getNode());
+		g2 = createEGenericType(theUMLPackage.getActivityNode());
+		g1.getETypeArguments().add(g2);
+		initEReference(getFlow_RelatedElements(), g1, null, "relatedElements", null, 2, -1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFlow_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(initialNodeEClass, InitialNode.class, "InitialNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

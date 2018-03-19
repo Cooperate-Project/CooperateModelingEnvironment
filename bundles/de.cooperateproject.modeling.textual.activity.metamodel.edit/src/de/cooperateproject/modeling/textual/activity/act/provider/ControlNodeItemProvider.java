@@ -63,7 +63,7 @@ public class ControlNodeItemProvider extends NodeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ControlNode)object).getName();
+		String label = ((ControlNode<?>)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ControlNode_type") :
 			getString("_UI_ControlNode_type") + " " + label;

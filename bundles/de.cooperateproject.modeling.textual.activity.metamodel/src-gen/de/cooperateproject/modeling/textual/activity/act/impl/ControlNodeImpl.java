@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ControlNodeImpl extends NodeImpl implements ControlNode {
+public class ControlNodeImpl<T extends org.eclipse.uml2.uml.ControlNode> extends NodeImpl<T> implements ControlNode<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Join Node</b></em>'.
@@ -14,5 +12,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface JoinNode extends ControlNode, UMLReferencingElement<org.eclipse.uml2.uml.JoinNode> {
+public interface JoinNode extends ControlNode<org.eclipse.uml2.uml.JoinNode> {
 } // JoinNode

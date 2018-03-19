@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActionNode;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ActionNodeImpl extends NodeImpl implements ActionNode {
+public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode {
 	/**
 	 * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
 	 * <!-- begin-user-doc -->
