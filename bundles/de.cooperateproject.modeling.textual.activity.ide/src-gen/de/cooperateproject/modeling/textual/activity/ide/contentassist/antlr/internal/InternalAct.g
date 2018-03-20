@@ -1534,9 +1534,16 @@ rule__Flow__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFlowAccess().getGroup_3()); }
-	(rule__Flow__Group_3__0)*
-	{ after(grammarAccess.getFlowAccess().getGroup_3()); }
+	(
+		{ before(grammarAccess.getFlowAccess().getGroup_3()); }
+		(rule__Flow__Group_3__0)
+		{ after(grammarAccess.getFlowAccess().getGroup_3()); }
+	)
+	(
+		{ before(grammarAccess.getFlowAccess().getGroup_3()); }
+		(rule__Flow__Group_3__0)*
+		{ after(grammarAccess.getFlowAccess().getGroup_3()); }
+	)
 )
 ;
 finally {
@@ -2238,9 +2245,9 @@ rule__Flow__RelatedElementsAssignment_2
 	(
 		{ before(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_2_0()); }
 		(
-			{ before(grammarAccess.getFlowAccess().getRelatedElementsNodeIDTerminalRuleCall_2_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getFlowAccess().getRelatedElementsNodeIDTerminalRuleCall_2_0_1()); }
+			{ before(grammarAccess.getFlowAccess().getRelatedElementsNodeFQNParserRuleCall_2_0_1()); }
+			ruleFQN
+			{ after(grammarAccess.getFlowAccess().getRelatedElementsNodeFQNParserRuleCall_2_0_1()); }
 		)
 		{ after(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_2_0()); }
 	)
@@ -2257,9 +2264,9 @@ rule__Flow__RelatedElementsAssignment_3_1
 	(
 		{ before(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_3_1_0()); }
 		(
-			{ before(grammarAccess.getFlowAccess().getRelatedElementsNodeIDTerminalRuleCall_3_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getFlowAccess().getRelatedElementsNodeIDTerminalRuleCall_3_1_0_1()); }
+			{ before(grammarAccess.getFlowAccess().getRelatedElementsNodeFQNParserRuleCall_3_1_0_1()); }
+			ruleFQN
+			{ after(grammarAccess.getFlowAccess().getRelatedElementsNodeFQNParserRuleCall_3_1_0_1()); }
 		)
 		{ after(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_3_1_0()); }
 	)

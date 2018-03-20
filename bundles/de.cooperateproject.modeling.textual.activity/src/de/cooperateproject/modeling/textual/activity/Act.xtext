@@ -62,7 +62,7 @@ JoinNode returns JoinNode:
 ;
 
 Flow returns Flow:
-	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?
+	'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
 ;
 
 Swimlane returns Swimlane:

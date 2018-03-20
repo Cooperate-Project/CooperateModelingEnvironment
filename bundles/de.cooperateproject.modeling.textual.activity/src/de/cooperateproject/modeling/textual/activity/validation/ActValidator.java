@@ -3,35 +3,37 @@
  */
 package de.cooperateproject.modeling.textual.activity.validation;
 
+import org.eclipse.xtext.validation.Check;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
-import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.activity.act.ActPackage;
+import de.cooperateproject.modeling.textual.activity.act.Flow;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
+
 /**
- * This class contains custom validation rules. 
+ * This class contains custom validation rules.
  *
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
+ * See
+ * https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class ActValidator extends AbstractActValidator {
-			
+
 	@Inject
 	@SuppressWarnings("unused")
 	private ICooperateAutomatedValidator automatedValidator;
-	
+
 	@Inject
 	@SuppressWarnings("unused")
 	private IIssueCodeRegistry issueCodeRegistry;
-	
-//	public static final INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					ActPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
-	
+
+	@Check
+	private void checkFlowConditionWithMultipleMembers(Flow flow) {
+		if (flow.getRelatedElements().size() > 2 && flow.getCondition() != null) {
+			error("Conditions are only allowed for flow between two actions.", flow,
+					ActPackage.Literals.FLOW__RELATED_ELEMENTS);
+		}
+		// TODO: Not tested!
+	}
 }

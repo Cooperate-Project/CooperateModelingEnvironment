@@ -3,6 +3,14 @@
  */
 package de.cooperateproject.modeling.textual.activity.scoping
 
+import de.cooperateproject.modeling.textual.activity.act.Flow
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.xtext.scoping.impl.SimpleScope
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.scoping.Scopes
+import de.cooperateproject.modeling.textual.activity.act.Node
 
 /**
  * This class contains custom scoping description.
@@ -11,5 +19,20 @@ package de.cooperateproject.modeling.textual.activity.scoping
  * on how and when to use it.
  */
 class ActScopeProvider extends AbstractActScopeProvider {
+
+override IScope getScope(EObject context, EReference reference) {
+		val defaultScope = super.getScope(context, reference)
+		val newScope = doGetScope(context, reference, defaultScope)
+		return newScope ?: defaultScope
+	}
+
+	def dispatch doGetScope(Flow flow, EReference reference, IScope parentScope) {
+		// TODO: Should match swimlanes correctly
+		return parentScope
+	}
+	
+	def dispatch doGetScope(EObject obj, EReference reference, IScope parentScope) {
+		return null
+	}
 
 }

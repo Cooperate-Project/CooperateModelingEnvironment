@@ -418,12 +418,12 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cRelatedElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cRelatedElementsNodeCrossReference_2_0 = (CrossReference)cRelatedElementsAssignment_2.eContents().get(0);
-		private final RuleCall cRelatedElementsNodeIDTerminalRuleCall_2_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_2_0.eContents().get(1);
+		private final RuleCall cRelatedElementsNodeFQNParserRuleCall_2_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_2_0.eContents().get(1);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cRelatedElementsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final CrossReference cRelatedElementsNodeCrossReference_3_1_0 = (CrossReference)cRelatedElementsAssignment_3_1.eContents().get(0);
-		private final RuleCall cRelatedElementsNodeIDTerminalRuleCall_3_1_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_3_1_0.eContents().get(1);
+		private final RuleCall cRelatedElementsNodeFQNParserRuleCall_3_1_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_3_1_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cLeftSquareBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
@@ -432,10 +432,10 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Flow:
-		//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?;
+		//	'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?
+		//'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'flw'
@@ -444,29 +444,29 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//relatedElements+=[Node]
+		//relatedElements+=[Node|FQN]
 		public Assignment getRelatedElementsAssignment_2() { return cRelatedElementsAssignment_2; }
 		
-		//[Node]
+		//[Node|FQN]
 		public CrossReference getRelatedElementsNodeCrossReference_2_0() { return cRelatedElementsNodeCrossReference_2_0; }
 		
-		//ID
-		public RuleCall getRelatedElementsNodeIDTerminalRuleCall_2_0_1() { return cRelatedElementsNodeIDTerminalRuleCall_2_0_1; }
+		//FQN
+		public RuleCall getRelatedElementsNodeFQNParserRuleCall_2_0_1() { return cRelatedElementsNodeFQNParserRuleCall_2_0_1; }
 		
-		//(',' relatedElements+=[Node])*
+		//(',' relatedElements+=[Node|FQN])+
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//','
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 		
-		//relatedElements+=[Node]
+		//relatedElements+=[Node|FQN]
 		public Assignment getRelatedElementsAssignment_3_1() { return cRelatedElementsAssignment_3_1; }
 		
-		//[Node]
+		//[Node|FQN]
 		public CrossReference getRelatedElementsNodeCrossReference_3_1_0() { return cRelatedElementsNodeCrossReference_3_1_0; }
 		
-		//ID
-		public RuleCall getRelatedElementsNodeIDTerminalRuleCall_3_1_0_1() { return cRelatedElementsNodeIDTerminalRuleCall_3_1_0_1; }
+		//FQN
+		public RuleCall getRelatedElementsNodeFQNParserRuleCall_3_1_0_1() { return cRelatedElementsNodeFQNParserRuleCall_3_1_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
@@ -752,7 +752,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Flow:
-	//	'flw' '(' relatedElements+=[Node] (',' relatedElements+=[Node])* ')' ('[' condition=STRING ']')?;
+	//	'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?;
 	public FlowElements getFlowAccess() {
 		return pFlow;
 	}

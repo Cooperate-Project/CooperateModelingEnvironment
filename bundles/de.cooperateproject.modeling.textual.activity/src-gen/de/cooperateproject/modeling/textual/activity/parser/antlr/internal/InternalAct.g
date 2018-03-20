@@ -784,9 +784,12 @@ ruleFlow returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getFlowRule());
 					}
 				}
-				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_2_0());
+					newCompositeNode(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_2_0());
+				}
+				ruleFQN
+				{
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -802,13 +805,16 @@ ruleFlow returns [EObject current=null]
 							$current = createModelElement(grammarAccess.getFlowRule());
 						}
 					}
-					otherlv_4=RULE_ID
 					{
-						newLeafNode(otherlv_4, grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_3_1_0());
+						newCompositeNode(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_3_1_0());
+					}
+					ruleFQN
+					{
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
+		)+
 		otherlv_5=')'
 		{
 			newLeafNode(otherlv_5, grammarAccess.getFlowAccess().getRightParenthesisKeyword_4());

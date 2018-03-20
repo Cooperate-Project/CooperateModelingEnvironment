@@ -249,7 +249,7 @@ class ActParsingTest extends AbstractActTest {
 			@end-actd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
-		// FIXME: Fix scoping
+		// TODO: Fix scoping
 	}
 
 	private static def parse(CharSequence text, ResourceSet rs) {
