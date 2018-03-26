@@ -262,9 +262,16 @@ public class ModelAndDiagramSelectionComposite extends Composite {
      * project properties.
      */
     public void triggerValidation() {
-        String oldText = textProject.getText();
-        textProject.setText("");
-        textProject.setText(oldText);
+        String empty = "";
+        String oldProject = textProject.getText();
+        textProject.setText(empty);
+        textProject.setText(oldProject);
+        String oldModel = textModelName.getText();
+        textModelName.setText(empty);
+        textModelName.setText(oldModel);
+        String oldDiagramName = textDiagramName.getText();
+        textDiagramName.setText(empty);
+        textDiagramName.setText(oldDiagramName);
     }
 
 }
