@@ -15,17 +15,16 @@ import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.Member
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
-import de.cooperateproject.modeling.textual.cls.tests.util.ClsTestInjectorProvider
+import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
 import java.util.Collections
 import org.apache.commons.io.IOUtils
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.VisibilityKind
@@ -38,7 +37,7 @@ import static org.junit.Assert.assertNotNull
 import static org.junit.Assert.assertNull
 import static org.junit.Assert.assertTrue
 
-@InjectWith(ClsTestInjectorProvider.DefaultProvider)
+@InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class ClsParsingTest extends AbstractClsTest {
 	
 	@Inject extension ValidationTestHelper 
@@ -319,7 +318,7 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param visibility the visibility the member should have.
 	 * @param kind the visibility the referenced element of the member should have.
 	 */
-	private def void checkVisibility(Member<? extends NamedElement> member, VisibilityKind visibility) {
+	private def void checkVisibility(Member<? extends org.eclipse.uml2.uml.NamedElement> member, VisibilityKind visibility) {
 		assertEquals(visibility, member.visibility)
 		assertEquals(visibility, member.referencedElement.visibility)
 	}
@@ -604,8 +603,8 @@ class ClsParsingTest extends AbstractClsTest {
 		model => [
 			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 			val comment = model.eAllContents.filter(Comment).findFirst[true];
-			assertTrue(comment.commentedElement instanceof de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement);
-			assertEquals("Alice", (comment.commentedElement as de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement).name)
+			assertTrue(comment.commentedElement instanceof NamedElement);
+			assertEquals("Alice", (comment.commentedElement as NamedElement).name)
 			assertEquals("this is a note", comment.body)
 		]
 
@@ -625,8 +624,8 @@ class ClsParsingTest extends AbstractClsTest {
 		model => [
 			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 			val comment = model.eAllContents.filter(Comment).findFirst[true];
-			assertTrue(comment.commentedElement instanceof de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement);
-			assertEquals("Alice", (comment.commentedElement as de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement).name)
+			assertTrue(comment.commentedElement instanceof NamedElement);
+			assertEquals("Alice", (comment.commentedElement as NamedElement).name)
 			assertEquals("this is a note", comment.body)
 		]
 
@@ -901,7 +900,7 @@ class ClsParsingTest extends AbstractClsTest {
 	}
 	
 	private static def parse(CharSequence text, ResourceSet rs) {
-		val r = rs.createResource(URI.createFileURI("somefile.cls"))
+		val r = rs.createResource(URI.createFileURI("testmodels/ClsParserTest.cls"))
 		val is = IOUtils.toInputStream(text);
 		r.load(is, Collections.emptyMap());
 		return r.contents.get(0) as ClassDiagram
