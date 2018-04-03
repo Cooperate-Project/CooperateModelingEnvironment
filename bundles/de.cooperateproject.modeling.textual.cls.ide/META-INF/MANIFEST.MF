@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Class Diagrams IDE
-Bundle-Version: 0.8.1
+Bundle-Version: 0.8.2.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.cls,
