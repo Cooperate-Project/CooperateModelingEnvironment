@@ -12,7 +12,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatu
 /**
  * Transient status provider for use case models.
  */
-public class UseCaseTransientStatusProvider implements ITransientStatusProvider {
+public class UsecaseTransientStatusProvider implements ITransientStatusProvider {
 
     private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>(
             Arrays.asList(UsecasePackage.Literals.ACTOR__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT,

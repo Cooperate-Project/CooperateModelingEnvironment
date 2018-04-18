@@ -73,7 +73,7 @@
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
       <class
-            class="de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientStatusProvider"></class>
+            class="de.cooperateproject.modeling.textual.usecase.services.UsecaseTransientStatusProvider"></class>
    </extension>
 
 </plugin>
