@@ -14,9 +14,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.component.cmp.Classifier;
-import de.cooperateproject.modeling.textual.component.cmp.Provide;
-import de.cooperateproject.modeling.textual.component.cmp.Require;
+import de.cooperateproject.modeling.textual.component.component.Classifier;
+import de.cooperateproject.modeling.textual.component.component.Provide;
+import de.cooperateproject.modeling.textual.component.component.Require;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;

@@ -4,10 +4,10 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Type
-import de.cooperateproject.modeling.textual.component.cmp.Parameter
-import de.cooperateproject.modeling.textual.component.cmp.Method
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.Property
+import de.cooperateproject.modeling.textual.component.component.Parameter
+import de.cooperateproject.modeling.textual.component.component.Method
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.Property
 
 class ComponentPropertyTypeMismatchResolution extends AutomatedIssueResolutionBase<Property<? extends NamedElement>> {
 	

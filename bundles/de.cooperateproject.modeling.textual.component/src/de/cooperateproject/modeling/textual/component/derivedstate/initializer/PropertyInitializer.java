@@ -12,7 +12,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.component.cmp.Property;
+import de.cooperateproject.modeling.textual.component.component.Property;
 import de.cooperateproject.modeling.textual.component.derivedstate.utils.TypeFeatureFinderSwitch;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;

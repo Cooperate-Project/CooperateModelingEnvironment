@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.uml2.uml.NamedElement;
 
-import de.cooperateproject.modeling.textual.component.cmp.Property;
+import de.cooperateproject.modeling.textual.component.component.Property;
 import de.cooperateproject.modeling.textual.component.derivedstate.utils.TypeFeatureFinderSwitch;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;

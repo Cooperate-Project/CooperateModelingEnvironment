@@ -5,7 +5,7 @@ package de.cooperateproject.modeling.textual.component.ui.internal;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.IInjectorProvider;
 
 /**
@@ -17,8 +17,8 @@ public class ComponentInjectorProvider implements IInjectorProvider {
     private Injector injector;
 
     @Override
-    public CmpPackage getEPackage() {
-        return CmpPackage.eINSTANCE;
+    public ComponentPackage getEPackage() {
+        return ComponentPackage.eINSTANCE;
     }
 
     @Override

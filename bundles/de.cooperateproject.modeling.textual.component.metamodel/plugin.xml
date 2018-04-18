@@ -9,7 +9,8 @@
       <!-- @generated cmp -->
       <package
             uri="http://www.cooperateproject.de/modeling/textual/component/Component"
-            class="de.cooperateproject.modeling.textual.component.cmp.CmpPackage"
+            class="de.cooperateproject.modeling.textual.component.component.ComponentPackage"
             genModel="model/cmp.genmodel"/>
    </extension>
+
 </plugin>

@@ -10,9 +10,9 @@ import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
-import de.cooperateproject.modeling.textual.component.cmp.Interface;
-import de.cooperateproject.modeling.textual.component.cmp.Provide;
-import de.cooperateproject.modeling.textual.component.cmp.Require;
+import de.cooperateproject.modeling.textual.component.component.Interface;
+import de.cooperateproject.modeling.textual.component.component.Provide;
+import de.cooperateproject.modeling.textual.component.component.Require;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

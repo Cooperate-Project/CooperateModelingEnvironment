@@ -1,7 +1,7 @@
 package de.cooperateproject.modeling.textual.component.issues
 
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.component.cmp.Method
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
+import de.cooperateproject.modeling.textual.component.component.Method
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
@@ -10,19 +10,19 @@ import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.component.cmp.InterfaceRelation
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.Component
-import de.cooperateproject.modeling.textual.component.cmp.Member
+import de.cooperateproject.modeling.textual.component.component.InterfaceRelation
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.Component
+import de.cooperateproject.modeling.textual.component.component.Member
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
-import de.cooperateproject.modeling.textual.component.cmp.Port
-import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
-import de.cooperateproject.modeling.textual.component.cmp.Connector
-import de.cooperateproject.modeling.textual.component.cmp.Parameter
+import de.cooperateproject.modeling.textual.component.component.Port
+import de.cooperateproject.modeling.textual.component.component.ConnectorEnd
+import de.cooperateproject.modeling.textual.component.component.Connector
+import de.cooperateproject.modeling.textual.component.component.Parameter
 import org.apache.commons.lang3.StringUtils
 import de.cooperateproject.modeling.textual.common.issues.DependingElementMissingElementResolvableCheckerBase
 import org.eclipse.uml2.uml.AttributeOwner
-import de.cooperateproject.modeling.textual.component.cmp.Generalization
+import de.cooperateproject.modeling.textual.component.component.Generalization
 
 class ComponentMissingUMLElementResolvableChecker extends DependingElementMissingElementResolvableCheckerBase {
 	
@@ -30,7 +30,7 @@ class ComponentMissingUMLElementResolvableChecker extends DependingElementMissin
 	    val referencedType = element.eClass.getFeatureType(TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement).EClassifier as EClass
 	    return (UMLPackage.eINSTANCE.classifier.isSuperTypeOf(referencedType) 
 	         && UMLPackage.eINSTANCE.packageableElement.isSuperTypeOf(referencedType)
-	         && (element.hasValidParent(CmpPackage.eINSTANCE.component) || element.hasValidParent(CmpPackage.eINSTANCE.rootPackage)))
+	         && (element.hasValidParent(ComponentPackage.eINSTANCE.component) || element.hasValidParent(ComponentPackage.eINSTANCE.rootPackage)))
 	}
 	
 	protected def dispatch resolvePossible(Component element) {
@@ -42,23 +42,23 @@ class ComponentMissingUMLElementResolvableChecker extends DependingElementMissin
 	}
 	
 	protected def dispatch localResolutionPossible(InterfaceRelation element) {
-		return element.hasValidParent(CmpPackage.eINSTANCE.classifier)
+		return element.hasValidParent(ComponentPackage.eINSTANCE.classifier)
 	}
 	
 	protected def dispatch localResolutionPossible(Attribute element) {
-		return element.type !== null && element.hasValidParent(CmpPackage.eINSTANCE.classifier) && !element.type.eIsProxy
+		return element.type !== null && element.hasValidParent(ComponentPackage.eINSTANCE.classifier) && !element.type.eIsProxy
 	}
 	
 	protected def dispatch localResolutionPossible(Port element) {
-		return element.hasValidParent(CmpPackage.eINSTANCE.component)
+		return element.hasValidParent(ComponentPackage.eINSTANCE.component)
 	}
 	
 	protected def dispatch localResolutionPossible(ConnectorEnd element) {
-		return element.hasValidParent(CmpPackage.eINSTANCE.connector)
+		return element.hasValidParent(ComponentPackage.eINSTANCE.connector)
 	}
 	
 	protected def dispatch localResolutionPossible(Connector element) {
-		return element.name !== null && element.hasValidParent(CmpPackage.eINSTANCE.component) && !element.connectorEnds.map[role].contains(null)
+		return element.name !== null && element.hasValidParent(ComponentPackage.eINSTANCE.component) && !element.connectorEnds.map[role].contains(null)
 	}
 	
 	protected def dispatch localResolutionPossible(Method element) {

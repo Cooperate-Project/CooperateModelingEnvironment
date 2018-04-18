@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import org.eclipse.uml2.uml.DirectedRelationship;
 
-import de.cooperateproject.modeling.textual.component.cmp.Classifier;
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
-import de.cooperateproject.modeling.textual.component.cmp.Generalization;
+import de.cooperateproject.modeling.textual.component.component.Classifier;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.component.component.Generalization;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 
@@ -32,13 +32,13 @@ public class GeneralizationRemover extends AtomicDerivedStateProcessorBase<Gener
             if (Optional.ofNullable(object.getLeftClassifier()).map(Classifier::getReferencedElement)
                     .equals(Optional.ofNullable(object.getReferencedElement()).map(DirectedRelationship::getSources)
                             .flatMap(l -> l.stream().findFirst()))) {
-                object.eUnset(CmpPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER);
+                object.eUnset(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER);
             }
 
             if (Optional.ofNullable(object.getRightClassifier()).map(Classifier::getReferencedElement)
                     .equals(Optional.ofNullable(object.getReferencedElement()).map(DirectedRelationship::getTargets)
                             .flatMap(l -> l.stream().findFirst()))) {
-                object.eUnset(CmpPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER);
+                object.eUnset(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER);
             }
         }
     }

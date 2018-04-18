@@ -3,11 +3,11 @@ package de.cooperateproject.modeling.textual.component.issues
 import org.eclipse.uml2.uml.NamedElement
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.component.cmp.Method
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.Parameter
-import de.cooperateproject.modeling.textual.component.cmp.Property
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.component.Method
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.Parameter
+import de.cooperateproject.modeling.textual.component.component.Property
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
 
 class ComponentPropertyTypeMismatchFactory extends ComponentAutomatedIssueResolutionFactoryBase<Property<? extends NamedElement>> {
 	
@@ -34,7 +34,7 @@ class ComponentPropertyTypeMismatchFactory extends ComponentAutomatedIssueResolu
 	}
 	
 	override protected getIssueFeatureInternal(Property<? extends NamedElement> element) {
-		new IssueLocator(CmpPackage.Literals.PROPERTY__TYPE, element)
+		new IssueLocator(ComponentPackage.Literals.PROPERTY__TYPE, element)
 	}
 	
 	override protected getResolutionNameInternal(Property<? extends NamedElement> element) {

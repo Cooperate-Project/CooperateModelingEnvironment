@@ -8,9 +8,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Type;
 
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
-import de.cooperateproject.modeling.textual.component.cmp.Attribute;
-import de.cooperateproject.modeling.textual.component.cmp.Classifier;
-import de.cooperateproject.modeling.textual.component.cmp.Port;
+import de.cooperateproject.modeling.textual.component.component.Attribute;
+import de.cooperateproject.modeling.textual.component.component.Classifier;
+import de.cooperateproject.modeling.textual.component.component.Port;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

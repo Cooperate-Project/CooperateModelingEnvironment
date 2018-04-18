@@ -4,7 +4,7 @@ import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.in
 
 import java.util.Optional;
 
-import de.cooperateproject.modeling.textual.component.cmp.Method;
+import de.cooperateproject.modeling.textual.component.component.Method;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

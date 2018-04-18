@@ -3,7 +3,7 @@ package de.cooperateproject.modeling.transformation.component.tests;
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
 import de.cooperateproject.modeling.transformation.component.ComponentActivator;
 
 public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTraceTransformationTestBase {
@@ -16,7 +16,7 @@ public class GraphicalToTextualComponentTraceTest extends ComponentDirectionalTr
             "Graphical_to_Textual_for_Component_Trace.qvto");
 
     static {
-        CmpPackage.eINSTANCE.eClass();
+        ComponentPackage.eINSTANCE.eClass();
     }
 
     public GraphicalToTextualComponentTraceTest() {

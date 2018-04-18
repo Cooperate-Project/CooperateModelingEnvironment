@@ -2,7 +2,7 @@ package de.cooperateproject.modeling.textual.component.derivedstate.initializer;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.INITIALIZATION;
 
-import de.cooperateproject.modeling.textual.component.cmp.Method;
+import de.cooperateproject.modeling.textual.component.component.Method;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

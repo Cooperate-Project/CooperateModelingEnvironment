@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.cooperateproject.modeling.textual.component.cmp.Generalization;
+import de.cooperateproject.modeling.textual.component.component.Generalization;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;

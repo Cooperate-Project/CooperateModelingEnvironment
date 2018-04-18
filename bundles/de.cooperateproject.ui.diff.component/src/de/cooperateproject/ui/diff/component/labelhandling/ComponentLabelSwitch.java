@@ -1,19 +1,19 @@
 package de.cooperateproject.ui.diff.component.labelhandling;
 
-import de.cooperateproject.modeling.textual.component.cmp.Attribute;
-import de.cooperateproject.modeling.textual.component.cmp.Class;
-import de.cooperateproject.modeling.textual.component.cmp.Component;
-import de.cooperateproject.modeling.textual.component.cmp.Connector;
-import de.cooperateproject.modeling.textual.component.cmp.Generalization;
-import de.cooperateproject.modeling.textual.component.cmp.Interface;
-import de.cooperateproject.modeling.textual.component.cmp.Method;
-import de.cooperateproject.modeling.textual.component.cmp.Port;
-import de.cooperateproject.modeling.textual.component.cmp.Provide;
-import de.cooperateproject.modeling.textual.component.cmp.Require;
-import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
-import de.cooperateproject.modeling.textual.component.cmp.util.CmpSwitch;
+import de.cooperateproject.modeling.textual.component.component.Attribute;
+import de.cooperateproject.modeling.textual.component.component.Class;
+import de.cooperateproject.modeling.textual.component.component.Component;
+import de.cooperateproject.modeling.textual.component.component.Connector;
+import de.cooperateproject.modeling.textual.component.component.Generalization;
+import de.cooperateproject.modeling.textual.component.component.Interface;
+import de.cooperateproject.modeling.textual.component.component.Method;
+import de.cooperateproject.modeling.textual.component.component.Port;
+import de.cooperateproject.modeling.textual.component.component.Provide;
+import de.cooperateproject.modeling.textual.component.component.Require;
+import de.cooperateproject.modeling.textual.component.component.RootPackage;
+import de.cooperateproject.modeling.textual.component.component.util.ComponentSwitch;
 
-public class ComponentLabelSwitch extends CmpSwitch<String> {
+public class ComponentLabelSwitch extends ComponentSwitch<String> {
 
     @Override
     public String caseRootPackage(RootPackage object) {

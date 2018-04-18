@@ -4,7 +4,7 @@ import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.in
 
 import org.eclipse.uml2.uml.Feature;
 
-import de.cooperateproject.modeling.textual.component.cmp.Member;
+import de.cooperateproject.modeling.textual.component.component.Member;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

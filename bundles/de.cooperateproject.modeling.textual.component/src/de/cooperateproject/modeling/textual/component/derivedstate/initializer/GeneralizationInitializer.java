@@ -10,10 +10,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
-import de.cooperateproject.modeling.textual.component.cmp.Classifier;
-import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation;
-import de.cooperateproject.modeling.textual.component.cmp.Generalization;
-import de.cooperateproject.modeling.textual.component.cmp.Interface;
+import de.cooperateproject.modeling.textual.component.component.Classifier;
+import de.cooperateproject.modeling.textual.component.component.ClassifierRelation;
+import de.cooperateproject.modeling.textual.component.component.Generalization;
+import de.cooperateproject.modeling.textual.component.component.Interface;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

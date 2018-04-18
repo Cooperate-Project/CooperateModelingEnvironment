@@ -2,13 +2,13 @@ package de.cooperateproject.ui.diff.component.labelhandling;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.cooperateproject.modeling.textual.component.cmp.util.CmpSwitch;
+import de.cooperateproject.modeling.textual.component.component.util.ComponentSwitch;
 import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
 public class ComponentLabelHandler implements LabelHandler {
     
-    private CmpSwitch<String> classTextSwitch = new ComponentClassTextSwitch();
-    private CmpSwitch<String> labelSwitch = new ComponentLabelSwitch();
+    private ComponentSwitch<String> classTextSwitch = new ComponentClassTextSwitch();
+    private ComponentSwitch<String> labelSwitch = new ComponentLabelSwitch();
 
     @Override
     public String getText(EObject item) {

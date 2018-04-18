@@ -6,11 +6,11 @@ package de.cooperateproject.modeling.textual.component.scoping
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.Component
-import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.component.ConnectorEnd
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.Component
+import de.cooperateproject.modeling.textual.component.component.Port
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.impl.SimpleScope
 import com.google.common.collect.Iterables
@@ -32,8 +32,8 @@ class ComponentScopeProvider extends AbstractComponentScopeProvider {
 	}
 
 	def dispatch doGetScope(ConnectorEnd end, EReference reference, IScope parentScope) {
-		if (reference == CmpPackage.Literals.CONNECTOR_END__ROLE) {
-			val partAttribute = end.eGet(CmpPackage.Literals.CONNECTOR_END__PART, true) as Attribute
+		if (reference == ComponentPackage.Literals.CONNECTOR_END__ROLE) {
+			val partAttribute = end.eGet(ComponentPackage.Literals.CONNECTOR_END__PART, true) as Attribute
 			if (partAttribute === null || 
 				partAttribute.type === null || 
 				!(partAttribute.type instanceof org.eclipse.uml2.uml.Component)

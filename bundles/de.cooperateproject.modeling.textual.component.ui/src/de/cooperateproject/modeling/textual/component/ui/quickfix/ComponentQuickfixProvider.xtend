@@ -13,7 +13,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQui
 class ComponentQuickfixProvider extends CooperateQuickfixProvider {
 
 	new() {
-		super(#[de.cooperateproject.modeling.textual.component.cmp.CmpPackage.eINSTANCE, de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage.eINSTANCE])
+		super(#[de.cooperateproject.modeling.textual.component.component.ComponentPackage.eINSTANCE, de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage.eINSTANCE])
 	}
 
 }

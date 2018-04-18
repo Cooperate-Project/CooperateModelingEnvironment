@@ -2,8 +2,8 @@ package de.cooperateproject.modeling.textual.component.issues
 
 import org.eclipse.emf.ecore.EObject
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.component.cmp.Method
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
+import de.cooperateproject.modeling.textual.component.component.Method
 
 class ComponentMethodAbstractQualifierFactory extends ComponentAutomatedIssueResolutionFactoryBase<Method> {
 
@@ -30,7 +30,7 @@ class ComponentMethodAbstractQualifierFactory extends ComponentAutomatedIssueRes
 	}
 
 	private def getIssueFeatureTyped(Method clz) {
-		return CmpPackage.Literals.METHOD__ABSTRACT
+		return ComponentPackage.Literals.METHOD__ABSTRACT
 	}
 	
 	override protected getResolutionNameInternal(Method element) {

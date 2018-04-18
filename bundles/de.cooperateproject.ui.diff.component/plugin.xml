@@ -5,7 +5,7 @@
          point="de.cooperateproject.ui.diff.labelHandlers">
       <labelHandler
             class="de.cooperateproject.ui.diff.component.labelhandling.ComponentLabelHandler"
-            metamodel="de.cooperateproject.modeling.textual.component.cmp.impl">
+            metamodel="de.cooperateproject.modeling.textual.component.component.impl">
       </labelHandler>
    </extension>
 

@@ -3,9 +3,9 @@ package de.cooperateproject.modeling.textual.component.issues
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Feature
-import de.cooperateproject.modeling.textual.component.cmp.Member
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.Method
+import de.cooperateproject.modeling.textual.component.component.Member
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.Method
 
 class ComponentMemberStaticQualifierResolution extends AutomatedIssueResolutionBase<Member<? extends Feature>> {
 	
