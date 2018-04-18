@@ -8,5 +8,13 @@ import org.junit.Test
 
 class FormatterTest extends AbstractFormatterTest {
 
+@Test
+def testMinimalModel() {
+	("minimal.uc").test
+}
+@Test
+def testExtendedModel() {
+	("extended.uc").test
+}
 	
 }		

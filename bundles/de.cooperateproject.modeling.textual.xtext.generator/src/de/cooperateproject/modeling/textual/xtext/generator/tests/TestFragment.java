@@ -51,20 +51,14 @@ public class TestFragment extends AbstractXtextGeneratorFragment implements Type
                 + "/testmodels/formatting/";
         File dir = new File(completeDirectoryPath);
         if (dir.listFiles() != null) {
+            String fileExtension = getLanguage().getFileExtensions().get(0);
             List<File> dirList = Arrays.asList(dir.listFiles()).stream()
-                    .filter(file -> file.getName().contains(("." + GrammarUtil.getSimpleName(grammar).toLowerCase())))
-                    .collect(Collectors.toList());
-            System.out.println("files");
-            if (dirList != null) {
-                for (File file : dirList) {
-                    System.out.println("Filename:" + file.getName());
-                }
-                JavaFileAccess jva = fileAccessFactory.createXtendFile(typeRef(getFormatterTestProviderName()));
-                FormatterTestGenerator generator = new FormatterTestGenerator(naming, grammar, dirList);
-                generator.create(jva);
-                jva.writeTo(getProjectConfig().getRuntimeTest().getSrc());
-                getProjectConfig().getRuntimeTest().getManifest().getExportedPackages().add(getFormatterPackageName());
-            }
+                    .filter(file -> file.getName().contains(("." + fileExtension))).collect(Collectors.toList());
+            JavaFileAccess jva = fileAccessFactory.createXtendFile(typeRef(getFormatterTestProviderName()));
+            FormatterTestGenerator generator = new FormatterTestGenerator(naming, grammar, dirList, fileExtension);
+            generator.create(jva);
+            jva.writeTo(getProjectConfig().getRuntimeTest().getSrc());
+            getProjectConfig().getRuntimeTest().getManifest().getExportedPackages().add(getFormatterPackageName());
         }
     }
 

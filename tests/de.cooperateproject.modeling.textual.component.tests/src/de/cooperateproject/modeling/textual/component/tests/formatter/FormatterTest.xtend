@@ -3,10 +3,23 @@
  */
 package de.cooperateproject.modeling.textual.component.tests.formatter
 
-
 import org.junit.Test
 
 class FormatterTest extends AbstractFormatterTest {
 
-	
-}		
+	@Test
+	def testMinimalModel() {
+		("minimal.cmp").test
+	}
+
+	@Test
+	def testExtendedModel() {
+		("extended.cmp").test
+	}
+
+	@Test
+	def testMinimal_classifiersModel() {
+		("minimal_classifiers.cmp").test
+	}
+
+}

@@ -13,11 +13,13 @@ class FormatterTestGenerator {
 	private val extension XtextGeneratorNaming naming
 	private val Grammar grammar
 	private val List<File> directoryListing
+	private val String fileExtension
 
-	new(XtextGeneratorNaming naming, Grammar grammar, List<File> directoryListing) {
+	new(XtextGeneratorNaming naming, Grammar grammar, List<File> directoryListing, String fileExtension) {
 		this.naming = naming
 		this.grammar = grammar
-        this.directoryListing = directoryListing;
+        this.directoryListing = directoryListing
+        this.fileExtension = fileExtension
 	}
 	
 	def create(JavaFileAccess jva) { 
@@ -29,7 +31,7 @@ class FormatterTestGenerator {
 		
 		« FOR file : directoryListing»
 			@Test
-			def test«file.name.toFirstUpper.replace("."+GrammarUtil.getSimpleName(grammar).toLowerCase, "")»Model() {
+			def test«file.name.toFirstUpper.replace("."+fileExtension, "")»Model() {
 				("«file.name»").test
 			}
 		«ENDFOR»
