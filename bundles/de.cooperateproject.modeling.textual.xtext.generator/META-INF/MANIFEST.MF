@@ -16,4 +16,5 @@ Require-Bundle: org.eclipse.xtext.generator;bundle-version="2.9.1",
  de.cooperateproject.modeling.textual.common
 Export-Package: de.cooperateproject.modeling.textual.xtext.generator,
  de.cooperateproject.modeling.textual.xtext.generator.fragments
-Import-Package: org.slf4j;version="1.7.2"
+Import-Package: org.eclipse.xtext.testing,
+ org.slf4j;version="1.7.2"

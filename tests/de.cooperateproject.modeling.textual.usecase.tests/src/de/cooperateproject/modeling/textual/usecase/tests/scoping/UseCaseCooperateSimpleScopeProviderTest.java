@@ -30,13 +30,13 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.usecase.scoping.UseCaseImportedNamespaceAwareLocalScopeProvider;
-import de.cooperateproject.modeling.textual.usecase.tests.AbstractUseCaseTest;
-import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UseCaseCustomizedInjectorProvider;
+import de.cooperateproject.modeling.textual.usecase.tests.AbstractUsecaseTest;
+import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UsecaseCustomizedInjectorProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
 
 @RunWith(XtextRunner.class)
-@InjectWith(UseCaseCustomizedInjectorProvider.DefaultProvider.class)
-public class UseCaseCooperateSimpleScopeProviderTest extends AbstractUseCaseTest {
+@InjectWith(UsecaseCustomizedInjectorProvider.DefaultProvider.class)
+public class UseCaseCooperateSimpleScopeProviderTest extends AbstractUsecaseTest {
 
     private static String TEST_FOLDER = "testmodels/scoping/";
 
