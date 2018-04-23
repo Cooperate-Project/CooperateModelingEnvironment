@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.cooperateproject.modeling.textual.activity
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: de.cooperateproject.modeling.textual.activity; singleton:=true
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.activity;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.activity.metamodel,
  org.eclipse.xtext,
