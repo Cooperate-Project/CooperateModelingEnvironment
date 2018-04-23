@@ -38,6 +38,9 @@
       <factory
             class="de.cooperateproject.modeling.textual.cls.issues.ClsAssociationTwoSideNavigabilityMismatchFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheckFactory">
+      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
