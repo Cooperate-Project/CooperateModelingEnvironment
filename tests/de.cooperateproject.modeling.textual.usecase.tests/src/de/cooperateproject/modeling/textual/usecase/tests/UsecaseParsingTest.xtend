@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.common.util.URI
 import org.apache.commons.io.IOUtils
 import java.util.Collections
-import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UseCaseCustomizedInjectorProvider
+import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UsecaseCustomizedInjectorProvider
 
-@InjectWith(UseCaseCustomizedInjectorProvider.DefaultProvider)
-class UsecaseParsingTest extends AbstractUseCaseTest{
+@InjectWith(UsecaseCustomizedInjectorProvider.DefaultProvider)
+class UsecaseParsingTest extends AbstractUsecaseTest{
 	
 	@Inject extension ValidationTestHelper
 	

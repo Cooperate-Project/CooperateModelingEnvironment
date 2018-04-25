@@ -5,7 +5,7 @@ import java.io.File;
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
 import de.cooperateproject.modeling.transformation.component.ComponentActivator;
 
 public class TextualToGraphicalComponentTest extends ComponentDirectionalTransformationTestBase {
@@ -14,7 +14,7 @@ public class TextualToGraphicalComponentTest extends ComponentDirectionalTransfo
             "Textual_to_Graphical_for_Component.qvto");
 
     static {
-        CmpPackage.eINSTANCE.eClass();
+        ComponentPackage.eINSTANCE.eClass();
     }
 
     public TextualToGraphicalComponentTest() {

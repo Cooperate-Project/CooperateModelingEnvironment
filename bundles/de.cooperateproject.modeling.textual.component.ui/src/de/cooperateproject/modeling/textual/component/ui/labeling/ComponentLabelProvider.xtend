@@ -6,21 +6,21 @@ package de.cooperateproject.modeling.textual.component.ui.labeling
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineLabelProvider
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.Class
-import de.cooperateproject.modeling.textual.component.cmp.ClassifierRelation
-import de.cooperateproject.modeling.textual.component.cmp.Component
-import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
-import de.cooperateproject.modeling.textual.component.cmp.Connector
-import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
-import de.cooperateproject.modeling.textual.component.cmp.Generalization
-import de.cooperateproject.modeling.textual.component.cmp.Interface
-import de.cooperateproject.modeling.textual.component.cmp.Method
-import de.cooperateproject.modeling.textual.component.cmp.Parameter
-import de.cooperateproject.modeling.textual.component.cmp.Port
-import de.cooperateproject.modeling.textual.component.cmp.Property
-import de.cooperateproject.modeling.textual.component.cmp.Provide
-import de.cooperateproject.modeling.textual.component.cmp.Require
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.Class
+import de.cooperateproject.modeling.textual.component.component.ClassifierRelation
+import de.cooperateproject.modeling.textual.component.component.Component
+import de.cooperateproject.modeling.textual.component.component.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.component.Connector
+import de.cooperateproject.modeling.textual.component.component.ConnectorEnd
+import de.cooperateproject.modeling.textual.component.component.Generalization
+import de.cooperateproject.modeling.textual.component.component.Interface
+import de.cooperateproject.modeling.textual.component.component.Method
+import de.cooperateproject.modeling.textual.component.component.Parameter
+import de.cooperateproject.modeling.textual.component.component.Port
+import de.cooperateproject.modeling.textual.component.component.Property
+import de.cooperateproject.modeling.textual.component.component.Provide
+import de.cooperateproject.modeling.textual.component.component.Require
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 
 /**

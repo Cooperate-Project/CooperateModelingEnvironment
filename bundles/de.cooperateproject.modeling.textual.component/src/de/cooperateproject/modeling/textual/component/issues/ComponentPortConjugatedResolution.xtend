@@ -2,7 +2,7 @@ package de.cooperateproject.modeling.textual.component.issues
 
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
-import de.cooperateproject.modeling.textual.component.cmp.Port
+import de.cooperateproject.modeling.textual.component.component.Port
 
 class ComponentPortConjugatedResolution extends AutomatedIssueResolutionBase<Port> {
 	

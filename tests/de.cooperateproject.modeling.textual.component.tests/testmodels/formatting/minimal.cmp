@@ -2,7 +2,7 @@
 
 rootPackage Minimal
 
-component first_comp{
+component first_comp {
 }
 
 @end-cpd

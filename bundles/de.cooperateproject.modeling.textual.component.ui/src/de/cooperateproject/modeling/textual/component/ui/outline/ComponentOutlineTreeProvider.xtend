@@ -5,15 +5,15 @@ package de.cooperateproject.modeling.textual.component.ui.outline
 
 import de.cooperateproject.modeling.textual.common.outline.CooperateOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import de.cooperateproject.modeling.textual.component.cmp.ComponentDiagram
-import de.cooperateproject.modeling.textual.component.cmp.RootPackage
+import de.cooperateproject.modeling.textual.component.component.ComponentDiagram
+import de.cooperateproject.modeling.textual.component.component.RootPackage
 import de.cooperateproject.modeling.textual.common.outline.UMLImage
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.component.cmp.Component
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
+import de.cooperateproject.modeling.textual.component.component.Component
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
-import de.cooperateproject.modeling.textual.component.cmp.Connector
-import de.cooperateproject.modeling.textual.component.cmp.Interface
-import de.cooperateproject.modeling.textual.component.cmp.Class
+import de.cooperateproject.modeling.textual.component.component.Connector
+import de.cooperateproject.modeling.textual.component.component.Interface
+import de.cooperateproject.modeling.textual.component.component.Class
 
 /**
  * Customization of the default outline structure.
@@ -36,9 +36,9 @@ class ComponentOutlineTreeProvider extends CooperateOutlineTreeProvider {
         }
         val pkg = root.rootpackage
 
-        createFeatureNode(parentNode, pkg, CmpPackage.Literals.ROOT_PACKAGE__CLASSIFIERS,
+        createFeatureNode(parentNode, pkg, ComponentPackage.Literals.ROOT_PACKAGE__CLASSIFIERS,
             UMLImage.COMPONENT.image, getStyledString("Classifiers", pkg.classifiers.size), false)
-        createFeatureNode(parentNode, pkg, CmpPackage.Literals.ROOT_PACKAGE__RELATIONS,
+        createFeatureNode(parentNode, pkg, ComponentPackage.Literals.ROOT_PACKAGE__RELATIONS,
             UMLImage.ASSOCIATION.image, getStyledString("Relations", pkg.relations.size), false)
     }
     
@@ -61,7 +61,6 @@ class ComponentOutlineTreeProvider extends CooperateOutlineTreeProvider {
     }
     
     dispatch def createChildren(IOutlineNode parentNode, Connector object) {
-       object.connectorEnds.forEach[x|_createChildren(parentNode, x)]
     }      
        
     dispatch def createChildren(IOutlineNode parentNode, Void object) {

@@ -4,8 +4,16 @@
 package de.cooperateproject.modeling.textual.component.validation;
 
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.xtext.validation.Check;
+
 import com.google.inject.Inject;
 
 /**
@@ -14,6 +22,8 @@ import com.google.inject.Inject;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class ComponentValidator extends AbstractComponentValidator {
+	
+	private static final String NOT_DIFFERENT_PORTS = "not_different_ports";
 			
 	@Inject
 	@SuppressWarnings("unused")

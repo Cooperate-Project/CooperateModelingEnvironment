@@ -6,7 +6,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Type;
 
 
-import de.cooperateproject.modeling.textual.component.cmp.Attribute;
+import de.cooperateproject.modeling.textual.component.component.Attribute;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 

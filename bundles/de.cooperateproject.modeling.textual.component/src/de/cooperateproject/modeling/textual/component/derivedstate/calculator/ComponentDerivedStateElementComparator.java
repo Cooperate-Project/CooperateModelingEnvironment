@@ -9,8 +9,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
-import de.cooperateproject.modeling.textual.component.cmp.RootPackage;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.component.component.RootPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.TypeBasedDerivedStateComputerSorter;
 
 public class ComponentDerivedStateElementComparator extends TypeBasedDerivedStateComputerSorter {
@@ -33,8 +33,8 @@ public class ComponentDerivedStateElementComparator extends TypeBasedDerivedStat
 	}
 
 	private static List<EClass> createPriorityOrder() {
-		return Arrays.asList(CmpPackage.Literals.CLASSIFIER, CmpPackage.Literals.PORT, CmpPackage.Literals.ATTRIBUTE,
-				CmpPackage.Literals.CONNECTOR, CmpPackage.Literals.CONNECTOR_END);
+		return Arrays.asList(ComponentPackage.Literals.CLASSIFIER, ComponentPackage.Literals.PORT, ComponentPackage.Literals.ATTRIBUTE,
+				ComponentPackage.Literals.CONNECTOR, ComponentPackage.Literals.CONNECTOR_END);
 	}
 
 	private static boolean isRoot(EObject element) {

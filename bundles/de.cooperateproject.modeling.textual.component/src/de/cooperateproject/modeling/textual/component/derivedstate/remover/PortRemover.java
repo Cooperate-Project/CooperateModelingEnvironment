@@ -5,8 +5,8 @@ import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.in
 import java.util.Optional;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage;
-import de.cooperateproject.modeling.textual.component.cmp.Port;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.component.component.Port;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 
@@ -29,7 +29,7 @@ public class PortRemover extends AtomicDerivedStateProcessorBase<Port> {
 		Optional<org.eclipse.uml2.uml.Port> umlPort = Optional.ofNullable(object.getReferencedElement());
 		
 		if (umlPort.map(port -> port.isConjugated() == object.isConjugated()).orElse(false)) {
-            object.eUnset(CmpPackage.Literals.PORT__CONJUGATED);
+            object.eUnset(ComponentPackage.Literals.PORT__CONJUGATED);
         } else if (!object.isSetConjugated() && undergoesAutomatedIssueResolution(object)) {
             object.setConjugated(false);
         }

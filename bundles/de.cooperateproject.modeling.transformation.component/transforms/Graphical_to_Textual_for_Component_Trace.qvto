@@ -5,7 +5,7 @@ transformation Graphical_to_Textual_for_Component_Trace(in graphicalTrace : TRAC
 modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
 modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-modeltype TEXTUAL uses cmp('http://www.cooperateproject.de/modeling/textual/component/Component');
+modeltype TEXTUAL uses component('http://www.cooperateproject.de/modeling/textual/component/Component');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
@@ -199,7 +199,7 @@ when {self.mappingOperation.name = "nodeToPort"}
 mapping trace::TraceRecord::traceRecordAttributePortToShape() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "nodeToAttribute"}
 {	
-	var attribute := self.getResult().modelElement.oclAsType(cmp::Attribute);
+	var attribute := self.getResult().modelElement.oclAsType(component::Attribute);
 	var aShape := self.getSelf().modelElement.oclAsType(notation::Shape);
 	var ports := attribute.referencedElement.oclAsType(uml::Property).type.oclAsType(uml::Component).ownedPort;
 	ports->forEach(port){
@@ -250,7 +250,7 @@ when {self.mappingOperation.name = "nodeToOperation"}
 mapping trace::TraceRecord::traceRecordExtendedProvideToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToProvide"}
 {
-	var connector := self.getResult().modelElement.oclAsType(cmp::Provide);
+	var connector := self.getResult().modelElement.oclAsType(component::Provide);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
 	
 	result += new TraceRecord("provideToEdge", "Provide", connector.eobject(), "Connector", edge.eobject());
@@ -263,7 +263,7 @@ when {self.mappingOperation.name = "edgeToProvide"}
 mapping trace::TraceRecord::traceRecordExtendedRequireToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToRequire"}
 {
-	var connector := self.getResult().modelElement.oclAsType(cmp::Require);
+	var connector := self.getResult().modelElement.oclAsType(component::Require);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
 	
 	result += new TraceRecord("requireToEdge", "Require", connector.eobject(), "Connector", edge.eobject());
@@ -277,7 +277,7 @@ when {self.mappingOperation.name = "edgeToRequire"}
 mapping trace::TraceRecord::traceRecordExtendedGeneralizationToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToGeneralization"}
 {
-	var connector := self.getResult().modelElement.oclAsType(cmp::Generalization);
+	var connector := self.getResult().modelElement.oclAsType(component::Generalization);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
 	
 	result += new TraceRecord("generalizationToEdge", "Generalization", connector.eobject(), "Connector", edge.eobject());
@@ -289,7 +289,7 @@ when {self.mappingOperation.name = "edgeToGeneralization"}
 mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToConnector"}
 {
-	var connector := self.getResult().modelElement.oclAsType(cmp::Connector);
+	var connector := self.getResult().modelElement.oclAsType(component::Connector);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
 	
 	result += new TraceRecord("connectorToEdge", "Connector", connector.eobject(), "Connector", edge.eobject());
@@ -303,7 +303,7 @@ when {self.mappingOperation.name = "edgeToConnector"}
 mapping trace::TraceRecord::traceRecordExtended_InterfaceRelationToEdge() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "edgeToInterfaceRelation"}
 {
-	var connector := self.getResult().modelElement.oclAsType(cmp::InterfaceRelation);
+	var connector := self.getResult().modelElement.oclAsType(component::InterfaceRelation);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
 	
 	result += new TraceRecord("interfaceRelationToEdge", "InterfaceRelation", connector.eobject(), "Connector", edge.eobject());
@@ -311,7 +311,7 @@ when {self.mappingOperation.name = "edgeToInterfaceRelation"}
 }
 mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge_ConnectorBase() : List(trace::TraceRecord)
 {
-	var connector := self.getResult().modelElement.oclAsType(cmp::Connector);
+	var connector := self.getResult().modelElement.oclAsType(component::Connector);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
 	result += edge.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(edge);
 }

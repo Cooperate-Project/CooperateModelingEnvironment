@@ -3,8 +3,8 @@ package de.cooperateproject.modeling.textual.component.issues
 
 import org.eclipse.emf.ecore.EObject
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.component.cmp.Port
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.component.Port
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
 
 class ComponentPortConjugatedFactory extends ComponentAutomatedIssueResolutionFactoryBase<Port> {
 
@@ -31,7 +31,7 @@ class ComponentPortConjugatedFactory extends ComponentAutomatedIssueResolutionFa
 	}
 
 	private def getIssueFeatureTyped(Port port) {
-		return CmpPackage.Literals.PORT__CONJUGATED
+		return ComponentPackage.Literals.PORT__CONJUGATED
 	}
 
 	override protected getResolutionNameInternal(Port element) {

@@ -2,18 +2,18 @@ package de.cooperateproject.modeling.textual.component.issues
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import de.cooperateproject.modeling.textual.component.cmp.Attribute
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
-import de.cooperateproject.modeling.textual.component.cmp.Component
-import de.cooperateproject.modeling.textual.component.cmp.Connector
-import de.cooperateproject.modeling.textual.component.cmp.ConnectorEnd
-import de.cooperateproject.modeling.textual.component.cmp.Generalization
-import de.cooperateproject.modeling.textual.component.cmp.Method
-import de.cooperateproject.modeling.textual.component.cmp.Parameter
-import de.cooperateproject.modeling.textual.component.cmp.Port
-import de.cooperateproject.modeling.textual.component.cmp.Provide
-import de.cooperateproject.modeling.textual.component.cmp.Require
-import de.cooperateproject.modeling.textual.component.cmp.RootPackage
+import de.cooperateproject.modeling.textual.component.component.Attribute
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
+import de.cooperateproject.modeling.textual.component.component.Component
+import de.cooperateproject.modeling.textual.component.component.Connector
+import de.cooperateproject.modeling.textual.component.component.ConnectorEnd
+import de.cooperateproject.modeling.textual.component.component.Generalization
+import de.cooperateproject.modeling.textual.component.component.Method
+import de.cooperateproject.modeling.textual.component.component.Parameter
+import de.cooperateproject.modeling.textual.component.component.Port
+import de.cooperateproject.modeling.textual.component.component.Provide
+import de.cooperateproject.modeling.textual.component.component.Require
+import de.cooperateproject.modeling.textual.component.component.RootPackage
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import java.util.Optional
@@ -47,8 +47,8 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 			TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement).EClassifier as EClass
 
 		if (UMLPackage.eINSTANCE.classifier.isSuperTypeOf(referencedType) &&
-			CmpPackage.eINSTANCE.classifier.isInstance(element)) {
-			(element as de.cooperateproject.modeling.textual.component.cmp.Classifier).fixMissingUMLElementClassifier([
+			ComponentPackage.eINSTANCE.classifier.isInstance(element)) {
+			(element as de.cooperateproject.modeling.textual.component.component.Classifier).fixMissingUMLElementClassifier([
 				UMLFactory.eINSTANCE.create(referencedType) as Classifier
 			])
 		}
@@ -157,7 +157,7 @@ class ComponentMissingUMLElementResolution extends AutomatedIssueResolutionBase<
 		return Optional.empty
 	}
 
-	private static def <UMLType extends Classifier, T extends de.cooperateproject.modeling.textual.component.cmp.Classifier<UMLType>> fixMissingUMLElementClassifier(
+	private static def <UMLType extends Classifier, T extends de.cooperateproject.modeling.textual.component.component.Classifier<UMLType>> fixMissingUMLElementClassifier(
 		T element, ()=>UMLType factoryMethod) {
 		element.elementReference = factoryMethod.apply => [
 			name = element.name

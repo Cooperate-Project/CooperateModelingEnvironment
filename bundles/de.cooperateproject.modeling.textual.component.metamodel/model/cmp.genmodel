@@ -11,7 +11,7 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>cmp.ecore</foreignModel>
   <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
-  <genPackages prefix="Cmp" basePackage="de.cooperateproject.modeling.textual.component"
+  <genPackages prefix="Component" basePackage="de.cooperateproject.modeling.textual.component"
       disposableProviderFactory="true" ecorePackage="cmp.ecore#/">
     <genClasses ecoreClass="cmp.ecore#//ComponentDiagram">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cmp.ecore#//ComponentDiagram/title"/>
@@ -35,10 +35,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cmp.ecore#//ConnectorEnd/role"/>
     </genClasses>
     <genClasses ecoreClass="cmp.ecore#//Generalization"/>
-    <genClasses ecoreClass="cmp.ecore#//Abstraction"/>
-    <genClasses ecoreClass="cmp.ecore#//Manifestation"/>
-    <genClasses ecoreClass="cmp.ecore#//Substitution"/>
-    <genClasses ecoreClass="cmp.ecore#//Dependency"/>
     <genClasses image="false" ecoreClass="cmp.ecore#//Classifier">
       <genTypeParameters ecoreTypeParameter="cmp.ecore#//Classifier/T"/>
     </genClasses>

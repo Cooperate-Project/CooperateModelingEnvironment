@@ -17,6 +17,7 @@ import de.cooperateproject.modeling.textual.xtext.generator.outline.OutlineFragm
 import de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2;
 import de.cooperateproject.modeling.textual.xtext.generator.services.ValueConverterFragment2;
 import de.cooperateproject.modeling.textual.xtext.generator.templates.TemplateFragment2;
+import de.cooperateproject.modeling.textual.xtext.generator.tests.TestFragment;
 import de.cooperateproject.modeling.textual.xtext.generator.ui.CooperateEditorFragment;
 import net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2;
 import net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2;
@@ -31,7 +32,7 @@ public class CooperateCDOXtextFragment2 implements IXtextGeneratorFragment {
         return Arrays.asList(AddCDOXtextBindingsFragment2.class, CooperateResourceHandlingBindingsFragment2.class,
                 AutomatedIssueResolutionFragment2.class, CooperateNamingBindingsFragment2.class,
                 EMFCompareMatcherFragment2.class, CooperateEditorFragment.class, DerivedStateCalculationFragment2.class,
-                ValueConverterFragment2.class, TemplateFragment2.class, OutlineFragment2.class);
+                ValueConverterFragment2.class, TemplateFragment2.class, OutlineFragment2.class, TestFragment.class);
     }
 
     @Override

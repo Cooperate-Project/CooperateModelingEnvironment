@@ -2,8 +2,8 @@ package de.cooperateproject.modeling.textual.component.issues
 
 import org.eclipse.uml2.uml.Feature
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.component.cmp.Member
-import de.cooperateproject.modeling.textual.component.cmp.CmpPackage
+import de.cooperateproject.modeling.textual.component.component.Member
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage
 
 class ComponentMemberStaticQualifierFactory extends ComponentAutomatedIssueResolutionFactoryBase<Member<? extends Feature>> {
 	
@@ -26,7 +26,7 @@ class ComponentMemberStaticQualifierFactory extends ComponentAutomatedIssueResol
 	}
 	
 	override protected getIssueFeatureInternal(Member<? extends Feature> element) {
-	    new IssueLocator(CmpPackage.Literals.PROPERTY__STATIC, element)
+	    new IssueLocator(ComponentPackage.Literals.PROPERTY__STATIC, element)
 	}
 	
 	override protected getResolutionNameInternal(Member<? extends Feature> element) {
