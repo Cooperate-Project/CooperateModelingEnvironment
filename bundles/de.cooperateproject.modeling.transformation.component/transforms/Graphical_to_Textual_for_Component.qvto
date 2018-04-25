@@ -4,7 +4,7 @@ transformation Graphical_to_Textual_for_Component(in graphical : NOTATION, inout
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype TXT uses cmp('http://www.cooperateproject.de/modeling/textual/component/Component');
+modeltype TXT uses component('http://www.cooperateproject.de/modeling/textual/component/Component');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 
@@ -15,20 +15,20 @@ main() {
 	diagrams->map diagramToDiagram();
 }
 
-mapping notation::Diagram::diagramToDiagram() : cmp::ComponentDiagram
+mapping notation::Diagram::diagramToDiagram() : component::ComponentDiagram
 {
 	title := self.name;
 	rootpackage := self.map diagramToRootPackage();		
 }
 
-mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
+mapping notation::Diagram::diagramToRootPackage() : component::RootPackage
 {
 	referencedElement := self.element.oclAsType(uml::Package);
 	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR or type = PAPYRUS_NOTATION_SHAPE_NAMED_ELEMENT_DEFAULT).map nodeToClassifier();
 	relations := self.edges.map edgeToClassifierRelation();
 }
 
-mapping notation::Node::nodeToClassifier() : cmp::Classifier
+mapping notation::Node::nodeToClassifier() : component::Classifier
 disjuncts
 	notation::Node::nodeToComponent,
 	notation::Node::nodeToInterface,
@@ -37,7 +37,7 @@ disjuncts
 
 }
 	
-mapping notation::Node::nodeToComponent() : cmp::Component
+mapping notation::Node::nodeToComponent() : component::Component
 	when {		self.element.oclIsKindOf(uml::Component)	}{
 	referencedElement := self.element.oclAsType(uml::Component);
 	var packagedElementsNode := self.children;
@@ -63,7 +63,7 @@ mapping notation::Node::nodeToComponent() : cmp::Component
 
 
 
-mapping notation::Node::nodeToInterface() : cmp::Interface
+mapping notation::Node::nodeToInterface() : component::Interface
 	when {		self.element.oclIsKindOf(uml::Interface)	}{
 	referencedElement := self.element.oclAsType(uml::Interface);
 	comments := self.getCommentShape().map commentToComment();
@@ -71,39 +71,39 @@ mapping notation::Node::nodeToInterface() : cmp::Interface
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
 
-mapping notation::Node::nodeToClass() : cmp::Class
+mapping notation::Node::nodeToClass() : component::Class
 	when {		self.element.oclIsKindOf(uml::Class)	}{
 	referencedElement := self.element.oclAsType(uml::Class);
 	comments := self.getCommentShape().map commentToComment();
 	interfaceRelation := self.diagram.edges->select(not isCommentLinkForAssociation())->select(source = self)->map edgeToInterfaceRelation();
 }
 
-mapping notation::Node::nodeToAttribute() : cmp::Attribute
+mapping notation::Node::nodeToAttribute() : component::Attribute
 	when {		self.element.oclIsKindOf(uml::Property)	}{
 	referencedElement := self.element.oclAsType(uml::Property);
 	//TODO map type?
 }
 
 
-mapping notation::Node::nodeToPort() : cmp::Port
+mapping notation::Node::nodeToPort() : component::Port
 	when {		self.element.oclIsKindOf(uml::Port)		}{
 	referencedElement := self.element.oclAsType(uml::Port);
 	realizedClassifier  := late resolveoneIn(
 		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = self.element.oclAsType(uml::Port).type.toEObject()
+		s : component::Classifier | s.referencedElement.toEObject() = self.element.oclAsType(uml::Port).type.toEObject()
 	);
 }
 
 
 
-mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
+mapping notation::Edge::edgeToClassifierRelation() : component::ClassifierRelation
 disjuncts
  notation::Edge::edgeToGeneralization
 {
 }
 
 
-mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
+mapping notation::Edge::edgeToGeneralization() : component::Generalization
 	when {
 	self.element != null and
 	self.element.oclIsKindOf(uml::Generalization) and
@@ -118,27 +118,27 @@ mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
 	var umlTargetClassifierEnd := umlGeneralization.general;
 	leftClassifier := late resolveoneIn(
 		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
+		s : component::Classifier | s.referencedElement.toEObject() = (umlSourceClassifierEnd->asOrderedSet())->first().toEObject()
 	);
 	rightClassifier := late resolveoneIn(
 		notation::Node::nodeToClassifier,
-		s : cmp::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
+		s : component::Classifier | s.referencedElement.toEObject() = (umlTargetClassifierEnd->asOrderedSet())->first().toEObject()
 	);
 }
 
 
 
-mapping notation::Node::nodeToOperation() : cmp::Method {
+mapping notation::Node::nodeToOperation() : component::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
 	parameters := operation.ownedParameter->map umlParameterToParameter();
 }
 
-mapping uml::Parameter::umlParameterToParameter() : cmp::Parameter {
+mapping uml::Parameter::umlParameterToParameter() : component::Parameter {
 	referencedElement := self;
 }
 
-mapping notation::Node::nodeToProperty() : cmp::Attribute {
+mapping notation::Node::nodeToProperty() : component::Attribute {
 	var prop := self.element.oclAsType(uml::Property);
 	referencedElement := prop;
 }
@@ -159,13 +159,13 @@ query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
 	return self.findRelevantEdgesByContainment();
 }
 
-mapping notation::Edge::edgeToInterfaceRelation() : cmp::InterfaceRelation
+mapping notation::Edge::edgeToInterfaceRelation() : component::InterfaceRelation
 disjuncts
 	notation::Edge::edgeToProvide,
 	notation::Edge::edgeToRequire
 {}
 
-mapping notation::Edge::edgeToConnector() : cmp::Connector
+mapping notation::Edge::edgeToConnector() : component::Connector
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::Connector)  and
@@ -180,23 +180,23 @@ mapping notation::Edge::edgeToConnector() : cmp::Connector
 }
 
 
-mapping uml::ConnectorEnd::connectorEndToConnectorEnd() : cmp::ConnectorEnd
+mapping uml::ConnectorEnd::connectorEndToConnectorEnd() : component::ConnectorEnd
 {
 	referencedElement := self;
 	role :=	late resolveoneIn(
 		notation::Node::nodeToPort,
-		s : cmp::Port | s.referencedElement = self.role
+		s : component::Port | s.referencedElement = self.role
 	);
 	
 	part := late resolveoneIn(
 		notation::Node::nodeToAttribute,
-		s : cmp::Attribute | s.referencedElement = self.partWithPort
+		s : component::Attribute | s.referencedElement = self.partWithPort
 		);
 	
 }
 
 
-mapping notation::Edge::edgeToProvide() : cmp::Provide
+mapping notation::Edge::edgeToProvide() : component::Provide
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::InterfaceRealization) 
@@ -208,7 +208,7 @@ mapping notation::Edge::edgeToProvide() : cmp::Provide
 	comments := self.getCommentShape().map commentToComment();
 	referencedElement := realization;
 }
-mapping notation::Edge::edgeToRequire() : cmp::Require
+mapping notation::Edge::edgeToRequire() : component::Require
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::Usage)

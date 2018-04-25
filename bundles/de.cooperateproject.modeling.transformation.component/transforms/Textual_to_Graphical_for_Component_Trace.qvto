@@ -5,7 +5,7 @@ transformation Textual_to_Graphical_for_Component_Trace(in textualTrace : TRACE,
 modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
 modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-modeltype TEXTUAL uses cmp('http://www.cooperateproject.de/modeling/textual/component/Component');
+modeltype TEXTUAL uses component('http://www.cooperateproject.de/modeling/textual/component/Component');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
@@ -66,7 +66,7 @@ mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "diagramToDiagram"}
 {
 	var notationDiagram := self.getResult().modelElement;
-	var componentDiagram := self.getSelf().modelElement.oclAsType(cmp::ComponentDiagram);
+	var componentDiagram := self.getSelf().modelElement.oclAsType(component::ComponentDiagram);
 	
 	result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram, "ComponentDiagram", componentDiagram.eobject());
 	result += new TraceRecord("diagramToRootPackage", "Diagram", notationDiagram, "RootPackage", componentDiagram.rootpackage.eobject());
@@ -84,7 +84,7 @@ mapping trace::TraceRecord::traceNodeToComponent() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "componentToShape"}
 {
 	var node := self.getResult().modelElement;
-	var component := self.getSelf().modelElement.oclAsType(cmp::Component);
+	var component := self.getSelf().modelElement.oclAsType(component::Component);
 	result += new TraceRecord("nodeToComponent", "Node", node, "Component", component.eobject());
 }
 
@@ -92,7 +92,7 @@ mapping trace::TraceRecord::traceNodeToPort() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "portToShape"}
 {
 	var node := self.getResult().modelElement;
-	var port := self.getSelf().modelElement.oclAsType(cmp::Port);
+	var port := self.getSelf().modelElement.oclAsType(component::Port);
 	result += new TraceRecord("nodeToPort", "Node", node, "Port", port.eobject());
 }
 
@@ -101,7 +101,7 @@ mapping trace::TraceRecord::traceNodeToInterface() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "interfaceToShape"}
 {
 	var node := self.getResult().modelElement;
-	var interface := self.getSelf().modelElement.oclAsType(cmp::Interface);
+	var interface := self.getSelf().modelElement.oclAsType(component::Interface);
 	result += new TraceRecord("nodeToInterface", "Node", node, "Interface", interface.eobject());
 }
 
@@ -109,7 +109,7 @@ mapping trace::TraceRecord::traceNodeToClass() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "classToShape"}
 {
 	var node := self.getResult().modelElement;
-	var cla := self.getSelf().modelElement.oclAsType(cmp::Class);
+	var cla := self.getSelf().modelElement.oclAsType(component::Class);
 	result += new TraceRecord("nodeToClass", "Node", node, "Class", cla.eobject());
 }
 
@@ -117,7 +117,7 @@ mapping trace::TraceRecord::traceNodeToProperty() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "interfaceAttributeToShape"}
 {
 	var node := self.getResult().modelElement;
-	var attribute := self.getSelf().modelElement.oclAsType(cmp::Attribute);
+	var attribute := self.getSelf().modelElement.oclAsType(component::Attribute);
 	result += new TraceRecord("nodeToProperty", "Node", node, "Attribute", attribute.eobject());
 }
 
@@ -125,7 +125,7 @@ mapping trace::TraceRecord::traceNodeToAttribute() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "attributeToShape"}
 {
 	var node := self.getResult().modelElement;
-	var attribute := self.getSelf().modelElement.oclAsType(cmp::Attribute);
+	var attribute := self.getSelf().modelElement.oclAsType(component::Attribute);
 	result += new TraceRecord("nodeToAttribute", "Node", node, "Attribute", attribute.eobject());
 }
 
@@ -133,7 +133,7 @@ mapping trace::TraceRecord::traceNodeToMethod() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "interfaceMethodToShape"}
 {
 	var node := self.getResult().modelElement;
-	var method := self.getSelf().modelElement.oclAsType(cmp::Method);
+	var method := self.getSelf().modelElement.oclAsType(component::Method);
 	result += new TraceRecord("nodeToOperation", "Node", node, "Method", method.eobject());
 	result += method.parameters->map traceRecordShapeOperation_Parameter()->flatten();
 }
@@ -141,7 +141,7 @@ mapping trace::TraceRecord::traceEdgeToInterfaceRelation() : List(trace::TraceRe
 when {self.mappingOperation.name = "interfaceRelationToEdge"}
 {
 	var edge := self.getResult().modelElement;
-	var ifaceRelation := self.getSelf().modelElement.oclAsType(cmp::InterfaceRelation);
+	var ifaceRelation := self.getSelf().modelElement.oclAsType(component::InterfaceRelation);
 	result += new TraceRecord("edgeToInterfaceRelation", "Edge", edge, "InterfaceRelation", ifaceRelation.eobject());
 }
 
@@ -150,14 +150,14 @@ mapping trace::TraceRecord::traceEdgeToProvide() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "provideToEdge"}
 {
 	var edge := self.getResult().modelElement;
-	var provide := self.getSelf().modelElement.oclAsType(cmp::Provide);
+	var provide := self.getSelf().modelElement.oclAsType(component::Provide);
 	result += new TraceRecord("edgeToProvide", "Edge", edge, "Provide", provide.eobject());
 }
 mapping trace::TraceRecord::traceEdgeToRequire() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "requireToEdge"}
 {
 	var edge := self.getResult().modelElement;
-	var require := self.getSelf().modelElement.oclAsType(cmp::Require);
+	var require := self.getSelf().modelElement.oclAsType(component::Require);
 	result += new TraceRecord("edgeToRequire", "Edge", edge, "Require", require.eobject());
 }
 
@@ -165,7 +165,7 @@ mapping trace::TraceRecord::traceEdgeToGeneralization() : List(trace::TraceRecor
 when {self.mappingOperation.name = "generalizationToEdge"}
 {
 	var edge := self.getResult().modelElement;
-	var generalization := self.getSelf().modelElement.oclAsType(cmp::Generalization);
+	var generalization := self.getSelf().modelElement.oclAsType(component::Generalization);
 	result += new TraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", generalization.eobject());
 }
 
@@ -173,7 +173,7 @@ mapping trace::TraceRecord::traceEdgeToConnector() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "connectorToEdge"}
 {
 	var edge := self.getResult().modelElement;
-	var connector := self.getSelf().modelElement.oclAsType(cmp::Connector);
+	var connector := self.getSelf().modelElement.oclAsType(component::Connector);
 	result += new TraceRecord("edgeToConnector", "Edge", edge, "Connector", connector.eobject());
 	
 	result += self.map traceConnectorEndToConnectorEnd();
@@ -183,14 +183,14 @@ mapping trace::TraceRecord::traceConnectorEndToConnectorEnd() : List(trace::Trac
 when {self.mappingOperation.name = "connectorToEdge"}
 {
 	var umlconnector := self.getResult().modelElement.oclAsType(notation::Edge).element.oclAsType(uml::Connector);
-	var cmpConnector := self.getSelf().modelElement.oclAsType(cmp::Connector);
+	var componentConnector := self.getSelf().modelElement.oclAsType(component::Connector);
 	umlconnector._end->forEach(ending) {
-		var cmpEnd := cmpConnector.connectorEnds->select(role.referencedElement = ending.role)->first();
-		result += new TraceRecord("connectorEndToConnectorEnd", "ConnectorEnd", ending.eobject(), "ConnectorEnd", cmpEnd.eobject());
+		var componentEnd := componentConnector.connectorEnds->select(role.referencedElement = ending.role)->first();
+		result += new TraceRecord("connectorEndToConnectorEnd", "ConnectorEnd", ending.eobject(), "ConnectorEnd", componentEnd.eobject());
 	}
 }
 
-mapping cmp::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
+mapping component::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {
 	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
 }
