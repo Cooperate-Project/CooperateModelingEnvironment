@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Use Case Diagrams IDE
-Bundle-Version: 0.8.2.qualifier
+Bundle-Version: 0.8.2
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext.ide,

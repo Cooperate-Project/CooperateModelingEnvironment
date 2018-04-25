@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI
 Bundle-SymbolicName: de.cooperateproject.ui;singleton:=true
-Bundle-Version: 0.8.2.qualifier
+Bundle-Version: 0.8.2
 Bundle-Activator: de.cooperateproject.ui.Activator
 Require-Bundle: com.google.guava;bundle-version="15.0.0",
  com.ibm.icu,
