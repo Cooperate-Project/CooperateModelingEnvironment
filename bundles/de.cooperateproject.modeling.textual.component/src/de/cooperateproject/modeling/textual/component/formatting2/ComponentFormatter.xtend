@@ -23,18 +23,21 @@ import org.eclipse.xtext.formatting2.IFormattableDocument
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
 import de.cooperateproject.modeling.textual.component.component.Connector
 import de.cooperateproject.modeling.textual.component.component.Port
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 
 class ComponentFormatter extends AbstractFormatter2 {
 	
 	@Inject extension ComponentGrammarAccess
 
 	def dispatch void format(ComponentDiagram componentDiagram, extension IFormattableDocument document) {
-		componentDiagram.regionFor.feature(ComponentPackage.Literals.COMPONENT_DIAGRAM__TITLE).append[newLines = 2]
+		componentDiagram.regionFor.feature(ComponentPackage.Literals.COMPONENT_DIAGRAM__TITLE).append[newLines = 2].prepend[space = " "]
 		componentDiagram.getRootpackage.format;
 		componentDiagram.regionFor.keyword(componentDiagramAccess.endCpdKeyword_4).prepend[newLines = 2 priority = 1]
 	}
 
 	def dispatch void format(RootPackage rootPackage, extension IFormattableDocument document) {
+		rootPackage.regionFor.assignment(rootPackageAccess.nameAssignment_1_1).append[newLines = 2]
+		rootPackage.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		for (ClassifierRelation elementRelation : rootPackage.getRelations()) {
 			elementRelation.format;
 		}
@@ -51,8 +54,10 @@ class ComponentFormatter extends AbstractFormatter2 {
 	}
 	
 	def dispatch void format(Component cmp, extension IFormattableDocument document) {
+		cmp.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
+		cmp.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "].append[space = " "]
 		interior(			
-			cmp.regionFor.keyword(componentAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			cmp.regionFor.keyword(componentAccess.leftCurlyBracketKeyword_2_1_0).append[newLine].prepend[space = " "],
 			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_2_1_7).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
@@ -70,28 +75,32 @@ class ComponentFormatter extends AbstractFormatter2 {
 			conn.append[newLine]
 		}
 		for(InterfaceRelation infRel: cmp.getInterfaceRelation()){
-			infRel.append[newLine]
+			infRel.format
 		}
 		cmp.append[newLine; priority = 2]
 	}
 	
 	def dispatch void format(Class cls, extension IFormattableDocument document) {
+		cls.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
+		cls.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "].append[space = " "]
 		interior(			
-			cls.regionFor.keyword(classAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			cls.regionFor.keyword(classAccess.leftCurlyBracketKeyword_2_1_0).append[newLine].prepend[space = " "],
 			cls.regionFor.keyword(classAccess.rightCurlyBracketKeyword_2_1_3).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
 		for(InterfaceRelation infRel: cls.getInterfaceRelation()){
-			infRel.append[newLine]
+			infRel.format
 		}
 		
 		cls.append[newLine; priority = 2]
 	}
 	
 	def dispatch void format(Interface iface, extension IFormattableDocument document) {
+		iface.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
+		iface.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "].append[space = " "]
 		interior(
-			iface.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
-			iface.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_2_1_3),
+			iface.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_2_1_0).append[newLine].prepend[space = " "],
+			iface.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_2_1_3).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent] 
 		)
 		
@@ -101,7 +110,13 @@ class ComponentFormatter extends AbstractFormatter2 {
 		iface.append[newLine; priority = 2]
 	}
 	
+	def dispatch void format(InterfaceRelation infRel, extension IFormattableDocument document) {
+		infRel.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "].append[space = " "]
+		infRel.append[newLine]
+	}
+	
 	def dispatch void format(Attribute attribute, extension IFormattableDocument document) {
+		attribute.regionFor.keyword(attributeAccess.colonKeyword_3).prepend[space = " "].append[space = " "]
 		format(attribute.getType(), document);
 		attribute.append[newLine]
 	}
@@ -112,6 +127,8 @@ class ComponentFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(Method method, extension IFormattableDocument document) {
+		method.regionFor.keyword(methodAccess.colonKeyword_8_0).prepend[space = " "].append[space = " "]
+		method.regionFor.keyword(methodAccess.commaKeyword_6_1_0).prepend[space = ""].append[space = " "]
 		for (Parameter parameters : method.getParameters()) {
 			format(parameters, document);
 		}
@@ -120,6 +137,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(Parameter parameter, extension IFormattableDocument document) {
+		parameter.regionFor.keyword(parameterAccess.colonKeyword_2).prepend[space = " "].append[space = " "]
 		format(parameter.getType(), document);
 	}
 

@@ -16,4 +16,5 @@ interface second_iface {
 	someName : String
 	someOperation(anObject : second_iface, aPrimitive : int) : long
 }
+
 @end-cpd
