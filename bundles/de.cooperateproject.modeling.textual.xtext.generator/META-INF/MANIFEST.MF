@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtext Generators
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.generator
-Bundle-Version: 0.8.2
+Bundle-Version: 0.8.3.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext.generator;bundle-version="2.9.1",
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.8.2",
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.8.3",
  org.eclipse.xtext,
  org.eclipse.xtext.ui,
- de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.8.2",
+ de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.8.3",
  org.apache.commons.lang3;bundle-version="3.1.0",
  org.eclipse.xtend.lib,
- de.cooperateproject.modeling.common;bundle-version="0.8.2",
+ de.cooperateproject.modeling.common;bundle-version="0.8.3",
  net.winklerweb.cdoxtext.generator,
  de.cooperateproject.modeling.textual.common
 Export-Package: de.cooperateproject.modeling.textual.xtext.generator,

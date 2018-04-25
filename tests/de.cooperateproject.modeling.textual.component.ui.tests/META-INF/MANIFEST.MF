@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Component Diagrams UI Tests
-Bundle-Version: 0.8.2
+Bundle-Version: 0.8.3.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.component.ui.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.component.ui,

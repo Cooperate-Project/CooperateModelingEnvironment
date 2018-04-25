@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Usecase Transformation Plug-in
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.usecase;singleton:=true
-Bundle-Version: 0.8.2
+Bundle-Version: 0.8.3.qualifier
 Bundle-Activator: de.cooperateproject.modeling.transformation.usecase.UsecaseActivator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,
  de.cooperateproject.modeling.transformation.common;bundle-version="0.2.0",
  de.cooperateproject.modeling.transformation.registry;bundle-version="0.2.0",
- de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.8.2"
+ de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.8.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
