@@ -27,7 +27,7 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		actionNode.name = element.name
 		
 		val parent = element.eContainer as RootPackage
-		// Just test code, assuming a activity exists
+		// FIXME: Just test code, assuming a activity exists
 		val pe = parent.referencedElement.packagedElements.filter(Activity).get(0) as Activity; 
 		pe.ownedNodes.add(actionNode)
 		element.referencedElement = actionNode;

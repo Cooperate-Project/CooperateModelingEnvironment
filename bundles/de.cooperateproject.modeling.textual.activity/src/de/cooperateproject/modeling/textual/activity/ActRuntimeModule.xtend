@@ -3,9 +3,17 @@
  */
 package de.cooperateproject.modeling.textual.activity
 
+import de.cooperateproject.modeling.textual.activity.scoping.ActivityDiagramQualifiedNameProvider
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class ActRuntimeModule extends AbstractActRuntimeModule {
+	
+	// Inject custom name provider. This might solve a UML Element Resolution error
+	override def Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return ActivityDiagramQualifiedNameProvider;
+	}
+	
 }

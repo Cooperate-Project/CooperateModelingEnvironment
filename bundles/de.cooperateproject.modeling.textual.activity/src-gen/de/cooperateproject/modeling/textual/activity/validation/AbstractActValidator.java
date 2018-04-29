@@ -14,7 +14,6 @@ public abstract class AbstractActValidator extends AbstractDeclarativeValidator 
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>();
 		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/activity/Activity"));
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/commons"));
 		return result;
 	}
 	
