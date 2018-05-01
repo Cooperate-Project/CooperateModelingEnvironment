@@ -1,6 +1,8 @@
 package de.cooperateproject.modeling.textual.xtext.generator.fragments
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import java.util.ArrayList
 import org.eclipse.xtext.Grammar
 import org.eclipse.xtext.xtext.generator.model.FileAccessFactory
 import org.eclipse.xtext.xtext.generator.model.TypeReference
@@ -85,6 +87,16 @@ class CooperateValidatorFragment2 extends ValidatorFragment2 {
 				
 			}
 		''').writeTo(projectConfig.runtime.src)
+	}
+	
+	protected override getRegistryPackagesToValidate() {
+		val basePackages = super.registryPackagesToValidate
+		if (!basePackages.contains(TextualCommonsPackage.eINSTANCE)) {
+			val packageList = new ArrayList(basePackages)
+			packageList.add(TextualCommonsPackage.eINSTANCE)
+			return packageList
+		}
+		return basePackages
 	}
 	
 	private def getAbstractValidatorClass(Grammar grammar) {
