@@ -3,5 +3,8 @@
    <feature url="features/de.cooperateproject.modeling.feature_0.8.3.qualifier.jar" id="de.cooperateproject.modeling.feature" version="0.8.3.qualifier">
       <category name="modeling"/>
    </feature>
+   <feature url="features/de.cooperateproject.modeling.transformation.tests.common.feature_1.0.0.qualifier.jar" id="de.cooperateproject.modeling.transformation.tests.common.feature" version="1.0.0.qualifier">
+      <category name="modeling"/>
+   </feature>
    <category-def name="modeling" label="Cooperate Modeling Environment"/>
 </site>

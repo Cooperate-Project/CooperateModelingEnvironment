@@ -24,6 +24,7 @@
 		<module>de.cooperateproject.modeling.textual.metamodels.feature</module>
 		<module>de.cooperateproject.modeling.textual.usecase.feature</module>
 		<module>de.cooperateproject.modeling.transformation.feature</module>
+		<module>de.cooperateproject.modeling.transformation.tests.common.feature</module>
 		<module>de.cooperateproject.ui.feature</module>
 		<module>de.cooperateproject.ui.focus.feature</module>
 	</modules>
