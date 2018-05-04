@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.transformation.tests.commons;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,7 +47,7 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
 
     private static final URI UML_PRIMITIVE_TYPES = URI
             .createURI("pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml");
-    private File debugSerializationDir = null;
+    protected File debugSerializationDir = null;
     protected ModelComparator modelComparator;
 
     @Before
@@ -140,7 +141,7 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
         return ResourcesPlugin.getPlugin() != null;
     }
 
-    protected static String prettyPrint(Comparison comparison) throws UnsupportedEncodingException {
+    protected static String prettyPrint(Comparison comparison) {
         String customPrettyPrint = comparison.getDifferences().stream()
                 .map(PlainTransformationTestBase::prettyPrintCustom).filter(Objects::nonNull)
                 .collect(Collectors.joining(String.format("%n")));
@@ -150,7 +151,13 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
             baos = new ByteArrayOutputStream();
             ps = new PrintStream(baos);
             EMFComparePrettyPrinter.printDifferences(comparison, ps);
-            return customPrettyPrint + String.format("%n%n") + new String(baos.toByteArray(), "UTF-8");
+            try {
+                return customPrettyPrint + String.format("%n%n") + new String(baos.toByteArray(), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                fail(e.toString());
+                return null;
+            }
         } finally {
             IOUtils.closeQuietly(ps);
             IOUtils.closeQuietly(baos);
@@ -184,18 +191,24 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
         return printer.doSwitch(diff);
     }
 
-    protected static Resource createResource(ResourceSet resourceSet, URI modelUri) throws IOException {
+    protected static Resource createResource(ResourceSet resourceSet, URI modelUri) {
         Resource resource = resourceSet.getResource(modelUri, false);
         if (resource == null) {
             resource = resourceSet.createResource(modelUri);
         }
         if (resourceSet.getURIConverter().exists(modelUri, Collections.emptyMap())) {
-            resource.load(Collections.emptyMap());
+            try {
+                resource.load(Collections.emptyMap());
+            } catch (IOException e) {
+                e.printStackTrace();
+                fail(e.toString());
+                return null;
+            }
         }
         return resource;
     }
 
-    private static ModelExtent createModelExtent(Resource r) {
+    protected static ModelExtent createModelExtent(Resource r) {
         return new BasicModelExtent(r.getContents());
     }
 
@@ -227,12 +240,12 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
                         .appendFileExtension(expectedURI.fileExtension()));
         serialize(actual, actualURI, "actual");
     }
-
+    
     private static Optional<URI> findAnyURI(Collection<EObject> elements) {
         return elements.stream().map(EObject::eResource).filter(Objects::nonNull).map(Resource::getURI).findAny();
     }
 
-    private void serialize(Collection<EObject> model, URI uri, String fileName) throws IOException {
+    protected void serialize(Collection<EObject> model, URI uri, String fileName) throws IOException {
         assertTrue(model.stream().map(EObject::eResource).distinct().count() == 1);
         Resource r = Optional.ofNullable(model.iterator().next().eResource())
                 .orElseGet(() -> createAndAssignToResource(model, uri));
@@ -246,7 +259,7 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
         return r;
     }
 
-    private static String serialize(Resource r, boolean withoutXmiIds) throws IOException {
+    protected static String serialize(Resource r, boolean withoutXmiIds) {
         @SuppressWarnings("deprecation")
         Optional<Map<EObject, String>> idMap = Optional.of(r).filter(XMLResource.class::isInstance)
                 .map(XMLResource.class::cast).map(XMLResource::getEObjectToIDMap);
@@ -261,10 +274,14 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
         }
     }
 
-    private static String serialize(Resource r) throws IOException {
+    private static String serialize(Resource r) {
         try (OutputStream os = new ByteArrayOutputStream()) {
             r.save(os, Collections.emptyMap());
             return os.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail(e.toString());
+            return null;
         }
     }
 }
