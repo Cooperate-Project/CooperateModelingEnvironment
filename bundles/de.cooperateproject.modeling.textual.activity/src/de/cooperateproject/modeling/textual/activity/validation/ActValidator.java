@@ -3,6 +3,10 @@
  */
 package de.cooperateproject.modeling.textual.activity.validation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.validation.Check;
 
 import com.google.inject.Inject;
@@ -35,5 +39,13 @@ public class ActValidator extends AbstractActValidator {
 					ActPackage.Literals.FLOW__RELATED_ELEMENTS);
 		}
 		// TODO: Not tested!
+	}
+	
+	@Override
+	protected List<EPackage> getEPackages() {
+		List<EPackage> result = new ArrayList<EPackage>();
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/activity/Activity"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/commons"));
+		return result;
 	}
 }

@@ -9,6 +9,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import org.eclipse.uml2.uml.Activity
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.UMLFactory
+import java.util.Optional
 
 class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -20,18 +21,32 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		getProblematicElement.fixMissingUMLElement
 	}
 	
+	// Assuming, that a papyrus diagram always has one (is created while initialization, cannot be created in editor)
+	// TODO: Check this in Checker!
+	private def Optional<Activity> getMainActivity(RootPackage rootPackage) {
+		val activities = rootPackage.referencedElement.packagedElements.filter(Activity)
+		if(activities.length == 0) {
+			return Optional.empty
+		} else {
+			return Optional.of(activities.get(0) as Activity);
+		}
+	}
+	
 	private def dispatch fixMissingUMLElement(ActionNode element) {
 		if(!resolvePossible) return Void
 		
+		// Create node
 		val actionNode = UMLFactory.eINSTANCE.createOpaqueAction
 		actionNode.name = element.name
 		
+		// Get main activity
 		val parent = element.eContainer as RootPackage
-		// FIXME: Just test code, assuming a activity exists
-		val pe = parent.referencedElement.packagedElements.filter(Activity).get(0) as Activity; 
-		pe.ownedNodes.add(actionNode)
-		element.referencedElement = actionNode;
-
+		val activity = getMainActivity(parent);
+		
+		if(activity.present) {
+			activity.get.ownedNodes.add(actionNode)
+			element.referencedElement = actionNode;
+		}
 	}
 	
 	private def dispatch fixMissingUMLElement(Flow element) {
