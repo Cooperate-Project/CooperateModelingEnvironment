@@ -72,6 +72,7 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 			case ActPackage.FORK_NODE: return (EObject)createForkNode();
 			case ActPackage.JOIN_NODE: return (EObject)createJoinNode();
 			case ActPackage.SWIMLANE: return (EObject)createSwimlane();
+			case ActPackage.ACTIVITY: return (EObject)createActivity();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -215,6 +216,16 @@ public class ActFactoryImpl extends EFactoryImpl implements ActFactory {
 	public Swimlane createSwimlane() {
 		SwimlaneImpl swimlane = new SwimlaneImpl();
 		return swimlane;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Activity createActivity() {
+		ActivityImpl activity = new ActivityImpl();
+		return activity;
 	}
 
 	/**

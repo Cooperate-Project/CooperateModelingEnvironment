@@ -37,7 +37,8 @@ public class ActParser extends AbstractContentAssistParser {
 					put(grammarAccess.getActivityDiagramAccess().getGroup(), "rule__ActivityDiagram__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup_1(), "rule__RootPackage__Group_1__0");
-					put(grammarAccess.getRootPackageAccess().getGroup_2(), "rule__RootPackage__Group_2__0");
+					put(grammarAccess.getActivityAccess().getGroup(), "rule__Activity__Group__0");
+					put(grammarAccess.getActivityAccess().getGroup_1(), "rule__Activity__Group_1__0");
 					put(grammarAccess.getActionNodeAccess().getGroup(), "rule__ActionNode__Group__0");
 					put(grammarAccess.getActionNodeAccess().getGroup_1_1(), "rule__ActionNode__Group_1_1__0");
 					put(grammarAccess.getInitialNodeAccess().getGroup(), "rule__InitialNode__Group__0");
@@ -56,10 +57,11 @@ public class ActParser extends AbstractContentAssistParser {
 					put(grammarAccess.getActivityDiagramAccess().getTitleAssignment_2(), "rule__ActivityDiagram__TitleAssignment_2");
 					put(grammarAccess.getActivityDiagramAccess().getRootPackageAssignment_3(), "rule__ActivityDiagram__RootPackageAssignment_3");
 					put(grammarAccess.getRootPackageAccess().getNameAssignment_1_1(), "rule__RootPackage__NameAssignment_1_1");
-					put(grammarAccess.getRootPackageAccess().getActivityNameAssignment_2_1(), "rule__RootPackage__ActivityNameAssignment_2_1");
-					put(grammarAccess.getRootPackageAccess().getChildrenAssignment_3(), "rule__RootPackage__ChildrenAssignment_3");
-					put(grammarAccess.getRootPackageAccess().getNodesAssignment_4(), "rule__RootPackage__NodesAssignment_4");
-					put(grammarAccess.getRootPackageAccess().getRelationsAssignment_5(), "rule__RootPackage__RelationsAssignment_5");
+					put(grammarAccess.getRootPackageAccess().getActivityAssignment_2(), "rule__RootPackage__ActivityAssignment_2");
+					put(grammarAccess.getActivityAccess().getNameAssignment_1_1(), "rule__Activity__NameAssignment_1_1");
+					put(grammarAccess.getActivityAccess().getChildrenAssignment_2(), "rule__Activity__ChildrenAssignment_2");
+					put(grammarAccess.getActivityAccess().getNodesAssignment_3(), "rule__Activity__NodesAssignment_3");
+					put(grammarAccess.getActivityAccess().getRelationsAssignment_4(), "rule__Activity__RelationsAssignment_4");
 					put(grammarAccess.getActionNodeAccess().getNameAssignment_1_0(), "rule__ActionNode__NameAssignment_1_0");
 					put(grammarAccess.getActionNodeAccess().getAliasAssignment_1_1_0(), "rule__ActionNode__AliasAssignment_1_1_0");
 					put(grammarAccess.getActionNodeAccess().getNameAssignment_1_1_2(), "rule__ActionNode__NameAssignment_1_1_2");

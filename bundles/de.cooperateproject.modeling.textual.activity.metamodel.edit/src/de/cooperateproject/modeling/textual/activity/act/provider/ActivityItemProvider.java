@@ -5,11 +5,11 @@ package de.cooperateproject.modeling.textual.activity.act.provider;
 
 import de.cooperateproject.modeling.textual.activity.act.ActFactory;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.RootPackage;
+import de.cooperateproject.modeling.textual.activity.act.Activity;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.provider.PackageBaseItemProvider;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.provider.UMLReferencingElementItemProvider;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,23 +20,26 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.cooperateproject.modeling.textual.activity.act.RootPackage} object.
+ * This is the item provider adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Activity} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RootPackageItemProvider extends PackageBaseItemProvider {
+public class ActivityItemProvider extends UMLReferencingElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RootPackageItemProvider(AdapterFactory adapterFactory) {
+	public ActivityItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,8 +54,31 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+				 TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -67,7 +93,9 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ActPackage.Literals.ROOT_PACKAGE__ACTIVITY);
+			childrenFeatures.add(ActPackage.Literals.CONTAINER__NODES);
+			childrenFeatures.add(ActPackage.Literals.ACTIVITY__RELATIONS);
+			childrenFeatures.add(ActPackage.Literals.ACTIVITY__CHILDREN);
 		}
 		return childrenFeatures;
 	}
@@ -86,14 +114,14 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	}
 
 	/**
-	 * This returns RootPackage.gif.
+	 * This returns Activity.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RootPackage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Activity"));
 	}
 
 	/**
@@ -104,10 +132,10 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RootPackage)object).getName();
+		String label = ((Activity)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_RootPackage_type") :
-			getString("_UI_RootPackage_type") + " " + label;
+			getString("_UI_Activity_type") :
+			getString("_UI_Activity_type") + " " + label;
 	}
 	
 
@@ -122,8 +150,13 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RootPackage.class)) {
-			case ActPackage.ROOT_PACKAGE__ACTIVITY:
+		switch (notification.getFeatureID(Activity.class)) {
+			case ActPackage.ACTIVITY__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ActPackage.ACTIVITY__NODES:
+			case ActPackage.ACTIVITY__RELATIONS:
+			case ActPackage.ACTIVITY__CHILDREN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -143,12 +176,67 @@ public class RootPackageItemProvider extends PackageBaseItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES,
-				 ActFactory.eINSTANCE.createRootPackage()));
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createControlNode()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ActPackage.Literals.ROOT_PACKAGE__ACTIVITY,
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createActionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createInitialNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createFinalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createFlowFinalNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createDecisionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createMergeNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createForkNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.CONTAINER__NODES,
+				 ActFactory.eINSTANCE.createJoinNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ACTIVITY__RELATIONS,
+				 ActFactory.eINSTANCE.createFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ACTIVITY__CHILDREN,
+				 ActFactory.eINSTANCE.createContainer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ACTIVITY__CHILDREN,
+				 ActFactory.eINSTANCE.createSwimlane()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ActPackage.Literals.ACTIVITY__CHILDREN,
 				 ActFactory.eINSTANCE.createActivity()));
 	}
 

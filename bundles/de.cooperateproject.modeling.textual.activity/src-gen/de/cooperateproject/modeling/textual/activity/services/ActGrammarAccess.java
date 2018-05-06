@@ -74,26 +74,15 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRootPackageKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cActivityNameKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cActivityNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cActivityNameSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cActivityNameAssignment_2_1.eContents().get(0);
-		private final Assignment cChildrenAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cChildrenSwimlaneParserRuleCall_3_0 = (RuleCall)cChildrenAssignment_3.eContents().get(0);
-		private final Assignment cNodesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cNodesNodeParserRuleCall_4_0 = (RuleCall)cNodesAssignment_4.eContents().get(0);
-		private final Assignment cRelationsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cRelationsFlowParserRuleCall_5_0 = (RuleCall)cRelationsAssignment_5.eContents().get(0);
+		private final Assignment cActivityAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cActivityActivityParserRuleCall_2_0 = (RuleCall)cActivityAssignment_2.eContents().get(0);
 		
 		//RootPackage:
-		//	{RootPackage} ('rootPackage' name=FQN)? ('activityName' activityName=STRING)?
-		//	children+=Swimlane*
-		//	nodes+=Node*
-		//	relations+=Flow*;
+		//	{RootPackage} ('rootPackage' name=FQN)?
+		//	activity=Activity;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{RootPackage} ('rootPackage' name=FQN)? ('activityName' activityName=STRING)? children+=Swimlane* nodes+=Node*
-		//relations+=Flow*
+		//{RootPackage} ('rootPackage' name=FQN)? activity=Activity
 		public Group getGroup() { return cGroup; }
 		
 		//{RootPackage}
@@ -111,35 +100,69 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_1_1_0() { return cNameFQNParserRuleCall_1_1_0; }
 		
-		//('activityName' activityName=STRING)?
-		public Group getGroup_2() { return cGroup_2; }
+		//activity=Activity
+		public Assignment getActivityAssignment_2() { return cActivityAssignment_2; }
+		
+		//Activity
+		public RuleCall getActivityActivityParserRuleCall_2_0() { return cActivityActivityParserRuleCall_2_0; }
+	}
+	public class ActivityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Activity");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cActivityAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cActivityNameKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Assignment cChildrenAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cChildrenSwimlaneParserRuleCall_2_0 = (RuleCall)cChildrenAssignment_2.eContents().get(0);
+		private final Assignment cNodesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNodesNodeParserRuleCall_3_0 = (RuleCall)cNodesAssignment_3.eContents().get(0);
+		private final Assignment cRelationsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRelationsFlowParserRuleCall_4_0 = (RuleCall)cRelationsAssignment_4.eContents().get(0);
+		
+		//Activity:
+		//	{Activity} ('activityName' name=STRING)?
+		//	children+=Swimlane*
+		//	nodes+=Node*
+		//	relations+=Flow*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Activity} ('activityName' name=STRING)? children+=Swimlane* nodes+=Node* relations+=Flow*
+		public Group getGroup() { return cGroup; }
+		
+		//{Activity}
+		public Action getActivityAction_0() { return cActivityAction_0; }
+		
+		//('activityName' name=STRING)?
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'activityName'
-		public Keyword getActivityNameKeyword_2_0() { return cActivityNameKeyword_2_0; }
+		public Keyword getActivityNameKeyword_1_0() { return cActivityNameKeyword_1_0; }
 		
-		//activityName=STRING
-		public Assignment getActivityNameAssignment_2_1() { return cActivityNameAssignment_2_1; }
+		//name=STRING
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
 		
 		//STRING
-		public RuleCall getActivityNameSTRINGTerminalRuleCall_2_1_0() { return cActivityNameSTRINGTerminalRuleCall_2_1_0; }
+		public RuleCall getNameSTRINGTerminalRuleCall_1_1_0() { return cNameSTRINGTerminalRuleCall_1_1_0; }
 		
 		//children+=Swimlane*
-		public Assignment getChildrenAssignment_3() { return cChildrenAssignment_3; }
+		public Assignment getChildrenAssignment_2() { return cChildrenAssignment_2; }
 		
 		//Swimlane
-		public RuleCall getChildrenSwimlaneParserRuleCall_3_0() { return cChildrenSwimlaneParserRuleCall_3_0; }
+		public RuleCall getChildrenSwimlaneParserRuleCall_2_0() { return cChildrenSwimlaneParserRuleCall_2_0; }
 		
 		//nodes+=Node*
-		public Assignment getNodesAssignment_4() { return cNodesAssignment_4; }
+		public Assignment getNodesAssignment_3() { return cNodesAssignment_3; }
 		
 		//Node
-		public RuleCall getNodesNodeParserRuleCall_4_0() { return cNodesNodeParserRuleCall_4_0; }
+		public RuleCall getNodesNodeParserRuleCall_3_0() { return cNodesNodeParserRuleCall_3_0; }
 		
 		//relations+=Flow*
-		public Assignment getRelationsAssignment_5() { return cRelationsAssignment_5; }
+		public Assignment getRelationsAssignment_4() { return cRelationsAssignment_4; }
 		
 		//Flow
-		public RuleCall getRelationsFlowParserRuleCall_5_0() { return cRelationsFlowParserRuleCall_5_0; }
+		public RuleCall getRelationsFlowParserRuleCall_4_0() { return cRelationsFlowParserRuleCall_4_0; }
 	}
 	public class NodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Node");
@@ -558,6 +581,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final ActivityDiagramElements pActivityDiagram;
 	private final RootPackageElements pRootPackage;
+	private final ActivityElements pActivity;
 	private final NodeElements pNode;
 	private final ActionNodeElements pActionNode;
 	private final ControlNodeElements pControlNode;
@@ -583,6 +607,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pActivityDiagram = new ActivityDiagramElements();
 		this.pRootPackage = new RootPackageElements();
+		this.pActivity = new ActivityElements();
 		this.pNode = new NodeElements();
 		this.pActionNode = new ActionNodeElements();
 		this.pControlNode = new ControlNodeElements();
@@ -639,16 +664,27 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage:
-	//	{RootPackage} ('rootPackage' name=FQN)? ('activityName' activityName=STRING)?
-	//	children+=Swimlane*
-	//	nodes+=Node*
-	//	relations+=Flow*;
+	//	{RootPackage} ('rootPackage' name=FQN)?
+	//	activity=Activity;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}
 	
 	public ParserRule getRootPackageRule() {
 		return getRootPackageAccess().getRule();
+	}
+	
+	//Activity:
+	//	{Activity} ('activityName' name=STRING)?
+	//	children+=Swimlane*
+	//	nodes+=Node*
+	//	relations+=Flow*;
+	public ActivityElements getActivityAccess() {
+		return pActivity;
+	}
+	
+	public ParserRule getActivityRule() {
+		return getActivityAccess().getRule();
 	}
 	
 	//Node:

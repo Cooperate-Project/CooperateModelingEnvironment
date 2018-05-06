@@ -180,24 +180,69 @@ ruleRootPackage returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_3='activityName'
+			(
+				{
+					newCompositeNode(grammarAccess.getRootPackageAccess().getActivityActivityParserRuleCall_2_0());
+				}
+				lv_activity_3_0=ruleActivity
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+					}
+					set(
+						$current,
+						"activity",
+						lv_activity_3_0,
+						"de.cooperateproject.modeling.textual.activity.Act.Activity");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleActivity
+entryRuleActivity returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getActivityRule()); }
+	iv_ruleActivity=ruleActivity
+	{ $current=$iv_ruleActivity.current; }
+	EOF;
+
+// Rule Activity
+ruleActivity returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
 			{
-				newLeafNode(otherlv_3, grammarAccess.getRootPackageAccess().getActivityNameKeyword_2_0());
+				$current = forceCreateModelElement(
+					grammarAccess.getActivityAccess().getActivityAction_0(),
+					$current);
+			}
+		)
+		(
+			otherlv_1='activityName'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getActivityAccess().getActivityNameKeyword_1_0());
 			}
 			(
 				(
-					lv_activityName_4_0=RULE_STRING
+					lv_name_2_0=RULE_STRING
 					{
-						newLeafNode(lv_activityName_4_0, grammarAccess.getRootPackageAccess().getActivityNameSTRINGTerminalRuleCall_2_1_0());
+						newLeafNode(lv_name_2_0, grammarAccess.getActivityAccess().getNameSTRINGTerminalRuleCall_1_1_0());
 					}
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getRootPackageRule());
+							$current = createModelElement(grammarAccess.getActivityRule());
 						}
 						setWithLastConsumed(
 							$current,
-							"activityName",
-							lv_activityName_4_0,
+							"name",
+							lv_name_2_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
@@ -206,17 +251,17 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getChildrenSwimlaneParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getActivityAccess().getChildrenSwimlaneParserRuleCall_2_0());
 				}
-				lv_children_5_0=ruleSwimlane
+				lv_children_3_0=ruleSwimlane
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+						$current = createModelElementForParent(grammarAccess.getActivityRule());
 					}
 					add(
 						$current,
 						"children",
-						lv_children_5_0,
+						lv_children_3_0,
 						"de.cooperateproject.modeling.textual.activity.Act.Swimlane");
 					afterParserOrEnumRuleCall();
 				}
@@ -225,17 +270,17 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getNodesNodeParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getActivityAccess().getNodesNodeParserRuleCall_3_0());
 				}
-				lv_nodes_6_0=ruleNode
+				lv_nodes_4_0=ruleNode
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+						$current = createModelElementForParent(grammarAccess.getActivityRule());
 					}
 					add(
 						$current,
 						"nodes",
-						lv_nodes_6_0,
+						lv_nodes_4_0,
 						"de.cooperateproject.modeling.textual.activity.Act.Node");
 					afterParserOrEnumRuleCall();
 				}
@@ -244,17 +289,17 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationsFlowParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getActivityAccess().getRelationsFlowParserRuleCall_4_0());
 				}
-				lv_relations_7_0=ruleFlow
+				lv_relations_5_0=ruleFlow
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
+						$current = createModelElementForParent(grammarAccess.getActivityRule());
 					}
 					add(
 						$current,
 						"relations",
-						lv_relations_7_0,
+						lv_relations_5_0,
 						"de.cooperateproject.modeling.textual.activity.Act.Flow");
 					afterParserOrEnumRuleCall();
 				}

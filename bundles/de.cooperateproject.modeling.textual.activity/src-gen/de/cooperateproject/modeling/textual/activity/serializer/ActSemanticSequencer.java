@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.activity.serializer;
 import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.ActionNode;
+import de.cooperateproject.modeling.textual.activity.act.Activity;
 import de.cooperateproject.modeling.textual.activity.act.ActivityDiagram;
 import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
 import de.cooperateproject.modeling.textual.activity.act.FinalNode;
@@ -18,6 +19,7 @@ import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 import de.cooperateproject.modeling.textual.activity.act.Swimlane;
 import de.cooperateproject.modeling.textual.activity.services.ActGrammarAccess;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -28,7 +30,6 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 @SuppressWarnings("all")
 public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -46,6 +47,9 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			switch (semanticObject.eClass().getClassifierID()) {
 			case ActPackage.ACTION_NODE:
 				sequence_ActionNode(context, (ActionNode) semanticObject); 
+				return; 
+			case ActPackage.ACTIVITY:
+				sequence_Activity(context, (Activity) semanticObject); 
 				return; 
 			case ActPackage.ACTIVITY_DIAGRAM:
 				sequence_ActivityDiagram(context, (ActivityDiagram) semanticObject); 
@@ -116,6 +120,18 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getActivityDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
 		feeder.accept(grammarAccess.getActivityDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0(), semanticObject.getRootPackage());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Activity returns Activity
+	 *
+	 * Constraint:
+	 *     (name=STRING? children+=Swimlane* nodes+=Node* relations+=Flow*)
+	 */
+	protected void sequence_Activity(ISerializationContext context, Activity semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
@@ -276,7 +292,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN? activityName=STRING? children+=Swimlane* nodes+=Node* relations+=Flow*)
+	 *     (name=FQN? activity=Activity)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

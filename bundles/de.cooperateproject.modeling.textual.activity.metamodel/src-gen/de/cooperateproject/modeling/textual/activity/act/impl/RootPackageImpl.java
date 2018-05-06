@@ -3,24 +3,13 @@
 package de.cooperateproject.modeling.textual.activity.act.impl;
 
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
-import de.cooperateproject.modeling.textual.activity.act.Flow;
-import de.cooperateproject.modeling.textual.activity.act.Node;
+import de.cooperateproject.modeling.textual.activity.act.Activity;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.uml2.uml.ActivityNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,25 +19,12 @@ import org.eclipse.uml2.uml.ActivityNode;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getNodes <em>Nodes</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getActivityName <em>Activity Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getRelations <em>Relations</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.RootPackageImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements RootPackage {
-	/**
-	 * The default value of the '{@link #getActivityName() <em>Activity Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivityName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ACTIVITY_NAME_EDEFAULT = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,9 +60,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Node<ActivityNode>> getNodes() {
-		return (EList<Node<ActivityNode>>)eDynamicGet(ActPackage.ROOT_PACKAGE__NODES, ActPackage.Literals.CONTAINER__NODES, true, true);
+	public Activity getActivity() {
+		return (Activity)eDynamicGet(ActPackage.ROOT_PACKAGE__ACTIVITY, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY, true, true);
 	}
 
 	/**
@@ -94,8 +69,9 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getActivityName() {
-		return (String)eDynamicGet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, true, true);
+	public NotificationChain basicSetActivity(Activity newActivity, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newActivity, ActPackage.ROOT_PACKAGE__ACTIVITY, msgs);
+		return msgs;
 	}
 
 	/**
@@ -103,28 +79,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivityName(String newActivityName) {
-		eDynamicSet(ActPackage.ROOT_PACKAGE__ACTIVITY_NAME, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY_NAME, newActivityName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<Flow> getRelations() {
-		return (EList<Flow>)eDynamicGet(ActPackage.ROOT_PACKAGE__RELATIONS, ActPackage.Literals.ROOT_PACKAGE__RELATIONS, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<de.cooperateproject.modeling.textual.activity.act.Container> getChildren() {
-		return (EList<de.cooperateproject.modeling.textual.activity.act.Container>)eDynamicGet(ActPackage.ROOT_PACKAGE__CHILDREN, ActPackage.Literals.ROOT_PACKAGE__CHILDREN, true, true);
+	public void setActivity(Activity newActivity) {
+		eDynamicSet(ActPackage.ROOT_PACKAGE__ACTIVITY, ActPackage.Literals.ROOT_PACKAGE__ACTIVITY, newActivity);
 	}
 
 	/**
@@ -135,12 +91,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ActPackage.ROOT_PACKAGE__NODES:
-				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
-			case ActPackage.ROOT_PACKAGE__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
-			case ActPackage.ROOT_PACKAGE__CHILDREN:
-				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+			case ActPackage.ROOT_PACKAGE__ACTIVITY:
+				return basicSetActivity(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -153,14 +105,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActPackage.ROOT_PACKAGE__NODES:
-				return getNodes();
-			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
-				return getActivityName();
-			case ActPackage.ROOT_PACKAGE__RELATIONS:
-				return getRelations();
-			case ActPackage.ROOT_PACKAGE__CHILDREN:
-				return getChildren();
+			case ActPackage.ROOT_PACKAGE__ACTIVITY:
+				return getActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,20 +120,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActPackage.ROOT_PACKAGE__NODES:
-				getNodes().clear();
-				getNodes().addAll((Collection<? extends Node<ActivityNode>>)newValue);
-				return;
-			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
-				setActivityName((String)newValue);
-				return;
-			case ActPackage.ROOT_PACKAGE__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Flow>)newValue);
-				return;
-			case ActPackage.ROOT_PACKAGE__CHILDREN:
-				getChildren().clear();
-				getChildren().addAll((Collection<? extends de.cooperateproject.modeling.textual.activity.act.Container>)newValue);
+			case ActPackage.ROOT_PACKAGE__ACTIVITY:
+				setActivity((Activity)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,17 +135,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActPackage.ROOT_PACKAGE__NODES:
-				getNodes().clear();
-				return;
-			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
-				setActivityName(ACTIVITY_NAME_EDEFAULT);
-				return;
-			case ActPackage.ROOT_PACKAGE__RELATIONS:
-				getRelations().clear();
-				return;
-			case ActPackage.ROOT_PACKAGE__CHILDREN:
-				getChildren().clear();
+			case ActPackage.ROOT_PACKAGE__ACTIVITY:
+				setActivity((Activity)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -225,48 +150,10 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActPackage.ROOT_PACKAGE__NODES:
-				return !getNodes().isEmpty();
-			case ActPackage.ROOT_PACKAGE__ACTIVITY_NAME:
-				return ACTIVITY_NAME_EDEFAULT == null ? getActivityName() != null : !ACTIVITY_NAME_EDEFAULT.equals(getActivityName());
-			case ActPackage.ROOT_PACKAGE__RELATIONS:
-				return !getRelations().isEmpty();
-			case ActPackage.ROOT_PACKAGE__CHILDREN:
-				return !getChildren().isEmpty();
+			case ActPackage.ROOT_PACKAGE__ACTIVITY:
+				return getActivity() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == de.cooperateproject.modeling.textual.activity.act.Container.class) {
-			switch (derivedFeatureID) {
-				case ActPackage.ROOT_PACKAGE__NODES: return ActPackage.CONTAINER__NODES;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == de.cooperateproject.modeling.textual.activity.act.Container.class) {
-			switch (baseFeatureID) {
-				case ActPackage.CONTAINER__NODES: return ActPackage.ROOT_PACKAGE__NODES;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //RootPackageImpl

@@ -15,11 +15,17 @@ ActivityDiagram returns ActivityDiagram:
 RootPackage:
 	{RootPackage} 
 	('rootPackage' name=FQN)?
-	('activityName' activityName=STRING)?
+	activity=Activity
+	;
+	
+Activity: 
+	{Activity}
+	('activityName' name=STRING)?
 	children+=Swimlane*
 	nodes+=Node*
 	relations+=Flow*
-	;
+;
+
 
 Node returns Node:
 	ActionNode | ControlNode

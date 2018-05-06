@@ -62,7 +62,7 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		
-		assertEquals(model.rootPackage.activityName, "Some Name") 
+		assertEquals(model.rootPackage.activity.name, "Some Name") 
 	}
 	
 	@Test
@@ -77,11 +77,11 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		
-		assertEquals(model.rootPackage.nodes.length, 3)
+		assertEquals(model.rootPackage.activity.nodes.length, 3)
 		
-		val firstNode = model.rootPackage.nodes.get(0) as ControlNode<?>
-		val secondNode = model.rootPackage.nodes.get(1) as ControlNode<?>
-		val thirdNode = model.rootPackage.nodes.get(2) as ControlNode<?>
+		val firstNode = model.rootPackage.activity.nodes.get(0) as ControlNode<?>
+		val secondNode = model.rootPackage.activity.nodes.get(1) as ControlNode<?>
+		val thirdNode = model.rootPackage.activity.nodes.get(2) as ControlNode<?>
 		
 		assertEquals(firstNode.name, "InitialNode")
 		assertTrue(firstNode instanceof InitialNode)
@@ -100,10 +100,10 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		
-		assertEquals(model.rootPackage.nodes.length, 2)
+		assertEquals(model.rootPackage.activity.nodes.length, 2)
 		
-		val firstNode = model.rootPackage.nodes.get(0) as ActionNode
-		val secondNode = model.rootPackage.nodes.get(1) as ActionNode
+		val firstNode = model.rootPackage.activity.nodes.get(0) as ActionNode
+		val secondNode = model.rootPackage.activity.nodes.get(1) as ActionNode
 		
 		assertEquals(firstNode.name, "someActivity")
 		assertEquals(secondNode.name, "Another Activity")
@@ -122,11 +122,11 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		
-		assertEquals(model.rootPackage.relations.length, 1)
-		assertEquals(model.rootPackage.relations.get(0).relatedElements.length, 2)
+		assertEquals(model.rootPackage.activity.relations.length, 1)
+		assertEquals(model.rootPackage.activity.relations.get(0).relatedElements.length, 2)
 		
-		val firstNode = model.rootPackage.relations.get(0).relatedElements.get(0) as ActionNode
-		val secondNode = model.rootPackage.relations.get(0).relatedElements.get(1) as ActionNode
+		val firstNode = model.rootPackage.activity.relations.get(0).relatedElements.get(0) as ActionNode
+		val secondNode = model.rootPackage.activity.relations.get(0).relatedElements.get(1) as ActionNode
 
 		assertEquals(firstNode.name, "someActivity")
 		assertEquals(secondNode.name, "anotherActivity")
@@ -166,10 +166,10 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		
-		assertEquals(model.rootPackage.relations.length, 6)
-		assertEquals(model.rootPackage.relations.get(3).relatedElements.length, 2)
+		assertEquals(model.rootPackage.activity.relations.length, 6)
+		assertEquals(model.rootPackage.activity.relations.get(3).relatedElements.length, 2)
 		
-		val conditionFlow = model.rootPackage.relations.get(3)
+		val conditionFlow = model.rootPackage.activity.relations.get(3)
 		val firstNode = conditionFlow.relatedElements.get(0) as ControlNode<?>
 		val secondNode = conditionFlow.relatedElements.get(1) as ActionNode
 
@@ -193,8 +193,8 @@ class ActParsingTest extends AbstractActTest {
 		validationTestHelper.assertNoIssues(model)
 		//save(model, rs)
 		
-		assertEquals(model.rootPackage.relations.length, 1)
-		assertEquals(model.rootPackage.relations.get(0).relatedElements.length, 3)
+		assertEquals(model.rootPackage.activity.relations.length, 1)
+		assertEquals(model.rootPackage.activity.relations.get(0).relatedElements.length, 3)
 	}
 	
 	@Test
@@ -221,10 +221,10 @@ class ActParsingTest extends AbstractActTest {
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		
-		assertEquals(model.rootPackage.nodes.length, 7)
+		assertEquals(model.rootPackage.activity.nodes.length, 7)
 		
-		val firstNode = model.rootPackage.nodes.get(4) as ControlNode<?>
-		val secondNode = model.rootPackage.nodes.get(5) as ControlNode<?>
+		val firstNode = model.rootPackage.activity.nodes.get(4) as ControlNode<?>
+		val secondNode = model.rootPackage.activity.nodes.get(5) as ControlNode<?>
 
 		assertTrue(firstNode instanceof ForkNode)
 		assertTrue(secondNode instanceof JoinNode)

@@ -394,6 +394,29 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.activity.act.Activity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityItemProvider activityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.cooperateproject.modeling.textual.activity.act.Activity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityAdapter() {
+		if (activityItemProvider == null) {
+			activityItemProvider = new ActivityItemProvider(this);
+		}
+
+		return activityItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -506,6 +529,7 @@ public class ActItemProviderAdapterFactory extends ActAdapterFactory implements 
 		if (forkNodeItemProvider != null) forkNodeItemProvider.dispose();
 		if (joinNodeItemProvider != null) joinNodeItemProvider.dispose();
 		if (swimlaneItemProvider != null) swimlaneItemProvider.dispose();
+		if (activityItemProvider != null) activityItemProvider.dispose();
 	}
 
 }

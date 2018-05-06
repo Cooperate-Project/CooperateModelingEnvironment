@@ -23,6 +23,9 @@ public class ActivityDiagramQualifiedNameProvider extends CooperateQualifiedName
 			// ActionNode -> RootPackage -> ActivityDiagram (Naming: "RootPackage.X")
 			ActionNode action = (ActionNode) element;
 			String name = action.getName();
+			EObject parent = action.eContainer();
+			EObject parentsparent = parent.eContainer();
+			System.out.println(super.getFullyQualifiedName(element));
 			return converter.toQualifiedName(name);
 		} else {
 			return super.getFullyQualifiedName(element);

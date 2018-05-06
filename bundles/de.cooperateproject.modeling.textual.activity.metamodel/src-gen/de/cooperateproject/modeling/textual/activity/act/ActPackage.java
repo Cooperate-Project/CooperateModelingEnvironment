@@ -160,40 +160,13 @@ public interface ActPackage extends EPackage {
 	int ROOT_PACKAGE__PACKAGE_IMPORTS = TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS;
 
 	/**
-	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Activity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE__NODES = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Activity Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE__ACTIVITY_NAME = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE__RELATIONS = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE__CHILDREN = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 3;
+	int ROOT_PACKAGE__ACTIVITY = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Root Package</em>' class.
@@ -202,7 +175,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 4;
+	int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1038,6 +1011,98 @@ public interface ActPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl <em>Activity</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl
+	 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActivity()
+	 * @generated
+	 */
+	int ACTIVITY = 15;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__NODES = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__RELATIONS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__CHILDREN = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Activity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY___GET_UML_PARENT_NAMESPACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_UML_PARENT_NAMESPACE;
+
+	/**
+	 * The number of operations of the '<em>Activity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.ActivityDiagram <em>Activity Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1080,37 +1145,15 @@ public interface ActPackage extends EPackage {
 	EClass getRootPackage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName <em>Activity Name</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivity <em>Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Activity Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivityName()
+	 * @return the meta object for the containment reference '<em>Activity</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getActivity()
 	 * @see #getRootPackage()
 	 * @generated
 	 */
-	EAttribute getRootPackage_ActivityName();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations <em>Relations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Relations</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getRelations()
-	 * @see #getRootPackage()
-	 * @generated
-	 */
-	EReference getRootPackage_Relations();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.RootPackage#getChildren <em>Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Children</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.RootPackage#getChildren()
-	 * @see #getRootPackage()
-	 * @generated
-	 */
-	EReference getRootPackage_Children();
+	EReference getRootPackage_Activity();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Container <em>Container</em>}'.
@@ -1287,6 +1330,38 @@ public interface ActPackage extends EPackage {
 	EAttribute getSwimlane_Name();
 
 	/**
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Activity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Activity</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Activity
+	 * @generated
+	 */
+	EClass getActivity();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.Activity#getRelations <em>Relations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Relations</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Activity#getRelations()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EReference getActivity_Relations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.Activity#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Activity#getChildren()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EReference getActivity_Children();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1346,28 +1421,12 @@ public interface ActPackage extends EPackage {
 		EClass ROOT_PACKAGE = eINSTANCE.getRootPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Activity Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Activity</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ROOT_PACKAGE__ACTIVITY_NAME = eINSTANCE.getRootPackage_ActivityName();
-
-		/**
-		 * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROOT_PACKAGE__RELATIONS = eINSTANCE.getRootPackage_Relations();
-
-		/**
-		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ROOT_PACKAGE__CHILDREN = eINSTANCE.getRootPackage_Children();
+		EReference ROOT_PACKAGE__ACTIVITY = eINSTANCE.getRootPackage_Activity();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ContainerImpl <em>Container</em>}' class.
@@ -1530,6 +1589,32 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SWIMLANE__NAME = eINSTANCE.getSwimlane_Name();
+
+		/**
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl <em>Activity</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl
+		 * @see de.cooperateproject.modeling.textual.activity.act.impl.ActPackageImpl#getActivity()
+		 * @generated
+		 */
+		EClass ACTIVITY = eINSTANCE.getActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVITY__RELATIONS = eINSTANCE.getActivity_Relations();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVITY__CHILDREN = eINSTANCE.getActivity_Children();
 
 	}
 

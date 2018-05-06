@@ -84,7 +84,6 @@ public class ActSwitch<T1> extends Switch<T1> {
 				RootPackage rootPackage = (RootPackage)theEObject;
 				T1 result = caseRootPackage(rootPackage);
 				if (result == null) result = casePackageBase(rootPackage);
-				if (result == null) result = caseContainer(rootPackage);
 				if (result == null) result = casePackageableElement(rootPackage);
 				if (result == null) result = caseUMLReferencingElement(rootPackage);
 				if (result == null) result = caseNamedElement(rootPackage);
@@ -217,6 +216,16 @@ public class ActSwitch<T1> extends Switch<T1> {
 				Swimlane swimlane = (Swimlane)theEObject;
 				T1 result = caseSwimlane(swimlane);
 				if (result == null) result = caseContainer(swimlane);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ActPackage.ACTIVITY: {
+				Activity activity = (Activity)theEObject;
+				T1 result = caseActivity(activity);
+				if (result == null) result = caseUMLReferencingElement(activity);
+				if (result == null) result = caseNamedElement(activity);
+				if (result == null) result = caseContainer(activity);
+				if (result == null) result = caseElement(activity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -446,6 +455,21 @@ public class ActSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseSwimlane(Swimlane object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Activity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Activity</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseActivity(Activity object) {
 		return null;
 	}
 
