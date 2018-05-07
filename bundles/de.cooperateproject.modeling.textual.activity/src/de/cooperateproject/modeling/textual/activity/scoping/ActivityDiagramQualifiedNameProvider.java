@@ -2,8 +2,8 @@ package de.cooperateproject.modeling.textual.activity.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 
@@ -18,17 +18,17 @@ public class ActivityDiagramQualifiedNameProvider extends CooperateQualifiedName
 	
 	@Override
 	public QualifiedName getFullyQualifiedName(EObject element) {
-		if (element instanceof OpaqueAction) {
+		if (element instanceof ActivityNode) {
 			// FIXME: Maybe the problem for this naming thing is elsewhere.
 			// For some reason, these elements are not resolved correctly by the SimpleAttributeResolver from the super implementation.
 			// This forces the correct hierarchy: "RootPackage.Activity.Node" (instead of "Node")
-			return createQualifiedNameForAction((OpaqueAction) element);
+			return createQualifiedNameForNode((ActivityNode) element);
 		} else {
 			return super.getFullyQualifiedName(element);
 		}
 	}
-	
-	private QualifiedName createQualifiedNameForAction(OpaqueAction element) {
+
+	private QualifiedName createQualifiedNameForNode(ActivityNode element) {
 		String name = element.getName();
 
 		//TODO: Add support for swimlanes like this: while(element.eContainer() instanceof ...)
