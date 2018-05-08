@@ -4,16 +4,19 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 import org.apache.commons.io.input.ReaderInputStream;
 import org.apache.commons.io.output.WriterOutputStream;
 import org.eclipse.emf.cdo.common.lob.CDOClob;
 import org.eclipse.emf.cdo.eresource.CDOTextResource;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.cdo.view.CDOViewSet;
 import org.eclipse.emf.common.util.URI;
 
-public class TextbasedCDOResource extends VirtualCDOFileResource {
+public class TextbasedCDOResource extends VirtualCDOFileResource<CDOTextResource> {
 
     public static final String ADDITIONAL_FILE_EXTENSION = "txt";
 
@@ -29,7 +32,7 @@ public class TextbasedCDOResource extends VirtualCDOFileResource {
     @Override
     protected void doSave(XMISerializer serializer, CDOTransaction trans, String realCdoRepositoryPath)
             throws IOException {
-        CDOTextResource textRes = trans.getOrCreateTextResource(realCdoRepositoryPath);
+        CDOTextResource textRes = getCdoResourceNode(trans);
         textRes.setEncoding(DEFAULT_CHARSET_NAME);
         StringWriter writer = new StringWriter();
         try (WriterOutputStream wos = new WriterOutputStream(writer, DEFAULT_CHARSET)) {
@@ -51,6 +54,27 @@ public class TextbasedCDOResource extends VirtualCDOFileResource {
                 serializer.parse(ris);
             }
         }
+    }
+
+    @Override
+    protected CDOTextResource getCDOResourceNode(URI uri) throws IOException {
+        CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
+        CDOView view = Arrays.stream(cdoVS.getViews()).filter(CDOView.class::isInstance).findFirst().orElse(null);
+        if (view == null) {
+            throw new IOException("Could not gather a view to perform the load operation.");
+        }
+        String realCdoRepositoryPath = getRealCDORepositoryPath(view);
+        return view.getTextResource(realCdoRepositoryPath);
+    }
+
+    // TODO abklären ob so okay
+    @Override
+    protected CDOTextResource getCDOResourceNode(URI uri, CDOTransaction trans) throws IOException {
+        if (trans == null) {
+            throw new IOException("Could not gather a view to perform the load operation.");
+        }
+        String realCdoRepositoryPath = getRealCDORepositoryPath(trans);
+        return trans.getOrCreateTextResource(realCdoRepositoryPath);
     }
 
 }

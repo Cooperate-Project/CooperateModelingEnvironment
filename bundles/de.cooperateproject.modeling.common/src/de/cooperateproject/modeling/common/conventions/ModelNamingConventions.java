@@ -42,6 +42,10 @@ public class ModelNamingConventions {
 
     }
 
+    public static String getProjectNameFromUMLURI(URI umlURI) {
+        return umlURI.trimSegments(1).lastSegment();
+    }
+
     public static URI getTextualFromGraphicalURI(URI graphicalURI, String diagramName, String textualFileExtension) {
         Validate.notNull(graphicalURI);
         Validate.isTrue(graphicalURI.isHierarchical());
@@ -56,6 +60,10 @@ public class ModelNamingConventions {
         TextualModelName textualFileName = getTextualModelNameObjectFromTextualURI(textualURI);
         String graphicalFileName = String.format("%s.%s", textualFileName.getBaseName(), "notation");
         return textualURI.trimQuery().trimFragment().trimSegments(1).appendSegment(graphicalFileName);
+    }
+
+    public static URI getGraphicalResourceFromUMLURI(URI umlURI) {
+        return umlURI.trimFileExtension().appendFileExtension("notation");
     }
 
     public static URI getUMLFromTextualURI(URI textualURI) {

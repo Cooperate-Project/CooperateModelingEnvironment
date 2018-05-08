@@ -44,7 +44,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
     private static final Logger LOGGER = LoggerFactory.getLogger(LauncherFilesCheckoutTask.class);
     private static final String LAUNCHER_FILE_EXTENSION = LauncherResourceImpl.EXTENSION;
     private static final String NOTATION_FILE_EXTENSION = "notation";
-    private static final String MODELS_DIRECTORY_NAME = "models";
+    public static final String MODELS_DIRECTORY_NAME = "models";
 
     public LauncherFilesCheckoutTask(IProject project, ProjectPropertiesDTO properties) {
         super(project, properties);
