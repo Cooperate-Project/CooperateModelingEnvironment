@@ -94,7 +94,7 @@ public class ActivityItemProvider extends UMLReferencingElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ActPackage.Literals.CONTAINER__NODES);
-			childrenFeatures.add(ActPackage.Literals.ACTIVITY__RELATIONS);
+			childrenFeatures.add(ActPackage.Literals.ACTIVITY__FLOWS);
 			childrenFeatures.add(ActPackage.Literals.ACTIVITY__CHILDREN);
 		}
 		return childrenFeatures;
@@ -155,7 +155,7 @@ public class ActivityItemProvider extends UMLReferencingElementItemProvider {
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ActPackage.ACTIVITY__NODES:
-			case ActPackage.ACTIVITY__RELATIONS:
+			case ActPackage.ACTIVITY__FLOWS:
 			case ActPackage.ACTIVITY__CHILDREN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -221,7 +221,7 @@ public class ActivityItemProvider extends UMLReferencingElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ActPackage.Literals.ACTIVITY__RELATIONS,
+				(ActPackage.Literals.ACTIVITY__FLOWS,
 				 ActFactory.eINSTANCE.createFlow()));
 
 		newChildDescriptors.add

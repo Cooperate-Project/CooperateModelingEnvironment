@@ -23,7 +23,7 @@ Activity:
 	('activityName' name=STRING)?
 	children+=Swimlane*
 	nodes+=Node*
-	relations+=Flow*
+	flows+=Flow*
 ;
 
 
@@ -68,7 +68,9 @@ JoinNode returns JoinNode:
 ;
 
 Flow returns Flow:
-	'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
+	// TODO: Reenable Multiflows
+	//'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
+	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?
 ;
 
 Swimlane returns Swimlane:

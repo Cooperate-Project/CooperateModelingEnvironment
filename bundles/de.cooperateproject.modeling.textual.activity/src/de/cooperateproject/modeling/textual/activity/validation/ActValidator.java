@@ -34,10 +34,10 @@ public class ActValidator extends AbstractActValidator {
 
 	@Check
 	private void checkFlowConditionWithMultipleMembers(Flow flow) {
-		if (flow.getRelatedElements().size() > 2 && flow.getCondition() != null) {
-			error("Conditions are only allowed for flow between two actions.", flow,
-					ActPackage.Literals.FLOW__RELATED_ELEMENTS);
-		}
+//		if (flow.getRelatedElements().size() > 2 && flow.getCondition() != null) {
+//			error("Conditions are only allowed for flow between two actions.", flow,
+//					ActPackage.Literals.FLOW__RELATED_ELEMENTS);
+//		}
 		// TODO: Not tested!
 	}
 	

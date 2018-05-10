@@ -2,12 +2,10 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.ControlFlow;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,31 +16,16 @@ import org.eclipse.uml2.uml.Relationship;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.Flow#getRelatedElements <em>Related Elements</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.Flow#getCondition <em>Condition</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.Flow#getSource <em>Source</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.Flow#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getFlow()
  * @model
  * @generated
  */
-public interface Flow extends UMLReferencingElement<Relationship> {
-	/**
-	 * Returns the value of the '<em><b>Related Elements</b></em>' reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.activity.act.Node}<code>&lt;org.eclipse.uml2.uml.ActivityNode&gt;</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Related Elements</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Related Elements</em>' reference list.
-	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getFlow_RelatedElements()
-	 * @model lower="2"
-	 * @generated
-	 */
-	EList<Node<ActivityNode>> getRelatedElements();
-
+public interface Flow extends UMLReferencingElement<ControlFlow>, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -68,5 +51,57 @@ public interface Flow extends UMLReferencingElement<Relationship> {
 	 * @generated
 	 */
 	void setCondition(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' reference.
+	 * @see #setSource(Node)
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getFlow_Source()
+	 * @model
+	 * @generated
+	 */
+	Node<ActivityNode> getSource();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' reference.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(Node<ActivityNode> value);
+
+	/**
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target</em>' reference.
+	 * @see #setTarget(Node)
+	 * @see de.cooperateproject.modeling.textual.activity.act.ActPackage#getFlow_Target()
+	 * @model
+	 * @generated
+	 */
+	Node<ActivityNode> getTarget();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getTarget <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' reference.
+	 * @see #getTarget()
+	 * @generated
+	 */
+	void setTarget(Node<ActivityNode> value);
 
 } // Flow

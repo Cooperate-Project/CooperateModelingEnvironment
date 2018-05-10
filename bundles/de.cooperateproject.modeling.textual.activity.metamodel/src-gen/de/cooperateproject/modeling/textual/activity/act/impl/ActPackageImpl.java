@@ -326,8 +326,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFlow_RelatedElements() {
-		return (EReference)flowEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFlow_Condition() {
+		return (EAttribute)flowEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -335,8 +335,17 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFlow_Condition() {
-		return (EAttribute)flowEClass.getEStructuralFeatures().get(1);
+	public EReference getFlow_Source() {
+		return (EReference)flowEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFlow_Target() {
+		return (EReference)flowEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -434,7 +443,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActivity_Relations() {
+	public EReference getActivity_Flows() {
 		return (EReference)activityEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -492,8 +501,9 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		actionNodeEClass = createEClass(ACTION_NODE);
 
 		flowEClass = createEClass(FLOW);
-		createEReference(flowEClass, FLOW__RELATED_ELEMENTS);
 		createEAttribute(flowEClass, FLOW__CONDITION);
+		createEReference(flowEClass, FLOW__SOURCE);
+		createEReference(flowEClass, FLOW__TARGET);
 
 		initialNodeEClass = createEClass(INITIAL_NODE);
 
@@ -513,7 +523,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		createEAttribute(swimlaneEClass, SWIMLANE__NAME);
 
 		activityEClass = createEClass(ACTIVITY);
-		createEReference(activityEClass, ACTIVITY__RELATIONS);
+		createEReference(activityEClass, ACTIVITY__FLOWS);
 		createEReference(activityEClass, ACTIVITY__CHILDREN);
 	}
 
@@ -578,8 +588,10 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
 		actionNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-		g2 = createEGenericType(theUMLPackage.getRelationship());
+		g2 = createEGenericType(theUMLPackage.getControlFlow());
 		g1.getETypeArguments().add(g2);
+		flowEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
 		flowEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
 		g2 = createEGenericType(theUMLPackage.getInitialNode());
@@ -640,11 +652,15 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEClass(actionNodeEClass, ActionNode.class, "ActionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFlow_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(this.getNode());
 		g2 = createEGenericType(theUMLPackage.getActivityNode());
 		g1.getETypeArguments().add(g2);
-		initEReference(getFlow_RelatedElements(), g1, null, "relatedElements", null, 2, -1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFlow_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlow_Source(), g1, null, "source", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(this.getNode());
+		g2 = createEGenericType(theUMLPackage.getActivityNode());
+		g1.getETypeArguments().add(g2);
+		initEReference(getFlow_Target(), g1, null, "target", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(initialNodeEClass, InitialNode.class, "InitialNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -664,7 +680,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEAttribute(getSwimlane_Name(), theTypesPackage.getString(), "name", null, 0, 1, Swimlane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivity_Relations(), this.getFlow(), null, "relations", null, 0, -1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_Flows(), this.getFlow(), null, "flows", null, 0, -1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActivity_Children(), this.getContainer(), null, "children", null, 0, -1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

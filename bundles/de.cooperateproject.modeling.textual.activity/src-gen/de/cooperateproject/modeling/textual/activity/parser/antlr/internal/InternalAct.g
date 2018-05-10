@@ -289,17 +289,17 @@ ruleActivity returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getActivityAccess().getRelationsFlowParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getActivityAccess().getFlowsFlowParserRuleCall_4_0());
 				}
-				lv_relations_5_0=ruleFlow
+				lv_flows_5_0=ruleFlow
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getActivityRule());
 					}
 					add(
 						$current,
-						"relations",
-						lv_relations_5_0,
+						"flows",
+						lv_flows_5_0,
 						"de.cooperateproject.modeling.textual.activity.Act.Flow");
 					afterParserOrEnumRuleCall();
 				}
@@ -830,7 +830,7 @@ ruleFlow returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_2_0());
+					newCompositeNode(grammarAccess.getFlowAccess().getSourceNodeCrossReference_2_0());
 				}
 				ruleFQN
 				{
@@ -838,42 +838,40 @@ ruleFlow returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_3=','
+		{
+			newLeafNode(otherlv_3, grammarAccess.getFlowAccess().getCommaKeyword_3());
+		}
 		(
-			otherlv_3=','
-			{
-				newLeafNode(otherlv_3, grammarAccess.getFlowAccess().getCommaKeyword_3_0());
-			}
 			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFlowRule());
-						}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFlowRule());
 					}
-					{
-						newCompositeNode(grammarAccess.getFlowAccess().getRelatedElementsNodeCrossReference_3_1_0());
-					}
-					ruleFQN
-					{
-						afterParserOrEnumRuleCall();
-					}
-				)
+				}
+				{
+					newCompositeNode(grammarAccess.getFlowAccess().getTargetNodeCrossReference_4_0());
+				}
+				ruleFQN
+				{
+					afterParserOrEnumRuleCall();
+				}
 			)
-		)+
+		)
 		otherlv_5=')'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getFlowAccess().getRightParenthesisKeyword_4());
+			newLeafNode(otherlv_5, grammarAccess.getFlowAccess().getRightParenthesisKeyword_5());
 		}
 		(
 			otherlv_6='['
 			{
-				newLeafNode(otherlv_6, grammarAccess.getFlowAccess().getLeftSquareBracketKeyword_5_0());
+				newLeafNode(otherlv_6, grammarAccess.getFlowAccess().getLeftSquareBracketKeyword_6_0());
 			}
 			(
 				(
 					lv_condition_7_0=RULE_STRING
 					{
-						newLeafNode(lv_condition_7_0, grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_5_1_0());
+						newLeafNode(lv_condition_7_0, grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0());
 					}
 					{
 						if ($current==null) {
@@ -889,7 +887,7 @@ ruleFlow returns [EObject current=null]
 			)
 			otherlv_8=']'
 			{
-				newLeafNode(otherlv_8, grammarAccess.getFlowAccess().getRightSquareBracketKeyword_5_2());
+				newLeafNode(otherlv_8, grammarAccess.getFlowAccess().getRightSquareBracketKeyword_6_2());
 			}
 		)?
 	)

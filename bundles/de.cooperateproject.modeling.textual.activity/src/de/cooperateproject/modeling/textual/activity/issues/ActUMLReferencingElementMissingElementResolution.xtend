@@ -96,6 +96,16 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 	
 	private def dispatch fixMissingUMLElement(Flow element) {
 		if(!resolvePossible) return Void
+		
+		val flow = UMLFactory.eINSTANCE.createControlFlow
+		flow.source = element.source.referencedElement
+		flow.target = element.target.referencedElement
+		
+		// TODO: Add condition
+		
+		val parent = element.eContainer as Activity
+		parent.referencedElement.edges.add(flow)
+		element.referencedElement = flow
 	}
 	
 	private def setNodesNameAndParent(Node<?> element, ActivityNode node) {	

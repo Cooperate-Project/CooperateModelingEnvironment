@@ -15,11 +15,11 @@ class ActUMLReferencingElementMissingElementChecker extends DependingElementMiss
 	}
 	
 	protected def dispatch localResolutionPossible(Flow element) {
-		return false; // TODO
+		return true;
 	}
 	
 	protected def dispatch getDependencies(Flow element) {
-		element.relatedElements
+		#[element.source, element.target]
 	}
 	
 }

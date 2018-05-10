@@ -118,17 +118,17 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cChildrenSwimlaneParserRuleCall_2_0 = (RuleCall)cChildrenAssignment_2.eContents().get(0);
 		private final Assignment cNodesAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNodesNodeParserRuleCall_3_0 = (RuleCall)cNodesAssignment_3.eContents().get(0);
-		private final Assignment cRelationsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRelationsFlowParserRuleCall_4_0 = (RuleCall)cRelationsAssignment_4.eContents().get(0);
+		private final Assignment cFlowsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cFlowsFlowParserRuleCall_4_0 = (RuleCall)cFlowsAssignment_4.eContents().get(0);
 		
 		//Activity:
 		//	{Activity} ('activityName' name=STRING)?
 		//	children+=Swimlane*
 		//	nodes+=Node*
-		//	relations+=Flow*;
+		//	flows+=Flow*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Activity} ('activityName' name=STRING)? children+=Swimlane* nodes+=Node* relations+=Flow*
+		//{Activity} ('activityName' name=STRING)? children+=Swimlane* nodes+=Node* flows+=Flow*
 		public Group getGroup() { return cGroup; }
 		
 		//{Activity}
@@ -158,11 +158,11 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//Node
 		public RuleCall getNodesNodeParserRuleCall_3_0() { return cNodesNodeParserRuleCall_3_0; }
 		
-		//relations+=Flow*
-		public Assignment getRelationsAssignment_4() { return cRelationsAssignment_4; }
+		//flows+=Flow*
+		public Assignment getFlowsAssignment_4() { return cFlowsAssignment_4; }
 		
 		//Flow
-		public RuleCall getRelationsFlowParserRuleCall_4_0() { return cRelationsFlowParserRuleCall_4_0; }
+		public RuleCall getFlowsFlowParserRuleCall_4_0() { return cFlowsFlowParserRuleCall_4_0; }
 	}
 	public class NodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Node");
@@ -439,75 +439,76 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFlwKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRelatedElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cRelatedElementsNodeCrossReference_2_0 = (CrossReference)cRelatedElementsAssignment_2.eContents().get(0);
-		private final RuleCall cRelatedElementsNodeFQNParserRuleCall_2_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_2_0.eContents().get(1);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cRelatedElementsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final CrossReference cRelatedElementsNodeCrossReference_3_1_0 = (CrossReference)cRelatedElementsAssignment_3_1.eContents().get(0);
-		private final RuleCall cRelatedElementsNodeFQNParserRuleCall_3_1_0_1 = (RuleCall)cRelatedElementsNodeCrossReference_3_1_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cLeftSquareBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cConditionSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cConditionAssignment_5_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
+		private final Assignment cSourceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cSourceNodeCrossReference_2_0 = (CrossReference)cSourceAssignment_2.eContents().get(0);
+		private final RuleCall cSourceNodeFQNParserRuleCall_2_0_1 = (RuleCall)cSourceNodeCrossReference_2_0.eContents().get(1);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTargetAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cTargetNodeCrossReference_4_0 = (CrossReference)cTargetAssignment_4.eContents().get(0);
+		private final RuleCall cTargetNodeFQNParserRuleCall_4_0_1 = (RuleCall)cTargetNodeCrossReference_4_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cLeftSquareBracketKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cConditionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cConditionSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cConditionAssignment_6_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
 		
-		//Flow:
-		//	'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?;
+		//Flow: // TODO: Reenable Multiflows
+		////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
+		//	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
+		//// TODO: Reenable Multiflows
+		////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
+		//'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?
 		public Group getGroup() { return cGroup; }
 		
+		//// TODO: Reenable Multiflows
+		////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
 		//'flw'
 		public Keyword getFlwKeyword_0() { return cFlwKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//relatedElements+=[Node|FQN]
-		public Assignment getRelatedElementsAssignment_2() { return cRelatedElementsAssignment_2; }
+		//source=[Node|FQN]
+		public Assignment getSourceAssignment_2() { return cSourceAssignment_2; }
 		
 		//[Node|FQN]
-		public CrossReference getRelatedElementsNodeCrossReference_2_0() { return cRelatedElementsNodeCrossReference_2_0; }
+		public CrossReference getSourceNodeCrossReference_2_0() { return cSourceNodeCrossReference_2_0; }
 		
 		//FQN
-		public RuleCall getRelatedElementsNodeFQNParserRuleCall_2_0_1() { return cRelatedElementsNodeFQNParserRuleCall_2_0_1; }
-		
-		//(',' relatedElements+=[Node|FQN])+
-		public Group getGroup_3() { return cGroup_3; }
+		public RuleCall getSourceNodeFQNParserRuleCall_2_0_1() { return cSourceNodeFQNParserRuleCall_2_0_1; }
 		
 		//','
-		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//relatedElements+=[Node|FQN]
-		public Assignment getRelatedElementsAssignment_3_1() { return cRelatedElementsAssignment_3_1; }
+		//target=[Node|FQN]
+		public Assignment getTargetAssignment_4() { return cTargetAssignment_4; }
 		
 		//[Node|FQN]
-		public CrossReference getRelatedElementsNodeCrossReference_3_1_0() { return cRelatedElementsNodeCrossReference_3_1_0; }
+		public CrossReference getTargetNodeCrossReference_4_0() { return cTargetNodeCrossReference_4_0; }
 		
 		//FQN
-		public RuleCall getRelatedElementsNodeFQNParserRuleCall_3_1_0_1() { return cRelatedElementsNodeFQNParserRuleCall_3_1_0_1; }
+		public RuleCall getTargetNodeFQNParserRuleCall_4_0_1() { return cTargetNodeFQNParserRuleCall_4_0_1; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
 		//('[' condition=STRING ']')?
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_5_0() { return cLeftSquareBracketKeyword_5_0; }
+		public Keyword getLeftSquareBracketKeyword_6_0() { return cLeftSquareBracketKeyword_6_0; }
 		
 		//condition=STRING
-		public Assignment getConditionAssignment_5_1() { return cConditionAssignment_5_1; }
+		public Assignment getConditionAssignment_6_1() { return cConditionAssignment_6_1; }
 		
 		//STRING
-		public RuleCall getConditionSTRINGTerminalRuleCall_5_1_0() { return cConditionSTRINGTerminalRuleCall_5_1_0; }
+		public RuleCall getConditionSTRINGTerminalRuleCall_6_1_0() { return cConditionSTRINGTerminalRuleCall_6_1_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_5_2() { return cRightSquareBracketKeyword_5_2; }
+		public Keyword getRightSquareBracketKeyword_6_2() { return cRightSquareBracketKeyword_6_2; }
 	}
 	public class SwimlaneElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Act.Swimlane");
@@ -678,7 +679,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	//	{Activity} ('activityName' name=STRING)?
 	//	children+=Swimlane*
 	//	nodes+=Node*
-	//	relations+=Flow*;
+	//	flows+=Flow*;
 	public ActivityElements getActivityAccess() {
 		return pActivity;
 	}
@@ -787,8 +788,9 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		return getJoinNodeAccess().getRule();
 	}
 	
-	//Flow:
-	//	'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?;
+	//Flow: // TODO: Reenable Multiflows
+	////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
+	//	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?;
 	public FlowElements getFlowAccess() {
 		return pFlow;
 	}

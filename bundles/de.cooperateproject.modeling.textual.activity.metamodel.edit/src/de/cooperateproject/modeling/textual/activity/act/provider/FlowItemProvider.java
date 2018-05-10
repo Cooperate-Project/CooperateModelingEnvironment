@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.activity.act.provider;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.provider.UMLReferencingElementItemProvider;
 import java.util.Collection;
 import java.util.List;
@@ -47,30 +48,32 @@ public class FlowItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRelatedElementsPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addConditionPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Related Elements feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRelatedElementsPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Flow_relatedElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Flow_relatedElements_feature", "_UI_Flow_type"),
-				 ActPackage.Literals.FLOW__RELATED_ELEMENTS,
+				 getString("_UI_NamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+				 TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -98,6 +101,50 @@ public class FlowItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Flow_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Flow_source_feature", "_UI_Flow_type"),
+				 ActPackage.Literals.FLOW__SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Flow_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Flow_target_feature", "_UI_Flow_type"),
+				 ActPackage.Literals.FLOW__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Flow.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,7 +163,7 @@ public class FlowItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Flow)object).getCondition();
+		String label = ((Flow)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Flow_type") :
 			getString("_UI_Flow_type") + " " + label;
@@ -135,6 +182,7 @@ public class FlowItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Flow.class)) {
+			case ActPackage.FLOW__NAME:
 			case ActPackage.FLOW__CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

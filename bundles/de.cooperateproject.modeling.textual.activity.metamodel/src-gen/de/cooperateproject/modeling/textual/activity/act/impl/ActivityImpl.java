@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.ActivityNode;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl#getNodes <em>Nodes</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl#getFlows <em>Flows</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl#getChildren <em>Children</em>}</li>
  * </ul>
  *
@@ -134,8 +134,8 @@ public class ActivityImpl extends UMLReferencingElementImpl<Activity> implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Flow> getRelations() {
-		return (EList<Flow>)eDynamicGet(ActPackage.ACTIVITY__RELATIONS, ActPackage.Literals.ACTIVITY__RELATIONS, true, true);
+	public EList<Flow> getFlows() {
+		return (EList<Flow>)eDynamicGet(ActPackage.ACTIVITY__FLOWS, ActPackage.Literals.ACTIVITY__FLOWS, true, true);
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class ActivityImpl extends UMLReferencingElementImpl<Activity> implements
 		switch (featureID) {
 			case ActPackage.ACTIVITY__NODES:
 				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
-			case ActPackage.ACTIVITY__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+			case ActPackage.ACTIVITY__FLOWS:
+				return ((InternalEList<?>)getFlows()).basicRemove(otherEnd, msgs);
 			case ActPackage.ACTIVITY__CHILDREN:
 				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
@@ -178,8 +178,8 @@ public class ActivityImpl extends UMLReferencingElementImpl<Activity> implements
 				return getName();
 			case ActPackage.ACTIVITY__NODES:
 				return getNodes();
-			case ActPackage.ACTIVITY__RELATIONS:
-				return getRelations();
+			case ActPackage.ACTIVITY__FLOWS:
+				return getFlows();
 			case ActPackage.ACTIVITY__CHILDREN:
 				return getChildren();
 		}
@@ -202,9 +202,9 @@ public class ActivityImpl extends UMLReferencingElementImpl<Activity> implements
 				getNodes().clear();
 				getNodes().addAll((Collection<? extends Node<ActivityNode>>)newValue);
 				return;
-			case ActPackage.ACTIVITY__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Flow>)newValue);
+			case ActPackage.ACTIVITY__FLOWS:
+				getFlows().clear();
+				getFlows().addAll((Collection<? extends Flow>)newValue);
 				return;
 			case ActPackage.ACTIVITY__CHILDREN:
 				getChildren().clear();
@@ -228,8 +228,8 @@ public class ActivityImpl extends UMLReferencingElementImpl<Activity> implements
 			case ActPackage.ACTIVITY__NODES:
 				getNodes().clear();
 				return;
-			case ActPackage.ACTIVITY__RELATIONS:
-				getRelations().clear();
+			case ActPackage.ACTIVITY__FLOWS:
+				getFlows().clear();
 				return;
 			case ActPackage.ACTIVITY__CHILDREN:
 				getChildren().clear();
@@ -250,8 +250,8 @@ public class ActivityImpl extends UMLReferencingElementImpl<Activity> implements
 				return isSetName();
 			case ActPackage.ACTIVITY__NODES:
 				return !getNodes().isEmpty();
-			case ActPackage.ACTIVITY__RELATIONS:
-				return !getRelations().isEmpty();
+			case ActPackage.ACTIVITY__FLOWS:
+				return !getFlows().isEmpty();
 			case ActPackage.ACTIVITY__CHILDREN:
 				return !getChildren().isEmpty();
 		}

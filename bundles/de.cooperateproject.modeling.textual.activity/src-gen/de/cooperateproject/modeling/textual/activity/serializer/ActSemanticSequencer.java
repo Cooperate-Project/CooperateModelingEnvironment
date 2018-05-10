@@ -128,7 +128,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Activity returns Activity
 	 *
 	 * Constraint:
-	 *     (name=STRING? children+=Swimlane* nodes+=Node* relations+=Flow*)
+	 *     (name=STRING? children+=Swimlane* nodes+=Node* flows+=Flow*)
 	 */
 	protected void sequence_Activity(ISerializationContext context, Activity semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -200,7 +200,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Flow returns Flow
 	 *
 	 * Constraint:
-	 *     (relatedElements+=[Node|FQN] relatedElements+=[Node|FQN]+ condition=STRING?)
+	 *     (source=[Node|FQN] target=[Node|FQN] condition=STRING?)
 	 */
 	protected void sequence_Flow(ISerializationContext context, Flow semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

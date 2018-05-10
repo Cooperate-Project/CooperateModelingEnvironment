@@ -462,13 +462,13 @@ public interface ActPackage extends EPackage {
 	int FLOW__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
 	/**
-	 * The feature id for the '<em><b>Related Elements</b></em>' reference list.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__RELATED_ELEMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+	int FLOW__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -480,13 +480,31 @@ public interface ActPackage extends EPackage {
 	int FLOW__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW__SOURCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW__TARGET = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+	int FLOW_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1048,13 +1066,13 @@ public interface ActPackage extends EPackage {
 	int ACTIVITY__NODES = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Flows</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY__RELATIONS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+	int ACTIVITY__FLOWS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -1217,17 +1235,6 @@ public interface ActPackage extends EPackage {
 	EClass getFlow();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getRelatedElements <em>Related Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Related Elements</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.Flow#getRelatedElements()
-	 * @see #getFlow()
-	 * @generated
-	 */
-	EReference getFlow_RelatedElements();
-
-	/**
 	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1237,6 +1244,28 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFlow_Condition();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Flow#getSource()
+	 * @see #getFlow()
+	 * @generated
+	 */
+	EReference getFlow_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Flow#getTarget()
+	 * @see #getFlow()
+	 * @generated
+	 */
+	EReference getFlow_Target();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.InitialNode <em>Initial Node</em>}'.
@@ -1340,15 +1369,15 @@ public interface ActPackage extends EPackage {
 	EClass getActivity();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.Activity#getRelations <em>Relations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.Activity#getFlows <em>Flows</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Relations</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.Activity#getRelations()
+	 * @return the meta object for the containment reference list '<em>Flows</em>'.
+	 * @see de.cooperateproject.modeling.textual.activity.act.Activity#getFlows()
 	 * @see #getActivity()
 	 * @generated
 	 */
-	EReference getActivity_Relations();
+	EReference getActivity_Flows();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.act.Activity#getChildren <em>Children</em>}'.
@@ -1487,20 +1516,28 @@ public interface ActPackage extends EPackage {
 		EClass FLOW = eINSTANCE.getFlow();
 
 		/**
-		 * The meta object literal for the '<em><b>Related Elements</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FLOW__RELATED_ELEMENTS = eINSTANCE.getFlow_RelatedElements();
-
-		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute FLOW__CONDITION = eINSTANCE.getFlow_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FLOW__SOURCE = eINSTANCE.getFlow_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FLOW__TARGET = eINSTANCE.getFlow_Target();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.InitialNodeImpl <em>Initial Node</em>}' class.
@@ -1601,12 +1638,12 @@ public interface ActPackage extends EPackage {
 		EClass ACTIVITY = eINSTANCE.getActivity();
 
 		/**
-		 * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Flows</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTIVITY__RELATIONS = eINSTANCE.getActivity_Relations();
+		EReference ACTIVITY__FLOWS = eINSTANCE.getActivity_Flows();
 
 		/**
 		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.

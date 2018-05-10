@@ -131,6 +131,7 @@ public class ActSwitch<T1> extends Switch<T1> {
 				Flow flow = (Flow)theEObject;
 				T1 result = caseFlow(flow);
 				if (result == null) result = caseUMLReferencingElement(flow);
+				if (result == null) result = caseNamedElement(flow);
 				if (result == null) result = caseElement(flow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
