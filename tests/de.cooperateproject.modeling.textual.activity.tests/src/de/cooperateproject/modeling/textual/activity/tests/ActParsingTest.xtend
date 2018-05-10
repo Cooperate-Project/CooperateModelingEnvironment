@@ -179,7 +179,7 @@ class ActParsingTest extends AbstractActTest {
 		assertEquals(firstNode.name, "X")
 		assertTrue(firstNode instanceof DecisionNode)
 		assertEquals(secondNode.name, "C")
-		assertEquals(conditionFlow.condition, "one simple test")
+		assertEquals(conditionFlow.name, "one simple test")
 	}
 	
 	@Test

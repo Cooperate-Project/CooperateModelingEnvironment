@@ -449,18 +449,18 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
 		private final Keyword cLeftSquareBracketKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cConditionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cConditionSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cConditionAssignment_6_1.eContents().get(0);
+		private final Assignment cNameAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cNameSTRINGTerminalRuleCall_6_1_0 = (RuleCall)cNameAssignment_6_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
 		
 		//Flow: // TODO: Reenable Multiflows
 		////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
-		//	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?;
+		//	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' name=STRING ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//// TODO: Reenable Multiflows
 		////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
-		//'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?
+		//'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' name=STRING ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//// TODO: Reenable Multiflows
@@ -495,17 +495,17 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
-		//('[' condition=STRING ']')?
+		//('[' name=STRING ']')?
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_6_0() { return cLeftSquareBracketKeyword_6_0; }
 		
-		//condition=STRING
-		public Assignment getConditionAssignment_6_1() { return cConditionAssignment_6_1; }
+		//name=STRING
+		public Assignment getNameAssignment_6_1() { return cNameAssignment_6_1; }
 		
 		//STRING
-		public RuleCall getConditionSTRINGTerminalRuleCall_6_1_0() { return cConditionSTRINGTerminalRuleCall_6_1_0; }
+		public RuleCall getNameSTRINGTerminalRuleCall_6_1_0() { return cNameSTRINGTerminalRuleCall_6_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_6_2() { return cRightSquareBracketKeyword_6_2; }
@@ -790,7 +790,7 @@ public class ActGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Flow: // TODO: Reenable Multiflows
 	////'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
-	//	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?;
+	//	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' name=STRING ']')?;
 	public FlowElements getFlowAccess() {
 		return pFlow;
 	}

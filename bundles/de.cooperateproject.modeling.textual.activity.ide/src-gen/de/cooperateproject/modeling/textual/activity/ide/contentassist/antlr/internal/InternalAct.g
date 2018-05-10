@@ -1748,9 +1748,9 @@ rule__Flow__Group_6__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFlowAccess().getConditionAssignment_6_1()); }
-	(rule__Flow__ConditionAssignment_6_1)
-	{ after(grammarAccess.getFlowAccess().getConditionAssignment_6_1()); }
+	{ before(grammarAccess.getFlowAccess().getNameAssignment_6_1()); }
+	(rule__Flow__NameAssignment_6_1)
+	{ after(grammarAccess.getFlowAccess().getNameAssignment_6_1()); }
 )
 ;
 finally {
@@ -2335,15 +2335,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Flow__ConditionAssignment_6_1
+rule__Flow__NameAssignment_6_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0()); }
+		{ before(grammarAccess.getFlowAccess().getNameSTRINGTerminalRuleCall_6_1_0()); }
 		RULE_STRING
-		{ after(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0()); }
+		{ after(grammarAccess.getFlowAccess().getNameSTRINGTerminalRuleCall_6_1_0()); }
 	)
 ;
 finally {

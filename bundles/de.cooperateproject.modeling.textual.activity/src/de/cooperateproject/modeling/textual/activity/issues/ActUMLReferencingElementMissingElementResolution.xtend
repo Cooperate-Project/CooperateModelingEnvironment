@@ -101,7 +101,9 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		flow.source = element.source.referencedElement
 		flow.target = element.target.referencedElement
 		
-		// TODO: Add condition
+		flow.name = element.name	
+		flow.target.incomings.add(flow)
+		flow.source.outgoings.add(flow)
 		
 		val parent = element.eContainer as Activity
 		parent.referencedElement.edges.add(flow)

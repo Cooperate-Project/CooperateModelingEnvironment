@@ -7,7 +7,9 @@ import de.cooperateproject.modeling.textual.activity.act.Activity;
 import de.cooperateproject.modeling.textual.activity.act.RootPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -116,7 +118,6 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

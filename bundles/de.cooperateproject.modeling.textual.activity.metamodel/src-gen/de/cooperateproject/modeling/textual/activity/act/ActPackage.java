@@ -471,22 +471,13 @@ public interface ActPackage extends EPackage {
 	int FLOW__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FLOW__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__SOURCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+	int FLOW__SOURCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -495,7 +486,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__TARGET = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+	int FLOW__TARGET = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
@@ -504,7 +495,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+	int FLOW_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1027,7 +1018,6 @@ public interface ActPackage extends EPackage {
 	 */
 	int SWIMLANE_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
 
-
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl <em>Activity</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -1233,17 +1223,6 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFlow();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Condition</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.Flow#getCondition()
-	 * @see #getFlow()
-	 * @generated
-	 */
-	EAttribute getFlow_Condition();
 
 	/**
 	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.activity.act.Flow#getSource <em>Source</em>}'.
@@ -1514,14 +1493,6 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FLOW = eINSTANCE.getFlow();
-
-		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FLOW__CONDITION = eINSTANCE.getFlow_Condition();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.

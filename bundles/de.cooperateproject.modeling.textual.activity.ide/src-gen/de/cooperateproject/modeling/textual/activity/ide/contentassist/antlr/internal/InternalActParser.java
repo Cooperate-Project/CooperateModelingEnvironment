@@ -5287,31 +5287,31 @@ public class InternalActParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Flow__Group_6__1__Impl"
-    // InternalAct.g:1745:1: rule__Flow__Group_6__1__Impl : ( ( rule__Flow__ConditionAssignment_6_1 ) ) ;
+    // InternalAct.g:1745:1: rule__Flow__Group_6__1__Impl : ( ( rule__Flow__NameAssignment_6_1 ) ) ;
     public final void rule__Flow__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAct.g:1749:1: ( ( ( rule__Flow__ConditionAssignment_6_1 ) ) )
-            // InternalAct.g:1750:1: ( ( rule__Flow__ConditionAssignment_6_1 ) )
+            // InternalAct.g:1749:1: ( ( ( rule__Flow__NameAssignment_6_1 ) ) )
+            // InternalAct.g:1750:1: ( ( rule__Flow__NameAssignment_6_1 ) )
             {
-            // InternalAct.g:1750:1: ( ( rule__Flow__ConditionAssignment_6_1 ) )
-            // InternalAct.g:1751:2: ( rule__Flow__ConditionAssignment_6_1 )
+            // InternalAct.g:1750:1: ( ( rule__Flow__NameAssignment_6_1 ) )
+            // InternalAct.g:1751:2: ( rule__Flow__NameAssignment_6_1 )
             {
-             before(grammarAccess.getFlowAccess().getConditionAssignment_6_1()); 
-            // InternalAct.g:1752:2: ( rule__Flow__ConditionAssignment_6_1 )
-            // InternalAct.g:1752:3: rule__Flow__ConditionAssignment_6_1
+             before(grammarAccess.getFlowAccess().getNameAssignment_6_1()); 
+            // InternalAct.g:1752:2: ( rule__Flow__NameAssignment_6_1 )
+            // InternalAct.g:1752:3: rule__Flow__NameAssignment_6_1
             {
             pushFollow(FOLLOW_2);
-            rule__Flow__ConditionAssignment_6_1();
+            rule__Flow__NameAssignment_6_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getFlowAccess().getConditionAssignment_6_1()); 
+             after(grammarAccess.getFlowAccess().getNameAssignment_6_1()); 
 
             }
 
@@ -6917,9 +6917,9 @@ public class InternalActParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Flow__TargetAssignment_4"
 
 
-    // $ANTLR start "rule__Flow__ConditionAssignment_6_1"
-    // InternalAct.g:2338:1: rule__Flow__ConditionAssignment_6_1 : ( RULE_STRING ) ;
-    public final void rule__Flow__ConditionAssignment_6_1() throws RecognitionException {
+    // $ANTLR start "rule__Flow__NameAssignment_6_1"
+    // InternalAct.g:2338:1: rule__Flow__NameAssignment_6_1 : ( RULE_STRING ) ;
+    public final void rule__Flow__NameAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -6930,9 +6930,9 @@ public class InternalActParser extends AbstractInternalContentAssistParser {
             // InternalAct.g:2343:2: ( RULE_STRING )
             // InternalAct.g:2344:3: RULE_STRING
             {
-             before(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0()); 
+             before(grammarAccess.getFlowAccess().getNameSTRINGTerminalRuleCall_6_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
-             after(grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0()); 
+             after(grammarAccess.getFlowAccess().getNameSTRINGTerminalRuleCall_6_1_0()); 
 
             }
 
@@ -6951,7 +6951,7 @@ public class InternalActParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Flow__ConditionAssignment_6_1"
+    // $ANTLR end "rule__Flow__NameAssignment_6_1"
 
 
     // $ANTLR start "rule__Swimlane__NameAssignment_1"

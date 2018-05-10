@@ -49,7 +49,6 @@ public class FlowItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addConditionPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 		}
@@ -70,28 +69,6 @@ public class FlowItemProvider
 				 getString("_UI_NamedElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
 				 TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Condition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Flow_condition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Flow_condition_feature", "_UI_Flow_type"),
-				 ActPackage.Literals.FLOW__CONDITION,
 				 true,
 				 false,
 				 false,
@@ -183,7 +160,6 @@ public class FlowItemProvider
 
 		switch (notification.getFeatureID(Flow.class)) {
 			case ActPackage.FLOW__NAME:
-			case ActPackage.FLOW__CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

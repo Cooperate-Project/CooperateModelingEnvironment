@@ -70,7 +70,7 @@ JoinNode returns JoinNode:
 Flow returns Flow:
 	// TODO: Reenable Multiflows
 	//'flw' '(' relatedElements+=[Node|FQN] (',' relatedElements+=[Node|FQN])+ ')' ('[' condition=STRING ']')?
-	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' condition=STRING ']')?
+	'flw' '(' source=[Node|FQN] ',' target=[Node|FQN] ')' ('[' name=STRING ']')?
 ;
 
 Swimlane returns Swimlane:

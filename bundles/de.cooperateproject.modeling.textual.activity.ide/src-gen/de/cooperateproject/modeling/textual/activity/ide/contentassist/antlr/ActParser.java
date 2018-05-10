@@ -73,7 +73,7 @@ public class ActParser extends AbstractContentAssistParser {
 					put(grammarAccess.getJoinNodeAccess().getNameAssignment_1(), "rule__JoinNode__NameAssignment_1");
 					put(grammarAccess.getFlowAccess().getSourceAssignment_2(), "rule__Flow__SourceAssignment_2");
 					put(grammarAccess.getFlowAccess().getTargetAssignment_4(), "rule__Flow__TargetAssignment_4");
-					put(grammarAccess.getFlowAccess().getConditionAssignment_6_1(), "rule__Flow__ConditionAssignment_6_1");
+					put(grammarAccess.getFlowAccess().getNameAssignment_6_1(), "rule__Flow__NameAssignment_6_1");
 					put(grammarAccess.getSwimlaneAccess().getNameAssignment_1(), "rule__Swimlane__NameAssignment_1");
 					put(grammarAccess.getSwimlaneAccess().getNodesAssignment_3(), "rule__Swimlane__NodesAssignment_3");
 				}

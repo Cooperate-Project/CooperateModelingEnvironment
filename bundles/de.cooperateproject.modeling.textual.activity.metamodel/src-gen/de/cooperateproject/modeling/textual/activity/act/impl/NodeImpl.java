@@ -7,8 +7,11 @@ import de.cooperateproject.modeling.textual.activity.act.Node;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**
@@ -120,7 +123,6 @@ public abstract class NodeImpl<T extends ActivityNode> extends UMLReferencingEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

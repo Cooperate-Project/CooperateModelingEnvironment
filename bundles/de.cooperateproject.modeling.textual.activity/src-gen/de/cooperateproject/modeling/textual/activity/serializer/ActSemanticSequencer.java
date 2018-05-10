@@ -200,7 +200,7 @@ public class ActSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Flow returns Flow
 	 *
 	 * Constraint:
-	 *     (source=[Node|FQN] target=[Node|FQN] condition=STRING?)
+	 *     (source=[Node|FQN] target=[Node|FQN] name=STRING?)
 	 */
 	protected void sequence_Flow(ISerializationContext context, Flow semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

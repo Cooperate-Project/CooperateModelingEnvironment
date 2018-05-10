@@ -326,17 +326,8 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFlow_Condition() {
-		return (EAttribute)flowEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFlow_Source() {
-		return (EReference)flowEClass.getEStructuralFeatures().get(1);
+		return (EReference)flowEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -345,7 +336,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * @generated
 	 */
 	public EReference getFlow_Target() {
-		return (EReference)flowEClass.getEStructuralFeatures().get(2);
+		return (EReference)flowEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -501,7 +492,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		actionNodeEClass = createEClass(ACTION_NODE);
 
 		flowEClass = createEClass(FLOW);
-		createEAttribute(flowEClass, FLOW__CONDITION);
 		createEReference(flowEClass, FLOW__SOURCE);
 		createEReference(flowEClass, FLOW__TARGET);
 
@@ -652,7 +642,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEClass(actionNodeEClass, ActionNode.class, "ActionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(flowEClass, Flow.class, "Flow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFlow_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(this.getNode());
 		g2 = createEGenericType(theUMLPackage.getActivityNode());
 		g1.getETypeArguments().add(g2);

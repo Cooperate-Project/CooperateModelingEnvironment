@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.activity.act.ActionNode;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.ActivityNode;

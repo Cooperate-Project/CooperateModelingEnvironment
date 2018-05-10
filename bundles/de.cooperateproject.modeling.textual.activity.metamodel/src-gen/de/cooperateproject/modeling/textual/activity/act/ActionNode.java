@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.act;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+
 import org.eclipse.uml2.uml.ActivityNode;
 
 /**
@@ -16,5 +17,4 @@ import org.eclipse.uml2.uml.ActivityNode;
  * @generated
  */
 public interface ActionNode extends Node<ActivityNode>, AliasedElement {
-
 } // ActionNode

@@ -869,9 +869,9 @@ ruleFlow returns [EObject current=null]
 			}
 			(
 				(
-					lv_condition_7_0=RULE_STRING
+					lv_name_7_0=RULE_STRING
 					{
-						newLeafNode(lv_condition_7_0, grammarAccess.getFlowAccess().getConditionSTRINGTerminalRuleCall_6_1_0());
+						newLeafNode(lv_name_7_0, grammarAccess.getFlowAccess().getNameSTRINGTerminalRuleCall_6_1_0());
 					}
 					{
 						if ($current==null) {
@@ -879,8 +879,8 @@ ruleFlow returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"condition",
-							lv_condition_7_0,
+							"name",
+							lv_name_7_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)

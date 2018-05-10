@@ -8,8 +8,11 @@ import de.cooperateproject.modeling.textual.activity.act.Node;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ControlFlow;
 
@@ -22,7 +25,6 @@ import org.eclipse.uml2.uml.ControlFlow;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl#getSource <em>Source</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.act.impl.FlowImpl#getTarget <em>Target</em>}</li>
  * </ul>
@@ -39,15 +41,6 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-	/**
-	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CONDITION_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,24 +113,6 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCondition() {
-		return (String)eDynamicGet(ActPackage.FLOW__CONDITION, ActPackage.Literals.FLOW__CONDITION, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCondition(String newCondition) {
-		eDynamicSet(ActPackage.FLOW__CONDITION, ActPackage.Literals.FLOW__CONDITION, newCondition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	public Node<ActivityNode> getSource() {
 		return (Node<ActivityNode>)eDynamicGet(ActPackage.FLOW__SOURCE, ActPackage.Literals.FLOW__SOURCE, true, true);
@@ -199,8 +174,6 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 		switch (featureID) {
 			case ActPackage.FLOW__NAME:
 				return getName();
-			case ActPackage.FLOW__CONDITION:
-				return getCondition();
 			case ActPackage.FLOW__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -223,9 +196,6 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 			case ActPackage.FLOW__NAME:
 				setName((String)newValue);
 				return;
-			case ActPackage.FLOW__CONDITION:
-				setCondition((String)newValue);
-				return;
 			case ActPackage.FLOW__SOURCE:
 				setSource((Node<ActivityNode>)newValue);
 				return;
@@ -247,9 +217,6 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 			case ActPackage.FLOW__NAME:
 				unsetName();
 				return;
-			case ActPackage.FLOW__CONDITION:
-				setCondition(CONDITION_EDEFAULT);
-				return;
 			case ActPackage.FLOW__SOURCE:
 				setSource((Node<ActivityNode>)null);
 				return;
@@ -270,8 +237,6 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 		switch (featureID) {
 			case ActPackage.FLOW__NAME:
 				return isSetName();
-			case ActPackage.FLOW__CONDITION:
-				return CONDITION_EDEFAULT == null ? getCondition() != null : !CONDITION_EDEFAULT.equals(getCondition());
 			case ActPackage.FLOW__SOURCE:
 				return basicGetSource() != null;
 			case ActPackage.FLOW__TARGET:
