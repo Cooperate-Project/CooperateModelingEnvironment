@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.activity.act.Node
 import de.cooperateproject.modeling.textual.activity.act.ActPackage
 import de.cooperateproject.modeling.textual.activity.act.Flow
 import de.cooperateproject.modeling.textual.activity.act.Swimlane
+import de.cooperateproject.modeling.textual.activity.act.Activity
 
 class ActUMLReferencingElementMissingElementChecker extends DependingElementMissingElementResolvableCheckerBase {
 	
@@ -21,6 +22,10 @@ class ActUMLReferencingElementMissingElementChecker extends DependingElementMiss
 	
 	protected def dispatch localResolutionPossible(Swimlane element) {
 		return element.hasValidParent(ActPackage.Literals.ACTIVITY)
+	}
+	
+	protected def dispatch localResolutionPossible(Activity element) {
+		return element.hasValidParent(ActPackage.Literals.ROOT_PACKAGE)
 	}
 	
 	protected def dispatch getDependencies(Flow element) {

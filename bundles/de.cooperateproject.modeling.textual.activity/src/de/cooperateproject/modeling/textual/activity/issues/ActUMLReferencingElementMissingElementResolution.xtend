@@ -19,6 +19,7 @@ import org.eclipse.uml2.uml.ActivityNode
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.ActivityPartition
+import de.cooperateproject.modeling.textual.activity.act.RootPackage
 
 class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -121,6 +122,16 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		parent.referencedElement.partitions.add(partition)
 
 		element.referencedElement = partition;
+	}
+	
+	private def dispatch fixMissingUMLElement(Activity element) {
+		if(!resolvePossible) return Void
+		
+		val activity = UMLFactory.eINSTANCE.createActivity
+		activity.name = element.name
+		
+		val parent = element.eContainer as RootPackage
+		activity.package = parent.referencedElement
 	}
 
 	private def setNodesNameAndParent(Node<?> element, ActivityNode node) {
