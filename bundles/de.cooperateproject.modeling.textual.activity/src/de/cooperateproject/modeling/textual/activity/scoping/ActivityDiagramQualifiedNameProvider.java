@@ -3,7 +3,6 @@ package de.cooperateproject.modeling.textual.activity.scoping;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.ActivityContent;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
@@ -15,7 +14,6 @@ import org.eclipse.xtext.naming.QualifiedName;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.activity.act.Flow;
-import de.cooperateproject.modeling.textual.activity.act.Node;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider;
 
 public class ActivityDiagramQualifiedNameProvider extends CooperateQualifiedNameProvider {
@@ -33,8 +31,8 @@ public class ActivityDiagramQualifiedNameProvider extends CooperateQualifiedName
 
 	@Override
 	public QualifiedName getFullyQualifiedName(EObject element) {
-		if (element instanceof ActivityNode || element instanceof ActivityEdge) {
-			return createQualifiedNameForNode((NamedElement) element);
+		if (element instanceof ActivityNode || element instanceof ActivityEdge || element instanceof ActivityPartition) {
+			return createQualifiedNameForNamedElement((NamedElement) element);
 		} else if (element instanceof Flow) {
 			return createQualifiedNameForFlow((Flow) element);
 		} else {
@@ -42,7 +40,7 @@ public class ActivityDiagramQualifiedNameProvider extends CooperateQualifiedName
 		}
 	}
 
-	private QualifiedName createQualifiedNameForNode(NamedElement element) {
+	private QualifiedName createQualifiedNameForNamedElement(NamedElement element) {
 		String name = element.getName();
 
 		// Activity partition support
@@ -59,7 +57,6 @@ public class ActivityDiagramQualifiedNameProvider extends CooperateQualifiedName
 		// Add model name
 		name = ((Model) element.eContainer().eContainer()).getName() + "." + name;
 
-		System.out.println(name);
 		return converter.toQualifiedName(name);
 	}
 
