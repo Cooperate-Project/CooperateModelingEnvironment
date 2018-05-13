@@ -416,15 +416,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSwimlane_Name() {
-		return (EAttribute)swimlaneEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getActivity() {
 		return activityEClass;
 	}
@@ -510,7 +501,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		joinNodeEClass = createEClass(JOIN_NODE);
 
 		swimlaneEClass = createEClass(SWIMLANE);
-		createEAttribute(swimlaneEClass, SWIMLANE__NAME);
 
 		activityEClass = createEClass(ACTIVITY);
 		createEReference(activityEClass, ACTIVITY__FLOWS);
@@ -544,7 +534,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter nodeEClass_T = addETypeParameter(nodeEClass, "T");
@@ -611,7 +600,14 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g2 = createEGenericType(theUMLPackage.getJoinNode());
 		g1.getETypeArguments().add(g2);
 		joinNodeEClass.getEGenericSuperTypes().add(g1);
-		swimlaneEClass.getESuperTypes().add(this.getContainer());
+		g1 = createEGenericType(this.getContainer());
+		swimlaneEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+		swimlaneEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+		g2 = createEGenericType(theUMLPackage.getActivityPartition());
+		g1.getETypeArguments().add(g2);
+		swimlaneEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getActivity());
 		g1.getETypeArguments().add(g2);
@@ -666,7 +662,6 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		initEClass(joinNodeEClass, JoinNode.class, "JoinNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(swimlaneEClass, Swimlane.class, "Swimlane", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSwimlane_Name(), theTypesPackage.getString(), "name", null, 0, 1, Swimlane.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActivity_Flows(), this.getFlow(), null, "flows", null, 0, -1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

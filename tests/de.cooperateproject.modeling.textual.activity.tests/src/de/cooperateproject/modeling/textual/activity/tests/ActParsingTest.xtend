@@ -236,7 +236,7 @@ class ActParsingTest extends AbstractActTest {
 		assertTrue(secondNode instanceof JoinNode)
 	}
 	
-	@Test @Ignore
+	@Test
 	def void swimlaneTest() {
 		// Example from the documentation
 		val model = '''
@@ -255,7 +255,6 @@ class ActParsingTest extends AbstractActTest {
 			@end-actd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
-		// TODO: Fix scoping
 	}
 
 	private static def parse(CharSequence text, ResourceSet rs) {

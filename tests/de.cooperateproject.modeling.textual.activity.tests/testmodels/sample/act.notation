@@ -79,6 +79,18 @@
         <element xmi:type="uml:ActivityPartition" href="act.uml#_I5UV8ClHEeiahIqgEtDKlg"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I5nQ4ilHEeiahIqgEtDKlg" x="232" y="255" width="164" height="154"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_mBm1QFauEei_zuGMAYU9IA" type="ActivityPartition_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_mBncUFauEei_zuGMAYU9IA" type="ActivityPartition_NameLabel"/>
+        <children xmi:type="notation:DecorationNode" xmi:id="_mBoDYFauEei_zuGMAYU9IA" type="ActivityPartition_FloatingNameLabel">
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_mBoDYVauEei_zuGMAYU9IA" y="15"/>
+        </children>
+        <children xmi:type="notation:BasicCompartment" xmi:id="_mBrtwFauEei_zuGMAYU9IA" type="ActivityPartition_ActivityNodeCompartment">
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mBrtwVauEei_zuGMAYU9IA"/>
+        </children>
+        <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_mBm1QVauEei_zuGMAYU9IA"/>
+        <element xmi:type="uml:ActivityPartition" href="act.uml#_mBSFIFauEei_zuGMAYU9IA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mBm1QlauEei_zuGMAYU9IA" x="35" y="248" width="139" height="181"/>
+      </children>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MckcjSiSEeiahIqgEtDKlg"/>
     </children>
     <element xmi:type="uml:Activity" href="act.uml#_MYyvwCiSEeiahIqgEtDKlg"/>

@@ -11,7 +11,7 @@ import de.cooperateproject.modeling.textual.activity.act.Flow
 class ActUMLReferencingElementMissingElementChecker extends DependingElementMissingElementResolvableCheckerBase {
 	
 	protected def dispatch localResolutionPossible(Node<?> element) {
-		return element.hasValidParent(ActPackage.Literals.ACTIVITY)
+		return element.hasValidParent(ActPackage.Literals.CONTAINER) 
 	}
 	
 	protected def dispatch localResolutionPossible(Flow element) {

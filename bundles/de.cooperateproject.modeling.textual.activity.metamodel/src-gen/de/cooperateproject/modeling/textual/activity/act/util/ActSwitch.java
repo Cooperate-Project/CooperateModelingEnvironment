@@ -218,6 +218,9 @@ public class ActSwitch<T1> extends Switch<T1> {
 				Swimlane swimlane = (Swimlane)theEObject;
 				T1 result = caseSwimlane(swimlane);
 				if (result == null) result = caseContainer(swimlane);
+				if (result == null) result = caseNamedElement(swimlane);
+				if (result == null) result = caseUMLReferencingElement(swimlane);
+				if (result == null) result = caseElement(swimlane);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.activity.act.provider;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.Swimlane;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class SwimlaneItemProvider extends ContainerItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addReferencedElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -61,13 +63,35 @@ public class SwimlaneItemProvider extends ContainerItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Swimlane_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Swimlane_name_feature", "_UI_Swimlane_type"),
-				 ActPackage.Literals.SWIMLANE__NAME,
+				 getString("_UI_NamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+				 TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Referenced Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferencedElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UMLReferencingElement_referencedElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_UMLReferencingElement_referencedElement_feature", "_UI_UMLReferencingElement_type"),
+				 TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

@@ -1001,13 +1001,40 @@ public interface ActPackage extends EPackage {
 	int SWIMLANE__NAME = CONTAINER_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE__REFERENCED_ELEMENT = CONTAINER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Swimlane</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWIMLANE_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 1;
+	int SWIMLANE_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE___GET_NEAREST_PACKAGE = CONTAINER_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get UML Parent Namespace</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWIMLANE___GET_UML_PARENT_NAMESPACE = CONTAINER_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Swimlane</em>' class.
@@ -1016,7 +1043,7 @@ public interface ActPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SWIMLANE_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
+	int SWIMLANE_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl <em>Activity</em>}' class.
@@ -1327,17 +1354,6 @@ public interface ActPackage extends EPackage {
 	EClass getSwimlane();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.act.Swimlane#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.activity.act.Swimlane#getName()
-	 * @see #getSwimlane()
-	 * @generated
-	 */
-	EAttribute getSwimlane_Name();
-
-	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.act.Activity <em>Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1589,14 +1605,6 @@ public interface ActPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SWIMLANE = eINSTANCE.getSwimlane();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SWIMLANE__NAME = eINSTANCE.getSwimlane_Name();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.act.impl.ActivityImpl <em>Activity</em>}' class.
