@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.textual.xtext.generator.issueresolution;
 
+import java.util.Set;
+
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.xtext.generator.AbstractXtextGeneratorFragment;
@@ -49,8 +51,10 @@ public class AutomatedIssueResolutionFragment2 extends AbstractXtextGeneratorFra
                 .addTypeToType(typeRef(IAutomatedIssueResolutionFactoryRegistry.class),
                         typeRef(AutomatedIssueResolutionFactoryRegistry.class))
                 .contributeTo(getLanguage().getRuntimeGenModule());
-        getProjectConfig().getRuntime().getManifest().getRequiredBundles()
-                .add("de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport");
+        Set<String> requiredBundles = getProjectConfig().getRuntime().getManifest().getRequiredBundles();
+        requiredBundles.add("de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport");
+        requiredBundles.add("org.reflections;visibility:=reexport");
+        requiredBundles.add("org.eclipse.uml2.uml.resources;visibility:=reexport");
     }
 
     private void generateIAutomatedIssueResolutionProvider() {
