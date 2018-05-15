@@ -77,6 +77,9 @@ public class TestFragment extends AbstractXtextGeneratorFragment implements Type
         generator.create(jva, getCustomizedRuntimeModuleSimpleName());
         jva.writeTo(getProjectConfig().getRuntimeTest().getSrc());
         getProjectConfig().getRuntimeTest().getManifest().getExportedPackages().add(getScopingUtilPackageName());
+
+        // add dependencies
+        getProjectConfig().getRuntimeTest().getManifest().getRequiredBundles().add("org.apache.commons.io");
     }
 
     private String getAbstractCustomizedRuntimeModuleSimpleName() {
