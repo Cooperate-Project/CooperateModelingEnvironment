@@ -5,7 +5,13 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import de.cooperateproject.cdo.util.resources.impl.FactoryWrapper;
 
 public class CDOResourceHandler {
-    public static FactoryWrapper createFactoryWrapper(Registry registry) {
+
+    public static IFactoryWrapper createFactoryWrapper(Registry registry) {
         return new FactoryWrapper(registry);
     }
+
+    public static IExtensionConverter getExtensionConverter() {
+        return FactoryWrapper.getDefaultFactoryFactory().getFileExtensionHandler();
+    }
+
 }

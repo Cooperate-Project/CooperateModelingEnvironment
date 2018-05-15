@@ -2,9 +2,8 @@ package de.cooperateproject.cdo.util.resources.impl;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
-public class TextbasedCDOResourceFactoryImpl extends ResourceFactoryImpl {
+public class TextbasedCDOResourceFactoryImpl implements IVirtualCDOResourceFactory {
     /**
      * Constructor for TextbasedCDOResourceFactoryImpl.
      */
@@ -17,7 +16,4 @@ public class TextbasedCDOResourceFactoryImpl extends ResourceFactoryImpl {
         return new TextbasedCDOResource(uri);
     }
 
-    public static Object getAdditionalFileExtension() {
-        return TextbasedCDOResource.ADDITIONAL_FILE_EXTENSION;
-    }
 }

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.eclipse.emf.cdo.common.lob.CDOBlob;
 import org.eclipse.emf.cdo.eresource.CDOBinaryResource;
-import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
@@ -17,15 +16,10 @@ import com.google.common.collect.Maps;
 
 public class BinarybasedCDOResource extends VirtualCDOFileResource {
 
-    private static final String ADDITIONAL_FILE_EXTENSION = "bin";
+    private static final IFileExtensionHandler EXTENSION_HANDLER = new BinarybasedCDOResourceFileExtensionHandler();
 
     BinarybasedCDOResource(URI uri) {
         super(uri);
-    }
-
-    @Override
-    protected String getAdditionalFileExtension() {
-        return ADDITIONAL_FILE_EXTENSION;
     }
 
     @Override
@@ -55,14 +49,7 @@ public class BinarybasedCDOResource extends VirtualCDOFileResource {
     }
 
     @Override
-    protected CDOResourceNode getCDOResourceNode(URI uri) throws IOException {
-        // TODO FIXME
-        return null;
-    }
-
-    @Override
-    protected CDOResourceNode getCDOResourceNode(URI uri, CDOTransaction trans) throws IOException {
-        // TODO FIXME
-        return null;
+    protected IFileExtensionHandler getExtensionHandler() {
+        return EXTENSION_HANDLER;
     }
 }
