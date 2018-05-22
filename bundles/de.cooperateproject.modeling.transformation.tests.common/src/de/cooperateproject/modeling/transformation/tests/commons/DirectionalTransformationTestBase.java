@@ -15,7 +15,7 @@ import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 
-public abstract class DirectionalTransformationTestBase extends PlainTransformationTestBase {
+public abstract class DirectionalTransformationTestBase extends PlainTransformationTestBase implements LegacyTransformationRunning {
 
     private final URI transformationURI;
     private final String sourceFileExtension;
