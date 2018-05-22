@@ -1,8 +1,6 @@
 # Cooperate Modeling Environment
 
 [![Travis CI](https://img.shields.io/travis/Cooperate-Project/CooperateModelingEnvironment/master.svg)](https://travis-ci.org/Cooperate-Project/CooperateModelingEnvironment)
-[![Code Coverage](https://mammutbaum36.fzi.de/sonar/api/badges/measure?key=de.cooperateproject.modeling%3Aparent&metric=coverage)](https://mammutbaum36.fzi.de/sonar/component_measures/domain/Coverage?id=de.cooperateproject.modeling%3Aparent)
-[![Technical Dept](https://mammutbaum36.fzi.de/sonar/api/badges/measure?key=de.cooperateproject.modeling%3Aparent&metric=sqale_debt_ratio)](https://mammutbaum36.fzi.de/sonar/project/issues?facetMode=effort&id=de.cooperateproject.modeling%3Aparent&resolved=false&types=CODE_SMELL)
 [![Issues](https://img.shields.io/github/issues/Cooperate-Project/CooperateModelingEnvironment.svg)](https://github.com/Cooperate-Project/CooperateModelingEnvironment/issues)
 [![License](https://img.shields.io/github/license/Cooperate-Project/CooperateModelingEnvironment.svg)](https://raw.githubusercontent.com/Cooperate-Project/CooperateModelingEnvironment/master/LICENSE)
 
