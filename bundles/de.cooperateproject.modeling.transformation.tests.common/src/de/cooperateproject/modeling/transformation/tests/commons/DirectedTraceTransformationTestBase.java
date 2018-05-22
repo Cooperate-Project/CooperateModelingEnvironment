@@ -35,6 +35,19 @@ public abstract class DirectedTraceTransformationTestBase extends TraceRecordTra
         this.sourceToTargetTraceTransformationUri = sourceToTargetTraceTransformationUri;
         this.testPluginId = testPluginId;
     }
+    
+    protected DirectedTraceTransformationTestBase(List<String> sourceFileExtensions, List<String> targetFileExtensions,
+            List<String> auxiliaryFileExtensions, URI sourceToTargetTransformationUri, URI targetToSourceTransformationUri,
+            URI sourceToTargetTraceTransformationUri, String testPluginId) {
+        super();
+        this.sourceFileExtensions = sourceFileExtensions;
+        this.targetFileExtensions = targetFileExtensions;
+        this.auxiliaryFileExtensions = auxiliaryFileExtensions;
+        this.sourceToTargetTransformationUri = sourceToTargetTransformationUri;
+        this.targetToSourceTransformationUri = targetToSourceTransformationUri;
+        this.sourceToTargetTraceTransformationUri = sourceToTargetTraceTransformationUri;
+        this.testPluginId = testPluginId;
+    }
 
     protected void testTraceTransformation(String modelName) throws Exception {
         // test parameters
