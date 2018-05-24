@@ -3,14 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.activity.derivedstate.calculator;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter;
 import org.eclipse.emf.ecore.EObject;
+
+import de.cooperateproject.modeling.textual.activity.act.Flow;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter;
 
 public class ActDerivedStateElementComparator implements IDerivedStateComputerSorter {
 
-    @Override
-    public int compare(EObject o1, EObject o2) {
-        return 0;
-    }
+	@Override
+	public int compare(EObject o1, EObject o2) {
+		// Make sure, flows are evaluated last
+		if (o1 instanceof Flow) {
+			return 1;
+		} else if (o2 instanceof Flow) {
+			return -1;
+		} else {
+			return 0;
+		}
+
+	}
 
 }
