@@ -28,6 +28,7 @@ import org.junit.runner.RunWith
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
 
 @RunWith(XtextRunner)
 @InjectWith(ActivityCustomizedInjectorProvider.DefaultProvider)
@@ -102,8 +103,8 @@ class ActParsingTest extends AbstractActTest {
 		
 		assertEquals(model.rootPackage.activity.nodes.length, 2)
 		
-		val firstNode = model.rootPackage.activity.nodes.get(0) as ActionNode
-		val secondNode = model.rootPackage.activity.nodes.get(1) as ActionNode
+		val firstNode = model.rootPackage.activity.nodes.get(0)
+		val secondNode = model.rootPackage.activity.nodes.get(1) as AliasedElement
 		
 		assertEquals(firstNode.name, "someActivity")
 		assertEquals(secondNode.name, "Another Activity")
@@ -126,8 +127,8 @@ class ActParsingTest extends AbstractActTest {
 		assertTrue(model.rootPackage.activity.flows.get(0).source !== null)
 		assertTrue(model.rootPackage.activity.flows.get(0).target !== null)
 		
-		val firstNode = model.rootPackage.activity.flows.get(0).source as ActionNode
-		val secondNode = model.rootPackage.activity.flows.get(0).target as ActionNode
+		val firstNode = model.rootPackage.activity.flows.get(0).source
+		val secondNode = model.rootPackage.activity.flows.get(0).target
 
 		assertEquals(firstNode.name, "someActivity")
 		assertEquals(secondNode.name, "anotherActivity")
@@ -174,7 +175,7 @@ class ActParsingTest extends AbstractActTest {
 		
 		val conditionFlow = model.rootPackage.activity.flows.get(3)
 		val firstNode = conditionFlow.source as ControlNode<?>
-		val secondNode = conditionFlow.target as ActionNode
+		val secondNode = conditionFlow.target
 
 		assertEquals(firstNode.name, "X")
 		assertTrue(firstNode instanceof DecisionNode)

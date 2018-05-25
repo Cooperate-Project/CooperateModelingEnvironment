@@ -9,8 +9,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.OpaqueAction;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.uml2.uml.ActivityNode;
  *
  * @generated
  */
-public class ActionNodeImpl extends NodeImpl<ActivityNode> implements ActionNode {
+public class ActionNodeImpl extends NodeImpl<OpaqueAction> implements ActionNode {
 	/**
 	 * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
 	 * <!-- begin-user-doc -->

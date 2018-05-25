@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.activity.act;
 
+import org.eclipse.uml2.uml.ActivityFinalNode;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +15,5 @@ package de.cooperateproject.modeling.textual.activity.act;
  * @model
  * @generated
  */
-public interface FinalNode extends ControlNode<org.eclipse.uml2.uml.FinalNode> {
+public interface FinalNode extends ControlNode<ActivityFinalNode> {
 } // FinalNode

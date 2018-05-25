@@ -561,7 +561,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g1.getETypeArguments().add(g2);
 		controlNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNode());
-		g2 = createEGenericType(theUMLPackage.getActivityNode());
+		g2 = createEGenericType(theUMLPackage.getOpaqueAction());
 		g1.getETypeArguments().add(g2);
 		actionNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
@@ -577,7 +577,7 @@ public class ActPackageImpl extends EPackageImpl implements ActPackage {
 		g1.getETypeArguments().add(g2);
 		initialNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());
-		g2 = createEGenericType(theUMLPackage.getFinalNode());
+		g2 = createEGenericType(theUMLPackage.getActivityFinalNode());
 		g1.getETypeArguments().add(g2);
 		finalNodeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getControlNode());

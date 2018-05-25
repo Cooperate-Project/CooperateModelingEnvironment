@@ -1,25 +1,19 @@
 package de.cooperateproject.modeling.textual.activity.issues;
 
-import de.cooperateproject.modeling.textual.activity.act.ActionNode
 import de.cooperateproject.modeling.textual.activity.act.Activity
-import de.cooperateproject.modeling.textual.activity.act.DecisionNode
-import de.cooperateproject.modeling.textual.activity.act.FinalNode
 import de.cooperateproject.modeling.textual.activity.act.Flow
-import de.cooperateproject.modeling.textual.activity.act.FlowFinalNode
-import de.cooperateproject.modeling.textual.activity.act.ForkNode
-import de.cooperateproject.modeling.textual.activity.act.InitialNode
-import de.cooperateproject.modeling.textual.activity.act.JoinNode
-import de.cooperateproject.modeling.textual.activity.act.MergeNode
 import de.cooperateproject.modeling.textual.activity.act.Node
+import de.cooperateproject.modeling.textual.activity.act.RootPackage
 import de.cooperateproject.modeling.textual.activity.act.Swimlane
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
+import java.util.stream.Collectors
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.uml2.uml.ActivityNode
+import org.eclipse.uml2.uml.ActivityPartition
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.UMLFactory
-import org.eclipse.uml2.uml.ActivityPartition
-import de.cooperateproject.modeling.textual.activity.act.RootPackage
 
 class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -31,69 +25,20 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		getProblematicElement.fixMissingUMLElement
 	}
 
-	// FIXME: Find a more generic way to solve this?
-	private def dispatch fixMissingUMLElement(ActionNode element) {
+	// TODO: Swimlane support
+	private def dispatch fixMissingUMLElement(Node<?> element) {
 		if(!resolvePossible) return Void
 
-		val node = UMLFactory.eINSTANCE.createOpaqueAction
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(InitialNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createInitialNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(FlowFinalNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createFlowFinalNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(FinalNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createActivityFinalNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(DecisionNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createDecisionNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(MergeNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createMergeNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(ForkNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createForkNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
-	}
-
-	private def dispatch fixMissingUMLElement(JoinNode element) {
-		if(!resolvePossible) return Void
-
-		val node = UMLFactory.eINSTANCE.createJoinNode
-		setNodesNameAndParent(element, node);
-		element.referencedElement = node;
+		val parent = element.eContainer as Activity
+		
+		// Filter generic super types to find the referencing element classifier
+		val superTypes = element.eClass.EGenericSuperTypes.stream.filter(superType | superType.EClassifier.name.endsWith("Node")).distinct.collect(Collectors.toList)
+		if(superTypes.length == 1) {
+			val nodeClassifier = superTypes.get(0).ETypeArguments.get(0).EClassifier as EClass
+			
+			// Create a new node with the given classifier
+			parent.referencedElement.createOwnedNode(element.name, nodeClassifier)
+		}
 	}
 
 	private def dispatch fixMissingUMLElement(Flow element) {
@@ -123,13 +68,13 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 
 		element.referencedElement = partition;
 	}
-	
+
 	private def dispatch fixMissingUMLElement(Activity element) {
 		if(!resolvePossible) return Void
-		
+
 		val activity = UMLFactory.eINSTANCE.createActivity
 		activity.name = element.name
-		
+
 		val parent = element.eContainer as RootPackage
 		activity.package = parent.referencedElement
 	}
@@ -144,7 +89,7 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 			val partition = swimlane.referencedElement as ActivityPartition
 			partition.nodes.add(node)
 			node.inPartitions.add(partition)
-			
+
 			// Add node to swimlanes parent activity
 			val parent = swimlane.eContainer as Activity
 			parent.referencedElement.ownedNodes.add(node)
