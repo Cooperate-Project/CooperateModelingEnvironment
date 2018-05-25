@@ -25,19 +25,34 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		getProblematicElement.fixMissingUMLElement
 	}
 
-	// TODO: Swimlane support
 	private def dispatch fixMissingUMLElement(Node<?> element) {
 		if(!resolvePossible) return Void
 
-		val parent = element.eContainer as Activity
-		
 		// Filter generic super types to find the referencing element classifier
-		val superTypes = element.eClass.EGenericSuperTypes.stream.filter(superType | superType.EClassifier.name.endsWith("Node")).distinct.collect(Collectors.toList)
-		if(superTypes.length == 1) {
+		val superTypes = element.eClass.EGenericSuperTypes.stream.filter(
+			superType |
+				superType.EClassifier.name.endsWith("Node")
+		).distinct.collect(Collectors.toList)
+		if (superTypes.length == 1) {
 			val nodeClassifier = superTypes.get(0).ETypeArguments.get(0).EClassifier as EClass
-			
-			// Create a new node with the given classifier
-			parent.referencedElement.createOwnedNode(element.name, nodeClassifier)
+
+			// Swimlane support
+			if (element.eContainer instanceof Swimlane) {
+				val swimlane = element.eContainer as Swimlane
+				val partition = swimlane.referencedElement as ActivityPartition
+				val parent = swimlane.eContainer as Activity
+
+				// Create a new node with the given classifier
+				val node = parent.referencedElement.createOwnedNode(element.name, nodeClassifier)
+
+				partition.nodes.add(node)
+				node.inPartitions.add(partition)
+			} else {
+				val parent = element.eContainer as Activity
+
+				// Create a new node with the given classifier
+				parent.referencedElement.createOwnedNode(element.name, nodeClassifier)
+			}
 		}
 	}
 
@@ -77,27 +92,6 @@ class ActUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 
 		val parent = element.eContainer as RootPackage
 		activity.package = parent.referencedElement
-	}
-
-	private def setNodesNameAndParent(Node<?> element, ActivityNode node) {
-		// Set name
-		node.name = element.name
-
-		// Set swimlane
-		if (element.eContainer instanceof Swimlane) {
-			val swimlane = element.eContainer as Swimlane
-			val partition = swimlane.referencedElement as ActivityPartition
-			partition.nodes.add(node)
-			node.inPartitions.add(partition)
-
-			// Add node to swimlanes parent activity
-			val parent = swimlane.eContainer as Activity
-			parent.referencedElement.ownedNodes.add(node)
-		} else {
-			// Add node to parent activity
-			val parent = element.eContainer as Activity
-			parent.referencedElement.ownedNodes.add(node)
-		}
 	}
 
 }
