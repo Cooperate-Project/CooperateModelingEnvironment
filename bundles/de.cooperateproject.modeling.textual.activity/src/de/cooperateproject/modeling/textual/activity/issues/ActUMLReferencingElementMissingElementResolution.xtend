@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import java.util.stream.Collectors
 import org.eclipse.emf.ecore.EClass
-import org.eclipse.uml2.uml.ActivityNode
 import org.eclipse.uml2.uml.ActivityPartition
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.UMLFactory

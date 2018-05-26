@@ -16,6 +16,9 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.activity.act.ActPackage;
 import de.cooperateproject.modeling.textual.activity.act.DecisionNode;
 import de.cooperateproject.modeling.textual.activity.act.Flow;
+import de.cooperateproject.modeling.textual.activity.act.ForkNode;
+import de.cooperateproject.modeling.textual.activity.act.JoinNode;
+import de.cooperateproject.modeling.textual.activity.act.MergeNode;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
@@ -35,32 +38,62 @@ public class ActValidator extends AbstractActValidator {
 	@SuppressWarnings("unused")
 	private IIssueCodeRegistry issueCodeRegistry;
 
-	@Check
-	private void checkFlowConditionWithMultipleMembers(Flow flow) {
-		// TODO: First, reenable multiflows!
-//		if (flow.getRelatedElements().size() > 2 && flow.getCondition() != null) {
-//			error("Conditions are only allowed for flow between two actions.", flow,
-//					ActPackage.Literals.FLOW__RELATED_ELEMENTS);
-//		}
-	}
-	
+	// TODO: First, reenable multiflows!
+	// @Check
+	// private void checkFlowConditionWithMultipleMembers(Flow flow) {
+	// if (flow.getRelatedElements().size() > 2 && flow.getCondition() != null) {
+	// error("Conditions are only allowed for flow between two actions.", flow,
+	// ActPackage.Literals.FLOW__RELATED_ELEMENTS);
+	// }
+	// }
+
 	@Check
 	private void checkDecitionNodeEdges(DecisionNode node) {
 		EList<ActivityEdge> incomings = node.getReferencedElement().getIncomings();
 		EList<ActivityEdge> outgoings = node.getReferencedElement().getOutgoings();
-		
+
 		// A decision node has one or two incoming edges and at least one outgoing edge.
-		if(!(incomings != null && incomings.size() >= 1 && incomings.size() <= 2 && outgoings.size() >= 1)) {
-			// FIXME: null?
-			error("A decision node has one or two incoming edges and at least one outgoing edge.", node,
-					null);
+		if (!(incomings != null && outgoings != null && incomings.size() >= 1 && incomings.size() <= 2 && outgoings.size() >= 1)) {
+			error("A decision node has one or two incoming edges and at least one outgoing edge.", node, null);
+		}
+	}
+
+	@Check
+	private void checkForkNodeEdges(ForkNode node) {
+		EList<ActivityEdge> incomings = node.getReferencedElement().getIncomings();
+
+		// A fork node has one incoming edge.
+		if (!(incomings != null && incomings.size() == 1)) {
+			error("A fork node has one incoming edge.", node, null);
+		}
+	}
+
+	@Check
+	private void checkJoinNodeEdges(JoinNode node) {
+		EList<ActivityEdge> incomings = node.getReferencedElement().getIncomings();
+		EList<ActivityEdge> outgoings = node.getReferencedElement().getOutgoings();
+		
+		// A join node has one incoming and one outgoing edge.
+		if (!(incomings != null && outgoings != null && incomings.size() == 1 && outgoings.size() == 1))  {
+			error("A join node has one outgoing edge.", node, null);
 		}
 	}
 	
+	@Check
+	private void checkMergeNodeEdges(MergeNode node) {
+		EList<ActivityEdge> outgoings = node.getReferencedElement().getOutgoings();
+		
+		// A merge node has one outgoing edge.
+		if (!(outgoings != null && outgoings.size() == 1 ))  {
+			error("A merge node has one outgoing edge.", node, null);
+		}
+	}
+
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/activity/Activity"));
+		result.add(EPackage.Registry.INSTANCE
+				.getEPackage("http://www.cooperateproject.de/modeling/textual/activity/Activity"));
 		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/commons"));
 		return result;
 	}
