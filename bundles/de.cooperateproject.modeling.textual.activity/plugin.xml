@@ -12,6 +12,18 @@
       <class
             class="de.cooperateproject.modeling.textual.activity.derivedstate.calculator.FlowCalculator">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.activity.derivedstate.initializers.FlowInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.activity.derivedstate.removers.FlowRemover">
+      </class>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.activity.services.ActivityTransientStatusProvider">
+      </class>
    </extension>
 
 </plugin>

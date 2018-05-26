@@ -11,19 +11,19 @@ import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatu
 
 public class ActivityTransientStatusProvider implements ITransientStatusProvider {
 
-    private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>( Arrays.asList(
-    		)); // FIXME: Missing elements?
+	private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>(
+			Arrays.asList(ActPackage.Literals.FLOW__SOURCE, ActPackage.Literals.FLOW__TARGET));
 
-    private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
+	private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
 
-    @Override
-    public boolean isFeatureConsideredTransient(EStructuralFeature feature) {
-        return TRANSIENT_FEATURES.contains(feature);
-    }
+	@Override
+	public boolean isFeatureConsideredTransient(EStructuralFeature feature) {
+		return TRANSIENT_FEATURES.contains(feature);
+	}
 
-    @Override
-    public boolean isFeatureConsideredNonTransient(EStructuralFeature feature) {
-        return NON_TRANSIENT_FEATURES.contains(feature);
-    }
+	@Override
+	public boolean isFeatureConsideredNonTransient(EStructuralFeature feature) {
+		return NON_TRANSIENT_FEATURES.contains(feature);
+	}
 
 }

@@ -141,6 +141,24 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetSource() {
+		eDynamicUnset(ActPackage.FLOW__SOURCE, ActPackage.Literals.FLOW__SOURCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+		return eDynamicIsSet(ActPackage.FLOW__SOURCE, ActPackage.Literals.FLOW__SOURCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	public Node<ActivityNode> getTarget() {
 		return (Node<ActivityNode>)eDynamicGet(ActPackage.FLOW__TARGET, ActPackage.Literals.FLOW__TARGET, true, true);
@@ -162,6 +180,24 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 	 */
 	public void setTarget(Node<ActivityNode> newTarget) {
 		eDynamicSet(ActPackage.FLOW__TARGET, ActPackage.Literals.FLOW__TARGET, newTarget);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTarget() {
+		eDynamicUnset(ActPackage.FLOW__TARGET, ActPackage.Literals.FLOW__TARGET);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+		return eDynamicIsSet(ActPackage.FLOW__TARGET, ActPackage.Literals.FLOW__TARGET);
 	}
 
 	/**
@@ -218,10 +254,10 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 				unsetName();
 				return;
 			case ActPackage.FLOW__SOURCE:
-				setSource((Node<ActivityNode>)null);
+				unsetSource();
 				return;
 			case ActPackage.FLOW__TARGET:
-				setTarget((Node<ActivityNode>)null);
+				unsetTarget();
 				return;
 		}
 		super.eUnset(featureID);
@@ -238,9 +274,9 @@ public class FlowImpl extends UMLReferencingElementImpl<ControlFlow> implements 
 			case ActPackage.FLOW__NAME:
 				return isSetName();
 			case ActPackage.FLOW__SOURCE:
-				return basicGetSource() != null;
+				return isSetSource();
 			case ActPackage.FLOW__TARGET:
-				return basicGetTarget() != null;
+				return isSetTarget();
 		}
 		return super.eIsSet(featureID);
 	}
