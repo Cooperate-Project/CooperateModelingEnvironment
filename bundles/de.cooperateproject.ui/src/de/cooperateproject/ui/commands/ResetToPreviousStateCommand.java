@@ -212,7 +212,8 @@ public class ResetToPreviousStateCommand {
         copier.copyReferences();
 
         // save changes to resources (required to textual resources)
-        for (Resource r : currentRS.getResources()) {
+        for (Resource r : currentRS.getResources().stream().filter(r -> relevantUris.contains(r.getURI()))
+                .collect(Collectors.toList())) {
             r.save(Collections.emptyMap());
         }
     }
