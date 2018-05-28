@@ -1,11 +1,16 @@
 package de.cooperateproject.modeling.transformation.tests.commons;
 
+import static de.cooperateproject.modeling.transformation.tests.commons.TestModelsHandling.prettyPrint;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
@@ -38,7 +43,7 @@ import de.cooperateproject.modeling.transformation.common.impl.DomainIndependent
  * ensure that we do not oversee other important ones.
  */
 @SuppressWarnings("restriction")
-public class TraceRecordTransformationTestBase extends PlainTransformationTestBase {
+public class TraceRecordTransformationTestBase extends PlainTransformationTestBase implements TestModelsHandling, AuxiliaryModelsAddingTransformationRunning {
 
     private static class TraceRecordComparator implements Comparator<TraceRecord> {
 
@@ -84,15 +89,23 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
     }
 
     @Override
-    protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
+    public void runTransformation(URI transformationURI, List<ModelExtent> transformationParameters,
             Trace traceModel) {
-        super.runTransformation(transformationURI, transformationParameters, traceModel);
+        AuxiliaryModelsAddingTransformationRunning.super.runTransformation(transformationURI, transformationParameters, traceModel);
         repairTransformationTrace(traceModel);
     }
 
-    protected void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
-        Comparison comparisonResult = modelComparator.compare(expectedModel.getContents().get(0),
-                actualModel.getContents().get(0));
+    protected void repairTransformationTrace(Collection<ModelExtent> expectedModels, Collection<ModelExtent> actualModels, Trace trace) {
+        if (!(expectedModels.size() == actualModels.size()))
+            throw new IllegalArgumentException("Expected and actual models collection must be of equal size");
+        
+        Iterator<ModelExtent> expectedIter = expectedModels.iterator();
+        Iterator<ModelExtent> actualIter = actualModels.iterator();
+        Collection<Comparison> comparisonResult = new ArrayList<Comparison>(expectedModels.size());
+        while (expectedIter.hasNext()) {
+            comparisonResult.add(modelComparator.compare(expectedIter.next().getContents().get(0),
+                    actualIter.next().getContents().get(0)));
+        }
         ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
         allContents.stream().filter(o -> o instanceof EValue).map(o -> (EValue) o)
                 .forEach(o -> replaceModelElementWithMatchingOne(o, comparisonResult));
@@ -151,14 +164,15 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         assertEquals(prettyPrint(comparison), 0, comparison.getDifferences().size());
     }
 
-    private static void replaceModelElementWithMatchingOne(EValue value, Comparison comparison) {
+    private static void replaceModelElementWithMatchingOne(EValue value, Collection<Comparison> comparisons) {
         EObject originalModelElement = value.getModelElement();
-        Match valueMatch = comparison.getMatch(originalModelElement);
-        if (valueMatch == null) {
+        Optional<Match> valueMatch = comparisons.stream().map(c -> Optional.ofNullable(c.getMatch(originalModelElement))).filter(Optional::isPresent)
+            .map(Optional::get).findAny();
+        if (!valueMatch.isPresent()) {
             return;
         }
-        EObject newModelElement = valueMatch.getLeft() == originalModelElement ? valueMatch.getRight()
-                : valueMatch.getLeft();
+        EObject newModelElement = valueMatch.get().getLeft() == originalModelElement ? valueMatch.get().getRight()
+                : valueMatch.get().getLeft();
         value.setModelElement(newModelElement);
     }
 

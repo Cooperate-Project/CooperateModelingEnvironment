@@ -97,19 +97,8 @@ public abstract class TransformationTestBase {
         resourceSet = new ResourceSetImpl();
     }
 
-    protected ResourceSet getResourceSet() {
+    public ResourceSet getResourceSet() {
         return resourceSet;
-    }
-
-    protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
-            Trace traceModel) {
-        TransformationExecutor executor = new TransformationExecutor(transformationURI);
-        ExecutionContextImpl ctx = new ExecutionContextImpl();
-        ctx.setLog(new Slf4JLogger(LOGGER, Level.INFO));
-        ctx.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, traceModel);
-        ExecutionDiagnostic result = executor.execute(ctx,
-                Iterables.toArray(transformationParameters, ModelExtent.class));
-        assertEquals(result.getMessage(), ExecutionDiagnostic.OK, result.getSeverity());
     }
 
     protected static URI createTransformationURI(String pluginName, String filename) {
