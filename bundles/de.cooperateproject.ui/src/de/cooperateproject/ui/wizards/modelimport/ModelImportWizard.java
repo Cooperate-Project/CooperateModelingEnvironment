@@ -1,24 +1,33 @@
 package de.cooperateproject.ui.wizards.modelimport;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.cdo.common.util.CDOException;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.spi.transfer.FileSystemTransferSystem;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.transfer.CDOTransfer;
 import org.eclipse.emf.cdo.transfer.CDOTransferSystem;
 import org.eclipse.emf.cdo.transfer.spi.repository.RepositoryTransferSystem;
+import org.eclipse.emf.cdo.util.CommitException;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.uml2.uml.resource.UMLResource;
@@ -26,6 +35,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
+import de.cooperateproject.cdo.util.resources.IFactoryWrapper;
 import de.cooperateproject.ui.util.CDOTransferUMLFirst;
 import de.cooperateproject.ui.util.PathmapFilteringTransferSystem;
 
@@ -34,15 +44,8 @@ import de.cooperateproject.ui.util.PathmapFilteringTransferSystem;
  */
 public class ModelImportWizard extends Wizard implements IImportWizard {
 
-    private final WritableValue<IProject> selectedProject = new WritableValue<>();
+    private final static WritableValue<IProject> selectedProject = new WritableValue<>();
     private final WritableValue<String> selectedUMLModel = new WritableValue<>();
-    private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
-
-    @Override
-    public void init(IWorkbench workbench, IStructuredSelection selection) {
-        setWindowTitle("Import Cooperate Model");
-        setNeedsProgressMonitor(true);
-    }
 
     @Override
     public void addPages() {
@@ -51,46 +54,104 @@ public class ModelImportWizard extends Wizard implements IImportWizard {
     }
 
     @Override
+    public void init(IWorkbench workbench, IStructuredSelection selection) {
+        setWindowTitle("Import Cooperate Model into Project");
+        setNeedsProgressMonitor(true);
+    }
+
+    @Override
     public boolean performFinish() {
-        String umlModel = selectedUMLModel.getValue();
-        IProject project = selectedProject.getValue();
-        CDOSession session = CDOConnectionManager.INSTANCE.acquireSession(project);
+        CDOSession session = CDOConnectionManager.INSTANCE.acquireSession(selectedProject.doGetValue());
+        try {
+            CDOTransaction trans = session.openTransaction();
+            try {
+                return importModel(trans);
+            } finally {
+                IOUtil.closeSilent(trans);
+            }
+        } finally {
+            CDOConnectionManager.INSTANCE.releaseSession(session);
+        }
+    }
 
-        CDOTransaction trans = session.openTransaction();
+    protected boolean importModel(CDOTransaction trans) {
+        RepositoryTransferSystem target = new ImportRepositoryTransferSystem(trans);
         CDOTransferSystem source = new PathmapFilteringTransferSystem(new FileSystemTransferSystem());
-        RepositoryTransferSystem target = new RepositoryTransferSystem(trans);
 
-        EList<Path> diagramPaths = getDiagramPaths(umlModel);
-        CDOTransfer transfer = new CDOTransferUMLFirst(source, target);
-
-        transfer.setTargetPath(project.getFullPath());
-        transfer.getModelTransferContext().getTargetResourceSet()
-                .setResourceFactoryRegistry((CDOResourceHandler.createFactoryWrapper(
-                        transfer.getModelTransferContext().getTargetResourceSet().getResourceFactoryRegistry())));
-        diagramPaths.forEach(n -> transfer.map(n.toString(), new NullProgressMonitor()));
-
-        transfer.getModelTransferContext().registerTargetExtension("*", new XMIResourceFactoryImpl());
-        UMLUtil.init(transfer.getModelTransferContext().getTargetResourceSet());
-        transfer.getModelTransferContext().getTargetResourceSet().getResource(UML_PRIMITIVE_TYPES_URI, true);
+        CDOTransfer transfer = new ImportTransfer(source, target);
+        transfer.setTargetPath(selectedProject.doGetValue().getFullPath());
+        getDiagramPaths(selectedUMLModel.doGetValue())
+                .forEach(n -> transfer.map(n.toString(), new NullProgressMonitor()));
         transfer.perform();
+
         return true;
     }
 
+    protected static class ImportTransfer extends CDOTransferUMLFirst {
+
+        private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
+
+        public ImportTransfer(CDOTransferSystem sourceSystem, CDOTransferSystem targetSystem) {
+            super(sourceSystem, targetSystem);
+            initSource();
+            initTarget();
+        }
+
+        protected void initSource() {
+            ModelTransferContext mtc = getModelTransferContext();
+            mtc.registerSourceExtension("*", new XMIResourceFactoryImpl());
+            mtc.getTargetResourceSet().getResource(UML_PRIMITIVE_TYPES_URI, true);
+        }
+
+        protected void initTarget() {
+            ModelTransferContext mtc = getModelTransferContext();
+            mtc.registerTargetExtension("*", new XMIResourceFactoryImpl());
+            ResourceSet targetRs = mtc.getTargetResourceSet();
+            UMLUtil.init(targetRs);
+            targetRs.getResource(UML_PRIMITIVE_TYPES_URI, true);
+
+            IFactoryWrapper factoryWrapper = CDOResourceHandler
+                    .createFactoryWrapper(targetRs.getResourceFactoryRegistry());
+            targetRs.setResourceFactoryRegistry(factoryWrapper);
+
+        }
+    }
+
     private EList<Path> getDiagramPaths(String path) {
-        // TODO: Preliminary method to get relevant resources, might need to be changed after talking to Stephan
-        // Problems: files models and model exist, we filter for model and get all the models, need to change to naming
-        // template
         EList<Path> paths = new BasicEList<Path>();
-        String modelName = path.substring(path.lastIndexOf("\\") + 1, path.lastIndexOf("."));
         String folderPath = path.substring(0, path.lastIndexOf("\\") + 1);
 
         File[] allFiles = (new File(folderPath)).listFiles();
         for (int i = 0; i < allFiles.length; i++) {
-            if (allFiles[i].getName().contains(modelName)) {
-                paths.add(Paths.get(folderPath + allFiles[i].getName()));
-            }
+            paths.add(Paths.get(folderPath + allFiles[i].getName()));
         }
         return paths;
     }
 
+    protected static class ImportRepositoryTransferSystem extends RepositoryTransferSystem {
+        private final CDOView view;
+
+        public ImportRepositoryTransferSystem(CDOView view) {
+            super(view);
+            this.view = view;
+        }
+
+        @Override
+        public void saveModels(EList<Resource> resources, IProgressMonitor monitor) {
+            try {
+                monitor.subTask("Committing to " + this);
+
+                CDOTransaction transaction = (CDOTransaction) view;
+                for (Resource resource : resources) {
+                    try {
+                        resource.save(Collections.emptyMap());
+                    } catch (IOException e) {
+                    }
+                }
+                transaction.commit(monitor);
+            } catch (CommitException ex) {
+                throw new CDOException(ex);
+            }
+        }
+    }
 }

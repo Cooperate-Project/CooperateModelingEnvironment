@@ -334,14 +334,14 @@
             class="de.cooperateproject.ui.wizards.projectimport.ImportCooperateProjectWizard"
             icon="icons/16/cooperate_16.png"
             id="de.cooperateproject.ui.importCooperateProjectWizard"
-            name="Import Cooperate Project">
+            name="Import Cooperate Project from Repository">
       </wizard>
       <wizard
             category="de.cooperateproject.ui.cooperateImportWizards"
             class="de.cooperateproject.ui.wizards.modelimport.ModelImportWizard"
             icon="icons/16/cooperate_16.png"
             id="de.cooperateproject.ui.importCooperateModelWizard"
-            name="Import Cooperate Model">
+            name="Import Cooperate Model into Project">
       </wizard>
    </extension>
    <extension

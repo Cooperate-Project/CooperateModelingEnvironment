@@ -1,7 +1,8 @@
 package de.cooperateproject.ui.wizards.model.export;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -33,11 +34,12 @@ public class LocalModelSelectionDialog extends ElementListSelectionDialog {
     }
 
     private static Object[] createElementSelection(IProject project) throws CoreException {
-        return determinModelNames(project).toArray();
+        return determineModelNames(project).toArray();
     }
 
-    private static Collection<String> determinModelNames(IProject project) throws CoreException {
-        ArrayList<String> modelNames = new ArrayList<>();
+    private static Collection<String> determineModelNames(IProject project) throws CoreException {
+
+        Set<String> modelNames = new LinkedHashSet<>();
         IResourceVisitor launcherFilesFinder = new IResourceVisitor() {
 
             @Override

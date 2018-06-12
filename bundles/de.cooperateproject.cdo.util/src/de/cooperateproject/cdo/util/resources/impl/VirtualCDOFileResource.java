@@ -48,6 +48,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
         super(uri);
     }
 
+    @Override
     public void save(Map<?, ?> options) throws IOException {
         CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
         CDOTransaction trans = Arrays.stream(cdoVS.getViews()).filter(CDOTransaction.class::isInstance)
@@ -65,6 +66,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
         }
     }
 
+    @Override
     public void load(Map<?, ?> options) throws IOException {
         CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
         CDOView view = Arrays.stream(cdoVS.getViews()).filter(CDOView.class::isInstance).findFirst().orElse(null);

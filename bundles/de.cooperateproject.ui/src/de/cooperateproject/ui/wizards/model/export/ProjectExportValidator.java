@@ -87,6 +87,11 @@ public class ProjectExportValidator extends MultiValidator {
             return createFailStatus("The destination has to be a directory.");
         }
 
+        IStatus destinationCheckStatus = checkIfDestinationIsEmpty(destination);
+        if (destinationCheckStatus.getSeverity() != IStatus.OK) {
+            return destinationCheckStatus;
+        }
+
         return Status.OK_STATUS;
     }
 
@@ -122,6 +127,13 @@ public class ProjectExportValidator extends MultiValidator {
         } finally {
             CDOConnectionManager.getInstance().releaseSession(cdoSession);
         }
+    }
+
+    private static IStatus checkIfDestinationIsEmpty(File destination) {
+        if (destination.listFiles().length != 0) {
+            return createFailStatus("The destination has to be empty. Please choose another one.");
+        }
+        return Status.OK_STATUS;
     }
 
     private static IStatus createFailStatus(String msg) {
