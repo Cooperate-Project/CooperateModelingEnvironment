@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * Wizard page that contains all information necessary for exporting a UML model to the file system.
@@ -37,9 +36,10 @@ public class ModelExportPage extends WizardPage {
         setDescription("Export a model and all associated diagrams to the file system.");
         setPageComplete(false);
         validationError.addChangeListener(e -> handleValidationErrorChange());
-        Control control = new ModelExportPageComposite(parent, SWT.FILL, selectedProject, selectedUMLModelName,
-                selectedVersion, selectedDestination, validationError);
-        setControl(control);
+        ModelExportPageComposite composite = new ModelExportPageComposite(parent, SWT.FILL, selectedProject,
+                selectedUMLModelName, selectedVersion, selectedDestination, validationError);
+        composite.triggerValidation();
+        setControl(composite);
     }
 
     private void handleValidationErrorChange() {

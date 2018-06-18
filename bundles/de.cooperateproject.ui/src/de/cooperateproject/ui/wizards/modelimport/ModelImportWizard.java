@@ -2,8 +2,6 @@ package de.cooperateproject.ui.wizards.modelimport;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collections;
 
 import org.eclipse.core.databinding.observable.value.WritableValue;
@@ -80,8 +78,7 @@ public class ModelImportWizard extends Wizard implements IImportWizard {
 
         CDOTransfer transfer = new ImportTransfer(source, target);
         transfer.setTargetPath(selectedProject.doGetValue().getFullPath());
-        getDiagramPaths(selectedUMLModel.doGetValue())
-                .forEach(n -> transfer.map(n.toString(), new NullProgressMonitor()));
+        getDiagramPaths(selectedUMLModel.doGetValue()).forEach(n -> transfer.map(n, new NullProgressMonitor()));
         transfer.perform();
 
         return true;
@@ -117,13 +114,12 @@ public class ModelImportWizard extends Wizard implements IImportWizard {
         }
     }
 
-    private EList<Path> getDiagramPaths(String path) {
-        EList<Path> paths = new BasicEList<Path>();
-        String folderPath = path.substring(0, path.lastIndexOf("\\") + 1);
+    private EList<String> getDiagramPaths(String path) {
+        EList<String> paths = new BasicEList<String>();
 
-        File[] allFiles = (new File(folderPath)).listFiles();
+        File[] allFiles = (new File(path)).listFiles();
         for (int i = 0; i < allFiles.length; i++) {
-            paths.add(Paths.get(folderPath + allFiles[i].getName()));
+            paths.add(allFiles[i].getAbsolutePath());
         }
         return paths;
     }

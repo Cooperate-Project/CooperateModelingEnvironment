@@ -149,5 +149,4 @@ public class ModelExportWizard extends Wizard implements IExportWizard {
             return sourceResourceSet.getResource(uri, true);
         }
     }
-
 }

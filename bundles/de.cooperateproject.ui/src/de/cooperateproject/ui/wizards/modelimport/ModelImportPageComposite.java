@@ -8,11 +8,14 @@ import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -21,28 +24,30 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
+import de.cooperateproject.ui.nature.CooperateProjectNature;
 import de.cooperateproject.ui.wizards.model.export.NameToIProjectConverter;
 
 public class ModelImportPageComposite extends Composite {
 
     private DataBindingContext m_bindingContext;
     private final WritableValue<IProject> project;
-    private final WritableValue<String> modelName;
+    private final WritableValue<String> directory;
     private final WritableValue<IStatus> validationError;
 
-    private Text textModel;
+    private Text textDirectory;
     private Text textProject;
 
     public ModelImportPageComposite(Composite parent, int style, WritableValue<IProject> project,
-            WritableValue<String> modelName, WritableValue<IStatus> validationError) {
+            WritableValue<String> directoryName, WritableValue<IStatus> validationError) {
         super(parent, style);
         this.project = project;
-        this.modelName = modelName;
+        this.directory = directoryName;
         this.validationError = validationError;
         setLayout(new GridLayout(3, false));
 
@@ -62,23 +67,24 @@ public class ModelImportPageComposite extends Composite {
         });
         btnProjectBrowse.setText("Browse");
 
-        Label lblModel = new Label(this, SWT.NONE);
-        lblModel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-        lblModel.setText("Model");
+        Label lblDirectory = new Label(this, SWT.NONE);
+        lblDirectory.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblDirectory.setText("Directory");
 
-        textModel = new Text(this, SWT.BORDER);
-        textModel.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
+        textDirectory = new Text(this, SWT.BORDER);
+        textDirectory.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
 
-        Button btnModelBrowse = new Button(this, SWT.NONE);
-        btnModelBrowse.addSelectionListener(new SelectionAdapter() {
+        Button btnDirectoryBrowse = new Button(this, SWT.NONE);
+        btnDirectoryBrowse.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                handleModelBrowse();
+                handleDirectoryBrowse();
             }
         });
-        btnModelBrowse.setText("Browse");
+        btnDirectoryBrowse.setText("Browse");
 
         m_bindingContext = initDataBindings();
+        setPreselectedProperties(textProject);
     }
 
     private void handleProjectBrowse() {
@@ -92,15 +98,15 @@ public class ModelImportPageComposite extends Composite {
         }
     }
 
-    private void handleModelBrowse() {
-        FileDialog dialog = new FileDialog(getShell(), SWT.OPEN);
-        String[] filterExtensions = { "*.uml" };
-        dialog.setFilterExtensions(filterExtensions);
-        Optional<File> modelFile = Optional.ofNullable(dialog.open()).map(File::new).filter(File::exists);
-        if (!modelFile.isPresent()) {
+    private void handleDirectoryBrowse() {
+        DirectoryDialog dialog = new DirectoryDialog(getShell(), SWT.OPEN);
+        dialog.setMessage("Please select a directory to import from.");
+        Optional<File> directory = Optional.ofNullable(dialog.open()).map(File::new).filter(File::exists)
+                .filter(File::isDirectory);
+        if (!directory.isPresent()) {
             return;
         }
-        textModel.setText(modelFile.get().getAbsolutePath());
+        textDirectory.setText(directory.get().getAbsolutePath());
     }
 
     protected DataBindingContext initDataBindings() {
@@ -117,14 +123,15 @@ public class ModelImportPageComposite extends Composite {
         bindingContext.bindValue(atomicValidatedProject, project);
 
         @SuppressWarnings("unchecked")
-        IObservableValue<String> observedModelName = WidgetProperties.text(SWT.Modify).observeDelayed(100, textModel);
-        IObservableValue<String> atomicValidatedModelName = new WritableValue<>(null, String.class);
-        UpdateValueStrategy strategyAtomicDiagramNameTargetToModel = new UpdateValueStrategy();
-        bindingContext.bindValue(observedModelName, atomicValidatedModelName, strategyAtomicDiagramNameTargetToModel,
-                new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER));
-        bindingContext.bindValue(atomicValidatedModelName, modelName);
+        IObservableValue<String> observedDirectoryName = WidgetProperties.text(SWT.Modify).observeDelayed(100,
+                textDirectory);
+        IObservableValue<String> atomicValidatedDirectoryName = new WritableValue<>(null, String.class);
+        UpdateValueStrategy strategyAtomicDirectoryNameTargetToModel = new UpdateValueStrategy();
+        bindingContext.bindValue(observedDirectoryName, atomicValidatedDirectoryName,
+                strategyAtomicDirectoryNameTargetToModel, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER));
+        bindingContext.bindValue(atomicValidatedDirectoryName, directory);
 
-        ProjectImportValidator validator = new ProjectImportValidator(project, modelName);
+        ProjectImportValidator validator = new ProjectImportValidator(project, directory);
         @SuppressWarnings("unchecked")
         IObservableValue<IStatus> validationStatus = ((IObservableValue<IStatus>) validator.getValidationStatus());
         validationStatus.addValueChangeListener(e -> {
@@ -132,5 +139,29 @@ public class ModelImportPageComposite extends Composite {
         });
 
         return bindingContext;
+    }
+
+    private static void setPreselectedProperties(Text textProject) {
+        IStructuredSelection selection = (IStructuredSelection) PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+                .getSelectionService().getSelection();
+        String cooperateNature = CooperateProjectNature.NATURE_ID;
+        try {
+            if (selection.size() == 1) {
+                Object element = selection.getFirstElement();
+                if (element instanceof IProject && ((IProject) element).hasNature(cooperateNature)) {
+                    textProject.setText(((IProject) selection.getFirstElement()).getName());
+                } else if (element instanceof IFolder && ((IFolder) element).getProject().hasNature(cooperateNature)) {
+                    textProject.setText(((IFolder) element).getProject().getName());
+                }
+            }
+        } catch (CoreException e) {
+        }
+    }
+
+    public void triggerValidation() {
+        String empty = "";
+        String oldProject = textProject.getText();
+        textProject.setText(empty);
+        textProject.setText(oldProject);
     }
 }

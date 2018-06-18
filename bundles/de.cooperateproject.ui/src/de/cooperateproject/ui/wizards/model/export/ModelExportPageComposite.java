@@ -15,6 +15,8 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.databinding.observable.value.WritableValue;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -30,6 +32,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.net4j.util.io.IOUtil;
@@ -44,11 +47,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 import org.eclipse.ui.dialogs.SelectionStatusDialog;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.Activator;
+import de.cooperateproject.ui.nature.CooperateProjectNature;
+import de.cooperateproject.ui.util.LauncherNamingConventions;
 
 public class ModelExportPageComposite extends Composite {
     private DataBindingContext m_bindingContext;
@@ -152,6 +158,7 @@ public class ModelExportPageComposite extends Composite {
         btnDestinationBrowse.setText("Browse");
 
         m_bindingContext = initDataBindings();
+        setPreselectedProperties(textProject, textModel);
     }
 
     private void handleProjectBrowse() {
@@ -297,5 +304,38 @@ public class ModelExportPageComposite extends Composite {
         } finally {
             CDOConnectionManager.getInstance().releaseSession(cdoSession);
         }
+    }
+
+    private static void setPreselectedProperties(Text textProject, Text textModel) {
+        IStructuredSelection selection = (IStructuredSelection) PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+                .getSelectionService().getSelection();
+        String cooperateNature = CooperateProjectNature.NATURE_ID;
+        try {
+            if (selection.size() == 1) {
+                Object element = selection.getFirstElement();
+                if (element instanceof IProject && ((IProject) element).hasNature(cooperateNature)) {
+                    textProject.setText(((IProject) selection.getFirstElement()).getName());
+                } else if (element instanceof IFolder && ((IFolder) element).getProject().hasNature(cooperateNature)) {
+                    textProject.setText(((IFolder) element).getProject().getName());
+                } else if (element instanceof IFile && ((IFile) element).getFileExtension().contains("cooperate")) {
+                    textModel.setText(
+                            LauncherNamingConventions.generateUMLNameFromLauncherName(((IFile) element).getName()));
+                    textProject.setText(((IFile) element).getProject().getName());
+                }
+            }
+        } catch (CoreException e) {
+        }
+    }
+
+    public void triggerValidation() {
+        String empty = "";
+
+        String oldProject = textProject.getText();
+        textProject.setText(empty);
+        textProject.setText(oldProject);
+
+        String oldModel = textModel.getText();
+        textModel.setText(empty);
+        textModel.setText(oldModel);
     }
 }

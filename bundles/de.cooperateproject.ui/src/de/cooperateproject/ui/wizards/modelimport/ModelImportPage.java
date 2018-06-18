@@ -8,7 +8,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * Wizard page that contains all information necessary for importing a UML model to the Cooperate repository.
@@ -31,9 +30,10 @@ public class ModelImportPage extends WizardPage {
         setDescription("Import a model and all associated diagrams to the repository.");
         setPageComplete(false);
         validationError.addChangeListener(e -> handleValidationErrorChange());
-        Control control = new ModelImportPageComposite(parent, SWT.FILL, selectedProjectName, selectedUMLModelName,
-                validationError);
-        setControl(control);
+        ModelImportPageComposite composite = new ModelImportPageComposite(parent, SWT.FILL, selectedProjectName,
+                selectedUMLModelName, validationError);
+        composite.triggerValidation();
+        setControl(composite);
 
     }
 
