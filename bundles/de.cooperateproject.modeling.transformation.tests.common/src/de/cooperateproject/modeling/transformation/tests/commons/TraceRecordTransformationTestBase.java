@@ -89,6 +89,14 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
     }
 
     @Override
+    public List<ModelExtent> runTransformation(URI transformationURI, List<URI> sourceModelURIs,
+            List<URI> targetModelURIs, Trace traceModel) {
+        List<ModelExtent> runTransformation = AuxiliaryModelsAddingTransformationRunning.super.runTransformation(transformationURI, sourceModelURIs, targetModelURIs, traceModel);
+        repairTransformationTrace(traceModel);
+        return runTransformation;
+    }
+    
+    @Override
     public void runTransformation(URI transformationURI, List<ModelExtent> transformationParameters,
             Trace traceModel) {
         AuxiliaryModelsAddingTransformationRunning.super.runTransformation(transformationURI, transformationParameters, traceModel);
@@ -171,6 +179,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         if (!valueMatch.isPresent()) {
             return;
         }
+        
         EObject newModelElement = valueMatch.get().getLeft() == originalModelElement ? valueMatch.get().getRight()
                 : valueMatch.get().getLeft();
         value.setModelElement(newModelElement);

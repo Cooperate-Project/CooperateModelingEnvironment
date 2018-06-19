@@ -19,11 +19,13 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import org.apache.commons.io.FileUtils;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.junit.After;
 import org.junit.Before;
@@ -54,17 +56,17 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
         debugSerializationDir = dir;
     }
 
-    protected void assertModelEquals(EObject expected, EObject actual) throws UnsupportedEncodingException {
+    protected void assertModelEquals(Notifier expected, Notifier actual) throws UnsupportedEncodingException {
         assertModelEquals(expected, actual, (c -> Collections.emptyList()));
     }
 
-    protected void assertModelEqualsStrict(EObject expected, EObject actual)
+    protected void assertModelEqualsStrict(Notifier expected, Notifier actual)
             throws UnsupportedEncodingException {
         Comparison result = modelComparator.compareStrict(expected, actual);
         assertComparison(result);
     }
 
-    protected void assertModelEquals(EObject expected, EObject actual,
+    protected void assertModelEquals(Notifier expected, Notifier actual,
             Function<Collection<Diff>, Collection<Diff>> diffProcessor) throws UnsupportedEncodingException {
         Comparison result = modelComparator.compare(expected, actual);
         Collection<Diff> ignoredDiffs = diffProcessor.apply(result.getDifferences());
@@ -118,7 +120,7 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
 
     private Resource createAndAssignToResource(Collection<EObject> model, URI uri) {
         Resource r = getResourceSet().createResource(uri);
-        r.getContents().addAll(model);
+        r.getContents().addAll(EcoreUtil.copyAll(model));
         return r;
     }
 
