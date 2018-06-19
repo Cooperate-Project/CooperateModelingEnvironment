@@ -32,14 +32,14 @@ public interface LegacyTransformationRunning extends QVTOTransformationRunning {
 
     default ModelExtent runTransformation(URI transformationURI, URI sourceModelURI, URI umlModelURI,
             ModelExtent destination, Trace traceModel) throws IOException {
-        ModelExtent source = createModelExtent(createResource(getResourceSet(), sourceModelURI));
-        ModelExtent uml = createModelExtent(createResource(getResourceSet(), umlModelURI));
+        ModelExtent source = createModelExtent(createResource(getResourceSet(), sourceModelURI, true));
+        ModelExtent uml = createModelExtent(createResource(getResourceSet(), umlModelURI, true));
         return runTransformation(transformationURI, source, uml, destination, traceModel);
     }
 
     default ModelExtent runTransformation(URI transformationURI, ModelExtent sourceModel, ModelExtent umlModel,
             ModelExtent destination, Trace traceModel) throws IOException {
-        ModelExtent umlPrimitives = createModelExtent(createResource(getResourceSet(), UML_PRIMITIVE_TYPES));
+        ModelExtent umlPrimitives = createModelExtent(createResource(getResourceSet(), UML_PRIMITIVE_TYPES, true));
         List<ModelExtent> transformationParameters = Arrays.asList(sourceModel, destination, umlModel,
                 umlPrimitives);
 
@@ -47,7 +47,7 @@ public interface LegacyTransformationRunning extends QVTOTransformationRunning {
 
         URI virtualResultModelURI = umlModel.getContents().get(0).eResource().getURI().trimFileExtension()
                 .trimFragment().trimQuery().trimSegments(1).appendSegment("resultModel").appendFileExtension("xmi");
-        Resource resultResource = createResource(getResourceSet(), virtualResultModelURI);
+        Resource resultResource = createResource(getResourceSet(), virtualResultModelURI, true);
         resultResource.getContents().addAll(destination.getContents());
 
         return destination;

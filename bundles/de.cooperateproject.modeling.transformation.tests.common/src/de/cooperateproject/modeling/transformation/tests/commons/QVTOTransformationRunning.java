@@ -36,7 +36,7 @@ public interface QVTOTransformationRunning {
     ResourceSet getResourceSet();
 
     default EObject getRootElement(URI modelUri) throws IOException {
-        Resource r = createResource(getResourceSet(), modelUri);
+        Resource r = createResource(getResourceSet(), modelUri, true);
         return r.getContents().get(0);
     }
 
@@ -54,15 +54,19 @@ public interface QVTOTransformationRunning {
         return runTransformation(transformationURI, sourceURIs, targetModelURIs, traceModel);
     }
     
-    default List<ModelExtent> modelUrisToModelExtents(List<URI> uris) {
+    default List<ModelExtent> modelUrisToModelExtents(List<URI> uris, ResourceSet resourceSet, boolean load) {
         return uris.stream()
-                .map(uri -> createModelExtent(createResource(getResourceSet(), uri))).collect(Collectors.toList());
+                .map(uri -> createModelExtent(createResource(resourceSet, uri, load))).collect(Collectors.toList());
+    }
+    
+    default List<ModelExtent> modelUrisToModelExtents(List<URI> uris, boolean load) {
+        return modelUrisToModelExtents(uris, getResourceSet(), load);        
     }
     
     default List<ModelExtent> runTransformation(URI transformationURI, List<URI> sourceModelURIs,
             List<URI> targetModelURIs, Trace traceModel) {
-        List<ModelExtent> sourceModelExtents = modelUrisToModelExtents(sourceModelURIs);
-        List<ModelExtent> targetModelExtents = modelUrisToModelExtents(targetModelURIs);
+        List<ModelExtent> sourceModelExtents = modelUrisToModelExtents(sourceModelURIs, true);
+        List<ModelExtent> targetModelExtents = modelUrisToModelExtents(targetModelURIs, false);
         
         List<ModelExtent> parameterExtents = new ArrayList<>(sourceModelExtents.size() + targetModelExtents.size());
         parameterExtents.addAll(sourceModelExtents);

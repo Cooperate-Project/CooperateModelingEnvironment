@@ -1,18 +1,19 @@
 package de.cooperateproject.modeling.transformation.tests.commons;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.junit.Before;
 
 import de.cooperateproject.modeling.transformation.common.impl.QVTOResource;
 
@@ -26,6 +27,10 @@ public abstract class DirectedTraceTransformationTestBase extends TraceRecordTra
     private final URI targetToSourceTransformationUri;
     private final URI sourceToTargetTraceTransformationUri;
 
+    private ResourceSet secondaryResourceSet;
+    
+
+    
     protected DirectedTraceTransformationTestBase(String sourceFileExtension, String targetFileExtension,
             URI sourceToTargetTransformationUri, URI targetToSourceTransformationUri,
             URI sourceToTargetTraceTransformationUri, String testPluginId) {
@@ -61,7 +66,7 @@ public abstract class DirectedTraceTransformationTestBase extends TraceRecordTra
         List<URI> targetModelURIs = targetFileExtensions.stream().map(
                 ext -> createResourceModelURI(testPluginId, getModelFileName(modelName, ext))).collect(Collectors.toList());
         List<URI> sourceModelURIs = sourceFileExtensions.stream().map(
-                ext -> createResourceModelURI(testPluginId, modelName + ".output." + ext)).collect(Collectors.toList());
+                ext -> createResourceModelURI(testPluginId, getModelFileName(modelName, ext))).collect(Collectors.toList());
 
         /*
          * Run original transformation that yields
@@ -69,31 +74,41 @@ public abstract class DirectedTraceTransformationTestBase extends TraceRecordTra
          * - the trace model to be compared (expected)
          */
         Trace target2sourceTraceModel = new Trace(Collections.emptyList());
-        runTransformation(targetToSourceTransformationUri, targetModelURIs, sourceModelURIs, target2sourceTraceModel);
+        List<ModelExtent> t2sModelExtents = new ArrayList<>();
+        List<ModelExtent> sourceModelExtents = sourceModelURIs.stream().map(uri -> new BasicModelExtent()).collect(Collectors.toList());
+        t2sModelExtents.addAll(modelUrisToModelExtents(targetModelURIs, true));
+        t2sModelExtents.addAll(sourceModelExtents);   
+        runTransformation(targetToSourceTransformationUri, t2sModelExtents, target2sourceTraceModel);
 
+        for (Iterator<?> extentIter = sourceModelExtents.iterator(), uriIter = sourceModelURIs.iterator(); extentIter
+                .hasNext();) {
+            getResourceSet().createResource((URI) uriIter.next()).getContents()
+                    .addAll(((ModelExtent) extentIter.next()).getContents());
+        }
+        
         /*
          * Run text to graphics transformation that yields
          * - the second graphical model
          * - the t2g trace model (input for trace transformation)
          */
-        List<URI> targetModel2URIs = targetFileExtensions.stream().map(
-                ext -> createResourceModelURI(testPluginId, getModelFileName(modelName + ".generated", ext))).collect(Collectors.toList());
-        /*List<ModelExtent> targetModels2 = targetModelURIs.stream().map(uri -> new BasicModelExtent()).collect(Collectors.toList());*/
         Trace source2targetTrace = new Trace(Collections.emptyList());
-        /*List<ModelExtent> transformationParameters = new ArrayList<>(sourceModelURIs.size() + targetModelURIs.size());
-        transformationParameters.addAll(modelUrisToModelExtents(sourceModelURIs));
-        transformationParameters.addAll(modelUrisToModelExtents(targetModel2URIs));*/
-        runTransformation(sourceToTargetTransformationUri, sourceModelURIs, targetModel2URIs, source2targetTrace);
+        List<ModelExtent> transformationParameters = new ArrayList<>(sourceModelURIs.size() + targetModelURIs.size());
+        transformationParameters.addAll(sourceModelExtents);
+        List<ModelExtent> targetModelExtents = modelUrisToModelExtents(targetModelURIs, getSecondaryResourceSet(), false);
+        transformationParameters.addAll(targetModelExtents);
+        runTransformation(sourceToTargetTransformationUri, transformationParameters, source2targetTrace);
+        
+        for (Iterator<?> extentIter = targetModelExtents.iterator(), uriIter = targetModelURIs.iterator(); extentIter
+                .hasNext();) {
+            getSecondaryResourceSet().getResource((URI) uriIter.next(), false).getContents()
+                    .addAll(((ModelExtent) extentIter.next()).getContents());
+        }
 
         /*
          * Transform trace model to point to elements of graphicalModel instead of graphicalModel2
          */
-        repairTransformationTrace(modelUrisToModelExtents(targetModelURIs), modelUrisToModelExtents(targetModel2URIs), source2targetTrace);
-
-        /*Resource expectedResource = getResourceSet().createResource(createResourceModelURI(testPluginId, modelName + ".trace.expected.xmi"));
-        expectedResource.getContents().add(EcoreUtil.copy(target2sourceTraceModel.getTraceContent().get(0)));
-        expectedResource.save(Collections.emptyMap());*/
-             
+        repairTransformationTrace(getResourceSet(), getSecondaryResourceSet(), targetModelURIs, source2targetTrace);
+        
         /*
          * Run trace transformation that yields
          * - the actual trace model to be compared (actual)
@@ -102,12 +117,10 @@ public abstract class DirectedTraceTransformationTestBase extends TraceRecordTra
         List<ModelExtent> traceTransformationParameters = new ArrayList<>();
         traceTransformationParameters.add(new BasicModelExtent(source2targetTrace.getTraceContent()));
         traceTransformationParameters.add(actualTraceModel);
-        traceTransformationParameters.addAll(modelUrisToModelExtents(targetModelURIs));
+        traceTransformationParameters.addAll(modelUrisToModelExtents(targetModelURIs, false));
         traceTransformationParameters.add(new BasicModelExtent(
                 new QVTOResource(targetToSourceTransformationUri, getResourceSet().getPackageRegistry()).getContents()));
         runTransformation(sourceToTargetTraceTransformationUri, traceTransformationParameters, new Trace(Collections.emptyList()));
-        
-        setDebugSerializationDir(new File("."));
         
         // compare expected and actual
         assertTraceEquals(target2sourceTraceModel, actualTraceModel);
@@ -123,12 +136,22 @@ public abstract class DirectedTraceTransformationTestBase extends TraceRecordTra
             
             List<URI> auxiliaryModelURIs = auxiliaryFileExtensions.stream().map(
                     ext -> createResourceModelURI(testPluginId, modelName + "." + ext)).collect(Collectors.toList());
-            result.addAll(modelUrisToModelExtents(auxiliaryModelURIs));
+            result.addAll(modelUrisToModelExtents(auxiliaryModelURIs, true));
             result.add(new BasicModelExtent(getResourceSet()
                 .getResource(URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI), true).getContents()));
             return result;
         }
         return parameters;
+    }
+    
+    @Before
+    public void setup() {
+        super.setup();
+        secondaryResourceSet = new ResourceSetImpl();
+    }
+    
+    protected ResourceSet getSecondaryResourceSet() {
+        return this.secondaryResourceSet;
     }
 
 }

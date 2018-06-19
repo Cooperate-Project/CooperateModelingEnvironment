@@ -1,17 +1,20 @@
 package de.cooperateproject.modeling.transformation.tests.commons;
 
+import static de.cooperateproject.modeling.transformation.tests.commons.QVTOTransformationRunning.LOGGER;
 import static de.cooperateproject.modeling.transformation.tests.commons.TestModelsHandling.prettyPrint;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Collector.Characteristics;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
@@ -23,6 +26,8 @@ import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.m2m.internal.qvt.oml.trace.EDirectionKind;
 import org.eclipse.m2m.internal.qvt.oml.trace.EMappingResults;
 import org.eclipse.m2m.internal.qvt.oml.trace.EValue;
@@ -103,20 +108,25 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         repairTransformationTrace(traceModel);
     }
 
-    protected void repairTransformationTrace(Collection<ModelExtent> expectedModels, Collection<ModelExtent> actualModels, Trace trace) {
-        if (!(expectedModels.size() == actualModels.size()))
-            throw new IllegalArgumentException("Expected and actual models collection must be of equal size");
+    protected void repairTransformationTrace(ResourceSet expectedModels, ResourceSet actualModels, List<URI> resourcesToCompare, Trace trace) {
+        List<Resource> expectedToRemove = expectedModels.getResources().stream().filter(r -> !resourcesToCompare.contains(r.getURI())).collect(Collectors.toList());
+        expectedToRemove.forEach(expectedModels.getResources()::remove);
+            
+        List<Resource> actualToRemove = actualModels.getResources().stream().filter(r -> !resourcesToCompare.contains(r.getURI())).collect(Collectors.toList());
+        actualToRemove.forEach(expectedModels.getResources()::remove);
+            
+        repairTransformationTrace(expectedModels, actualModels, trace);
         
-        Iterator<ModelExtent> expectedIter = expectedModels.iterator();
-        Iterator<ModelExtent> actualIter = actualModels.iterator();
-        Collection<Comparison> comparisonResult = new ArrayList<Comparison>(expectedModels.size());
-        while (expectedIter.hasNext()) {
-            comparisonResult.add(modelComparator.compare(expectedIter.next().getContents().get(0),
-                    actualIter.next().getContents().get(0)));
-        }
+        expectedToRemove.forEach(r -> expectedModels.createResource(r.getURI()).getContents().addAll(r.getContents()));
+        actualToRemove.forEach(r -> actualModels.createResource(r.getURI()).getContents().addAll(r.getContents()));
+    }
+    
+    protected void repairTransformationTrace(Notifier expectedModels, Notifier actualModels, Trace trace) {
+        Comparison compare = modelComparator.compare(expectedModels,actualModels);
+        
         ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
         allContents.stream().filter(o -> o instanceof EValue).map(o -> (EValue) o)
-                .forEach(o -> replaceModelElementWithMatchingOne(o, comparisonResult));
+                .forEach(o -> replaceModelElementWithMatchingOne(o, compare));
     }
 
     private static void repairTransformationTrace(Trace trace) {
@@ -172,16 +182,24 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         assertEquals(prettyPrint(comparison), 0, comparison.getDifferences().size());
     }
 
-    private static void replaceModelElementWithMatchingOne(EValue value, Collection<Comparison> comparisons) {
+    private static void replaceModelElementWithMatchingOne(EValue value, Comparison comparison) {
         EObject originalModelElement = value.getModelElement();
-        Optional<Match> valueMatch = comparisons.stream().map(c -> Optional.ofNullable(c.getMatch(originalModelElement))).filter(Optional::isPresent)
-            .map(Optional::get).findAny();
-        if (!valueMatch.isPresent()) {
+        Match valueMatch = comparison.getMatch(originalModelElement);
+        if (valueMatch == null) {
             return;
         }
+        String collect = "";
+        if (!valueMatch.getDifferences().isEmpty()) {
+            collect = valueMatch.getDifferences().stream().map(TestModelsHandling::prettyPrintCustom)
+                    .collect(Collectors.joining("\n"));
+                
+        }
         
-        EObject newModelElement = valueMatch.get().getLeft() == originalModelElement ? valueMatch.get().getRight()
-                : valueMatch.get().getLeft();
+        EObject newModelElement = valueMatch.getLeft() == originalModelElement ? valueMatch.getRight()
+                : valueMatch.getLeft();
+        assertNotNull(String.format(
+                "The element %s could not be matched to the original target model. Match differences: \n%s",
+                originalModelElement.toString(), collect), newModelElement);
         value.setModelElement(newModelElement);
     }
 

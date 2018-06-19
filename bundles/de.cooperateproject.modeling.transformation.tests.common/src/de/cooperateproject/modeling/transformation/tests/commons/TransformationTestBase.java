@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.tests.commons;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,25 +21,15 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.m2m.internal.qvt.oml.compiler.UnitResolverFactory;
-import org.eclipse.m2m.internal.qvt.oml.evaluator.QVTEvaluationOptions;
-import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
-import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
-import org.eclipse.m2m.qvt.oml.ModelExtent;
-import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor.BlackboxRegistry;
-import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Iterables;
-
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.transformation.common.Activator;
-import de.cooperateproject.modeling.transformation.common.impl.Slf4JLogger;
-import de.cooperateproject.modeling.transformation.common.impl.Slf4JLogger.Level;
 import de.cooperateproject.qvtoutils.blackbox.CooperateLibrary;
 
 @SuppressWarnings("restriction")

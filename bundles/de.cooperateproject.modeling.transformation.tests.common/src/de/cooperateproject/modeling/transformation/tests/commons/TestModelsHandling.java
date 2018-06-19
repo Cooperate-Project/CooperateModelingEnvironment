@@ -27,12 +27,12 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 public interface TestModelsHandling {
     ResourceSet getResourceSet();
     
-    static Resource createResource(ResourceSet resourceSet, URI modelUri) {
+    static Resource createResource(ResourceSet resourceSet, URI modelUri, boolean load) {
         Resource resource = resourceSet.getResource(modelUri, false);
         if (resource == null) {
             resource = resourceSet.createResource(modelUri);
         }
-        if (resourceSet.getURIConverter().exists(modelUri, Collections.emptyMap())) {
+        if (load && resourceSet.getURIConverter().exists(modelUri, Collections.emptyMap())) {
             try {
                 resource.load(Collections.emptyMap());
             } catch (IOException e) {
@@ -48,8 +48,8 @@ public interface TestModelsHandling {
         return new BasicModelExtent(r.getContents());
     }
     
-    default ModelExtent createModelExtent(URI resourceURI) throws IOException {
-        Resource r = createResource(getResourceSet(), resourceURI);
+    default ModelExtent createModelExtent(URI resourceURI, boolean load) throws IOException {
+        Resource r = createResource(getResourceSet(), resourceURI, load);
         return createModelExtent(r);
     }
     
