@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.internal.qvt.oml.trace.EDirectionKind;
 import org.eclipse.m2m.internal.qvt.oml.trace.EMappingResults;
 import org.eclipse.m2m.internal.qvt.oml.trace.EValue;
@@ -109,6 +110,8 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
     }
 
     protected void repairTransformationTrace(ResourceSet expectedModels, ResourceSet actualModels, List<URI> resourcesToCompare, Trace trace) {
+        EcoreUtil.resolveAll(expectedModels);
+        EcoreUtil.resolveAll(actualModels);
         List<Resource> expectedToRemove = expectedModels.getResources().stream().filter(r -> !resourcesToCompare.contains(r.getURI())).collect(Collectors.toList());
         expectedToRemove.forEach(expectedModels.getResources()::remove);
             
@@ -188,18 +191,13 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         if (valueMatch == null) {
             return;
         }
-        String collect = "";
-        if (!valueMatch.getDifferences().isEmpty()) {
-            collect = valueMatch.getDifferences().stream().map(TestModelsHandling::prettyPrintCustom)
-                    .collect(Collectors.joining("\n"));
-                
-        }
         
         EObject newModelElement = valueMatch.getLeft() == originalModelElement ? valueMatch.getRight()
                 : valueMatch.getLeft();
         assertNotNull(String.format(
-                "The element %s could not be matched to the original target model. Match differences: \n%s",
-                originalModelElement.toString(), collect), newModelElement);
+                "The element %s could not be matched to the original target model. "
+                + "This usually points to an error originating from an inconsistency in the non-trace transformations.",
+                originalModelElement.toString()), newModelElement);
         value.setModelElement(newModelElement);
     }
 
