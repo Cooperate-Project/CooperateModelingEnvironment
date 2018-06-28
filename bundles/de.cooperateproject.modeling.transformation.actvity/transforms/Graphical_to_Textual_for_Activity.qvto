@@ -1,0 +1,26 @@
+import TransformationUtils_Activity;
+
+transformation Grahpical_to_Textual_for_Activity(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses act('http://www.cooperateproject.de/modeling/textual/activity/Activity');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+
+main() {
+	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLActivityDiagram");
+	assert fatal (diagrams->size() = 1);
+	diagrams->map diagramToDiagram();
+}
+
+mapping notation::Diagram::diagramToDiagram() : act::ActivityDiagram {
+	title := self.name;
+	rootPackage := self.map diagramToRootPackage();
+}
+
+mapping notation::Diagram::diagramToRootPackage() : act::RootPackage {
+	referencedElement := self.element.oclAsType(uml::Package);
+	
+	// TODO: Implement
+}

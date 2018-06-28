@@ -18,7 +18,8 @@
          </transformationfolder>
          <defaulttransformation
                diagramName="Activity"
-               graphicalFileExtension="notation">
+               graphicalFileExtension="notation"
+               textualFileExtension="act">
          </defaulttransformation>
       </transformation>
    </extension>
