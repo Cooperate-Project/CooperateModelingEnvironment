@@ -16,11 +16,9 @@
          <transformationfolder
                foldername="transforms">
          </transformationfolder>
-         <defaulttransformation
-               diagramName="Activity"
-               graphicalFileExtension="notation"
-               textualFileExtension="act">
-         </defaulttransformation>
+         <transformationfactory
+               class="de.cooperateproject.modeling.transformation.activity.ActivityTransformationFactory">
+         </transformationfactory>
       </transformation>
    </extension>
 

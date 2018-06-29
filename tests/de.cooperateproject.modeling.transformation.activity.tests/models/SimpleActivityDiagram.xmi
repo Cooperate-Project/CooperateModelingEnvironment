@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" title="SimpleActivityDiagram">
+  <rootPackage>
+    <activity/>
+  </rootPackage>
+</act:ActivityDiagram>

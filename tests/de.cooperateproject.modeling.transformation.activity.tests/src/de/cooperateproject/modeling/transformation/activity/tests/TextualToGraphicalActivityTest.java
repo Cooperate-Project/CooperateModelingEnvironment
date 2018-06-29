@@ -14,6 +14,7 @@ import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
@@ -32,6 +33,16 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
 
     public TextualToGraphicalActivityTest() {
         super(TRANSFORMATION_URI, "xmi", "notation", TestEnvironmentConstants.TEST_PLUGIN_ID);
+    }
+    
+    @Test
+    public void testSimpleActivityDiagram() throws Exception {
+        testRegular("SimpleActivityDiagram");
+    }
+
+    @Test
+    public void testSimpleActivityDiagramIncremental() throws Exception {
+        testIncremental("SimpleActivityDiagram");
     }
 
     @Override
