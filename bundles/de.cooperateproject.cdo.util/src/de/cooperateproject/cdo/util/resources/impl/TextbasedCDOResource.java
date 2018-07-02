@@ -15,15 +15,10 @@ import org.eclipse.emf.common.util.URI;
 
 public class TextbasedCDOResource extends VirtualCDOFileResource {
 
-    public static final String ADDITIONAL_FILE_EXTENSION = "txt";
+    public static final IFileExtensionHandler EXTENSION_HANDLER = new TextbasedCDOResourceFileExtensionHandler();
 
     TextbasedCDOResource(URI uri) {
         super(uri);
-    }
-
-    @Override
-    protected String getAdditionalFileExtension() {
-        return ADDITIONAL_FILE_EXTENSION;
     }
 
     @Override
@@ -51,6 +46,11 @@ public class TextbasedCDOResource extends VirtualCDOFileResource {
                 serializer.parse(ris);
             }
         }
+    }
+
+    @Override
+    protected IFileExtensionHandler getExtensionHandler() {
+        return EXTENSION_HANDLER;
     }
 
 }

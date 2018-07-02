@@ -30,6 +30,7 @@ import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.LauncherFactory;
 import de.cooperateproject.ui.launchermodel.Launcher.util.LauncherResourceImpl;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
+import de.cooperateproject.ui.util.LauncherNamingConventions;
 
 /**
  * Assumptions:
@@ -44,7 +45,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
     private static final Logger LOGGER = LoggerFactory.getLogger(LauncherFilesCheckoutTask.class);
     private static final String LAUNCHER_FILE_EXTENSION = LauncherResourceImpl.EXTENSION;
     private static final String NOTATION_FILE_EXTENSION = "notation";
-    private static final String MODELS_DIRECTORY_NAME = "models";
+    public static final String MODELS_DIRECTORY_NAME = "models";
 
     public LauncherFilesCheckoutTask(IProject project, ProjectPropertiesDTO properties) {
         super(project, properties);
@@ -103,7 +104,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
         URI textualModelURI = ModelNamingConventions.getTextualFromGraphicalURI(graphicalModelURI,
                 papyrusDiagram.getName(), textualFileExtension);
 
-        String launcherFileName = URI.decode(textualModelURI.trimFileExtension().lastSegment());
+        String launcherFileName = LauncherNamingConventions.generateLauncherNameFromURI(textualModelURI);
         de.cooperateproject.ui.launchermodel.Launcher.Diagram launcherDiagram = LauncherFactory.eINSTANCE
                 .createDiagram();
         launcherDiagram.setName(launcherFileName);

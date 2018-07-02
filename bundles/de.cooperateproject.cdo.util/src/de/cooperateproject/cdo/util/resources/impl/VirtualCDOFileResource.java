@@ -48,6 +48,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
         super(uri);
     }
 
+    @Override
     public void save(Map<?, ?> options) throws IOException {
         CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
         CDOTransaction trans = Arrays.stream(cdoVS.getViews()).filter(CDOTransaction.class::isInstance)
@@ -65,6 +66,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
         }
     }
 
+    @Override
     public void load(Map<?, ?> options) throws IOException {
         CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
         CDOView view = Arrays.stream(cdoVS.getViews()).filter(CDOView.class::isInstance).findFirst().orElse(null);
@@ -76,7 +78,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
         doLoad(accessor, view, realCdoRepositoryPath);
     }
 
-    protected abstract String getAdditionalFileExtension();
+    protected abstract IFileExtensionHandler getExtensionHandler();
 
     protected abstract void doSave(XMISerializer serializer, CDOTransaction trans, String realCdoRepositoryPath)
             throws IOException;
@@ -90,11 +92,7 @@ public abstract class VirtualCDOFileResource extends XMIResourceImpl {
 
     private String getRealCDORepositoryPath(CDOView view) {
         URI pathUri = getURI().deresolve(view.getRootResource().getURI().appendSegment(""));
-        String actualURI = pathUri.toString();
-        if (!getAdditionalFileExtension().equals(pathUri.fileExtension())) {
-            return String.format("%s.%s", actualURI, getAdditionalFileExtension());
-        }
-        return actualURI;
+        return getExtensionHandler().getRealUri(pathUri).toString();
     }
 
     private Map<?, ?> prepareOptions(Map<?, ?> options) {

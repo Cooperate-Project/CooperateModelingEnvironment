@@ -419,7 +419,14 @@
             class="de.cooperateproject.ui.wizards.projectimport.ImportCooperateProjectWizard"
             icon="icons/16/cooperate_16.png"
             id="de.cooperateproject.ui.importCooperateProjectWizard"
-            name="Import Cooperate Project">
+            name="Import Cooperate Project from Repository">
+      </wizard>
+      <wizard
+            category="de.cooperateproject.ui.cooperateImportWizards"
+            class="de.cooperateproject.ui.wizards.modelimport.ModelImportWizard"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.importCooperateModelWizard"
+            name="Import Cooperate Model into Project">
       </wizard>
    </extension>
    <extension
@@ -463,4 +470,18 @@
          </includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="de.cooperateproject.ui.cooperateExportWizards"
+            name="Cooperate">
+      </category>
+      <wizard
+            category="de.cooperateproject.ui.cooperateExportWizards"
+            class="de.cooperateproject.ui.wizards.model.export.ModelExportWizard"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.wizards.model.export"
+            name="Export Model">
+      </wizard>
+</extension>
 </plugin>
