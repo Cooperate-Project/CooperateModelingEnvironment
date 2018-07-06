@@ -21,10 +21,14 @@ mapping act::ActivityDiagram::diagramToDiagram() : notation::Diagram {
     measurementUnit := notation::MeasurementUnit::Pixel;
     
     var umlRootElement := self.rootPackage.referencedElement.oclAsType(uml::Package);
-    element := umlRootElement.toEObject();
+   
+    var activity = self.rootPackage.activity;
+    assert fatal (activity != null) with log("Expected one activity.");
     
- 	// TODO: Child elements
+    element := activity.referencedElement.oclAsType(uml::Activity).toEObject();
     
+    children := activity.map activityToActivityShape();
+ 	
     styles := self.map stringValueStyle();
     styles += self.map diagramStyle();
     styles += self.map papyrusViewStyle(umlRootElement);
@@ -45,4 +49,50 @@ mapping act::ActivityDiagram::diagramStyle() : notation::DiagramStyle {
 
 // actuall mapping
 
-// TODO: Implement
+mapping act::Activity::activityToActivityShape(): notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY;
+	element := self.referencedElement.toEObject();
+	
+	children := self.map activityToNameLabel();
+	children += self.map activityToKeywordLabel();
+	
+	children += self.map activityToParameterCompartment();
+	children += self.map activityToPreconditionCompartment();
+	children += self.map activityToPostconditionCompartment();
+	children += self.map activityToActivityNodeCompartment();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+mapping act::Activity::activityToNameLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVTY_NAME;
+}
+
+mapping act::Activity::activityToKeywordLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVTY_KEYWORD;
+}
+
+mapping act::Activity::activityToParameterCompartment() : notation::BasicCompartment {
+	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARAMETER;
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::Activity::activityToPreconditionCompartment() : notation::BasicCompartment {
+	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PRECONDITION;
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::Activity::activityToPostconditionCompartment() : notation::BasicCompartment {
+	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_POSTCONDITION;
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::Activity::activityToActivityNodeCompartment() : notation::BasicCompartment {
+	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE;
+	layoutConstraint := result.toEObject().map notationBounds();
+}

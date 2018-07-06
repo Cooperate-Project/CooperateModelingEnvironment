@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" title="SimpleActivityDiagram">
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="SimpleActivityDiagram">
   <rootPackage>
-    <activity/>
+    <referencedElement xsi:type="uml:Model" href="SimpleActivityDiagram.uml#_XtaFYHrVEeifRvLshd1uTw"/>
+    <activity>
+    		<referencedElement xsi:type="uml:Activity" href="SimpleActivityDiagram.uml#_XuylcHrVEeifRvLshd1uTw"/>
+    </activity>
   </rootPackage>
 </act:ActivityDiagram>

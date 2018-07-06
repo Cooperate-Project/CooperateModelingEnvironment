@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.transformation.activity.tests;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -37,6 +38,7 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testSimpleActivityDiagram() throws Exception {
+    		setDebugSerializationDir(new File("debug"));
         testRegular("SimpleActivityDiagram");
     }
 

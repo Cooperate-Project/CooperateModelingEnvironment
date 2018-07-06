@@ -1,3 +1,13 @@
 library TransformationUtils_Activity;
 
 import TransformationUtils;
+
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY : String = "Activity_Shape";
+
+property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARAMETER : String = "Activity_ParameterCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PRECONDITION : String = "Activity_PreconditionCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_POSTCONDITION : String = "Activity_PostconditionCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE : String = "Activity_ActivityNodeCompartment";
+
+property PAPYRUS_NOTATION_NODE_ACTIVTY_NAME : String = "Activity_NameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVTY_KEYWORD : String = "Activity_KeywordLabel";
