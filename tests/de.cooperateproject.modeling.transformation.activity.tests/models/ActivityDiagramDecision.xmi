@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ASCII"?>
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ActivityDiagram">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="ActivityDiagramDecision.uml#_2DQYUIK-EeiTpa2YyhYj2w"/>
+    <activity>
+      <nodes xsi:type="act:ActionNode">
+      	<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramDecision.uml#_FEh_IIK_EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:ActionNode">
+      	<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramDecision.uml#_Gkt_gIK_EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:ActionNode">
+      	<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramDecision.uml#_HdDVsIK_EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:ActionNode">
+      	<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramDecision.uml#_IJGjYIK_EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:DecisionNode">
+      	<referencedElement xsi:type="uml:DecisionNode" href="ActivityDiagramDecision.uml#_Nap8kIK_EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:MergeNode">
+      	<referencedElement xsi:type="uml:MergeNode" href="ActivityDiagramDecision.uml#_PbGxYIK_EeiTpa2YyhYj2w"/>
+      </nodes>
+      <referencedElement xsi:type="uml:Activity" href="ActivityDiagramDecision.uml#_2DawYIK-EeiTpa2YyhYj2w"/>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramDecision.uml#_YHTsgIK_EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramDecision.uml#_ZKaIQIK_EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramDecision.uml#_alyhIIK_EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramDecision.uml#_cxj1IIK_EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramDecision.uml#_eLif0IK_EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramDecision.uml#_gMN-IIK_EeiTpa2YyhYj2w"/>
+      </flows>
+    </activity>
+  </rootPackage>
+</act:ActivityDiagram>

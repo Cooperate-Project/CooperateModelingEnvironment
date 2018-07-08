@@ -101,7 +101,9 @@ mapping act::Activity::activityToActivityNodeCompartment() : notation::BasicComp
 mapping act::Node::activityNodeToActivityShape() : notation::Shape
 disjuncts act::InitialNode::initialNodeToActivityShape, 
 act::FinalNode::finalNodeToActivityShape,
-act::ActionNode::actionNodeToActivityShape;
+act::ActionNode::actionNodeToActivityShape,
+act::DecisionNode::decisionNodeToActivityShape,
+act::MergeNode::mergeNodeToActivityShape;
 
 // Nodes to shapes
 
@@ -130,6 +132,27 @@ mapping act::ActionNode::actionNodeToActivityShape(): notation::Shape {
 	
 	children := self.map actionNodeToNameLabel();
 	children += self.map actionNodeToFloatingNameLabel();
+	styles := result.toEObject().map hintedDiagramLinkStyle();
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::DecisionNode::decisionNodeToActivityShape(): notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY_DECISION;
+	
+	children := self.map decisionNodeToFloatingNameLabel();
+	children += self.map decisionNodeToInputLabel();
+	children += self.map decisionNodeToStereotypeLabel();
+	styles := result.toEObject().map hintedDiagramLinkStyle();
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::MergeNode::mergeNodeToActivityShape(): notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY_MERGE;
+	
+	children := self.map mergeNodeToFloatingNameLabel();
+	children += self.map mergeNodeToStereotypeLabel();
 	styles := result.toEObject().map hintedDiagramLinkStyle();
 	element := self.referencedElement.toEObject();
 	layoutConstraint := result.toEObject().map notationBounds();
@@ -215,6 +238,31 @@ mapping act::Flow::flowToControlFlowGuardLabel(): notation::DecorationNode {
 
 mapping act::Flow::flowToControlFlowStereotypeLabel(): notation::DecorationNode {
 	type := PAPYRUS_NOTATION_EDGE_ACTIVITY_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping act::DecisionNode::decisionNodeToFloatingNameLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_FLOATING_NAME;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping act::DecisionNode::decisionNodeToInputLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_INPUT;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping act::DecisionNode::decisionNodeToStereotypeLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping act::MergeNode::mergeNodeToFloatingNameLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_MERGE_FLOATING_NAME;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping act::MergeNode::mergeNodeToStereotypeLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_MERGE_STEREOTYPE;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 

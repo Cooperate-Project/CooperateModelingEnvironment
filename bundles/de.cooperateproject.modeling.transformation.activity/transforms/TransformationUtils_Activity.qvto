@@ -6,6 +6,8 @@ property PAPYRUS_NOTATION_SHAPE_ACTIVITY : String = "Activity_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_INITAL: String = "InitialNode_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_ACTION: String = "OpaqueAction_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FINAL: String = "ActivityFinalNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_DECISION : String = "DecisionNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_MERGE : String = "MergeNode_Shape";
 
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARAMETER : String = "Activity_ParameterCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PRECONDITION : String = "Activity_PreconditionCompartment";
@@ -20,6 +22,11 @@ property PAPYRUS_NOTATION_NODE_ACTIVITY_ACTION_NAME : String = "OpaqueAction_Nam
 property PAPYRUS_NOTATION_NODE_ACTIVITY_ACTION_FLOATING_NAME : String = "OpaqueAction_FloatingNameLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVITY_FINAL_FLOATING_NAME : String = "ActivityFinalNode_FloatingNameLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVITY_FINAL_STEREOTYPE : String = "ActivityFinalNode_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_FLOATING_NAME : String = "DecisionNode_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_INPUT : String = "DecisionNode_DecisionInputLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_STEREOTYPE : String = "DecisionNode_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_MERGE_FLOATING_NAME : String = "MergeNode_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_MERGE_STEREOTYPE : String = "MergeNode_StereotypeLabel";
 
 property PAPYRUS_NOTATION_EDGE_ACTIVITY : String = "ControlFlow_Edge";
 property PAPYRUS_NOTATION_EDGE_ACTIVITY_NAME : String = "ControlFlow_NameLabel";

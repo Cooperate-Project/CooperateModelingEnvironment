@@ -19,16 +19,14 @@
       <layoutConstraint xsi:type="notation:Bounds"/>
     </children>
     <children xsi:type="notation:BasicCompartment" type="Activity_ActivityNodeCompartment">
-      <children xsi:type="notation:Shape" type="InitialNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="InitialNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="InitialNode_StereotypeLabel">
+      <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
+        <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
+        <children xsi:type="notation:DecorationNode" type="OpaqueAction_FloatingNameLabel">
           <layoutConstraint xsi:type="notation:Location" y="15"/>
         </children>
         <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramNodesFlowsAlias.uml#_5gnPoIJ0EeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="247" y="77"/>
+        <element href="ActivityDiagramDecision.uml#_FEh_IIK_EeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="122" y="96"/>
       </children>
       <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
         <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
@@ -36,8 +34,8 @@
           <layoutConstraint xsi:type="notation:Location" y="15"/>
         </children>
         <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramNodesFlowsAlias.uml#_9b0g8IJ0EeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="572" y="183"/>
+        <element href="ActivityDiagramDecision.uml#_Gkt_gIK_EeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="286" y="185"/>
       </children>
       <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
         <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
@@ -45,85 +43,190 @@
           <layoutConstraint xsi:type="notation:Location" y="15"/>
         </children>
         <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramNodesFlowsAlias.uml#_9x6FsIJ0EeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="600" y="417"/>
+        <element href="ActivityDiagramDecision.uml#_HdDVsIK_EeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="375" y="228"/>
       </children>
-      <children xsi:type="notation:Shape" type="ActivityFinalNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="ActivityFinalNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="ActivityFinalNode_StereotypeLabel">
+      <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
+        <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
+        <children xsi:type="notation:DecorationNode" type="OpaqueAction_FloatingNameLabel">
           <layoutConstraint xsi:type="notation:Location" y="15"/>
         </children>
         <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramNodesFlowsAlias.uml#_Ah_AoIJ1EeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="217" y="598"/>
+        <element href="ActivityDiagramDecision.uml#_IJGjYIK_EeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="658" y="246"/>
+      </children>
+      <children xsi:type="notation:Shape" type="DecisionNode_Shape">
+        <children xsi:type="notation:DecorationNode" type="DecisionNode_FloatingNameLabel">
+          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        </children>
+        <children xsi:type="notation:DecorationNode" type="DecisionNode_DecisionInputLabel">
+          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        </children>
+        <children xsi:type="notation:DecorationNode" type="DecisionNode_StereotypeLabel">
+          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="ActivityDiagramDecision.uml#_Nap8kIK_EeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="375" y="128"/>
+      </children>
+      <children xsi:type="notation:Shape" type="MergeNode_Shape">
+        <children xsi:type="notation:DecorationNode" type="MergeNode_FloatingNameLabel">
+          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        </children>
+        <children xsi:type="notation:DecorationNode" type="MergeNode_StereotypeLabel">
+          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        </children>
+        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+        <element href="ActivityDiagramDecision.uml#_PbGxYIK_EeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="255" y="428"/>
       </children>
       <layoutConstraint xsi:type="notation:Bounds"/>
     </children>
-    <element href="ActivityDiagramNodesFlowsAlias.uml#_zFm7EIJ0EeiTpa2YyhYj2w"/>
+    <element href="ActivityDiagramDecision.uml#_2DawYIK-EeiTpa2YyhYj2w"/>
     <layoutConstraint xsi:type="notation:Bounds"/>
   </children>
   <styles xsi:type="notation:StringValueStyle" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xsi:type="notation:DiagramStyle"/>
   <styles xsi:type="style:PapyrusDiagramStyle" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
-    <owner href="ActivityDiagramNodesFlowsAlias.uml#_y-fmcIJ0EeiTpa2YyhYj2w"/>
+    <owner href="ActivityDiagramDecision.uml#_2DQYUIK-EeiTpa2YyhYj2w"/>
   </styles>
-  <element href="ActivityDiagramNodesFlowsAlias.uml#_zFm7EIJ0EeiTpa2YyhYj2w"/>
-  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.0" target="//@children.0/@children.5/@children.1">
+  <element href="ActivityDiagramDecision.uml#_2DawYIK-EeiTpa2YyhYj2w"/>
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.0" target="//@children.0/@children.5/@children.5">
     <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-33" y="18"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-1" y="18"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="30" y="19"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
-      <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" y="-19"/>
     </children>
     <styles xsi:type="notation:FontStyle"/>
-    <element href="ActivityDiagramNodesFlowsAlias.uml#_sC2NgIJ1EeiTpa2YyhYj2w"/>
-    <bendpoints xsi:type="notation:RelativeBendpoints" points="[264, 113, -643984, -643984]$[581, 244, -643984, -643984]"/>
-    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.4,0.025)"/>
-    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.2033898305084746,0.525)"/>
+    <element href="ActivityDiagramDecision.uml#_YHTsgIK_EeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[8, 19, -84, -162]$[95, 217, 3, 36]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.1,0.375)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.25,0.5333333333333333)"/>
   </edges>
-  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.1" target="//@children.0/@children.5/@children.2">
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.5" target="//@children.0/@children.5/@children.1">
     <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-20" y="20"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" y="19"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="20" y="19"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
-      <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-1" y="-18"/>
     </children>
     <styles xsi:type="notation:FontStyle"/>
-    <element href="ActivityDiagramNodesFlowsAlias.uml#_tlVT8IJ1EeiTpa2YyhYj2w"/>
-    <bendpoints xsi:type="notation:RelativeBendpoints" points="[-3, 12, -39, -204]$[37, 206, 1, -10]"/>
-    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.4406779661016949,0.7)"/>
-    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.4927536231884058,0.25)"/>
+    <element href="ActivityDiagramDecision.uml#_ZKaIQIK_EeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[220, 355, -643984, -643984]$[301, 240, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.0,0.5)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.6,0.475)"/>
   </edges>
-  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.2" target="//@children.0/@children.5/@children.3">
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.1" target="//@children.0/@children.5/@children.4">
     <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-27" y="18"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-1" y="18"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
-      <layoutConstraint xsi:type="notation:Location" y="20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="29" y="18"/>
     </children>
     <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
-      <layoutConstraint xsi:type="notation:Location" y="-20"/>
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" y="-18"/>
     </children>
     <styles xsi:type="notation:FontStyle"/>
-    <element href="ActivityDiagramNodesFlowsAlias.uml#_uSHhcIJ1EeiTpa2YyhYj2w"/>
-    <bendpoints xsi:type="notation:RelativeBendpoints" points="[-5, 16, 393, -119]$[-393, 167, 5, 32]"/>
-    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.2898550724637681,0.6)"/>
+    <element href="ActivityDiagramDecision.uml#_alyhIIK_EeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[-4, -9, -61, -142]$[56, 171, -1, 38]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.5,0.3)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.4,0.4)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.4" target="//@children.0/@children.5/@children.2">
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-35" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="1" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="35" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-2" y="-17"/>
+    </children>
+    <styles xsi:type="notation:FontStyle"/>
+    <element href="ActivityDiagramDecision.uml#_cxj1IIK_EeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[368, 400, -643984, -643984]$[510, 188, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.9,0.6)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.4,0.45)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.4" target="//@children.0/@children.5/@children.3">
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-49" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" y="19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="49" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="1" y="-18"/>
+    </children>
+    <styles xsi:type="notation:FontStyle"/>
+    <element href="ActivityDiagramDecision.uml#_eLif0IK_EeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[352, 400, -643984, -643984]$[668, 278, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.1,0.6)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.6,0.475)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.3" target="//@children.0/@children.5/@children.5">
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-65" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-2" y="17"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="66" y="17"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="1" y="-19"/>
+    </children>
+    <styles xsi:type="notation:FontStyle"/>
+    <element href="ActivityDiagramDecision.uml#_gMN-IIK_EeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[-6, 0, 439, -21]$[-446, 57, -1, 36]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.6,0.625)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.45,0.5333333333333333)"/>
   </edges>
 </notation:Diagram>

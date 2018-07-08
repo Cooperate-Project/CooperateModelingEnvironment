@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_2DQYUIK-EeiTpa2YyhYj2w" name="ActivityDiagram">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_2LypQIK-EeiTpa2YyhYj2w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_2DawYIK-EeiTpa2YyhYj2w" name="Activity1" node="_FEh_IIK_EeiTpa2YyhYj2w _Gkt_gIK_EeiTpa2YyhYj2w _HdDVsIK_EeiTpa2YyhYj2w _IJGjYIK_EeiTpa2YyhYj2w _Nap8kIK_EeiTpa2YyhYj2w _PbGxYIK_EeiTpa2YyhYj2w">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_YHTsgIK_EeiTpa2YyhYj2w" target="_PbGxYIK_EeiTpa2YyhYj2w" source="_FEh_IIK_EeiTpa2YyhYj2w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ZKaIQIK_EeiTpa2YyhYj2w" target="_Gkt_gIK_EeiTpa2YyhYj2w" source="_PbGxYIK_EeiTpa2YyhYj2w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_alyhIIK_EeiTpa2YyhYj2w" target="_Nap8kIK_EeiTpa2YyhYj2w" source="_Gkt_gIK_EeiTpa2YyhYj2w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_cxj1IIK_EeiTpa2YyhYj2w" target="_HdDVsIK_EeiTpa2YyhYj2w" source="_Nap8kIK_EeiTpa2YyhYj2w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_eLif0IK_EeiTpa2YyhYj2w" target="_IJGjYIK_EeiTpa2YyhYj2w" source="_Nap8kIK_EeiTpa2YyhYj2w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_gMN-IIK_EeiTpa2YyhYj2w" target="_PbGxYIK_EeiTpa2YyhYj2w" source="_IJGjYIK_EeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_FEh_IIK_EeiTpa2YyhYj2w" name="A" outgoing="_YHTsgIK_EeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_Gkt_gIK_EeiTpa2YyhYj2w" name="B" incoming="_ZKaIQIK_EeiTpa2YyhYj2w" outgoing="_alyhIIK_EeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_HdDVsIK_EeiTpa2YyhYj2w" name="C" incoming="_cxj1IIK_EeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_IJGjYIK_EeiTpa2YyhYj2w" name="D" incoming="_eLif0IK_EeiTpa2YyhYj2w" outgoing="_gMN-IIK_EeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_Nap8kIK_EeiTpa2YyhYj2w" name="X" incoming="_alyhIIK_EeiTpa2YyhYj2w" outgoing="_cxj1IIK_EeiTpa2YyhYj2w _eLif0IK_EeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_PbGxYIK_EeiTpa2YyhYj2w" name="Y" incoming="_YHTsgIK_EeiTpa2YyhYj2w _gMN-IIK_EeiTpa2YyhYj2w" outgoing="_ZKaIQIK_EeiTpa2YyhYj2w"/>
+  </packagedElement>
+</uml:Model>
