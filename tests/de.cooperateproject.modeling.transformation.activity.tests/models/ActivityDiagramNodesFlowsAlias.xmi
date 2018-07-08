@@ -3,13 +3,28 @@
   <rootPackage>
     <referencedElement xsi:type="uml:Model" href="ActivityDiagramNodeFlowsAlias.uml#_y-fmcIJ0EeiTpa2YyhYj2w"/>
     <activity>
-      <nodes xsi:type="act:InitialNode"/>
-      <nodes xsi:type="act:ActionNode"/>
-      <nodes xsi:type="act:ActionNode"/>
-      <nodes xsi:type="act:FinalNode"/>
-      <flows/>
-      <flows/>
-      <flows/>
+      <nodes xsi:type="act:InitialNode">
+      	<referencedElement xsi:type="uml:InitialNode" href="ActivityDiagramNodesFlowsAlias.uml#_5gnPoIJ0EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:ActionNode">
+      	<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramNodesFlowsAlias.uml#_9b0g8IJ0EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:ActionNode">
+      	<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramNodesFlowsAlias.uml#_9x6FsIJ0EeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:FinalNode">
+      	<referencedElement xsi:type="uml:ActivityFinalNode" href="ActivityDiagramNodesFlowsAlias.uml#_Ah_AoIJ1EeiTpa2YyhYj2w"/>
+      </nodes>
+      <referencedElement xsi:type="uml:Activity" href="ActivityDiagramNodesFlowsAlias.uml#_zFm7EIJ0EeiTpa2YyhYj2w"/>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramNodesFlowsAlias.uml#_sC2NgIJ1EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramNodesFlowsAlias.uml#_tlVT8IJ1EeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramNodesFlowsAlias.uml#_uSHhcIJ1EeiTpa2YyhYj2w"/>
+      </flows>
     </activity>
   </rootPackage>
 </act:ActivityDiagram>
