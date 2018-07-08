@@ -66,6 +66,17 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
     public void testActivityDiagramDecisionIncremental() throws Exception {
         testIncremental("ActivityDiagramDecision");
     }
+    
+    @Test
+    public void testActivityDiagramAllNodes() throws Exception {
+		setDebugSerializationDir(new File("debug"));
+        testRegular("ActivityDiagramAllNodes");
+    }
+
+    @Test
+    public void testActivityDiagramAllNodesIncremental() throws Exception {
+        testIncremental("ActivityDiagramAllNodes");
+    }
 
     @Override
     protected void testRegular(String modelName) throws Exception {

@@ -8,6 +8,9 @@ property PAPYRUS_NOTATION_SHAPE_ACTIVITY_ACTION: String = "OpaqueAction_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FINAL: String = "ActivityFinalNode_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_DECISION : String = "DecisionNode_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_MERGE : String = "MergeNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FORK : String = "ForkNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_JOIN : String = "JoinNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FLOW_FINAL : String = "FlowFinalNode_Shape";
 
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARAMETER : String = "Activity_ParameterCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PRECONDITION : String = "Activity_PreconditionCompartment";
@@ -27,6 +30,13 @@ property PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_INPUT : String = "DecisionNode_
 property PAPYRUS_NOTATION_NODE_ACTIVITY_DECISION_STEREOTYPE : String = "DecisionNode_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVITY_MERGE_FLOATING_NAME : String = "MergeNode_FloatingNameLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVITY_MERGE_STEREOTYPE : String = "MergeNode_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_JOIN_FLOATING_NAME : String = "JoinNode_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_JOIN_SPEC : String = "JoinNode_JoinSpecLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_JOIN_STEREOTYPE : String = "JoinNode_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_FORK_FLOATING_NAME : String = "ForkNode_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_FORK_STEREOTYPE : String = "ForkNode_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_FLOW_FINAL_FLOATING_NAME : String = "FlowFinalNode_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_FLOW_FINAL_STEREOTYPE : String = "FlowFinalNode_StereotypeLabel";
 
 property PAPYRUS_NOTATION_EDGE_ACTIVITY : String = "ControlFlow_Edge";
 property PAPYRUS_NOTATION_EDGE_ACTIVITY_NAME : String = "ControlFlow_NameLabel";

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_wPBlgILiEeiTpa2YyhYj2w" name="ActivityDiagram">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_wWHE8ILiEeiTpa2YyhYj2w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_wPPA4ILiEeiTpa2YyhYj2w" name="Activity1" node="_y-LTYILiEeiTpa2YyhYj2w _0lsDwILiEeiTpa2YyhYj2w _1m7eUILiEeiTpa2YyhYj2w _350G8ILiEeiTpa2YyhYj2w _5DMJ0ILiEeiTpa2YyhYj2w _6IN4MILiEeiTpa2YyhYj2w _7QOCEILiEeiTpa2YyhYj2w">
+    <node xmi:type="uml:InitialNode" xmi:id="_y-LTYILiEeiTpa2YyhYj2w" name="InitialNode"/>
+    <node xmi:type="uml:FlowFinalNode" xmi:id="_0lsDwILiEeiTpa2YyhYj2w" name="FlowFinalNode"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_1m7eUILiEeiTpa2YyhYj2w" name="FinalNode"/>
+    <node xmi:type="uml:DecisionNode" xmi:id="_350G8ILiEeiTpa2YyhYj2w" name="DecisionNode"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_5DMJ0ILiEeiTpa2YyhYj2w" name="MergeNode"/>
+    <node xmi:type="uml:JoinNode" xmi:id="_6IN4MILiEeiTpa2YyhYj2w" name="JoinNode"/>
+    <node xmi:type="uml:ForkNode" xmi:id="_7QOCEILiEeiTpa2YyhYj2w" name="ForkNode"/>
+  </packagedElement>
+</uml:Model>

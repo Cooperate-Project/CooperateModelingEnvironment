@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ActivityDiagram">
+  <rootPackage>
+  	<referencedElement xsi:type="uml:Model" href="ActivityDiagramAllNodes.uml#_wPBlgILiEeiTpa2YyhYj2w"/>
+    <activity>
+    	  <referencedElement xsi:type="uml:Activity" href="ActivityDiagramAllNodes.uml#_wPPA4ILiEeiTpa2YyhYj2w"/>
+      <nodes xsi:type="act:InitialNode">
+      	<referencedElement xsi:type="uml:InitialNode" href="ActivityDiagramAllNodes.uml#_y-LTYILiEeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:FlowFinalNode">
+      	<referencedElement xsi:type="uml:FlowFinalNode" href="ActivityDiagramAllNodes.uml#_0lsDwILiEeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:FinalNode">
+      	<referencedElement xsi:type="uml:ActivityFinalNode" href="ActivityDiagramAllNodes.uml#_1m7eUILiEeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:DecisionNode">
+      	<referencedElement xsi:type="uml:DecisionNode" href="ActivityDiagramAllNodes.uml#_350G8ILiEeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:MergeNode">
+      	<referencedElement xsi:type="uml:MergeNode" href="ActivityDiagramAllNodes.uml#_5DMJ0ILiEeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:JoinNode">
+      	<referencedElement xsi:type="uml:JoinNode" href="ActivityDiagramAllNodes.uml#_6IN4MILiEeiTpa2YyhYj2w"/>
+      </nodes>
+      <nodes xsi:type="act:ForkNode">
+      	<referencedElement xsi:type="uml:ForkNode" href="ActivityDiagramAllNodes.uml#_7QOCEILiEeiTpa2YyhYj2w"/>
+      </nodes>
+    </activity>
+  </rootPackage>
+</act:ActivityDiagram>
