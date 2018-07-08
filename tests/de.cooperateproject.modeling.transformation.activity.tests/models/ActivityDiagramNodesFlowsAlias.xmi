@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ActivityDiagram">
   <rootPackage>
-    <referencedElement xsi:type="uml:Model" href="ActivityDiagramNodeFlowsAlias.uml#_y-fmcIJ0EeiTpa2YyhYj2w"/>
+    <referencedElement xsi:type="uml:Model" href="ActivityDiagramNodesFlowsAlias.uml#_y-fmcIJ0EeiTpa2YyhYj2w"/>
     <activity>
       <nodes xsi:type="act:InitialNode">
       	<referencedElement xsi:type="uml:InitialNode" href="ActivityDiagramNodesFlowsAlias.uml#_5gnPoIJ0EeiTpa2YyhYj2w"/>

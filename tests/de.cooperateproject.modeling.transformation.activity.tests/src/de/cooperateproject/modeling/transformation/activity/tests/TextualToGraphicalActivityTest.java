@@ -48,12 +48,12 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramNodesFlowsAlias() throws Exception {
-    		setDebugSerializationDir(new File("debug"));
         testRegular("ActivityDiagramNodesFlowsAlias");
     }
 
     @Test
     public void testActivityDiagramNodesFlowsAliasIncremental() throws Exception {
+		setDebugSerializationDir(new File("debug"));
         testIncremental("ActivityDiagramNodesFlowsAlias");
     }
 

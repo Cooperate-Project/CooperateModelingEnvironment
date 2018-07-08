@@ -136,9 +136,17 @@ mapping act::ActionNode::actionNodeToActivityShape(): notation::Shape {
 }
 
 // Flows to edges
+
 mapping act::Flow::flowToEdge() : notation::Connector {
 	type := PAPYRUS_NOTATION_EDGE_ACTIVITY;
-	// FIXME: Source & Target Attributes (late resolve evtl.?)
+	
+	source := resolveoneIn(act::Node::activityNodeToActivityShape,
+				s: notation::Shape | s.element = self.referencedElement.oclAsType(uml::ControlFlow).source.toEObject()
+			);
+			
+	target := resolveoneIn(act::Node::activityNodeToActivityShape,
+				s: notation::Shape | s.element = self.referencedElement.oclAsType(uml::ControlFlow).target.toEObject()
+			);
 	
 	children := self.map flowToControlFlowNameLabel();
 	children += self.map flowToControlFlowWeightLabel();
@@ -148,8 +156,7 @@ mapping act::Flow::flowToEdge() : notation::Connector {
 	styles += result.toEObject().map fontStyle();
 	element := self.referencedElement.toEObject();
 	bendpoints := result.map connectorToBendpoint();
-	
-	// TODO: Source anchor & target Anchor
+
 }
 
 // Name labels
