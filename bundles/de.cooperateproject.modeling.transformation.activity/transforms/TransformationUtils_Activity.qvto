@@ -3,6 +3,9 @@ library TransformationUtils_Activity;
 import TransformationUtils;
 
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY : String = "Activity_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_INITAL: String = "InitialNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_ACTION: String = "OpaqueAction_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FINAL: String = "ActivityFinalNode_Shape";
 
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARAMETER : String = "Activity_ParameterCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PRECONDITION : String = "Activity_PreconditionCompartment";

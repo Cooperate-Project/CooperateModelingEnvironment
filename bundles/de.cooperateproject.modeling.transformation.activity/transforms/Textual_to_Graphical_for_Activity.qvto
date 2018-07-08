@@ -94,5 +94,26 @@ mapping act::Activity::activityToPostconditionCompartment() : notation::BasicCom
 
 mapping act::Activity::activityToActivityNodeCompartment() : notation::BasicCompartment {
 	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE;
+	
+	// Actual nodes
+	children := self.nodes.map activityNodeToActivityShape();
+	
 	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::Node::activityNodeToActivityShape() : notation::Shape
+disjuncts act::InitialNode::initialNodeToActivityShape, 
+act::FinalNode::finalNodeToActivityShape,
+act::ActionNode::actionNodeToActivityShape;
+
+mapping act::InitialNode::initialNodeToActivityShape() : notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY_INITAL;
+}
+
+mapping act::FinalNode::finalNodeToActivityShape() : notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY_FINAL;
+}
+
+mapping act::ActionNode::actionNodeToActivityShape(): notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY_ACTION;
 }
