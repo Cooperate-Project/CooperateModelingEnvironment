@@ -58,7 +58,6 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramDecision() throws Exception {
-		setDebugSerializationDir(new File("debug"));
         testRegular("ActivityDiagramDecision");
     }
 
@@ -69,13 +68,23 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramAllNodes() throws Exception {
-		setDebugSerializationDir(new File("debug"));
         testRegular("ActivityDiagramAllNodes");
     }
 
     @Test
     public void testActivityDiagramAllNodesIncremental() throws Exception {
         testIncremental("ActivityDiagramAllNodes");
+    }
+    
+    @Test
+    public void testActivityDiagramSwimlanes() throws Exception {
+		setDebugSerializationDir(new File("debug"));
+        testRegular("ActivityDiagramSwimlanes");
+    }
+
+    @Test
+    public void testActivityDiagramSwimlanesIncremental() throws Exception {
+        testIncremental("ActivityDiagramSwimlanes");
     }
 
     @Override

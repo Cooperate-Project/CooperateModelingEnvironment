@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_5lgKAIQREeiTpa2YyhYj2w" name="ActivityDiagram">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_5vyucIQREeiTpa2YyhYj2w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_5lzE8IQREeiTpa2YyhYj2w" name="Activity1" node="__CunsIQREeiTpa2YyhYj2w _BgaLEIQSEeiTpa2YyhYj2w _DahHUIQSEeiTpa2YyhYj2w" group="_9nG-QIQREeiTpa2YyhYj2w _-CnOgIQREeiTpa2YyhYj2w">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_Ex8NQIQSEeiTpa2YyhYj2w" target="_DahHUIQSEeiTpa2YyhYj2w" source="__CunsIQREeiTpa2YyhYj2w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_FNh9EIQSEeiTpa2YyhYj2w" target="_BgaLEIQSEeiTpa2YyhYj2w" source="_DahHUIQSEeiTpa2YyhYj2w"/>
+    <group xmi:type="uml:ActivityPartition" xmi:id="_9nG-QIQREeiTpa2YyhYj2w" name="Kunde" node="__CunsIQREeiTpa2YyhYj2w _BgaLEIQSEeiTpa2YyhYj2w"/>
+    <group xmi:type="uml:ActivityPartition" xmi:id="_-CnOgIQREeiTpa2YyhYj2w" name="Mitarbeiter" node="_DahHUIQSEeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="__CunsIQREeiTpa2YyhYj2w" name="suchen" outgoing="_Ex8NQIQSEeiTpa2YyhYj2w" inPartition="_9nG-QIQREeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_BgaLEIQSEeiTpa2YyhYj2w" name="kaufen" incoming="_FNh9EIQSEeiTpa2YyhYj2w" inPartition="_9nG-QIQREeiTpa2YyhYj2w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_DahHUIQSEeiTpa2YyhYj2w" name="zeigen" incoming="_Ex8NQIQSEeiTpa2YyhYj2w" outgoing="_FNh9EIQSEeiTpa2YyhYj2w" inPartition="_-CnOgIQREeiTpa2YyhYj2w"/>
+  </packagedElement>
+</uml:Model>

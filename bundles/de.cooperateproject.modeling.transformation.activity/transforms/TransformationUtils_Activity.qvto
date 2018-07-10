@@ -11,11 +11,14 @@ property PAPYRUS_NOTATION_SHAPE_ACTIVITY_MERGE : String = "MergeNode_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FORK : String = "ForkNode_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_JOIN : String = "JoinNode_Shape";
 property PAPYRUS_NOTATION_SHAPE_ACTIVITY_FLOW_FINAL : String = "FlowFinalNode_Shape";
+property PAPYRUS_NOTATION_SHAPE_ACTIVITY_PARTITION : String = "ActivityPartition_Shape";
 
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARAMETER : String = "Activity_ParameterCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PRECONDITION : String = "Activity_PreconditionCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_POSTCONDITION : String = "Activity_PostconditionCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE : String = "Activity_ActivityNodeCompartment";
+property PAPYRUS_NOTATION_COMPRATMENT_ACTIVITY_PARTITION : String = "ActivityPartition_ActivityNodeCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARTITION_ACTIVITYNODE : String = "ActivityPartition_ActivityNodeCompartment";
 
 property PAPYRUS_NOTATION_NODE_ACTIVTY_NAME : String = "Activity_NameLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVTY_KEYWORD : String = "Activity_KeywordLabel";
@@ -37,6 +40,8 @@ property PAPYRUS_NOTATION_NODE_ACTIVITY_FORK_FLOATING_NAME : String = "ForkNode_
 property PAPYRUS_NOTATION_NODE_ACTIVITY_FORK_STEREOTYPE : String = "ForkNode_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVITY_FLOW_FINAL_FLOATING_NAME : String = "FlowFinalNode_FloatingNameLabel";
 property PAPYRUS_NOTATION_NODE_ACTIVITY_FLOW_FINAL_STEREOTYPE : String = "FlowFinalNode_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_PARTITION_NAME : String = "ActivityPartition_NameLabel";
+property PAPYRUS_NOTATION_NODE_ACTIVITY_PARTITION_FLOATING_NAME : String = "ActivityPartition_FloatingNameLabel";
 
 property PAPYRUS_NOTATION_EDGE_ACTIVITY : String = "ControlFlow_Edge";
 property PAPYRUS_NOTATION_EDGE_ACTIVITY_NAME : String = "ControlFlow_NameLabel";

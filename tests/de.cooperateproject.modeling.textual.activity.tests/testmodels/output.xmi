@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="ASCII"?>
-<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ActivityDiagram">
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="SomeTitle">
   <rootPackage>
     <referencedElement xsi:type="uml:Model" href="testmodels/testfile.uml#_xbCaUBfyEeiyTPreEWqyNg"/>
     <activity>
-      <nodes xsi:type="act:InitialNode"/>
-      <nodes xsi:type="act:FinalNode"/>
-      <nodes xsi:type="act:FlowFinalNode"/>
-      <nodes xsi:type="act:DecisionNode"/>
-      <nodes xsi:type="act:MergeNode"/>
-      <nodes xsi:type="act:ForkNode"/>
-      <nodes xsi:type="act:JoinNode"/>
+      <flows/>
+      <flows/>
+      <children xsi:type="act:Swimlane">
+        <nodes xsi:type="act:ActionNode"/>
+        <nodes xsi:type="act:ActionNode"/>
+      </children>
+      <children xsi:type="act:Swimlane">
+        <nodes xsi:type="act:ActionNode"/>
+      </children>
     </activity>
   </rootPackage>
 </act:ActivityDiagram>

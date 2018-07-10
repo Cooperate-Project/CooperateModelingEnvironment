@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<act:ActivityDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://www.cooperateproject.de/modeling/textual/activity/Activity" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="ActivityDiagram">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="ActivityDiagramSwimlanes.uml#_5lgKAIQREeiTpa2YyhYj2w"/>
+    <activity>
+      <referencedElement xsi:type="uml:Activity" href="ActivityDiagramSwimlanes.uml#_5lzE8IQREeiTpa2YyhYj2w"/>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramSwimlanes.uml#_Ex8NQIQSEeiTpa2YyhYj2w"/>
+      </flows>
+      <flows>
+      	<referencedElement xsi:type="uml:ControlFlow" href="ActivityDiagramSwimlanes.uml#_FNh9EIQSEeiTpa2YyhYj2w"/>
+      </flows>
+      <children xsi:type="act:Swimlane">
+        <nodes xsi:type="act:ActionNode">
+        		<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramSwimlanes.uml#__CunsIQREeiTpa2YyhYj2w"/>
+        </nodes>
+        <nodes xsi:type="act:ActionNode">
+        		<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramSwimlanes.uml#_BgaLEIQSEeiTpa2YyhYj2w"/>
+        </nodes>
+        <referencedElement xsi:type="uml:ActivityPartition" href="ActivityDiagramSwimlanes.uml#_9nG-QIQREeiTpa2YyhYj2w"/>
+      </children>
+      <children xsi:type="act:Swimlane">
+        <nodes xsi:type="act:ActionNode">
+        		<referencedElement xsi:type="uml:OpaqueAction" href="ActivityDiagramSwimlanes.uml#_DahHUIQSEeiTpa2YyhYj2w"/>
+        </nodes>
+        <referencedElement xsi:type="uml:ActivityPartition" href="ActivityDiagramSwimlanes.uml#_-CnOgIQREeiTpa2YyhYj2w"/>
+      </children>
+    </activity>
+  </rootPackage>
+</act:ActivityDiagram>

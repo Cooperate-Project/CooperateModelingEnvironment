@@ -19,98 +19,108 @@
       <layoutConstraint xsi:type="notation:Bounds"/>
     </children>
     <children xsi:type="notation:BasicCompartment" type="Activity_ActivityNodeCompartment">
-      <children xsi:type="notation:Shape" type="InitialNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="InitialNode_FloatingNameLabel">
+      <children xsi:type="notation:Shape" type="ActivityPartition_Shape">
+        <children xsi:type="notation:DecorationNode" type="ActivityPartition_NameLabel"/>
+        <children xsi:type="notation:DecorationNode" type="ActivityPartition_FloatingNameLabel">
           <layoutConstraint xsi:type="notation:Location" y="15"/>
         </children>
-        <children xsi:type="notation:DecorationNode" type="InitialNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        <children xsi:type="notation:BasicCompartment" type="ActivityPartition_ActivityNodeCompartment">
+          <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
+            <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
+            <children xsi:type="notation:DecorationNode" type="OpaqueAction_FloatingNameLabel">
+              <layoutConstraint xsi:type="notation:Location" y="15"/>
+            </children>
+            <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+            <element href="ActivityDiagramSwimlanes.uml#__CunsIQREeiTpa2YyhYj2w"/>
+            <layoutConstraint xsi:type="notation:Bounds" x="18" y="18"/>
+          </children>
+          <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
+            <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
+            <children xsi:type="notation:DecorationNode" type="OpaqueAction_FloatingNameLabel">
+              <layoutConstraint xsi:type="notation:Location" y="15"/>
+            </children>
+            <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+            <element href="ActivityDiagramSwimlanes.uml#_BgaLEIQSEeiTpa2YyhYj2w"/>
+            <layoutConstraint xsi:type="notation:Bounds" x="53" y="82"/>
+          </children>
+          <layoutConstraint xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_y-LTYILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="90" y="72"/>
+        <element href="ActivityDiagramSwimlanes.uml#_9nG-QIQREeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="71" y="89" width="165" height="200"/>
       </children>
-      <children xsi:type="notation:Shape" type="FlowFinalNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="FlowFinalNode_FloatingNameLabel">
+      <children xsi:type="notation:Shape" type="ActivityPartition_Shape">
+        <children xsi:type="notation:DecorationNode" type="ActivityPartition_NameLabel"/>
+        <children xsi:type="notation:DecorationNode" type="ActivityPartition_FloatingNameLabel">
           <layoutConstraint xsi:type="notation:Location" y="15"/>
         </children>
-        <children xsi:type="notation:DecorationNode" type="FlowFinalNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_0lsDwILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="236" y="128"/>
-      </children>
-      <children xsi:type="notation:Shape" type="ActivityFinalNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="ActivityFinalNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="ActivityFinalNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_1m7eUILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="443" y="113"/>
-      </children>
-      <children xsi:type="notation:Shape" type="DecisionNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="DecisionNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="DecisionNode_DecisionInputLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="DecisionNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
+        <children xsi:type="notation:BasicCompartment" type="ActivityPartition_ActivityNodeCompartment">
+          <children xsi:type="notation:Shape" type="OpaqueAction_Shape">
+            <children xsi:type="notation:DecorationNode" type="OpaqueAction_NameLabel"/>
+            <children xsi:type="notation:DecorationNode" type="OpaqueAction_FloatingNameLabel">
+              <layoutConstraint xsi:type="notation:Location" y="15"/>
+            </children>
+            <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+            <element href="ActivityDiagramSwimlanes.uml#_DahHUIQSEeiTpa2YyhYj2w"/>
+            <layoutConstraint xsi:type="notation:Bounds" x="17" y="33"/>
+          </children>
+          <layoutConstraint xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_350G8ILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="181" y="237"/>
-      </children>
-      <children xsi:type="notation:Shape" type="MergeNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="MergeNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="MergeNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_5DMJ0ILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="398" y="266"/>
-      </children>
-      <children xsi:type="notation:Shape" type="JoinNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="JoinNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="JoinNode_JoinSpecLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="JoinNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_6IN4MILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="153" y="389"/>
-      </children>
-      <children xsi:type="notation:Shape" type="ForkNode_Shape">
-        <children xsi:type="notation:DecorationNode" type="ForkNode_FloatingNameLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <children xsi:type="notation:DecorationNode" type="ForkNode_StereotypeLabel">
-          <layoutConstraint xsi:type="notation:Location" y="15"/>
-        </children>
-        <styles xsi:type="notation:HintedDiagramLinkStyle"/>
-        <element href="ActivityDiagramAllNodes.uml#_7QOCEILiEeiTpa2YyhYj2w"/>
-        <layoutConstraint xsi:type="notation:Bounds" x="356" y="412"/>
+        <element href="ActivityDiagramSwimlanes.uml#_-CnOgIQREeiTpa2YyhYj2w"/>
+        <layoutConstraint xsi:type="notation:Bounds" x="252" y="194" width="124" height="135"/>
       </children>
       <layoutConstraint xsi:type="notation:Bounds"/>
     </children>
-    <element href="ActivityDiagramAllNodes.uml#_wPPA4ILiEeiTpa2YyhYj2w"/>
+    <element href="ActivityDiagramSwimlanes.uml#_5lzE8IQREeiTpa2YyhYj2w"/>
     <layoutConstraint xsi:type="notation:Bounds"/>
   </children>
   <styles xsi:type="notation:StringValueStyle" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xsi:type="notation:DiagramStyle"/>
   <styles xsi:type="style:PapyrusDiagramStyle" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
-    <owner href="ActivityDiagramAllNodes.uml#_wPBlgILiEeiTpa2YyhYj2w"/>
+    <owner href="ActivityDiagramSwimlanes.uml#_5lgKAIQREeiTpa2YyhYj2w"/>
   </styles>
-  <element href="ActivityDiagramAllNodes.uml#_wPPA4ILiEeiTpa2YyhYj2w"/>
+  <element href="ActivityDiagramSwimlanes.uml#_5lzE8IQREeiTpa2YyhYj2w"/>
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.0/@children.2/@children.0" target="//@children.0/@children.5/@children.1/@children.2/@children.0">
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="-34" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="1" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="35" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" x="1" y="-18"/>
+    </children>
+    <styles xsi:type="notation:FontStyle"/>
+    <element href="ActivityDiagramSwimlanes.uml#_Ex8NQIQSEeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[0, -12, -190, -158]$[190, 128, 0, -18]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.6338028169014085,0.3)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.49295774647887325,0.45)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="ControlFlow_Edge" source="//@children.0/@children.5/@children.1/@children.2/@children.0" target="//@children.0/@children.5/@children.0/@children.2/@children.1">
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_NameLabel">
+      <layoutConstraint xsi:type="notation:Location" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_WeightLabel">
+      <layoutConstraint xsi:type="notation:Location" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_GuardLabel">
+      <layoutConstraint xsi:type="notation:Location" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" type="ControlFlow_StereotypeLabel">
+      <layoutConstraint xsi:type="notation:Location" y="-20"/>
+    </children>
+    <styles xsi:type="notation:FontStyle"/>
+    <element href="ActivityDiagramSwimlanes.uml#_FNh9EIQSEeiTpa2YyhYj2w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[0, 14, 132, 83]$[-141, -82, -9, -13]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.29577464788732394,0.65)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.4788732394366197,0.325)"/>
+  </edges>
 </notation:Diagram>

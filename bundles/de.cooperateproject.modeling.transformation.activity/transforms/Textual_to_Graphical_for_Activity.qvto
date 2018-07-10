@@ -92,8 +92,11 @@ mapping act::Activity::activityToPostconditionCompartment() : notation::BasicCom
 mapping act::Activity::activityToActivityNodeCompartment() : notation::BasicCompartment {
 	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE;
 	
+	// Swimlanes
+	children := self.children->selectByType(act::Swimlane).map activitySwimlaneToActivityShape();
+	
 	// Actual nodes
-	children := self.nodes.map activityNodeToActivityShape();
+	children += self.nodes.map activityNodeToActivityShape();
 	
 	layoutConstraint := result.toEObject().map notationBounds();
 }
@@ -189,6 +192,25 @@ mapping act::FlowFinalNode::flowFinalNodeToActivityShape(): notation::Shape {
 	children += self.map flowFinalNodeToStereotypeLabel();
 	styles := result.toEObject().map hintedDiagramLinkStyle();
 	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+// Swimlane support
+mapping act::Swimlane::activitySwimlaneToActivityShape() : notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_ACTIVITY_PARTITION;
+	
+	children := self.map partitionToNameLabel();
+	children += self.map partitionToFloatingNameLabel();
+	children += self.map partitionToActiveNodeCompartment();
+	styles := result.toEObject().map hintedDiagramLinkStyle();
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping act::Swimlane::partitionToActiveNodeCompartment(): notation::BasicCompartment {
+	type := PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARTITION_ACTIVITYNODE;
+	
+	children += self.nodes.map activityNodeToActivityShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
@@ -332,6 +354,15 @@ mapping act::FlowFinalNode::flowFinalNodeToFloatingNameLabel(): notation::Decora
 
 mapping act::FlowFinalNode::flowFinalNodeToStereotypeLabel(): notation::DecorationNode {
 	type := PAPYRUS_NOTATION_NODE_ACTIVITY_FLOW_FINAL_STEREOTYPE;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping act::Swimlane::partitionToNameLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_PARTITION_NAME;
+}
+
+mapping act::Swimlane::partitionToFloatingNameLabel(): notation::DecorationNode {
+	type := PAPYRUS_NOTATION_NODE_ACTIVITY_PARTITION_FLOATING_NAME;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
