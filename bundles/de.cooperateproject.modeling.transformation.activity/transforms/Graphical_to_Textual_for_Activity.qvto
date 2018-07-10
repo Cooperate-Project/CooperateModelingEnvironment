@@ -25,9 +25,42 @@ mapping notation::Diagram::diagramToRootPackage() : act::RootPackage {
 	var activities := self.children->select(type = PAPYRUS_NOTATION_SHAPE_ACTIVITY);
 	assert fatal (activities->size() = 1);
 	
-	activity := activities->first().map nodeToActivity();
+	activity := activities->first().map nodeToActivity(self.edges);
 }
 
-mapping notation::Node::nodeToActivity(): act::Activity {
+mapping notation::Node::nodeToActivity(edges : OrderedSet(notation::Edge)): act::Activity {
 	referencedElement := self.element.oclAsType(uml::Activity);
+	
+	// Nodes are no direct childs of the activity
+	nodes := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE).children.map nodeToNode();
+	
+	// Edges are direct childs of the root package
+	flows := edges.map edgeToEdge();
+}
+
+mapping notation::Node::nodeToNode() : act::Node
+disjuncts notation::Node::nodeToInitialNode,
+notation::Node::nodeToFinalNode,
+notation::Node::nodeToActionNode;
+
+mapping notation::Node::nodeToInitialNode(): act::InitialNode 
+	when {self.element.oclIsKindOf(uml::InitialNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::InitialNode)
+}
+
+mapping notation::Node::nodeToFinalNode(): act::FinalNode 
+	when {self.element.oclIsKindOf(uml::ActivityFinalNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::ActivityFinalNode)
+}
+
+mapping notation::Node::nodeToActionNode(): act::ActionNode 
+	when {self.element.oclIsKindOf(uml::OpaqueAction)} {
+	
+	referencedElement := self.element.oclAsType(uml::OpaqueAction)
+}
+
+mapping notation::Edge::edgeToEdge(): act::Flow {
+	referencedElement := self.element.oclAsType(uml::ControlFlow)
 }

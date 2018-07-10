@@ -23,7 +23,6 @@ public class GraphicalToTextualActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testSimpleActivityDiagram() throws Exception {
-		setDebugSerializationDir(new File("db"));
         testRegular("SimpleActivityDiagram");
     }
 
@@ -34,6 +33,7 @@ public class GraphicalToTextualActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramNodesFlowsAlias() throws Exception {
+		setDebugSerializationDir(new File("db"));
         testRegular("ActivityDiagramNodesFlowsAlias");
     }
 
