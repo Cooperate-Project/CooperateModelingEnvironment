@@ -69,7 +69,7 @@
   <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_zGqrFYJ0EeiTpa2YyhYj2w" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
     <owner xmi:type="uml:Model" href="ActivityDiagramNodesFlowsAlias.uml#_y-fmcIJ0EeiTpa2YyhYj2w"/>
   </styles>
-  <element xmi:type="uml:Activity" href="ActivityDiagramNodesFlowsAlias.uml#_zFm7EIJ0EeiTpa2YyhYj2w"/>
+  <element xmi:type="uml:Model" href="ActivityDiagramNodesFlowsAlias.uml#_y-fmcIJ0EeiTpa2YyhYj2w"/>
   <edges xmi:type="notation:Connector" xmi:id="_sDREQIJ1EeiTpa2YyhYj2w" type="ControlFlow_Edge" source="_5g8m0IJ0EeiTpa2YyhYj2w" target="_9b_gEIJ0EeiTpa2YyhYj2w">
     <children xmi:type="notation:DecorationNode" xmi:id="_sDRrUIJ1EeiTpa2YyhYj2w" type="ControlFlow_NameLabel">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_sDRrUYJ1EeiTpa2YyhYj2w" y="20"/>

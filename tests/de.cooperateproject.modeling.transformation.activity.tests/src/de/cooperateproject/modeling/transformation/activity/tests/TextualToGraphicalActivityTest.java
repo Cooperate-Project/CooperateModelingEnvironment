@@ -78,7 +78,6 @@ public class TextualToGraphicalActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramSwimlanes() throws Exception {
-		setDebugSerializationDir(new File("debug"));
         testRegular("ActivityDiagramSwimlanes");
     }
 

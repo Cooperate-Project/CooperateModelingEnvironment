@@ -31,7 +31,7 @@ mapping act::ActivityDiagram::diagramToDiagram() : notation::Diagram {
     styles += self.map diagramStyle();
     styles += self.map papyrusViewStyle(umlRootElement);
     
-    element := activity.referencedElement.oclAsType(uml::Activity).toEObject();
+    element := self.rootPackage.referencedElement.oclAsType(uml::Model).toEObject();
     
     edges := activity.flows.map flowToEdge();
 }

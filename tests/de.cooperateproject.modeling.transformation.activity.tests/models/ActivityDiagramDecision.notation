@@ -90,7 +90,7 @@
   <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_2DclpYK-EeiTpa2YyhYj2w" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
     <owner xmi:type="uml:Model" href="ActivityDiagramDecision.uml#_2DQYUIK-EeiTpa2YyhYj2w"/>
   </styles>
-  <element xmi:type="uml:Activity" href="ActivityDiagramDecision.uml#_2DawYIK-EeiTpa2YyhYj2w"/>
+  <element xmi:type="uml:Model" href="ActivityDiagramDecision.uml#_2DQYUIK-EeiTpa2YyhYj2w"/>
   <edges xmi:type="notation:Connector" xmi:id="_YHi9EIK_EeiTpa2YyhYj2w" type="ControlFlow_Edge" source="_FEnesIK_EeiTpa2YyhYj2w" target="_PbSXkIK_EeiTpa2YyhYj2w">
     <children xmi:type="notation:DecorationNode" xmi:id="_YHjkIIK_EeiTpa2YyhYj2w" type="ControlFlow_NameLabel">
       <styles xmi:type="notation:BooleanValueStyle" xmi:id="_gp3jcIK_EeiTpa2YyhYj2w" name="IS_UPDATED_POSITION" booleanValue="true"/>

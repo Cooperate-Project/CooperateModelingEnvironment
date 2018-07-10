@@ -22,5 +22,12 @@ mapping notation::Diagram::diagramToDiagram() : act::ActivityDiagram {
 mapping notation::Diagram::diagramToRootPackage() : act::RootPackage {
 	referencedElement := self.element.oclAsType(uml::Package);
 	
-	// TODO: Implement
+	var activities := self.children->select(type = PAPYRUS_NOTATION_SHAPE_ACTIVITY);
+	assert fatal (activities->size() = 1);
+	
+	activity := activities->first().map nodeToActivity();
+}
+
+mapping notation::Node::nodeToActivity(): act::Activity {
+	referencedElement := self.element.oclAsType(uml::Activity);
 }

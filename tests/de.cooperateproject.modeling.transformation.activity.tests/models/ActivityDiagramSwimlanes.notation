@@ -80,7 +80,7 @@
   <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_5l0TJYQREeiTpa2YyhYj2w" diagramKindId="org.eclipse.papyrus.uml.diagram.activity">
     <owner xmi:type="uml:Model" href="ActivityDiagramSwimlanes.uml#_5lgKAIQREeiTpa2YyhYj2w"/>
   </styles>
-  <element xmi:type="uml:Activity" href="ActivityDiagramSwimlanes.uml#_5lzE8IQREeiTpa2YyhYj2w"/>
+  <element xmi:type="uml:Model" href="ActivityDiagramSwimlanes.uml#_5lgKAIQREeiTpa2YyhYj2w"/>
   <edges xmi:type="notation:Connector" xmi:id="_EyDiAIQSEeiTpa2YyhYj2w" type="ControlFlow_Edge" source="__C1VYIQREeiTpa2YyhYj2w" target="_Dan1AIQSEeiTpa2YyhYj2w">
     <children xmi:type="notation:DecorationNode" xmi:id="_EyEJEIQSEeiTpa2YyhYj2w" type="ControlFlow_NameLabel">
       <styles xmi:type="notation:BooleanValueStyle" xmi:id="_G2F2UIQSEeiTpa2YyhYj2w" name="IS_UPDATED_POSITION" booleanValue="true"/>
