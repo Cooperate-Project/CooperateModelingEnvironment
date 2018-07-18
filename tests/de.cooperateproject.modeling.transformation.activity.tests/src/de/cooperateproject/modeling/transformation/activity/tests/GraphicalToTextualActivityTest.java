@@ -1,7 +1,5 @@
 package de.cooperateproject.modeling.transformation.activity.tests;
 
-import java.io.File;
-
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
@@ -33,7 +31,6 @@ public class GraphicalToTextualActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramNodesFlowsAlias() throws Exception {
-		setDebugSerializationDir(new File("db"));
         testRegular("ActivityDiagramNodesFlowsAlias");
     }
 
@@ -64,7 +61,6 @@ public class GraphicalToTextualActivityTest extends ActivityDirectionalTransform
     
     @Test
     public void testActivityDiagramSwimlanes() throws Exception {
-		setDebugSerializationDir(new File("debug"));
         testRegular("ActivityDiagramSwimlanes");
     }
 

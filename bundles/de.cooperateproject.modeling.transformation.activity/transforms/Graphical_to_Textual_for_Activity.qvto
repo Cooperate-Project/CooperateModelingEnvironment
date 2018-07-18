@@ -25,23 +25,32 @@ mapping notation::Diagram::diagramToRootPackage() : act::RootPackage {
 	var activities := self.children->select(type = PAPYRUS_NOTATION_SHAPE_ACTIVITY);
 	assert fatal (activities->size() = 1);
 	
-	activity := activities->first().map nodeToActivity(self.edges);
+	activity := activities->first().map nodeToActivity();
 }
 
-mapping notation::Node::nodeToActivity(edges : OrderedSet(notation::Edge)): act::Activity {
+mapping notation::Node::nodeToActivity(): act::Activity {
 	referencedElement := self.element.oclAsType(uml::Activity);
 	
 	// Nodes are no direct childs of the activity
 	nodes := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE).children.map nodeToNode();
 	
-	// Edges are direct childs of the root package
-	flows := edges.map edgeToEdge();
+	// Swimlane support
+	children := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_ACTIVITYNODE).children
+	->select(type = PAPYRUS_NOTATION_SHAPE_ACTIVITY_PARTITION).map partitionToSwimlane();
+	
+	// Edges are direct childs of the root package / diagram
+	flows := self.diagram.edges.map edgeToEdge();
 }
 
 mapping notation::Node::nodeToNode() : act::Node
 disjuncts notation::Node::nodeToInitialNode,
 notation::Node::nodeToFinalNode,
-notation::Node::nodeToActionNode;
+notation::Node::nodeToActionNode,
+notation::Node::nodeToDecisionNode,
+notation::Node::nodeToMergeNode,
+notation::Node::nodeToFlowFinalNode,
+notation::Node::nodeToForkNode,
+notation::Node::nodeToJoinNode;
 
 mapping notation::Node::nodeToInitialNode(): act::InitialNode 
 	when {self.element.oclIsKindOf(uml::InitialNode)} {
@@ -61,6 +70,45 @@ mapping notation::Node::nodeToActionNode(): act::ActionNode
 	referencedElement := self.element.oclAsType(uml::OpaqueAction)
 }
 
+mapping notation::Node::nodeToDecisionNode(): act::DecisionNode
+	when {self.element.oclIsKindOf(uml::DecisionNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::DecisionNode)
+}
+
+mapping notation::Node::nodeToMergeNode(): act::MergeNode
+	when {self.element.oclIsKindOf(uml::MergeNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::MergeNode)
+}
+
+mapping notation::Node::nodeToFlowFinalNode(): act::FlowFinalNode
+	when {self.element.oclIsKindOf(uml::FlowFinalNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::FlowFinalNode)
+}
+
+mapping notation::Node::nodeToForkNode(): act::ForkNode
+	when {self.element.oclIsKindOf(uml::ForkNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::ForkNode)
+}
+
+mapping notation::Node::nodeToJoinNode(): act::JoinNode
+	when {self.element.oclIsKindOf(uml::JoinNode)} {
+	
+	referencedElement := self.element.oclAsType(uml::JoinNode)
+}
+
 mapping notation::Edge::edgeToEdge(): act::Flow {
 	referencedElement := self.element.oclAsType(uml::ControlFlow)
+}
+
+// Swimlane support
+
+mapping notation::Node::partitionToSwimlane() : act::Swimlane {
+
+	nodes := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_ACTIVITY_PARTITION_ACTIVITYNODE).children.map nodeToNode();
+	
+	referencedElement := self.element.oclAsType(uml::ActivityPartition)
 }
