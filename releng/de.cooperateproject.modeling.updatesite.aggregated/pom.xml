@@ -104,8 +104,8 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>de.cooperateproject.maven</groupId>
-				<artifactId>de.cooperateproject.maven.bintray.deploy</artifactId>
+				<groupId>de.cooperate-project</groupId>
+				<artifactId>de.cooperate-project.maven.bintray.deploy</artifactId>
 				<version>${bintray.deploy.plugin.version}</version>
 				<executions>
 					<execution>

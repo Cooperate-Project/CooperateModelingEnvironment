@@ -4,9 +4,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>de.cooperateproject</groupId>
-		<artifactId>de.cooperateproject.parent.eclipse</artifactId>
-		<version>1.0.3</version>
+		<groupId>de.cooperate-project</groupId>
+		<artifactId>de.cooperate-project.parent.eclipse</artifactId>
+		<version>1.1.0</version>
 		<relativePath/>
 	</parent>
 	<groupId>de.cooperateproject.modeling</groupId>
@@ -20,8 +20,8 @@
 		<module>bundles</module>
 		<module>features</module>
 		<module>tests</module>
-		<!-- Disable UI tests
 		<module>products</module>
+		<!-- Disable UI tests
 		<module>integration-tests</module>
 		-->
 		<module>releng</module>

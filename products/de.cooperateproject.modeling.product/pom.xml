@@ -6,38 +6,15 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>products</artifactId>
-		<version>0.5.1-SNAPSHOT</version>
+		<version>0.8.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>cooperate.client</artifactId>
 	<packaging>eclipse-repository</packaging>
 
-	<profiles>
-		<profile>
-			<id>products-integration-test-only</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eclipse.tycho</groupId>
-						<artifactId>target-platform-configuration</artifactId>
-						<version>${tycho.version}</version>
-						<configuration>
-							<pomDependencies>consider</pomDependencies>
-							<environments>
-								<environment>
-									<os>${target.platform.os}</os>
-									<ws>${target.platform.ws}</ws>
-									<arch>${target.platform.arch}</arch>
-								</environment>
-							</environments>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<properties>
+		<bintray.deploy.file>${project.build.directory}/toDeploy</bintray.deploy.file>
+		<bintray.deploy.package>bundledProducts</bintray.deploy.package>
+	</properties>
 
 	<build>
 		<plugins>
@@ -66,6 +43,45 @@
 						</product>
 					</products>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>deploy</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<mkdir dir="${project.build.directory}/toDeploy"/>
+								<copy todir="${project.build.directory}/toDeploy">
+									<fileset dir="${project.build.directory}/products">
+										<include name="**/*.zip"/>
+									</fileset>
+								</copy>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>de.cooperate-project</groupId>
+				<artifactId>de.cooperate-project.maven.bintray.deploy</artifactId>
+				<version>${bintray.deploy.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>bintray-deployment</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
